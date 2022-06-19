@@ -17964,7 +17964,7 @@ br_0d_fc0e:
 	sed                                                  ; $fcc0 : $f8
 	ldx $0004.w                                                  ; $fcc1 : $ae, $04, $00
 	xba                                                  ; $fcc4 : $eb
-	ora $00a8.w                                                  ; $fcc5 : $0d, $a8, $00
+	ora wJoy1CurrButtonsHeld.w                                                  ; $fcc5 : $0d, $a8, $00
 	sbc ($03)                                                  ; $fcc8 : $f2, $03
 	tay                                                  ; $fcca : $a8
 	.db $00                                                  ; $fccb : $00
@@ -18089,7 +18089,7 @@ Call_0d_fcf9:
 
 
 	php                                                  ; $fdc9 : $08
-	inc $00a8.w, X                                                  ; $fdca : $fe, $a8, $00
+	inc wJoy1CurrButtonsHeld.w, X                                                  ; $fdca : $fe, $a8, $00
 	plx                                                  ; $fdcd : $fa
 	sbc $40a8.w, Y                                                  ; $fdce : $f9, $a8, $40
 	inc $a8ff.w                                                  ; $fdd1 : $ee, $ff, $a8

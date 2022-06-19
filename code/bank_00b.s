@@ -14676,7 +14676,7 @@ br_0b_f193:
 
 	lda $000001.l, X                                                  ; $f1a8 : $bf, $01, $00, $00
 	sbc ($31), Y                                                  ; $f1ac : $f1, $31
-	dec $00a8.w, X                                                  ; $f1ae : $de, $a8, $00
+	dec wJoy1CurrButtonsHeld.w, X                                                  ; $f1ae : $de, $a8, $00
 	ora $30, S                                                  ; $f1b1 : $03, $30
 	cmp $47cf0e.l, X                                                  ; $f1b3 : $df, $0e, $cf, $47
 	lsr $cea8.w                                                  ; $f1b7 : $4e, $a8, $ce

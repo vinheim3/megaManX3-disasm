@@ -163,6 +163,7 @@
                     let src = this.wordIn(bankConv(0x3c, 0xce4b+stageIdx*2));
                     let start = bankConv(0x3c, src);
                     let eTypes = ["green", "yellow", "blue", "red"];
+                    let eThings = ["Item", "Palettes-related", "Event", "Enemy"];
                     let prevColIdx = null;
                     while (1) {
                         let colIdx = this.rom[start++];
@@ -182,7 +183,8 @@
                             ctx.stroke();
 
                             this.roomClickEvents.push([
-                                x-10, y-10, this.rom[start+3], this.rom[start+4],
+                                x-10, y-10, eThings[eType],
+                                this.rom[start+3], this.rom[start+4],
                             ])
                         
                             start += 7;
@@ -263,6 +265,8 @@
                     let start = bankConv(6, src);
                     let decompIdx = this.rom[start];
                     this.DecompressData(decompIdx, 0x2200);
+
+                    this.singlePaletteTiles();
                 }
 
                 TileData(start) {
@@ -328,12 +332,12 @@
                         const x = event.clientX - rect.left
                         const y = event.clientY - rect.top
                         let hadEvent = false;
-                        for (let [leftX, topY, type, subtype] of self.roomClickEvents) {
+                        for (let [leftX, topY, thing, type, subtype] of self.roomClickEvents) {
                             if (x < leftX || x > leftX+20 || y < topY || y > topY + 20)
                                 continue;
                             if (!hadEvent) console.log('-----------------------------------------');
                             console.log(
-                                `Type: $${type.toString(16).padStart(2, '0')}. SubType: $${subtype.toString(16).padStart(2, '0')}`);
+                                `Thing: ${thing}, Type: $${type.toString(16).padStart(2, '0')}. SubType: $${subtype.toString(16).padStart(2, '0')}`);
                             hadEvent = true;
                         }
                     }
@@ -441,10 +445,9 @@
                             name: "Stage",
                             sources: [
                                 ["TileDataForStage"],
-                                ["singlePaletteTiles"],
-                                ["TileData", 0x2000],
-                                ["Metatiles"],
-                                ["MetaMetatiles"],
+                                // ["TileData", 0x2000],
+                                // ["Metatiles"],
+                                // ["MetaMetatiles"],
                                 ["DrawRooms"],
                             ],
                         },

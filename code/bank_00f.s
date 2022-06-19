@@ -19873,11 +19873,11 @@ br_0f_ff4a:
 	cpy #$f40c.w                                                  ; $ff9a : $c0, $0c, $f4
 	lda ($40, S), Y                                                  ; $ff9d : $b3, $40
 	php                                                  ; $ff9f : $08
-	tsb $00a9.w                                                  ; $ffa0 : $0c, $a9, $00
+	tsb wJoy1CurrButtonsHeld.w+1                                                  ; $ffa0 : $0c, $a9, $00
 	.db $00                                                  ; $ffa3 : $00
 	tsb $00aa.w                                                  ; $ffa4 : $0c, $aa, $00
 	sed                                                  ; $ffa7 : $f8
-	tsb $00a9.w                                                  ; $ffa8 : $0c, $a9, $00
+	tsb wJoy1CurrButtonsHeld.w+1                                                  ; $ffa8 : $0c, $a9, $00
 	.db $f0, $fc                                                  ; $ffab : $f0, $fc
 
 	tay                                                  ; $ffad : $a8

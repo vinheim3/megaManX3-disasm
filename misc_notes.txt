@@ -170,9 +170,13 @@ TODO: spikes deal damage
 TODO: final boss laser damage
 
 
-Event type 2
-------------
+Event type 2 (blue)
+-------------------
 0 - snaps scroll Y, usually in pairs
 a - stub
 15/16/17/18/19/1a/1c/1d - dynamically loads oam
 22 - stub
+
+Event type 1 (yellow)
+---------------------
+1818 structs

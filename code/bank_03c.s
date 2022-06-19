@@ -9243,7 +9243,7 @@ br_3c_b666:
 	lda [$5b], Y                                                  ; $b703 : $b7, $5b
 	lda [$74], Y                                                  ; $b705 : $b7, $74
 	lda [$c2], Y                                                  ; $b707 : $b7, $c2
-	jsr $00a9.w                                                  ; $b709 : $20, $a9, $00
+	jsr wJoy1CurrButtonsHeld.w+1                                                  ; $b709 : $20, $a9, $00
 	ora ($38)                                                  ; $b70c : $12, $38
 	sbc #$08.b                                                  ; $b70e : $e9, $08
 	.db $00                                                  ; $b710 : $00

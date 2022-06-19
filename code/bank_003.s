@@ -1241,7 +1241,7 @@ br_03_8749:
 	rtl                                                  ; $874b : $6b
 
 
-	lda $00a8.w                                                  ; $874c : $ad, $a8, $00
+	lda wJoy1CurrButtonsHeld.w                                                  ; $874c : $ad, $a8, $00
 	bit #$10.b                                                  ; $874f : $89, $10
 	bne br_03_8759                                                  ; $8751 : $d0, $06
 
@@ -1294,7 +1294,7 @@ br_03_87ac:
 	ldx $01                                                  ; $87b1 : $a6, $01
 	jsr ($87db.w, X)                                                  ; $87b3 : $fc, $db, $87
 	jsr Call_03_8c25.w                                                  ; $87b6 : $20, $25, $8c
-	lda $00a8.w                                                  ; $87b9 : $ad, $a8, $00
+	lda wJoy1CurrButtonsHeld.w                                                  ; $87b9 : $ad, $a8, $00
 	and #$70.b                                                  ; $87bc : $29, $70
 	cmp #$70.b                                                  ; $87be : $c9, $70
 	bne br_03_87a9                                                  ; $87c0 : $d0, $e7
@@ -1679,7 +1679,7 @@ br_03_8a92:
 
 Call_03_8aa8:
 	stz $0001.w                                                  ; $8aa8 : $9c, $01, $00
-	lda $00a9.w                                                  ; $8aab : $ad, $a9, $00
+	lda wJoy1CurrButtonsHeld.w+1                                                  ; $8aab : $ad, $a9, $00
 	bit #$80.b                                                  ; $8aae : $89, $80
 	bne br_03_8ab9                                                  ; $8ab0 : $d0, $07
 
@@ -1698,7 +1698,7 @@ br_03_8abe:
 	jsr Call_03_8ad2.w                                                  ; $8ac2 : $20, $d2, $8a
 
 br_03_8ac5:
-	lda $00a9.w                                                  ; $8ac5 : $ad, $a9, $00
+	lda wJoy1CurrButtonsHeld.w+1                                                  ; $8ac5 : $ad, $a9, $00
 	bit #$03.b                                                  ; $8ac8 : $89, $03
 	beq br_03_8acf                                                  ; $8aca : $f0, $03
 
@@ -1731,7 +1731,7 @@ br_03_8ae6:
 
 br_03_8af2:
 	sep #ACCU_8                                                  ; $8af2 : $e2, $20
-	lda $00a9.w                                                  ; $8af4 : $ad, $a9, $00
+	lda wJoy1CurrButtonsHeld.w+1                                                  ; $8af4 : $ad, $a9, $00
 	rts                                                  ; $8af7 : $60
 
 
@@ -3351,7 +3351,7 @@ br_03_94fb:
 	lsr                                                  ; $9509 : $4a
 	bcs br_03_9510                                                  ; $950a : $b0, $04
 
-	jsr $02d611.l                                                  ; $950c : $22, $11, $d6, $02
+	jsr Func_2_d611.l                                                  ; $950c : $22, $11, $d6, $02
 
 br_03_9510:
 	jsr Call_03_a4d0.w                                                  ; $9510 : $20, $d0, $a4
@@ -9505,7 +9505,7 @@ Func_3_bb98:
 	lda #$80.b                                                  ; $bba3 : $a9, $80
 	tsb $00                                                  ; $bba5 : $04, $00
 	lda #$4c.b                                                  ; $bba7 : $a9, $4c
-	jsr $02e158.l                                                  ; $bba9 : $22, $58, $e1, $02
+	jsr Func_2_e158.l                                                  ; $bba9 : $22, $58, $e1, $02
 	rep #ACCU_8                                                  ; $bbad : $c2, $20
 	lda #$1880.w                                                  ; $bbaf : $a9, $80, $18
 	sta $05                                                  ; $bbb2 : $85, $05
@@ -9972,7 +9972,7 @@ br_03_bedc:
 	cop $22.b                                                  ; $bf19 : $02, $22
 	adc [$b9]                                                  ; $bf1b : $67, $b9
 	tsb $c2                                                  ; $bf1d : $04, $c2
-	jsr $00a9.w                                                  ; $bf1f : $20, $a9, $00
+	jsr wJoy1CurrButtonsHeld.w+1                                                  ; $bf1f : $20, $a9, $00
 	sed                                                  ; $bf22 : $f8
 	sta $1c                                                  ; $bf23 : $85, $1c
 	stz $1a                                                  ; $bf25 : $64, $1a
@@ -10021,7 +10021,7 @@ br_03_bf37:
 	lda #$2204.w                                                  ; $bf76 : $a9, $04, $22
 	adc [$b9]                                                  ; $bf79 : $67, $b9
 	tsb $c2                                                  ; $bf7b : $04, $c2
-	jsr $00a9.w                                                  ; $bf7d : $20, $a9, $00
+	jsr wJoy1CurrButtonsHeld.w+1                                                  ; $bf7d : $20, $a9, $00
 	sed                                                  ; $bf80 : $f8
 	sta $1a                                                  ; $bf81 : $85, $1a
 	stz $1c                                                  ; $bf83 : $64, $1c
@@ -14300,7 +14300,7 @@ br_03_da98:
 
 Jump_03_daa4:
 br_03_daa4:
-	jmp $02d611.l                                                  ; $daa4 : $5c, $11, $d6, $02
+	jmp Func_2_d611.l                                                  ; $daa4 : $5c, $11, $d6, $02
 
 
 Call_03_daa8:
@@ -18710,7 +18710,7 @@ br_03_f4cc:
 
 	lda #$00.b                                                  ; $f5e8 : $a9, $00
 	inc $a28d.w, X                                                  ; $f5ea : $fe, $8d, $a2
-	asl $00a9.w, X                                                  ; $f5ed : $1e, $a9, $00
+	asl wJoy1CurrButtonsHeld.w+1, X                                                  ; $f5ed : $1e, $a9, $00
 	ora $8d                                                  ; $f5f0 : $05, $8d
 	ldy $1e                                                  ; $f5f2 : $a4, $1e
 	sep #ACCU_8                                                  ; $f5f4 : $e2, $20
@@ -18776,7 +18776,7 @@ br_03_f4cc:
 
 	lda #$00.b                                                  ; $f651 : $a9, $00
 	inc $a28d.w, X                                                  ; $f653 : $fe, $8d, $a2
-	asl $00a9.w, X                                                  ; $f656 : $1e, $a9, $00
+	asl wJoy1CurrButtonsHeld.w+1, X                                                  ; $f656 : $1e, $a9, $00
 	.db $00                                                  ; $f659 : $00
 	sta $1ea4.w                                                  ; $f65a : $8d, $a4, $1e
 	rts                                                  ; $f65d : $60
@@ -18789,7 +18789,7 @@ br_03_f4cc:
 	asl $a960.w, X                                                  ; $f669 : $1e, $60, $a9
 	.db $00                                                  ; $f66c : $00
 	inc $a28d.w, X                                                  ; $f66d : $fe, $8d, $a2
-	asl $00a9.w, X                                                  ; $f670 : $1e, $a9, $00
+	asl wJoy1CurrButtonsHeld.w+1, X                                                  ; $f670 : $1e, $a9, $00
 	inc $a48d.w, X                                                  ; $f673 : $fe, $8d, $a4
 	asl $20e2.w, X                                                  ; $f676 : $1e, $e2, $20
 	lda #$0e.b                                                  ; $f679 : $a9, $0e
@@ -18819,7 +18819,7 @@ br_03_f4cc:
 
 	lda #$80.b                                                  ; $f6a0 : $a9, $80
 	sbc $a28d.w, X                                                  ; $f6a2 : $fd, $8d, $a2
-	asl $00a9.w, X                                                  ; $f6a5 : $1e, $a9, $00
+	asl wJoy1CurrButtonsHeld.w+1, X                                                  ; $f6a5 : $1e, $a9, $00
 	.db $00                                                  ; $f6a8 : $00
 	sta $1ea4.w                                                  ; $f6a9 : $8d, $a4, $1e
 	rts                                                  ; $f6ac : $60
@@ -18976,7 +18976,7 @@ br_03_f777:
 
 	lda #$00.b                                                  ; $f7a8 : $a9, $00
 	sbc $a28d.w, X                                                  ; $f7aa : $fd, $8d, $a2
-	asl $00a9.w, X                                                  ; $f7ad : $1e, $a9, $00
+	asl wJoy1CurrButtonsHeld.w+1, X                                                  ; $f7ad : $1e, $a9, $00
 	ora $8d, S                                                  ; $f7b0 : $03, $8d
 	ldy $1e                                                  ; $f7b2 : $a4, $1e
 	rts                                                  ; $f7b4 : $60
@@ -18992,7 +18992,7 @@ br_03_f777:
 
 	lda #$80.b                                                  ; $f7c2 : $a9, $80
 	sbc $a28d.w, X                                                  ; $f7c4 : $fd, $8d, $a2
-	asl $00a9.w, X                                                  ; $f7c7 : $1e, $a9, $00
+	asl wJoy1CurrButtonsHeld.w+1, X                                                  ; $f7c7 : $1e, $a9, $00
 	jsr ($a48d.w, X)                                                  ; $f7ca : $fc, $8d, $a4
 	asl $a960.w, X                                                  ; $f7cd : $1e, $60, $a9
 	.db $80, $01                                                  ; $f7d0 : $80, $01
@@ -19086,7 +19086,7 @@ br_03_f7f3:
 
 	lda #$00.b                                                  ; $f868 : $a9, $00
 	sbc $a28d.w, X                                                  ; $f86a : $fd, $8d, $a2
-	asl $00a9.w, X                                                  ; $f86d : $1e, $a9, $00
+	asl wJoy1CurrButtonsHeld.w+1, X                                                  ; $f86d : $1e, $a9, $00
 	ora ($8d, X)                                                  ; $f870 : $01, $8d
 	ldy $1e                                                  ; $f872 : $a4, $1e
 	sep #ACCU_8                                                  ; $f874 : $e2, $20
@@ -19120,7 +19120,7 @@ br_03_f7f3:
 
 	lda #$00.b                                                  ; $f8a4 : $a9, $00
 	sbc $a28d.w, X                                                  ; $f8a6 : $fd, $8d, $a2
-	asl $00a9.w, X                                                  ; $f8a9 : $1e, $a9, $00
+	asl wJoy1CurrButtonsHeld.w+1, X                                                  ; $f8a9 : $1e, $a9, $00
 	cop $8d.b                                                  ; $f8ac : $02, $8d
 	ldy $1e                                                  ; $f8ae : $a4, $1e
 	sep #ACCU_8                                                  ; $f8b0 : $e2, $20
@@ -19181,7 +19181,7 @@ br_03_f7f3:
 
 	lda #$00.b                                                  ; $f907 : $a9, $00
 	sbc $a28d.w, Y                                                  ; $f909 : $f9, $8d, $a2
-	asl $00a9.w, X                                                  ; $f90c : $1e, $a9, $00
+	asl wJoy1CurrButtonsHeld.w+1, X                                                  ; $f90c : $1e, $a9, $00
 	cop $8d.b                                                  ; $f90f : $02, $8d
 	ldy $1e                                                  ; $f911 : $a4, $1e
 	sep #ACCU_8                                                  ; $f913 : $e2, $20

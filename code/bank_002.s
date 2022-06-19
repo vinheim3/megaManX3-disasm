@@ -11863,6 +11863,8 @@ Func_2_d58a:
 
 	bra br_02_d631                                                  ; $d60f : $80, $20
 
+
+Func_2_d611:
 	rep #ACCU_8                                                  ; $d611 : $c2, $20
 	sec                                                  ; $d613 : $38
 	lda $05                                                  ; $d614 : $a5, $05
@@ -12229,6 +12231,7 @@ br_02_d82a:
 	rtl                                                  ; $d831 : $6b
 
 
+; Returns with A=1 if failed
 todo_XequNextFreeEntitySlotForTypeX:
 	rep #ACCU_8|IDX_8                                                  ; $d832 : $c2, $30
 	jmp (@funcs.w, X)                                                  ; $d834 : $7c, $37, $d8
@@ -12236,13 +12239,13 @@ todo_XequNextFreeEntitySlotForTypeX:
 @funcs:
 	.dw XequNextFreeEntitySlotForItems
 	.dw Func_2_d859
-	.dw Func_2_d88d
+	.dw todo_XequNextFreeEntitySlotFor_1d18
 	.dw XequNextFreeEntitySlotForEnemies
 
 
 XequNextFreeEntitySlotForItems:
 	rep #ACCU_8|IDX_8                                                  ; $d83f : $c2, $30
-	ldx #$1518.w                                                  ; $d841 : $a2, $18, $15
+	ldx #wItemEntities.w                                                  ; $d841 : $a2, $18, $15
 
 @loop_d844:
 	lda $0000.w, X                                                  ; $d844 : $bd, $00, $00
@@ -12250,9 +12253,9 @@ XequNextFreeEntitySlotForItems:
 
 	txa                                                  ; $d849 : $8a
 	clc                                                  ; $d84a : $18
-	adc #$0030.w                                                  ; $d84b : $69, $30, $00
+	adc #StageItemEntity.sizeof.w                                                  ; $d84b : $69, $30, $00
 	tax                                                  ; $d84e : $aa
-	cpx #$1818.w                                                  ; $d84f : $e0, $18, $18
+	cpx #wItemEntities.w+_sizeof_wItemEntities                                                  ; $d84f : $e0, $18, $18
 	bcc @loop_d844                                                  ; $d852 : $90, $f0
 
 	sep #ACCU_8                                                  ; $d854 : $e2, $20
@@ -12262,7 +12265,7 @@ XequNextFreeEntitySlotForItems:
 
 Func_2_d859:
 	rep #ACCU_8|IDX_8                                                  ; $d859 : $c2, $30
-	ldx #$1818.w                                                  ; $d85b : $a2, $18, $18
+	ldx #w1818_Entities.w                                                  ; $d85b : $a2, $18, $18
 
 @loop_d85e:
 	lda $0000.w, X                                                  ; $d85e : $bd, $00, $00
@@ -12270,9 +12273,9 @@ Func_2_d859:
 
 	txa                                                  ; $d863 : $8a
 	clc                                                  ; $d864 : $18
-	adc #$0020.w                                                  ; $d865 : $69, $20, $00
+	adc #_1818_Entity.sizeof.w                                                  ; $d865 : $69, $20, $00
 	tax                                                  ; $d868 : $aa
-	cpx #$1d18.w                                                  ; $d869 : $e0, $18, $1d
+	cpx #w1818_Entities.w+_sizeof_w1818_Entities                                                  ; $d869 : $e0, $18, $1d
 	bcc @loop_d85e                                                  ; $d86c : $90, $f0
 
 	sep #ACCU_8                                                  ; $d86e : $e2, $20
@@ -12300,9 +12303,10 @@ Func_2_d859:
 	rtl                                                  ; $d88c : $6b
 
 
-Func_2_d88d:
+; Returns with A=1 if failed
+todo_XequNextFreeEntitySlotFor_1d18:
 	rep #ACCU_8|IDX_8                                                  ; $d88d : $c2, $30
-	ldx #$1d18.w                                                  ; $d88f : $a2, $18, $1d
+	ldx #w1d18_Entities.w                                                  ; $d88f : $a2, $18, $1d
 
 @loop_d892:
 	lda $0000.w, X                                                  ; $d892 : $bd, $00, $00
@@ -12310,9 +12314,9 @@ Func_2_d88d:
 
 	txa                                                  ; $d897 : $8a
 	clc                                                  ; $d898 : $18
-	adc #$0010.w                                                  ; $d899 : $69, $10, $00
+	adc #_1d18_Entity.sizeof.w                                                  ; $d899 : $69, $10, $00
 	tax                                                  ; $d89c : $aa
-	cpx #$1e18.w                                                  ; $d89d : $e0, $18, $1e
+	cpx #w1d18_Entities.w+_sizeof_w1d18_Entities                                                  ; $d89d : $e0, $18, $1e
 	bcc @loop_d892                                                  ; $d8a0 : $90, $f0
 
 	sep #ACCU_8                                                  ; $d8a2 : $e2, $20
@@ -12322,7 +12326,7 @@ Func_2_d88d:
 
 XequNextFreeEntitySlotForEnemies:
 	rep #ACCU_8|IDX_8                                                  ; $d8a7 : $c2, $30
-	ldx #$0d18.w                                                  ; $d8a9 : $a2, $18, $0d
+	ldx #wEnemyEntities.w                                                  ; $d8a9 : $a2, $18, $0d
 
 @loop_d8ac:
 	lda $0000.w, X                                                  ; $d8ac : $bd, $00, $00
@@ -12330,9 +12334,9 @@ XequNextFreeEntitySlotForEnemies:
 
 	txa                                                  ; $d8b1 : $8a
 	clc                                                  ; $d8b2 : $18
-	adc #$0040.w                                                  ; $d8b3 : $69, $40, $00
+	adc #StageEnemyEntity.sizeof.w                                                  ; $d8b3 : $69, $40, $00
 	tax                                                  ; $d8b6 : $aa
-	cpx #$10d8.w                                                  ; $d8b7 : $e0, $d8, $10
+	cpx #wEnemyEntities.w+_sizeof_wEnemyEntities                                                  ; $d8b7 : $e0, $d8, $10
 	bcc @loop_d8ac                                                  ; $d8ba : $90, $f0
 
 	sep #ACCU_8                                                  ; $d8bc : $e2, $20
@@ -12392,7 +12396,7 @@ todo_ReturnWithXequFreeEntitySlot:
 	rtl                                                  ; $d901 : $6b
 
 
-;
+Func_2_d902:
 	sep #ACCU_8                                                  ; $d902 : $e2, $20
 	rep #IDX_8                                                  ; $d904 : $c2, $10
 	ldx $0c                                                  ; $d906 : $a6, $0c
@@ -13769,14 +13773,16 @@ br_02_e156:
 	rtl                                                  ; $e157 : $6b
 
 
+Func_2_e158:
 	rep #ACCU_8|IDX_8                                                  ; $e158 : $c2, $30
-	bra br_02_e162                                                  ; $e15a : $80, $06
+	bra @cont_e162                                                  ; $e15a : $80, $06
 
 	rep #ACCU_8|IDX_8                                                  ; $e15c : $c2, $30
 	stz $30                                                  ; $e15e : $64, $30
 	lda $0a                                                  ; $e160 : $a5, $0a
 
-br_02_e162:
+@cont_e162:
+; x = (type-1) * 5
 	and #$00ff.w                                                  ; $e162 : $29, $ff, $00
 	dea                                                  ; $e165 : $3a
 	sta $0000.w                                                  ; $e166 : $8d, $00, $00
@@ -13794,8 +13800,13 @@ br_02_e162:
 	sta $01                                                  ; $e17d : $85, $01
 	lda $e290.w, X                                                  ; $e17f : $bd, $90, $e2
 	sta $26                                                  ; $e182 : $85, $26
+.ifdef HACK
+	lda #$01.b
+	nop
+.else
 	lda $e291.w, X                                                  ; $e184 : $bd, $91, $e2
-	sta $27                                                  ; $e187 : $85, $27
+.endif
+	sta StageEnemyEntity.health                                                  ; $e187 : $85, $27
 	lda $e292.w, X                                                  ; $e189 : $bd, $92, $e2
 	sta $28                                                  ; $e18c : $85, $28
 	lda $e28e.w, X                                                  ; $e18e : $bd, $8e, $e2
@@ -16548,7 +16559,7 @@ br_02_f2e6:
 	jsr Func_4_b94a.l                                                  ; $f2f6 : $22, $4a, $b9, $04
 
 br_02_f2fa:
-	jmp $02d611.l                                                  ; $f2fa : $5c, $11, $d6, $02
+	jmp Func_2_d611.l                                                  ; $f2fa : $5c, $11, $d6, $02
 
 
 	jsr Func_2_d58a.l                                                  ; $f2fe : $22, $8a, $d5, $02
@@ -18372,99 +18383,107 @@ br_02_fe6b:
 	rts                                                  ; $fe6b : $60
 
 
-	ldx $01                                                  ; $fe6c : $a6, $01
-	jmp ($fe71.w, X)                                                  ; $fe6e : $7c, $71, $fe
+todo_Update_1818_Entity33h:
+	ldx _1818_Entity.state                                                  ; $fe6c : $a6, $01
+	jmp (@states.w, X)                                                  ; $fe6e : $7c, $71, $fe
+
+@states:
+	.dw _1818_Entity33h_State0
+	.dw _1818_Entity33h_State1
+	.dw _1818_Entity33h_State2
 
 
-	adc [$fe], Y                                                  ; $fe71 : $77, $fe
-	cmp ($fe), Y                                                  ; $fe73 : $d1, $fe
-	sbc ($fe, X)                                                  ; $fe75 : $e1, $fe
+_1818_Entity33h_State0:
 	sep #ACCU_8|IDX_8                                                  ; $fe77 : $e2, $30
 	lda wStageIdx.w                                                  ; $fe79 : $ad, $ae, $1f
 	cmp #$02.b                                                  ; $fe7c : $c9, $02
-	bne br_02_fe9d                                                  ; $fe7e : $d0, $1d
+	bne @br_fe9d                                                  ; $fe7e : $d0, $1d
 
 	bit $1fc0.w                                                  ; $fe80 : $2c, $c0, $1f
-	bvs br_02_fe97                                                  ; $fe83 : $70, $12
+	bvs @br_fe97                                                  ; $fe83 : $70, $12
 
+; eg 3e
 	lda $0b                                                  ; $fe85 : $a5, $0b
 	cmp #$11.b                                                  ; $fe87 : $c9, $11
-	bcc br_02_fe9d                                                  ; $fe89 : $90, $12
+	bcc @br_fe9d                                                  ; $fe89 : $90, $12
 
 	cmp #$58.b                                                  ; $fe8b : $c9, $58
-	bcs br_02_fe93                                                  ; $fe8d : $b0, $04
+	bcs @brLoop_fe93                                                  ; $fe8d : $b0, $04
 
 	cmp #$20.b                                                  ; $fe8f : $c9, $20
-	bcs br_02_fe9d                                                  ; $fe91 : $b0, $0a
+	bcs @br_fe9d                                                  ; $fe91 : $b0, $0a
 
-br_02_fe93:
-	jmp $02d902.l                                                  ; $fe93 : $5c, $02, $d9, $02
+@brLoop_fe93:
+	jmp Func_2_d902.l                                                  ; $fe93 : $5c, $02, $d9, $02
 
-
-br_02_fe97:
+@br_fe97:
 	lda $0b                                                  ; $fe97 : $a5, $0b
 	cmp #$11.b                                                  ; $fe99 : $c9, $11
-	bcc br_02_fe93                                                  ; $fe9b : $90, $f6
+	bcc @brLoop_fe93                                                  ; $fe9b : $90, $f6
 
-br_02_fe9d:
+@br_fe9d:
 	rep #ACCU_8|IDX_8                                                  ; $fe9d : $c2, $30
-	ldx #$1818.w                                                  ; $fe9f : $a2, $18, $18
+	ldx #w1818_Entities.w                                                  ; $fe9f : $a2, $18, $18
 
-br_02_fea2:
-	lda $0000.w, X                                                  ; $fea2 : $bd, $00, $00
-	beq br_02_febb                                                  ; $fea5 : $f0, $14
+@nextEntity:
+; Jump if entity in loop is disabled
+	lda _1818_Entity.enabled.w, X                                                  ; $fea2 : $bd, $00, $00
+	beq @toNextEntity                                                  ; $fea5 : $f0, $14
 
+; jump if entity slot is curr entity's
 	tdc                                                  ; $fea7 : $7b
 	sta $0000.w                                                  ; $fea8 : $8d, $00, $00
 	cpx $0000.w                                                  ; $feab : $ec, $00, $00
-	beq br_02_febb                                                  ; $feae : $f0, $0b
+	beq @toNextEntity                                                  ; $feae : $f0, $0b
 
+; jump if looped entity's type != curr entity's
 	lda $000a.w, X                                                  ; $feb0 : $bd, $0a, $00
 	cmp $0a                                                  ; $feb3 : $c5, $0a
-	bne br_02_febb                                                  ; $feb5 : $d0, $04
+	bne @toNextEntity                                                  ; $feb5 : $d0, $04
 
+; disable entity (ie dedupe)
 	jmp Func_2_d917.l                                                  ; $feb7 : $5c, $17, $d9, $02
 
-
-br_02_febb:
+@toNextEntity:
 	txa                                                  ; $febb : $8a
 	clc                                                  ; $febc : $18
-	adc #$0020.w                                                  ; $febd : $69, $20, $00
+	adc #_1818_Entity.sizeof.w                                                  ; $febd : $69, $20, $00
 	tax                                                  ; $fec0 : $aa
-	cmp #$1d18.w                                                  ; $fec1 : $c9, $18, $1d
-	bcc br_02_fea2                                                  ; $fec4 : $90, $dc
+	cmp #w1818_Entities.w+_sizeof_w1818_Entities                                                  ; $fec1 : $c9, $18, $1d
+	bcc @nextEntity                                                  ; $fec4 : $90, $dc
 
 	sep #ACCU_8|IDX_8                                                  ; $fec6 : $e2, $30
 	lda #$80.b                                                  ; $fec8 : $a9, $80
-	tsb $00                                                  ; $feca : $04, $00
+	tsb _1818_Entity.enabled                                                  ; $feca : $04, $00
 	lda #$02.b                                                  ; $fecc : $a9, $02
-	sta $01                                                  ; $fece : $85, $01
+	sta _1818_Entity.state                                                  ; $fece : $85, $01
 	rtl                                                  ; $fed0 : $6b
 
 
+_1818_Entity33h_State1:
 	jsr Call_02_feef.w                                                  ; $fed1 : $20, $ef, $fe
-	bcs br_02_fed7                                                  ; $fed4 : $b0, $01
+	bcs @br_fed7                                                  ; $fed4 : $b0, $01
 
 	rtl                                                  ; $fed6 : $6b
 
-
-br_02_fed7:
+@br_fed7:
 	lda #$04.b                                                  ; $fed7 : $a9, $04
 	sta $01                                                  ; $fed9 : $85, $01
 	lda $0b                                                  ; $fedb : $a5, $0b
-	jmp $04bc2d.l                                                  ; $fedd : $5c, $2d, $bc, $04
+	jmp Func_4_bc2d.l                                                  ; $fedd : $5c, $2d, $bc, $04
 
 
+_1818_Entity33h_State2:
 	jsr Call_02_feef.w                                                  ; $fee1 : $20, $ef, $fe
-	bcc br_02_feea                                                  ; $fee4 : $90, $04
+	bcc @done                                                  ; $fee4 : $90, $04
 
-	jmp $04bc02.l                                                  ; $fee6 : $5c, $02, $bc, $04
+	jmp Func_4_bc02.l                                                  ; $fee6 : $5c, $02, $bc, $04
 
-
-br_02_feea:
+@done:
 	rtl                                                  ; $feea : $6b
 
 
+;
 	jmp Func_2_d917.l                                                  ; $feeb : $5c, $17, $d9, $02
 
 
@@ -18472,10 +18491,10 @@ Call_02_feef:
 	sep #ACCU_8                                                  ; $feef : $e2, $20
 	lda wCurrHealth.w                                                  ; $fef1 : $ad, $ff, $09
 	and #$7f.b                                                  ; $fef4 : $29, $7f
-	beq br_02_ff25                                                  ; $fef6 : $f0, $2d
+	beq @end                                                  ; $fef6 : $f0, $2d
 
 	bit $1f5f.w                                                  ; $fef8 : $2c, $5f, $1f
-	bmi br_02_ff25                                                  ; $fefb : $30, $28
+	bmi @end                                                  ; $fefb : $30, $28
 
 	rep #ACCU_8|IDX_8                                                  ; $fefd : $c2, $30
 	lda $0b                                                  ; $feff : $a5, $0b
@@ -18486,23 +18505,22 @@ Call_02_feef:
 	tax                                                  ; $ff07 : $aa
 	lda $09dd.w                                                  ; $ff08 : $ad, $dd, $09
 	cmp $dbe1.w, X                                                  ; $ff0b : $dd, $e1, $db
-	bcc br_02_ff25                                                  ; $ff0e : $90, $15
+	bcc @end                                                  ; $ff0e : $90, $15
 
 	cmp $dbe3.w, X                                                  ; $ff10 : $dd, $e3, $db
-	bcs br_02_ff25                                                  ; $ff13 : $b0, $10
+	bcs @end                                                  ; $ff13 : $b0, $10
 
 	lda $09e0.w                                                  ; $ff15 : $ad, $e0, $09
 	cmp $dbe5.w, X                                                  ; $ff18 : $dd, $e5, $db
-	bcc br_02_ff25                                                  ; $ff1b : $90, $08
+	bcc @end                                                  ; $ff1b : $90, $08
 
 	cmp $dbe7.w, X                                                  ; $ff1d : $dd, $e7, $db
-	bcs br_02_ff25                                                  ; $ff20 : $b0, $03
+	bcs @end                                                  ; $ff20 : $b0, $03
 
 	sep #ACCU_8|IDX_8|F_CARRY                                                  ; $ff22 : $e2, $31
 	rts                                                  ; $ff24 : $60
 
-
-br_02_ff25:
+@end:
 	sep #ACCU_8|IDX_8                                                  ; $ff25 : $e2, $30
 	rep #$01.b                                                  ; $ff27 : $c2, $01
 	rts                                                  ; $ff29 : $60

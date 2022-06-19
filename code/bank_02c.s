@@ -12905,7 +12905,7 @@ br_2c_c4b0:
 	jmp ($e860.w, X)                                                  ; $c4bb : $7c, $60, $e8
 
 
-	jsr $00a8.w                                                  ; $c4be : $20, $a8, $00
+	jsr wJoy1CurrButtonsHeld.w                                                  ; $c4be : $20, $a8, $00
 	bit $c300.w, X                                                  ; $c4c1 : $3c, $00, $c3
 	.db $00                                                  ; $c4c4 : $00
 	.db $00                                                  ; $c4c5 : $00

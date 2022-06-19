@@ -11,7 +11,6 @@ THREAD_DELAYED = 2
 THREAD_STARTED = 3
 
 .struct Thread
-; 3 if executing? 1 if pending? 2 if exec'ing based on a timer? 0 if disabled
     status db ; $0
     delayCounter db ; $1
     pc dw ; $2/$3
@@ -20,8 +19,14 @@ THREAD_STARTED = 3
     sizeof .db
 .endst
 
-; $eg $1518
-; x and y are stage coords, top-left being $100,$100
+.struct StageEnemyEntity
+    enabled db ; $00
+    b1 ds $27-1
+    health db ; $27
+    b28 ds $40-$28
+    sizeof .db
+.endst
+
 .struct StageItemEntity
     enabled db ; $00
     state db ; $01
@@ -30,7 +35,7 @@ THREAD_STARTED = 3
     x dw ; $5/$6
     b7 db
     y dw ; $8/$9
-    ba db ; determines Funcs_0_f49b entry idx
+    itemType db ; determines Funcs_0_f49b entry idx
     param db ; $b eg flag to check
     bc ds $12-$c
     b12 db ; determines Func_2_d65b function
@@ -38,6 +43,15 @@ THREAD_STARTED = 3
     spriteIdx db ; $16
     celIdx db ; $17
     tileIdxBase db ; $18
+    b19 ds $30-$19
+    sizeof .db
+.endst
+
+.struct _1818_Entity
+    enabled db ; $00
+    state db ; $01
+    b2 ds $20-2
+    sizeof .db
 .endst
 
 .struct _1d18_Entity

@@ -163,12 +163,22 @@ wJumpShotMenuDirCurrBtnsPressed: ; $0a13
     db
 
 w0a14:
-    ds $1d18-$a14
+    ds $d18-$a14
+
+wEnemyEntities: ; $0d18
+    ds StageEnemyEntity.sizeof * NUM_ENEMY_ENTITIES
+
+w10d8:
+    ds $518-$d8
+
+wItemEntities: ; $1518
+    ds StageItemEntity.sizeof * NUM_ITEM_ENTITIES
+
+w1818_Entities: ; $1818
+    ds _1818_Entity.sizeof * NUM_1818_ENTITIES
 
 w1d18_Entities: ; $1d18
     ds _1d18_Entity.sizeof * NUM_1D18_ENTITIES
-@end:
-    .db
 
 w1e18:
     ds $5d-$18

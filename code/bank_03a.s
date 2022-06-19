@@ -21077,7 +21077,7 @@ br_3a_fa43:
 	eor #$0f.b                                                  ; $fa5a : $49, $0f
 	beq br_3a_fa62                                                  ; $fa5c : $f0, $04
 
-	jmp $02d902.l                                                  ; $fa5e : $5c, $02, $d9, $02
+	jmp Func_2_d902.l                                                  ; $fa5e : $5c, $02, $d9, $02
 
 
 br_3a_fa62:

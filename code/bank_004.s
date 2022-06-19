@@ -10293,18 +10293,18 @@ br_04_bbdc:
 	dec $0000.w                                                  ; $bbfb : $ce, $00, $00
 	bne br_04_bbdc                                                  ; $bbfe : $d0, $dc
 
-br_04_bc00:
-	plp                                                  ; $bc00 : $28
+-	plp                                                  ; $bc00 : $28
 	rtl                                                  ; $bc01 : $6b
 
 
+Func_4_bc02:
 	php                                                  ; $bc02 : $08
 	sep #ACCU_8|IDX_8                                                  ; $bc03 : $e2, $30
 	lda $1f2c.w                                                  ; $bc05 : $ad, $2c, $1f
-	bne br_04_bc00                                                  ; $bc08 : $d0, $f6
+	bne -                                                  ; $bc08 : $d0, $f6
 
 	dec $13                                                  ; $bc0a : $c6, $13
-	bne br_04_bc00                                                  ; $bc0c : $d0, $f2
+	bne -                                                  ; $bc0c : $d0, $f2
 
 	pea $0605.w                                                  ; $bc0e : $f4, $05, $06
 	plb                                                  ; $bc11 : $ab
@@ -10314,15 +10314,17 @@ br_04_bc00:
 	sta $14                                                  ; $bc19 : $85, $14
 	lda ($14)                                                  ; $bc1b : $b2, $14
 	and #$00ff.w                                                  ; $bc1d : $29, $ff, $00
-	bne br_04_bc58                                                  ; $bc20 : $d0, $36
+	bne _Func_4_bc58                                                  ; $bc20 : $d0, $36
 
 	inc $14                                                  ; $bc22 : $e6, $14
 	lda $14                                                  ; $bc24 : $a5, $14
 	clc                                                  ; $bc26 : $18
 	adc ($14)                                                  ; $bc27 : $72, $14
 	sta $14                                                  ; $bc29 : $85, $14
-	bra br_04_bc58                                                  ; $bc2b : $80, $2b
+	bra _Func_4_bc58                                                  ; $bc2b : $80, $2b
 
+
+Func_4_bc2d:
 	php                                                  ; $bc2d : $08
 	pea $0605.w                                                  ; $bc2e : $f4, $05, $06
 	plb                                                  ; $bc31 : $ab
@@ -10347,7 +10349,7 @@ br_04_bc00:
 	ina                                                  ; $bc55 : $1a
 	sta $14                                                  ; $bc56 : $85, $14
 
-br_04_bc58:
+_Func_4_bc58:
 	sep #ACCU_8|IDX_8                                                  ; $bc58 : $e2, $30
 	lda ($14)                                                  ; $bc5a : $b2, $14
 	sta $13                                                  ; $bc5c : $85, $13
@@ -21334,7 +21336,7 @@ br_04_ff28:
 	eor #$0f.b                                                  ; $ff3b : $49, $0f
 	beq br_04_ff43                                                  ; $ff3d : $f0, $04
 
-	jmp $02d902.l                                                  ; $ff3f : $5c, $02, $d9, $02
+	jmp Func_2_d902.l                                                  ; $ff3f : $5c, $02, $d9, $02
 
 
 br_04_ff43:

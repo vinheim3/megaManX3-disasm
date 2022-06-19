@@ -6685,7 +6685,7 @@ br_12_a8f2:
 	inc $4cec.w                                                  ; $a98b : $ee, $ec, $4c
 	jsr Call_12_f5e9.w                                                  ; $a98e : $20, $e9, $f5
 	mvp $cc, $00                                                  ; $a991 : $44, $00, $cc
-	inc $00a8.w, X                                                  ; $a994 : $fe, $a8, $00
+	inc wJoy1CurrButtonsHeld.w, X                                                  ; $a994 : $fe, $a8, $00
 	cpy $a7f6.w                                                  ; $a997 : $cc, $f6, $a7
 	jsr $f6d4.w                                                  ; $a99a : $20, $d4, $f6
 	stx $40                                                  ; $a99d : $86, $40
@@ -6782,7 +6782,7 @@ br_12_a8f2:
 	inc $4cec.w                                                  ; $aa48 : $ee, $ec, $4c
 	jsr $f5e7.w                                                  ; $aa4b : $20, $e7, $f5
 	mvp $c8, $00                                                  ; $aa4e : $44, $00, $c8
-	inc $00a8.w, X                                                  ; $aa51 : $fe, $a8, $00
+	inc wJoy1CurrButtonsHeld.w, X                                                  ; $aa51 : $fe, $a8, $00
 	iny                                                  ; $aa54 : $c8
 	inc $a7, X                                                  ; $aa55 : $f6, $a7
 	jsr $f6d0.w                                                  ; $aa57 : $20, $d0, $f6
@@ -6896,7 +6896,7 @@ br_12_aaf6:
 	sbc $4ce5.w, Y                                                  ; $ab01 : $f9, $e5, $4c
 	.db $80, $f5                                                  ; $ab04 : $80, $f5
 
-	cpx $00a9.w                                                  ; $ab06 : $ec, $a9, $00
+	cpx wJoy1CurrButtonsHeld.w+1                                                  ; $ab06 : $ec, $a9, $00
 	sbc $f3, X                                                  ; $ab09 : $f5, $f3
 	lda #$01.b                                                  ; $ab0b : $a9, $01
 	ora $2ce2.w, Y                                                  ; $ab0d : $19, $e2, $2c
@@ -7031,7 +7031,7 @@ br_12_abc3:
 	tax                                                  ; $abf9 : $aa
 	.db $00                                                  ; $abfa : $00
 	wai                                                  ; $abfb : $cb
-	inc $00a9.w, X                                                  ; $abfc : $fe, $a9, $00
+	inc wJoy1CurrButtonsHeld.w+1, X                                                  ; $abfc : $fe, $a9, $00
 	ora $00a60d.l                                                  ; $abff : $0f, $0d, $a6, $00
 	ora [$0d]                                                  ; $ac03 : $07, $0d
 	lda $00                                                  ; $ac05 : $a5, $00
@@ -13599,7 +13599,7 @@ Call_12_d8f8:
 	.db $00                                                  ; $d9bd : $00
 	ora $f9                                                  ; $d9be : $05, $f9
 	lda #$1500.w                                                  ; $d9c0 : $a9, $00, $15
-	cmp $00a8.w, Y                                                  ; $d9c3 : $d9, $a8, $00
+	cmp wJoy1CurrButtonsHeld.w, Y                                                  ; $d9c3 : $d9, $a8, $00
 	ora $a7d9.w                                                  ; $d9c6 : $0d, $d9, $a7
 	.db $00                                                  ; $d9c9 : $00
 	ora $d9                                                  ; $d9ca : $05, $d9
@@ -13695,7 +13695,7 @@ br_12_da0c:
 	.db $00                                                  ; $da77 : $00
 	ora $f9                                                  ; $da78 : $05, $f9
 	lda #$1500.w                                                  ; $da7a : $a9, $00, $15
-	cmp $00a8.w, Y                                                  ; $da7d : $d9, $a8, $00
+	cmp wJoy1CurrButtonsHeld.w, Y                                                  ; $da7d : $d9, $a8, $00
 	ora $a7d9.w                                                  ; $da80 : $0d, $d9, $a7
 	.db $00                                                  ; $da83 : $00
 	ora $d9                                                  ; $da84 : $05, $d9
@@ -13742,7 +13742,7 @@ br_12_da0c:
 	.db $00                                                  ; $dadc : $00
 	ora $f9                                                  ; $dadd : $05, $f9
 	lda #$1500.w                                                  ; $dadf : $a9, $00, $15
-	cmp $00a8.w, Y                                                  ; $dae2 : $d9, $a8, $00
+	cmp wJoy1CurrButtonsHeld.w, Y                                                  ; $dae2 : $d9, $a8, $00
 	ora $a7d9.w                                                  ; $dae5 : $0d, $d9, $a7
 	.db $00                                                  ; $dae8 : $00
 	ora $d9                                                  ; $dae9 : $05, $d9
@@ -13788,7 +13788,7 @@ Call_12_daf3:
 	.db $00                                                  ; $db41 : $00
 	ora $f9                                                  ; $db42 : $05, $f9
 	lda #$1500.w                                                  ; $db44 : $a9, $00, $15
-	cmp $00a8.w, Y                                                  ; $db47 : $d9, $a8, $00
+	cmp wJoy1CurrButtonsHeld.w, Y                                                  ; $db47 : $d9, $a8, $00
 	ora $a7d9.w                                                  ; $db4a : $0d, $d9, $a7
 	.db $00                                                  ; $db4d : $00
 	ora $d9                                                  ; $db4e : $05, $d9
@@ -13838,7 +13838,7 @@ Call_12_daf3:
 	.db $00                                                  ; $dba6 : $00
 	ora $f9                                                  ; $dba7 : $05, $f9
 	lda #$1500.w                                                  ; $dba9 : $a9, $00, $15
-	cmp $00a8.w, Y                                                  ; $dbac : $d9, $a8, $00
+	cmp wJoy1CurrButtonsHeld.w, Y                                                  ; $dbac : $d9, $a8, $00
 	ora $a7d9.w                                                  ; $dbaf : $0d, $d9, $a7
 	.db $00                                                  ; $dbb2 : $00
 	ora $d9                                                  ; $dbb3 : $05, $d9
@@ -13890,7 +13890,7 @@ br_12_dbba:
 	.db $00                                                  ; $dc0b : $00
 	ora $f9                                                  ; $dc0c : $05, $f9
 	lda #$1500.w                                                  ; $dc0e : $a9, $00, $15
-	cmp $00a8.w, Y                                                  ; $dc11 : $d9, $a8, $00
+	cmp wJoy1CurrButtonsHeld.w, Y                                                  ; $dc11 : $d9, $a8, $00
 	ora $a7d9.w                                                  ; $dc14 : $0d, $d9, $a7
 	.db $00                                                  ; $dc17 : $00
 	ora $d9                                                  ; $dc18 : $05, $d9
@@ -13943,7 +13943,7 @@ br_12_dc3a:
 	.db $00                                                  ; $dc70 : $00
 	ora $f9                                                  ; $dc71 : $05, $f9
 	lda #$1500.w                                                  ; $dc73 : $a9, $00, $15
-	cmp $00a8.w, Y                                                  ; $dc76 : $d9, $a8, $00
+	cmp wJoy1CurrButtonsHeld.w, Y                                                  ; $dc76 : $d9, $a8, $00
 	ora $a7d9.w                                                  ; $dc79 : $0d, $d9, $a7
 	.db $00                                                  ; $dc7c : $00
 	ora $d9                                                  ; $dc7d : $05, $d9

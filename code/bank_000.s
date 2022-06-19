@@ -460,16 +460,16 @@ Func_0_81da:
 +	lda $7effff.l                                                  ; $8239 : $af, $ff, $ff, $7e
 	bne @cont_8264                                                  ; $823d : $d0, $25
 
-	jsr Call_00_83d5.w                                                  ; $823f : $20, $d5, $83
+	jsr todo_InterfaceWithSPC.w                                                  ; $823f : $20, $d5, $83
 	lda #$00.b                                                  ; $8242 : $a9, $00
 	sta $7effc7.l                                                  ; $8244 : $8f, $c7, $ff, $7e
 	lda #$01.b                                                  ; $8248 : $a9, $01
 	sta $7effff.l                                                  ; $824a : $8f, $ff, $ff, $7e
 	ldy #$f9.b                                                  ; $824e : $a0, $f9
-	jsr Call_00_83d5.w                                                  ; $8250 : $20, $d5, $83
+	jsr todo_InterfaceWithSPC.w                                                  ; $8250 : $20, $d5, $83
 	lda #$02.b                                                  ; $8253 : $a9, $02
 	ldy #$f9.b                                                  ; $8255 : $a0, $f9
-	jsr Call_00_83d5.w                                                  ; $8257 : $20, $d5, $83
+	jsr todo_InterfaceWithSPC.w                                                  ; $8257 : $20, $d5, $83
 	lda #$ff.b                                                  ; $825a : $a9, $ff
 	sta $7efffc.l                                                  ; $825c : $8f, $fc, $ff, $7e
 	sta $7efffd.l                                                  ; $8260 : $8f, $fd, $ff, $7e
@@ -606,7 +606,7 @@ Func_0_81da:
 	sta $cd                                                  ; $8340 : $85, $cd
 	lda #$02.b                                                  ; $8342 : $a9, $02
 	jsr $816e.w                                                  ; $8344 : $20, $6e, $81
-	jsr $83bd.w                                                  ; $8347 : $20, $bd, $83
+	jsr Func_0_83bd.w                                                  ; $8347 : $20, $bd, $83
 	bne @cont_8385                                                  ; $834a : $d0, $39
 
 	bra @loop_8336                                                  ; $834c : $80, $e8
@@ -637,7 +637,7 @@ Func_0_81da:
 	lda $00                                                  ; $8370 : $a5, $00
 	and #$0f.b                                                  ; $8372 : $29, $0f
 	jsr $816e.w                                                  ; $8374 : $20, $6e, $81
-	jsr $83bd.w                                                  ; $8377 : $20, $bd, $83
+	jsr Func_0_83bd.w                                                  ; $8377 : $20, $bd, $83
 	bne @cont_8385                                                  ; $837a : $d0, $09
 
 	ply                                                  ; $837c : $7a
@@ -685,179 +685,212 @@ Func_0_81da:
 	jmp $078000.l                                                  ; $83b9 : $5c, $00, $80, $07
 
 
+Func_0_83bd:
 	lda wStageIdx.w                                                  ; $83bd : $ad, $ae, $1f
-	.db $d0, $12                                                  ; $83c0 : $d0, $12
+	bne @done                                                  ; $83c0 : $d0, $12
 
-	lda $00a8.w                                                  ; $83c2 : $ad, $a8, $00
-	ora $00a9.w                                                  ; $83c5 : $0d, $a9, $00
-	and #$f0f0.w                                                  ; $83c8 : $29, $f0, $f0
-	php                                                  ; $83cb : $08
+	lda wJoy1CurrButtonsHeld.w                                                  ; $83c2 : $ad, $a8, $00
+	ora wJoy1CurrButtonsHeld.w+1                                                  ; $83c5 : $0d, $a9, $00
+	and #$f0.b                                                  ; $83c8 : $29, $f0
+	beq @done                                                  ; $83ca : $f0, $08
+
 	sta wStageIdx.w                                                  ; $83cc : $8d, $ae, $1f
 	jsr Call_00_8567.w                                                  ; $83cf : $20, $67, $85
-	lda #$6001.w                                                  ; $83d2 : $a9, $01, $60
+	lda #$01.b                                                  ; $83d2 : $a9, $01
 
-Call_00_83d5:
-Jump_00_83d5:
+@done:
+	rts                                                  ; $83d4 : $60
+
+
+; A - eg 00
+; Y - eg 01
+SND_DATA_SRC_ADDR = $10 ; l
+todo_InterfaceWithSPC:
+;
 	sty $02                                                  ; $83d5 : $84, $02
 	rep #ACCU_8|IDX_8                                                  ; $83d7 : $c2, $30
+
+; eg 00 * 3
 	and #$00ff.w                                                  ; $83d9 : $29, $ff, $00
 	sta $00                                                  ; $83dc : $85, $00
 	asl                                                  ; $83de : $0a
 	adc $00                                                  ; $83df : $65, $00
 	tax                                                  ; $83e1 : $aa
-	lda $098000.l, X                                                  ; $83e2 : $bf, $00, $80, $09
+
+; put word (bank offset) in Y
+	lda Data_9_8000.l, X                                                  ; $83e2 : $bf, $00, $80, $09
 	and #$7fff.w                                                  ; $83e6 : $29, $ff, $7f
 	tay                                                  ; $83e9 : $a8
+
+; put bank start to offset from in 10.w
 	lda #$8000.w                                                  ; $83ea : $a9, $00, $80
-	sta $10                                                  ; $83ed : $85, $10
+	sta SND_DATA_SRC_ADDR                                                 ; $83ed : $85, $10
 	sep #ACCU_8                                                  ; $83ef : $e2, $20
-	lda $098002.l, X                                                  ; $83f1 : $bf, $02, $80, $09
+
+; put bank in 12
+	lda Data_9_8000.l+2, X                                                  ; $83f1 : $bf, $02, $80, $09
 	clc                                                  ; $83f5 : $18
-	adc #$09.b                                                  ; $83f6 : $69, $09
-	sta $12                                                  ; $83f8 : $85, $12
+	adc #:Data_9_8000.b                                                  ; $83f6 : $69, $09
+	sta SND_DATA_SRC_ADDR+2                                                 ; $83f8 : $85, $12
+
+; jump if A was 0
 	txa                                                  ; $83fa : $8a
-	beq br_00_8425                                                  ; $83fb : $f0, $28
+	beq @br_8425                                                  ; $83fb : $f0, $28
 
 	ldx #$001f.w                                                  ; $83fd : $a2, $1f, $00
-
-br_00_8400:
-	stz $09a2.w, X                                                  ; $8400 : $9e, $a2, $09
+-	stz $09a2.w, X                                                  ; $8400 : $9e, $a2, $09
 	dex                                                  ; $8403 : $ca
-	bpl br_00_8400                                                  ; $8404 : $10, $fa
+	bpl -                                                  ; $8404 : $10, $fa
 
 	stz $09d3.w                                                  ; $8406 : $9c, $d3, $09
 	stz $09d4.w                                                  ; $8409 : $9c, $d4, $09
 	lda $7efffe.l                                                  ; $840c : $af, $fe, $ff, $7e
 
-br_00_8410:
-	cmp APUIO2.w                                                  ; $8410 : $cd, $42, $21
-	bne br_00_8410                                                  ; $8413 : $d0, $fb
+-	cmp APUIO2.w                                                  ; $8410 : $cd, $42, $21
+	bne -                                                  ; $8413 : $d0, $fb
 
-br_00_8415:
+@loop_8415:
+; inf loop if orig Y wasn't f9 or fa
 	lda $02                                                  ; $8415 : $a5, $02
 	cmp #$f9.b                                                  ; $8417 : $c9, $f9
-	beq br_00_8422                                                  ; $8419 : $f0, $07
+	beq @br_8422                                                  ; $8419 : $f0, $07
 
 	cmp #$fa.b                                                  ; $841b : $c9, $fa
-	beq br_00_8422                                                  ; $841d : $f0, $03
+	beq @br_8422                                                  ; $841d : $f0, $03
 
 	jmp MiscVector.w                                                  ; $841f : $4c, $f5, $80
 
-
-br_00_8422:
+@br_8422:
 	sta APUIO0.w                                                  ; $8422 : $8d, $40, $21
 
-br_00_8425:
+@br_8425:
+; jump up if SPC hasn't sent the magic word
 	rep #ACCU_8                                                  ; $8425 : $c2, $20
 	lda #$bbaa.w                                                  ; $8427 : $a9, $aa, $bb
 	cmp APUIO0.w                                                  ; $842a : $cd, $40, $21
 	sep #ACCU_8                                                  ; $842d : $e2, $20
-	bne br_00_8415                                                  ; $842f : $d0, $e4
+	bne @loop_8415                                                  ; $842f : $d0, $e4
 
+;
 	lda #$cc.b                                                  ; $8431 : $a9, $cc
-	bra br_00_8469                                                  ; $8433 : $80, $34
+	bra @br_8469                                                  ; $8433 : $80, $34
 
-br_00_8435:
-	lda [$10], Y                                                  ; $8435 : $b7, $10
+@bigLoop_8435:
+; get byte from src eg $70
+	lda [SND_DATA_SRC_ADDR], Y                                                  ; $8435 : $b7, $10
 	iny                                                  ; $8437 : $c8
-	bpl br_00_843f                                                  ; $8438 : $10, $05
+	bpl +                                                  ; $8438 : $10, $05
 
 	ldy #$0000.w                                                  ; $843a : $a0, $00, $00
-	inc $12                                                  ; $843d : $e6, $12
+	inc SND_DATA_SRC_ADDR+2                                                  ; $843d : $e6, $12
 
-br_00_843f:
-	xba                                                  ; $843f : $eb
+; eg $7000
++	xba                                                  ; $843f : $eb
 	lda #$00.b                                                  ; $8440 : $a9, $00
-	bra br_00_8456                                                  ; $8442 : $80, $12
+	bra @br_8456                                                  ; $8442 : $80, $12
 
-br_00_8444:
+@loop_8444:
+; eg 0070, then replace 70 with a 2nd $70
 	xba                                                  ; $8444 : $eb
-	lda [$10], Y                                                  ; $8445 : $b7, $10
+	lda [SND_DATA_SRC_ADDR], Y                                                  ; $8445 : $b7, $10
 	iny                                                  ; $8447 : $c8
-	bpl br_00_844f                                                  ; $8448 : $10, $05
+	bpl +                                                  ; $8448 : $10, $05
 
 	ldy #$0000.w                                                  ; $844a : $a0, $00, $00
-	inc $12                                                  ; $844d : $e6, $12
+	inc SND_DATA_SRC_ADDR+2                                                  ; $844d : $e6, $12
 
-br_00_844f:
-	xba                                                  ; $844f : $eb
+; to 7000, wait until IO0 sends back 0
++	xba                                                  ; $844f : $eb
+-	cmp APUIO0.w                                                  ; $8450 : $cd, $40, $21
+	bne -                                                  ; $8453 : $d0, $fb
 
-br_00_8450:
-	cmp APUIO0.w                                                  ; $8450 : $cd, $40, $21
-	bne br_00_8450                                                  ; $8453 : $d0, $fb
-
+; eg IO0 now gets 1
 	ina                                                  ; $8455 : $1a
 
-br_00_8456:
+@br_8456:
+; write eg 0 to IO0 to start transfer, and $70 to IO1
 	rep #ACCU_8                                                  ; $8456 : $c2, $20
 	sta APUIO0.w                                                  ; $8458 : $8d, $40, $21
 	sep #ACCU_8                                                  ; $845b : $e2, $20
+
+; eg this was $14
 	dex                                                  ; $845d : $ca
-	bne br_00_8444                                                  ; $845e : $d0, $e4
+	bne @loop_8444                                                  ; $845e : $d0, $e4
 
-br_00_8460:
-	cmp APUIO0.w                                                  ; $8460 : $cd, $40, $21
-	bne br_00_8460                                                  ; $8463 : $d0, $fb
+; wait until SPC sends us back our data
+-	cmp APUIO0.w                                                  ; $8460 : $cd, $40, $21
+	bne -                                                  ; $8463 : $d0, $fb
 
-br_00_8465:
-	adc #$03.b                                                  ; $8465 : $69, $03
-	beq br_00_8465                                                  ; $8467 : $f0, $fc
+; if fc, make it 4
+-	adc #$03.b                                                  ; $8465 : $69, $03
+	beq -                                                  ; $8467 : $f0, $fc
 
-br_00_8469:
+@br_8469:
+; push eg cc
 	pha                                                  ; $8469 : $48
-	lda [$10], Y                                                  ; $846a : $b7, $10
+
+; A = eg 14
+	lda [SND_DATA_SRC_ADDR], Y                                                  ; $846a : $b7, $10
 	xba                                                  ; $846c : $eb
 	iny                                                  ; $846d : $c8
-	bpl br_00_8475                                                  ; $846e : $10, $05
+	bpl +                                                  ; $846e : $10, $05
 
 	ldy #$0000.w                                                  ; $8470 : $a0, $00, $00
-	inc $12                                                  ; $8473 : $e6, $12
+	inc SND_DATA_SRC_ADDR+2                                                  ; $8473 : $e6, $12
 
-br_00_8475:
-	lda [$10], Y                                                  ; $8475 : $b7, $10
+; A = eg 00, X = eg $0014
++	lda [SND_DATA_SRC_ADDR], Y                                                  ; $8475 : $b7, $10
 	xba                                                  ; $8477 : $eb
 	tax                                                  ; $8478 : $aa
 	iny                                                  ; $8479 : $c8
-	bpl br_00_8481                                                  ; $847a : $10, $05
+	bpl +                                                  ; $847a : $10, $05
 
 	ldy #$0000.w                                                  ; $847c : $a0, $00, $00
-	inc $12                                                  ; $847f : $e6, $12
+	inc SND_DATA_SRC_ADDR+2                                                  ; $847f : $e6, $12
 
-br_00_8481:
-	lda [$10], Y                                                  ; $8481 : $b7, $10
+; A = value to put in IO2 later (high byte of write addr)
++	lda [SND_DATA_SRC_ADDR], Y                                                  ; $8481 : $b7, $10
 	xba                                                  ; $8483 : $eb
 	iny                                                  ; $8484 : $c8
-	bpl br_00_848c                                                  ; $8485 : $10, $05
+	bpl +                                                  ; $8485 : $10, $05
 
 	ldy #$0000.w                                                  ; $8487 : $a0, $00, $00
-	inc $12                                                  ; $848a : $e6, $12
+	inc SND_DATA_SRC_ADDR+2                                                  ; $848a : $e6, $12
 
-br_00_848c:
-	lda [$10], Y                                                  ; $848c : $b7, $10
+; Put next byte in IO3 (low byte of write addr)
++	lda [SND_DATA_SRC_ADDR], Y                                                  ; $848c : $b7, $10
 	sta APUIO3.w                                                  ; $848e : $8d, $43, $21
 	iny                                                  ; $8491 : $c8
-	bpl br_00_8499                                                  ; $8492 : $10, $05
+	bpl +                                                  ; $8492 : $10, $05
 
 	ldy #$0000.w                                                  ; $8494 : $a0, $00, $00
-	inc $12                                                  ; $8497 : $e6, $12
+	inc SND_DATA_SRC_ADDR+2                                                  ; $8497 : $e6, $12
 
-br_00_8499:
-	xba                                                  ; $8499 : $eb
+; Write high byte
++	xba                                                  ; $8499 : $eb
 	sta APUIO2.w                                                  ; $849a : $8d, $42, $21
+
+; send based on eg 14. if 0, it was a jump addr, else it's a transfer addr
 	cpx #$0001.w                                                  ; $849d : $e0, $01, $00
 	lda #$00.b                                                  ; $84a0 : $a9, $00
 	rol                                                  ; $84a2 : $2a
 	sta APUIO1.w                                                  ; $84a3 : $8d, $41, $21
+
+; overflow set if transfer
 	adc #$7f.b                                                  ; $84a6 : $69, $7f
+
+; eg cc
 	pla                                                  ; $84a8 : $68
 	sta APUIO0.w                                                  ; $84a9 : $8d, $40, $21
 
-br_00_84ac:
-	cmp APUIO0.w                                                  ; $84ac : $cd, $40, $21
-	bne br_00_84ac                                                  ; $84af : $d0, $fb
+; Wait until SPC sends $cc back
+-	cmp APUIO0.w                                                  ; $84ac : $cd, $40, $21
+	bne -                                                  ; $84af : $d0, $fb
 
-	bvs br_00_8435                                                  ; $84b1 : $70, $82
+; jump if we were transferring
+	bvs @bigLoop_8435                                                  ; $84b1 : $70, $82
 
+;
 	sep #ACCU_8|IDX_8                                                  ; $84b3 : $e2, $30
 	lda #$01.b                                                  ; $84b5 : $a9, $01
 	sta $7efffe.l                                                  ; $84b7 : $8f, $fe, $ff, $7e
@@ -902,7 +935,7 @@ br_00_84d6:
 br_00_84e8:
 	sta $7efffd.l                                                  ; $84e8 : $8f, $fd, $ff, $7e
 	ldy #$fa.b                                                  ; $84ec : $a0, $fa
-	jmp Jump_00_83d5.w                                                  ; $84ee : $4c, $d5, $83
+	jmp todo_InterfaceWithSPC.w                                                  ; $84ee : $4c, $d5, $83
 
 
 br_00_84f1:
@@ -922,7 +955,7 @@ br_00_84fd:
 
 	phy                                                  ; $8504 : $5a
 	ldy #$f9.b                                                  ; $8505 : $a0, $f9
-	jsr Call_00_83d5.w                                                  ; $8507 : $20, $d5, $83
+	jsr todo_InterfaceWithSPC.w                                                  ; $8507 : $20, $d5, $83
 	ply                                                  ; $850a : $7a
 	iny                                                  ; $850b : $c8
 	bra br_00_84fd                                                  ; $850c : $80, $ef
@@ -935,7 +968,7 @@ br_00_850e:
 	pea $0000.w                                                  ; $8510 : $f4, $00, $00
 	pld                                                  ; $8513 : $2b
 	ldy #$f9.b                                                  ; $8514 : $a0, $f9
-	jsr Call_00_83d5.w                                                  ; $8516 : $20, $d5, $83
+	jsr todo_InterfaceWithSPC.w                                                  ; $8516 : $20, $d5, $83
 	pld                                                  ; $8519 : $2b
 	rtl                                                  ; $851a : $6b
 
@@ -5750,7 +5783,7 @@ br_00_a5c5:
 	cpx #$0e.b                                                  ; $a5d0 : $e0, $0e
 	beq br_00_a5df                                                  ; $a5d2 : $f0, $0b
 
-	lda $00a9.w                                                  ; $a5d4 : $ad, $a9, $00
+	lda wJoy1CurrButtonsHeld.w+1                                                  ; $a5d4 : $ad, $a9, $00
 	bit #$d0.b                                                  ; $a5d7 : $89, $d0
 	beq br_00_a5df                                                  ; $a5d9 : $f0, $04
 
@@ -9867,7 +9900,7 @@ Jump_00_bece:
 	cmp #$12.b                                                  ; $bee7 : $c9, $12
 	bcs br_00_befc                                                  ; $bee9 : $b0, $11
 
-	lda $00a9.w                                                  ; $beeb : $ad, $a9, $00
+	lda wJoy1CurrButtonsHeld.w+1                                                  ; $beeb : $ad, $a9, $00
 	and #$d0.b                                                  ; $beee : $29, $d0
 	beq br_00_befc                                                  ; $bef0 : $f0, $0a
 
@@ -10981,7 +11014,7 @@ Jump_00_c5ce:
 	ldy #$08d1.w                                                  ; $c667 : $a0, $d1, $08
 	lda #$0006.w                                                  ; $c66a : $a9, $06, $00
 	mvn $06, $00                                                  ; $c66d : $54, $00, $06
-	ldx #$1818.w                                                  ; $c670 : $a2, $18, $18
+	ldx #w1818_Entities.w                                                  ; $c670 : $a2, $18, $18
 	ldy #$c840.w                                                  ; $c673 : $a0, $40, $c8
 	lda #$00df.w                                                  ; $c676 : $a9, $df, $00
 	mvn $00, $7f                                                  ; $c679 : $54, $7f, $00
@@ -11770,7 +11803,7 @@ br_00_caf5:
 	phb                                                  ; $cb48 : $8b
 	rep #ACCU_8|IDX_8                                                  ; $cb49 : $c2, $30
 	ldx #$c840.w                                                  ; $cb4b : $a2, $40, $c8
-	ldy #$1818.w                                                  ; $cb4e : $a0, $18, $18
+	ldy #w1818_Entities.w                                                  ; $cb4e : $a0, $18, $18
 	lda #$00df.w                                                  ; $cb51 : $a9, $df, $00
 	mvn $7f, $00                                                  ; $cb54 : $54, $00, $7f
 	plb                                                  ; $cb57 : $ab
@@ -12072,16 +12105,21 @@ Jump_00_cd6e:
 
 
 Func_0_cd7c:
-	pea $1818.w                                                  ; $cd7c : $f4, $18, $18
+; direct page points to this area
+	pea w1818_Entities.w                                                  ; $cd7c : $f4, $18, $18
 	pld                                                  ; $cd7f : $2b
+
+; if leg upgrade gotten...
 	ldx #$04.b                                                  ; $cd80 : $a2, $04
 	lda wSubTanksAndUpgradesGottenBitfield.w                                                  ; $cd82 : $ad, $d1, $1f
 	and #$08.b                                                  ; $cd85 : $29, $08
 	beq +                                                  ; $cd87 : $f0, $05
 
+; 0b = 4
 	stx $0b                                                  ; $cd89 : $86, $0b
 	jsr Call_00_ce33.w                                                  ; $cd8b : $20, $33, $ce
 
+;
 +	pea $1838.w                                                  ; $cd8e : $f4, $38, $18
 	pld                                                  ; $cd91 : $2b
 	ldx #$03.b                                                  ; $cd92 : $a2, $03
@@ -13922,80 +13960,76 @@ Call_00_d957:
 +	ldx $1f28.w                                                  ; $d9be : $ae, $28, $1f
 	beq @br_d9c8                                                  ; $d9c1 : $f0, $05
 
-	jsr Call_00_dac2.w                                                  ; $d9c3 : $20, $c2, $da
+	jsr UpdateItemEntities2.w                                                  ; $d9c3 : $20, $c2, $da
 	bra +                                                  ; $d9c6 : $80, $03
 
 @br_d9c8:
-	jsr todo_Process_1518_entities.w                                                  ; $d9c8 : $20, $a0, $da
+	jsr UpdateItemEntities1.w                                                  ; $d9c8 : $20, $a0, $da
 
 +	lda $1f27.w                                                  ; $d9cb : $ad, $27, $1f
-	beq br_00_d9d5                                                  ; $d9ce : $f0, $05
+	beq @br_d9d5                                                  ; $d9ce : $f0, $05
 
 	jsr Call_00_dce2.w                                                  ; $d9d0 : $20, $e2, $dc
-	bra br_00_d9d8                                                  ; $d9d3 : $80, $03
+	bra +                                                  ; $d9d3 : $80, $03
 
-br_00_d9d5:
+@br_d9d5:
 	jsr Call_00_dcc0.w                                                  ; $d9d5 : $20, $c0, $dc
 
-br_00_d9d8:
-	lda $1f35.w                                                  ; $d9d8 : $ad, $35, $1f
-	beq br_00_d9f7                                                  ; $d9db : $f0, $1a
++	lda $1f35.w                                                  ; $d9d8 : $ad, $35, $1f
+	beq @cont_d9f7                                                  ; $d9db : $f0, $1a
 
 	lda $1f25.w                                                  ; $d9dd : $ad, $25, $1f
-	beq br_00_d9e7                                                  ; $d9e0 : $f0, $05
+	beq @br_d9e7                                                  ; $d9e0 : $f0, $05
 
 	jsr Call_00_dbc1.w                                                  ; $d9e2 : $20, $c1, $db
-	bra br_00_d9ea                                                  ; $d9e5 : $80, $03
+	bra +                                                  ; $d9e5 : $80, $03
 
-br_00_d9e7:
+@br_d9e7:
 	jsr Call_00_db9f.w                                                  ; $d9e7 : $20, $9f, $db
 
-br_00_d9ea:
-	lda $1f25.w                                                  ; $d9ea : $ad, $25, $1f
-	beq br_00_d9f4                                                  ; $d9ed : $f0, $05
++	lda $1f25.w                                                  ; $d9ea : $ad, $25, $1f
+	beq @br_d9f4                                                  ; $d9ed : $f0, $05
 
 	jsr Call_00_dc23.w                                                  ; $d9ef : $20, $23, $dc
-	bra br_00_d9f7                                                  ; $d9f2 : $80, $03
+	bra @cont_d9f7                                                  ; $d9f2 : $80, $03
 
-br_00_d9f4:
+@br_d9f4:
 	jsr Call_00_dc06.w                                                  ; $d9f4 : $20, $06, $dc
 
-br_00_d9f7:
-	lda #$80.b                                                  ; $d9f7 : $a9, $80
+@cont_d9f7:
++	lda #$80.b                                                  ; $d9f7 : $a9, $80
 	sta $1f2e.w                                                  ; $d9f9 : $8d, $2e, $1f
 	ldx $1f2b.w                                                  ; $d9fc : $ae, $2b, $1f
 	bne +                                                  ; $d9ff : $d0, $04
 	jsr $04b58a.l                                                  ; $da01 : $22, $8a, $b5, $04
 +	stz $1f2e.w                                                  ; $da05 : $9c, $2e, $1f
 	ldx $1f2b.w                                                  ; $da08 : $ae, $2b, $1f
-	bne br_00_da16                                                  ; $da0b : $d0, $09
+	bne @cont_da16                                                  ; $da0b : $d0, $09
 
 	jsr Call_00_dfc6.w                                                  ; $da0d : $20, $c6, $df
 	jsr Call_00_dd27.w                                                  ; $da10 : $20, $27, $dd
 	jsr Call_00_e0c6.w                                                  ; $da13 : $20, $c6, $e0
 
-br_00_da16:
+@cont_da16:
 	ldx $1f29.w                                                  ; $da16 : $ae, $29, $1f
-	beq br_00_da20                                                  ; $da19 : $f0, $05
+	beq @br_da20                                                  ; $da19 : $f0, $05
 
 	jsr Call_00_db2c.w                                                  ; $da1b : $20, $2c, $db
-	bra br_00_da23                                                  ; $da1e : $80, $03
+	bra +                                                  ; $da1e : $80, $03
 
-br_00_da20:
+@br_da20:
 	jsr Call_00_db07.w                                                  ; $da20 : $20, $07, $db
 
-br_00_da23:
-	ldx $1f2a.w                                                  ; $da23 : $ae, $2a, $1f
-	beq br_00_da2d                                                  ; $da26 : $f0, $05
++	ldx $1f2a.w                                                  ; $da23 : $ae, $2a, $1f
+	beq @br_da2d                                                  ; $da26 : $f0, $05
 
 	jsr Call_00_db7e.w                                                  ; $da28 : $20, $7e, $db
-	bra br_00_da30                                                  ; $da2b : $80, $03
+	bra +                                                  ; $da2b : $80, $03
 
-br_00_da2d:
+@br_da2d:
 	jsr Call_00_db5d.w                                                  ; $da2d : $20, $5d, $db
 
-br_00_da30:
-	jsr Call_00_da7f.w                                                  ; $da30 : $20, $7f, $da
++	jsr Call_00_da7f.w                                                  ; $da30 : $20, $7f, $da
 	lda #$40.b                                                  ; $da33 : $a9, $40
 	trb $1f5f.w                                                  ; $da35 : $1c, $5f, $1f
 	pld                                                  ; $da38 : $2b
@@ -14084,13 +14118,16 @@ br_00_da92:
 	rts                                                  ; $da9f : $60
 
 
-todo_Process_1518_entities:
+UpdateItemEntities1:
 	rep #ACCU_8                                                  ; $daa0 : $c2, $20
-	lda #$1518.w                                                  ; $daa2 : $a9, $18, $15
+	lda #wItemEntities.w                                                  ; $daa2 : $a9, $18, $15
 
 Func_0_daa5:
+; Direct page is used to index the curr entity struct
 	tcd                                                  ; $daa5 : $5b
 	sep #ACCU_8|IDX_8                                                  ; $daa6 : $e2, $30
+
+; Skip updating if entity is disabled
 	lda StageItemEntity.enabled                                                  ; $daa8 : $a5, $00
 	beq Func_0_daaf                                                  ; $daaa : $f0, $03
 
@@ -14103,16 +14140,16 @@ Func_0_daaf:
 	rep #ACCU_8|F_CARRY                                                  ; $dab4 : $c2, $21
 	tdc                                                  ; $dab6 : $7b
 	adc #$0030.w                                                  ; $dab7 : $69, $30, $00
-	cmp #$1818.w                                                  ; $daba : $c9, $18, $18
+	cmp #wItemEntities.w+_sizeof_wItemEntities                                                  ; $daba : $c9, $18, $18
 	bcc Func_0_daa5                                                  ; $dabd : $90, $e6
 
 	sep #ACCU_8|IDX_8                                                  ; $dabf : $e2, $30
 	rts                                                  ; $dac1 : $60
 
 
-Call_00_dac2:
+UpdateItemEntities2:
 	rep #ACCU_8                                                  ; $dac2 : $c2, $20
-	lda #$1518.w                                                  ; $dac4 : $a9, $18, $15
+	lda #wItemEntities.w                                                  ; $dac4 : $a9, $18, $15
 
 Func_0_dac7:
 	tcd                                                  ; $dac7 : $5b
@@ -14129,7 +14166,7 @@ Func_0_dac7:
 	lda $0e                                                  ; $dad5 : $a5, $0e
 	bpl Func_0_dadd                                                  ; $dad7 : $10, $04
 
-	jsr $02d611.l                                                  ; $dad9 : $22, $11, $d6, $02
+	jsr Func_2_d611.l                                                  ; $dad9 : $22, $11, $d6, $02
 
 Func_0_dadd:
 	lda $1f28.w                                                  ; $dadd : $ad, $28, $1f
@@ -14137,8 +14174,8 @@ Func_0_dadd:
 
 	rep #ACCU_8|F_CARRY                                                  ; $dae2 : $c2, $21
 	tdc                                                  ; $dae4 : $7b
-	adc #$0030.w                                                  ; $dae5 : $69, $30, $00
-	cmp #$1818.w                                                  ; $dae8 : $c9, $18, $18
+	adc #StageItemEntity.sizeof.w                                                  ; $dae5 : $69, $30, $00
+	cmp #wItemEntities.w+_sizeof_wItemEntities                                                  ; $dae8 : $c9, $18, $18
 	bcc Func_0_dac7                                                  ; $daeb : $90, $da
 
 	sep #ACCU_8|IDX_8                                                  ; $daed : $e2, $30
@@ -14147,16 +14184,16 @@ Func_0_dadd:
 
 Call_00_daf0:
 	rep #ACCU_8                                                  ; $daf0 : $c2, $20
-	lda $05                                                  ; $daf2 : $a5, $05
+	lda StageItemEntity.x                                                  ; $daf2 : $a5, $05
 	sta $22                                                  ; $daf4 : $85, $22
-	lda $08                                                  ; $daf6 : $a5, $08
+	lda StageItemEntity.y                                                  ; $daf6 : $a5, $08
 	sta $24                                                  ; $daf8 : $85, $24
 
 Call_00_dafa:
 	sep #ACCU_8                                                  ; $dafa : $e2, $20
 	lda #$80.b                                                  ; $dafc : $a9, $80
 	trb $0e                                                  ; $dafe : $14, $0e
-	lda $0a                                                  ; $db00 : $a5, $0a
+	lda StageItemEntity.itemType                                                  ; $db00 : $a5, $0a
 	asl                                                  ; $db02 : $0a
 	tax                                                  ; $db03 : $aa
 	jmp (Funcs_0_f49b.w, X)                                                  ; $db04 : $7c, $9b, $f4
@@ -14164,7 +14201,7 @@ Call_00_dafa:
 
 Call_00_db07:
 	rep #ACCU_8                                                  ; $db07 : $c2, $20
-	lda #$1818.w                                                  ; $db09 : $a9, $18, $18
+	lda #w1818_Entities.w                                                  ; $db09 : $a9, $18, $18
 
 @loop_db0c:
 	tcd                                                  ; $db0c : $5b
@@ -14177,13 +14214,13 @@ Call_00_db07:
 	lda $0a                                                  ; $db17 : $a5, $0a
 	asl                                                  ; $db19 : $0a
 	tax                                                  ; $db1a : $aa
-	jsr (Funcs_0_f527.w, X)                                                  ; $db1b : $fc, $27, $f5
+	jsr (todo_Update_1818_Entities.w, X)                                                  ; $db1b : $fc, $27, $f5
 
 @cont_db1e:
 	rep #ACCU_8|F_CARRY                                                  ; $db1e : $c2, $21
 	tdc                                                  ; $db20 : $7b
-	adc #$0020.w                                                  ; $db21 : $69, $20, $00
-	cmp #$1d18.w                                                  ; $db24 : $c9, $18, $1d
+	adc #_1818_Entity.sizeof.w                                                  ; $db21 : $69, $20, $00
+	cmp #w1818_Entities.w+_sizeof_w1818_Entities                                                  ; $db24 : $c9, $18, $1d
 	bcc @loop_db0c                                                  ; $db27 : $90, $e3
 
 	sep #ACCU_8|IDX_8                                                  ; $db29 : $e2, $30
@@ -14192,7 +14229,7 @@ Call_00_db07:
 
 Call_00_db2c:
 	rep #ACCU_8                                                  ; $db2c : $c2, $20
-	lda #$1818.w                                                  ; $db2e : $a9, $18, $18
+	lda #w1818_Entities.w                                                  ; $db2e : $a9, $18, $18
 
 br_00_db31:
 	tcd                                                  ; $db31 : $5b
@@ -14207,7 +14244,7 @@ br_00_db31:
 	lda $0a                                                  ; $db3e : $a5, $0a
 	asl                                                  ; $db40 : $0a
 	tax                                                  ; $db41 : $aa
-	jsr (Funcs_0_f527.w, X)                                                  ; $db42 : $fc, $27, $f5
+	jsr (todo_Update_1818_Entities.w, X)                                                  ; $db42 : $fc, $27, $f5
 	bra br_00_db4f                                                  ; $db45 : $80, $08
 
 br_00_db47:
@@ -14219,8 +14256,8 @@ br_00_db47:
 br_00_db4f:
 	rep #ACCU_8|F_CARRY                                                  ; $db4f : $c2, $21
 	tdc                                                  ; $db51 : $7b
-	adc #$0020.w                                                  ; $db52 : $69, $20, $00
-	cmp #$1d18.w                                                  ; $db55 : $c9, $18, $1d
+	adc #_1818_Entity.sizeof.w                                                  ; $db52 : $69, $20, $00
+	cmp #w1818_Entities.w+_sizeof_w1818_Entities                                                  ; $db55 : $c9, $18, $1d
 	bcc br_00_db31                                                  ; $db58 : $90, $d7
 
 	sep #ACCU_8|IDX_8                                                  ; $db5a : $e2, $30
@@ -14250,7 +14287,7 @@ Call_00_db5d:
 	rep #ACCU_8|F_CARRY                                                  ; $db70 : $c2, $21
 	tdc                                                  ; $db72 : $7b
 	adc #_1d18_Entity.sizeof.w                                                  ; $db73 : $69, $10, $00
-	cmp #w1d18_Entities@end.w                                                  ; $db76 : $c9, $18, $1e
+	cmp #w1d18_Entities.w+_sizeof_w1d18_Entities                                                  ; $db76 : $c9, $18, $1e
 	bcc @loop_db62                                                  ; $db79 : $90, $e7
 
 	sep #ACCU_8|IDX_8                                                  ; $db7b : $e2, $30
@@ -14276,7 +14313,7 @@ Call_00_db7e:
 	rep #ACCU_8|F_CARRY                                                  ; $db91 : $c2, $21
 	tdc                                                  ; $db93 : $7b
 	adc #_1d18_Entity.sizeof.w                                                  ; $db94 : $69, $10, $00
-	cmp #w1d18_Entities@end.w                                                  ; $db97 : $c9, $18, $1e
+	cmp #w1d18_Entities.w+_sizeof_w1d18_Entities                                                  ; $db97 : $c9, $18, $1e
 	bcc @loop_db83                                                  ; $db9a : $90, $e7
 
 	sep #ACCU_8|IDX_8                                                  ; $db9c : $e2, $30
@@ -14549,7 +14586,7 @@ br_00_dcf5:
 	lda $0e                                                  ; $dcf5 : $a5, $0e
 	bpl br_00_dcfd                                                  ; $dcf7 : $10, $04
 
-	jsr $02d611.l                                                  ; $dcf9 : $22, $11, $d6, $02
+	jsr Func_2_d611.l                                                  ; $dcf9 : $22, $11, $d6, $02
 
 br_00_dcfd:
 	lda $1f27.w                                                  ; $dcfd : $ad, $27, $1f
@@ -14653,7 +14690,7 @@ LoadStageEntitiesDetails:
 	sep #ACCU_8|IDX_8                                                  ; $dd7e : $e2, $30
 
 ; data bank is 3c
-	lda #$3c.b                                                  ; $dd80 : $a9, $3c
+	lda #:Data_3c_ce4b.b                                                  ; $dd80 : $a9, $3c
 	pha                                                  ; $dd82 : $48
 	plb                                                  ; $dd83 : $ab
 
@@ -14711,7 +14748,7 @@ LoadStageEntitiesDetails:
 
 ; data bank is 3c
 	sep #ACCU_8                                                  ; $ddc5 : $e2, $20
-	lda #$3c.b                                                  ; $ddc7 : $a9, $3c
+	lda #:Data_3c_ce4b.b                                                  ; $ddc7 : $a9, $3c
 	pha                                                  ; $ddc9 : $48
 	plb                                                  ; $ddca : $ab
 	rep #ACCU_8                                                  ; $ddcb : $c2, $20
@@ -17635,11 +17672,11 @@ br_00_ef12:
 	rts                                                  ; $ef93 : $60
 
 
-	lda $00a9.w                                                  ; $ef94 : $ad, $a9, $00
+	lda wJoy1CurrButtonsHeld.w+1                                                  ; $ef94 : $ad, $a9, $00
 	and #$d0.b                                                  ; $ef97 : $29, $d0
 	bne br_00_efa2                                                  ; $ef99 : $d0, $07
 
-	lda $00a8.w                                                  ; $ef9b : $ad, $a8, $00
+	lda wJoy1CurrButtonsHeld.w                                                  ; $ef9b : $ad, $a8, $00
 	and #$c0.b                                                  ; $ef9e : $29, $c0
 	beq br_00_efa6                                                  ; $efa0 : $f0, $04
 
@@ -18294,7 +18331,7 @@ Call_00_f321:
 	php                                                  ; $f322 : $08
 	phd                                                  ; $f323 : $0b
 	rep #ACCU_8                                                  ; $f324 : $c2, $20
-	lda #$1818.w                                                  ; $f326 : $a9, $18, $18
+	lda #w1818_Entities.w                                                  ; $f326 : $a9, $18, $18
 
 br_00_f329:
 	tcd                                                  ; $f329 : $5b
@@ -18318,10 +18355,12 @@ Call_00_f33e:
 
 	inc $01                                                  ; $f342 : $e6, $01
 	stz $18                                                  ; $f344 : $64, $18
-	lda #$8555.w                                                  ; $f346 : $a9, $55, $85
-	asl $c2, X                                                  ; $f349 : $16, $c2
-	jsr $387b.w                                                  ; $f34b : $20, $7b, $38
-	sbc #$1818.w                                                  ; $f34e : $e9, $18, $18
+	lda #$55.b                                                  ; $f346 : $a9, $55
+	sta $16                                                  ; $f348 : $85, $16
+	rep #ACCU_8                                                  ; $f34a : $c2, $20
+	tdc                                                  ; $f34c : $7b
+	sec                                                  ; $f34d : $38
+	sbc #w1818_Entities.w                                                  ; $f34e : $e9, $18, $18
 	lsr                                                  ; $f351 : $4a
 	lsr                                                  ; $f352 : $4a
 	lsr                                                  ; $f353 : $4a
@@ -18421,12 +18460,12 @@ Call_00_f3e4:
 	lda #$1a38.w                                                  ; $f3e7 : $a9, $38, $1a
 	tcd                                                  ; $f3ea : $5b
 	sep #ACCU_8                                                  ; $f3eb : $e2, $20
-	jsr $02fe6c.l                                                  ; $f3ed : $22, $6c, $fe, $02
+	jsr todo_Update_1818_Entity33h.l                                                  ; $f3ed : $22, $6c, $fe, $02
 	rep #ACCU_8                                                  ; $f3f1 : $c2, $20
 	lda #$1a58.w                                                  ; $f3f3 : $a9, $58, $1a
 	tcd                                                  ; $f3f6 : $5b
 	sep #ACCU_8                                                  ; $f3f7 : $e2, $20
-	jsr $02fe6c.l                                                  ; $f3f9 : $22, $6c, $fe, $02
+	jsr todo_Update_1818_Entity33h.l                                                  ; $f3f9 : $22, $6c, $fe, $02
 	pld                                                  ; $f3fd : $2b
 	rts                                                  ; $f3fe : $60
 
@@ -18640,7 +18679,7 @@ Func_0_f518:
 	rts                                                  ; $f526 : $60
 
 
-Funcs_0_f527:
+todo_Update_1818_Entities:
 	.dw $f5b3
 	.dw $f5b4
 	.dw $f5b9
@@ -18692,7 +18731,7 @@ Funcs_0_f527:
 	.dw $f695
 	.dw $f69a
 	.dw $f69f
-	.dw $f6a4
+	.dw todo_FarUpdate_1818_Entity33h
 	.dw $f6a9
 	.dw $f6ae
 	.dw $f6b3
@@ -18908,7 +18947,8 @@ Func_0_f604:
 	rts                                                  ; $f6a3 : $60
 
 
-	jsr $02fe6c.l                                                  ; $f6a4 : $22, $6c, $fe, $02
+todo_FarUpdate_1818_Entity33h:
+	jsr todo_Update_1818_Entity33h.l                                                  ; $f6a4 : $22, $6c, $fe, $02
 	rts                                                  ; $f6a8 : $60
 
 
