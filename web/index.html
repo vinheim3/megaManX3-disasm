@@ -1,0 +1,503 @@
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="root">
+            <div class="section">
+                <div class="box container is-flex" style="flex-wrap:wrap;overflow-x:scroll">
+                    <div v-for="screen of screens">
+                        <div>{{ screen.name }}</div>
+                        <div :id="screen.name+' canvases'"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            let greyCols = [];
+            for (let idx = 0; idx < 16; idx++) {
+                let greyCol = idx * 17;
+                greyCols.push([greyCol, greyCol, greyCol]);
+            }
+            // 13 is the last that looks good (should be up to 17)
+            const stageIdx = 7;
+
+            let bankConv = function(bank, addr) {
+                return bank * 0x8000 + (addr % 0x8000)
+            }
+
+            let printBytes = function(bytes) {
+                console.log(bytes.map(i => i.toString(16)).join(' '));
+            }
+
+            let wordIn = function(rom, addr) {
+                return (rom[addr+1]<<8)+rom[addr];
+            }
+
+            let longIn = function(rom, addr) {
+                return bankConv(rom[addr+2], wordIn(rom, addr));
+            }
+
+            let getCanvas = function(canvas_id) {
+                let canvas = document.getElementById(canvas_id);
+                if (!canvas) return null;
+                let ctx = canvas.getContext("2d");
+
+                let width = canvas.width, height = canvas.height;
+                let myImageData = ctx.createImageData(width, height);
+                return [ctx, myImageData, width, height];
+            }
+
+            let plotPx = function(data, col, row, width, r, g, b) {
+                let offs = 4 * (row*width+col);
+                data[offs] = r;
+                data[offs+1] = g;
+                data[offs+2] = b;
+                data[offs+3] = 0xff;
+            }
+
+            let drawRow = function(data, col, pxrow, width, bitp0, bitp1, bitp2, bitp3, hflip) {
+                for (let pxcol = 7; pxcol >= 0; pxcol--) {
+                    let color = (bitp0&1) + 2*(bitp1&1) + 4*(bitp2&1) + 8*(bitp3&1);
+                    let [r,g,b] = greyCols[color];
+                    bitp0>>=1;
+                    bitp1>>=1;
+                    bitp2>>=1;
+                    bitp3>>=1;
+                    let _col;
+                    if (hflip) _col = col+7-pxcol;
+                    else _col = col+pxcol;
+                    plotPx(data, _col, pxrow, width, r, g, b);
+                }
+            }
+
+            let drawTile = function(data, col, row, width, tileBytes, vflip, hflip) {
+                for (let pxrow = 0; pxrow < 8; pxrow++) {
+                    let _row;
+                    if (vflip) _row = row+7-pxrow;
+                    else _row = row+pxrow;
+                    drawRow(
+                        data, col, _row, width,
+                        tileBytes[pxrow*2],
+                        tileBytes[pxrow*2+1],
+                        tileBytes[pxrow*2+16],
+                        tileBytes[pxrow*2+17],
+                        hflip,
+                    )
+                }
+            }
+
+            class Screen {
+                constructor(screenSpec, rom) {
+                    this.memory = new Array(0x10000).fill(0);
+                    this.mem7eh = new Array(0x10000).fill(0);
+                    this.mem7fh = new Array(0x10000).fill(0);
+                    this.screenSpec = screenSpec;
+                    this.rom = rom;
+
+                    this.numBytes = 0;
+                    this.roomClickEvents = [];
+
+                    this.baseMetatileTable = this.longIn(bankConv(6, 0x8b00+stageIdx*3));
+                    this.baseMetaMetatileTable = this.longIn(bankConv(6, 0x8a91+stageIdx*3));
+                    this.baseRoomTable = this.longIn(bankConv(6, 0x8a22+stageIdx*3));
+                    this.baseStageTable = this.longIn(bankConv(6, 0x89b3+stageIdx*3));
+                    this.baseDynamicSprites = this.wordIn(bankConv(8, 0x8623+stageIdx*2)) + bankConv(8, 0x8623);
+                }
+
+                name() {
+                    return this.screenSpec.name;
+                }
+
+                drawMetatile(data, col, row, width, metatileIdx) {
+                    // StageTilesFromMetatiles
+                    let start = metatileIdx * 8 + this.baseMetatileTable;
+                    for (let j = 0; j < 4; j++) {
+                        let tileVal = wordIn(this.rom, start);
+                        let tileIdx = tileVal & 0x3ff;
+                        let vflip = tileVal & 0x8000;
+                        let hflip = tileVal & 0x4000;
+                        start += 2;
+                        let base = 0x2000+tileIdx*0x20;
+                        let colAdd = (j & 1) ? 8 : 0;
+                        let rowAdd = (j >= 2) ? 8 : 0;
+                        drawTile(
+                            data, col+colAdd, row+rowAdd, width, 
+                            this.mem7eh.slice(base, base+0x20),
+                            vflip, hflip,
+                        );
+                    }
+                }
+
+                drawMetaMetatile(data, col, row, width, metaMetatileIdx) {
+                    // StageMetatilesFromMetaMetatiles
+                    let start = metaMetatileIdx * 8 + this.baseMetaMetatileTable;
+                    for (let j = 0; j < 4; j++) {
+                        let metatileIdx = wordIn(this.rom, start);
+                        start += 2;
+                        let colAdd = (j & 1) ? 16 : 0;
+                        let rowAdd = (j >= 2) ? 16 : 0;
+                        this.drawMetatile(
+                            data, col+colAdd, row+rowAdd, width, metatileIdx);
+                    }
+                }
+
+                drawRoom(data, roomcol, roomrow, width, roomIdx) {
+                    // StageMetaMetatilesFromRoom
+                    let start = this.baseRoomTable + roomIdx*0x80;
+                    for (let row = 0; row < 8; row++) {
+                        for (let col = 0; col < 8; col++) {
+                            let metaMetatileIdx = this.wordIn(start);
+                            start += 2;
+                            this.drawMetaMetatile(
+                                data, roomcol+col*32, roomrow+row*32, 
+                                width, metaMetatileIdx);
+                        }
+                    }
+                }
+
+                drawEvents(ctx) {
+                    let src = this.wordIn(bankConv(0x3c, 0xce4b+stageIdx*2));
+                    let start = bankConv(0x3c, src);
+                    let eTypes = ["green", "yellow", "blue", "red"];
+                    let prevColIdx = null;
+                    while (1) {
+                        let colIdx = this.rom[start++];
+                        if (colIdx === prevColIdx) return;
+                        prevColIdx = colIdx;
+                        while (1) {
+                            let eType = this.rom[start];
+                            let y = this.wordIn(start+1);
+                            let x = this.wordIn(start+5);
+                            let shouldExit = (x&0x8000) != 0;
+                            x &= 0x1fff;
+                        
+                            ctx.beginPath();
+                            ctx.lineWidth = "4";
+                            ctx.strokeStyle = eTypes[eType];
+                            ctx.rect(x-10, y-10, 20, 20);
+                            ctx.stroke();
+
+                            this.roomClickEvents.push([
+                                x-10, y-10, this.rom[start+3], this.rom[start+4],
+                            ])
+                        
+                            start += 7;
+                            if (shouldExit) break;
+                        }
+                    }
+                }
+
+                singlePaletteTile(val, dest) {
+                    let b0 = val & 1; val >>= 1;
+                    let b1 = val & 1; val >>= 1;
+                    let b2 = val & 1; val >>= 1;
+                    let b3 = val & 1;
+                    for (let i = 0; i < 8; i++) {
+                        this.mem7eh[dest+i*2] = b0 === 0 ? 0 : 0xff;
+                        this.mem7eh[dest+i*2+1] = b1 === 0 ? 0 : 0xff;
+                        this.mem7eh[dest+i*2+16] = b2 === 0 ? 0 : 0xff;
+                        this.mem7eh[dest+i*2+17] = b3 === 0 ? 0 : 0xff;
+                    }
+                }
+
+                singlePaletteTiles() {
+                    for (let i = 0; i < 16; i++) {
+                        this.singlePaletteTile(i, 0x2000+i*0x20);
+                    }
+                }
+
+                DecompressData(idx, dest) {
+                    let offs = bankConv(6, 0xf732+idx*5);
+                    let src = this.longIn(offs);
+                    let numBytes = this.wordIn(offs+3);
+                    let origDest = dest;
+                    this.numBytes += numBytes;
+
+                    while (1) {
+                        let ctrlByte = this.rom[src++];
+                        let ctrlBits = 8;
+
+                        while (ctrlBits != 0) {
+                            let newByte = this.rom[src++];
+                            if ((ctrlByte & 0x80) === 0) {
+                                this.mem7eh[dest++] = newByte;
+                            } else {
+                                let numBytesToCopy = Math.floor(newByte/4);
+                                let negOffs = this.rom[src++] + ((newByte & 3)<<8);
+                                let startSrc = dest - negOffs;
+
+                                while (numBytesToCopy-- !== 0) {
+                                    this.mem7eh[dest++] = this.mem7eh[startSrc++];
+                                }
+                            }
+                            ctrlByte <<= 1;
+                            ctrlBits -= 1;
+
+                            if (dest == origDest+numBytes) {
+                                // console.log(this.screenSpec.name, this.numBytes.toString(16), src.toString(16));
+                                // printBytes(this.mem7eh.slice(origDest, dest));
+                                this.numBytes = Math.max(this.numBytes, dest);
+                                return;
+                            }
+                        }
+                    }
+                }
+
+                createCanvas(suffix, width, height) {
+                    const canvas = document.createElement("canvas");
+                    canvas.setAttribute('id', this.screenSpec.name + ' ' + suffix);
+                    canvas.setAttribute('width', width);
+                    canvas.setAttribute('height', height);
+                    let canvases = document.getElementById(this.screenSpec.name + ' canvases');
+                    canvases.appendChild(canvas);
+                    return canvas;
+                }
+
+                TileDataForStage() {
+                    let idx = stageIdx === 0x0e ? 0x0b : stageIdx;
+                    let src = this.wordIn(bankConv(6, 0xf3c3+idx*2+4));
+                    let start = bankConv(6, src);
+                    let decompIdx = this.rom[start];
+                    this.DecompressData(decompIdx, 0x2200);
+                }
+
+                TileData(start) {
+                    let numBytes = this.numBytes - start;
+                    let numTiles = Math.floor(numBytes / 0x20);
+                    let tilesPerRow = Math.floor(128 / 8);
+                    let numTileRows = Math.ceil(numTiles/tilesPerRow);
+
+                    this.createCanvas('data', 128, numTileRows*8);
+
+                    let [ctx, imgData, width, height] = this.getCanvas(' data');
+                    let data = imgData.data;
+                    
+                    for (let i = 0; i < numTiles; i++) {
+                        let row = Math.floor(i / tilesPerRow) * 8;
+                        let col = Math.floor(i % tilesPerRow) * 8;
+                        let tileBytes = this.mem7eh.slice(start, start+0x20);
+                        drawTile(data, col, row, width, tileBytes);
+                        start += 0x20;
+                    }
+                    ctx.putImageData(imgData, 0, 0);
+                }
+
+                Metatiles() {
+                    this.createCanvas('metatiles', 256, 960);
+
+                    let [ctx, imgData, width, height] = this.getCanvas(' metatiles');
+                    let data = imgData.data;
+                    let tilesPerRow = Math.floor(width / 16);
+                    for (let i = 0; i < 0x3c0; i++) {
+                        let row = Math.floor(i / tilesPerRow) * 16;
+                        let col = Math.floor(i % tilesPerRow) * 16;
+
+                        this.drawMetatile(data, col, row, width, i);
+                    }
+                    ctx.putImageData(imgData, 0, 0);
+                }
+
+                MetaMetatiles() {
+                    this.createCanvas('metametatiles', 512, 3072);
+
+                    // todo : the number of meta-metatiles
+                    let [ctx, imgData, width, height] = this.getCanvas(' metametatiles');
+                    let data = imgData.data;
+                    let tilesPerRow = Math.floor(width / 32);
+                    for (let i = 0; i < 0x600-7; i++) {
+                        let row = Math.floor(i / tilesPerRow) * 32;
+                        let col = Math.floor(i % tilesPerRow) * 32;
+
+                        this.drawMetaMetatile(data, col, row, width, i);
+                    }
+                    ctx.putImageData(imgData, 0, 0);
+                }
+
+                DrawRooms() {
+                    let roomsWide = this.rom[this.baseStageTable];
+                    let roomsHigh = this.rom[this.baseStageTable+1];
+                    let canvas = this.createCanvas('rooms', roomsWide*256, roomsHigh*256);
+
+                    let self = this;
+                    function onClick(event) {
+                        const rect = this.getBoundingClientRect()
+                        const x = event.clientX - rect.left
+                        const y = event.clientY - rect.top
+                        let hadEvent = false;
+                        for (let [leftX, topY, type, subtype] of self.roomClickEvents) {
+                            if (x < leftX || x > leftX+20 || y < topY || y > topY + 20)
+                                continue;
+                            if (!hadEvent) console.log('-----------------------------------------');
+                            console.log(
+                                `Type: $${type.toString(16).padStart(2, '0')}. SubType: $${subtype.toString(16).padStart(2, '0')}`);
+                            hadEvent = true;
+                        }
+                    }
+                    canvas.addEventListener("click", onClick, false);
+
+                    // StageRooms
+                    let [ctx, imgData, width, height] = this.getCanvas(' rooms');
+                    let data = imgData.data;
+
+                    let start = this.baseStageTable+3;
+                    let roomIdxes = [];
+                    let b = this.rom[start++];
+                    while (b != 0xff) {
+                        let countByte = b;
+                        let roomIdx = this.rom[start++];
+                        if ((countByte & 0x80) == 0) {
+                            let count = countByte;
+                            while (count-- !== 0) {
+                                roomIdxes.push(roomIdx++);
+                            }
+                        } else {
+                            let count = countByte & 0x7f;
+                            while (count-- !== 0) {
+                                roomIdxes.push(roomIdx);
+                            }
+                        }
+
+                        b = this.rom[start++];
+                    }
+
+                    let idx = 0;
+                    for (let row = 0; row < roomsHigh; row++) {
+                        for (let col = 0; col < roomsWide; col++) {
+                            this.drawRoom(data, col*256, row*256, width, roomIdxes[idx++]);
+                        }
+                    }
+
+                    ctx.putImageData(imgData, 0, 0);
+                    this.drawEvents(ctx);
+                }
+
+                DynamicSprites(idx) {
+                    // Data_8_8623
+                    let offs = this.wordIn(this.baseDynamicSprites+idx*2);
+                    let start = bankConv(8, 0x8623+offs);
+                    while (1) {
+                        let decompDataIdx = this.rom[start];
+                        if (decompDataIdx == 0xff) break;
+                        let dest = 0x6000 + this.wordIn(start+1);
+                        this.DecompressData(decompDataIdx, dest*2);
+                        start += 6;
+                    }
+                    this.TileData(0xc000);
+                }
+
+                // Map() {
+                //     // temp
+                //     let [ctx, imgData, width, height] = this.getCanvas(' map');
+                //     let data = imgData.data;
+                //     let start = 10;
+                //     for (let row = 0; row < 0x32; row++) {
+                //         for (let col = 0; col < 0x30; col++) {
+                //             let metatileIdx = wordIn(this.mem7fh, start); // & 0x3ff
+                //             start += 2;
+                //             this.drawMetatile(data, col*16, row*16, width, metatileIdx);
+                //         }
+                //     }
+                //     ctx.putImageData(imgData, 0, 0);
+                // }
+
+                drawScreen() {
+                    let screen = this.screenSpec;
+
+                    // set vram sources
+                    for (let i = 0; i < screen.sources.length; i++) {
+                        let [algo, ...args] = screen.sources[i];
+                        this[algo](...args);
+                    }
+                }
+
+                wordIn(addr) {
+                    return wordIn(this.rom, addr);
+                }
+
+                longIn(addr) {
+                    return longIn(this.rom, addr);
+                }
+
+                getTileData(idx) {
+                    return this.mem7eh.slice(idx * 0x20, (idx+1) * 0x20);
+                }
+
+                getCanvas(suffix) {
+                    return getCanvas(this.screenSpec.name + suffix);
+                }
+            }
+
+            let app = new Vue({
+                el: '#root',
+                data: {
+                    uint8view: null,
+                    screenMap: {},
+                    screens: [
+                        {
+                            name: "Stage",
+                            sources: [
+                                ["TileDataForStage"],
+                                ["singlePaletteTiles"],
+                                ["TileData", 0x2000],
+                                ["Metatiles"],
+                                ["MetaMetatiles"],
+                                ["DrawRooms"],
+                            ],
+                        },
+                    ],
+                },
+                methods: {
+                    loadData: function() {
+                        let numDynamicSpriteSpecs = [
+                            34, 19, 19, 20, 19, 19, 19, 19,
+                            19, 8, 19, 12, 18, 5, 12, 8,
+                            1, 1,
+                        ][stageIdx];
+                        for (let i = 0; i < numDynamicSpriteSpecs; i++) {
+                            this.screens.push({
+                                name: `Dynamic sprites ${i}`,
+                                sources: [
+                                    ["DynamicSprites", i],
+                                ]
+                            })
+                        }
+                        fetch('/megaManX3.sfc')
+                            .then(response => checkStatus(response) && response.arrayBuffer())
+                            .then(buffer => {
+                                this.uint8view = new Uint8Array(buffer);
+
+                                setTimeout(this.loadScreens, 10);
+                            });
+                    },
+
+                    loadScreens: function() {
+                        if (this.uint8view === null) return;
+
+                        let newScreenMap = {};
+                        for (let screenData of this.screens) {
+                            let screenName = screenData.name;
+                            let screen = new Screen(screenData, this.uint8view);
+                            newScreenMap[screenName] = screen;
+                            screen.drawScreen();
+                        }
+                        this.screenMap = newScreenMap;
+                    },
+                },
+                computed: {},
+            });
+
+            app.loadData();
+
+            function checkStatus(response) {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+                }
+                return response;
+            }
+        </script>
+    </body>
+</html>

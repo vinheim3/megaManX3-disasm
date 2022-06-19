@@ -1,0 +1,7 @@
+To swap items
+* change decomp idx + associated palette, eg in Data_8_8d44
+* change entity type/subtype, eg in Data_3c_e888
+
+TODO: graphics for chimera armor and upgrades
+TODO: skip upgrades animations
+TODO: skip cutscenes

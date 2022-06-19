@@ -1,0 +1,8 @@
+*.bst
+*.sfc
+*.sym
+temp.s
+cx4.rom
+__pycache__/
+.vscode/
+build/

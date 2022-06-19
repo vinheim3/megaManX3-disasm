@@ -1,0 +1,178 @@
+500 - vmain
+501/2 - vram addr
+503/4 - num bytes
+505/6 - src addr
+507 - src bank
+processed at 8:8270
+
+600 - vmain
+601/2 - vram addr
+603 - num bytes
+604+ - the bytes
+processed at 8:8290 (code copied to 7e:2000-2632, ie 7e:2290)
+
+Code to ram
+-----------
+8:8000-8:8632 copied to 7e:2000
+0:d770-0:d8be copied to 7e:26a0
+
+OK text in Cx4 test rom
+-----------------------
+600+ struct:
+vmain=80
+vram addr=08f8
+bytes=6: 4f 28 4b 28 2e 28 (OK.)
+
+copied to from 5:facb (6:a639 has the above 6 bytes)
+
+Health sprites
+--------------
+mdma happens at 8:8073 copying $220 bytes from 0:6000
+build_oam populates 0:6040 at 3:8de3
+health gets manipped, eg 3:9044
+
+1fd2 set to 10 4dbc1 (sets max health based on health tanks)
+
+health tanks gotten inc'd in 1e971
+
+Stage tiledata
+--------------
+dma using 8:8270 (500 struct)
+vmain = 80
+vram addr = 1100
+num bytes = 7e00 (so 2200-<a000)
+src = 7f:0000
+
+7f00 populated from b7ac
+somehow called via b49b->8126
+
+Taking damage
+-------------
+4ce04 - normal damage
+4d09f - instant death on spikes
+
+Displaying subtank
+------------------
+600+ struct:
+vmain=80
+vram addr=59d2
+bytes=4: 27 38 27 78
+
+Call_00_d485 draws it in inventory
+
+FURTHER: 1dc3a is when you get a tank
+------
+11:ee13 is the sprite spec location for the subtank
+from struct 1518 (d_8000 table 96 idx, then 01 idx)
+01 - its the 2nd of the subtank sprite (0 and 1 for flashing)
+96 - its the energy tank
+1:db1a writes 96 to 16 with D = 1518; traced back to Funcs_0_f49b
+Call_00_daa0 references 1518
+------
+todo_LoadInEntitiesForColAndRows loads it from 7efaf2
+LoadStageEntitiesDetails populates 7efa02 region (stage entities)
+f800-fa02 region is $202 bytes (actually $200, due to comparing against next word)
+a loop in 0:debb loops $0a times, adding +$20 through this offset
+
+Displaying subweapons
+---------------------
+tornado fang:
+d1a4
+vram addr=52a5
+vram data=3c10
+called from d113 which loops 9 times
+
+flag set when boss disappears at 3feb12
+
+parasitic bomb (1fbe): 39a14b and aaba ; 1fbd:4a593
+-----
+tile data for subweapon from 500+ struct (X=18)
+vmain=80
+vram addr=6ac0
+num bytes=40
+src addr=2c:8960
+
+4:b05e gets $10 from $33 which eventually loads a bunch of dma from 6:9a2e from 0:873b
+
+gravity well flag (1fc6) set in 13:f7c1
+
+Leg upgrade
+-----------
+AddSpriteToBuild populates 6220 region for leg sprite
+1818 appearing in 740 is the cause, and is written via 2:d69b
+wSubTanksAndUpgradesGottenBitfield is polled with bit 3 set in 0:cd7c
+bit 3 set in 5:c820 through Func_5_c808 (0b (actually d23)==3)
+
+d23 set through 13:c513
+
+Wireframes
+----------
+Func_4_da7e - calls routine to draw wireframe
+
+Ride armour
+-----------
+sprite added via 3:8f09 from 7c0+Y
+7c2 has 18f8
+18f8+ region written via 2:d6b9 <- 0:ce33
+
+Call_00_db07 loops from $1818 to $1d18, increments of $20
+
+Arm chip
+--------
+via 5:c833
+
+Text
+----
+600+ struct
+vmain=80
+vram addr=08a6
+num bytes=02
+the bytes=28
+
+Changing tileset for sprites
+----------------------------
+500+ struct, X=0
+vmain=80
+vram addr=7000(e000)
+num bytes=400
+src addr=0000
+src bank=7f
+
+vmain=80
+vram addr=7200(e400)
+num bytes=400
+src addr=0400
+src bank=7f
+
+vmain=80
+vram addr=7400(e800)
+num bytes=400
+src addr=0800
+src bank=7f
+
+Lives
+-----
+tilemap updated at d465
+
+Stage BG1 tiles
+---------------
+500+ struct
+vmain=80
+vram addr=1100
+num bytes=79a0
+src addr=0000
+src bank=7f
+
+
+
+TODO: ride armour health
+TODO: spikes deal damage
+TODO: final boss laser damage
+
+
+Event type 2
+------------
+0 - snaps scroll Y, usually in pairs
+a - stub
+15/16/17/18/19/1a/1c/1d - dynamically loads oam
+22 - stub
