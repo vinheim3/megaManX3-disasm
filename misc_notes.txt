@@ -172,6 +172,7 @@ TODO: final boss laser damage
 
 Event type 2 (blue)
 -------------------
+1d18 structs
 0 - snaps scroll Y, usually in pairs
 a - stub
 15/16/17/18/19/1a/1c/1d - dynamically loads oam

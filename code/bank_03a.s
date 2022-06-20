@@ -20987,7 +20987,7 @@ br_3a_f9dc:
 	sta $01                                                  ; $f9e3 : $85, $01
 	bra br_3a_f9ec                                                  ; $f9e5 : $80, $05
 
-	jsr $02ddf6.l                                                  ; $f9e7 : $22, $f6, $dd, $02
+	jsr Func_2_ddf6.l                                                  ; $f9e7 : $22, $f6, $dd, $02
 	rts                                                  ; $f9eb : $60
 
 
@@ -20997,7 +20997,7 @@ br_3a_f9ec:
 	lda $0e                                                  ; $f9f4 : $a5, $0e
 	beq br_3a_fa05                                                  ; $f9f6 : $f0, $0d
 
-	jsr $04cb31.l                                                  ; $f9f8 : $22, $31, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $f9f8 : $22, $31, $cb, $04
 	jsr Func_4_b94a.l                                                  ; $f9fc : $22, $4a, $b9, $04
 	dec $34                                                  ; $fa00 : $c6, $34
 	beq br_3a_fa0b                                                  ; $fa02 : $f0, $07

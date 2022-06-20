@@ -23,7 +23,7 @@
                 greyCols.push([greyCol, greyCol, greyCol]);
             }
             // 13 is the last that looks good (should be up to 17)
-            const stageIdx = 7;
+            const stageIdx = 3;
 
             let bankConv = function(bank, addr) {
                 return bank * 0x8000 + (addr % 0x8000)
@@ -387,26 +387,12 @@
                         let decompDataIdx = this.rom[start];
                         if (decompDataIdx == 0xff) break;
                         let dest = 0x6000 + this.wordIn(start+1);
+                        printBytes([decompDataIdx, dest * 2]);
                         this.DecompressData(decompDataIdx, dest*2);
                         start += 6;
                     }
                     this.TileData(0xc000);
                 }
-
-                // Map() {
-                //     // temp
-                //     let [ctx, imgData, width, height] = this.getCanvas(' map');
-                //     let data = imgData.data;
-                //     let start = 10;
-                //     for (let row = 0; row < 0x32; row++) {
-                //         for (let col = 0; col < 0x30; col++) {
-                //             let metatileIdx = wordIn(this.mem7fh, start); // & 0x3ff
-                //             start += 2;
-                //             this.drawMetatile(data, col*16, row*16, width, metatileIdx);
-                //         }
-                //     }
-                //     ctx.putImageData(imgData, 0, 0);
-                // }
 
                 drawScreen() {
                     let screen = this.screenSpec;

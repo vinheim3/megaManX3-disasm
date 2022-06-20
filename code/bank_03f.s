@@ -15127,7 +15127,7 @@ br_3f_e178:
 	stx $3fe2.w                                                  ; $e1e6 : $8e, $e2, $3f
 	lda #$f6.b                                                  ; $e1e9 : $a9, $f6
 	ldy #$03.b                                                  ; $e1eb : $a0, $03
-	jsr $00856d.l                                                  ; $e1ed : $22, $6d, $85, $00
+	jsr Func_0_856d.l                                                  ; $e1ed : $22, $6d, $85, $00
 	lda #$3c.b                                                  ; $e1f1 : $a9, $3c
 	sta $35                                                  ; $e1f3 : $85, $35
 	lda #$02.b                                                  ; $e1f5 : $a9, $02
@@ -15182,7 +15182,7 @@ br_3f_e23b:
 	lda #$04.b                                                  ; $e23f : $a9, $04
 	sta $03                                                  ; $e241 : $85, $03
 	lda #$29.b                                                  ; $e243 : $a9, $29
-	jmp $018000.l                                                  ; $e245 : $5c, $00, $80, $01
+	jmp Func_1_8000.l                                                  ; $e245 : $5c, $00, $80, $01
 
 
 br_3f_e249:
@@ -15287,7 +15287,7 @@ br_3f_e28d:
 	sta $1f4f.w                                                  ; $e2f5 : $8d, $4f, $1f
 
 br_3f_e2f8:
-	jmp $04d1ca.l                                                  ; $e2f8 : $5c, $ca, $d1, $04
+	jmp todo_CausePlayerToFreeze.l                                                  ; $e2f8 : $5c, $ca, $d1, $04
 
 
 Call_3f_e2fc:
@@ -15461,7 +15461,7 @@ br_3f_e401:
 	sta $01                                                  ; $e408 : $85, $01
 	bra br_3f_e411                                                  ; $e40a : $80, $05
 
-	jsr $02ddf6.l                                                  ; $e40c : $22, $f6, $dd, $02
+	jsr Func_2_ddf6.l                                                  ; $e40c : $22, $f6, $dd, $02
 	rts                                                  ; $e410 : $60
 
 
@@ -15472,7 +15472,7 @@ br_3f_e411:
 	lda $0b                                                  ; $e415 : $a5, $0b
 	bne br_3f_e41d                                                  ; $e417 : $d0, $04
 
-	jsr $04cb31.l                                                  ; $e419 : $22, $31, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $e419 : $22, $31, $cb, $04
 
 br_3f_e41d:
 	ldx $02                                                  ; $e41d : $a6, $02
@@ -15798,7 +15798,7 @@ br_3f_e63c:
 	bne br_3f_e674                                                  ; $e63f : $d0, $33
 
 br_3f_e641:
-	jsr $04d1ca.l                                                  ; $e641 : $22, $ca, $d1, $04
+	jsr todo_CausePlayerToFreeze.l                                                  ; $e641 : $22, $ca, $d1, $04
 	stz $1f54.w                                                  ; $e645 : $9c, $54, $1f
 	stz $1f55.w                                                  ; $e648 : $9c, $55, $1f
 	stz $1f56.w                                                  ; $e64b : $9c, $56, $1f
@@ -15846,7 +15846,7 @@ br_3f_e68c:
 	sep #ACCU_8                                                  ; $e68f : $e2, $20
 	lda #$01.b                                                  ; $e691 : $a9, $01
 	sta $00a1.w                                                  ; $e693 : $8d, $a1, $00
-	jsr $02e15c.l                                                  ; $e696 : $22, $5c, $e1, $02
+	jsr Func_2_e15c.l                                                  ; $e696 : $22, $5c, $e1, $02
 	lda $28                                                  ; $e69a : $a5, $28
 	sta $1f57.w                                                  ; $e69c : $8d, $57, $1f
 	stz $27                                                  ; $e69f : $64, $27
@@ -16005,7 +16005,7 @@ Jump_3f_e793:
 	jsr Call_3f_eb88.w                                                  ; $e7a4 : $20, $88, $eb
 
 br_3f_e7a7:
-	jsr $04cb74.l                                                  ; $e7a7 : $22, $74, $cb, $04
+	jsr Func_4_cb74.l                                                  ; $e7a7 : $22, $74, $cb, $04
 	bmi br_3f_e7c8                                                  ; $e7ab : $30, $1b
 
 	beq br_3f_e7b2                                                  ; $e7ad : $f0, $03
@@ -16023,7 +16023,7 @@ br_3f_e7b2:
 	lda $0a43.w                                                  ; $e7bd : $ad, $43, $0a
 	bne br_3f_e7d8                                                  ; $e7c0 : $d0, $16
 
-	jsr $04cb31.l                                                  ; $e7c2 : $22, $31, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $e7c2 : $22, $31, $cb, $04
 	bra br_3f_e7d8                                                  ; $e7c6 : $80, $10
 
 Jump_3f_e7c8:
@@ -16092,7 +16092,7 @@ br_3f_e81e:
 
 br_3f_e824:
 	lda #$21.b                                                  ; $e824 : $a9, $21
-	jsr $018000.l                                                  ; $e826 : $22, $00, $80, $01
+	jsr Func_1_8000.l                                                  ; $e826 : $22, $00, $80, $01
 	lda #$3c.b                                                  ; $e82a : $a9, $3c
 	sta $37                                                  ; $e82c : $85, $37
 	lda #$01.b                                                  ; $e82e : $a9, $01
@@ -16170,7 +16170,7 @@ br_3f_e888:
 	rts                                                  ; $e888 : $60
 
 
-	jsr $02d7f3.l                                                  ; $e889 : $22, $f3, $d7, $02
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $e889 : $22, $f3, $d7, $02
 	jsr Call_3f_ec7d.w                                                  ; $e88d : $20, $7d, $ec
 	lda $35                                                  ; $e890 : $a5, $35
 	bne br_3f_e898                                                  ; $e892 : $d0, $04
@@ -16219,7 +16219,7 @@ br_3f_e8cb:
 	lda #$05.b                                                  ; $e8cb : $a9, $05
 	jsr Func_4_b967.l                                                  ; $e8cd : $22, $67, $b9, $04
 	lda #$72.b                                                  ; $e8d1 : $a9, $72
-	jsr $018000.l                                                  ; $e8d3 : $22, $00, $80, $01
+	jsr Func_1_8000.l                                                  ; $e8d3 : $22, $00, $80, $01
 	lda #$06.b                                                  ; $e8d7 : $a9, $06
 	sta $03                                                  ; $e8d9 : $85, $03
 
@@ -16227,7 +16227,7 @@ br_3f_e8db:
 	rts                                                  ; $e8db : $60
 
 
-	jsr $02d7f3.l                                                  ; $e8dc : $22, $f3, $d7, $02
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $e8dc : $22, $f3, $d7, $02
 	jsr Call_3f_ec7d.w                                                  ; $e8e0 : $20, $7d, $ec
 	rep #ACCU_8                                                  ; $e8e3 : $c2, $20
 	lda $1a                                                  ; $e8e5 : $a5, $1a
@@ -16343,11 +16343,11 @@ br_3f_e97b:
 
 
 	jsr $13f7d6.l                                                  ; $e97c : $22, $d6, $f7, $13
-	jsr $02d7f3.l                                                  ; $e980 : $22, $f3, $d7, $02
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $e980 : $22, $f3, $d7, $02
 	jsr Call_3f_ec7d.w                                                  ; $e984 : $20, $7d, $ec
 	rep #IDX_8                                                  ; $e987 : $c2, $10
 	ldx #$09d8.w                                                  ; $e989 : $a2, $d8, $09
-	jsr $04cc5c.l                                                  ; $e98c : $22, $5c, $cc, $04
+	jsr Func_4_cc5c.l                                                  ; $e98c : $22, $5c, $cc, $04
 	sep #IDX_8                                                  ; $e990 : $e2, $10
 	bcc br_3f_e997                                                  ; $e992 : $90, $03
 
@@ -16698,7 +16698,7 @@ br_3f_eb78:
 
 	lda #$01.b                                                  ; $eb7f : $a9, $01
 	sta $36                                                  ; $eb81 : $85, $36
-	jsr $04d1ca.l                                                  ; $eb83 : $22, $ca, $d1, $04
+	jsr todo_CausePlayerToFreeze.l                                                  ; $eb83 : $22, $ca, $d1, $04
 
 br_3f_eb87:
 	rts                                                  ; $eb87 : $60
@@ -17442,7 +17442,7 @@ br_3f_f02d:
 	sta $01                                                  ; $f035 : $85, $01
 	bra br_3f_f03e                                                  ; $f037 : $80, $05
 
-	jsr $02ddf6.l                                                  ; $f039 : $22, $f6, $dd, $02
+	jsr Func_2_ddf6.l                                                  ; $f039 : $22, $f6, $dd, $02
 	rts                                                  ; $f03d : $60
 
 
@@ -17504,10 +17504,10 @@ br_3f_f08d:
 	beq br_3f_f0c2                                                  ; $f094 : $f0, $2c
 
 	jsr $02d78e.l                                                  ; $f096 : $22, $8e, $d7, $02
-	jsr $04cb31.l                                                  ; $f09a : $22, $31, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $f09a : $22, $31, $cb, $04
 	bne br_3f_f0b3                                                  ; $f09e : $d0, $13
 
-	jsr $04cb74.l                                                  ; $f0a0 : $22, $74, $cb, $04
+	jsr Func_4_cb74.l                                                  ; $f0a0 : $22, $74, $cb, $04
 	bne br_3f_f0b7                                                  ; $f0a4 : $d0, $11
 
 	jsr Call_3f_f16a.w                                                  ; $f0a6 : $20, $6a, $f1
@@ -17942,7 +17942,7 @@ br_3f_f342:
 	bra br_3f_f353                                                  ; $f34c : $80, $05
 
 br_3f_f34e:
-	jsr $02ddf6.l                                                  ; $f34e : $22, $f6, $dd, $02
+	jsr Func_2_ddf6.l                                                  ; $f34e : $22, $f6, $dd, $02
 	rts                                                  ; $f352 : $60
 
 

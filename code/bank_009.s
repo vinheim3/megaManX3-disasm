@@ -4210,7 +4210,7 @@ br_09_aa1d:
 	sbc $cd, S                                                  ; $aa82 : $e3, $cd
 	eor ($f1, X)                                                  ; $aa84 : $41, $f1
 	eor $cfe4fc.l, X                                                  ; $aa86 : $5f, $fc, $e4, $cf
-	rep #$11.b                                                  ; $aa8a : $c2, $11
+	rep #IDX_8|F_CARRY                                                  ; $aa8a : $c2, $11
 	sbc ($1f), Y                                                  ; $aa8c : $f1, $1f
 	ora ($0d), Y                                                  ; $aa8e : $11, $0d
 	cmp ($f0)                                                  ; $aa90 : $d2, $f0
@@ -6870,7 +6870,7 @@ br_09_bf93:
 	tsx                                                  ; $bfab : $ba
 	.db $00                                                  ; $bfac : $00
 	sbc ($4d), Y                                                  ; $bfad : $f1, $4d
-	rep #$11.b                                                  ; $bfaf : $c2, $11
+	rep #IDX_8|F_CARRY                                                  ; $bfaf : $c2, $11
 	.db $10, $0f                                                  ; $bfb1 : $10, $0f
 
 	.db $00                                                  ; $bfb3 : $00
@@ -10422,7 +10422,7 @@ br_09_dbe9:
 	ldy $5c, X                                                  ; $dbe9 : $b4, $5c
 	lda $3a, X                                                  ; $dbeb : $b5, $3a
 	tsb $ff                                                  ; $dbed : $04, $ff
-	rep #$11.b                                                  ; $dbef : $c2, $11
+	rep #IDX_8|F_CARRY                                                  ; $dbef : $c2, $11
 	.db $00                                                  ; $dbf1 : $00
 	ora ($0d)                                                  ; $dbf2 : $12, $0d
 	tsb $fc                                                  ; $dbf4 : $04, $fc
@@ -12725,7 +12725,7 @@ br_09_ee1a:
 	cpx $42                                                  ; $ee3e : $e4, $42
 	tya                                                  ; $ee40 : $98
 	wai                                                  ; $ee41 : $cb
-	sep #$11.b                                                  ; $ee42 : $e2, $11
+	sep #IDX_8|F_CARRY                                                  ; $ee42 : $e2, $11
 	inc $edf2.w, X                                                  ; $ee44 : $fe, $f2, $ed
 	pea $9853.w                                                  ; $ee47 : $f4, $53, $98
 	stp                                                  ; $ee4a : $db

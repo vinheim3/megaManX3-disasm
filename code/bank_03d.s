@@ -19065,7 +19065,7 @@ br_3d_f87b:
 	tsb $1f5f.w                                                  ; $f8ab : $0c, $5f, $1f
 	lda #$02.b                                                  ; $f8ae : $a9, $02
 	sta $02                                                  ; $f8b0 : $85, $02
-	jsr $04d1ca.l                                                  ; $f8b2 : $22, $ca, $d1, $04
+	jsr todo_CausePlayerToFreeze.l                                                  ; $f8b2 : $22, $ca, $d1, $04
 	lda wDynamicSpriteTileDatasIdx.w                                                  ; $f8b6 : $ad, $18, $1f
 	sta $7fcd91.l                                                  ; $f8b9 : $8f, $91, $cd, $7f
 	lda #$0c.b                                                  ; $f8bd : $a9, $0c
@@ -19086,7 +19086,7 @@ br_3d_f8d5:
 	lda $0040.w                                                  ; $f8d6 : $ad, $40, $00
 	bne br_3d_f925                                                  ; $f8d9 : $d0, $4a
 
-	jsr $02e15c.l                                                  ; $f8db : $22, $5c, $e1, $02
+	jsr Func_2_e15c.l                                                  ; $f8db : $22, $5c, $e1, $02
 	rep #ACCU_8|F_CARRY                                                  ; $f8df : $c2, $21
 	lda #$0080.w                                                  ; $f8e1 : $a9, $80, $00
 	adc wNewStageScrollX.w                                                  ; $f8e4 : $6d, $5d, $1e
@@ -19124,7 +19124,7 @@ br_3d_f925:
 
 
 	jsr Func_2_d636.l                                                  ; $f926 : $22, $36, $d6, $02
-	jsr $02d812.l                                                  ; $f92a : $22, $12, $d8, $02
+	jsr Func_2_d812.l                                                  ; $f92a : $22, $12, $d8, $02
 	rep #ACCU_8                                                  ; $f92e : $c2, $20
 	lda $08                                                  ; $f930 : $a5, $08
 	cmp #$0570.w                                                  ; $f932 : $c9, $70, $05
@@ -19196,7 +19196,7 @@ br_3d_f9a0:
 	sta $1f54.w                                                  ; $f9a8 : $8d, $54, $1f
 	bra br_3d_f9b1                                                  ; $f9ab : $80, $04
 
-	jmp $02ddf6.l                                                  ; $f9ad : $5c, $f6, $dd, $02
+	jmp Func_2_ddf6.l                                                  ; $f9ad : $5c, $f6, $dd, $02
 
 
 br_3d_f9b1:
@@ -19215,7 +19215,7 @@ br_3d_f9c4:
 	dec $3d                                                  ; $f9c4 : $c6, $3d
 	ldx $03                                                  ; $f9c6 : $a6, $03
 	jsr ($fb5e.w, X)                                                  ; $f9c8 : $fc, $5e, $fb
-	jsr $04cb74.l                                                  ; $f9cb : $22, $74, $cb, $04
+	jsr Func_4_cb74.l                                                  ; $f9cb : $22, $74, $cb, $04
 	bmi br_3d_f9e4                                                  ; $f9cf : $30, $13
 
 	beq br_3d_f9d5                                                  ; $f9d1 : $f0, $02
@@ -19230,7 +19230,7 @@ br_3d_f9d5:
 
 br_3d_f9dc:
 	jsr Func_4_b94a.l                                                  ; $f9dc : $22, $4a, $b9, $04
-	jmp $04cb31.l                                                  ; $f9e0 : $5c, $31, $cb, $04
+	jmp Func_4_cb31.l                                                  ; $f9e0 : $5c, $31, $cb, $04
 
 
 br_3d_f9e4:
@@ -19886,10 +19886,10 @@ br_3d_fdd0:
 	lda $0e                                                  ; $fde3 : $a5, $0e
 	beq br_3d_fdcb                                                  ; $fde5 : $f0, $e4
 
-	jsr $04cb74.l                                                  ; $fde7 : $22, $74, $cb, $04
+	jsr Func_4_cb74.l                                                  ; $fde7 : $22, $74, $cb, $04
 	bmi br_3d_fdc7                                                  ; $fdeb : $30, $da
 
-	jsr $04cb31.l                                                  ; $fded : $22, $31, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $fded : $22, $31, $cb, $04
 	bne br_3d_fdc7                                                  ; $fdf1 : $d0, $d4
 
 	jmp Func_4_b94a.l                                                  ; $fdf3 : $5c, $4a, $b9, $04
@@ -19910,10 +19910,10 @@ br_3d_fe07:
 	ldx $02                                                  ; $fe07 : $a6, $02
 	jsr ($fe20.w, X)                                                  ; $fe09 : $fc, $20, $fe
 	jsr Func_2_d636.l                                                  ; $fe0c : $22, $36, $d6, $02
-	jsr $04cb74.l                                                  ; $fe10 : $22, $74, $cb, $04
+	jsr Func_4_cb74.l                                                  ; $fe10 : $22, $74, $cb, $04
 	bmi br_3d_fdfe                                                  ; $fe14 : $30, $e8
 
-	jsr $04cb31.l                                                  ; $fe16 : $22, $31, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $fe16 : $22, $31, $cb, $04
 	bne br_3d_fdfe                                                  ; $fe1a : $d0, $e2
 
 	jmp Func_4_b94a.l                                                  ; $fe1c : $5c, $4a, $b9, $04
@@ -20138,7 +20138,7 @@ br_3d_ff4a:
 
 
 br_3d_ff60:
-	jsr Func_2_d58a.l                                                  ; $ff60 : $22, $8a, $d5, $02
+	jsr SetCarryIfEntityWayOutOfView.l                                                  ; $ff60 : $22, $8a, $d5, $02
 	bcc br_3d_ff6a                                                  ; $ff64 : $90, $04
 
 	jmp Func_2_d917.l                                                  ; $ff66 : $5c, $17, $d9, $02

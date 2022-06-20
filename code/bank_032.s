@@ -18292,9 +18292,9 @@ br_32_f3e6:
 	lda $0008.w, X                                                  ; $f408 : $bd, $08, $00
 	sta $08                                                  ; $f40b : $85, $08
 	sep #IDX_8                                                  ; $f40d : $e2, $10
-	jsr $04cb74.l                                                  ; $f40f : $22, $74, $cb, $04
-	jsr $04cb31.l                                                  ; $f413 : $22, $31, $cb, $04
-	jsr $04bfae.l                                                  ; $f417 : $22, $ae, $bf, $04
+	jsr Func_4_cb74.l                                                  ; $f40f : $22, $74, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $f413 : $22, $31, $cb, $04
+	jsr Func_4_bfae.l                                                  ; $f417 : $22, $ae, $bf, $04
 	rts                                                  ; $f41b : $60
 
 
@@ -18324,12 +18324,12 @@ br_32_f3e6:
 
 
 br_32_f448:
-	jsr $04cb74.l                                                  ; $f448 : $22, $74, $cb, $04
-	jsr $04cb31.l                                                  ; $f44c : $22, $31, $cb, $04
+	jsr Func_4_cb74.l                                                  ; $f448 : $22, $74, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $f44c : $22, $31, $cb, $04
 	rts                                                  ; $f450 : $60
 
 
-	jsr $04cb31.l                                                  ; $f451 : $22, $31, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $f451 : $22, $31, $cb, $04
 	bne br_32_f493                                                  ; $f455 : $d0, $3c
 
 	jsr $02d78e.l                                                  ; $f457 : $22, $8e, $d7, $02
@@ -18384,12 +18384,12 @@ br_32_f493:
 	inc $03                                                  ; $f4b5 : $e6, $03
 
 br_32_f4b7:
-	jsr $04cb74.l                                                  ; $f4b7 : $22, $74, $cb, $04
+	jsr Func_4_cb74.l                                                  ; $f4b7 : $22, $74, $cb, $04
 	rts                                                  ; $f4bb : $60
 
 
 	jsr Call_32_f6e9.w                                                  ; $f4bc : $20, $e9, $f6
-	jsr $02d812.l                                                  ; $f4bf : $22, $12, $d8, $02
+	jsr Func_2_d812.l                                                  ; $f4bf : $22, $12, $d8, $02
 	jsr $04c0f7.l                                                  ; $f4c3 : $22, $f7, $c0, $04
 	lda $2b                                                  ; $f4c7 : $a5, $2b
 	bit #$04.b                                                  ; $f4c9 : $89, $04
@@ -18416,7 +18416,7 @@ br_32_f4e4:
 	lda $39                                                  ; $f4e8 : $a5, $39
 	bne br_32_f50c                                                  ; $f4ea : $d0, $20
 
-	jsr $02d812.l                                                  ; $f4ec : $22, $12, $d8, $02
+	jsr Func_2_d812.l                                                  ; $f4ec : $22, $12, $d8, $02
 	jsr $04c0f7.l                                                  ; $f4f0 : $22, $f7, $c0, $04
 	lda $2b                                                  ; $f4f4 : $a5, $2b
 	bit #$08.b                                                  ; $f4f6 : $89, $08
@@ -18450,7 +18450,7 @@ br_32_f527:
 
 
 	jsr Call_32_f6e9.w                                                  ; $f528 : $20, $e9, $f6
-	jsr $02d812.l                                                  ; $f52b : $22, $12, $d8, $02
+	jsr Func_2_d812.l                                                  ; $f52b : $22, $12, $d8, $02
 	dec $38                                                  ; $f52f : $c6, $38
 	bne br_32_f546                                                  ; $f531 : $d0, $13
 
@@ -18468,7 +18468,7 @@ br_32_f546:
 
 
 	jsr Call_32_f6e9.w                                                  ; $f547 : $20, $e9, $f6
-	jsr $02d812.l                                                  ; $f54a : $22, $12, $d8, $02
+	jsr Func_2_d812.l                                                  ; $f54a : $22, $12, $d8, $02
 	jsr Call_32_f6db.w                                                  ; $f54e : $20, $db, $f6
 	bne br_32_f56d                                                  ; $f551 : $d0, $1a
 
@@ -18510,7 +18510,7 @@ br_32_f590:
 	cmp #$03.b                                                  ; $f597 : $c9, $03
 	bne br_32_f5b7                                                  ; $f599 : $d0, $1c
 
-	jsr $02d7f3.l                                                  ; $f59b : $22, $f3, $d7, $02
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $f59b : $22, $f3, $d7, $02
 	rep #IDX_8                                                  ; $f59f : $c2, $10
 	ldx $3e                                                  ; $f5a1 : $a6, $3e
 	jsr $08b170.l                                                  ; $f5a3 : $22, $70, $b1, $08
@@ -18576,7 +18576,7 @@ br_32_f5e3:
 
 
 br_32_f60b:
-	jsr $02d7f3.l                                                  ; $f60b : $22, $f3, $d7, $02
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $f60b : $22, $f3, $d7, $02
 	jsr $04c0f7.l                                                  ; $f60f : $22, $f7, $c0, $04
 	lda $2b                                                  ; $f613 : $a5, $2b
 	bit #$03.b                                                  ; $f615 : $89, $03
@@ -18595,10 +18595,10 @@ br_32_f60b:
 
 
 br_32_f631:
-	jsr $04cb31.l                                                  ; $f631 : $22, $31, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $f631 : $22, $31, $cb, $04
 
 br_32_f635:
-	jsr $04cb74.l                                                  ; $f635 : $22, $74, $cb, $04
+	jsr Func_4_cb74.l                                                  ; $f635 : $22, $74, $cb, $04
 	rts                                                  ; $f639 : $60
 
 
@@ -18607,7 +18607,7 @@ br_32_f635:
 	cmp #$03.b                                                  ; $f640 : $c9, $03
 	bne br_32_f660                                                  ; $f642 : $d0, $1c
 
-	jsr $02d7f3.l                                                  ; $f644 : $22, $f3, $d7, $02
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $f644 : $22, $f3, $d7, $02
 	rep #IDX_8                                                  ; $f648 : $c2, $10
 	ldx $3e                                                  ; $f64a : $a6, $3e
 	jsr $08b170.l                                                  ; $f64c : $22, $70, $b1, $08
@@ -18632,13 +18632,13 @@ br_32_f660:
 	adc $8bf6.w                                                  ; $f669 : $6d, $f6, $8b
 	inc $20, X                                                  ; $f66c : $f6, $20
 	sbc #$f6.b                                                  ; $f66e : $e9, $f6
-	jsr $02d7f3.l                                                  ; $f670 : $22, $f3, $d7, $02
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $f670 : $22, $f3, $d7, $02
 	jsr $04c0f7.l                                                  ; $f674 : $22, $f7, $c0, $04
 	lda $2b                                                  ; $f678 : $a5, $2b
 	beq br_32_f68a                                                  ; $f67a : $f0, $0e
 
 	lda #$30.b                                                  ; $f67c : $a9, $30
-	jsr $04d577.l                                                  ; $f67e : $22, $77, $d5, $04
+	jsr Func_4_d577.l                                                  ; $f67e : $22, $77, $d5, $04
 	inc $03                                                  ; $f682 : $e6, $03
 	inc $03                                                  ; $f684 : $e6, $03
 	lda #$30.b                                                  ; $f686 : $a9, $30

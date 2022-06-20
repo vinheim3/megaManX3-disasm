@@ -399,7 +399,7 @@ br_39_91f9:
 	ora ($0c, X)                                                  ; $9248 : $01, $0c
 	eor $02a91f.l, X                                                  ; $924a : $5f, $1f, $a9, $02
 	sta $02                                                  ; $924e : $85, $02
-	jsr $04d1ca.l                                                  ; $9250 : $22, $ca, $d1, $04
+	jsr todo_CausePlayerToFreeze.l                                                  ; $9250 : $22, $ca, $d1, $04
 	lda #$3c.b                                                  ; $9254 : $a9, $3c
 	sta $39                                                  ; $9256 : $85, $39
 	rts                                                  ; $9258 : $60
@@ -421,7 +421,7 @@ br_39_926a:
 	lda $0040.w                                                  ; $926b : $ad, $40, $00
 	bne br_39_926a                                                  ; $926e : $d0, $fa
 
-	jsr $02e15c.l                                                  ; $9270 : $22, $5c, $e1, $02
+	jsr Func_2_e15c.l                                                  ; $9270 : $22, $5c, $e1, $02
 	lda $27                                                  ; $9274 : $a5, $27
 	lsr                                                  ; $9276 : $4a
 	sta $7fcffc.l                                                  ; $9277 : $8f, $fc, $cf, $7f
@@ -482,7 +482,7 @@ br_39_92f7:
 	rts                                                  ; $92f7 : $60
 
 
-	jsr $02e15c.l                                                  ; $92f8 : $22, $5c, $e1, $02
+	jsr Func_2_e15c.l                                                  ; $92f8 : $22, $5c, $e1, $02
 	lda #$06.b                                                  ; $92fc : $a9, $06
 	sta $02                                                  ; $92fe : $85, $02
 	sta $12                                                  ; $9300 : $85, $12
@@ -560,12 +560,12 @@ br_39_9362:
 	cmp #$08.b                                                  ; $9370 : $c9, $08
 	beq br_39_9380                                                  ; $9372 : $f0, $0c
 
-	jsr $04cb74.l                                                  ; $9374 : $22, $74, $cb, $04
+	jsr Func_4_cb74.l                                                  ; $9374 : $22, $74, $cb, $04
 	bmi br_39_9390                                                  ; $9378 : $30, $16
 
 	bne br_39_9381                                                  ; $937a : $d0, $05
 
-	jsr $04cb31.l                                                  ; $937c : $22, $31, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $937c : $22, $31, $cb, $04
 
 br_39_9380:
 	rts                                                  ; $9380 : $60
@@ -573,7 +573,7 @@ br_39_9380:
 
 br_39_9381:
 	lda #$21.b                                                  ; $9381 : $a9, $21
-	jsr $018000.l                                                  ; $9383 : $22, $00, $80, $01
+	jsr Func_1_8000.l                                                  ; $9383 : $22, $00, $80, $01
 	lda #$60.b                                                  ; $9387 : $a9, $60
 	sta $37                                                  ; $9389 : $85, $37
 	lda #$0e.b                                                  ; $938b : $a9, $0e
@@ -1817,7 +1817,7 @@ br_39_9bd9:
 	lda #$78.b                                                  ; $9be3 : $a9, $78
 	sta $37                                                  ; $9be5 : $85, $37
 	lda #$21.b                                                  ; $9be7 : $a9, $21
-	jsr $018000.l                                                  ; $9be9 : $22, $00, $80, $01
+	jsr Func_1_8000.l                                                  ; $9be9 : $22, $00, $80, $01
 	lda #$0e.b                                                  ; $9bed : $a9, $0e
 	trb $11                                                  ; $9bef : $14, $11
 
@@ -1829,7 +1829,7 @@ br_39_9bf1:
 	bne br_39_9c0a                                                  ; $9bfb : $d0, $0d
 
 	lda #$21.b                                                  ; $9bfd : $a9, $21
-	jsr $018000.l                                                  ; $9bff : $22, $00, $80, $01
+	jsr Func_1_8000.l                                                  ; $9bff : $22, $00, $80, $01
 	dec $27                                                  ; $9c03 : $c6, $27
 	bne br_39_9c0a                                                  ; $9c05 : $d0, $03
 
@@ -1854,7 +1854,7 @@ br_39_9c1c:
 	stz $1c                                                  ; $9c1c : $64, $1c
 
 br_39_9c1e:
-	jsr $02d812.l                                                  ; $9c1e : $22, $12, $d8, $02
+	jsr Func_2_d812.l                                                  ; $9c1e : $22, $12, $d8, $02
 	jsr $04c0f7.l                                                  ; $9c22 : $22, $f7, $c0, $04
 	lda $2b                                                  ; $9c26 : $a5, $2b
 	bit #$04.b                                                  ; $9c28 : $89, $04
@@ -1873,7 +1873,7 @@ br_39_9c37:
 	sbc #$06.b                                                  ; $9c38 : $e9, $06
 	sta $27                                                  ; $9c3a : $85, $27
 	lda #$21.b                                                  ; $9c3c : $a9, $21
-	jsr $018000.l                                                  ; $9c3e : $22, $00, $80, $01
+	jsr Func_1_8000.l                                                  ; $9c3e : $22, $00, $80, $01
 
 br_39_9c42:
 	lda #$78.b                                                  ; $9c42 : $a9, $78
@@ -1931,7 +1931,7 @@ br_39_9c8d:
 	bne br_39_9cc6                                                  ; $9c90 : $d0, $34
 
 br_39_9c92:
-	jsr $04d1ca.l                                                  ; $9c92 : $22, $ca, $d1, $04
+	jsr todo_CausePlayerToFreeze.l                                                  ; $9c92 : $22, $ca, $d1, $04
 	stz $1f54.w                                                  ; $9c96 : $9c, $54, $1f
 	stz $1f55.w                                                  ; $9c99 : $9c, $55, $1f
 	stz $1f56.w                                                  ; $9c9c : $9c, $56, $1f
@@ -1961,7 +1961,7 @@ br_39_9cc6:
 	lda $0040.w                                                  ; $9cc7 : $ad, $40, $00
 	bne br_39_9cc6                                                  ; $9cca : $d0, $fa
 
-	jsr $02e15c.l                                                  ; $9ccc : $22, $5c, $e1, $02
+	jsr Func_2_e15c.l                                                  ; $9ccc : $22, $5c, $e1, $02
 	lda $28                                                  ; $9cd0 : $a5, $28
 	sta $1f57.w                                                  ; $9cd2 : $8d, $57, $1f
 	lda #$03.b                                                  ; $9cd5 : $a9, $03
@@ -2146,7 +2146,7 @@ Jump_39_9df6:
 	jsr $02df64.l                                                  ; $9dfa : $22, $64, $df, $02
 	ldx $02                                                  ; $9dfe : $a6, $02
 	jsr ($9e76.w, X)                                                  ; $9e00 : $fc, $76, $9e
-	jsr $04cb74.l                                                  ; $9e03 : $22, $74, $cb, $04
+	jsr Func_4_cb74.l                                                  ; $9e03 : $22, $74, $cb, $04
 	bmi br_39_9e4d                                                  ; $9e07 : $30, $44
 
 	bne br_39_9e39                                                  ; $9e09 : $d0, $2e
@@ -2162,7 +2162,7 @@ Jump_39_9df6:
 	sta $20                                                  ; $9e17 : $85, $20
 	lda #$ea.b                                                  ; $9e19 : $a9, $ea
 	sta $21                                                  ; $9e1b : $85, $21
-	jsr $04cb31.l                                                  ; $9e1d : $22, $31, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $9e1d : $22, $31, $cb, $04
 	lda #$d1.b                                                  ; $9e21 : $a9, $d1
 	sta $20                                                  ; $9e23 : $85, $20
 	lda #$ea.b                                                  ; $9e25 : $a9, $ea
@@ -2176,12 +2176,12 @@ br_39_9e2b:
 	sta $21                                                  ; $9e31 : $85, $21
 
 br_39_9e33:
-	jsr $04cb31.l                                                  ; $9e33 : $22, $31, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $9e33 : $22, $31, $cb, $04
 	bra br_39_9e5f                                                  ; $9e37 : $80, $26
 
 br_39_9e39:
 	lda #$21.b                                                  ; $9e39 : $a9, $21
-	jsr $018000.l                                                  ; $9e3b : $22, $00, $80, $01
+	jsr Func_1_8000.l                                                  ; $9e3b : $22, $00, $80, $01
 	lda #$3c.b                                                  ; $9e3f : $a9, $3c
 	sta $37                                                  ; $9e41 : $85, $37
 	lda #$01.b                                                  ; $9e43 : $a9, $01
@@ -2619,7 +2619,7 @@ br_39_a0d6:
 	sta $1e                                                  ; $a0f5 : $85, $1e
 	lda #$1e.b                                                  ; $a0f7 : $a9, $1e
 	sta $39                                                  ; $a0f9 : $85, $39
-	jsr $04d1ca.l                                                  ; $a0fb : $22, $ca, $d1, $04
+	jsr todo_CausePlayerToFreeze.l                                                  ; $a0fb : $22, $ca, $d1, $04
 	lda $38                                                  ; $a0ff : $a5, $38
 	tsb $11                                                  ; $a101 : $04, $11
 	rep #ACCU_8                                                  ; $a103 : $c2, $20
@@ -2963,7 +2963,7 @@ br_39_a31b:
 	rts                                                  ; $a326 : $60
 
 
-	jsr $02ddf6.l                                                  ; $a327 : $22, $f6, $dd, $02
+	jsr Func_2_ddf6.l                                                  ; $a327 : $22, $f6, $dd, $02
 	rts                                                  ; $a32b : $60
 
 
@@ -3009,7 +3009,7 @@ br_39_a35d:
 	cmp $6002.w, Y                                                  ; $a364 : $d9, $02, $60
 	lda #$01.b                                                  ; $a367 : $a9, $01
 	sta $35                                                  ; $a369 : $85, $35
-	jsr $04cb74.l                                                  ; $a36b : $22, $74, $cb, $04
+	jsr Func_4_cb74.l                                                  ; $a36b : $22, $74, $cb, $04
 	beq br_39_a38a                                                  ; $a36f : $f0, $19
 
 	lda #$01.b                                                  ; $a371 : $a9, $01
@@ -3132,7 +3132,7 @@ br_39_a3fe:
 	pha                                                  ; $a400 : $48
 	lda #$01.b                                                  ; $a401 : $a9, $01
 	sta $28                                                  ; $a403 : $85, $28
-	jsr $04cb74.l                                                  ; $a405 : $22, $74, $cb, $04
+	jsr Func_4_cb74.l                                                  ; $a405 : $22, $74, $cb, $04
 	pla                                                  ; $a409 : $68
 	sta $28                                                  ; $a40a : $85, $28
 	lda $35                                                  ; $a40c : $a5, $35
@@ -3507,7 +3507,7 @@ br_39_a626:
 	rtl                                                  ; $a650 : $6b
 
 
-	jsr $04cb31.l                                                  ; $a651 : $22, $31, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $a651 : $22, $31, $cb, $04
 	jsr Func_2_d636.l                                                  ; $a655 : $22, $36, $d6, $02
 	jmp Func_4_b94a.l                                                  ; $a659 : $5c, $4a, $b9, $04
 
@@ -3615,7 +3615,7 @@ br_39_a6e4:
 
 	jsr Call_39_a70c.w                                                  ; $a6fd : $20, $0c, $a7
 	jsr Func_2_d636.l                                                  ; $a700 : $22, $36, $d6, $02
-	jsr $04cb31.l                                                  ; $a704 : $22, $31, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $a704 : $22, $31, $cb, $04
 	jmp Func_4_b94a.l                                                  ; $a708 : $5c, $4a, $b9, $04
 
 
@@ -3655,7 +3655,7 @@ br_39_a733:
 
 	ldx $02                                                  ; $a738 : $a6, $02
 	jsr ($a786.w, X)                                                  ; $a73a : $fc, $86, $a7
-	jsr $04cb74.l                                                  ; $a73d : $22, $74, $cb, $04
+	jsr Func_4_cb74.l                                                  ; $a73d : $22, $74, $cb, $04
 	bmi br_39_a74c                                                  ; $a741 : $30, $09
 
 	beq br_39_a756                                                  ; $a743 : $f0, $11
@@ -3676,7 +3676,7 @@ br_39_a74f:
 
 
 br_39_a756:
-	jsr $04cb31.l                                                  ; $a756 : $22, $31, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $a756 : $22, $31, $cb, $04
 	beq br_39_a77e                                                  ; $a75a : $f0, $22
 
 	rep #ACCU_8                                                  ; $a75c : $c2, $20
@@ -4239,8 +4239,8 @@ br_39_ab32:
 	rts                                                  ; $ab32 : $60
 
 
-	jsr $02d7f3.l                                                  ; $ab33 : $22, $f3, $d7, $02
-	jsr $04cb31.l                                                  ; $ab37 : $22, $31, $cb, $04
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $ab33 : $22, $f3, $d7, $02
+	jsr Func_4_cb31.l                                                  ; $ab37 : $22, $31, $cb, $04
 	beq br_39_ab47                                                  ; $ab3b : $f0, $0a
 
 	lda $7fcd91.l                                                  ; $ab3d : $af, $91, $cd, $7f
@@ -4283,11 +4283,11 @@ br_39_ab57:
 
 
 br_39_ab77:
-	jsr $02d812.l                                                  ; $ab77 : $22, $12, $d8, $02
+	jsr Func_2_d812.l                                                  ; $ab77 : $22, $12, $d8, $02
 	rts                                                  ; $ab7b : $60
 
 
-	jsr $02d7f3.l                                                  ; $ab7c : $22, $f3, $d7, $02
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $ab7c : $22, $f3, $d7, $02
 	lda $3a                                                  ; $ab80 : $a5, $3a
 	beq br_39_ab88                                                  ; $ab82 : $f0, $04
 
@@ -4302,7 +4302,7 @@ br_39_ab88:
 	lda $0a43.w                                                  ; $ab8f : $ad, $43, $0a
 	bne br_39_aba4                                                  ; $ab92 : $d0, $10
 
-	jsr $04cb31.l                                                  ; $ab94 : $22, $31, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $ab94 : $22, $31, $cb, $04
 	beq br_39_aba4                                                  ; $ab98 : $f0, $0a
 
 	lda $7fcd91.l                                                  ; $ab9a : $af, $91, $cd, $7f
@@ -4342,7 +4342,7 @@ Call_39_abc3:
 	stz $3d                                                  ; $abcb : $64, $3d
 	lda #$01.b                                                  ; $abcd : $a9, $01
 	sta $7fcd91.l                                                  ; $abcf : $8f, $91, $cd, $7f
-	jsr $04d1ca.l                                                  ; $abd3 : $22, $ca, $d1, $04
+	jsr todo_CausePlayerToFreeze.l                                                  ; $abd3 : $22, $ca, $d1, $04
 	rep #ACCU_8                                                  ; $abd7 : $c2, $20
 	lda $09dd.w                                                  ; $abd9 : $ad, $dd, $09
 	sta $05                                                  ; $abdc : $85, $05
@@ -4494,7 +4494,7 @@ br_39_ac71:
 br_39_acb8:
 	ldx $02                                                  ; $acb8 : $a6, $02
 	jsr ($acc9.w, X)                                                  ; $acba : $fc, $c9, $ac
-	jsr $04cb74.l                                                  ; $acbd : $22, $74, $cb, $04
+	jsr Func_4_cb74.l                                                  ; $acbd : $22, $74, $cb, $04
 	jsr Func_2_d636.l                                                  ; $acc1 : $22, $36, $d6, $02
 	jmp Func_4_b94a.l                                                  ; $acc5 : $5c, $4a, $b9, $04
 
@@ -4579,7 +4579,7 @@ br_39_ad5b:
 	ldx $02                                                  ; $ad5b : $a6, $02
 	jsr ($ad6c.w, X)                                                  ; $ad5d : $fc, $6c, $ad
 	jsr Func_2_d636.l                                                  ; $ad60 : $22, $36, $d6, $02
-	jsr $04cb31.l                                                  ; $ad64 : $22, $31, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $ad64 : $22, $31, $cb, $04
 	jmp Func_4_b94a.l                                                  ; $ad68 : $5c, $4a, $b9, $04
 
 
@@ -4798,7 +4798,7 @@ br_39_aeac:
 
 	lda #$02.b                                                  ; $aebf : $a9, $02
 	sta $02                                                  ; $aec1 : $85, $02
-	jsr $04d1ca.l                                                  ; $aec3 : $22, $ca, $d1, $04
+	jsr todo_CausePlayerToFreeze.l                                                  ; $aec3 : $22, $ca, $d1, $04
 	bra br_39_aecd                                                  ; $aec7 : $80, $04
 
 br_39_aec9:
@@ -4809,13 +4809,13 @@ br_39_aecd:
 	lda #$08.b                                                  ; $aecd : $a9, $08
 	ldx #$02.b                                                  ; $aecf : $a2, $02
 	ldy #$01.b                                                  ; $aed1 : $a0, $01
-	jsr $04d577.l                                                  ; $aed3 : $22, $77, $d5, $04
+	jsr Func_4_d577.l                                                  ; $aed3 : $22, $77, $d5, $04
 
 br_39_aed7:
 	lda #$81.b                                                  ; $aed7 : $a9, $81
 	sta $0e                                                  ; $aed9 : $85, $0e
-	jsr $04cb31.l                                                  ; $aedb : $22, $31, $cb, $04
-	jsr $04cb74.l                                                  ; $aedf : $22, $74, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $aedb : $22, $31, $cb, $04
+	jsr Func_4_cb74.l                                                  ; $aedf : $22, $74, $cb, $04
 	stz $0e                                                  ; $aee3 : $64, $0e
 	dec $39                                                  ; $aee5 : $c6, $39
 	beq br_39_aeea                                                  ; $aee7 : $f0, $01
@@ -4905,14 +4905,14 @@ br_39_af25:
 br_39_af66:
 	ldx $02                                                  ; $af66 : $a6, $02
 	jsr ($af77.w, X)                                                  ; $af68 : $fc, $77, $af
-	jsr $04cb31.l                                                  ; $af6b : $22, $31, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $af6b : $22, $31, $cb, $04
 	jsr Func_2_d636.l                                                  ; $af6f : $22, $36, $d6, $02
 	jmp Func_4_b94a.l                                                  ; $af73 : $5c, $4a, $b9, $04
 
 
 	adc $afa9af.l, X                                                  ; $af77 : $7f, $af, $a9, $af
 	sbc $b07baf.l                                                  ; $af7b : $ef, $af, $7b, $b0
-	jsr $02d812.l                                                  ; $af7f : $22, $12, $d8, $02
+	jsr Func_2_d812.l                                                  ; $af7f : $22, $12, $d8, $02
 	jsr $04c0f7.l                                                  ; $af83 : $22, $f7, $c0, $04
 	lda $2b                                                  ; $af87 : $a5, $2b
 	bit #$04.b                                                  ; $af89 : $89, $04
@@ -4979,7 +4979,7 @@ br_39_afee:
 	rts                                                  ; $afee : $60
 
 
-	jsr $02d7f3.l                                                  ; $afef : $22, $f3, $d7, $02
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $afef : $22, $f3, $d7, $02
 	jsr $04c0f7.l                                                  ; $aff3 : $22, $f7, $c0, $04
 	lda $2b                                                  ; $aff7 : $a5, $2b
 	bit #$03.b                                                  ; $aff9 : $89, $03
@@ -5064,7 +5064,7 @@ br_39_b079:
 	rts                                                  ; $b07a : $60
 
 
-	jsr $02d812.l                                                  ; $b07b : $22, $12, $d8, $02
+	jsr Func_2_d812.l                                                  ; $b07b : $22, $12, $d8, $02
 	jsr $04c0f7.l                                                  ; $b07f : $22, $f7, $c0, $04
 	lda $2b                                                  ; $b083 : $a5, $2b
 	bit #$08.b                                                  ; $b085 : $89, $08
@@ -5156,7 +5156,7 @@ br_39_b0f0:
 
 br_39_b107:
 	jsr $02d78e.l                                                  ; $b107 : $22, $8e, $d7, $02
-	jsr $04cb31.l                                                  ; $b10b : $22, $31, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $b10b : $22, $31, $cb, $04
 	jsr Func_2_d636.l                                                  ; $b10f : $22, $36, $d6, $02
 	lda $0e                                                  ; $b113 : $a5, $0e
 	bne br_39_b11b                                                  ; $b115 : $d0, $04
@@ -5352,7 +5352,7 @@ br_39_b227:
 	lda $0a08.w                                                  ; $b22e : $ad, $08, $0a
 	bne br_39_b259                                                  ; $b231 : $d0, $26
 
-	jsr $04cb31.l                                                  ; $b233 : $22, $31, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $b233 : $22, $31, $cb, $04
 	beq br_39_b259                                                  ; $b237 : $f0, $20
 
 	lda $7fcd91.l                                                  ; $b239 : $af, $91, $cd, $7f
@@ -5360,7 +5360,7 @@ br_39_b227:
 
 	lda #$01.b                                                  ; $b23f : $a9, $01
 	sta $7fcd91.l                                                  ; $b241 : $8f, $91, $cd, $7f
-	jsr $04d1ca.l                                                  ; $b245 : $22, $ca, $d1, $04
+	jsr todo_CausePlayerToFreeze.l                                                  ; $b245 : $22, $ca, $d1, $04
 	lda #$1e.b                                                  ; $b249 : $a9, $1e
 	sta $3a                                                  ; $b24b : $85, $3a
 	stz $38                                                  ; $b24d : $64, $38
@@ -5554,7 +5554,7 @@ br_39_b351:
 	sta $02                                                  ; $b374 : $85, $02
 	bra br_39_b37d                                                  ; $b376 : $80, $05
 
-	jsr $02ddf6.l                                                  ; $b378 : $22, $f6, $dd, $02
+	jsr Func_2_ddf6.l                                                  ; $b378 : $22, $f6, $dd, $02
 	rts                                                  ; $b37c : $60
 
 
@@ -5650,8 +5650,8 @@ br_39_b418:
 	sep #IDX_8                                                  ; $b418 : $e2, $10
 	ldx $02                                                  ; $b41a : $a6, $02
 	jsr ($b42a.w, X)                                                  ; $b41c : $fc, $2a, $b4
-	jsr $04cb74.l                                                  ; $b41f : $22, $74, $cb, $04
-	jsr $04cb31.l                                                  ; $b423 : $22, $31, $cb, $04
+	jsr Func_4_cb74.l                                                  ; $b41f : $22, $74, $cb, $04
+	jsr Func_4_cb31.l                                                  ; $b423 : $22, $31, $cb, $04
 
 br_39_b427:
 	sep #IDX_8                                                  ; $b427 : $e2, $10
@@ -5717,7 +5717,7 @@ br_39_b477:
 	rts                                                  ; $b477 : $60
 
 
-	jsr $02d7f3.l                                                  ; $b478 : $22, $f3, $d7, $02
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $b478 : $22, $f3, $d7, $02
 	rep #ACCU_8                                                  ; $b47c : $c2, $20
 	lda $05                                                  ; $b47e : $a5, $05
 	cmp $34                                                  ; $b480 : $c5, $34
@@ -5784,7 +5784,7 @@ br_39_b4c4:
 	lda #$02.b                                                  ; $b4e7 : $a9, $02
 	sta $7fcd91.l                                                  ; $b4e9 : $8f, $91, $cd, $7f
 	lda #$3c.b                                                  ; $b4ed : $a9, $3c
-	jsr $04d577.l                                                  ; $b4ef : $22, $77, $d5, $04
+	jsr Func_4_d577.l                                                  ; $b4ef : $22, $77, $d5, $04
 	rts                                                  ; $b4f3 : $60
 
 
@@ -5841,7 +5841,7 @@ br_39_b53e:
 	rts                                                  ; $b53e : $60
 
 
-	jsr $02d812.l                                                  ; $b53f : $22, $12, $d8, $02
+	jsr Func_2_d812.l                                                  ; $b53f : $22, $12, $d8, $02
 	rep #ACCU_8                                                  ; $b543 : $c2, $20
 	lda $08                                                  ; $b545 : $a5, $08
 	cmp $34                                                  ; $b547 : $c5, $34
@@ -6264,7 +6264,7 @@ br_39_b80a:
 	jsr Call_39_ba15.w                                                  ; $b811 : $20, $15, $ba
 	bcc br_39_b84e                                                  ; $b814 : $90, $38
 
-	jsr Func_2_d58a.l                                                  ; $b816 : $22, $8a, $d5, $02
+	jsr SetCarryIfEntityWayOutOfView.l                                                  ; $b816 : $22, $8a, $d5, $02
 	bcc br_39_b84e                                                  ; $b81a : $90, $32
 
 br_39_b81c:
@@ -7426,7 +7426,7 @@ br_39_bf5c:
 
 br_39_bf80:
 	sep #ACCU_8                                                  ; $bf80 : $e2, $20
-	jsr Func_2_d58a.l                                                  ; $bf82 : $22, $8a, $d5, $02
+	jsr SetCarryIfEntityWayOutOfView.l                                                  ; $bf82 : $22, $8a, $d5, $02
 	bcc br_39_bf8c                                                  ; $bf86 : $90, $04
 
 	jmp Func_2_d917.l                                                  ; $bf88 : $5c, $17, $d9, $02
@@ -7444,7 +7444,7 @@ Func_39_bf8d:
 ;
 	ldx _1d18_Entity.state                                                  ; $bf92 : $a6, $01
 	jsr (@states.w, X)                                                  ; $bf94 : $fc, $a3, $bf
-	jsr Func_2_d58a.l                                                  ; $bf97 : $22, $8a, $d5, $02
+	jsr SetCarryIfEntityWayOutOfView.l                                                  ; $bf97 : $22, $8a, $d5, $02
 	bcc +                                                  ; $bf9b : $90, $04
 	jsr Func_2_d917.l                                                  ; $bf9d : $22, $17, $d9, $02
 +	plp                                                  ; $bfa1 : $28

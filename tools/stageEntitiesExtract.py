@@ -2,16 +2,17 @@ import clipboard
 from util import getRom, bankAddr, stringB
 
 data = getRom()
-start = bankAddr(0x3c, 0xe888)
-end = bankAddr(0x3c, 0xec8d)
+start = bankAddr(0x3c, 0xd510)
 
 comps = []
+prevColX = None
 while 1:
     colX = data[start]
     start += 1
     comps.append(stringB([colX]))
-    if start >= end:
+    if colX == prevColX:
         break
+    prevColX = colX
     while 1:
         bs = data[start:start+7]
         start += 7

@@ -1,7 +1,13 @@
 To swap items
 * change decomp idx + associated palette, eg in Data_8_8d44
-* change entity type/subtype, eg in Data_3c_e888
+  3c:e888 - entities and their locations per stage
+  8:8623 - dynamic sprite allocations
+* chimera armour - have it fall and get destroyed (or initially hide) + display text
+  5:ec9a - when armour changes subsubstate
+  3:95e5 - armour giving item
 
-TODO: graphics for chimera armor and upgrades
-TODO: skip upgrades animations
+
+TODO: graphics for chimera armour and upgrades
+TODO: replace capsules with upgrade items
 TODO: skip cutscenes
+TODO: work with patch blobs for eg Zero mod

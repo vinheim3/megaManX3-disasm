@@ -5541,13 +5541,13 @@ br_0d_ad94:
 	cpx $11c1.w                                                  ; $af1f : $ec, $c1, $11
 	ora $c2                                                  ; $af22 : $05, $c2
 	ora ($1e), Y                                                  ; $af24 : $11, $1e
-	rep #$11.b                                                  ; $af26 : $c2, $11
+	rep #IDX_8|F_CARRY                                                  ; $af26 : $c2, $11
 	and [$c2], Y                                                  ; $af28 : $37, $c2
 	ora ($50), Y                                                  ; $af2a : $11, $50
-	rep #$11.b                                                  ; $af2c : $c2, $11
+	rep #IDX_8|F_CARRY                                                  ; $af2c : $c2, $11
 	eor $c2, X                                                  ; $af2e : $55, $c2
 	ora ($5e), Y                                                  ; $af30 : $11, $5e
-	rep #$11.b                                                  ; $af32 : $c2, $11
+	rep #IDX_8|F_CARRY                                                  ; $af32 : $c2, $11
 	adc $be                                                  ; $af34 : $65, $be
 	ora ($7e), Y                                                  ; $af36 : $11, $7e
 	ldx $9f11.w, Y                                                  ; $af38 : $be, $11, $9f
@@ -5569,15 +5569,15 @@ br_0d_ad94:
 	wdm                                                  ; $af67 : $42
 	cmp ($11, X)                                                  ; $af68 : $c1, $11
 	eor $6711c1.l, X                                                  ; $af6a : $5f, $c1, $11, $67
-	rep #$11.b                                                  ; $af6e : $c2, $11
+	rep #IDX_8|F_CARRY                                                  ; $af6e : $c2, $11
 	stz $c2, X                                                  ; $af70 : $74, $c2
 	ora ($95), Y                                                  ; $af72 : $11, $95
-	rep #$11.b                                                  ; $af74 : $c2, $11
+	rep #IDX_8|F_CARRY                                                  ; $af74 : $c2, $11
 	ldx $c2, Y                                                  ; $af76 : $b6, $c2
 	ora ($d7), Y                                                  ; $af78 : $11, $d7
-	rep #$11.b                                                  ; $af7a : $c2, $11
+	rep #IDX_8|F_CARRY                                                  ; $af7a : $c2, $11
 	sed                                                  ; $af7c : $f8
-	rep #$11.b                                                  ; $af7d : $c2, $11
+	rep #IDX_8|F_CARRY                                                  ; $af7d : $c2, $11
 	ora $11c3.w, Y                                                  ; $af7f : $19, $c3, $11
 	and ($c3)                                                  ; $af82 : $32, $c3
 	ora ($47), Y                                                  ; $af84 : $11, $47
@@ -5780,9 +5780,9 @@ br_0d_b0e8:
 	sbc ($11, X)                                                  ; $b121 : $e1, $11
 	and $e2, X                                                  ; $b123 : $35, $e2
 	ora ($96), Y                                                  ; $b125 : $11, $96
-	sep #$11.b                                                  ; $b127 : $e2, $11
+	sep #IDX_8|F_CARRY                                                  ; $b127 : $e2, $11
 	xba                                                  ; $b129 : $eb
-	sep #$11.b                                                  ; $b12a : $e2, $11
+	sep #IDX_8|F_CARRY                                                  ; $b12a : $e2, $11
 	rti                                                  ; $b12c : $40
 
 

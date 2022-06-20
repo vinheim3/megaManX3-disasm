@@ -3,6 +3,7 @@
 .bank $001 slot 3
 .org $0
 
+Func_1_8000:
 	phx                                                  ; $8000 : $da
 	phy                                                  ; $8001 : $5a
 	php                                                  ; $8002 : $08
@@ -320,7 +321,7 @@ br_01_81e3:
 	sta $09dd.w                                                  ; $81e6 : $8d, $dd, $09
 	sep #ACCU_8                                                  ; $81e9 : $e2, $20
 	lda #$2b.b                                                  ; $81eb : $a9, $2b
-	jmp $018000.l                                                  ; $81ed : $5c, $00, $80, $01
+	jmp Func_1_8000.l                                                  ; $81ed : $5c, $00, $80, $01
 
 
 	ldx $01                                                  ; $81f1 : $a6, $01
@@ -2323,7 +2324,7 @@ br_01_8e40:
 
 
 br_01_8ea6:
-	jsr $02d7f3.l                                                  ; $8ea6 : $22, $f3, $d7, $02
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $8ea6 : $22, $f3, $d7, $02
 	jsr Func_4_b94a.l                                                  ; $8eaa : $22, $4a, $b9, $04
 	jsr $04bca2.l                                                  ; $8eae : $22, $a2, $bc, $04
 	jmp Func_2_d636.l                                                  ; $8eb2 : $5c, $36, $d6, $02
@@ -2585,7 +2586,7 @@ br_01_9054:
 
 
 br_01_905f:
-	jsr $02d7f3.l                                                  ; $905f : $22, $f3, $d7, $02
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $905f : $22, $f3, $d7, $02
 	jsr Func_4_b94a.l                                                  ; $9063 : $22, $4a, $b9, $04
 	rts                                                  ; $9067 : $60
 
@@ -3614,7 +3615,7 @@ br_01_96e8:
 
 
 	jsr Func_4_b94a.l                                                  ; $9744 : $22, $4a, $b9, $04
-	jsr $02d7f3.l                                                  ; $9748 : $22, $f3, $d7, $02
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $9748 : $22, $f3, $d7, $02
 	bra br_01_979c                                                  ; $974c : $80, $4e
 
 	lda #$02.b                                                  ; $974e : $a9, $02
@@ -5736,7 +5737,7 @@ br_01_a54c:
 
 	rep #IDX_8                                                  ; $a550 : $c2, $10
 	ldx #$09d8.w                                                  ; $a552 : $a2, $d8, $09
-	jsr $04cc5c.l                                                  ; $a555 : $22, $5c, $cc, $04
+	jsr Func_4_cc5c.l                                                  ; $a555 : $22, $5c, $cc, $04
 	bcc br_01_a55e                                                  ; $a559 : $90, $03
 
 	jmp Jump_01_a59d.w                                                  ; $a55b : $4c, $9d, $a5
@@ -6013,7 +6014,7 @@ br_01_a71b:
 	cmp #$33.b                                                  ; $a732 : $c9, $33
 	bcs br_01_a790                                                  ; $a734 : $b0, $5a
 
-	jsr $02d7f3.l                                                  ; $a736 : $22, $f3, $d7, $02
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $a736 : $22, $f3, $d7, $02
 	jsr $04c0f7.l                                                  ; $a73a : $22, $f7, $c0, $04
 	lda $2b                                                  ; $a73e : $a5, $2b
 	bit #$03.b                                                  ; $a740 : $89, $03
@@ -6292,7 +6293,7 @@ br_01_a91e:
 	eor #$ffff.w                                                  ; $a922 : $49, $ff, $ff
 	ina                                                  ; $a925 : $1a
 	sta $1a                                                  ; $a926 : $85, $1a
-	jsr $02d7f3.l                                                  ; $a928 : $22, $f3, $d7, $02
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $a928 : $22, $f3, $d7, $02
 	jsr Func_4_b94a.l                                                  ; $a92c : $22, $4a, $b9, $04
 	jmp Jump_01_a9cb.w                                                  ; $a930 : $4c, $cb, $a9
 
@@ -7162,7 +7163,7 @@ br_01_aec8:
 	lda $000e.w, X                                                  ; $aed1 : $bd, $0e, $00
 	beq br_01_aee8                                                  ; $aed4 : $f0, $12
 
-	jsr $04cc5c.l                                                  ; $aed6 : $22, $5c, $cc, $04
+	jsr Func_4_cc5c.l                                                  ; $aed6 : $22, $5c, $cc, $04
 	bcc br_01_aede                                                  ; $aeda : $90, $02
 
 	stz $30                                                  ; $aedc : $64, $30
@@ -7808,7 +7809,7 @@ br_01_b2e8:
 	lda $0e                                                  ; $b2e9 : $a5, $0e
 	beq br_01_b2cc                                                  ; $b2eb : $f0, $df
 
-	jsr $02d7f3.l                                                  ; $b2ed : $22, $f3, $d7, $02
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $b2ed : $22, $f3, $d7, $02
 	jsr $04c0f7.l                                                  ; $b2f1 : $22, $f7, $c0, $04
 	lda $2b                                                  ; $b2f5 : $a5, $2b
 	bit #$08.b                                                  ; $b2f7 : $89, $08
@@ -7902,7 +7903,7 @@ br_01_b36c:
 
 
 br_01_b381:
-	jsr $02d812.l                                                  ; $b381 : $22, $12, $d8, $02
+	jsr Func_2_d812.l                                                  ; $b381 : $22, $12, $d8, $02
 	jsr $04c0f7.l                                                  ; $b385 : $22, $f7, $c0, $04
 	lda $2b                                                  ; $b389 : $a5, $2b
 	bit #$08.b                                                  ; $b38b : $89, $08
@@ -9217,8 +9218,8 @@ br_01_bc45:
 
 br_01_bc50:
 	jsr $02d7c2.l                                                  ; $bc50 : $22, $c2, $d7, $02
-	jsr $04bfae.l                                                  ; $bc54 : $22, $ae, $bf, $04
-	jsr $04ca30.l                                                  ; $bc58 : $22, $30, $ca, $04
+	jsr Func_4_bfae.l                                                  ; $bc54 : $22, $ae, $bf, $04
+	jsr Func_4_ca30.l                                                  ; $bc58 : $22, $30, $ca, $04
 	jmp Jump_01_bce9.w                                                  ; $bc5c : $4c, $e9, $bc
 
 
@@ -9245,15 +9246,15 @@ br_01_bc6d:
 	tax                                                  ; $bc7f : $aa
 	lda $bae6.w, X                                                  ; $bc80 : $bd, $e6, $ba
 	sta $1c                                                  ; $bc83 : $85, $1c
-	jsr $02d812.l                                                  ; $bc85 : $22, $12, $d8, $02
+	jsr Func_2_d812.l                                                  ; $bc85 : $22, $12, $d8, $02
 	lda $1c                                                  ; $bc89 : $a5, $1c
 	bpl br_01_bc91                                                  ; $bc8b : $10, $04
 
 	jsr $04c07f.l                                                  ; $bc8d : $22, $7f, $c0, $04
 
 br_01_bc91:
-	jsr $04bfae.l                                                  ; $bc91 : $22, $ae, $bf, $04
-	jsr $04ca30.l                                                  ; $bc95 : $22, $30, $ca, $04
+	jsr Func_4_bfae.l                                                  ; $bc91 : $22, $ae, $bf, $04
+	jsr Func_4_ca30.l                                                  ; $bc95 : $22, $30, $ca, $04
 	bra br_01_bce9                                                  ; $bc99 : $80, $4e
 
 	rep #ACCU_8                                                  ; $bc9b : $c2, $20
@@ -9777,7 +9778,7 @@ br_01_c008:
 	lda $002c.w, X                                                  ; $c00f : $bd, $2c, $00
 	bpl br_01_c01a                                                  ; $c012 : $10, $06
 
-	jsr $04cc5c.l                                                  ; $c014 : $22, $5c, $cc, $04
+	jsr Func_4_cc5c.l                                                  ; $c014 : $22, $5c, $cc, $04
 	bcs br_01_c02d                                                  ; $c018 : $b0, $13
 
 br_01_c01a:
@@ -10451,7 +10452,7 @@ br_01_c461:
 	cmp #$02.b                                                  ; $c464 : $c9, $02
 	bne br_01_c499                                                  ; $c466 : $d0, $31
 
-	jsr $04cc5c.l                                                  ; $c468 : $22, $5c, $cc, $04
+	jsr Func_4_cc5c.l                                                  ; $c468 : $22, $5c, $cc, $04
 	bcc br_01_c499                                                  ; $c46c : $90, $2b
 
 	rep #ACCU_8                                                  ; $c46e : $c2, $20
@@ -11206,7 +11207,7 @@ br_01_c94c:
 
 
 br_01_c95d:
-	jsr $02d7f3.l                                                  ; $c95d : $22, $f3, $d7, $02
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $c95d : $22, $f3, $d7, $02
 	jsr Func_4_b94a.l                                                  ; $c961 : $22, $4a, $b9, $04
 	jmp Func_2_d636.l                                                  ; $c965 : $5c, $36, $d6, $02
 
@@ -11575,7 +11576,7 @@ br_01_cb92:
 	sbc [$cb]                                                  ; $cbb5 : $e7, $cb
 	bit $cc                                                  ; $cbb7 : $24, $cc
 	eor $cc, X                                                  ; $cbb9 : $55, $cc
-	jsr $02e15c.l                                                  ; $cbbb : $22, $5c, $e1, $02
+	jsr Func_2_e15c.l                                                  ; $cbbb : $22, $5c, $e1, $02
 	lda #$8506.w                                                  ; $cbbf : $a9, $06, $85
 	ora ($a9)                                                  ; $cbc2 : $12, $a9
 	cop $85.b                                                  ; $cbc4 : $02, $85
@@ -11660,7 +11661,7 @@ br_01_cc54:
 	rts                                                  ; $cc54 : $60
 
 
-	jsr $02ddf6.l                                                  ; $cc55 : $22, $f6, $dd, $02
+	jsr Func_2_ddf6.l                                                  ; $cc55 : $22, $f6, $dd, $02
 	rts                                                  ; $cc59 : $60
 
 
@@ -11734,7 +11735,7 @@ br_01_ccb4:
 Call_01_ccbb:
 	lda #$80.b                                                  ; $ccbb : $a9, $80
 	sta $2c                                                  ; $ccbd : $85, $2c
-	jsr $04bfae.l                                                  ; $ccbf : $22, $ae, $bf, $04
+	jsr Func_4_bfae.l                                                  ; $ccbf : $22, $ae, $bf, $04
 	rts                                                  ; $ccc3 : $60
 
 
@@ -11748,7 +11749,7 @@ Call_01_ccbb:
 	cmp $cd18.w                                                  ; $cccd : $cd, $18, $cd
 	sbc ($cc)                                                  ; $ccd0 : $f2, $cc
 	sbc $cd05cc.l, X                                                  ; $ccd2 : $ff, $cc, $05, $cd
-	jsr $02e15c.l                                                  ; $ccd6 : $22, $5c, $e1, $02
+	jsr Func_2_e15c.l                                                  ; $ccd6 : $22, $5c, $e1, $02
 	lda #$0c.b                                                  ; $ccda : $a9, $0c
 	sta $12                                                  ; $ccdc : $85, $12
 	lda #$01.b                                                  ; $ccde : $a9, $01
@@ -11778,7 +11779,7 @@ br_01_ccfa:
 	sta $01                                                  ; $cd01 : $85, $01
 	bra br_01_cd0a                                                  ; $cd03 : $80, $05
 
-	jsr $02ddf6.l                                                  ; $cd05 : $22, $f6, $dd, $02
+	jsr Func_2_ddf6.l                                                  ; $cd05 : $22, $f6, $dd, $02
 	rts                                                  ; $cd09 : $60
 
 
@@ -11939,7 +11940,7 @@ Call_01_cddb:
 	dec $ce29.w                                                  ; $ce00 : $ce, $29, $ce
 	and ($ce), Y                                                  ; $ce03 : $31, $ce
 	and [$ce], Y                                                  ; $ce05 : $37, $ce
-	jsr $02e15c.l                                                  ; $ce07 : $22, $5c, $e1, $02
+	jsr Func_2_e15c.l                                                  ; $ce07 : $22, $5c, $e1, $02
 	lda #$0c.b                                                  ; $ce0b : $a9, $0c
 	sta $12                                                  ; $ce0d : $85, $12
 	lda #$02.b                                                  ; $ce0f : $a9, $02
@@ -11986,7 +11987,7 @@ br_01_ce3e:
 	rts                                                  ; $ce50 : $60
 
 
-	jsr $04cb74.l                                                  ; $ce51 : $22, $74, $cb, $04
+	jsr Func_4_cb74.l                                                  ; $ce51 : $22, $74, $cb, $04
 	beq br_01_ce66                                                  ; $ce55 : $f0, $0f
 
 	lda $1f2f.w                                                  ; $ce57 : $ad, $2f, $1f
@@ -12082,7 +12083,7 @@ br_01_ceec:
 
 	rep #IDX_8                                                  ; $cef0 : $c2, $10
 	ldx #$09d8.w                                                  ; $cef2 : $a2, $d8, $09
-	jsr $04cc5c.l                                                  ; $cef5 : $22, $5c, $cc, $04
+	jsr Func_4_cc5c.l                                                  ; $cef5 : $22, $5c, $cc, $04
 	bcs br_01_cefc                                                  ; $cef9 : $b0, $01
 
 	rtl                                                  ; $cefb : $6b
@@ -12899,7 +12900,7 @@ br_01_d3e4:
 	rts                                                  ; $d425 : $60
 
 
-	jsr Func_2_d58a.l                                                  ; $d426 : $22, $8a, $d5, $02
+	jsr SetCarryIfEntityWayOutOfView.l                                                  ; $d426 : $22, $8a, $d5, $02
 	bcc br_01_d43a                                                  ; $d42a : $90, $0e
 
 	lda $0b                                                  ; $d42c : $a5, $0b
@@ -13362,7 +13363,7 @@ br_01_d6ba:
 	rts                                                  ; $d708 : $60
 
 
-	jsr Func_2_d58a.l                                                  ; $d709 : $22, $8a, $d5, $02
+	jsr SetCarryIfEntityWayOutOfView.l                                                  ; $d709 : $22, $8a, $d5, $02
 	bcc br_01_d71d                                                  ; $d70d : $90, $0e
 
 	lda $0b                                                  ; $d70f : $a5, $0b
@@ -13761,7 +13762,7 @@ br_01_d92e:
 	rts                                                  ; $d969 : $60
 
 
-	jsr Func_2_d58a.l                                                  ; $d96a : $22, $8a, $d5, $02
+	jsr SetCarryIfEntityWayOutOfView.l                                                  ; $d96a : $22, $8a, $d5, $02
 	bcc br_01_d97e                                                  ; $d96e : $90, $0e
 
 	lda $0b                                                  ; $d970 : $a5, $0b
@@ -13835,7 +13836,7 @@ br_01_d9c2:
 
 	rep #IDX_8                                                  ; $d9d2 : $c2, $10
 	ldx #$09d8.w                                                  ; $d9d4 : $a2, $d8, $09
-	jsr $04cc5c.l                                                  ; $d9d7 : $22, $5c, $cc, $04
+	jsr Func_4_cc5c.l                                                  ; $d9d7 : $22, $5c, $cc, $04
 	sep #IDX_8                                                  ; $d9db : $e2, $10
 	bcc br_01_d9e2                                                  ; $d9dd : $90, $03
 
@@ -13897,7 +13898,7 @@ br_01_da21:
 
 	rep #IDX_8                                                  ; $da31 : $c2, $10
 	ldx #$09d8.w                                                  ; $da33 : $a2, $d8, $09
-	jsr $04cc5c.l                                                  ; $da36 : $22, $5c, $cc, $04
+	jsr Func_4_cc5c.l                                                  ; $da36 : $22, $5c, $cc, $04
 	sep #IDX_8                                                  ; $da3a : $e2, $10
 	bcc br_01_da41                                                  ; $da3c : $90, $03
 
@@ -13961,7 +13962,7 @@ br_01_da7c:
 
 	rep #IDX_8                                                  ; $da88 : $c2, $10
 	ldx #$09d8.w                                                  ; $da8a : $a2, $d8, $09
-	jsr $04cc5c.l                                                  ; $da8d : $22, $5c, $cc, $04
+	jsr Func_4_cc5c.l                                                  ; $da8d : $22, $5c, $cc, $04
 	sep #IDX_8                                                  ; $da91 : $e2, $10
 	bcc br_01_da97                                                  ; $da93 : $90, $02
 
@@ -14075,7 +14076,7 @@ SubtankState0:
 
 
 SubtankState1:
-	jsr Func_2_d58a.l                                                  ; $db23 : $22, $8a, $d5, $02
+	jsr SetCarryIfEntityWayOutOfView.l                                                  ; $db23 : $22, $8a, $d5, $02
 	bcc @br_db2e                                                  ; $db27 : $90, $05
 
 	jsr Func_2_d917.l                                                  ; $db29 : $22, $17, $d9, $02
@@ -14402,7 +14403,7 @@ br_01_dcc4:
 br_01_dd11:
 	rep #IDX_8                                                  ; $dd11 : $c2, $10
 	ldx #$09d8.w                                                  ; $dd13 : $a2, $d8, $09
-	jsr $04cc5c.l                                                  ; $dd16 : $22, $5c, $cc, $04
+	jsr Func_4_cc5c.l                                                  ; $dd16 : $22, $5c, $cc, $04
 	sep #IDX_8                                                  ; $dd1a : $e2, $10
 	bcs br_01_dd1f                                                  ; $dd1c : $b0, $01
 
@@ -14444,9 +14445,9 @@ br_01_dd1f:
 br_01_dd6f:
 	ldy #$01.b                                                  ; $dd6f : $a0, $01
 	lda #$f6.b                                                  ; $dd71 : $a9, $f6
-	jsr $00856d.l                                                  ; $dd73 : $22, $6d, $85, $00
+	jsr Func_0_856d.l                                                  ; $dd73 : $22, $6d, $85, $00
 	lda #$f1.b                                                  ; $dd77 : $a9, $f1
-	jsr $00856d.l                                                  ; $dd79 : $22, $6d, $85, $00
+	jsr Func_0_856d.l                                                  ; $dd79 : $22, $6d, $85, $00
 	lda #$36.b                                                  ; $dd7d : $a9, $36
 	jsr $01802b.l                                                  ; $dd7f : $22, $2b, $80, $01
 	rts                                                  ; $dd83 : $60
@@ -14497,7 +14498,7 @@ br_01_ddce:
 	phd                                                  ; $ddcf : $0b
 	pea $09d8.w                                                  ; $ddd0 : $f4, $d8, $09
 	pld                                                  ; $ddd3 : $2b
-	jsr $02d812.l                                                  ; $ddd4 : $22, $12, $d8, $02
+	jsr Func_2_d812.l                                                  ; $ddd4 : $22, $12, $d8, $02
 	pld                                                  ; $ddd8 : $2b
 	rep #ACCU_8                                                  ; $ddd9 : $c2, $20
 	lda wNewStageScrollY.w                                                  ; $dddb : $ad, $60, $1e
@@ -14564,7 +14565,7 @@ br_01_de37:
 
 br_01_de3a:
 	jsr $04d130.l                                                  ; $de3a : $22, $30, $d1, $04
-	jsr $04d1ca.l                                                  ; $de3e : $22, $ca, $d1, $04
+	jsr todo_CausePlayerToFreeze.l                                                  ; $de3e : $22, $ca, $d1, $04
 	stz $1f25.w                                                  ; $de42 : $9c, $25, $1f
 	stz $1f26.w                                                  ; $de45 : $9c, $26, $1f
 	stz $1f27.w                                                  ; $de48 : $9c, $27, $1f
@@ -14796,7 +14797,7 @@ Call_01_dfd5:
 	cmp #$87.b                                                  ; $e044 : $c9, $87
 	beq br_01_e052                                                  ; $e046 : $f0, $0a
 
-	jsr Func_2_d58a.l                                                  ; $e048 : $22, $8a, $d5, $02
+	jsr SetCarryIfEntityWayOutOfView.l                                                  ; $e048 : $22, $8a, $d5, $02
 	bcc br_01_e052                                                  ; $e04c : $90, $04
 
 	jmp Func_2_d917.l                                                  ; $e04e : $5c, $17, $d9, $02
@@ -14895,7 +14896,7 @@ br_01_e0e1:
 	sep #ACCU_8                                                  ; $e0e1 : $e2, $20
 	rep #IDX_8                                                  ; $e0e3 : $c2, $10
 	ldx #$09d8.w                                                  ; $e0e5 : $a2, $d8, $09
-	jsr $04cc5c.l                                                  ; $e0e8 : $22, $5c, $cc, $04
+	jsr Func_4_cc5c.l                                                  ; $e0e8 : $22, $5c, $cc, $04
 	sep #IDX_8                                                  ; $e0ec : $e2, $10
 	bcs br_01_e0f1                                                  ; $e0ee : $b0, $01
 
@@ -14951,9 +14952,9 @@ br_01_e14e:
 
 	ldy #$01.b                                                  ; $e152 : $a0, $01
 	lda #$f6.b                                                  ; $e154 : $a9, $f6
-	jsr $00856d.l                                                  ; $e156 : $22, $6d, $85, $00
+	jsr Func_0_856d.l                                                  ; $e156 : $22, $6d, $85, $00
 	lda #$f1.b                                                  ; $e15a : $a9, $f1
-	jsr $00856d.l                                                  ; $e15c : $22, $6d, $85, $00
+	jsr Func_0_856d.l                                                  ; $e15c : $22, $6d, $85, $00
 
 br_01_e160:
 	lda #$36.b                                                  ; $e160 : $a9, $36
@@ -15012,7 +15013,7 @@ br_01_e1bb:
 	phd                                                  ; $e1bc : $0b
 	pea $09d8.w                                                  ; $e1bd : $f4, $d8, $09
 	pld                                                  ; $e1c0 : $2b
-	jsr $02d7f3.l                                                  ; $e1c1 : $22, $f3, $d7, $02
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $e1c1 : $22, $f3, $d7, $02
 	pld                                                  ; $e1c5 : $2b
 	rep #ACCU_8                                                  ; $e1c6 : $c2, $20
 	lda wNewStageScrollX.w                                                  ; $e1c8 : $ad, $5d, $1e
@@ -15031,7 +15032,7 @@ br_01_e1bb:
 	sta $05                                                  ; $e1e4 : $85, $05
 	sep #ACCU_8                                                  ; $e1e6 : $e2, $20
 	jsr $04d1b9.l                                                  ; $e1e8 : $22, $b9, $d1, $04
-	jsr $04d1ca.l                                                  ; $e1ec : $22, $ca, $d1, $04
+	jsr todo_CausePlayerToFreeze.l                                                  ; $e1ec : $22, $ca, $d1, $04
 	lda $0b                                                  ; $e1f0 : $a5, $0b
 	bpl br_01_e1fb                                                  ; $e1f2 : $10, $07
 
@@ -15324,7 +15325,7 @@ br_01_e3f4:
 	cmp #$0a.b                                                  ; $e440 : $c9, $0a
 	beq br_01_e44f                                                  ; $e442 : $f0, $0b
 
-	jsr Func_2_d58a.l                                                  ; $e444 : $22, $8a, $d5, $02
+	jsr SetCarryIfEntityWayOutOfView.l                                                  ; $e444 : $22, $8a, $d5, $02
 	bcc br_01_e44e                                                  ; $e448 : $90, $04
 
 	jmp Func_2_d917.l                                                  ; $e44a : $5c, $17, $d9, $02
@@ -15376,7 +15377,7 @@ br_01_e44f:
 br_01_e492:
 	rep #IDX_8                                                  ; $e492 : $c2, $10
 	ldx #$09d8.w                                                  ; $e494 : $a2, $d8, $09
-	jsr $04cc5c.l                                                  ; $e497 : $22, $5c, $cc, $04
+	jsr Func_4_cc5c.l                                                  ; $e497 : $22, $5c, $cc, $04
 	sep #IDX_8                                                  ; $e49b : $e2, $10
 	bcs br_01_e4a0                                                  ; $e49d : $b0, $01
 
@@ -15441,7 +15442,7 @@ br_01_e4eb:
 	phd                                                  ; $e517 : $0b
 	pea $09d8.w                                                  ; $e518 : $f4, $d8, $09
 	pld                                                  ; $e51b : $2b
-	jsr $02d7f3.l                                                  ; $e51c : $22, $f3, $d7, $02
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $e51c : $22, $f3, $d7, $02
 	pld                                                  ; $e520 : $2b
 	rep #ACCU_8                                                  ; $e521 : $c2, $20
 	lda wNewStageScrollX.w                                                  ; $e523 : $ad, $5d, $1e
@@ -15458,7 +15459,7 @@ br_01_e4eb:
 	sta $05                                                  ; $e539 : $85, $05
 	sep #ACCU_8                                                  ; $e53b : $e2, $20
 	jsr $04d1b9.l                                                  ; $e53d : $22, $b9, $d1, $04
-	jsr $04d1ca.l                                                  ; $e541 : $22, $ca, $d1, $04
+	jsr todo_CausePlayerToFreeze.l                                                  ; $e541 : $22, $ca, $d1, $04
 
 br_01_e545:
 	rts                                                  ; $e545 : $60
@@ -15932,7 +15933,7 @@ br_01_e853:
 	rtl                                                  ; $e88c : $6b
 
 
-	jsr Func_2_d58a.l                                                  ; $e88d : $22, $8a, $d5, $02
+	jsr SetCarryIfEntityWayOutOfView.l                                                  ; $e88d : $22, $8a, $d5, $02
 	bcc br_01_e897                                                  ; $e891 : $90, $04
 
 	jmp Func_2_d917.l                                                  ; $e893 : $5c, $17, $d9, $02
@@ -16248,7 +16249,7 @@ br_01_ea55:
 	nop                                                  ; $ea7c : $ea
 	rep #IDX_8                                                  ; $ea7d : $c2, $10
 	ldx #$09d8.w                                                  ; $ea7f : $a2, $d8, $09
-	jsr $04cc5c.l                                                  ; $ea82 : $22, $5c, $cc, $04
+	jsr Func_4_cc5c.l                                                  ; $ea82 : $22, $5c, $cc, $04
 	sep #IDX_8                                                  ; $ea86 : $e2, $10
 	bcc br_01_ea97                                                  ; $ea88 : $90, $0d
 
@@ -16289,7 +16290,7 @@ br_01_eab5:
 	lda #$08.b                                                  ; $eab5 : $a9, $08
 	sta $26                                                  ; $eab7 : $85, $26
 	lda #$0c.b                                                  ; $eab9 : $a9, $0c
-	jsr $018000.l                                                  ; $eabb : $22, $00, $80, $01
+	jsr Func_1_8000.l                                                  ; $eabb : $22, $00, $80, $01
 	rep #ACCU_8                                                  ; $eabf : $c2, $20
 	lda $05                                                  ; $eac1 : $a5, $05
 	sta $002c.w                                                  ; $eac3 : $8d, $2c, $00
@@ -16315,7 +16316,7 @@ br_01_eae5:
 
 	rep #IDX_8                                                  ; $eae6 : $c2, $10
 	ldx #$09d8.w                                                  ; $eae8 : $a2, $d8, $09
-	jsr $04cc5c.l                                                  ; $eaeb : $22, $5c, $cc, $04
+	jsr Func_4_cc5c.l                                                  ; $eaeb : $22, $5c, $cc, $04
 	sep #IDX_8                                                  ; $eaef : $e2, $10
 	bcc br_01_eaf7                                                  ; $eaf1 : $90, $04
 
@@ -16353,7 +16354,7 @@ br_01_eb17:
 	lda #$08.b                                                  ; $eb17 : $a9, $08
 	sta $26                                                  ; $eb19 : $85, $26
 	lda #$0c.b                                                  ; $eb1b : $a9, $0c
-	jsr $018000.l                                                  ; $eb1d : $22, $00, $80, $01
+	jsr Func_1_8000.l                                                  ; $eb1d : $22, $00, $80, $01
 	rep #ACCU_8                                                  ; $eb21 : $c2, $20
 	lda $05                                                  ; $eb23 : $a5, $05
 	sta $002c.w                                                  ; $eb25 : $8d, $2c, $00
@@ -16397,7 +16398,7 @@ br_01_eb47:
 
 	lda #$02.b                                                  ; $eb65 : $a9, $02
 	sta $01                                                  ; $eb67 : $85, $01
-	jsr $04d1ca.l                                                  ; $eb69 : $22, $ca, $d1, $04
+	jsr todo_CausePlayerToFreeze.l                                                  ; $eb69 : $22, $ca, $d1, $04
 	lda #$30.b                                                  ; $eb6d : $a9, $30
 	jsr $02fcb1.l                                                  ; $eb6f : $22, $b1, $fc, $02
 
@@ -16505,7 +16506,7 @@ br_01_ebfe:
 
 	rep #IDX_8                                                  ; $ec1a : $c2, $10
 	ldx #$09d8.w                                                  ; $ec1c : $a2, $d8, $09
-	jsr $04cc5c.l                                                  ; $ec1f : $22, $5c, $cc, $04
+	jsr Func_4_cc5c.l                                                  ; $ec1f : $22, $5c, $cc, $04
 	sep #IDX_8                                                  ; $ec23 : $e2, $10
 	bcc br_01_ec4b                                                  ; $ec25 : $90, $24
 
@@ -16527,7 +16528,7 @@ br_01_ec35:
 	lda $08                                                  ; $ec40 : $a5, $08
 	sta $09e0.w                                                  ; $ec42 : $8d, $e0, $09
 	sep #ACCU_8                                                  ; $ec45 : $e2, $20
-	jsr $04d1ca.l                                                  ; $ec47 : $22, $ca, $d1, $04
+	jsr todo_CausePlayerToFreeze.l                                                  ; $ec47 : $22, $ca, $d1, $04
 
 br_01_ec4b:
 	rtl                                                  ; $ec4b : $6b
@@ -16674,9 +16675,9 @@ br_01_ed2a:
 	sta $1f36.w                                                  ; $ed31 : $8d, $36, $1f
 	ldy #$01.b                                                  ; $ed34 : $a0, $01
 	lda #$f6.b                                                  ; $ed36 : $a9, $f6
-	jsr $00856d.l                                                  ; $ed38 : $22, $6d, $85, $00
+	jsr Func_0_856d.l                                                  ; $ed38 : $22, $6d, $85, $00
 	lda #$f1.b                                                  ; $ed3c : $a9, $f1
-	jsr $00856d.l                                                  ; $ed3e : $22, $6d, $85, $00
+	jsr Func_0_856d.l                                                  ; $ed3e : $22, $6d, $85, $00
 	rtl                                                  ; $ed42 : $6b
 
 
@@ -16753,7 +16754,7 @@ br_01_edb2:
 	dea                                                  ; $edc2 : $3a
 	lda #$02.b                                                  ; $edc3 : $a9, $02
 	sta $02                                                  ; $edc5 : $85, $02
-	jsr $04d1ca.l                                                  ; $edc7 : $22, $ca, $d1, $04
+	jsr todo_CausePlayerToFreeze.l                                                  ; $edc7 : $22, $ca, $d1, $04
 	jsr Call_01_f084.w                                                  ; $edcb : $20, $84, $f0
 	bpl br_01_ede0                                                  ; $edce : $10, $10
 
@@ -16892,7 +16893,7 @@ br_01_ee8b:
 	adc [$ef]                                                  ; $ee92 : $67, $ef
 	ldx $02                                                  ; $ee94 : $a6, $02
 	jsr ($ee9e.w, X)                                                  ; $ee96 : $fc, $9e, $ee
-	jsr $02d812.l                                                  ; $ee99 : $22, $12, $d8, $02
+	jsr Func_2_d812.l                                                  ; $ee99 : $22, $12, $d8, $02
 	rts                                                  ; $ee9d : $60
 
 
@@ -17064,7 +17065,7 @@ br_01_efa1:
 	sta $01                                                  ; $efa1 : $85, $01
 
 br_01_efa3:
-	jsr $02d812.l                                                  ; $efa3 : $22, $12, $d8, $02
+	jsr Func_2_d812.l                                                  ; $efa3 : $22, $12, $d8, $02
 	rts                                                  ; $efa7 : $60
 
 
@@ -17160,7 +17161,7 @@ br_01_f041:
 	rts                                                  ; $f04a : $60
 
 
-	jsr $02d7f3.l                                                  ; $f04b : $22, $f3, $d7, $02
+	jsr AddEntityXSpeedOntoSubX.l                                                  ; $f04b : $22, $f3, $d7, $02
 	lda $06                                                  ; $f04f : $a5, $06
 	bpl br_01_f057                                                  ; $f051 : $10, $04
 
@@ -17192,7 +17193,7 @@ br_01_f05f:
 	sta $0004.w                                                  ; $f078 : $8d, $04, $00
 	lda #$1c.b                                                  ; $f07b : $a9, $1c
 	sta $0006.w                                                  ; $f07d : $8d, $06, $00
-	jmp $02fcc8.l                                                  ; $f080 : $5c, $c8, $fc, $02
+	jmp Func_2_fcc8.l                                                  ; $f080 : $5c, $c8, $fc, $02
 
 
 Call_01_f084:
@@ -17291,7 +17292,7 @@ br_01_f0f0:
 	adc ($f1, X)                                                  ; $f0fd : $61, $f1
 	stz $a5f2.w, X                                                  ; $f0ff : $9e, $f2, $a5
 	phd                                                  ; $f102 : $0b
-	bit wChipsAndRideArmorsGottenBitfield.w                                                  ; $f103 : $2c, $d7, $1f
+	bit wChipsAndRideArmoursGottenBitfield.w                                                  ; $f103 : $2c, $d7, $1f
 	beq br_01_f10d                                                  ; $f106 : $f0, $05
 
 	jsr Func_2_d928.l                                                  ; $f108 : $22, $28, $d9, $02
@@ -17348,7 +17349,7 @@ br_01_f15c:
 	rts                                                  ; $f160 : $60
 
 
-	jsr Func_2_d58a.l                                                  ; $f161 : $22, $8a, $d5, $02
+	jsr SetCarryIfEntityWayOutOfView.l                                                  ; $f161 : $22, $8a, $d5, $02
 	bcc br_01_f16c                                                  ; $f165 : $90, $05
 
 	jsr Func_2_d917.l                                                  ; $f167 : $22, $17, $d9, $02
@@ -17484,7 +17485,7 @@ Call_01_f231:
 	sbc ($7c)                                                  ; $f23a : $f2, $7c
 	sbc ($a5)                                                  ; $f23c : $f2, $a5
 	phd                                                  ; $f23e : $0b
-	tsb wChipsAndRideArmorsGottenBitfield.w                                                  ; $f23f : $0c, $d7, $1f
+	tsb wChipsAndRideArmoursGottenBitfield.w                                                  ; $f23f : $0c, $d7, $1f
 	lda #$02.b                                                  ; $f242 : $a9, $02
 	sta $03                                                  ; $f244 : $85, $03
 	lda #$01.b                                                  ; $f246 : $a9, $01
@@ -17589,7 +17590,7 @@ br_01_f2f1:
 	rtl                                                  ; $f2f3 : $6b
 
 
-	jsr Func_2_d58a.l                                                  ; $f2f4 : $22, $8a, $d5, $02
+	jsr SetCarryIfEntityWayOutOfView.l                                                  ; $f2f4 : $22, $8a, $d5, $02
 	bcs br_01_f316                                                  ; $f2f8 : $b0, $1c
 
 	rep #IDX_8                                                  ; $f2fa : $c2, $10
@@ -18452,7 +18453,7 @@ br_01_f859:
 	jmp Func_2_d636.l                                                  ; $f85d : $5c, $36, $d6, $02
 
 
-	jsr $02d812.l                                                  ; $f861 : $22, $12, $d8, $02
+	jsr Func_2_d812.l                                                  ; $f861 : $22, $12, $d8, $02
 	jsr Call_01_f881.w                                                  ; $f865 : $20, $81, $f8
 	cmp #$0e.b                                                  ; $f868 : $c9, $0e
 	beq br_01_f870                                                  ; $f86a : $f0, $04

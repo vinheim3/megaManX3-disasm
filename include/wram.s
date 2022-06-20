@@ -136,7 +136,14 @@ wNmiVectorHandled: ; $09ce
     db
 
 w09cf:
-    ds $ff-$cf
+    ds $d8-$cf
+
+; todo: unknown size (speculation)
+wPlayerEntity: ; $09d8
+    instanceof GenericEntity
+
+w09f8:
+    ds $ff-$f8
 
 wCurrHealth: ; $09ff
     db
@@ -163,7 +170,14 @@ wJumpShotMenuDirCurrBtnsPressed: ; $0a13
     db
 
 w0a14:
-    ds $d18-$a14
+    ds $cc8-$a14
+
+; todo: unknown size (speculation)
+wRiderArmourEntity: ; $0cc8
+    instanceof GenericEntity
+
+w0ce8:
+    ds $d18-$ce8
 
 wEnemyEntities: ; $0d18
     ds StageEnemyEntity.sizeof * NUM_ENEMY_ENTITIES
@@ -285,11 +299,11 @@ w1fd5:
 ; Bit 6 set: body chip
 ; Bit 5 set: arm chip
 ; Bit 4 set: head chip
-; Bit 3 set: frog armor
-; Bit 2 set: hawk armor
-; Bit 1 set: kangaroo armor
-; Bit 0 set: chimera armor
-wChipsAndRideArmorsGottenBitfield: ; $1fd7
+; Bit 3 set: frog armour
+; Bit 2 set: hawk armour
+; Bit 1 set: kangaroo armour
+; Bit 0 set: chimera armour
+wChipsAndRideArmoursGottenBitfield: ; $1fd7
     db
 
 w1fd8:

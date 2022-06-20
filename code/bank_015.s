@@ -17367,7 +17367,7 @@ br_15_e3be:
 	cpy $99a9.w                                                  ; $f6e5 : $cc, $a9, $99
 	sty $a4, X                                                  ; $f6e8 : $94, $a4
 	txs                                                  ; $f6ea : $9a
-	rep #$11.b                                                  ; $f6eb : $c2, $11
+	rep #IDX_8|F_CARRY                                                  ; $f6eb : $c2, $11
 	and $11, S                                                  ; $f6ed : $23, $11
 	ror $67                                                  ; $f6ef : $66, $67
 	dec $b7                                                  ; $f6f1 : $c6, $b7

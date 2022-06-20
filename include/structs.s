@@ -19,9 +19,35 @@ THREAD_STARTED = 3
     sizeof .db
 .endst
 
+; todo: fill-in for entities with unknown shape
+.struct GenericEntity
+    enabled db ; $00
+    state db ; $01
+    substate db ; $02
+    subsubstate db ; $03
+    subX db ; $04
+    x dw ; $05/$06
+    subY db ; $07
+    y dw ; $08/$09
+    type db ; $0a
+    bb ds $1a-$b
+    xSpeed dw ; $1a
+    b1c ds $20-$1c
+    sizeof .db
+.endst
+
 .struct StageEnemyEntity
     enabled db ; $00
-    b1 ds $27-1
+    state db ; $01
+    substate db ; $02
+    subsubstate db ; $03
+    subX db ; $04
+    x dw ; $05/$06
+    subY db ; $07
+    y dw ; $08/$09
+    type db ; $0a
+    subType db ; $0b
+    bc ds $27-$c
     health db ; $27
     b28 ds $40-$28
     sizeof .db
@@ -31,12 +57,13 @@ THREAD_STARTED = 3
     enabled db ; $00
     state db ; $01
     substate db ; $02
-    b3 ds 5-3
-    x dw ; $5/$6
-    b7 db
-    y dw ; $8/$9
-    itemType db ; determines Funcs_0_f49b entry idx
-    param db ; $b eg flag to check
+    b3 ds 4-3
+    subX db ; $04
+    x dw ; $05/$06
+    subY db ; $07
+    y dw ; $08/$09
+    itemType db ; $0a determines Funcs_0_f49b entry idx
+    param db ; $0b eg flag to check
     bc ds $12-$c
     b12 db ; determines Func_2_d65b function
     b13 ds 6-3
@@ -50,7 +77,9 @@ THREAD_STARTED = 3
 .struct _1818_Entity
     enabled db ; $00
     state db ; $01
-    b2 ds $20-2
+    b2 ds $a-2
+    type db ; $0a
+    bb ds $20-$b
     sizeof .db
 .endst
 
@@ -58,9 +87,10 @@ THREAD_STARTED = 3
     enabled db ; $0
     state db ; $01
     substate db ; $02
-    b3 ds 5-3
+    b3 ds 5-4
+    subX db ; $4
     x dw ; $5/$6
-    b7 db
+    subY db ; $7
     y dw ; $8/$9
     type db ; $a
     param db ; $b
