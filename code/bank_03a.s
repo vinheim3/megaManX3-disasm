@@ -291,7 +291,7 @@ br_3a_8166:
 	pha                                                  ; $81a8 : $48
 	sei                                                  ; $81a9 : $78
 	cpy $7c                                                  ; $81aa : $c4, $7c
-	ldy $bc                                                  ; $81ac : $a4, $bc
+	ldy wBG2VertScroll+1                                                  ; $81ac : $a4, $bc
 	tsx                                                  ; $81ae : $ba
 	tsx                                                  ; $81af : $ba
 	.db $00                                                  ; $81b0 : $00
@@ -470,7 +470,7 @@ br_3a_8210:
 	cpx #$90f0.w                                                  ; $82b5 : $e0, $f0, $90
 	sed                                                  ; $82b8 : $f8
 	clc                                                  ; $82b9 : $18
-	cpx $bc                                                  ; $82ba : $e4, $bc
+	cpx wBG2VertScroll+1                                                  ; $82ba : $e4, $bc
 	rep #$fe.b                                                  ; $82bc : $c2, $fe
 	adc ($4f), Y                                                  ; $82be : $71, $4f
 	ora $05                                                  ; $82c0 : $05, $05
@@ -774,7 +774,7 @@ br_3a_8424:
 
 	sed                                                  ; $8458 : $f8
 	clc                                                  ; $8459 : $18
-	cpx $bc                                                  ; $845a : $e4, $bc
+	cpx wBG2VertScroll+1                                                  ; $845a : $e4, $bc
 	rep #$fe.b                                                  ; $845c : $c2, $fe
 	adc ($4f), Y                                                  ; $845e : $71, $4f
 	.db $80, $80                                                  ; $8460 : $80, $80
@@ -1737,7 +1737,7 @@ br_3a_8980:
 	inx                                                  ; $89b1 : $e8
 	cpx $ffec.w                                                  ; $89b2 : $ec, $ec, $ff
 	sbc ($fb, S), Y                                                  ; $89b5 : $f3, $fb
-	inc $bf                                                  ; $89b7 : $e6, $bf
+	inc wBG3VertScroll                                                  ; $89b7 : $e6, $bf
 	cpx $17                                                  ; $89b9 : $e4, $17
 	sbc $3ecf.w, X                                                  ; $89bb : $fd, $cf, $3e
 	wai                                                  ; $89be : $cb
@@ -2527,7 +2527,7 @@ br_3a_8e08:
 	inx                                                  ; $8e11 : $e8
 	jsr ($fefc.w, X)                                                  ; $8e12 : $fc, $fc, $fe
 	sbc ($ba)                                                  ; $8e15 : $f2, $ba
-	inc $b7                                                  ; $8e17 : $e6, $b7
+	inc wBG1VertScroll                                                  ; $8e17 : $e6, $b7
 	sbc $f92f.w                                                  ; $8e19 : $ed, $2f, $f9
 	dec $d639.w, X                                                  ; $8e1c : $de, $39, $d6
 	and $0c, X                                                  ; $8e1f : $35, $0c
@@ -3217,7 +3217,7 @@ br_3a_91fa:
 	ora [$04]                                                  ; $9212 : $07, $04
 	ora [$04]                                                  ; $9214 : $07, $04
 	ror $bd7f.w, X                                                  ; $9216 : $7e, $7f, $bd
-	inc $bf                                                  ; $9219 : $e6, $bf
+	inc wBG3VertScroll                                                  ; $9219 : $e6, $bf
 	sep #$9f.b                                                  ; $921b : $e2, $9f
 	sbc ($8f), Y                                                  ; $921d : $f1, $8f
 	sbc $bb1cff.l, X                                                  ; $921f : $ff, $ff, $1c, $bb
@@ -4139,7 +4139,7 @@ br_3a_974a:
 
 	cli                                                  ; $97d0 : $58
 	cld                                                  ; $97d1 : $d8
-	cpx $bc                                                  ; $97d2 : $e4, $bc
+	cpx wBG2VertScroll+1                                                  ; $97d2 : $e4, $bc
 	sbc ($1e)                                                  ; $97d4 : $f2, $1e
 	plx                                                  ; $97d6 : $fa
 	asl $3efa.w, X                                                  ; $97d7 : $1e, $fa, $3e
@@ -4407,7 +4407,7 @@ br_3a_9960:
 	stz $74, X                                                  ; $9960 : $74, $74
 	jsr ($b4fc.w, X)                                                  ; $9962 : $fc, $fc, $b4
 	ldy $dc, X                                                  ; $9965 : $b4, $dc
-	cpx $bc                                                  ; $9967 : $e4, $bc
+	cpx wBG2VertScroll+1                                                  ; $9967 : $e4, $bc
 	stz $ec                                                  ; $9969 : $64, $ec
 	bit $28, X                                                  ; $996b : $34, $28
 	sed                                                  ; $996d : $f8
@@ -8532,7 +8532,7 @@ br_3a_b0ed:
 	ror $5e5e.w                                                  ; $b177 : $6e, $5e, $5e
 	ror $f562.w, X                                                  ; $b17a : $7e, $62, $f5
 	wai                                                  ; $b17d : $cb
-	ror $00b5.w, X                                                  ; $b17e : $7e, $b5, $00
+	ror wBG1HorizScroll.w, X                                                  ; $b17e : $7e, $b5, $00
 	.db $00                                                  ; $b181 : $00
 	.db $00                                                  ; $b182 : $00
 	.db $00                                                  ; $b183 : $00
@@ -9880,7 +9880,7 @@ br_3a_b90d:
 	cmp $f9                                                  ; $b9d9 : $c5, $f9
 	cmp [$77]                                                  ; $b9db : $c7, $77
 	adc $e41919.l                                                  ; $b9dd : $6f, $19, $19, $e4
-	cpx $bc                                                  ; $b9e1 : $e4, $bc
+	cpx wBG2VertScroll+1                                                  ; $b9e1 : $e4, $bc
 	ldy $7a7a.w, X                                                  ; $b9e3 : $bc, $7a, $7a
 	phy                                                  ; $b9e6 : $5a
 	ror $5a                                                  ; $b9e7 : $66, $5a
@@ -11897,7 +11897,7 @@ br_3a_c5e8:
 	sep #$fe.b                                                  ; $c5fc : $e2, $fe
 	.db $62, $7e, $ba                                                  ; $c5fe : $62, $7e, $ba
 
-	dec $b6                                                  ; $c601 : $c6, $b6
+	dec wBG1HorizScroll+1                                                  ; $c601 : $c6, $b6
 	ldx $92, Y                                                  ; $c603 : $b6, $92
 	inc $6e54.w                                                  ; $c605 : $ee, $54, $6e
 	tax                                                  ; $c608 : $aa
@@ -13020,7 +13020,7 @@ br_3a_cd70:
 	.db $10, $57                                                  ; $cda7 : $10, $57
 
 	asl $b5, X                                                  ; $cda9 : $16, $b5
-	ldy $be                                                  ; $cdab : $a4, $be
+	ldy wBG3HorizScroll+1                                                  ; $cdab : $a4, $be
 	lda ($7f), Y                                                  ; $cdad : $b1, $7f
 	adc $f5ff64.l, X                                                  ; $cdaf : $7f, $64, $ff, $f5
 	stz $98ef.w, X                                                  ; $cdb3 : $9e, $ef, $98
@@ -19590,7 +19590,7 @@ br_3a_f2c1:
 
 	clc                                                  ; $f2c7 : $18
 	pea $7a0c.w                                                  ; $f2c8 : $f4, $0c, $7a
-	stx $ba                                                  ; $f2cb : $86, $ba
+	stx wBG2HorizScroll+1                                                  ; $f2cb : $86, $ba
 	dec $da                                                  ; $f2cd : $c6, $da
 	inc $00                                                  ; $f2cf : $e6, $00
 	bra br_3a_f293                                                  ; $f2d1 : $80, $c0
@@ -20979,7 +20979,7 @@ br_3a_f9c2:
 	bne br_3a_f9ec                                                  ; $f9da : $d0, $10
 
 br_3a_f9dc:
-	jsr $02db3f.l                                                  ; $f9dc : $22, $3f, $db, $02
+	jsr Func_2_db3f.l                                                  ; $f9dc : $22, $3f, $db, $02
 	rts                                                  ; $f9e0 : $60
 
 
@@ -21095,7 +21095,7 @@ br_3a_fa62:
 
 
 br_3a_fa78:
-	jmp Func_2_d928.l                                                  ; $fa78 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $fa78 : $5c, $28, $d9, $02
 
 
 	rep #ACCU_8                                                  ; $fa7c : $c2, $20

@@ -1002,7 +1002,7 @@ br_19_86f8:
 	adc $147f14.l, X                                                  ; $8710 : $7f, $14, $7f, $14
 	txa                                                  ; $8714 : $8a
 	trb $8b                                                  ; $8715 : $14, $8b
-	trb $b9                                                  ; $8717 : $14, $b9
+	trb wBG2HorizScroll                                                  ; $8717 : $14, $b9
 	mvn $54, $b8                                                  ; $8719 : $54, $b8, $54
 	lda $ac54.w                                                  ; $871c : $ad, $54, $ac
 	mvn $54, $83                                                  ; $871f : $54, $83, $54
@@ -1186,7 +1186,7 @@ br_19_8874:
 	trb $b3                                                  ; $8889 : $14, $b3
 	trb $a6                                                  ; $888b : $14, $a6
 	trb $b3                                                  ; $888d : $14, $b3
-	trb $bb                                                  ; $888f : $14, $bb
+	trb wBG2VertScroll                                                  ; $888f : $14, $bb
 	mvn $54, $ba                                                  ; $8891 : $54, $ba, $54
 	lda ($54, S), Y                                                  ; $8894 : $b3, $54
 	ldx $54                                                  ; $8896 : $a6, $54
@@ -1206,7 +1206,7 @@ br_19_8874:
 br_19_88b3:
 	trb $a3                                                  ; $88b3 : $14, $a3
 	trb $a3                                                  ; $88b5 : $14, $a3
-	trb $ba                                                  ; $88b7 : $14, $ba
+	trb wBG2HorizScroll+1                                                  ; $88b7 : $14, $ba
 	ora $bb, X                                                  ; $88b9 : $15, $bb
 	ora $91, X                                                  ; $88bb : $15, $91
 	pei ($90)                                                  ; $88bd : $d4, $90
@@ -1252,7 +1252,7 @@ br_19_88f7:
 
 br_19_8905:
 	trb $a3                                                  ; $8905 : $14, $a3
-	trb $b5                                                  ; $8907 : $14, $b5
+	trb wBG1HorizScroll                                                  ; $8907 : $14, $b5
 	ora $a4, X                                                  ; $8909 : $15, $a4
 	ora $b5, X                                                  ; $890b : $15, $b5
 	ora $b6, X                                                  ; $890d : $15, $b6
@@ -1429,7 +1429,7 @@ br_19_89f9:
 
 	.db $10, $ba                                                  ; $89ff : $10, $ba
 
-	trb $bb                                                  ; $8a01 : $14, $bb
+	trb wBG2VertScroll                                                  ; $8a01 : $14, $bb
 	trb $a6                                                  ; $8a03 : $14, $a6
 	trb $b3                                                  ; $8a05 : $14, $b3
 	trb $8c                                                  ; $8a07 : $14, $8c
@@ -1500,7 +1500,7 @@ br_19_8a41:
 	trb $c5                                                  ; $8a6f : $14, $c5
 	trb $c6                                                  ; $8a71 : $14, $c6
 	trb $ce                                                  ; $8a73 : $14, $ce
-	trb $be                                                  ; $8a75 : $14, $be
+	trb wBG3HorizScroll+1                                                  ; $8a75 : $14, $be
 	trb $b2                                                  ; $8a77 : $14, $b2
 	mvn $14, $c0                                                  ; $8a79 : $54, $c0, $14
 	dec $cd54.w                                                  ; $8a7c : $ce, $54, $cd
@@ -1757,8 +1757,8 @@ br_19_8bcf:
 	bpl br_19_8b59                                                  ; $8bd7 : $10, $80
 
 	trb $ab                                                  ; $8bd9 : $14, $ab
-	trb $b8                                                  ; $8bdb : $14, $b8
-	trb $b9                                                  ; $8bdd : $14, $b9
+	trb wBG1VertScroll+1                                                  ; $8bdb : $14, $b8
+	trb wBG2HorizScroll                                                  ; $8bdd : $14, $b9
 	trb $5d                                                  ; $8bdf : $14, $5d
 	ora ($5e), Y                                                  ; $8be1 : $11, $5e
 	ora ($6a), Y                                                  ; $8be3 : $11, $6a
@@ -2782,23 +2782,23 @@ br_19_9309:
 	tsb $0f                                                  ; $9325 : $04, $0f
 	tsb $0f                                                  ; $9327 : $04, $0f
 	tsb $0f                                                  ; $9329 : $04, $0f
-	tsb $bc                                                  ; $932b : $04, $bc
+	tsb wBG2VertScroll+1                                                  ; $932b : $04, $bc
 	ora [$bd]                                                  ; $932d : $07, $bd
 	ora [$0f]                                                  ; $932f : $07, $0f
 	tsb $0f                                                  ; $9331 : $04, $0f
-	tsb $ba                                                  ; $9333 : $04, $ba
+	tsb wBG2HorizScroll+1                                                  ; $9333 : $04, $ba
 	ora [$be]                                                  ; $9335 : $07, $be
 	ora [$0f]                                                  ; $9337 : $07, $0f
 	tsb $0f                                                  ; $9339 : $04, $0f
-	tsb $ba                                                  ; $933b : $04, $ba
+	tsb wBG2HorizScroll+1                                                  ; $933b : $04, $ba
 	ora [$b7]                                                  ; $933d : $07, $b7
 	ora [$0f]                                                  ; $933f : $07, $0f
 	tsb $0f                                                  ; $9341 : $04, $0f
-	tsb $b8                                                  ; $9343 : $04, $b8
+	tsb wBG1VertScroll+1                                                  ; $9343 : $04, $b8
 	ora [$b9]                                                  ; $9345 : $07, $b9
 	ora [$0f]                                                  ; $9347 : $07, $0f
 	tsb $0f                                                  ; $9349 : $04, $0f
-	tsb $ba                                                  ; $934b : $04, $ba
+	tsb wBG2HorizScroll+1                                                  ; $934b : $04, $ba
 	ora [$bb]                                                  ; $934d : $07, $bb
 	ora [$0f]                                                  ; $934f : $07, $0f
 	tsb $0f                                                  ; $9351 : $04, $0f
@@ -4720,10 +4720,10 @@ br_19_9fde:
 	ldy $bd14.w, X                                                  ; $a074 : $bc, $14, $bd
 	trb $7b                                                  ; $a077 : $14, $7b
 	trb $7c                                                  ; $a079 : $14, $7c
-	trb $bd                                                  ; $a07b : $14, $bd
+	trb wBG3HorizScroll                                                  ; $a07b : $14, $bd
 	mvn $54, $bc                                                  ; $a07d : $54, $bc, $54
 	adc $7e14.w, X                                                  ; $a080 : $7d, $14, $7e
-	trb $bb                                                  ; $a083 : $14, $bb
+	trb wBG2VertScroll                                                  ; $a083 : $14, $bb
 	mvn $54, $ba                                                  ; $a085 : $54, $ba, $54
 	adc $148014.l, X                                                  ; $a088 : $7f, $14, $80, $14
 	lda $b854.w, Y                                                  ; $a08c : $b9, $54, $b8
@@ -4754,7 +4754,7 @@ br_19_9fde:
 	sty $80, X                                                  ; $a0c5 : $94, $80
 	sty $b8, X                                                  ; $a0c7 : $94, $b8
 	trb $c5                                                  ; $a0c9 : $14, $c5
-	trb $b8                                                  ; $a0cb : $14, $b8
+	trb wBG1VertScroll+1                                                  ; $a0cb : $14, $b8
 	trb $c5                                                  ; $a0cd : $14, $c5
 	trb $ed                                                  ; $a0cf : $14, $ed
 	iny                                                  ; $a0d1 : $c8
@@ -5465,18 +5465,18 @@ br_19_a524:
 	lsr $5480.w                                                  ; $a54f : $4e, $80, $54
 	adc $14b854.l, X                                                  ; $a552 : $7f, $54, $b8, $14
 	lda $b814.w, Y                                                  ; $a556 : $b9, $14, $b8
-	trb $b9                                                  ; $a559 : $14, $b9
-	trb $b8                                                  ; $a55b : $14, $b8
+	trb wBG2HorizScroll                                                  ; $a559 : $14, $b9
+	trb wBG1VertScroll+1                                                  ; $a55b : $14, $b8
 	trb $c5                                                  ; $a55d : $14, $c5
-	trb $ba                                                  ; $a55f : $14, $ba
-	trb $bb                                                  ; $a561 : $14, $bb
+	trb wBG2HorizScroll+1                                                  ; $a55f : $14, $ba
+	trb wBG2VertScroll                                                  ; $a561 : $14, $bb
 	trb $c6                                                  ; $a563 : $14, $c6
 	trb $c7                                                  ; $a565 : $14, $c7
-	trb $bc                                                  ; $a567 : $14, $bc
-	trb $bd                                                  ; $a569 : $14, $bd
+	trb wBG2VertScroll+1                                                  ; $a567 : $14, $bc
+	trb wBG3HorizScroll                                                  ; $a569 : $14, $bd
 	trb $c8                                                  ; $a56b : $14, $c8
 	trb $c9                                                  ; $a56d : $14, $c9
-	trb $bd                                                  ; $a56f : $14, $bd
+	trb wBG3HorizScroll                                                  ; $a56f : $14, $bd
 	mvn $54, $bc                                                  ; $a571 : $54, $bc, $54
 	cmp #$c854.w                                                  ; $a574 : $c9, $54, $c8
 	mvn $15, $f7                                                  ; $a577 : $54, $f7, $15
@@ -9722,7 +9722,7 @@ br_19_c05f:
 	ora $b6, X                                                  ; $c141 : $15, $b6
 	ora $00, X                                                  ; $c143 : $15, $00
 	trb $00                                                  ; $c145 : $14, $00
-	trb $b7                                                  ; $c147 : $14, $b7
+	trb wBG1VertScroll                                                  ; $c147 : $14, $b7
 	ora $98, X                                                  ; $c149 : $15, $98
 	ora $fd, X                                                  ; $c14b : $15, $fd
 	ora [$6e], Y                                                  ; $c14d : $17, $6e
@@ -10014,7 +10014,7 @@ br_19_c05f:
 	asl $bb, X                                                  ; $c389 : $16, $bb
 	asl $ca, X                                                  ; $c38b : $16, $ca
 	asl $0d, X                                                  ; $c38d : $16, $0d
-	trb $bc                                                  ; $c38f : $14, $bc
+	trb wBG2VertScroll+1                                                  ; $c38f : $14, $bc
 	asl $bc, X                                                  ; $c391 : $16, $bc
 	lsr $cc, X                                                  ; $c393 : $56, $cc
 	asl $cc, X                                                  ; $c395 : $16, $cc
@@ -11565,7 +11565,7 @@ br_19_cf74:
 	ora $00                                                  ; $cfb9 : $05, $00
 	.db $00                                                  ; $cfbb : $00
 	cld                                                  ; $cfbc : $d8
-	ora $bf                                                  ; $cfbd : $05, $bf
+	ora wBG3VertScroll                                                  ; $cfbd : $05, $bf
 	ora $00                                                  ; $cfbf : $05, $00
 	rti                                                  ; $cfc1 : $40
 
@@ -11637,12 +11637,12 @@ br_19_cf74:
 	and $a5                                                  ; $d031 : $25, $a5
 	and $ad                                                  ; $d033 : $25, $ad
 	and $ae                                                  ; $d035 : $25, $ae
-	and $b9                                                  ; $d037 : $25, $b9
-	and $ba                                                  ; $d039 : $25, $ba
+	and wBG2HorizScroll                                                  ; $d037 : $25, $b9
+	and wBG2HorizScroll+1                                                  ; $d039 : $25, $ba
 	and $c7                                                  ; $d03b : $25, $c7
 	and $c8                                                  ; $d03d : $25, $c8
-	and $bb                                                  ; $d03f : $25, $bb
-	and $bc                                                  ; $d041 : $25, $bc
+	and wBG2VertScroll                                                  ; $d03f : $25, $bb
+	and wBG2VertScroll+1                                                  ; $d041 : $25, $bc
 	and $c9                                                  ; $d043 : $25, $c9
 	and $ca                                                  ; $d045 : $25, $ca
 	and $0a                                                  ; $d047 : $25, $0a
@@ -11653,20 +11653,20 @@ br_19_cf74:
 	asl $0a                                                  ; $d051 : $06, $0a
 	asl $0d                                                  ; $d053 : $06, $0d
 	asl $0e                                                  ; $d055 : $06, $0e
-	asl $b5                                                  ; $d057 : $06, $b5
-	and $b6                                                  ; $d059 : $25, $b6
-	and $c0                                                  ; $d05b : $25, $c0
+	asl wBG1HorizScroll                                                  ; $d057 : $06, $b5
+	and wBG1HorizScroll+1                                                  ; $d059 : $25, $b6
+	and wBG3VertScroll+1                                                  ; $d05b : $25, $c0
 	and $c1                                                  ; $d05d : $25, $c1
-	and $b7                                                  ; $d05f : $25, $b7
-	and $b8                                                  ; $d061 : $25, $b8
+	and wBG1VertScroll                                                  ; $d05f : $25, $b7
+	and wBG1VertScroll+1                                                  ; $d061 : $25, $b8
 	and $c2                                                  ; $d063 : $25, $c2
 	and $c3                                                  ; $d065 : $25, $c3
-	and $b9                                                  ; $d067 : $25, $b9
-	and $ba                                                  ; $d069 : $25, $ba
+	and wBG2HorizScroll                                                  ; $d067 : $25, $b9
+	and wBG2HorizScroll+1                                                  ; $d069 : $25, $ba
 	and $c4                                                  ; $d06b : $25, $c4
 	and $c5                                                  ; $d06d : $25, $c5
-	and $b7                                                  ; $d06f : $25, $b7
-	and $b8                                                  ; $d071 : $25, $b8
+	and wBG1VertScroll                                                  ; $d06f : $25, $b7
+	and wBG1VertScroll+1                                                  ; $d071 : $25, $b8
 	and $c6                                                  ; $d073 : $25, $c6
 	and $c3                                                  ; $d075 : $25, $c3
 	and $d3                                                  ; $d077 : $25, $d3
@@ -11761,12 +11761,12 @@ br_19_cf74:
 	phx                                                  ; $d126 : $da
 	and $c3                                                  ; $d127 : $25, $c3
 	sbc $c6                                                  ; $d129 : $e5, $c6
-	sbc $b8                                                  ; $d12b : $e5, $b8
-	sbc $b7                                                  ; $d12d : $e5, $b7
+	sbc wBG1VertScroll+1                                                  ; $d12b : $e5, $b8
+	sbc wBG1VertScroll                                                  ; $d12d : $e5, $b7
 	sbc $c5                                                  ; $d12f : $e5, $c5
 	sbc $c4                                                  ; $d131 : $e5, $c4
-	sbc $ba                                                  ; $d133 : $e5, $ba
-	sbc $b9                                                  ; $d135 : $e5, $b9
+	sbc wBG2HorizScroll+1                                                  ; $d133 : $e5, $ba
+	sbc wBG2HorizScroll                                                  ; $d135 : $e5, $b9
 	sbc $26                                                  ; $d137 : $e5, $26
 	stz $25                                                  ; $d139 : $64, $25
 	stz $2a                                                  ; $d13b : $64, $2a
@@ -11789,12 +11789,12 @@ br_19_cf74:
 	sbc $a2                                                  ; $d15d : $e5, $a2
 	sbc $c4                                                  ; $d15f : $e5, $c4
 	lda $c5                                                  ; $d161 : $a5, $c5
-	lda $b9                                                  ; $d163 : $a5, $b9
-	lda $ba                                                  ; $d165 : $a5, $ba
+	lda wBG2HorizScroll                                                  ; $d163 : $a5, $b9
+	lda wBG2HorizScroll+1                                                  ; $d165 : $a5, $ba
 	lda $c6                                                  ; $d167 : $a5, $c6
 	lda $c3                                                  ; $d169 : $a5, $c3
-	lda $b7                                                  ; $d16b : $a5, $b7
-	lda $b8                                                  ; $d16d : $a5, $b8
+	lda wBG1VertScroll                                                  ; $d16b : $a5, $b7
+	lda wBG1VertScroll+1                                                  ; $d16d : $a5, $b8
 	lda $28                                                  ; $d16f : $a5, $28
 	stz $27                                                  ; $d171 : $64, $27
 	stz $28                                                  ; $d173 : $64, $28
@@ -12007,11 +12007,11 @@ br_19_cf74:
 
 	phx                                                  ; $d2cf : $da
 	clv                                                  ; $d2d0 : $b8
-	adc $b7                                                  ; $d2d1 : $65, $b7
+	adc wBG1VertScroll                                                  ; $d2d1 : $65, $b7
 	adc $c3                                                  ; $d2d3 : $65, $c3
 	adc $c6                                                  ; $d2d5 : $65, $c6
-	adc $ba                                                  ; $d2d7 : $65, $ba
-	adc $b9                                                  ; $d2d9 : $65, $b9
+	adc wBG2HorizScroll+1                                                  ; $d2d7 : $65, $ba
+	adc wBG2HorizScroll                                                  ; $d2d9 : $65, $b9
 	adc $c5                                                  ; $d2db : $65, $c5
 	adc $c4                                                  ; $d2dd : $65, $c4
 	adc $61                                                  ; $d2df : $65, $61
@@ -12089,11 +12089,11 @@ br_19_cf74:
 	cmp $e5, S                                                  ; $d368 : $c3, $e5
 	rep #$e5.b                                                  ; $d36a : $c2, $e5
 	clv                                                  ; $d36c : $b8
-	sbc $b7                                                  ; $d36d : $e5, $b7
+	sbc wBG1VertScroll                                                  ; $d36d : $e5, $b7
 	sbc $c1                                                  ; $d36f : $e5, $c1
-	sbc $c0                                                  ; $d371 : $e5, $c0
-	sbc $b6                                                  ; $d373 : $e5, $b6
-	sbc $b5                                                  ; $d375 : $e5, $b5
+	sbc wBG3VertScroll+1                                                  ; $d371 : $e5, $c0
+	sbc wBG1HorizScroll+1                                                  ; $d373 : $e5, $b6
+	sbc wBG1HorizScroll                                                  ; $d375 : $e5, $b5
 	sbc $05                                                  ; $d377 : $e5, $05
 	clc                                                  ; $d379 : $18
 	adc ($5a, X)                                                  ; $d37a : $61, $5a
@@ -12360,12 +12360,12 @@ br_19_d53f:
 	phy                                                  ; $d53f : $5a
 	dex                                                  ; $d540 : $ca
 	sbc $c9                                                  ; $d541 : $e5, $c9
-	sbc $bc                                                  ; $d543 : $e5, $bc
-	sbc $bb                                                  ; $d545 : $e5, $bb
+	sbc wBG2VertScroll+1                                                  ; $d543 : $e5, $bc
+	sbc wBG2VertScroll                                                  ; $d545 : $e5, $bb
 	sbc $c8                                                  ; $d547 : $e5, $c8
 	sbc $c7                                                  ; $d549 : $e5, $c7
-	sbc $ba                                                  ; $d54b : $e5, $ba
-	sbc $b9                                                  ; $d54d : $e5, $b9
+	sbc wBG2HorizScroll+1                                                  ; $d54b : $e5, $ba
+	sbc wBG2HorizScroll                                                  ; $d54d : $e5, $b9
 	sbc $d6                                                  ; $d54f : $e5, $d6
 	tcd                                                  ; $d551 : $5b
 	jmp ($d79a.w)                                                  ; $d552 : $6c, $9a, $d7
@@ -12397,14 +12397,14 @@ br_19_d576:
 	lda $be24.w, X                                                  ; $d57c : $bd, $24, $be
 
 br_19_d57f:
-	bit $b6                                                  ; $d57f : $24, $b6
-	stz $b5                                                  ; $d581 : $64, $b5
-	stz $be                                                  ; $d583 : $64, $be
-	stz $bd                                                  ; $d585 : $64, $bd
+	bit wBG1HorizScroll+1                                                  ; $d57f : $24, $b6
+	stz wBG1HorizScroll                                                  ; $d581 : $64, $b5
+	stz wBG3HorizScroll+1                                                  ; $d583 : $64, $be
+	stz wBG3HorizScroll                                                  ; $d585 : $64, $bd
 	stz $df                                                  ; $d587 : $64, $df
 	lda $e0                                                  ; $d589 : $a5, $e0
-	lda $b6                                                  ; $d58b : $a5, $b6
-	sbc $b5                                                  ; $d58d : $e5, $b5
+	lda wBG1HorizScroll+1                                                  ; $d58b : $a5, $b6
+	sbc wBG1HorizScroll                                                  ; $d58d : $e5, $b5
 	sbc $67                                                  ; $d58f : $e5, $67
 	stz $9c68.w                                                  ; $d591 : $9c, $68, $9c
 	.db $62                                                  ; $d594 : $62
@@ -12431,7 +12431,7 @@ br_19_d5a5:
 	tax                                                  ; $d5ac : $aa
 	sta $cb                                                  ; $d5ad : $85, $cb
 	sta $d8                                                  ; $d5af : $85, $d8
-	sta $bf                                                  ; $d5b1 : $85, $bf
+	sta wBG3VertScroll                                                  ; $d5b1 : $85, $bf
 	sta $cc                                                  ; $d5b3 : $85, $cc
 	sta $00                                                  ; $d5b5 : $85, $00
 	bra br_19_d576                                                  ; $d5b7 : $80, $bd
@@ -12445,7 +12445,7 @@ br_19_d5bd:
 br_19_d5bf:
 	bra br_19_d57f                                                  ; $d5bf : $80, $be
 
-	sta $bf                                                  ; $d5c1 : $85, $bf
+	sta wBG3VertScroll                                                  ; $d5c1 : $85, $bf
 	sta $00                                                  ; $d5c3 : $85, $00
 	bra br_19_d5c7                                                  ; $d5c5 : $80, $00
 
@@ -12687,8 +12687,8 @@ br_19_d6c5:
 	jmp $dea5c3.l                                                  ; $d707 : $5c, $c3, $a5, $de
 
 
-	lda $b8                                                  ; $d70b : $a5, $b8
-	sbc $b7                                                  ; $d70d : $e5, $b7
+	lda wBG1VertScroll+1                                                  ; $d70b : $a5, $b8
+	sbc wBG1VertScroll                                                  ; $d70d : $e5, $b7
 	sbc $5e                                                  ; $d70f : $e5, $5e
 	ina                                                  ; $d711 : $1a
 	rts                                                  ; $d712 : $60
@@ -12782,8 +12782,8 @@ br_19_d747:
 	tyx                                                  ; $d77e : $bb
 	sbc $de                                                  ; $d77f : $e5, $de
 	sbc $dd                                                  ; $d781 : $e5, $dd
-	sbc $ba                                                  ; $d783 : $e5, $ba
-	sbc $b9                                                  ; $d785 : $e5, $b9
+	sbc wBG2HorizScroll+1                                                  ; $d783 : $e5, $ba
+	sbc wBG2HorizScroll                                                  ; $d785 : $e5, $b9
 	sbc $54                                                  ; $d787 : $e5, $54
 	stz $9c55.w                                                  ; $d789 : $9c, $55, $9c
 	jmp $4d9c.w                                                  ; $d78c : $4c, $9c, $4d
@@ -12830,11 +12830,11 @@ br_19_d7a1:
 	phx                                                  ; $d7c5 : $da
 	.db $62, $da, $b9                                                  ; $d7c6 : $62, $da, $b9
 
-	and $ba                                                  ; $d7c9 : $25, $ba
+	and wBG2HorizScroll+1                                                  ; $d7c9 : $25, $ba
 	and $dd                                                  ; $d7cb : $25, $dd
 	and $de                                                  ; $d7cd : $25, $de
-	and $bb                                                  ; $d7cf : $25, $bb
-	and $bc                                                  ; $d7d1 : $25, $bc
+	and wBG2VertScroll                                                  ; $d7cf : $25, $bb
+	and wBG2VertScroll+1                                                  ; $d7d1 : $25, $bc
 	and $df                                                  ; $d7d3 : $25, $df
 	and $e0                                                  ; $d7d5 : $25, $e0
 	and $00                                                  ; $d7d7 : $25, $00
@@ -12874,18 +12874,18 @@ br_19_d7a1:
 	clc                                                  ; $d801 : $18
 	ora $18                                                  ; $d802 : $05, $18
 	sbc $ee05.w                                                  ; $d804 : $ed, $05, $ee
-	ora $b7                                                  ; $d807 : $05, $b7
-	and $b8                                                  ; $d809 : $25, $b8
+	ora wBG1VertScroll                                                  ; $d807 : $05, $b7
+	and wBG1VertScroll+1                                                  ; $d809 : $25, $b8
 	and $c6                                                  ; $d80b : $25, $c6
 	and $c3                                                  ; $d80d : $25, $c3
 	and $d1                                                  ; $d80f : $25, $d1
 	and $d2                                                  ; $d811 : $25, $d2
 	and $c4                                                  ; $d813 : $25, $c4
-	and $ba                                                  ; $d815 : $25, $ba
+	and wBG2HorizScroll+1                                                  ; $d815 : $25, $ba
 	and $f8                                                  ; $d817 : $25, $f8
 	and $f9                                                  ; $d819 : $25, $f9
-	and $b7                                                  ; $d81b : $25, $b7
-	and $b8                                                  ; $d81d : $25, $b8
+	and wBG1VertScroll                                                  ; $d81b : $25, $b7
+	and wBG1VertScroll+1                                                  ; $d81d : $25, $b8
 	and $fa                                                  ; $d81f : $25, $fa
 	ora $ea                                                  ; $d821 : $05, $ea
 	ora $d1                                                  ; $d823 : $05, $d1
@@ -12941,14 +12941,14 @@ br_19_d7a1:
 	adc $d1                                                  ; $d885 : $65, $d1
 	adc $f9                                                  ; $d887 : $65, $f9
 	adc $f8                                                  ; $d889 : $65, $f8
-	adc $b8                                                  ; $d88b : $65, $b8
-	adc $b7                                                  ; $d88d : $65, $b7
+	adc wBG1VertScroll+1                                                  ; $d88b : $65, $b8
+	adc wBG1VertScroll                                                  ; $d88d : $65, $b7
 	adc $d2                                                  ; $d88f : $65, $d2
 	adc $d1                                                  ; $d891 : $65, $d1
-	adc $ba                                                  ; $d893 : $65, $ba
+	adc wBG2HorizScroll+1                                                  ; $d893 : $65, $ba
 	adc $c4                                                  ; $d895 : $65, $c4
-	adc $b8                                                  ; $d897 : $65, $b8
-	adc $b7                                                  ; $d899 : $65, $b7
+	adc wBG1VertScroll+1                                                  ; $d897 : $65, $b8
+	adc wBG1VertScroll                                                  ; $d899 : $65, $b7
 	adc $c3                                                  ; $d89b : $65, $c3
 	adc $c6                                                  ; $d89d : $65, $c6
 	adc $e3                                                  ; $d89f : $65, $e3
@@ -13513,8 +13513,8 @@ br_19_db01:
 	.db $00                                                  ; $db0a : $00
 	.db $00                                                  ; $db0b : $00
 	ldx $bf05.w, Y                                                  ; $db0c : $be, $05, $bf
-	ora $be                                                  ; $db0f : $05, $be
-	cmp $bd                                                  ; $db11 : $c5, $bd
+	ora wBG3HorizScroll+1                                                  ; $db0f : $05, $be
+	cmp wBG3HorizScroll                                                  ; $db11 : $c5, $bd
 	cmp $00                                                  ; $db13 : $c5, $00
 	cpy #$00.b                                                  ; $db15 : $c0, $00
 	cpy #$66.b                                                  ; $db17 : $c0, $66
@@ -16484,21 +16484,21 @@ br_19_f088:
 	stz $b4                                                  ; $f0fd : $64, $b4
 	bit $a5                                                  ; $f0ff : $24, $a5
 	bit $a6                                                  ; $f101 : $24, $a6
-	bit $b5                                                  ; $f103 : $24, $b5
-	bit $b6                                                  ; $f105 : $24, $b6
+	bit wBG1HorizScroll                                                  ; $f103 : $24, $b5
+	bit wBG1HorizScroll+1                                                  ; $f105 : $24, $b6
 	bit $a7                                                  ; $f107 : $24, $a7
 	bit $a7                                                  ; $f109 : $24, $a7
-	stz $b7                                                  ; $f10b : $64, $b7
-	bit $b7                                                  ; $f10d : $24, $b7
+	stz wBG1VertScroll                                                  ; $f10b : $64, $b7
+	bit wBG1VertScroll                                                  ; $f10d : $24, $b7
 	stz $a6                                                  ; $f10f : $64, $a6
 	stz $a5                                                  ; $f111 : $64, $a5
-	stz $b6                                                  ; $f113 : $64, $b6
-	stz $b5                                                  ; $f115 : $64, $b5
+	stz wBG1HorizScroll+1                                                  ; $f113 : $64, $b6
+	stz wBG1HorizScroll                                                  ; $f115 : $64, $b5
 	stz $a4                                                  ; $f117 : $64, $a4
 	stz $a3                                                  ; $f119 : $64, $a3
 	stz $b4                                                  ; $f11b : $64, $b4
 	stz $00                                                  ; $f11d : $64, $00
-	stz $c0                                                  ; $f11f : $64, $c0
+	stz wBG3VertScroll+1                                                  ; $f11f : $64, $c0
 	clc                                                  ; $f121 : $18
 	cmp ($18, X)                                                  ; $f122 : $c1, $18
 	bne br_19_f13e                                                  ; $f124 : $d0, $18

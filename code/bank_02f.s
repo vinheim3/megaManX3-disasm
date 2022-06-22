@@ -252,7 +252,7 @@ br_2f_81b5:
 	.db $00                                                  ; $81df : $00
 	stz $88cb.w                                                  ; $81e0 : $9c, $cb, $88
 	cmp [$43]                                                  ; $81e3 : $c7, $43
-	adc $bb                                                  ; $81e5 : $65, $bb
+	adc wBG2VertScroll                                                  ; $81e5 : $65, $bb
 	and $c5, X                                                  ; $81e7 : $35, $c5
 	phd                                                  ; $81e9 : $0b
 	ror $0a, X                                                  ; $81ea : $76, $0a
@@ -308,7 +308,7 @@ br_2f_8245:
 	rol $3837.w, X                                                  ; $8245 : $3e, $37, $38
 	and #$5630.w                                                  ; $8248 : $29, $30, $56
 	ror $76                                                  ; $824b : $66, $76
-	lsr $b9                                                  ; $824d : $46, $b9
+	lsr wBG2HorizScroll                                                  ; $824d : $46, $b9
 	cpy #$1817.w                                                  ; $824f : $c0, $17, $18
 	and $2f3f33.l                                                  ; $8252 : $2f, $33, $3f, $2f
 	and $3f3f3f.l, X                                                  ; $8256 : $3f, $3f, $3f, $3f
@@ -723,7 +723,7 @@ br_2f_854b:
 
 br_2f_85a7:
 	sbc $b7cfff.l, X                                                  ; $85a7 : $ff, $ff, $cf, $b7
-	sbc $cd9f.w, Y                                                  ; $85ab : $f9, $9f, $cd
+	sbc todo_StageCameraDataForCapsules.w, Y                                                  ; $85ab : $f9, $9f, $cd
 	sbc $79864b.l                                                  ; $85ae : $ef, $4b, $86, $79
 	jsr ($c003.w, X)                                                  ; $85b2 : $fc, $03, $c0
 	sbc $ffbff8.l, X                                                  ; $85b5 : $ff, $f8, $bf, $ff
@@ -1826,7 +1826,7 @@ br_2f_8d26:
 	ldy $fcbc.w, X                                                  ; $8d66 : $bc, $bc, $fc
 	stz $44                                                  ; $8d69 : $64, $44
 	cpy $f4                                                  ; $8d6b : $c4, $f4
-	stz $b8                                                  ; $8d6d : $64, $b8
+	stz wBG1VertScroll+1                                                  ; $8d6d : $64, $b8
 	tya                                                  ; $8d6f : $98
 	beq br_2f_8d22                                                  ; $8d70 : $f0, $b0
 
@@ -8302,7 +8302,7 @@ br_2f_ba70:
 	ora $9f0f0b.l                                                  ; $ba7d : $0f, $0b, $0f, $9f
 	sta $6ccf4f.l, X                                                  ; $ba81 : $9f, $4f, $cf, $6c
 	sbc $e5eeed.l                                                  ; $ba85 : $ef, $ed, $ee, $e5
-	inc $b5                                                  ; $ba89 : $e6, $b5
+	inc wBG1HorizScroll                                                  ; $ba89 : $e6, $b5
 	ldx $76, Y                                                  ; $ba8b : $b6, $76
 	sbc [$d6], Y                                                  ; $ba8d : $f7, $d6
 	eor [$ff], Y                                                  ; $ba8f : $57, $ff
@@ -10435,7 +10435,7 @@ br_2f_c820:
 	tsx                                                  ; $c84b : $ba
 
 br_2f_c84c:
-	sta $be                                                  ; $c84c : $85, $be
+	sta wBG3HorizScroll+1                                                  ; $c84c : $85, $be
 
 br_2f_c84e:
 	sta [$b4]                                                  ; $c84e : $87, $b4
@@ -15425,7 +15425,7 @@ br_2f_e65f:
 	jmp $5cdcdc.l                                                  ; $e6f6 : $5c, $dc, $dc, $5c
 
 
-	ldy $bc                                                  ; $e6fa : $a4, $bc
+	ldy wBG2VertScroll+1                                                  ; $e6fa : $a4, $bc
 	sed                                                  ; $e6fc : $f8
 	sed                                                  ; $e6fd : $f8
 	.db $00                                                  ; $e6fe : $00

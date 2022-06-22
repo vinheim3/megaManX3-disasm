@@ -9249,7 +9249,7 @@ br_3d_b7f1:
 	tsb $13                                                  ; $b9ab : $04, $13
 	tsb $14                                                  ; $b9ad : $04, $14
 	tsb $15                                                  ; $b9af : $04, $15
-	tsb $b6                                                  ; $b9b1 : $04, $b6
+	tsb wBG1HorizScroll+1                                                  ; $b9b1 : $04, $b6
 	.db $00                                                  ; $b9b3 : $00
 	ldx $00, Y                                                  ; $b9b4 : $b6, $00
 	trb $1c00.w                                                  ; $b9b6 : $1c, $00, $1c
@@ -9258,7 +9258,7 @@ br_3d_b7f1:
 	sta ($02, X)                                                  ; $b9bc : $81, $02
 	ora [$04], Y                                                  ; $b9be : $17, $04
 	clc                                                  ; $b9c0 : $18
-	tsb $be                                                  ; $b9c1 : $04, $be
+	tsb wBG3HorizScroll+1                                                  ; $b9c1 : $04, $be
 	.db $00                                                  ; $b9c3 : $00
 	ldx $be00.w, Y                                                  ; $b9c4 : $be, $00, $be
 	.db $00                                                  ; $b9c7 : $00
@@ -9729,7 +9729,7 @@ br_3d_ba7b:
 	ror $5604.w                                                  ; $bc4e : $6e, $04, $56
 	tsb $6f                                                  ; $bc51 : $04, $6f
 	tsb $70                                                  ; $bc53 : $04, $70
-	tsb $bd                                                  ; $bc55 : $04, $bd
+	tsb wBG3HorizScroll                                                  ; $bc55 : $04, $bd
 	.db $00                                                  ; $bc57 : $00
 	.db $00                                                  ; $bc58 : $00
 	.db $00                                                  ; $bc59 : $00
@@ -10078,7 +10078,7 @@ br_3d_bda6:
 	ora ($00)                                                  ; $be4c : $12, $00
 	bit $1c03.w, X                                                  ; $be4e : $3c, $03, $1c
 	ora ($bc, X)                                                  ; $be51 : $01, $bc
-	tsb $bd                                                  ; $be53 : $04, $bd
+	tsb wBG3HorizScroll                                                  ; $be53 : $04, $bd
 	tsb $10                                                  ; $be55 : $04, $10
 	.db $00                                                  ; $be57 : $00
 	cmp $000001.l                                                  ; $be58 : $cf, $01, $00, $00
@@ -10086,8 +10086,8 @@ br_3d_bda6:
 	ldx $aa04.w, Y                                                  ; $be5e : $be, $04, $aa
 	tsb $ab                                                  ; $be61 : $04, $ab
 	tsb $aa                                                  ; $be63 : $04, $aa
-	tsb $bf                                                  ; $be65 : $04, $bf
-	tsb $c0                                                  ; $be67 : $04, $c0
+	tsb wBG3VertScroll                                                  ; $be65 : $04, $bf
+	tsb wBG3VertScroll+1                                                  ; $be67 : $04, $c0
 	tsb $c1                                                  ; $be69 : $04, $c1
 	tsb $c2                                                  ; $be6b : $04, $c2
 	tsb $c3                                                  ; $be6d : $04, $c3
@@ -16744,7 +16744,7 @@ br_3d_e3a3:
 	tsb $5c                                                  ; $e655 : $04, $5c
 	tsb $5d                                                  ; $e657 : $04, $5d
 	tsb $5e                                                  ; $e659 : $04, $5e
-	tsb $b6                                                  ; $e65b : $04, $b6
+	tsb wBG1HorizScroll+1                                                  ; $e65b : $04, $b6
 	cop $03.b                                                  ; $e65d : $02, $03
 	ora ($5f, X)                                                  ; $e65f : $01, $5f
 	tsb $60                                                  ; $e661 : $04, $60
@@ -16791,7 +16791,7 @@ br_3d_e3a3:
 	pla                                                  ; $e6a2 : $68
 	tsb $69                                                  ; $e6a3 : $04, $69
 	tsb $6a                                                  ; $e6a5 : $04, $6a
-	tsb $b8                                                  ; $e6a7 : $04, $b8
+	tsb wBG1VertScroll+1                                                  ; $e6a7 : $04, $b8
 	ora $4b, S                                                  ; $e6a9 : $03, $4b
 	.db $00                                                  ; $e6ab : $00
 	jmp $6b00.w                                                  ; $e6ac : $4c, $00, $6b
@@ -17120,7 +17120,7 @@ br_3d_e3a3:
 	ora ($b1, X)                                                  ; $e8c1 : $01, $b1
 	tsb $b2                                                  ; $e8c3 : $04, $b2
 	tsb $b3                                                  ; $e8c5 : $04, $b3
-	tsb $c0                                                  ; $e8c7 : $04, $c0
+	tsb wBG3VertScroll+1                                                  ; $e8c7 : $04, $c0
 	.db $00                                                  ; $e8c9 : $00
 	ldy $04, X                                                  ; $e8ca : $b4, $04
 	lda $04, X                                                  ; $e8cc : $b5, $04
@@ -17135,13 +17135,13 @@ br_3d_e3a3:
 	tsb $cb                                                  ; $e8d7 : $04, $cb
 	.db $00                                                  ; $e8d9 : $00
 	lda $ba04.w, Y                                                  ; $e8da : $b9, $04, $ba
-	tsb $bb                                                  ; $e8dd : $04, $bb
+	tsb wBG2VertScroll                                                  ; $e8dd : $04, $bb
 	tsb $33                                                  ; $e8df : $04, $33
 	cop $28.b                                                  ; $e8e1 : $02, $28
 	ora $bc, S                                                  ; $e8e3 : $03, $bc
-	tsb $bd                                                  ; $e8e5 : $04, $bd
-	tsb $bc                                                  ; $e8e7 : $04, $bc
-	tsb $b5                                                  ; $e8e9 : $04, $b5
+	tsb wBG3HorizScroll                                                  ; $e8e5 : $04, $bd
+	tsb wBG2VertScroll+1                                                  ; $e8e7 : $04, $bc
+	tsb wBG1HorizScroll                                                  ; $e8e9 : $04, $b5
 	cop $01.b                                                  ; $e8eb : $02, $01
 	ora ($01, X)                                                  ; $e8ed : $01, $01
 	ora ($e9, X)                                                  ; $e8ef : $01, $e9
@@ -19032,7 +19032,7 @@ br_3d_f878:
 
 
 br_3d_f87b:
-	jmp Func_2_d928.l                                                  ; $f87b : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f87b : $5c, $28, $d9, $02
 
 
 	lda #$04.b                                                  ; $f87f : $a9, $04
@@ -19188,7 +19188,7 @@ br_3d_f994:
 	bne br_3d_f9b1                                                  ; $f99e : $d0, $11
 
 br_3d_f9a0:
-	jmp $02db3f.l                                                  ; $f9a0 : $5c, $3f, $db, $02
+	jmp Func_2_db3f.l                                                  ; $f9a0 : $5c, $3f, $db, $02
 
 
 	lda #$02.b                                                  ; $f9a4 : $a9, $02
@@ -19585,7 +19585,7 @@ br_3d_fba0:
 	lda #$01.b                                                  ; $fbe3 : $a9, $01
 	jsr $04d5e5.l                                                  ; $fbe5 : $22, $e5, $d5, $04
 	jsr $04d1ef.l                                                  ; $fbe9 : $22, $ef, $d1, $04
-	jmp Func_2_d928.l                                                  ; $fbed : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $fbed : $5c, $28, $d9, $02
 
 
 Call_3d_fbf1:
@@ -20116,7 +20116,7 @@ br_3d_ff38:
 	bne br_3d_ff45                                                  ; $ff3c : $d0, $07
 
 	lda $05                                                  ; $ff3e : $a5, $05
-	cmp $09dd.w                                                  ; $ff40 : $cd, $dd, $09
+	cmp wPlayerEntity.x.w                                                  ; $ff40 : $cd, $dd, $09
 	bra br_3d_ff4a                                                  ; $ff43 : $80, $05
 
 br_3d_ff45:

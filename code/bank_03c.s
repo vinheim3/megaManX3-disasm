@@ -589,7 +589,7 @@ br_3c_846a:
 
 	pei ($28)                                                  ; $8484 : $d4, $28
 	phy                                                  ; $8486 : $5a
-	cpx $be                                                  ; $8487 : $e4, $be
+	cpx wBG3HorizScroll+1                                                  ; $8487 : $e4, $be
 	rti                                                  ; $8489 : $40
 
 
@@ -6217,7 +6217,7 @@ br_3c_a3ec:
 
 br_3c_a404:
 	sep #IDX_8                                                  ; $a404 : $e2, $10
-	jsr Func_2_d928.l                                                  ; $a406 : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $a406 : $22, $28, $d9, $02
 	rts                                                  ; $a40a : $60
 
 
@@ -6332,7 +6332,7 @@ br_3c_a4af:
 
 br_3c_a4ce:
 	sep #IDX_8                                                  ; $a4ce : $e2, $10
-	jsr Func_2_d928.l                                                  ; $a4d0 : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $a4d0 : $22, $28, $d9, $02
 
 br_3c_a4d4:
 	sep #IDX_8                                                  ; $a4d4 : $e2, $10
@@ -6569,7 +6569,7 @@ br_3c_a629:
 	stz $1f2c.w                                                  ; $a667 : $9c, $2c, $1f
 	lda #$02.b                                                  ; $a66a : $a9, $02
 	tsb $00c1.w                                                  ; $a66c : $0c, $c1, $00
-	jsr Func_2_d928.l                                                  ; $a66f : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $a66f : $22, $28, $d9, $02
 	rts                                                  ; $a673 : $60
 
 
@@ -6595,7 +6595,7 @@ br_3c_a691:
 Call_3c_a694:
 	ldx #$0a.b                                                  ; $a694 : $a2, $0a
 	stz $0006.w                                                  ; $a696 : $9c, $06, $00
-	jsr $04be35.l                                                  ; $a699 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $a699 : $22, $35, $be, $04
 	and #$03.b                                                  ; $a69d : $29, $03
 	beq br_3c_a6b1                                                  ; $a69f : $f0, $10
 
@@ -6751,7 +6751,7 @@ Call_3c_a763:
 Call_3c_a780:
 	rep #ACCU_8                                                  ; $a780 : $c2, $20
 	lda $05                                                  ; $a782 : $a5, $05
-	cmp $09dd.w                                                  ; $a784 : $cd, $dd, $09
+	cmp wPlayerEntity.x.w                                                  ; $a784 : $cd, $dd, $09
 	sep #ACCU_8                                                  ; $a787 : $e2, $20
 	bmi br_3c_a7e3                                                  ; $a789 : $30, $58
 
@@ -7095,7 +7095,7 @@ Call_3c_a96a:
 	sta $0016.w, X                                                  ; $a981 : $9d, $16, $00
 	lda $11                                                  ; $a984 : $a5, $11
 	sta $0011.w, X                                                  ; $a986 : $9d, $11, $00
-	jsr $04be35.l                                                  ; $a989 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $a989 : $22, $35, $be, $04
 	xba                                                  ; $a98d : $eb
 	lda #$00.b                                                  ; $a98e : $a9, $00
 	xba                                                  ; $a990 : $eb
@@ -7104,12 +7104,12 @@ Call_3c_a96a:
 	lda $c518.w, Y                                                  ; $a994 : $b9, $18, $c5
 	sta $0019.w, X                                                  ; $a997 : $9d, $19, $00
 	rep #ACCU_8                                                  ; $a99a : $c2, $20
-	jsr $04be35.l                                                  ; $a99c : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $a99c : $22, $35, $be, $04
 	and #$01ff.w                                                  ; $a9a0 : $29, $ff, $01
 	clc                                                  ; $a9a3 : $18
 	adc #$fd00.w                                                  ; $a9a4 : $69, $00, $fd
 	sta $001a.w, X                                                  ; $a9a7 : $9d, $1a, $00
-	jsr $04be35.l                                                  ; $a9aa : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $a9aa : $22, $35, $be, $04
 	and #$000e.w                                                  ; $a9ae : $29, $0e, $00
 	asl                                                  ; $a9b1 : $0a
 	tay                                                  ; $a9b2 : $a8
@@ -7230,7 +7230,7 @@ br_3c_aa69:
 
 
 	tax                                                  ; $aa76 : $aa
-	jsr Func_2_d928.l                                                  ; $aa77 : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $aa77 : $22, $28, $d9, $02
 	rts                                                  ; $aa7b : $60
 
 
@@ -7519,7 +7519,7 @@ br_3c_ac4c:
 	sta $0e                                                  ; $ac54 : $85, $0e
 
 br_3c_ac56:
-	jsr $02db3f.l                                                  ; $ac56 : $22, $3f, $db, $02
+	jsr Func_2_db3f.l                                                  ; $ac56 : $22, $3f, $db, $02
 	jsr Call_3c_b160.w                                                  ; $ac5a : $20, $60, $b1
 	rts                                                  ; $ac5d : $60
 
@@ -7639,7 +7639,7 @@ br_3c_ad0a:
 
 
 br_3c_ad15:
-	jsr Func_2_d928.l                                                  ; $ad15 : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $ad15 : $22, $28, $d9, $02
 	rts                                                  ; $ad19 : $60
 
 
@@ -8270,7 +8270,7 @@ Call_3c_b0db:
 	rep #ACCU_8                                                  ; $b0db : $c2, $20
 	lda $05                                                  ; $b0dd : $a5, $05
 	sec                                                  ; $b0df : $38
-	sbc $09dd.w                                                  ; $b0e0 : $ed, $dd, $09
+	sbc wPlayerEntity.x.w                                                  ; $b0e0 : $ed, $dd, $09
 	bpl br_3c_b0e9                                                  ; $b0e3 : $10, $04
 
 	eor #$ffff.w                                                  ; $b0e5 : $49, $ff, $ff
@@ -8486,7 +8486,7 @@ br_3c_b1b3:
 	bne br_3c_b216                                                  ; $b204 : $d0, $10
 
 br_3c_b206:
-	jsr $02db3f.l                                                  ; $b206 : $22, $3f, $db, $02
+	jsr Func_2_db3f.l                                                  ; $b206 : $22, $3f, $db, $02
 	rts                                                  ; $b20a : $60
 
 
@@ -8845,7 +8845,7 @@ br_3c_b43d:
 	lda #$03.b                                                  ; $b45a : $a9, $03
 	jsr $02d96d.l                                                  ; $b45c : $22, $6d, $d9, $02
 	jsr Call_3c_b511.w                                                  ; $b460 : $20, $11, $b5
-	jsr Func_2_d928.l                                                  ; $b463 : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $b463 : $22, $28, $d9, $02
 	rts                                                  ; $b467 : $60
 
 
@@ -8982,7 +8982,7 @@ br_3c_b528:
 	lda $dc, X                                                  ; $b535 : $b5, $dc
 	lda $60, X                                                  ; $b537 : $b5, $60
 	rep #ACCU_8                                                  ; $b539 : $c2, $20
-	lda $09dd.w                                                  ; $b53b : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $b53b : $ad, $dd, $09
 	sec                                                  ; $b53e : $38
 	sbc #$0930.w                                                  ; $b53f : $e9, $30, $09
 	bpl br_3c_b54d                                                  ; $b542 : $10, $09
@@ -9129,7 +9129,7 @@ Call_3c_b5e1:
 	rts                                                  ; $b614 : $60
 
 
-	and $b6                                                  ; $b615 : $25, $b6
+	and wBG1HorizScroll+1                                                  ; $b615 : $25, $b6
 	lsr $f1b6.w, X                                                  ; $b617 : $5e, $b6, $f1
 	ldx $b5, Y                                                  ; $b61a : $b6, $b5
 	lda [$e7], Y                                                  ; $b61c : $b7, $e7
@@ -9247,10 +9247,10 @@ br_3c_b666:
 	ora ($38)                                                  ; $b70c : $12, $38
 	sbc #$08.b                                                  ; $b70e : $e9, $08
 	.db $00                                                  ; $b710 : $00
-	cmp $09dd.w                                                  ; $b711 : $cd, $dd, $09
+	cmp wPlayerEntity.x.w                                                  ; $b711 : $cd, $dd, $09
 	bcs br_3c_b758                                                  ; $b714 : $b0, $42
 
-	sta $09dd.w                                                  ; $b716 : $8d, $dd, $09
+	sta wPlayerEntity.x.w                                                  ; $b716 : $8d, $dd, $09
 	jsr $04d169.l                                                  ; $b719 : $22, $69, $d1, $04
 	tdc                                                  ; $b71d : $7b
 	sta $1f1f.w                                                  ; $b71e : $8d, $1f, $1f
@@ -9467,7 +9467,7 @@ br_3c_b7b4:
 	bne br_3c_b8bc                                                  ; $b8b1 : $d0, $09
 
 br_3c_b8b3:
-	jsr $02db3f.l                                                  ; $b8b3 : $22, $3f, $db, $02
+	jsr Func_2_db3f.l                                                  ; $b8b3 : $22, $3f, $db, $02
 	rts                                                  ; $b8b7 : $60
 
 
@@ -9477,7 +9477,7 @@ br_3c_b8b3:
 br_3c_b8bc:
 	bra br_3c_b8e7                                                  ; $b8bc : $80, $29
 
-	jsr $02ddfe.l                                                  ; $b8be : $22, $fe, $dd, $02
+	jsr Func_2_ddfe.l                                                  ; $b8be : $22, $fe, $dd, $02
 	lda $01                                                  ; $b8c2 : $a5, $01
 	cmp #$04.b                                                  ; $b8c4 : $c9, $04
 	beq br_3c_b8d4                                                  ; $b8c6 : $f0, $0c
@@ -10028,7 +10028,7 @@ br_3c_bc11:
 	sta $1faf.w                                                  ; $bc29 : $8d, $af, $1f
 
 br_3c_bc2c:
-	jsr Func_2_d928.l                                                  ; $bc2c : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $bc2c : $22, $28, $d9, $02
 	rts                                                  ; $bc30 : $60
 
 
@@ -10094,7 +10094,7 @@ Call_3c_bc91:
 	cmp $08                                                  ; $bc96 : $c5, $08
 	bmi br_3c_bcb3                                                  ; $bc98 : $30, $19
 
-	lda $09dd.w                                                  ; $bc9a : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $bc9a : $ad, $dd, $09
 	sec                                                  ; $bc9d : $38
 	sbc $05                                                  ; $bc9e : $e5, $05
 	bpl br_3c_bca6                                                  ; $bca0 : $10, $04
@@ -10265,7 +10265,7 @@ br_3c_bdb0:
 
 Call_3c_bdb1:
 	rep #ACCU_8                                                  ; $bdb1 : $c2, $20
-	lda $09dd.w                                                  ; $bdb3 : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $bdb3 : $ad, $dd, $09
 	cmp $05                                                  ; $bdb6 : $c5, $05
 	bpl br_3c_bdbc                                                  ; $bdb8 : $10, $02
 
@@ -10458,7 +10458,7 @@ br_3c_bece:
 	jmp ($bed3.w, X)                                                  ; $bed0 : $7c, $d3, $be
 
 
-	tsb $bf                                                  ; $bed3 : $04, $bf
+	tsb wBG3VertScroll                                                  ; $bed3 : $04, $bf
 	wai                                                  ; $bed5 : $cb
 	lda $dfc344.l, X                                                  ; $bed6 : $bf, $44, $c3, $df
 	ldx $beeb.w, Y                                                  ; $beda : $be, $eb, $be
@@ -10470,14 +10470,14 @@ br_3c_bece:
 	bne br_3c_befe                                                  ; $bee5 : $d0, $17
 
 br_3c_bee7:
-	jmp $02db3f.l                                                  ; $bee7 : $5c, $3f, $db, $02
+	jmp Func_2_db3f.l                                                  ; $bee7 : $5c, $3f, $db, $02
 
 
 	lda #$02.b                                                  ; $beeb : $a9, $02
 	sta $02                                                  ; $beed : $85, $02
 	bra br_3c_befe                                                  ; $beef : $80, $0d
 
-	jsr $02ddfe.l                                                  ; $bef1 : $22, $fe, $dd, $02
+	jsr Func_2_ddfe.l                                                  ; $bef1 : $22, $fe, $dd, $02
 	lda $01                                                  ; $bef5 : $a5, $01
 	cmp #$04.b                                                  ; $bef7 : $c9, $04
 	bne br_3c_befe                                                  ; $bef9 : $d0, $03
@@ -10747,7 +10747,7 @@ br_3c_c05e:
 	rts                                                  ; $c0b8 : $60
 
 
-	cmp $c0                                                  ; $c0b9 : $c5, $c0
+	cmp wBG3VertScroll+1                                                  ; $c0b9 : $c5, $c0
 	sbc ($c0), Y                                                  ; $c0bb : $f1, $c0
 	clc                                                  ; $c0bd : $18
 	cmp ($2c, X)                                                  ; $c0be : $c1, $2c
@@ -11156,7 +11156,7 @@ br_3c_c35b:
 	lda #$01.b                                                  ; $c38b : $a9, $01
 	trb $1f5f.w                                                  ; $c38d : $1c, $5f, $1f
 	stz $1f60.w                                                  ; $c390 : $9c, $60, $1f
-	jmp Func_2_d928.l                                                  ; $c393 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $c393 : $5c, $28, $d9, $02
 
 
 br_3c_c397:
@@ -11268,17 +11268,21 @@ br_3c_c43e:
 	rts                                                  ; $c443 : $60
 
 
+Func_3c_c444:
 	sep #ACCU_8|IDX_8                                                  ; $c444 : $e2, $30
 	ldx $01                                                  ; $c446 : $a6, $01
-	jmp ($c44b.w, X)                                                  ; $c448 : $7c, $4b, $c4
+	jmp (@states.w, X)                                                  ; $c448 : $7c, $4b, $c4
+
+@states:
+	.dw Func_3c_c479
+	.dw $c636
+	.dw $c86e
+	.dw $c457
+	.dw $c463
+	.dw $c469
 
 
-	adc $36c4.w, Y                                                  ; $c44b : $79, $c4, $36
-	dec $6e                                                  ; $c44e : $c6, $6e
-	iny                                                  ; $c450 : $c8
-	eor [$c4], Y                                                  ; $c451 : $57, $c4
-	adc $c4, S                                                  ; $c453 : $63, $c4
-	adc #$c4.b                                                  ; $c455 : $69, $c4
+;
 	lda $33                                                  ; $c457 : $a5, $33
 	bmi br_3c_c45f                                                  ; $c459 : $30, $04
 
@@ -11286,14 +11290,14 @@ br_3c_c43e:
 	bne br_3c_c476                                                  ; $c45d : $d0, $17
 
 br_3c_c45f:
-	jmp $02db3f.l                                                  ; $c45f : $5c, $3f, $db, $02
+	jmp Func_2_db3f.l                                                  ; $c45f : $5c, $3f, $db, $02
 
 
 	lda #$02.b                                                  ; $c463 : $a9, $02
 	sta $02                                                  ; $c465 : $85, $02
 	bra br_3c_c476                                                  ; $c467 : $80, $0d
 
-	jsr $02ddfe.l                                                  ; $c469 : $22, $fe, $dd, $02
+	jsr Func_2_ddfe.l                                                  ; $c469 : $22, $fe, $dd, $02
 	lda $01                                                  ; $c46d : $a5, $01
 	cmp #$04.b                                                  ; $c46f : $c9, $04
 	bne br_3c_c476                                                  ; $c471 : $d0, $03
@@ -11305,35 +11309,35 @@ br_3c_c476:
 	jmp Jump_3c_c636.w                                                  ; $c476 : $4c, $36, $c6
 
 
+Func_3c_c479:
 	ldx $02                                                  ; $c479 : $a6, $02
-	jmp ($c47e.w, X)                                                  ; $c47b : $7c, $7e, $c4
+	jmp (@substates.w, X)                                                  ; $c47b : $7c, $7e, $c4
+
+@substates:
+	.dw $c486
+	.dw $c4f9
+	.dw $c50f
+	.dw $c55a
 
 
-	stx $c4                                                  ; $c47e : $86, $c4
-	sbc $0fc4.w, Y                                                  ; $c480 : $f9, $c4, $0f
-	cmp $5a                                                  ; $c483 : $c5, $5a
-	cmp $ad                                                  ; $c485 : $c5, $ad
-	eor $291f.w, X                                                  ; $c487 : $5d, $1f, $29
-	tsb $0d                                                  ; $c48a : $04, $0d
-	rti                                                  ; $c48c : $40
-
-
-	.db $00                                                  ; $c48d : $00
-	beq br_3c_c491                                                  ; $c48e : $f0, $01
+	lda $1f5d.w                                                  ; $c486 : $ad, $5d, $1f
+	and #$04.b                                                  ; $c489 : $29, $04
+	ora $0040.w                                                  ; $c48b : $0d, $40, $00
+	beq @br_c491                                                  ; $c48e : $f0, $01
 
 	rtl                                                  ; $c490 : $6b
 
+@br_c491:
+; Don't spawn if the stage is already beat
+	jsr SetCarryIfCurrStageBossAlreadyBeat.l                                                  ; $c491 : $22, $7b, $e2, $02
+	bcs @deleteSelf                                                  ; $c495 : $b0, $27
 
-br_3c_c491:
-	jsr $02e27b.l                                                  ; $c491 : $22, $7b, $e2, $02
-	bcs br_3c_c4be                                                  ; $c495 : $b0, $27
-
-	jsr $02e0fb.l                                                  ; $c497 : $22, $fb, $e0, $02
+	jsr AequNumSubweaponsAcquired.l                                                  ; $c497 : $22, $fb, $e0, $02
 	cmp #$07.b                                                  ; $c49b : $c9, $07
-	beq br_3c_c4b7                                                  ; $c49d : $f0, $18
+	beq @br_c4b7                                                  ; $c49d : $f0, $18
 
 	cmp #$05.b                                                  ; $c49f : $c9, $05
-	bmi br_3c_c4be                                                  ; $c4a1 : $30, $1b
+	bmi @deleteSelf                                                  ; $c4a1 : $30, $1b
 
 	lda $1fd9.w                                                  ; $c4a3 : $ad, $d9, $1f
 	lsr                                                  ; $c4a6 : $4a
@@ -11341,19 +11345,19 @@ br_3c_c491:
 	lsr                                                  ; $c4a8 : $4a
 	lsr                                                  ; $c4a9 : $4a
 	cmp wStageIdx.w                                                  ; $c4aa : $cd, $ae, $1f
-	beq br_3c_c4b7                                                  ; $c4ad : $f0, $08
+	beq @br_c4b7                                                  ; $c4ad : $f0, $08
 
-	jsr $04be35.l                                                  ; $c4af : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $c4af : $22, $35, $be, $04
 	and #$01.b                                                  ; $c4b3 : $29, $01
-	beq br_3c_c4be                                                  ; $c4b5 : $f0, $07
+	beq @deleteSelf                                                  ; $c4b5 : $f0, $07
 
-br_3c_c4b7:
+@br_c4b7:
 	lda $1fd8.w                                                  ; $c4b7 : $ad, $d8, $1f
 	bit #$0c.b                                                  ; $c4ba : $89, $0c
 	beq br_3c_c4c2                                                  ; $c4bc : $f0, $04
 
-br_3c_c4be:
-	jmp Func_2_d928.l                                                  ; $c4be : $5c, $28, $d9, $02
+@deleteSelf:
+	jmp todo_DisablesEntity_d928.l                                                  ; $c4be : $5c, $28, $d9, $02
 
 
 br_3c_c4c2:
@@ -11450,7 +11454,7 @@ br_3c_c515:
 	.db $82                                                  ; $c56d : $82
 
 	cmp $a9                                                  ; $c56e : $c5, $a9
-	cmp $b8                                                  ; $c570 : $c5, $b8
+	cmp wBG1VertScroll+1                                                  ; $c570 : $c5, $b8
 	cmp $e7                                                  ; $c572 : $c5, $e7
 	cmp $07                                                  ; $c574 : $c5, $07
 	dec $a9                                                  ; $c576 : $c6, $a9
@@ -12081,7 +12085,7 @@ br_3c_c943:
 	trb $1f5f.w                                                  ; $c966 : $1c, $5f, $1f
 	stz $1f2c.w                                                  ; $c969 : $9c, $2c, $1f
 	sep #IDX_8                                                  ; $c96c : $e2, $10
-	jmp Func_2_d928.l                                                  ; $c96e : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $c96e : $5c, $28, $d9, $02
 
 
 	lda #$04.b                                                  ; $c972 : $a9, $04
@@ -12298,14 +12302,14 @@ br_3c_caf3:
 	bne br_3c_cb21                                                  ; $cb06 : $d0, $19
 
 br_3c_cb08:
-	jsr $02db3f.l                                                  ; $cb08 : $22, $3f, $db, $02
+	jsr Func_2_db3f.l                                                  ; $cb08 : $22, $3f, $db, $02
 	bra br_3c_cb18                                                  ; $cb0c : $80, $0a
 
 	lda #$02.b                                                  ; $cb0e : $a9, $02
 	sta $01                                                  ; $cb10 : $85, $01
 	bra br_3c_cb21                                                  ; $cb12 : $80, $0d
 
-	jsr $02ddfe.l                                                  ; $cb14 : $22, $fe, $dd, $02
+	jsr Func_2_ddfe.l                                                  ; $cb14 : $22, $fe, $dd, $02
 
 br_3c_cb18:
 	lda $01                                                  ; $cb18 : $a5, $01
@@ -12478,7 +12482,7 @@ br_3c_cc2e:
 	bpl br_3c_cc58                                                  ; $cc30 : $10, $26
 
 	rep #ACCU_8                                                  ; $cc32 : $c2, $20
-	lda $09dd.w                                                  ; $cc34 : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $cc34 : $ad, $dd, $09
 	cmp $05                                                  ; $cc37 : $c5, $05
 	sep #ACCU_8                                                  ; $cc39 : $e2, $20
 	bcc br_3c_cc48                                                  ; $cc3b : $90, $0b
@@ -12692,7 +12696,7 @@ br_3c_cd5e:
 	sta $1e70.w                                                  ; $cd68 : $8d, $70, $1e
 	sep #ACCU_8                                                  ; $cd6b : $e2, $20
 	jsr $04d1ef.l                                                  ; $cd6d : $22, $ef, $d1, $04
-	jmp Func_2_d928.l                                                  ; $cd71 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $cd71 : $5c, $28, $d9, $02
 
 
 Call_3c_cd75:
@@ -12835,11 +12839,11 @@ br_3c_ce48:
 Data_3c_ce4b:
 	.dw $ce6b
 	.dw Data_3c_d15c
-	.dw Data_3c_d510 ; 2 - blizzard buffalo
+	.dw EntityLocations2_BlizzardBuffalo
 	.dw $d8b7
 	.dw $dc90
 	.dw $e06a
-	.dw $e4bf
+	.dw EntityLocations6_CrushCrawfish
 	.dw Data_3c_e888 ; 7 tunnel rhino
 	.dw Data_3c_ec8d
 	.dw $efc8
@@ -14051,7 +14055,7 @@ br_3c_d4f0:
 	.db $fe
 
 
-Data_3c_d510:
+EntityLocations2_BlizzardBuffalo:
 	.db $09
 	.db $03, $a0, $03, $2f, $0b, $30, $81
 	.db $0c
@@ -16279,14 +16283,14 @@ br_3c_e3ba:
 	cop $40.b                                                  ; $e3c7 : $02, $40
 	php                                                  ; $e3c9 : $08
 	.db $00                                                  ; $e3ca : $00
-	and $c0                                                  ; $e3cb : $25, $c0
+	and wBG3VertScroll+1                                                  ; $e3cb : $25, $c0
 	phd                                                  ; $e3cd : $0b
 	cop $40.b                                                  ; $e3ce : $02, $40
 	php                                                  ; $e3d0 : $08
 
 br_3c_e3d1:
 	.db $00                                                  ; $e3d1 : $00
-	bit $c0                                                  ; $e3d2 : $24, $c0
+	bit wBG3VertScroll+1                                                  ; $e3d2 : $24, $c0
 	phd                                                  ; $e3d4 : $0b
 	ora $78, S                                                  ; $e3d5 : $03, $78
 	php                                                  ; $e3d7 : $08
@@ -16447,697 +16451,210 @@ br_3c_e497:
 br_3c_e4bb:
 	.db $00                                                  ; $e4bb : $00
 	ldy #$8d.b                                                  ; $e4bc : $a0, $8d
-	adc $010c.w                                                  ; $e4be : $6d, $0c, $01
-	bra br_3c_e4c5                                                  ; $e4c1 : $80, $02
-
-	and ($2c, S), Y                                                  ; $e4c3 : $33, $2c
-
-br_3c_e4c5:
-	.db $80, $01                                                  ; $e4c5 : $80, $01
-
-	ora ($80, X)                                                  ; $e4c7 : $01, $80
-	cop $33.b                                                  ; $e4c9 : $02, $33
-	and $0180.w                                                  ; $e4cb : $2d, $80, $01
-	cop $80.b                                                  ; $e4ce : $02, $80
-	ora $00, S                                                  ; $e4d0 : $03, $00
-	ora $8180.w, X                                                  ; $e4d2 : $1d, $80, $81
-	asl $5003.w                                                  ; $e4d5 : $0e, $03, $50
-	cop $2f.b                                                  ; $e4d8 : $02, $2f
-	phd                                                  ; $e4da : $0b
-	.db $d0, $81                                                  ; $e4db : $d0, $81
-
-	bpl br_3c_e4e1                                                  ; $e4dd : $10, $02
-
-br_3c_e4df:
-	.db $80, $03                                                  ; $e4df : $80, $03
-
-br_3c_e4e1:
-	.db $00                                                  ; $e4e1 : $00
-	ora $8200.w, X                                                  ; $e4e2 : $1d, $00, $82
-	ora ($03), Y                                                  ; $e4e5 : $11, $03
-	pha                                                  ; $e4e7 : $48
-	cop $0d.b                                                  ; $e4e8 : $02, $0d
-	.db $00                                                  ; $e4ea : $00
-	sec                                                  ; $e4eb : $38
-	brl br_3c_e703                                                  ; $e4ec : $82, $14, $02
-
-	.db $80, $02                                                  ; $e4ef : $80, $02
-
-	.db $00                                                  ; $e4f1 : $00
-	asl $0280.w, X                                                  ; $e4f2 : $1e, $80, $02
-	cop $80.b                                                  ; $e4f5 : $02, $80
-	ora $00, S                                                  ; $e4f7 : $03, $00
-	asl $8280.w, X                                                  ; $e4f9 : $1e, $80, $82
-	ora $03, X                                                  ; $e4fc : $15, $03
-	rts                                                  ; $e4fe : $60
-
-
-	cop $0d.b                                                  ; $e4ff : $02, $0d
-	.db $00                                                  ; $e501 : $00
-	tay                                                  ; $e502 : $a8
-	cop $03.b                                                  ; $e503 : $02, $03
-	bpl br_3c_e50a                                                  ; $e505 : $10, $03
-
-	ora $a800.w                                                  ; $e507 : $0d, $00, $a8
-
-br_3c_e50a:
-	brl br_3c_e826                                                  ; $e50a : $82, $19, $03
-
-	ldy #$02.b                                                  ; $e50d : $a0, $02
-	ora $2000.w                                                  ; $e50f : $0d, $00, $20
-	sta $1a, S                                                  ; $e512 : $83, $1a
-	ora $00, S                                                  ; $e514 : $03, $00
-	ora $0d, S                                                  ; $e516 : $03, $0d
-	.db $00                                                  ; $e518 : $00
-	rti                                                  ; $e519 : $40
-
-
-	ora $02, S                                                  ; $e51a : $03, $02
-	bra br_3c_e521                                                  ; $e51c : $80, $03
-
-	.db $00                                                  ; $e51e : $00
-	.db $00                                                  ; $e51f : $00
-	rti                                                  ; $e520 : $40
-
-
-br_3c_e521:
-	ora $02, S                                                  ; $e521 : $03, $02
-	bra br_3c_e528                                                  ; $e523 : $80, $03
-
-	.db $00                                                  ; $e525 : $00
-	ora ($40, X)                                                  ; $e526 : $01, $40
-
-br_3c_e528:
-	ora $03, S                                                  ; $e528 : $03, $03
-	ldy $03, X                                                  ; $e52a : $b4, $03
-	bit $5800.w, X                                                  ; $e52c : $3c, $00, $58
-	sta $1e, S                                                  ; $e52f : $83, $1e
-	.db $00                                                  ; $e531 : $00
-	ldy $04                                                  ; $e532 : $a4, $04
-	ora [$04], Y                                                  ; $e534 : $17, $04
-	bne br_3c_e4bb                                                  ; $e536 : $d0, $83
-
-	ora $023003.l, X                                                  ; $e538 : $1f, $03, $30, $02
-	ora $e800.w                                                  ; $e53c : $0d, $00, $e8
-	sta $22, S                                                  ; $e53f : $83, $22
-	ora $b0, S                                                  ; $e541 : $03, $b0
-	cop $0d.b                                                  ; $e543 : $02, $0d
-	.db $00                                                  ; $e545 : $00
-	.db $50, $84                                                  ; $e546 : $50, $84
-
-	bit $00                                                  ; $e548 : $24, $00
-	pha                                                  ; $e54a : $48
-	cop $02.b                                                  ; $e54b : $02, $02
-	bra br_3c_e4df                                                  ; $e54d : $80, $90
-
-	sty $26                                                  ; $e54f : $84, $26
-	ora $30, S                                                  ; $e551 : $03, $30
-	cop $0d.b                                                  ; $e553 : $02, $0d
-	.db $00                                                  ; $e555 : $00
-	cpy #$04.b                                                  ; $e556 : $c0, $04
-	.db $00                                                  ; $e558 : $00
-	cld                                                  ; $e559 : $d8
-	cop $02.b                                                  ; $e55a : $02, $02
-	.db $80, $d0                                                  ; $e55c : $80, $d0
-
-	sty $28                                                  ; $e55e : $84, $28
-	cop $80.b                                                  ; $e560 : $02, $80
-	ora $15, S                                                  ; $e562 : $03, $15
-	cop $00.b                                                  ; $e564 : $02, $00
-	sta $29                                                  ; $e566 : $85, $29
-	ora $90, S                                                  ; $e568 : $03, $90
-	ora [$4d]                                                  ; $e56a : $07, $4d
-	rti                                                  ; $e56c : $40
-
-
-	.db $30, $85                                                  ; $e56d : $30, $85
-
-	bit $8002.w                                                  ; $e56f : $2c, $02, $80
-	ora $00, S                                                  ; $e572 : $03, $00
-	ora $80, S                                                  ; $e574 : $03, $80
-	ora $02                                                  ; $e576 : $05, $02
-	bra br_3c_e57d                                                  ; $e578 : $80, $03
-
-	.db $00                                                  ; $e57a : $00
-	cop $80.b                                                  ; $e57b : $02, $80
-
-br_3c_e57d:
-	ora $02                                                  ; $e57d : $05, $02
-	bra br_3c_e586                                                  ; $e57f : $80, $05
-
-	tsb $8007.w                                                  ; $e581 : $0c, $07, $80
-	ora $02                                                  ; $e584 : $05, $02
-
-br_3c_e586:
-	bra br_3c_e58e                                                  ; $e586 : $80, $06
-
-	.db $00                                                  ; $e588 : $00
-	php                                                  ; $e589 : $08
-	.db $80, $05                                                  ; $e58a : $80, $05
-
-	cop $80.b                                                  ; $e58c : $02, $80
-
-br_3c_e58e:
-	asl $00                                                  ; $e58e : $06, $00
-	ora [$80]                                                  ; $e590 : $07, $80
-	sta $2d                                                  ; $e592 : $85, $2d
-	ora $a0, S                                                  ; $e594 : $03, $a0
-	ora $2d, S                                                  ; $e596 : $03, $2d
-	ora ($a0, X)                                                  ; $e598 : $01, $a0
-	sta $2f                                                  ; $e59a : $85, $2f
-	cop $80.b                                                  ; $e59c : $02, $80
-	ora $00                                                  ; $e59e : $05, $00
-	tsb $f0                                                  ; $e5a0 : $04, $f0
-	sta $30                                                  ; $e5a2 : $85, $30
-	cop $80.b                                                  ; $e5a4 : $02, $80
-	ora $00                                                  ; $e5a6 : $05, $00
-	asl $10                                                  ; $e5a8 : $06, $10
-	asl $02                                                  ; $e5aa : $06, $02
-	bra br_3c_e5b3                                                  ; $e5ac : $80, $05
-
-	.db $00                                                  ; $e5ae : $00
-	ora $00                                                  ; $e5af : $05, $00
-	stx $33                                                  ; $e5b1 : $86, $33
-
-br_3c_e5b3:
-	cop $90.b                                                  ; $e5b3 : $02, $90
-	ora [$15]                                                  ; $e5b5 : $07, $15
-	and ($60)                                                  ; $e5b7 : $32, $60
-	stx $34                                                  ; $e5b9 : $86, $34
-	cop $80.b                                                  ; $e5bb : $02, $80
-	ora [$0c]                                                  ; $e5bd : $07, $0c
-	ora [$80]                                                  ; $e5bf : $07, $80
-	stx $36                                                  ; $e5c1 : $86, $36
-
-br_3c_e5c3:
-	.db $00                                                  ; $e5c3 : $00
-	tay                                                  ; $e5c4 : $a8
-	ora $0b                                                  ; $e5c5 : $05, $0b
-	jsr $06d0.w                                                  ; $e5c7 : $20, $d0, $06
-	cop $b0.b                                                  ; $e5ca : $02, $b0
-
-br_3c_e5cc:
-	asl $00                                                  ; $e5cc : $06, $00
-	asl                                                  ; $e5ce : $0a
-	cpy #$06.b                                                  ; $e5cf : $c0, $06
-	cop $b0.b                                                  ; $e5d1 : $02, $b0
-	asl $00                                                  ; $e5d3 : $06, $00
-	ora #$c0.b                                                  ; $e5d5 : $09, $c0
-	stx $38                                                  ; $e5d7 : $86, $38
-	cop $70.b                                                  ; $e5d9 : $02, $70
-	asl $15                                                  ; $e5db : $06, $15
-	bit $00                                                  ; $e5dd : $24, $00
-	sta [$47]                                                  ; $e5df : $87, $47
-	.db $00                                                  ; $e5e1 : $00
-	sta [$06], Y                                                  ; $e5e2 : $97, $06
-	ora ($05), Y                                                  ; $e5e4 : $11, $05
-	sed                                                  ; $e5e6 : $f8
-	php                                                  ; $e5e7 : $08
-	.db $00                                                  ; $e5e8 : $00
-	tya                                                  ; $e5e9 : $98
-	asl $0a                                                  ; $e5ea : $06, $0a
-	.db $00                                                  ; $e5ec : $00
-	cpx #$08.b                                                  ; $e5ed : $e0, $08
-	cop $a0.b                                                  ; $e5ef : $02, $a0
-	asl $15                                                  ; $e5f1 : $06, $15
-	eor $e0                                                  ; $e5f3 : $45, $e0
-	dey                                                  ; $e5f5 : $88
-	eor $a003.w                                                  ; $e5f6 : $4d, $03, $a0
-	asl $47                                                  ; $e5f9 : $06, $47
-	.db $00                                                  ; $e5fb : $00
-	ldy #$09.b                                                  ; $e5fc : $a0, $09
-	ora $a0, S                                                  ; $e5fe : $03, $a0
-	asl $46                                                  ; $e600 : $06, $46
-	.db $00                                                  ; $e602 : $00
-	ldy #$89.b                                                  ; $e603 : $a0, $89
-	eor $069700.l                                                  ; $e605 : $4f, $00, $97, $06
-	ora ($05), Y                                                  ; $e609 : $11, $05
-	sed                                                  ; $e60b : $f8
-	bit #$50.b                                                  ; $e60c : $89, $50
-	.db $00                                                  ; $e60e : $00
-	bra br_3c_e617                                                  ; $e60f : $80, $06
-
-	asl                                                  ; $e611 : $0a
-	ora ($18, X)                                                  ; $e612 : $01, $18
-	asl                                                  ; $e614 : $0a
-	cop $a0.b                                                  ; $e615 : $02, $a0
-
-br_3c_e617:
-	asl $15                                                  ; $e617 : $06, $15
-	ror $00                                                  ; $e619 : $66, $00
-	txa                                                  ; $e61b : $8a
-	mvn $80, $01                                                  ; $e61c : $54, $01, $80
-	asl $33                                                  ; $e61f : $06, $33
-	bit $0a80.w                                                  ; $e621 : $2c, $80, $0a
-	ora ($80, X)                                                  ; $e624 : $01, $80
-	asl $33                                                  ; $e626 : $06, $33
-	and $0a80.w                                                  ; $e628 : $2d, $80, $0a
-	cop $80.b                                                  ; $e62b : $02, $80
-	asl $0b                                                  ; $e62d : $06, $0b
-	ora ($80, X)                                                  ; $e62f : $01, $80
-	asl                                                  ; $e631 : $0a
-	cop $80.b                                                  ; $e632 : $02, $80
-	asl $00                                                  ; $e634 : $06, $00
-	phd                                                  ; $e636 : $0b
-	bra br_3c_e5c3                                                  ; $e637 : $80, $8a
-
-	jmp $067003.l                                                  ; $e639 : $5c, $03, $70, $06
-
-
-	tsc                                                  ; $e63d : $3b
-	.db $00                                                  ; $e63e : $00
-	bra br_3c_e5cc                                                  ; $e63f : $80, $8b
-
-	rts                                                  ; $e641 : $60
-
-
-	ora $50, S                                                  ; $e642 : $03, $50
-	asl $28                                                  ; $e644 : $06, $28
-	.db $00                                                  ; $e646 : $00
-	.db $00                                                  ; $e647 : $00
-	sty $0061.w                                                  ; $e648 : $8c, $61, $00
-	clv                                                  ; $e64b : $b8
-	asl $02                                                  ; $e64c : $06, $02
-	bra br_3c_e680                                                  ; $e64e : $80, $30
-
-	sty $0062.w                                                  ; $e650 : $8c, $62, $00
-	txa                                                  ; $e653 : $8a
-	ora [$1a]                                                  ; $e654 : $07, $1a
-	.db $00                                                  ; $e656 : $00
-	pha                                                  ; $e657 : $48
-	sty $0264.w                                                  ; $e658 : $8c, $64, $02
-	bra br_3c_e663                                                  ; $e65b : $80, $06
-
-	.db $00                                                  ; $e65d : $00
-	ora $0c80.w                                                  ; $e65e : $0d, $80, $0c
-	cop $80.b                                                  ; $e661 : $02, $80
-
-br_3c_e663:
-	asl $00                                                  ; $e663 : $06, $00
-	asl $0c80.w                                                  ; $e665 : $0e, $80, $0c
-	cop $80.b                                                  ; $e668 : $02, $80
-	asl $00                                                  ; $e66a : $06, $00
-	ora $020c80.l                                                  ; $e66c : $0f, $80, $0c, $02
-	bra br_3c_e678                                                  ; $e670 : $80, $06
-
-	.db $00                                                  ; $e672 : $00
-	tsb $8c80.w                                                  ; $e673 : $0c, $80, $8c
-	adc #$03.b                                                  ; $e676 : $69, $03
-
-br_3c_e678:
-	.db $70, $07                                                  ; $e678 : $70, $07
-
-	asl $2801.w                                                  ; $e67a : $0e, $01, $28
-	sta $036a.w                                                  ; $e67d : $8d, $6a, $03
-
-br_3c_e680:
-	bvs br_3c_e688                                                  ; $e680 : $70, $06
-
-	plp                                                  ; $e682 : $28
-	.db $00                                                  ; $e683 : $00
-	bvc br_3c_e693                                                  ; $e684 : $50, $0d
-
-	cop $80.b                                                  ; $e686 : $02, $80
-
-br_3c_e688:
-	php                                                  ; $e688 : $08
-	.db $00                                                  ; $e689 : $00
-	ora ($40, S), Y                                                  ; $e68a : $13, $40
-	ora $8002.w                                                  ; $e68c : $0d, $02, $80
-	php                                                  ; $e68f : $08
-	.db $00                                                  ; $e690 : $00
-	ora ($40)                                                  ; $e691 : $12, $40
-
-br_3c_e693:
-	sta $026c.w                                                  ; $e693 : $8d, $6c, $02
-	bra br_3c_e69e                                                  ; $e696 : $80, $06
-
-	.db $00                                                  ; $e698 : $00
-	ora ($80), Y                                                  ; $e699 : $11, $80
-	ora $8002.w                                                  ; $e69b : $0d, $02, $80
-
-br_3c_e69e:
-	asl $00                                                  ; $e69e : $06, $00
-	.db $10, $80                                                  ; $e6a0 : $10, $80
-
-	ora $6002.w                                                  ; $e6a2 : $0d, $02, $60
-	ora [$04]                                                  ; $e6a5 : $07, $04
-	trb $80                                                  ; $e6a7 : $14, $80
-	ora $8001.w                                                  ; $e6a9 : $0d, $01, $80
-	ora [$33]                                                  ; $e6ac : $07, $33
-	and $010d80.l                                                  ; $e6ae : $2f, $80, $0d, $01
-	.db $80, $07                                                  ; $e6b2 : $80, $07
-
-	and ($2e, S), Y                                                  ; $e6b4 : $33, $2e
-	.db $80, $0d                                                  ; $e6b6 : $80, $0d
-
-	cop $80.b                                                  ; $e6b8 : $02, $80
-	ora [$1a]                                                  ; $e6ba : $07, $1a
-	ora ($80, X)                                                  ; $e6bc : $01, $80
-	sta $036e.w                                                  ; $e6be : $8d, $6e, $03
-	bvc br_3c_e6c9                                                  ; $e6c1 : $50, $06
-
-	asl $d900.w                                                  ; $e6c3 : $0e, $00, $d9
-	ora $b003.w                                                  ; $e6c6 : $0d, $03, $b0
-
-br_3c_e6c9:
-	ora [$28]                                                  ; $e6c9 : $07, $28
-	.db $00                                                  ; $e6cb : $00
-	cpy #$0d.b                                                  ; $e6cc : $c0, $0d
-	.db $00                                                  ; $e6ce : $00
-	clv                                                  ; $e6cf : $b8
-	ora [$02]                                                  ; $e6d0 : $07, $02
-	.db $80, $d6                                                  ; $e6d2 : $80, $d6
-
-	sta $0274.w                                                  ; $e6d4 : $8d, $74, $02
-	bvc br_3c_e6e1                                                  ; $e6d7 : $50, $08
-
-	ora $67, X                                                  ; $e6d9 : $15, $67
-	.db $80, $8e                                                  ; $e6db : $80, $8e
-
-	jmp ($8002.w, X)                                                  ; $e6dd : $7c, $02, $80
-
-
-	php                                                  ; $e6e0 : $08
-
-br_3c_e6e1:
-	ora [$12], Y                                                  ; $e6e1 : $17, $12
-	.db $80, $8f                                                  ; $e6e3 : $80, $8f
-
-br_3c_e6e5:
-	adc $086003.l, X                                                  ; $e6e5 : $7f, $03, $60, $08
-	and $f000.w                                                  ; $e6e9 : $2d, $00, $f0
-	sta $680089.l                                                  ; $e6ec : $8f, $89, $00, $68
-	ora #$01.b                                                  ; $e6f0 : $09, $01
-	.db $80, $30                                                  ; $e6f2 : $80, $30
-
-	ora ($00), Y                                                  ; $e6f4 : $11, $00
-	tya                                                  ; $e6f6 : $98
-	asl                                                  ; $e6f7 : $0a
-	cop $80.b                                                  ; $e6f8 : $02, $80
-	.db $30, $91                                                  ; $e6fa : $30, $91
-
-	txa                                                  ; $e6fc : $8a
-
-br_3c_e6fd:
-	.db $00                                                  ; $e6fd : $00
-	tya                                                  ; $e6fe : $98
-	asl                                                  ; $e6ff : $0a
-	cop $80.b                                                  ; $e700 : $02, $80
-	rti                                                  ; $e702 : $40
-
-
-br_3c_e703:
-	sta ($8c), Y                                                  ; $e703 : $91, $8c
-	ora ($80, X)                                                  ; $e705 : $01, $80
-	php                                                  ; $e707 : $08
-	and ($30, S), Y                                                  ; $e708 : $33, $30
-	bra br_3c_e71d                                                  ; $e70a : $80, $11
-
-	cop $80.b                                                  ; $e70c : $02, $80
-	php                                                  ; $e70e : $08
-	.db $00                                                  ; $e70f : $00
-	trb $80                                                  ; $e710 : $14, $80
-	ora ($02), Y                                                  ; $e712 : $11, $02
-	.db $80, $08                                                  ; $e714 : $80, $08
-
-	.db $00                                                  ; $e716 : $00
-	ora $80, X                                                  ; $e717 : $15, $80
-	ora ($03), Y                                                  ; $e719 : $11, $03
-	ldy #$08.b                                                  ; $e71b : $a0, $08
-
-br_3c_e71d:
-	and $8002.w                                                  ; $e71d : $2d, $02, $80
-	ora ($02), Y                                                  ; $e720 : $11, $02
-	jsr $0409.w                                                  ; $e722 : $20, $09, $04
-	ora $80, X                                                  ; $e725 : $15, $80
-	ora ($02), Y                                                  ; $e727 : $11, $02
-	bra br_3c_e734                                                  ; $e729 : $80, $09
-
-	.db $00                                                  ; $e72b : $00
-	ora [$80], Y                                                  ; $e72c : $17, $80
-	ora ($01), Y                                                  ; $e72e : $11, $01
-	.db $80, $09                                                  ; $e730 : $80, $09
-
-	and ($31, S), Y                                                  ; $e732 : $33, $31
-
-br_3c_e734:
-	bra br_3c_e747                                                  ; $e734 : $80, $11
-
-	ora ($80, X)                                                  ; $e736 : $01, $80
-	ora #$33.b                                                  ; $e738 : $09, $33
-	and ($80)                                                  ; $e73a : $32, $80
-	ora ($02), Y                                                  ; $e73c : $11, $02
-	.db $80, $09                                                  ; $e73e : $80, $09
-
-	.db $00                                                  ; $e740 : $00
-	asl $80, X                                                  ; $e741 : $16, $80
-	ora ($03), Y                                                  ; $e743 : $11, $03
-	bmi br_3c_e751                                                  ; $e745 : $30, $0a
-
-br_3c_e747:
-	ora $8800.w                                                  ; $e747 : $0d, $00, $88
-	sta ($91), Y                                                  ; $e74a : $91, $91
-	cop $60.b                                                  ; $e74c : $02, $60
-	ora #$15.b                                                  ; $e74e : $09, $15
-	sei                                                  ; $e750 : $78
-
-br_3c_e751:
-	bmi br_3c_e6e5                                                  ; $e751 : $30, $92
-
-	sta ($03)                                                  ; $e753 : $92, $03
-	bcs br_3c_e761                                                  ; $e755 : $b0, $0a
-
-	and $5000.w                                                  ; $e757 : $2d, $00, $50
-	sta ($93)                                                  ; $e75a : $92, $93
-	ora $40, S                                                  ; $e75c : $03, $40
-	ora #$0d.b                                                  ; $e75e : $09, $0d
-	.db $00                                                  ; $e760 : $00
-
-br_3c_e761:
-	rts                                                  ; $e761 : $60
-
-
-	sta ($94)                                                  ; $e762 : $92, $94
-	ora $a0, S                                                  ; $e764 : $03, $a0
-	ora #$0d.b                                                  ; $e766 : $09, $0d
-	.db $00                                                  ; $e768 : $00
-	bcc br_3c_e6fd                                                  ; $e769 : $90, $92
-
-	sta $5003.w, Y                                                  ; $e76b : $99, $03, $50
-	ora #$0d.b                                                  ; $e76e : $09, $0d
-	.db $00                                                  ; $e770 : $00
-	.db $30, $93                                                  ; $e771 : $30, $93
-
-	txs                                                  ; $e773 : $9a
-	ora $f0, S                                                  ; $e774 : $03, $f0
-	ora #$0d.b                                                  ; $e776 : $09, $0d
-	.db $00                                                  ; $e778 : $00
-	rti                                                  ; $e779 : $40
-
-
-	sta ($9b, S), Y                                                  ; $e77a : $93, $9b
-	ora $70, S                                                  ; $e77c : $03, $70
-	asl                                                  ; $e77e : $0a
-	ora $7000.w                                                  ; $e77f : $0d, $00, $70
-	sta ($9d, S), Y                                                  ; $e782 : $93, $9d
-
-br_3c_e784:
-	ora $00, S                                                  ; $e784 : $03, $00
-	asl                                                  ; $e786 : $0a
-
-br_3c_e787:
-	ora $a000.w                                                  ; $e787 : $0d, $00, $a0
-	sta ($9e, S), Y                                                  ; $e78a : $93, $9e
-	ora $70, S                                                  ; $e78c : $03, $70
-	asl                                                  ; $e78e : $0a
-	and $d000.w                                                  ; $e78f : $2d, $00, $d0
-	sta ($a0, S), Y                                                  ; $e792 : $93, $a0
-	ora $40, S                                                  ; $e794 : $03, $40
-	ora #$0d.b                                                  ; $e796 : $09, $0d
-	.db $00                                                  ; $e798 : $00
-	.db $00                                                  ; $e799 : $00
-	trb $02                                                  ; $e79a : $14, $02
-	bra br_3c_e7a8                                                  ; $e79c : $80, $0a
-
-	ora [$23], Y                                                  ; $e79e : $17, $23
-	.db $00                                                  ; $e7a0 : $00
-	sty $a3, X                                                  ; $e7a1 : $94, $a3
-	ora $70, S                                                  ; $e7a3 : $03, $70
-	ora #$0d.b                                                  ; $e7a5 : $09, $0d
-	.db $00                                                  ; $e7a7 : $00
-
-br_3c_e7a8:
-	rts                                                  ; $e7a8 : $60
-
-
-	sty $a4, X                                                  ; $e7a9 : $94, $a4
-	cop $80.b                                                  ; $e7ab : $02, $80
-	ora #$0c.b                                                  ; $e7ad : $09, $0c
-	asl $80                                                  ; $e7af : $06, $80
-	trb $02                                                  ; $e7b1 : $14, $02
-	.db $00                                                  ; $e7b3 : $00
-	asl                                                  ; $e7b4 : $0a
-	ina                                                  ; $e7b5 : $1a
-	and $80, S                                                  ; $e7b6 : $23, $80
-	sty $a6, X                                                  ; $e7b8 : $94, $a6
-	.db $00                                                  ; $e7ba : $00
-	tya                                                  ; $e7bb : $98
-	ora #$04.b                                                  ; $e7bc : $09, $04
-	.db $80, $d0                                                  ; $e7be : $80, $d0
-
-	trb $00                                                  ; $e7c0 : $14, $00
-	tya                                                  ; $e7c2 : $98
-	ora #$04.b                                                  ; $e7c3 : $09, $04
-	bra br_3c_e787                                                  ; $e7c5 : $80, $c0
-
-	sty $a7, X                                                  ; $e7c7 : $94, $a7
-	.db $00                                                  ; $e7c9 : $00
-	lda [$0a]                                                  ; $e7ca : $a7, $0a
-	ora ($06), Y                                                  ; $e7cc : $11, $06
-	sed                                                  ; $e7ce : $f8
-	sty $a8, X                                                  ; $e7cf : $94, $a8
-	ora ($80, X)                                                  ; $e7d1 : $01, $80
-	asl                                                  ; $e7d3 : $0a
-	and ($33, S), Y                                                  ; $e7d4 : $33, $33
-	.db $00                                                  ; $e7d6 : $00
-	ora $00, X                                                  ; $e7d7 : $15, $00
-	bcc br_3c_e7e5                                                  ; $e7d9 : $90, $0a
-
-	asl                                                  ; $e7db : $0a
-	ora ($18, X)                                                  ; $e7dc : $01, $18
-	sta $aa, X                                                  ; $e7de : $95, $aa
-	cop $80.b                                                  ; $e7e0 : $02, $80
-	asl                                                  ; $e7e2 : $0a
-	tsb $16                                                  ; $e7e3 : $04, $16
-
-br_3c_e7e5:
-	rti                                                  ; $e7e5 : $40
-
-
-	sta $ac, X                                                  ; $e7e6 : $95, $ac
-	cop $80.b                                                  ; $e7e8 : $02, $80
-	asl                                                  ; $e7ea : $0a
-	.db $00                                                  ; $e7eb : $00
-	clc                                                  ; $e7ec : $18
-	bra br_3c_e784                                                  ; $e7ed : $80, $95
-
-	lda $0a8003.l                                                  ; $e7ef : $af, $03, $80, $0a
-	rol                                                  ; $e7f3 : $2a
-	.db $00                                                  ; $e7f4 : $00
-	inx                                                  ; $e7f5 : $e8
-	sta $b1, X                                                  ; $e7f6 : $95, $b1
-	ora $40, S                                                  ; $e7f8 : $03, $40
-	php                                                  ; $e7fa : $08
-	asl $3601.w                                                  ; $e7fb : $0e, $01, $36
-	asl $02, X                                                  ; $e7fe : $16, $02
-	bra br_3c_e80c                                                  ; $e800 : $80, $0a
-
-	ora [$34], Y                                                  ; $e802 : $17, $34
-	jsr Call_3c_b296.w                                                  ; $e804 : $20, $96, $b2
-
-br_3c_e807:
-	cop $70.b                                                  ; $e807 : $02, $70
-	asl $00                                                  ; $e809 : $06, $00
-	tcs                                                  ; $e80b : $1b
-
-br_3c_e80c:
-	rti                                                  ; $e80c : $40
-
-
-	asl $02, X                                                  ; $e80d : $16, $02
-	bvs br_3c_e817                                                  ; $e80f : $70, $06
-
-	.db $00                                                  ; $e811 : $00
-	trb $1640.w                                                  ; $e812 : $1c, $40, $16
-	ora $b0, S                                                  ; $e815 : $03, $b0
-
-br_3c_e817:
-	ora [$0e]                                                  ; $e817 : $07, $0e
-	ora ($56, X)                                                  ; $e819 : $01, $56
-
-br_3c_e81b:
-	stx $b4, Y                                                  ; $e81b : $96, $b4
-	cop $80.b                                                  ; $e81d : $02, $80
-	asl                                                  ; $e81f : $0a
-	.db $00                                                  ; $e820 : $00
-	ina                                                  ; $e821 : $1a
-	bra br_3c_e83a                                                  ; $e822 : $80, $16
-
-	ora ($80, X)                                                  ; $e824 : $01, $80
-
-br_3c_e826:
-	asl                                                  ; $e826 : $0a
-	and ($34, S), Y                                                  ; $e827 : $33, $34
-	bra br_3c_e841                                                  ; $e829 : $80, $16
-
-	cop $80.b                                                  ; $e82b : $02, $80
-	asl                                                  ; $e82d : $0a
-	.db $00                                                  ; $e82e : $00
-	ora $9680.w, Y                                                  ; $e82f : $19, $80, $96
-	lda $02, X                                                  ; $e832 : $b5, $02
-	.db $00                                                  ; $e834 : $00
-	asl                                                  ; $e835 : $0a
-	clc                                                  ; $e836 : $18
-	sta $96a0.w, Y                                                  ; $e837 : $99, $a0, $96
-
-br_3c_e83a:
-	ldx $03, Y                                                  ; $e83a : $b6, $03
-	rts                                                  ; $e83c : $60
-
-
-	ora [$28]                                                  ; $e83d : $07, $28
-	.db $00                                                  ; $e83f : $00
-	iny                                                  ; $e840 : $c8
-
-br_3c_e841:
-	stx $b7, Y                                                  ; $e841 : $96, $b7
-	.db $00                                                  ; $e843 : $00
-	adc [$06]                                                  ; $e844 : $67, $06
-	ora [$0a]                                                  ; $e846 : $07, $0a
-	sed                                                  ; $e848 : $f8
-
-br_3c_e849:
-	stx $b8, Y                                                  ; $e849 : $96, $b8
-	.db $00                                                  ; $e84b : $00
-	pla                                                  ; $e84c : $68
-	asl $0a                                                  ; $e84d : $06, $0a
-	ora ($18, X)                                                  ; $e84f : $01, $18
-	sta [$bc], Y                                                  ; $e851 : $97, $bc
-	ora ($80, X)                                                  ; $e853 : $01, $80
-	asl $33                                                  ; $e855 : $06, $33
-	bit $80, X                                                  ; $e857 : $34, $80
-	ora [$02], Y                                                  ; $e859 : $17, $02
-	.db $80, $06                                                  ; $e85b : $80, $06
-
-	phd                                                  ; $e85d : $0b
-	cop $80.b                                                  ; $e85e : $02, $80
-	ora [$01], Y                                                  ; $e860 : $17, $01
-
-br_3c_e862:
-	.db $80, $06                                                  ; $e862 : $80, $06
-
-	and ($32, S), Y                                                  ; $e864 : $33, $32
-	.db $80, $97                                                  ; $e866 : $80, $97
-
-	ldx $8002.w, Y                                                  ; $e868 : $be, $02, $80
-	asl $15                                                  ; $e86b : $06, $15
-	txs                                                  ; $e86d : $9a
-	bne br_3c_e807                                                  ; $e86e : $d0, $97
-
-	lda $066700.l, X                                                  ; $e870 : $bf, $00, $67, $06
-	ora [$8a]                                                  ; $e874 : $07, $8a
-	sed                                                  ; $e876 : $f8
-	ora [$00], Y                                                  ; $e877 : $17, $00
-	pla                                                  ; $e879 : $68
-	asl $0a                                                  ; $e87a : $06, $0a
-	.db $00                                                  ; $e87c : $00
-	cpx #$97.b                                                  ; $e87d : $e0, $97
-	cmp ($03, X)                                                  ; $e87f : $c1, $03
-	bra $06                                                  ; $e881 : $80, $06
-
-	mvn $20, $00                                                  ; $e883 : $54, $00, $20
-	tya                                                  ; $e886 : $98
+	.db $6d
+
+
+EntityLocations6_CrushCrawfish:
+	.db $0c
+	.db $01, $80, $02, $33, $2c, $80, $01
+	.db $01, $80, $02, $33, $2d, $80, $01
+	.db $02, $80, $03, $00, $1d, $80, $81
+	.db $0e
+	.db $03, $50, $02, $2f, $0b, $d0, $81
+	.db $10
+	.db $02, $80, $03, $00, $1d, $00, $82
+	.db $11
+	.db $03, $48, $02, $0d, $00, $38, $82
+	.db $14
+	.db $02, $80, $02, $00, $1e, $80, $02
+	.db $02, $80, $03, $00, $1e, $80, $82
+	.db $15
+	.db $03, $60, $02, $0d, $00, $a8, $02
+	.db $03, $10, $03, $0d, $00, $a8, $82
+	.db $19
+	.db $03, $a0, $02, $0d, $00, $20, $83
+	.db $1a
+	.db $03, $00, $03, $0d, $00, $40, $03
+	.db $02, $80, $03, $00, $00, $40, $03
+	.db $02, $80, $03, $00, $01, $40, $03
+	.db $03, $b4, $03, $3c, $00, $58, $83
+	.db $1e
+	.db $00, $a4, $04, $17, $04, $d0, $83
+	.db $1f
+	.db $03, $30, $02, $0d, $00, $e8, $83
+	.db $22
+	.db $03, $b0, $02, $0d, $00, $50, $84
+	.db $24
+	.db $00, $48, $02, $02, $80, $90, $84
+	.db $26
+	.db $03, $30, $02, $0d, $00, $c0, $04
+	.db $00, $d8, $02, $02, $80, $d0, $84
+	.db $28
+	.db $02, $80, $03, $15, $02, $00, $85
+	.db $29
+	.db $03, $90, $07, $4d, $40, $30, $85
+	.db $2c
+	.db $02, $80, $03, $00, $03, $80, $05
+	.db $02, $80, $03, $00, $02, $80, $05
+	.db $02, $80, $05, $0c, $07, $80, $05
+	.db $02, $80, $06, $00, $08, $80, $05
+	.db $02, $80, $06, $00, $07, $80, $85
+	.db $2d
+	.db $03, $a0, $03, $2d, $01, $a0, $85
+	.db $2f
+	.db $02, $80, $05, $00, $04, $f0, $85
+	.db $30
+	.db $02, $80, $05, $00, $06, $10, $06
+	.db $02, $80, $05, $00, $05, $00, $86
+	.db $33
+	.db $02, $90, $07, $15, $32, $60, $86
+	.db $34
+	.db $02, $80, $07, $0c, $07, $80, $86
+	.db $36
+	.db $00, $a8, $05, $0b, $20, $d0, $06
+	.db $02, $b0, $06, $00, $0a, $c0, $06
+	.db $02, $b0, $06, $00, $09, $c0, $86
+	.db $38
+	.db $02, $70, $06, $15, $24, $00, $87
+	.db $47
+	.db $00, $97, $06, $11, $05, $f8, $08
+	.db $00, $98, $06, $0a, $00, $e0, $08
+	.db $02, $a0, $06, $15, $45, $e0, $88
+	.db $4d
+	.db $03, $a0, $06, $47, $00, $a0, $09
+	.db $03, $a0, $06, $46, $00, $a0, $89
+	.db $4f
+	.db $00, $97, $06, $11, $05, $f8, $89
+	.db $50
+	.db $00, $80, $06, $0a, $01, $18, $0a
+	.db $02, $a0, $06, $15, $66, $00, $8a
+	.db $54
+	.db $01, $80, $06, $33, $2c, $80, $0a
+	.db $01, $80, $06, $33, $2d, $80, $0a
+	.db $02, $80, $06, $0b, $01, $80, $0a
+	.db $02, $80, $06, $00, $0b, $80, $8a
+	.db $5c
+	.db $03, $70, $06, $3b, $00, $80, $8b
+	.db $60
+	.db $03, $50, $06, $28, $00, $00, $8c
+	.db $61
+	.db $00, $b8, $06, $02, $80, $30, $8c
+	.db $62
+	.db $00, $8a, $07, $1a, $00, $48, $8c
+	.db $64
+	.db $02, $80, $06, $00, $0d, $80, $0c
+	.db $02, $80, $06, $00, $0e, $80, $0c
+	.db $02, $80, $06, $00, $0f, $80, $0c
+	.db $02, $80, $06, $00, $0c, $80, $8c
+	.db $69
+	.db $03, $70, $07, $0e, $01, $28, $8d
+	.db $6a
+	.db $03, $70, $06, $28, $00, $50, $0d
+	.db $02, $80, $08, $00, $13, $40, $0d
+	.db $02, $80, $08, $00, $12, $40, $8d
+	.db $6c
+	.db $02, $80, $06, $00, $11, $80, $0d
+	.db $02, $80, $06, $00, $10, $80, $0d
+	.db $02, $60, $07, $04, $14, $80, $0d
+	.db $01, $80, $07, $33, $2f, $80, $0d
+	.db $01, $80, $07, $33, $2e, $80, $0d
+	.db $02, $80, $07, $1a, $01, $80, $8d
+	.db $6e
+	.db $03, $50, $06, $0e, $00, $d9, $0d
+	.db $03, $b0, $07, $28, $00, $c0, $0d
+	.db $00, $b8, $07, $02, $80, $d6, $8d
+	.db $74
+	.db $02, $50, $08, $15, $67, $80, $8e
+	.db $7c
+	.db $02, $80, $08, $17, $12, $80, $8f
+	.db $7f
+	.db $03, $60, $08, $2d, $00, $f0, $8f
+	.db $89
+	.db $00, $68, $09, $01, $80, $30, $11
+	.db $00, $98, $0a, $02, $80, $30, $91
+	.db $8a
+	.db $00, $98, $0a, $02, $80, $40, $91
+	.db $8c
+	.db $01, $80, $08, $33, $30, $80, $11
+	.db $02, $80, $08, $00, $14, $80, $11
+	.db $02, $80, $08, $00, $15, $80, $11
+	.db $03, $a0, $08, $2d, $02, $80, $11
+	.db $02, $20, $09, $04, $15, $80, $11
+	.db $02, $80, $09, $00, $17, $80, $11
+	.db $01, $80, $09, $33, $31, $80, $11
+	.db $01, $80, $09, $33, $32, $80, $11
+	.db $02, $80, $09, $00, $16, $80, $11
+	.db $03, $30, $0a, $0d, $00, $88, $91
+	.db $91
+	.db $02, $60, $09, $15, $78, $30, $92
+	.db $92
+	.db $03, $b0, $0a, $2d, $00, $50, $92
+	.db $93
+	.db $03, $40, $09, $0d, $00, $60, $92
+	.db $94
+	.db $03, $a0, $09, $0d, $00, $90, $92
+	.db $99
+	.db $03, $50, $09, $0d, $00, $30, $93
+	.db $9a
+	.db $03, $f0, $09, $0d, $00, $40, $93
+	.db $9b
+	.db $03, $70, $0a, $0d, $00, $70, $93
+	.db $9d
+	.db $03, $00, $0a, $0d, $00, $a0, $93
+	.db $9e
+	.db $03, $70, $0a, $2d, $00, $d0, $93
+	.db $a0
+	.db $03, $40, $09, $0d, $00, $00, $14
+	.db $02, $80, $0a, $17, $23, $00, $94
+	.db $a3
+	.db $03, $70, $09, $0d, $00, $60, $94
+	.db $a4
+	.db $02, $80, $09, $0c, $06, $80, $14
+	.db $02, $00, $0a, $1a, $23, $80, $94
+	.db $a6
+	.db $00, $98, $09, $04, $80, $d0, $14
+	.db $00, $98, $09, $04, $80, $c0, $94
+	.db $a7
+	.db $00, $a7, $0a, $11, $06, $f8, $94
+	.db $a8
+	.db $01, $80, $0a, $33, $33, $00, $15
+	.db $00, $90, $0a, $0a, $01, $18, $95
+	.db $aa
+	.db $02, $80, $0a, $04, $16, $40, $95
+	.db $ac
+	.db $02, $80, $0a, $00, $18, $80, $95
+	.db $af
+	.db $03, $80, $0a, $2a, $00, $e8, $95
+	.db $b1
+	.db $03, $40, $08, $0e, $01, $36, $16
+	.db $02, $80, $0a, $17, $34, $20, $96
+	.db $b2
+	.db $02, $70, $06, $00, $1b, $40, $16
+	.db $02, $70, $06, $00, $1c, $40, $16
+	.db $03, $b0, $07, $0e, $01, $56, $96
+	.db $b4
+	.db $02, $80, $0a, $00, $1a, $80, $16
+	.db $01, $80, $0a, $33, $34, $80, $16
+	.db $02, $80, $0a, $00, $19, $80, $96
+	.db $b5
+	.db $02, $00, $0a, $18, $99, $a0, $96
+	.db $b6
+	.db $03, $60, $07, $28, $00, $c8, $96
+	.db $b7
+	.db $00, $67, $06, $07, $0a, $f8, $96
+	.db $b8
+	.db $00, $68, $06, $0a, $01, $18, $97
+	.db $bc
+	.db $01, $80, $06, $33, $34, $80, $17
+	.db $02, $80, $06, $0b, $02, $80, $17
+	.db $01, $80, $06, $33, $32, $80, $97
+	.db $be
+	.db $02, $80, $06, $15, $9a, $d0, $97
+	.db $bf
+	.db $00, $67, $06, $07, $8a, $f8, $17
+	.db $00, $68, $06, $0a, $00, $e0, $97
+	.db $c1
+	.db $03, $80, $06, $54, $00, $20, $98
 	.db $c1
 
 
@@ -17579,7 +17096,7 @@ br_3c_ed84:
 
 	lsr $b002.w                                                  ; $edb7 : $4e, $02, $b0
 	ora ($00, X)                                                  ; $edba : $01, $00
-	asl $c0                                                  ; $edbc : $06, $c0
+	asl wBG3VertScroll+1                                                  ; $edbc : $06, $c0
 	ora #$02.b                                                  ; $edbe : $09, $02
 	bcs br_3c_edc3                                                  ; $edc0 : $b0, $01
 

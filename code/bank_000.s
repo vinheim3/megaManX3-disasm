@@ -1068,12 +1068,12 @@ br_00_857d:
 
 todo_UpdateBGTilemapAndCharAddrRegs:
 	rep #ACCU_8                                                  ; $8590 : $c2, $20
-	stz $b5                                                  ; $8592 : $64, $b5
-	stz $b7                                                  ; $8594 : $64, $b7
-	stz $b9                                                  ; $8596 : $64, $b9
-	stz $bb                                                  ; $8598 : $64, $bb
-	stz $bd                                                  ; $859a : $64, $bd
-	stz $bf                                                  ; $859c : $64, $bf
+	stz wBG1HorizScroll                                                  ; $8592 : $64, $b5
+	stz wBG1VertScroll                                                  ; $8594 : $64, $b7
+	stz wBG2HorizScroll                                                  ; $8596 : $64, $b9
+	stz wBG2VertScroll                                                  ; $8598 : $64, $bb
+	stz wBG3HorizScroll                                                  ; $859a : $64, $bd
+	stz wBG3VertScroll                                                  ; $859c : $64, $bf
 	sep #ACCU_8|IDX_8                                                  ; $859e : $e2, $30
 	lda #$09.b                                                  ; $85a0 : $a9, $09
 	sta $00cf.w                                                  ; $85a2 : $8d, $cf, $00
@@ -1097,12 +1097,12 @@ Call_00_85c5:
 	sta $2105.w                                                  ; $85c7 : $8d, $05, $21
 	stz $2106.w                                                  ; $85ca : $9c, $06, $21
 	rep #ACCU_8                                                  ; $85cd : $c2, $20
-	stz $b5                                                  ; $85cf : $64, $b5
-	stz $b7                                                  ; $85d1 : $64, $b7
-	stz $b9                                                  ; $85d3 : $64, $b9
-	stz $bb                                                  ; $85d5 : $64, $bb
-	stz $bd                                                  ; $85d7 : $64, $bd
-	stz $bf                                                  ; $85d9 : $64, $bf
+	stz wBG1HorizScroll                                                  ; $85cf : $64, $b5
+	stz wBG1VertScroll                                                  ; $85d1 : $64, $b7
+	stz wBG2HorizScroll                                                  ; $85d3 : $64, $b9
+	stz wBG2VertScroll                                                  ; $85d5 : $64, $bb
+	stz wBG3HorizScroll                                                  ; $85d7 : $64, $bd
+	stz wBG3VertScroll                                                  ; $85d9 : $64, $bf
 	sep #ACCU_8                                                  ; $85db : $e2, $20
 	stz $2123.w                                                  ; $85dd : $9c, $23, $21
 	stz $00c5.w                                                  ; $85e0 : $9c, $c5, $00
@@ -1121,7 +1121,7 @@ Call_00_85c5:
 	sta $00cc.w                                                  ; $8605 : $8d, $cc, $00
 	sta $00cd.w                                                  ; $8608 : $8d, $cd, $00
 	lda #$17.b                                                  ; $860b : $a9, $17
-	sta $212c.w                                                  ; $860d : $8d, $2c, $21
+	sta TM.w                                                  ; $860d : $8d, $2c, $21
 	sta $00c1.w                                                  ; $8610 : $8d, $c1, $00
 	stz $212d.w                                                  ; $8613 : $9c, $2d, $21
 	stz $00c2.w                                                  ; $8616 : $9c, $c2, $00
@@ -1747,10 +1747,10 @@ br_00_8935:
 	lda #$5a.b                                                  ; $8964 : $a9, $5a
 	sta BG2SC.w                                                  ; $8966 : $8d, $08, $21
 	rep #ACCU_8                                                  ; $8969 : $c2, $20
-	stz $00b5.w                                                  ; $896b : $9c, $b5, $00
+	stz wBG1HorizScroll.w                                                  ; $896b : $9c, $b5, $00
 	stz $00b9.w                                                  ; $896e : $9c, $b9, $00
 	lda #$0100.w                                                  ; $8971 : $a9, $00, $01
-	sta $00b7.w                                                  ; $8974 : $8d, $b7, $00
+	sta wBG1VertScroll.w                                                  ; $8974 : $8d, $b7, $00
 	sta $00bb.w                                                  ; $8977 : $8d, $bb, $00
 	sep #ACCU_8                                                  ; $897a : $e2, $20
 	jsr Call_00_8b7c.w                                                  ; $897c : $20, $7c, $8b
@@ -1868,7 +1868,7 @@ br_00_8a47:
 	lda $04                                                  ; $8a59 : $a5, $04
 	sta $09da.w, X                                                  ; $8a5b : $9d, $da, $09
 	lda $06                                                  ; $8a5e : $a5, $06
-	sta $09dd.w, X                                                  ; $8a60 : $9d, $dd, $09
+	sta wPlayerEntity.x.w, X                                                  ; $8a60 : $9d, $dd, $09
 	lda $07                                                  ; $8a63 : $a5, $07
 	sta $09de.w, X                                                  ; $8a65 : $9d, $de, $09
 
@@ -2092,9 +2092,9 @@ Call_00_8ba5:
 Call_00_8bb8:
 	rep #ACCU_8                                                  ; $8bb8 : $c2, $20
 	lda $09d9.w                                                  ; $8bba : $ad, $d9, $09
-	sta $00b5.w                                                  ; $8bbd : $8d, $b5, $00
-	lda $09dd.w                                                  ; $8bc0 : $ad, $dd, $09
-	sta $00b7.w                                                  ; $8bc3 : $8d, $b7, $00
+	sta wBG1HorizScroll.w                                                  ; $8bbd : $8d, $b5, $00
+	lda wPlayerEntity.x.w                                                  ; $8bc0 : $ad, $dd, $09
+	sta wBG1VertScroll.w                                                  ; $8bc3 : $8d, $b7, $00
 	lda $09e1.w                                                  ; $8bc6 : $ad, $e1, $09
 	sta $00b9.w                                                  ; $8bc9 : $8d, $b9, $00
 	lda $09e5.w                                                  ; $8bcc : $ad, $e5, $09
@@ -2232,7 +2232,7 @@ br_00_8ca1:
 
 	php                                                  ; $8cda : $08
 	phd                                                  ; $8cdb : $0b
-	jsr Call_00_dfc6.w                                                  ; $8cdc : $20, $c6, $df
+	jsr UpdateCameraEntity.w                                                  ; $8cdc : $20, $c6, $df
 	pld                                                  ; $8cdf : $2b
 	plp                                                  ; $8ce0 : $28
 	lda #$05.b                                                  ; $8ce1 : $a9, $05
@@ -2269,7 +2269,7 @@ br_00_8d1e:
 	php                                                  ; $8d1e : $08
 	phd                                                  ; $8d1f : $0b
 	jsr Call_00_db07.w                                                  ; $8d20 : $20, $07, $db
-	jsr Call_00_dfc6.w                                                  ; $8d23 : $20, $c6, $df
+	jsr UpdateCameraEntity.w                                                  ; $8d23 : $20, $c6, $df
 	jsr Call_00_e0c6.w                                                  ; $8d26 : $20, $c6, $e0
 	pld                                                  ; $8d29 : $2b
 	plp                                                  ; $8d2a : $28
@@ -2313,7 +2313,7 @@ br_00_8d63:
 	lda $1f37.w                                                  ; $8d63 : $ad, $37, $1f
 	bne br_00_8db7                                                  ; $8d66 : $d0, $4f
 
-	jsr $04be35.l                                                  ; $8d68 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $8d68 : $22, $35, $be, $04
 	jsr Call_00_d957.w                                                  ; $8d6c : $20, $57, $d9
 	jsr LoadNewVisibleEntities.w                                                  ; $8d6f : $20, $3a, $de
 	jsr Call_00_a2fa.w                                                  ; $8d72 : $20, $fa, $a2
@@ -2491,7 +2491,7 @@ br_00_8e86:
 	stz $0a07.w                                                  ; $8ec1 : $9c, $07, $0a
 	rep #ACCU_8                                                  ; $8ec4 : $c2, $20
 	lda #$0020.w                                                  ; $8ec6 : $a9, $20, $00
-	sta $09dd.w                                                  ; $8ec9 : $8d, $dd, $09
+	sta wPlayerEntity.x.w                                                  ; $8ec9 : $8d, $dd, $09
 	lda #$00a6.w                                                  ; $8ecc : $a9, $a6, $00
 	sta $09e0.w                                                  ; $8ecf : $8d, $e0, $09
 	stz wDashAndSelCurrBtnsHeld.w                                                  ; $8ed2 : $9c, $0e, $0a
@@ -2595,7 +2595,7 @@ br_00_8f81:
 	jsr Call_00_dcc0.w                                                  ; $8f82 : $20, $c0, $dc
 	pld                                                  ; $8f85 : $2b
 	jsr Call_00_dd59.w                                                  ; $8f86 : $20, $59, $dd
-	jsr $04be35.l                                                  ; $8f89 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $8f89 : $22, $35, $be, $04
 	dec $3b                                                  ; $8f8d : $c6, $3b
 
 br_00_8f8f:
@@ -3021,11 +3021,11 @@ br_00_91da:
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $9234 : $20, $62, $81
 	rep #ACCU_8                                                  ; $9237 : $c2, $20
 	lda #$0100.w                                                  ; $9239 : $a9, $00, $01
-	sta $b5                                                  ; $923c : $85, $b5
+	sta wBG1HorizScroll                                                  ; $923c : $85, $b5
 	lda #$0018.w                                                  ; $923e : $a9, $18, $00
-	sta $b7                                                  ; $9241 : $85, $b7
+	sta wBG1VertScroll                                                  ; $9241 : $85, $b7
 	lda #$ffe0.w                                                  ; $9243 : $a9, $e0, $ff
-	sta $bb                                                  ; $9246 : $85, $bb
+	sta wBG2VertScroll                                                  ; $9246 : $85, $bb
 	sep #ACCU_8                                                  ; $9248 : $e2, $20
 	jsr Call_00_9564.w                                                  ; $924a : $20, $64, $95
 	inc $3b                                                  ; $924d : $e6, $3b
@@ -3076,7 +3076,7 @@ br_00_928b:
 	dec $cc                                                  ; $9299 : $c6, $cc
 	dec $cd                                                  ; $929b : $c6, $cd
 	rep #ACCU_8                                                  ; $929d : $c2, $20
-	inc $bb                                                  ; $929f : $e6, $bb
+	inc wBG2VertScroll                                                  ; $929f : $e6, $bb
 	inc wNewStageScrollY.w                                                  ; $92a1 : $ee, $60, $1e
 
 br_00_92a4:
@@ -3101,7 +3101,7 @@ br_00_92bb:
 	lda $1f50.w                                                  ; $92c1 : $ad, $50, $1f
 	beq br_00_92db                                                  ; $92c4 : $f0, $15
 
-	stz $b6                                                  ; $92c6 : $64, $b6
+	stz wBG1HorizScroll+1                                                  ; $92c6 : $64, $b6
 	lda wMainLoopCounter.w                                                  ; $92c8 : $ad, $cb, $09
 	and #$01.b                                                  ; $92cb : $29, $01
 	bne br_00_92db                                                  ; $92cd : $d0, $0c
@@ -3557,7 +3557,7 @@ br_00_95fc:
 	lda $d8                                                  ; $95fc : $a5, $d8
 	bne br_00_960a                                                  ; $95fe : $d0, $0a
 
-	jsr $04be35.l                                                  ; $9600 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $9600 : $22, $35, $be, $04
 	and #$851f.w                                                  ; $9604 : $29, $1f, $85
 	cld                                                  ; $9607 : $d8
 	bra br_00_95fb                                                  ; $9608 : $80, $f1
@@ -3670,7 +3670,7 @@ Func_0_96bf:
 
 br_00_96d1:
 	rep #ACCU_8                                                  ; $96d1 : $c2, $20
-	lda $00b5.w                                                  ; $96d3 : $ad, $b5, $00
+	lda wBG1HorizScroll.w                                                  ; $96d3 : $ad, $b5, $00
 	sta $00bd.w                                                  ; $96d6 : $8d, $bd, $00
 	sep #ACCU_8                                                  ; $96d9 : $e2, $20
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $96db : $20, $62, $81
@@ -4343,7 +4343,7 @@ br_00_9b72:
 
 	php                                                  ; $9bca : $08
 	phd                                                  ; $9bcb : $0b
-	jsr Call_00_dfc6.w                                                  ; $9bcc : $20, $c6, $df
+	jsr UpdateCameraEntity.w                                                  ; $9bcc : $20, $c6, $df
 	pld                                                  ; $9bcf : $2b
 	plp                                                  ; $9bd0 : $28
 	lda #$01.b                                                  ; $9bd1 : $a9, $01
@@ -4378,7 +4378,7 @@ br_00_9c09:
 	php                                                  ; $9c09 : $08
 	phd                                                  ; $9c0a : $0b
 	jsr Call_00_db07.w                                                  ; $9c0b : $20, $07, $db
-	jsr Call_00_dfc6.w                                                  ; $9c0e : $20, $c6, $df
+	jsr UpdateCameraEntity.w                                                  ; $9c0e : $20, $c6, $df
 	jsr Call_00_e0c6.w                                                  ; $9c11 : $20, $c6, $e0
 	pld                                                  ; $9c14 : $2b
 	plp                                                  ; $9c15 : $28
@@ -4415,7 +4415,7 @@ Func_0_9c28:
 +	lda $1f37.w                                                  ; $9c48 : $ad, $37, $1f
 	bne @br_9c9a                                                  ; $9c4b : $d0, $4d
 
-	jsr $04be35.l                                                  ; $9c4d : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $9c4d : $22, $35, $be, $04
 	jsr Call_00_d957.w                                                  ; $9c51 : $20, $57, $d9
 	jsr LoadNewVisibleEntities.w                                                  ; $9c54 : $20, $3a, $de
 	jsr Call_00_a2fa.w                                                  ; $9c57 : $20, $fa, $a2
@@ -4661,31 +4661,35 @@ br_00_9de2:
 	tay                                                  ; $9de5 : $a8
 	lda $01                                                  ; $9de6 : $a5, $01
 	cmp #$02.b                                                  ; $9de8 : $c9, $02
-	bne br_00_9df3                                                  ; $9dea : $d0, $07
+	bne @br_9df3                                                  ; $9dea : $d0, $07
 
 	bit $1fb0.w                                                  ; $9dec : $2c, $b0, $1f
-	bvs br_00_9df3                                                  ; $9def : $70, $02
+.ifdef NOT_HACK
+; Skip bit/byte cutscene
+	bra @br_9df3
+.else
+	bvs @br_9df3                                                  ; $9def : $70, $02
+.endif
 
-	bra br_00_9e0a                                                  ; $9df1 : $80, $17
+	bra @br_9e0a                                                  ; $9df1 : $80, $17
 
-br_00_9df3:
+@br_9df3:
 	jsr Call_00_a49d.w                                                  ; $9df3 : $20, $9d, $a4
-	bne br_00_9e02                                                  ; $9df6 : $d0, $0a
+	bne @br_9e02                                                  ; $9df6 : $d0, $0a
 
 	lda $1faf.w                                                  ; $9df8 : $ad, $af, $1f
-	bne br_00_9e02                                                  ; $9dfb : $d0, $05
+	bne @br_9e02                                                  ; $9dfb : $d0, $05
 
 	lda $1fb0.w                                                  ; $9dfd : $ad, $b0, $1f
-	bpl br_00_9e24                                                  ; $9e00 : $10, $22
+	bpl @br_9e24                                                  ; $9e00 : $10, $22
 
-br_00_9e02:
+@br_9e02:
 	jsr Call_00_eeee.w                                                  ; $9e02 : $20, $ee, $ee
 	stz $d1                                                  ; $9e05 : $64, $d1
 	stz $d2                                                  ; $9e07 : $64, $d2
 	rts                                                  ; $9e09 : $60
 
-
-br_00_9e0a:
+@br_9e0a:
 	lda #$1b.b                                                  ; $9e0a : $a9, $1b
 	jsr Call_00_84ca.w                                                  ; $9e0c : $20, $ca, $84
 	jsr Call_00_a58e.w                                                  ; $9e0f : $20, $8e, $a5
@@ -4698,8 +4702,7 @@ br_00_9e0a:
 	sta $d3                                                  ; $9e21 : $85, $d3
 	rts                                                  ; $9e23 : $60
 
-
-br_00_9e24:
+@br_9e24:
 	lda #$21.b                                                  ; $9e24 : $a9, $21
 	jsr Call_00_84ca.w                                                  ; $9e26 : $20, $ca, $84
 	jsr Call_00_a578.w                                                  ; $9e29 : $20, $78, $a5
@@ -5003,7 +5006,7 @@ br_00_a07b:
 	php                                                  ; $a07e : $08
 	phd                                                  ; $a07f : $0b
 	jsr Call_00_db07.w                                                  ; $a080 : $20, $07, $db
-	jsr Call_00_dfc6.w                                                  ; $a083 : $20, $c6, $df
+	jsr UpdateCameraEntity.w                                                  ; $a083 : $20, $c6, $df
 	jsr Call_00_e0c6.w                                                  ; $a086 : $20, $c6, $e0
 	pld                                                  ; $a089 : $2b
 	plp                                                  ; $a08a : $28
@@ -5318,7 +5321,7 @@ br_00_a2de:
 	bne br_00_a2de                                                  ; $a2e4 : $d0, $f8
 
 	jsr Call_00_b684.w                                                  ; $a2e6 : $20, $84, $b6
-	inc $1e58.w                                                  ; $a2e9 : $ee, $58, $1e
+	inc wCameraEntity.w                                                  ; $a2e9 : $ee, $58, $1e
 	inc $1e98.w                                                  ; $a2ec : $ee, $98, $1e
 	jsr LoadStageEntitiesDetails.w                                                  ; $a2ef : $20, $75, $dd
 	ldx #$00.b                                                  ; $a2f2 : $a2, $00
@@ -5726,8 +5729,6 @@ Jump_00_a54f:
 	sta $1f23.w                                                  ; $a557 : $8d, $23, $1f
 	sta $1f22.w                                                  ; $a55a : $8d, $22, $1f
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $a55d : $20, $62, $81
-
-Call_00_a560:
 	rep #ACCU_8                                                  ; $a560 : $c2, $20
 	lda wNewStageScrollY.w                                                  ; $a562 : $ad, $60, $1e
 	sta $d6                                                  ; $a565 : $85, $d6
@@ -5929,7 +5930,7 @@ br_00_a6b0:
 	lda #$0080.w                                                  ; $a6da : $a9, $80, $00
 	sta $08                                                  ; $a6dd : $85, $08
 	lda #$0100.w                                                  ; $a6df : $a9, $00, $01
-	sta $00b7.w                                                  ; $a6e2 : $8d, $b7, $00
+	sta wBG1VertScroll.w                                                  ; $a6e2 : $8d, $b7, $00
 	sta $00b9.w                                                  ; $a6e5 : $8d, $b9, $00
 	sep #ACCU_8                                                  ; $a6e8 : $e2, $20
 	lda $7f83a1.l                                                  ; $a6ea : $af, $a1, $83, $7f
@@ -6311,10 +6312,10 @@ br_00_a942:
 
 br_00_a958:
 	jsr Call_00_aa6b.w                                                  ; $a958 : $20, $6b, $aa
-	lda $00b7.w                                                  ; $a95b : $ad, $b7, $00
+	lda wBG1VertScroll.w                                                  ; $a95b : $ad, $b7, $00
 	sec                                                  ; $a95e : $38
 	sbc #$0004.w                                                  ; $a95f : $e9, $04, $00
-	sta $00b7.w                                                  ; $a962 : $8d, $b7, $00
+	sta wBG1VertScroll.w                                                  ; $a962 : $8d, $b7, $00
 	bne br_00_a958                                                  ; $a965 : $d0, $f1
 
 	sep #ACCU_8                                                  ; $a967 : $e2, $20
@@ -6337,7 +6338,7 @@ br_00_a958:
 	bcs br_00_a9ab                                                  ; $a98d : $b0, $1c
 
 	sta $09e0.w                                                  ; $a98f : $8d, $e0, $09
-	lda $09dd.w                                                  ; $a992 : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $a992 : $ad, $dd, $09
 	sta $09fa.w                                                  ; $a995 : $8d, $fa, $09
 	sep #ACCU_8                                                  ; $a998 : $e2, $20
 	lda #$04.b                                                  ; $a99a : $a9, $04
@@ -6421,10 +6422,10 @@ br_00_aa14:
 
 
 	rep #ACCU_8                                                  ; $aa17 : $c2, $20
-	lda $00b7.w                                                  ; $aa19 : $ad, $b7, $00
+	lda wBG1VertScroll.w                                                  ; $aa19 : $ad, $b7, $00
 	sec                                                  ; $aa1c : $38
 	sbc #$0004.w                                                  ; $aa1d : $e9, $04, $00
-	sta $00b7.w                                                  ; $aa20 : $8d, $b7, $00
+	sta wBG1VertScroll.w                                                  ; $aa20 : $8d, $b7, $00
 	and #$00ff.w                                                  ; $aa23 : $29, $ff, $00
 	beq br_00_aa37                                                  ; $aa26 : $f0, $0f
 
@@ -6675,9 +6676,9 @@ Jump_00_ab85:
 	jsr Call_00_9571.w                                                  ; $abe6 : $20, $71, $95
 	rep #ACCU_8|IDX_8                                                  ; $abe9 : $c2, $30
 	lda #$ffc8.w                                                  ; $abeb : $a9, $c8, $ff
-	sta $00b5.w                                                  ; $abee : $8d, $b5, $00
+	sta wBG1HorizScroll.w                                                  ; $abee : $8d, $b5, $00
 	lda #$0020.w                                                  ; $abf1 : $a9, $20, $00
-	sta $00b7.w                                                  ; $abf4 : $8d, $b7, $00
+	sta wBG1VertScroll.w                                                  ; $abf4 : $8d, $b7, $00
 	lda #$ffe0.w                                                  ; $abf7 : $a9, $e0, $ff
 	sta $00bb.w                                                  ; $abfa : $8d, $bb, $00
 	stz $00bd.w                                                  ; $abfd : $9c, $bd, $00
@@ -6696,7 +6697,7 @@ Jump_00_ab85:
 	jsr $03b97c.l                                                  ; $ac1c : $22, $7c, $b9, $03
 	jsr Func_4_8000.l                                                  ; $ac20 : $22, $00, $80, $04
 	lda #$00a8.w                                                  ; $ac24 : $a9, $a8, $00
-	sta $09dd.w                                                  ; $ac27 : $8d, $dd, $09
+	sta wPlayerEntity.x.w                                                  ; $ac27 : $8d, $dd, $09
 	lda #$00d0.w                                                  ; $ac2a : $a9, $d0, $00
 	sta $0ccd.w                                                  ; $ac2d : $8d, $cd, $0c
 	lda #$00a0.w                                                  ; $ac30 : $a9, $a0, $00
@@ -6755,7 +6756,7 @@ br_00_ac78:
 	inc $d4                                                  ; $ac94 : $e6, $d4
 	rep #ACCU_8                                                  ; $ac96 : $c2, $20
 	lda #$fec8.w                                                  ; $ac98 : $a9, $c8, $fe
-	sta $00b5.w                                                  ; $ac9b : $8d, $b5, $00
+	sta wBG1HorizScroll.w                                                  ; $ac9b : $8d, $b5, $00
 
 br_00_ac9e:
 	rts                                                  ; $ac9e : $60
@@ -6791,7 +6792,7 @@ br_00_ac9e:
 
 br_00_acdb:
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $acdb : $20, $62, $81
-	inc $00b5.w                                                  ; $acde : $ee, $b5, $00
+	inc wBG1HorizScroll.w                                                  ; $acde : $ee, $b5, $00
 	phd                                                  ; $ace1 : $0b
 	pea $00d6.w                                                  ; $ace2 : $f4, $d6, $00
 	pld                                                  ; $ace5 : $2b
@@ -6814,14 +6815,14 @@ br_00_acfc:
 
 	rep #ACCU_8                                                  ; $ad02 : $c2, $20
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $ad04 : $20, $62, $81
-	lda $00b7.w                                                  ; $ad07 : $ad, $b7, $00
+	lda wBG1VertScroll.w                                                  ; $ad07 : $ad, $b7, $00
 	beq br_00_ad20                                                  ; $ad0a : $f0, $14
 
 	lda wMainLoopCounter.w                                                  ; $ad0c : $ad, $cb, $09
 	and #$0003.w                                                  ; $ad0f : $29, $03, $00
 	bne br_00_ad20                                                  ; $ad12 : $d0, $0c
 
-	dec $00b7.w                                                  ; $ad14 : $ce, $b7, $00
+	dec wBG1VertScroll.w                                                  ; $ad14 : $ce, $b7, $00
 	inc $00bb.w                                                  ; $ad17 : $ee, $bb, $00
 	dec $09e0.w                                                  ; $ad1a : $ce, $e0, $09
 	dec $0cd0.w                                                  ; $ad1d : $ce, $d0, $0c
@@ -6963,10 +6964,10 @@ br_00_adf8:
 	lda #$16.b                                                  ; $ae07 : $a9, $16
 	jsr $04dc97.l                                                  ; $ae09 : $22, $97, $dc, $04
 	rep #ACCU_8                                                  ; $ae0d : $c2, $20
-	stz $00b7.w                                                  ; $ae0f : $9c, $b7, $00
+	stz wBG1VertScroll.w                                                  ; $ae0f : $9c, $b7, $00
 	stz $00bb.w                                                  ; $ae12 : $9c, $bb, $00
 	lda #$00a8.w                                                  ; $ae15 : $a9, $a8, $00
-	sta $09dd.w                                                  ; $ae18 : $8d, $dd, $09
+	sta wPlayerEntity.x.w                                                  ; $ae18 : $8d, $dd, $09
 	lda #$00d0.w                                                  ; $ae1b : $a9, $d0, $00
 	sta $0ccd.w                                                  ; $ae1e : $8d, $cd, $0c
 	stz wNewStageScrollX.w                                                  ; $ae21 : $9c, $5d, $1e
@@ -6997,9 +6998,9 @@ br_00_adf8:
 	rep #ACCU_8                                                  ; $ae59 : $c2, $20
 	lda #$07b0.w                                                  ; $ae5b : $a9, $b0, $07
 	sta $09e0.w                                                  ; $ae5e : $8d, $e0, $09
-	lda $00b5.w                                                  ; $ae61 : $ad, $b5, $00
+	lda wBG1HorizScroll.w                                                  ; $ae61 : $ad, $b5, $00
 	sta $10dd.w                                                  ; $ae64 : $8d, $dd, $10
-	lda $00b5.w                                                  ; $ae67 : $ad, $b5, $00
+	lda wBG1HorizScroll.w                                                  ; $ae67 : $ad, $b5, $00
 	sta $10dd.w                                                  ; $ae6a : $8d, $dd, $10
 	lda #$fe80.w                                                  ; $ae6d : $a9, $80, $fe
 	sta $10b2.w                                                  ; $ae70 : $8d, $b2, $10
@@ -7032,7 +7033,7 @@ br_00_adf8:
 	jsr AddEntityXSpeedOntoSubX.l                                                  ; $aead : $22, $f3, $d7, $02
 	pld                                                  ; $aeb1 : $2b
 	lda $109d.w                                                  ; $aeb2 : $ad, $9d, $10
-	sta $00b5.w                                                  ; $aeb5 : $8d, $b5, $00
+	sta wBG1HorizScroll.w                                                  ; $aeb5 : $8d, $b5, $00
 	lda $10dd.w                                                  ; $aeb8 : $ad, $dd, $10
 	sta $00b9.w                                                  ; $aebb : $8d, $b9, $00
 	sep #ACCU_8                                                  ; $aebe : $e2, $20
@@ -7343,8 +7344,8 @@ br_00_b09d:
 	rep #ACCU_8                                                  ; $b0a6 : $c2, $20
 	stz wNewStageScrollX.w                                                  ; $b0a8 : $9c, $5d, $1e
 	stz wNewStageScrollY.w                                                  ; $b0ab : $9c, $60, $1e
-	stz $00b5.w                                                  ; $b0ae : $9c, $b5, $00
-	stz $00b7.w                                                  ; $b0b1 : $9c, $b7, $00
+	stz wBG1HorizScroll.w                                                  ; $b0ae : $9c, $b5, $00
+	stz wBG1VertScroll.w                                                  ; $b0b1 : $9c, $b7, $00
 	stz $00b9.w                                                  ; $b0b4 : $9c, $b9, $00
 	stz $00bb.w                                                  ; $b0b7 : $9c, $bb, $00
 	sep #ACCU_8                                                  ; $b0ba : $e2, $20
@@ -10351,7 +10352,7 @@ br_00_c1fe:
 
 Jump_00_c203:
 	phd                                                  ; $c203 : $0b
-	pea $1e58.w                                                  ; $c204 : $f4, $58, $1e
+	pea wCameraEntity.w                                                  ; $c204 : $f4, $58, $1e
 	pld                                                  ; $c207 : $2b
 	ldx $01                                                  ; $c208 : $a6, $01
 	jsr ($c228.w, X)                                                  ; $c20a : $fc, $28, $c2
@@ -10394,7 +10395,7 @@ Jump_00_c203:
 
 	rep #ACCU_8                                                  ; $c258 : $c2, $20
 	lda #$0100.w                                                  ; $c25a : $a9, $00, $01
-	sta $00b5.w                                                  ; $c25d : $8d, $b5, $00
+	sta wBG1HorizScroll.w                                                  ; $c25d : $8d, $b5, $00
 	sep #ACCU_8                                                  ; $c260 : $e2, $20
 	ldy #$e0.b                                                  ; $c262 : $a0, $e0
 	bra br_00_c268                                                  ; $c264 : $80, $02
@@ -10613,12 +10614,12 @@ br_00_c3be:
 	beq br_00_c3d2                                                  ; $c3c5 : $f0, $0b
 
 	lda #$0002.w                                                  ; $c3c7 : $a9, $02, $00
-	sta $00b7.w                                                  ; $c3ca : $8d, $b7, $00
+	sta wBG1VertScroll.w                                                  ; $c3ca : $8d, $b7, $00
 	sta $00bb.w                                                  ; $c3cd : $8d, $bb, $00
 	bra br_00_c3d8                                                  ; $c3d0 : $80, $06
 
 br_00_c3d2:
-	stz $00b7.w                                                  ; $c3d2 : $9c, $b7, $00
+	stz wBG1VertScroll.w                                                  ; $c3d2 : $9c, $b7, $00
 	stz $00bb.w                                                  ; $c3d5 : $9c, $bb, $00
 
 br_00_c3d8:
@@ -10908,7 +10909,7 @@ br_00_c571:
 	pld                                                  ; $c57a : $2b
 	lda #$08.b                                                  ; $c57b : $a9, $08
 	jsr StopSomeThreads.w                                                  ; $c57d : $20, $c0, $81
-	pea $1e58.w                                                  ; $c580 : $f4, $58, $1e
+	pea wCameraEntity.w                                                  ; $c580 : $f4, $58, $1e
 	pld                                                  ; $c583 : $2b
 	ldy #$04.b                                                  ; $c584 : $a0, $04
 	jsr Call_00_8561.w                                                  ; $c586 : $20, $61, $85
@@ -10997,9 +10998,9 @@ Jump_00_c5ce:
 	sta $30                                                  ; $c614 : $85, $30
 	lda $00bd.w                                                  ; $c616 : $ad, $bd, $00
 	sta $32                                                  ; $c619 : $85, $32
-	stz $00b5.w                                                  ; $c61b : $9c, $b5, $00
+	stz wBG1HorizScroll.w                                                  ; $c61b : $9c, $b5, $00
 	stz $00b9.w                                                  ; $c61e : $9c, $b9, $00
-	stz $00b7.w                                                  ; $c621 : $9c, $b7, $00
+	stz wBG1VertScroll.w                                                  ; $c621 : $9c, $b7, $00
 	stz $00bb.w                                                  ; $c624 : $9c, $bb, $00
 	sep #ACCU_8|IDX_8                                                  ; $c627 : $e2, $30
 	lda $00c1.w                                                  ; $c629 : $ad, $c1, $00
@@ -11586,7 +11587,7 @@ Call_00_c987:
 
 br_00_c99f:
 	rep #ACCU_8                                                  ; $c99f : $c2, $20
-	lda $00b5.w                                                  ; $c9a1 : $ad, $b5, $00
+	lda wBG1HorizScroll.w                                                  ; $c9a1 : $ad, $b5, $00
 	sec                                                  ; $c9a4 : $38
 	sbc #$0003.w                                                  ; $c9a5 : $e9, $03, $00
 	cmp #$ff8d.w                                                  ; $c9a8 : $c9, $8d, $ff
@@ -11603,7 +11604,7 @@ br_00_c99f:
 	lda #$ff8d.w                                                  ; $c9bd : $a9, $8d, $ff
 
 br_00_c9c0:
-	sta $00b5.w                                                  ; $c9c0 : $8d, $b5, $00
+	sta wBG1HorizScroll.w                                                  ; $c9c0 : $8d, $b5, $00
 	jmp Jump_00_cf2e.w                                                  ; $c9c3 : $4c, $2e, $cf
 
 
@@ -11615,7 +11616,7 @@ br_00_c9c0:
 
 br_00_c9ce:
 	rep #ACCU_8                                                  ; $c9ce : $c2, $20
-	lda $00b5.w                                                  ; $c9d0 : $ad, $b5, $00
+	lda wBG1HorizScroll.w                                                  ; $c9d0 : $ad, $b5, $00
 	clc                                                  ; $c9d3 : $18
 	adc #$0003.w                                                  ; $c9d4 : $69, $03, $00
 	bmi br_00_c9e9                                                  ; $c9d7 : $30, $10
@@ -11629,7 +11630,7 @@ br_00_c9ce:
 	lda #$0000.w                                                  ; $c9e6 : $a9, $00, $00
 
 br_00_c9e9:
-	sta $00b5.w                                                  ; $c9e9 : $8d, $b5, $00
+	sta wBG1HorizScroll.w                                                  ; $c9e9 : $8d, $b5, $00
 	jmp Jump_00_cf2e.w                                                  ; $c9ec : $4c, $2e, $cf
 
 
@@ -11787,10 +11788,10 @@ br_00_caf5:
 	rep #ACCU_8                                                  ; $caf5 : $c2, $20
 	lda $05                                                  ; $caf7 : $a5, $05
 	sta wNewStageScrollX.w                                                  ; $caf9 : $8d, $5d, $1e
-	sta $00b5.w                                                  ; $cafc : $8d, $b5, $00
+	sta wBG1HorizScroll.w                                                  ; $cafc : $8d, $b5, $00
 	lda $08                                                  ; $caff : $a5, $08
 	sta wNewStageScrollY.w                                                  ; $cb01 : $8d, $60, $1e
-	sta $00b7.w                                                  ; $cb04 : $8d, $b7, $00
+	sta wBG1VertScroll.w                                                  ; $cb04 : $8d, $b7, $00
 	lda $1e9d.w                                                  ; $cb07 : $ad, $9d, $1e
 	sta $00b9.w                                                  ; $cb0a : $8d, $b9, $00
 	lda $1ea0.w                                                  ; $cb0d : $ad, $a0, $1e
@@ -13919,7 +13920,7 @@ Call_00_d957:
 	ldx $1f2b.w                                                  ; $d95d : $ae, $2b, $1f
 	bne @cont_d96e                                                  ; $d960 : $d0, $0c
 
-	lda $09dd.w                                                  ; $d962 : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $d962 : $ad, $dd, $09
 	sta $09fa.w                                                  ; $d965 : $8d, $fa, $09
 	lda $09e0.w                                                  ; $d968 : $ad, $e0, $09
 	sta $09fc.w                                                  ; $d96b : $8d, $fc, $09
@@ -14022,7 +14023,7 @@ Call_00_d957:
 	ldx $1f2b.w                                                  ; $da08 : $ae, $2b, $1f
 	bne @cont_da16                                                  ; $da0b : $d0, $09
 
-	jsr Call_00_dfc6.w                                                  ; $da0d : $20, $c6, $df
+	jsr UpdateCameraEntity.w                                                  ; $da0d : $20, $c6, $df
 	jsr Call_00_dd27.w                                                  ; $da10 : $20, $27, $dd
 	jsr Call_00_e0c6.w                                                  ; $da13 : $20, $c6, $e0
 
@@ -14218,7 +14219,7 @@ Call_00_dafa:
 	lda StageItemEntity.itemType                                                  ; $db00 : $a5, $0a
 	asl                                                  ; $db02 : $0a
 	tax                                                  ; $db03 : $aa
-	jmp (Funcs_0_f49b.w, X)                                                  ; $db04 : $7c, $9b, $f4
+	jmp (ItemUpdateFuncs.w, X)                                                  ; $db04 : $7c, $9b, $f4
 
 
 Call_00_db07:
@@ -15194,47 +15195,43 @@ br_00_dfc1:
 	rtl                                                  ; $dfc5 : $6b
 
 
-Call_00_dfc6:
+UpdateCameraEntity:
 	php                                                  ; $dfc6 : $08
 	phd                                                  ; $dfc7 : $0b
 	rep #ACCU_8                                                  ; $dfc8 : $c2, $20
-	lda #$1e58.w                                                  ; $dfca : $a9, $58, $1e
+
+;
+	lda #wCameraEntity.w                                                  ; $dfca : $a9, $58, $1e
 	tcd                                                  ; $dfcd : $5b
 	ldx $01                                                  ; $dfce : $a6, $01
-	jsr ($dffe.w, X)                                                  ; $dfd0 : $fc, $fe, $df
+	jsr (@states.w, X)                                                  ; $dfd0 : $fc, $fe, $df
 	lda $30                                                  ; $dfd3 : $a5, $30
 	bit #$0001.w                                                  ; $dfd5 : $89, $01, $00
-	beq br_00_dfdd                                                  ; $dfd8 : $f0, $03
-
+	beq +                                                  ; $dfd8 : $f0, $03
 	jsr Call_00_e317.w                                                  ; $dfda : $20, $17, $e3
-
-br_00_dfdd:
-	lda $30                                                  ; $dfdd : $a5, $30
++	lda $30                                                  ; $dfdd : $a5, $30
 	bit #$0002.w                                                  ; $dfdf : $89, $02, $00
-	beq br_00_dfe7                                                  ; $dfe2 : $f0, $03
-
+	beq +                                                  ; $dfe2 : $f0, $03
 	jsr $e348.w                                                  ; $dfe4 : $20, $48, $e3
-
-br_00_dfe7:
-	jsr $e379.w                                                  ; $dfe7 : $20, $79, $e3
++	jsr $e379.w                                                  ; $dfe7 : $20, $79, $e3
 	ldx $00                                                  ; $dfea : $a6, $00
-	beq br_00_dff1                                                  ; $dfec : $f0, $03
-
+	beq +                                                  ; $dfec : $f0, $03
 	jsr Call_00_b87b.w                                                  ; $dfee : $20, $7b, $b8
-
-br_00_dff1:
-	lda $05                                                  ; $dff1 : $a5, $05
-	sta $00b5.w                                                  ; $dff3 : $8d, $b5, $00
++	lda $05                                                  ; $dff1 : $a5, $05
+	sta wBG1HorizScroll.w                                                  ; $dff3 : $8d, $b5, $00
 	lda $08                                                  ; $dff6 : $a5, $08
-	sta $00b7.w                                                  ; $dff8 : $8d, $b7, $00
+	sta wBG1VertScroll.w                                                  ; $dff8 : $8d, $b7, $00
 	pld                                                  ; $dffb : $2b
 	plp                                                  ; $dffc : $28
 	rts                                                  ; $dffd : $60
 
+@states:
+	.dw CameraState0
+	.dw CameraState1
+	.dw CameraState2_Stub
 
-	tsb $e0                                                  ; $dffe : $04, $e0
-	pld                                                  ; $e000 : $2b
-	cpx #$e02a.w                                                  ; $e001 : $e0, $2a, $e0
+
+CameraState0:
 	lda $05                                                  ; $e004 : $a5, $05
 	sta $22                                                  ; $e006 : $85, $22
 	lda $08                                                  ; $e008 : $a5, $08
@@ -15251,8 +15248,14 @@ br_00_dff1:
 	sta $0a                                                  ; $e01f : $85, $0a
 	lda #$0008.w                                                  ; $e021 : $a9, $08, $00
 	sta $0c                                                  ; $e024 : $85, $0c
-	ldx #$8602.w                                                  ; $e026 : $a2, $02, $86
-	ora ($60, X)                                                  ; $e029 : $01, $60
+	ldx #$02.b                                                  ; $e026 : $a2, $02
+	stx $01                                                  ; $e028 : $86, $01
+
+CameraState2_Stub:
+	rts                                                  ; $e02a : $60
+
+
+CameraState1:
 	lda $05                                                  ; $e02b : $a5, $05
 	sta $22                                                  ; $e02d : $85, $22
 	lda $08                                                  ; $e02f : $a5, $08
@@ -15262,7 +15265,7 @@ br_00_dff1:
 	ina                                                  ; $e038 : $1a
 	sta $1a                                                  ; $e039 : $85, $1a
 	jsr Call_00_e0a7.w                                                  ; $e03b : $20, $a7, $e0
-	jsr Call_00_e088.w                                                  ; $e03e : $20, $88, $e0
+	jsr AdjustCameraScrollForPlayer.w                                                  ; $e03e : $20, $88, $e0
 	jsr Call_00_e069.w                                                  ; $e041 : $20, $69, $e0
 	jsr Call_00_e04a.w                                                  ; $e044 : $20, $4a, $e0
 	jmp Jump_00_e2a2.w                                                  ; $e047 : $4c, $a2, $e2
@@ -15330,28 +15333,27 @@ br_00_e082:
 	rts                                                  ; $e087 : $60
 
 
-Call_00_e088:
-	lda $09dd.w                                                  ; $e088 : $ad, $dd, $09
+AdjustCameraScrollForPlayer:
+	lda wPlayerEntity.x.w                                                  ; $e088 : $ad, $dd, $09
 	sec                                                  ; $e08b : $38
 	sbc $05                                                  ; $e08c : $e5, $05
 	sec                                                  ; $e08e : $38
 	sbc $2c                                                  ; $e08f : $e5, $2c
-	bmi br_00_e0a1                                                  ; $e091 : $30, $0e
+	bmi @adjustScrollX                                                  ; $e091 : $30, $0e
 
-	lda $09dd.w                                                  ; $e093 : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $e093 : $ad, $dd, $09
 	sec                                                  ; $e096 : $38
 	sbc $05                                                  ; $e097 : $e5, $05
 	sec                                                  ; $e099 : $38
 	sbc $2e                                                  ; $e09a : $e5, $2e
-	beq br_00_e0a0                                                  ; $e09c : $f0, $02
+	beq @done                                                  ; $e09c : $f0, $02
 
-	bpl br_00_e0a1                                                  ; $e09e : $10, $01
+	bpl @adjustScrollX                                                  ; $e09e : $10, $01
 
-br_00_e0a0:
+@done:
 	rts                                                  ; $e0a0 : $60
 
-
-br_00_e0a1:
+@adjustScrollX:
 	clc                                                  ; $e0a1 : $18
 	adc $05                                                  ; $e0a2 : $65, $05
 	sta $05                                                  ; $e0a4 : $85, $05
@@ -15707,80 +15709,73 @@ Call_00_e298:
 Jump_00_e2a2:
 	lda $10                                                  ; $e2a2 : $a5, $10
 	cmp $05                                                  ; $e2a4 : $c5, $05
-	bpl br_00_e2c6                                                  ; $e2a6 : $10, $1e
+	bpl @cont_e2c6                                                  ; $e2a6 : $10, $1e
 
 	sta $05                                                  ; $e2a8 : $85, $05
 	clc                                                  ; $e2aa : $18
-	adc #$00.b                                                  ; $e2ab : $69, $00
-	ora ($8d, X)                                                  ; $e2ad : $01, $8d
-	.db $00                                                  ; $e2af : $00
-	.db $00                                                  ; $e2b0 : $00
-	lda $09dd.w                                                  ; $e2b1 : $ad, $dd, $09
+	adc #$0100.w                                                  ; $e2ab : $69, $00, $01
+	sta $0000.w                                                  ; $e2ae : $8d, $00, $00
+	lda wPlayerEntity.x.w                                                  ; $e2b1 : $ad, $dd, $09
 	clc                                                  ; $e2b4 : $18
-	adc #$08.b                                                  ; $e2b5 : $69, $08
-	.db $00                                                  ; $e2b7 : $00
+	adc #$0008.w                                                  ; $e2b5 : $69, $08, $00
 	cmp $0000.w                                                  ; $e2b8 : $cd, $00, $00
-	bmi br_00_e2c6                                                  ; $e2bb : $30, $09
+	bmi @cont_e2c6                                                  ; $e2bb : $30, $09
 
 	lda $10                                                  ; $e2bd : $a5, $10
 	clc                                                  ; $e2bf : $18
-	adc #$f8.b                                                  ; $e2c0 : $69, $f8
-	.db $00                                                  ; $e2c2 : $00
-	sta $09dd.w                                                  ; $e2c3 : $8d, $dd, $09
+	adc #$00f8.w                                                  ; $e2c0 : $69, $f8, $00
+	sta wPlayerEntity.x.w                                                  ; $e2c3 : $8d, $dd, $09
 
-br_00_e2c6:
+@cont_e2c6:
 	lda $0e                                                  ; $e2c6 : $a5, $0e
 	cmp $05                                                  ; $e2c8 : $c5, $05
-	bmi br_00_e2e2                                                  ; $e2ca : $30, $16
+	bmi @cont_e2e2                                                  ; $e2ca : $30, $16
 
 	sta $05                                                  ; $e2cc : $85, $05
-	lda $09dd.w                                                  ; $e2ce : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $e2ce : $ad, $dd, $09
 	sec                                                  ; $e2d1 : $38
-	sbc #$08.b                                                  ; $e2d2 : $e9, $08
-	.db $00                                                  ; $e2d4 : $00
+	sbc #$0008.w                                                  ; $e2d2 : $e9, $08, $00
 	cmp $0e                                                  ; $e2d5 : $c5, $0e
-	bpl br_00_e2e2                                                  ; $e2d7 : $10, $09
+	bpl @cont_e2e2                                                  ; $e2d7 : $10, $09
 
 	lda $0e                                                  ; $e2d9 : $a5, $0e
 	clc                                                  ; $e2db : $18
-	adc #$08.b                                                  ; $e2dc : $69, $08
-	.db $00                                                  ; $e2de : $00
-	sta $09dd.w                                                  ; $e2df : $8d, $dd, $09
+	adc #$0008.w                                                  ; $e2dc : $69, $08, $00
+	sta wPlayerEntity.x.w                                                  ; $e2df : $8d, $dd, $09
 
-br_00_e2e2:
+@cont_e2e2:
 	lda $14                                                  ; $e2e2 : $a5, $14
 	cmp $08                                                  ; $e2e4 : $c5, $08
-	bpl br_00_e30e                                                  ; $e2e6 : $10, $26
+	bpl @br_e30e                                                  ; $e2e6 : $10, $26
 
 	sta $08                                                  ; $e2e8 : $85, $08
 	clc                                                  ; $e2ea : $18
-	adc #$e0.b                                                  ; $e2eb : $69, $e0
-	.db $00                                                  ; $e2ed : $00
+	adc #$00e0.w                                                  ; $e2eb : $69, $e0, $00
 	sta $0000.w                                                  ; $e2ee : $8d, $00, $00
 	lda $09e0.w                                                  ; $e2f1 : $ad, $e0, $09
 	clc                                                  ; $e2f4 : $18
-	adc #$e0.b                                                  ; $e2f5 : $69, $e0
-	sbc $0000cd.l, X                                                  ; $e2f7 : $ff, $cd, $00, $00
-	bmi br_00_e316                                                  ; $e2fb : $30, $19
+	adc #$ffe0.w                                                  ; $e2f5 : $69, $e0, $ff
+	cmp $0000.w                                                  ; $e2f8 : $cd, $00, $00
+	bmi @done                                                  ; $e2fb : $30, $19
 
 	lda wCurrHealth.w                                                  ; $e2fd : $ad, $ff, $09
-	and #$7f.b                                                  ; $e300 : $29, $7f
-	.db $00                                                  ; $e302 : $00
-	beq br_00_e316                                                  ; $e303 : $f0, $11
+	and #$007f.w                                                  ; $e300 : $29, $7f, $00
+	beq @done                                                  ; $e303 : $f0, $11
 
 	ldx #$7f.b                                                  ; $e305 : $a2, $7f
 	stx $09fe.w                                                  ; $e307 : $8e, $fe, $09
 	jsr $04d06a.l                                                  ; $e30a : $22, $6a, $d0, $04
 
-br_00_e30e:
+@br_e30e:
 	lda $12                                                  ; $e30e : $a5, $12
 	cmp $08                                                  ; $e310 : $c5, $08
-	bmi br_00_e316                                                  ; $e312 : $30, $02
+	bmi @done                                                  ; $e312 : $30, $02
 
 	sta $08                                                  ; $e314 : $85, $08
 
-br_00_e316:
+@done:
 	rts                                                  ; $e316 : $60
+
 
 
 Call_00_e317:
@@ -15789,7 +15784,7 @@ Call_00_e317:
 	beq br_00_e341                                                  ; $e31b : $f0, $24
 
 	dec $38                                                  ; $e31d : $c6, $38
-	bne br_00_e32b                                                  ; $e31f : $d0, $0a
+	bne @cont_e32b                                                  ; $e31f : $d0, $0a
 
 	lda $3c                                                  ; $e321 : $a5, $3c
 	eor #$80.b                                                  ; $e323 : $49, $80
@@ -15797,28 +15792,31 @@ Call_00_e317:
 	lda $36                                                  ; $e327 : $a5, $36
 	sta $38                                                  ; $e329 : $85, $38
 
-br_00_e32b:
+@cont_e32b:
 	lda $3c                                                  ; $e32b : $a5, $3c
-	.db $30, $16                                                  ; $e32d : $30, $16
+	bmi br_00_e345                                                  ; $e32d : $30, $16
 
 	lda $3a                                                  ; $e32f : $a5, $3a
 	sta $0000.w                                                  ; $e331 : $8d, $00, $00
 	stz $0001.w                                                  ; $e334 : $9c, $01, $00
 	rep #ACCU_8|F_CARRY                                                  ; $e337 : $c2, $21
-
-br_00_e339:
 	lda $05                                                  ; $e339 : $a5, $05
 	adc $0000.w                                                  ; $e33b : $6d, $00, $00
 	sta $05                                                  ; $e33e : $85, $05
 	rts                                                  ; $e340 : $60
 
-
 br_00_e341:
-	lda #$1401.w                                                  ; $e341 : $a9, $01, $14
-	.db $30, $c2                                                  ; $e344 : $30, $c2
+	lda #$01.b                                                  ; $e341 : $a9, $01
+	trb $30                                                  ; $e343 : $14, $30
 
-	jsr $e260.w                                                  ; $e346 : $20, $60, $e2
-	jsr $32c6.w                                                  ; $e349 : $20, $c6, $32
+br_00_e345:
+	rep #ACCU_8                                                  ; $e345 : $c2, $20
+	rts                                                  ; $e347 : $60
+
+
+;
+	sep #ACCU_8                                                  ; $e348 : $e2, $20
+	dec $32                                                  ; $e34a : $c6, $32
 	beq br_00_e372                                                  ; $e34c : $f0, $24
 
 	dec $39                                                  ; $e34e : $c6, $39
@@ -15831,7 +15829,7 @@ br_00_e341:
 
 br_00_e35c:
 	lda $3d                                                  ; $e35c : $a5, $3d
-	.db $30, $16                                                  ; $e35e : $30, $16
+	bmi br_00_e376                                                  ; $e35e : $30, $16
 
 	lda $3b                                                  ; $e360 : $a5, $3b
 	sta $0000.w                                                  ; $e362 : $8d, $00, $00
@@ -15842,108 +15840,110 @@ br_00_e35c:
 	sta $08                                                  ; $e36f : $85, $08
 	rts                                                  ; $e371 : $60
 
-
 br_00_e372:
-	lda #$1402.w                                                  ; $e372 : $a9, $02, $14
-	bmi br_00_e339                                                  ; $e375 : $30, $c2
+	lda #$02.b                                                  ; $e372 : $a9, $02
+	trb $30                                                  ; $e374 : $14, $30
 
-	jsr Call_00_a560.w                                                  ; $e377 : $20, $60, $a5
-	asl $c5, X                                                  ; $e37a : $16, $c5
-	asl $3af0.w                                                  ; $e37c : $0e, $f0, $3a
+br_00_e376:
+	rep #ACCU_8                                                  ; $e376 : $c2, $20
+	rts                                                  ; $e378 : $60
+
+
+;
+	lda $16                                                  ; $e379 : $a5, $16
+	cmp $0e                                                  ; $e37b : $c5, $0e
+	beq @cont_e3b9                                                  ; $e37d : $f0, $3a
+
 	cmp $05                                                  ; $e37f : $c5, $05
-	bmi br_00_e38e                                                  ; $e381 : $30, $0b
+	bmi @br_e38e                                                  ; $e381 : $30, $0b
 
 	lda $05                                                  ; $e383 : $a5, $05
 	clc                                                  ; $e385 : $18
 	adc $0a                                                  ; $e386 : $65, $0a
 	cmp $16                                                  ; $e388 : $c5, $16
-	bmi br_00_e3b7                                                  ; $e38a : $30, $2b
+	bmi @cont_e3b7                                                  ; $e38a : $30, $2b
 
-	bra br_00_e3b5                                                  ; $e38c : $80, $27
+	bra @br_e3b5                                                  ; $e38c : $80, $27
 
-br_00_e38e:
-	lda $09dd.w                                                  ; $e38e : $ad, $dd, $09
+@br_e38e:
+	lda wPlayerEntity.x.w                                                  ; $e38e : $ad, $dd, $09
 	sec                                                  ; $e391 : $38
 	sbc $05                                                  ; $e392 : $e5, $05
 	sec                                                  ; $e394 : $38
 	sbc $2c                                                  ; $e395 : $e5, $2c
 	adc #$0002.w                                                  ; $e397 : $69, $02, $00
 	cmp #$0004.w                                                  ; $e39a : $c9, $04, $00
-	bcc br_00_e3b5                                                  ; $e39d : $90, $16
+	bcc @br_e3b5                                                  ; $e39d : $90, $16
 
-	lda $09dd.w                                                  ; $e39f : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $e39f : $ad, $dd, $09
 	sec                                                  ; $e3a2 : $38
 	sbc $09fa.w                                                  ; $e3a3 : $ed, $fa, $09
-	bmi br_00_e3ab                                                  ; $e3a6 : $30, $03
-
+	bmi +                                                  ; $e3a6 : $30, $03
 	lda #$0000.w                                                  ; $e3a8 : $a9, $00, $00
-
-br_00_e3ab:
-	clc                                                  ; $e3ab : $18
++	clc                                                  ; $e3ab : $18
 	adc $05                                                  ; $e3ac : $65, $05
 	sec                                                  ; $e3ae : $38
 	sbc $0a                                                  ; $e3af : $e5, $0a
 	cmp $16                                                  ; $e3b1 : $c5, $16
-	bpl br_00_e3b7                                                  ; $e3b3 : $10, $02
+	bpl @cont_e3b7                                                  ; $e3b3 : $10, $02
 
-br_00_e3b5:
+@br_e3b5:
 	lda $16                                                  ; $e3b5 : $a5, $16
 
-br_00_e3b7:
+@cont_e3b7:
 	sta $0e                                                  ; $e3b7 : $85, $0e
+
+@cont_e3b9:
 	lda $18                                                  ; $e3b9 : $a5, $18
 	cmp $10                                                  ; $e3bb : $c5, $10
-	beq br_00_e3f9                                                  ; $e3bd : $f0, $3a
+	beq @cont_e3f9                                                  ; $e3bd : $f0, $3a
 
 	cmp $05                                                  ; $e3bf : $c5, $05
-	bpl br_00_e3ce                                                  ; $e3c1 : $10, $0b
+	bpl @br_e3ce                                                  ; $e3c1 : $10, $0b
 
 	lda $05                                                  ; $e3c3 : $a5, $05
 	sec                                                  ; $e3c5 : $38
 	sbc $0a                                                  ; $e3c6 : $e5, $0a
 	cmp $18                                                  ; $e3c8 : $c5, $18
-	bpl br_00_e3f7                                                  ; $e3ca : $10, $2b
+	bpl @cont_e3f7                                                  ; $e3ca : $10, $2b
 
-	bra br_00_e3f5                                                  ; $e3cc : $80, $27
+	bra @br_e3f5                                                  ; $e3cc : $80, $27
 
-br_00_e3ce:
-	lda $09dd.w                                                  ; $e3ce : $ad, $dd, $09
+@br_e3ce:
+	lda wPlayerEntity.x.w                                                  ; $e3ce : $ad, $dd, $09
 	sec                                                  ; $e3d1 : $38
 	sbc $05                                                  ; $e3d2 : $e5, $05
 	sec                                                  ; $e3d4 : $38
 	sbc $2e                                                  ; $e3d5 : $e5, $2e
 	adc #$0002.w                                                  ; $e3d7 : $69, $02, $00
 	cmp #$0004.w                                                  ; $e3da : $c9, $04, $00
-	bcc br_00_e3f5                                                  ; $e3dd : $90, $16
+	bcc @br_e3f5                                                  ; $e3dd : $90, $16
 
-	lda $09dd.w                                                  ; $e3df : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $e3df : $ad, $dd, $09
 	sec                                                  ; $e3e2 : $38
 	sbc $09fa.w                                                  ; $e3e3 : $ed, $fa, $09
-	bpl br_00_e3eb                                                  ; $e3e6 : $10, $03
-
+	bpl +                                                  ; $e3e6 : $10, $03
 	lda #$0000.w                                                  ; $e3e8 : $a9, $00, $00
-
-br_00_e3eb:
-	clc                                                  ; $e3eb : $18
++	clc                                                  ; $e3eb : $18
 	adc $05                                                  ; $e3ec : $65, $05
 	clc                                                  ; $e3ee : $18
 	adc $0a                                                  ; $e3ef : $65, $0a
 	cmp $18                                                  ; $e3f1 : $c5, $18
-	bmi br_00_e3f7                                                  ; $e3f3 : $30, $02
+	bmi @cont_e3f7                                                  ; $e3f3 : $30, $02
 
-br_00_e3f5:
+@br_e3f5:
 	lda $18                                                  ; $e3f5 : $a5, $18
 
-br_00_e3f7:
+@cont_e3f7:
 	sta $10                                                  ; $e3f7 : $85, $10
 
-br_00_e3f9:
+@cont_e3f9:
 	lda $20                                                  ; $e3f9 : $a5, $20
 	cmp $12                                                  ; $e3fb : $c5, $12
 	beq br_00_e43c                                                  ; $e3fd : $f0, $3d
 
 	cmp $08                                                  ; $e3ff : $c5, $08
-	bmi br_00_e40e                                                  ; $e401 : $30, $0b
+	bmi @br_e40e                                                  ; $e401 : $30, $0b
 
 	lda $08                                                  ; $e403 : $a5, $08
 	clc                                                  ; $e405 : $18
@@ -15953,7 +15953,7 @@ br_00_e3f9:
 
 	bra br_00_e438                                                  ; $e40c : $80, $2a
 
-br_00_e40e:
+@br_e40e:
 	lda $09e0.w                                                  ; $e40e : $ad, $e0, $09
 	sec                                                  ; $e411 : $38
 	sbc $08                                                  ; $e412 : $e5, $08
@@ -16206,11 +16206,11 @@ Call_00_e552:
 	lda $a8ec.w, X                                                  ; $e562 : $bd, $ec, $a8
 	sta wNewStageScrollX.w                                                  ; $e565 : $8d, $5d, $1e
 	sta wPrevStageScrollX.w                                                  ; $e568 : $8d, $7a, $1e
-	sta $00b5.w                                                  ; $e56b : $8d, $b5, $00
+	sta wBG1HorizScroll.w                                                  ; $e56b : $8d, $b5, $00
 	lda $a8ee.w, X                                                  ; $e56e : $bd, $ee, $a8
 	sta wNewStageScrollY.w                                                  ; $e571 : $8d, $60, $1e
 	sta wPrevStageScrollY.w                                                  ; $e574 : $8d, $7c, $1e
-	sta $00b7.w                                                  ; $e577 : $8d, $b7, $00
+	sta wBG1VertScroll.w                                                  ; $e577 : $8d, $b7, $00
 	sta $1e6a.w                                                  ; $e57a : $8d, $6a, $1e
 	sta $1e78.w                                                  ; $e57d : $8d, $78, $1e
 	lda $a8f0.w, X                                                  ; $e580 : $bd, $f0, $a8
@@ -16320,8 +16320,8 @@ todo_HandleTextThread:
 	lda $1f75.w                                                  ; $e651 : $ad, $75, $1f
 	bne @cont_e65d                                                  ; $e654 : $d0, $07
 
-	stz $bd                                                  ; $e656 : $64, $bd
-	stz $bf                                                  ; $e658 : $64, $bf
+	stz wBG3HorizScroll                                                  ; $e656 : $64, $bd
+	stz wBG3VertScroll                                                  ; $e658 : $64, $bf
 	stz $1f4c.w                                                  ; $e65a : $9c, $4c, $1f
 
 @cont_e65d:
@@ -16416,7 +16416,7 @@ Func_0_e679:
 	lda $1f49.w                                                  ; $e702 : $ad, $49, $1f
 	beq @br_e712                                                  ; $e705 : $f0, $0b
 
-	jsr $04be35.l                                                  ; $e707 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $e707 : $22, $35, $be, $04
 	and #$03.b                                                  ; $e70b : $29, $03
 	clc                                                  ; $e70d : $18
 	adc #$01.b                                                  ; $e70e : $69, $01
@@ -16605,8 +16605,8 @@ br_00_e839:
 br_00_e848:
 	lda $1f48.w                                                  ; $e848 : $ad, $48, $1f
 	and #$00ff.w                                                  ; $e84b : $29, $ff, $00
-	adc $bf                                                  ; $e84e : $65, $bf
-	sta $bf                                                  ; $e850 : $85, $bf
+	adc wBG3VertScroll                                                  ; $e84e : $65, $bf
+	sta wBG3VertScroll                                                  ; $e850 : $85, $bf
 	and #$fff8.w                                                  ; $e852 : $29, $f8, $ff
 	sta $00                                                  ; $e855 : $85, $00
 	lda $1f4c.w                                                  ; $e857 : $ad, $4c, $1f
@@ -16619,7 +16619,7 @@ br_00_e861:
 	bra br_00_e839                                                  ; $e864 : $80, $d3
 
 br_00_e866:
-	lda $bf                                                  ; $e866 : $a5, $bf
+	lda wBG3VertScroll                                                  ; $e866 : $a5, $bf
 	sta $1f4c.w                                                  ; $e868 : $8d, $4c, $1f
 	ldx $a5                                                  ; $e86b : $a6, $a5
 	clc                                                  ; $e86d : $18
@@ -16696,7 +16696,7 @@ br_00_e8d3:
 	jsr todo_GetTextByte.w                                                  ; $e8ec : $20, $21, $e9
 	sta $6b                                                  ; $e8ef : $85, $6b
 	rep #ACCU_8                                                  ; $e8f1 : $c2, $20
-	lda $bf                                                  ; $e8f3 : $a5, $bf
+	lda wBG3VertScroll                                                  ; $e8f3 : $a5, $bf
 	and #$01f8.w                                                  ; $e8f5 : $29, $f8, $01
 	asl                                                  ; $e8f8 : $0a
 	asl                                                  ; $e8f9 : $0a
@@ -17361,7 +17361,7 @@ Call_00_ed42:
 	sep #ACCU_8|IDX_8                                                  ; $ed44 : $e2, $30
 
 br_00_ed46:
-	pea $1e58.w                                                  ; $ed46 : $f4, $58, $1e
+	pea wCameraEntity.w                                                  ; $ed46 : $f4, $58, $1e
 	pld                                                  ; $ed49 : $2b
 	ldx $01                                                  ; $ed4a : $a6, $01
 	jsr ($ed7e.w, X)                                                  ; $ed4c : $fc, $7e, $ed
@@ -17617,7 +17617,7 @@ Call_00_eeee:
 
 br_00_eef0:
 	sep #ACCU_8|IDX_8                                                  ; $eef0 : $e2, $30
-	pea $1e58.w                                                  ; $eef2 : $f4, $58, $1e
+	pea wCameraEntity.w                                                  ; $eef2 : $f4, $58, $1e
 	pld                                                  ; $eef5 : $2b
 	ldx $01                                                  ; $eef6 : $a6, $01
 	jsr ($ef1f.w, X)                                                  ; $eef8 : $fc, $1f, $ef
@@ -17757,7 +17757,7 @@ br_00_efd7:
 	tsb $21                                                  ; $efef : $04, $21
 
 br_00_eff1:
-	jsr $04be35.l                                                  ; $eff1 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $eff1 : $22, $35, $be, $04
 	and #$03.b                                                  ; $eff5 : $29, $03
 	sta $1f                                                  ; $eff7 : $85, $1f
 	bit $1fb2.w                                                  ; $eff9 : $2c, $b2, $1f
@@ -18600,7 +18600,7 @@ Call_00_f471:
 	rts                                                  ; $f49a : $60
 
 
-Funcs_0_f49b:
+ItemUpdateFuncs:
 	.dw $f4d1
 	.dw $f4d2
 	.dw $f4d7
@@ -18624,7 +18624,7 @@ Funcs_0_f49b:
 	.dw Func_0_f518
 	.dw Func_0_f518
 	.dw Func_0_f518
-	.dw $f51d
+	.dw FarUpdateRideArmourItem ; $17 - ride armour
 	.dw $f522
 	.dw $f522
 	.dw $f522
@@ -18695,7 +18695,8 @@ Func_0_f518:
 	rts                                                  ; $f51c : $60
 
 
-	jsr $01f0f5.l                                                  ; $f51d : $22, $f5, $f0, $01
+FarUpdateRideArmourItem:
+	jsr UpdateRideArmourItem.l                                                  ; $f51d : $22, $f5, $f0, $01
 	rts                                                  ; $f521 : $60
 
 
@@ -19721,8 +19722,8 @@ EnemyUpdateFuncs:
 	.dw $fc56
 	.dw $fc5b
 	.dw $fc60
-	.dw $fc65
-	.dw $fc6a
+	.dw Func_0_fc65 ; $46 - bit/byte
+	.dw Func_0_fc6a ; $47 - bit/byte
 	.dw $fc6f
 	.dw $fc74
 	.dw $fc79
@@ -20042,11 +20043,15 @@ EnemyUpdateFuncs:
 	rts                                                  ; $fc64 : $60
 
 
-	jsr $078f43.l                                                  ; $fc65 : $22, $43, $8f, $07
+; bit
+Func_0_fc65:
+	jsr Func_7_8f43.l                                                  ; $fc65 : $22, $43, $8f, $07
 	rts                                                  ; $fc69 : $60
 
 
-	jsr $3cc444.l                                                  ; $fc6a : $22, $44, $c4, $3c
+; byte
+Func_0_fc6a:
+	jsr Func_3c_c444.l                                                  ; $fc6a : $22, $44, $c4, $3c
 	rts                                                  ; $fc6e : $60
 
 

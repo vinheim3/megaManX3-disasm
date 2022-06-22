@@ -57,12 +57,12 @@ THREAD_STARTED = 3
     enabled db ; $00
     state db ; $01
     substate db ; $02
-    b3 ds 4-3
+    subsubstate db ; $03
     subX db ; $04
     x dw ; $05/$06
     subY db ; $07
     y dw ; $08/$09
-    itemType db ; $0a determines Funcs_0_f49b entry idx
+    itemType db ; $0a determines ItemUpdateFuncs entry idx
     param db ; $0b eg flag to check
     bc ds $12-$c
     b12 db ; determines Func_2_d65b function

@@ -405,7 +405,7 @@ br_12_8286:
 	sep #$bd.b                                                  ; $8296 : $e2, $bd
 	ora $00                                                  ; $8298 : $05, $00
 	xce                                                  ; $829a : $fb
-	inc $bd                                                  ; $829b : $e6, $bd
+	inc wBG3HorizScroll                                                  ; $829b : $e6, $bd
 	bra br_12_829f                                                  ; $829d : $80, $00
 
 br_12_829f:
@@ -500,7 +500,7 @@ br_12_8338:
 	asl                                                  ; $8346 : $0a
 	.db $00                                                  ; $8347 : $00
 	xce                                                  ; $8348 : $fb
-	ora $bd                                                  ; $8349 : $05, $bd
+	ora wBG3HorizScroll                                                  ; $8349 : $05, $bd
 	.db $00                                                  ; $834b : $00
 	xce                                                  ; $834c : $fb
 	sbc $00bc.w, X                                                  ; $834d : $fd, $bc, $00
@@ -3997,7 +3997,7 @@ br_12_97a2:
 	ora ($f9, X)                                                  ; $97f0 : $01, $f9
 	lda ($20, S), Y                                                  ; $97f2 : $b3, $20
 	sbc $9201.w, Y                                                  ; $97f4 : $f9, $01, $92
-	asl $c0                                                  ; $97f7 : $06, $c0
+	asl wBG3VertScroll+1                                                  ; $97f7 : $06, $c0
 	jsr ($9ef3.w, X)                                                  ; $97f9 : $fc, $f3, $9e
 	cpy #$02.b                                                  ; $97fc : $c0, $02
 	xce                                                  ; $97fe : $fb
@@ -4019,7 +4019,7 @@ br_12_97a2:
 	sbc $b5fa.w, X                                                  ; $981e : $fd, $fa, $b5
 	cpx #$f5.b                                                  ; $9821 : $e0, $f5
 	cop $94.b                                                  ; $9823 : $02, $94
-	tsb $c0                                                  ; $9825 : $04, $c0
+	tsb wBG3VertScroll+1                                                  ; $9825 : $04, $c0
 	jsr ($bdf7.w, X)                                                  ; $9827 : $fc, $f7, $bd
 	cpy #$04.b                                                  ; $982a : $c0, $04
 	sbc [$bc], Y                                                  ; $982c : $f7, $bc
@@ -4041,9 +4041,9 @@ br_12_97a2:
 	ora $96, S                                                  ; $9856 : $03, $96
 	cpy #$f5.b                                                  ; $9858 : $c0, $f5
 	xce                                                  ; $985a : $fb
-	ldx $c0                                                  ; $985b : $a6, $c0
+	ldx wBG3VertScroll+1                                                  ; $985b : $a6, $c0
 	sbc $a7fb.w                                                  ; $985d : $ed, $fb, $a7
-	ora $c0                                                  ; $9860 : $05, $c0
+	ora wBG3VertScroll+1                                                  ; $9860 : $05, $c0
 	asl $06                                                  ; $9862 : $06, $06
 	cmp ($c0, X)                                                  ; $9864 : $c1, $c0
 	asl $fe                                                  ; $9866 : $06, $fe
@@ -4057,15 +4057,15 @@ br_12_97a2:
 	sbc $c0c7fd.l                                                  ; $9877 : $ef, $fd, $c7, $c0
 	sbc $c0c905.l, X                                                  ; $987b : $ff, $05, $c9, $c0
 	sbc [$fd], Y                                                  ; $987f : $f7, $fd
-	dec $c0                                                  ; $9881 : $c6, $c0
+	dec wBG3VertScroll+1                                                  ; $9881 : $c6, $c0
 	sbc $c0c8fd.l, X                                                  ; $9883 : $ff, $fd, $c8, $c0
 	sbc ($ed, S), Y                                                  ; $9887 : $f3, $ed
-	cmp $c0                                                  ; $9889 : $c5, $c0
+	cmp wBG3VertScroll+1                                                  ; $9889 : $c5, $c0
 	sbc ($f5, S), Y                                                  ; $988b : $f3, $f5
-	cpy $c0                                                  ; $988d : $c4, $c0
+	cpy wBG3VertScroll+1                                                  ; $988d : $c4, $c0
 	xce                                                  ; $988f : $fb
 	sbc $c3, X                                                  ; $9890 : $f5, $c3
-	tsb $c0                                                  ; $9892 : $04, $c0
+	tsb wBG3VertScroll+1                                                  ; $9892 : $04, $c0
 	.db $00                                                  ; $9894 : $00
 	php                                                  ; $9895 : $08
 	lda ($c0)                                                  ; $9896 : $b2, $c0
@@ -4296,9 +4296,9 @@ br_12_99dd:
 	ora ($e0, X)                                                  ; $99e0 : $01, $e0
 	and [$40]                                                  ; $99e2 : $27, $40
 	ora ($e8, X)                                                  ; $99e4 : $01, $e8
-	rol $c0                                                  ; $99e6 : $26, $c0
+	rol wBG3VertScroll+1                                                  ; $99e6 : $26, $c0
 	ora ($ef, X)                                                  ; $99e8 : $01, $ef
-	rol $c0                                                  ; $99ea : $26, $c0
+	rol wBG3VertScroll+1                                                  ; $99ea : $26, $c0
 	ora ($f7, X)                                                  ; $99ec : $01, $f7
 	and [$c0]                                                  ; $99ee : $27, $c0
 	sbc $30f7.w, Y                                                  ; $99f0 : $f9, $f7, $30
@@ -10653,7 +10653,7 @@ br_12_c525:
 	iny                                                  ; $c531 : $c8
 
 br_12_c532:
-	asl $c0                                                  ; $c532 : $06, $c0
+	asl wBG3VertScroll+1                                                  ; $c532 : $06, $c0
 	.db $00                                                  ; $c534 : $00
 	bpl br_12_c521                                                  ; $c535 : $10, $ea
 
@@ -12034,14 +12034,14 @@ br_12_cf25:
 	.db $00                                                  ; $cf2a : $00
 	lda $00, X                                                  ; $cf2b : $b5, $00
 	xce                                                  ; $cf2d : $fb
-	sbc $00b5.w, Y                                                  ; $cf2e : $f9, $b5, $00
+	sbc wBG1HorizScroll.w, Y                                                  ; $cf2e : $f9, $b5, $00
 	.db $00                                                  ; $cf31 : $00
 	jsr ($03b2.w, X)                                                  ; $cf32 : $fc, $b2, $03
 	.db $00                                                  ; $cf35 : $00
 	ora ($00, X)                                                  ; $cf36 : $01, $00
 	ldx $00, Y                                                  ; $cf38 : $b6, $00
 	phd                                                  ; $cf3a : $0b
-	sbc $00b7.w, Y                                                  ; $cf3b : $f9, $b7, $00
+	sbc wBG1VertScroll.w, Y                                                  ; $cf3b : $f9, $b7, $00
 	sbc $b2fc.w, X                                                  ; $cf3e : $fd, $fc, $b2
 	asl $40                                                  ; $cf41 : $06, $40
 	.db $00                                                  ; $cf43 : $00
@@ -12114,7 +12114,7 @@ br_12_cf25:
 	ora $00, S                                                  ; $cfa5 : $03, $00
 	sbc $00c3f6.l, X                                                  ; $cfa7 : $ff, $f6, $c3, $00
 	plx                                                  ; $cfab : $fa
-	sbc $00b7.w                                                  ; $cfac : $ed, $b7, $00
+	sbc wBG1VertScroll.w                                                  ; $cfac : $ed, $b7, $00
 	jsr ($befc.w, X)                                                  ; $cfaf : $fc, $fc, $be
 	tsb $20                                                  ; $cfb2 : $04, $20
 	inc $fa, X                                                  ; $cfb4 : $f6, $fa
@@ -12521,7 +12521,7 @@ br_12_d1c9:
 
 br_12_d252:
 	sbc ($14)                                                  ; $d252 : $f2, $14
-	bit $c0                                                  ; $d254 : $24, $c0
+	bit wBG3VertScroll+1                                                  ; $d254 : $24, $c0
 	sbc [$20], Y                                                  ; $d256 : $f7, $20
 	ldx #$ec00.w                                                  ; $d258 : $a2, $00, $ec
 	lsr                                                  ; $d25b : $4a
@@ -12596,7 +12596,7 @@ br_12_d2ae:
 
 br_12_d2cb:
 	sbc ($14)                                                  ; $d2cb : $f2, $14
-	bit $c0                                                  ; $d2cd : $24, $c0
+	bit wBG3VertScroll+1                                                  ; $d2cd : $24, $c0
 	sbc [$20], Y                                                  ; $d2cf : $f7, $20
 	ldx #$ef40.w                                                  ; $d2d1 : $a2, $40, $ef
 	bvc br_12_d298                                                  ; $d2d4 : $50, $c2
@@ -14357,7 +14357,7 @@ br_12_df09:
 	jsr ($bd00.w, X)                                                  ; $df34 : $fc, $00, $bd
 	ora [$00]                                                  ; $df37 : $07, $00
 	.db $00                                                  ; $df39 : $00
-	tsb $ba                                                  ; $df3a : $04, $ba
+	tsb wBG2HorizScroll+1                                                  ; $df3a : $04, $ba
 	.db $80, $f8                                                  ; $df3c : $80, $f8
 
 	ora $8e, S                                                  ; $df3e : $03, $8e

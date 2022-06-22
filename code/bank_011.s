@@ -530,7 +530,7 @@ br_11_82da:
 	ldy #$f220.w                                                  ; $838a : $a0, $20, $f2
 	ora #$20ac.w                                                  ; $838d : $09, $ac, $20
 	sbc ($fe), Y                                                  ; $8390 : $f1, $fe
-	sty $c0                                                  ; $8392 : $84, $c0
+	sty wBG3VertScroll+1                                                  ; $8392 : $84, $c0
 	.db $00                                                  ; $8394 : $00
 	ora ($db, X)                                                  ; $8395 : $01, $db
 	rts                                                  ; $8397 : $60
@@ -2905,13 +2905,13 @@ br_11_8eac:
 	tsb $f4c0.w                                                  ; $8f1a : $0c, $c0, $f4
 	cop $0a.b                                                  ; $8f1d : $02, $0a
 	cpy #$f800.w                                                  ; $8f1f : $c0, $00, $f8
-	asl $c0                                                  ; $8f22 : $06, $c0
+	asl wBG3VertScroll+1                                                  ; $8f22 : $06, $c0
 	sed                                                  ; $8f24 : $f8
 	sed                                                  ; $8f25 : $f8
 	ora [$c0]                                                  ; $8f26 : $07, $c0
 	.db $00                                                  ; $8f28 : $00
 	.db $00                                                  ; $8f29 : $00
-	tsb $c0                                                  ; $8f2a : $04, $c0
+	tsb wBG3VertScroll+1                                                  ; $8f2a : $04, $c0
 	sed                                                  ; $8f2c : $f8
 	.db $00                                                  ; $8f2d : $00
 	ora $05                                                  ; $8f2e : $05, $05
@@ -5177,14 +5177,14 @@ br_11_9b83:
 	adc [$c0]                                                  ; $9b83 : $67, $c0
 	bpl br_11_9b7f                                                  ; $9b85 : $10, $f8
 
-	ror $c0                                                  ; $9b87 : $66, $c0
+	ror wBG3VertScroll+1                                                  ; $9b87 : $66, $c0
 	bpl br_11_9b8b                                                  ; $9b89 : $10, $00
 
 br_11_9b8b:
-	adc $c0                                                  ; $9b8b : $65, $c0
+	adc wBG3VertScroll+1                                                  ; $9b8b : $65, $c0
 	bpl br_11_9b97                                                  ; $9b8d : $10, $08
 
-	stz $c0                                                  ; $9b8f : $64, $c0
+	stz wBG3VertScroll+1                                                  ; $9b8f : $64, $c0
 	bpl br_11_9ba3                                                  ; $9b91 : $10, $10
 
 	adc $80, S                                                  ; $9b93 : $63, $80
@@ -6887,7 +6887,7 @@ br_11_a69b:
 	sta [$00], Y                                                  ; $a6bd : $97, $00
 	ora ($07), Y                                                  ; $a6bf : $11, $07
 	ldy $0900.w, X                                                  ; $a6c1 : $bc, $00, $09
-	asl $bb                                                  ; $a6c4 : $06, $bb
+	asl wBG2VertScroll                                                  ; $a6c4 : $06, $bb
 	.db $00                                                  ; $a6c6 : $00
 	ora ($06, X)                                                  ; $a6c7 : $01, $06
 	tsx                                                  ; $a6c9 : $ba
@@ -13881,7 +13881,7 @@ br_11_d4a4:
 	.db $00                                                  ; $d4a9 : $00
 	ora [$e5]                                                  ; $d4aa : $07, $e5
 	cpx $0b00.w                                                  ; $d4ac : $ec, $00, $0b
-	inc $b8                                                  ; $d4af : $e6, $b8
+	inc wBG1VertScroll+1                                                  ; $d4af : $e6, $b8
 	rti                                                  ; $d4b1 : $40
 
 

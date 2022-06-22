@@ -8116,7 +8116,7 @@ br_14_abea:
 	inc $01, X                                                  ; $b254 : $f6, $01
 	inc $01, X                                                  ; $b256 : $f6, $01
 	adc #$1102.w                                                  ; $b258 : $69, $02, $11
-	tsb $b7                                                  ; $b25b : $04, $b7
+	tsb wBG1VertScroll                                                  ; $b25b : $04, $b7
 	.db $00                                                  ; $b25d : $00
 	ldx $00, Y                                                  ; $b25e : $b6, $00
 	sta $cf02.w, X                                                  ; $b260 : $9d, $02, $cf
@@ -8516,7 +8516,7 @@ br_14_b4c2:
 	xce                                                  ; $b4dc : $fb
 	ora ($47, X)                                                  ; $b4dd : $01, $47
 	ora ($73, X)                                                  ; $b4df : $01, $73
-	tsb $bc                                                  ; $b4e1 : $04, $bc
+	tsb wBG2VertScroll+1                                                  ; $b4e1 : $04, $bc
 	ora ($81, X)                                                  ; $b4e3 : $01, $81
 	cop $bc.b                                                  ; $b4e5 : $02, $bc
 	.db $00                                                  ; $b4e7 : $00
@@ -8789,7 +8789,7 @@ br_14_b5c5:
 	tsb $9b                                                  ; $b659 : $04, $9b
 	tsb $9c                                                  ; $b65b : $04, $9c
 	tsb $9d                                                  ; $b65d : $04, $9d
-	tsb $b6                                                  ; $b65f : $04, $b6
+	tsb wBG1HorizScroll+1                                                  ; $b65f : $04, $b6
 	.db $00                                                  ; $b661 : $00
 	lda [$00], Y                                                  ; $b662 : $b7, $00
 	lda [$00], Y                                                  ; $b664 : $b7, $00
@@ -8897,7 +8897,7 @@ br_14_b5c5:
 	eor [$00]                                                  ; $b710 : $47, $00
 	lda [$04], Y                                                  ; $b712 : $b7, $04
 	clv                                                  ; $b714 : $b8
-	tsb $b9                                                  ; $b715 : $04, $b9
+	tsb wBG2HorizScroll                                                  ; $b715 : $04, $b9
 	tsb $4f                                                  ; $b717 : $04, $4f
 	ora ($bc, X)                                                  ; $b719 : $01, $bc
 	.db $00                                                  ; $b71b : $00
@@ -8907,9 +8907,9 @@ br_14_b5c5:
 	.db $00                                                  ; $b71f : $00
 	eor [$00]                                                  ; $b720 : $47, $00
 	tsx                                                  ; $b722 : $ba
-	tsb $bb                                                  ; $b723 : $04, $bb
-	tsb $bc                                                  ; $b725 : $04, $bc
-	tsb $bd                                                  ; $b727 : $04, $bd
+	tsb wBG2VertScroll                                                  ; $b723 : $04, $bb
+	tsb wBG2VertScroll+1                                                  ; $b725 : $04, $bc
+	tsb wBG3HorizScroll                                                  ; $b727 : $04, $bd
 	tsb $e5                                                  ; $b729 : $04, $e5
 	.db $00                                                  ; $b72b : $00
 	sta $04be01.l                                                  ; $b72c : $8f, $01, $be, $04
@@ -8950,7 +8950,7 @@ br_14_b5c5:
 
 	ora ($c9, X)                                                  ; $b769 : $01, $c9
 	tsb $ca                                                  ; $b76b : $04, $ca
-	tsb $b5                                                  ; $b76d : $04, $b5
+	tsb wBG1HorizScroll                                                  ; $b76d : $04, $b5
 	.db $00                                                  ; $b76f : $00
 	sbc $ec00.w                                                  ; $b770 : $ed, $00, $ec
 	.db $00                                                  ; $b773 : $00
@@ -9234,7 +9234,7 @@ br_14_b948:
 	and $05, X                                                  ; $b962 : $35, $05
 	rol $03                                                  ; $b964 : $26, $03
 	phb                                                  ; $b966 : $8b
-	tsb $bc                                                  ; $b967 : $04, $bc
+	tsb wBG2VertScroll+1                                                  ; $b967 : $04, $bc
 	.db $00                                                  ; $b969 : $00
 	jmp $4000.w                                                  ; $b96a : $4c, $00, $40
 
@@ -10450,7 +10450,7 @@ br_14_c2a5:
 	cpx $12                                                  ; $c2a5 : $e4, $12
 
 br_14_c2a7:
-	cpx $b6                                                  ; $c2a7 : $e4, $b6
+	cpx wBG1HorizScroll+1                                                  ; $c2a7 : $e4, $b6
 	.db $50, $b5                                                  ; $c2a9 : $50, $b5
 
 br_14_c2ab:
@@ -11037,7 +11037,7 @@ br_14_c5a9:
 br_14_c5ab:
 	cpx $0a                                                  ; $c5ab : $e4, $0a
 	cpx $0a                                                  ; $c5ad : $e4, $0a
-	cpx $b8                                                  ; $c5af : $e4, $b8
+	cpx wBG1VertScroll+1                                                  ; $c5af : $e4, $b8
 
 br_14_c5b1:
 	bpl br_14_c56e                                                  ; $c5b1 : $10, $bb
@@ -11463,7 +11463,7 @@ br_14_c811:
 
 br_14_c81d:
 	stz $5e                                                  ; $c81d : $64, $5e
-	stz $bb                                                  ; $c81f : $64, $bb
+	stz wBG2VertScroll                                                  ; $c81f : $64, $bb
 	bvc br_14_c7db                                                  ; $c821 : $50, $b8
 
 	bvc br_14_c7eb                                                  ; $c823 : $50, $c6
@@ -12162,7 +12162,7 @@ br_14_ca15:
 	mvn $54, $0c                                                  ; $cbb9 : $54, $0c, $54
 	lda ($55), Y                                                  ; $cbbc : $b1, $55
 	tsb $0c54.w                                                  ; $cbbe : $0c, $54, $0c
-	trb $ba                                                  ; $cbc1 : $14, $ba
+	trb wBG2HorizScroll+1                                                  ; $cbc1 : $14, $ba
 	ora $0c, X                                                  ; $cbc3 : $15, $0c
 	trb $c7                                                  ; $cbc5 : $14, $c7
 	ora $bb, X                                                  ; $cbc7 : $15, $bb
@@ -12627,7 +12627,7 @@ br_14_ce7c:
 	ora $15a8.w, Y                                                  ; $cf2f : $19, $a8, $15
 	lda #$0c15.w                                                  ; $cf32 : $a9, $15, $0c
 	trb $0c                                                  ; $cf35 : $14, $0c
-	trb $ba                                                  ; $cf37 : $14, $ba
+	trb wBG2HorizScroll+1                                                  ; $cf37 : $14, $ba
 	eor $0c, X                                                  ; $cf39 : $55, $0c
 	mvn $55, $c7                                                  ; $cf3b : $54, $c7, $55
 	dec $55                                                  ; $cf3e : $c6, $55
@@ -15062,7 +15062,7 @@ br_14_ce7c:
 	tsc                                                  ; $d979 : $3b
 	.db $00                                                  ; $d97a : $00
 	tsc                                                  ; $d97b : $3b
-	sta $b9                                                  ; $d97c : $85, $b9
+	sta wBG2HorizScroll                                                  ; $d97c : $85, $b9
 	lda $b9b9.w, Y                                                  ; $d97e : $b9, $b9, $b9
 	lda $3b3b.w, Y                                                  ; $d981 : $b9, $3b, $3b
 	tyx                                                  ; $d984 : $bb

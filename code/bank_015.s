@@ -3289,7 +3289,7 @@ br_15_93bc:
 	tsb $95                                                  ; $93cb : $04, $95
 	ora $1a, S                                                  ; $93cd : $03, $1a
 	tsb $1b                                                  ; $93cf : $04, $1b
-	tsb $bb                                                  ; $93d1 : $04, $bb
+	tsb wBG2VertScroll                                                  ; $93d1 : $04, $bb
 	.db $00                                                  ; $93d3 : $00
 	.db $00                                                  ; $93d4 : $00
 	.db $00                                                  ; $93d5 : $00
@@ -3462,7 +3462,7 @@ br_15_93bc:
 	ora $50, S                                                  ; $94e5 : $03, $50
 	tsb $51                                                  ; $94e7 : $04, $51
 	tsb $52                                                  ; $94e9 : $04, $52
-	tsb $bb                                                  ; $94eb : $04, $bb
+	tsb wBG2VertScroll                                                  ; $94eb : $04, $bb
 	.db $00                                                  ; $94ed : $00
 	.db $00                                                  ; $94ee : $00
 	.db $00                                                  ; $94ef : $00
@@ -3646,9 +3646,9 @@ br_15_93bc:
 	ora $0f, S                                                  ; $962f : $03, $0f
 	tsb $e2                                                  ; $9631 : $04, $e2
 	ora $7b, S                                                  ; $9633 : $03, $7b
-	tsb $c0                                                  ; $9635 : $04, $c0
+	tsb wBG3VertScroll+1                                                  ; $9635 : $04, $c0
 	ora $7c, S                                                  ; $9637 : $03, $7c
-	tsb $c0                                                  ; $9639 : $04, $c0
+	tsb wBG3VertScroll+1                                                  ; $9639 : $04, $c0
 	ora $7d, S                                                  ; $963b : $03, $7d
 	tsb $c6                                                  ; $963d : $04, $c6
 	ora $0f, S                                                  ; $963f : $03, $0f
@@ -3828,16 +3828,16 @@ br_15_93bc:
 	and [$04], Y                                                  ; $9762 : $37, $04
 	stz $e603.w                                                  ; $9764 : $9c, $03, $e6
 	ora $b8, S                                                  ; $9767 : $03, $b8
-	tsb $b9                                                  ; $9769 : $04, $b9
-	tsb $ba                                                  ; $976b : $04, $ba
+	tsb wBG2HorizScroll                                                  ; $9769 : $04, $b9
+	tsb wBG2HorizScroll+1                                                  ; $976b : $04, $ba
 	tsb $ef                                                  ; $976d : $04, $ef
 	ora $9c, S                                                  ; $976f : $03, $9c
 	ora $9c, S                                                  ; $9771 : $03, $9c
 	ora $9c, S                                                  ; $9773 : $03, $9c
 	ora $e6, S                                                  ; $9775 : $03, $e6
 	ora $bb, S                                                  ; $9777 : $03, $bb
-	tsb $bc                                                  ; $9779 : $04, $bc
-	tsb $bd                                                  ; $977b : $04, $bd
+	tsb wBG2VertScroll+1                                                  ; $9779 : $04, $bc
+	tsb wBG3HorizScroll                                                  ; $977b : $04, $bd
 	tsb $0f                                                  ; $977d : $04, $0f
 	tsb $9c                                                  ; $977f : $04, $9c
 	ora $9c, S                                                  ; $9781 : $03, $9c
@@ -3848,9 +3848,9 @@ br_15_93bc:
 	tsb $20                                                  ; $978b : $04, $20
 	tsb $93                                                  ; $978d : $04, $93
 	ora $be, S                                                  ; $978f : $03, $be
-	tsb $bf                                                  ; $9791 : $04, $bf
+	tsb wBG3VertScroll                                                  ; $9791 : $04, $bf
 	tsb $5a                                                  ; $9793 : $04, $5a
-	tsb $c0                                                  ; $9795 : $04, $c0
+	tsb wBG3VertScroll+1                                                  ; $9795 : $04, $c0
 	tsb $c1                                                  ; $9797 : $04, $c1
 	tsb $c2                                                  ; $9799 : $04, $c2
 	tsb $77                                                  ; $979b : $04, $77
@@ -4015,7 +4015,7 @@ br_15_984e:
 	tsb $93                                                  ; $989d : $04, $93
 	ora $df, S                                                  ; $989f : $03, $df
 	tsb $e0                                                  ; $98a1 : $04, $e0
-	tsb $bf                                                  ; $98a3 : $04, $bf
+	tsb wBG3VertScroll                                                  ; $98a3 : $04, $bf
 	tsb $e1                                                  ; $98a5 : $04, $e1
 	tsb $e2                                                  ; $98a7 : $04, $e2
 	tsb $00                                                  ; $98a9 : $04, $00
@@ -17370,7 +17370,7 @@ br_15_e3be:
 	rep #IDX_8|F_CARRY                                                  ; $f6eb : $c2, $11
 	and $11, S                                                  ; $f6ed : $23, $11
 	ror $67                                                  ; $f6ef : $66, $67
-	dec $b7                                                  ; $f6f1 : $c6, $b7
+	dec wBG1VertScroll                                                  ; $f6f1 : $c6, $b7
 	adc [$68], Y                                                  ; $f6f3 : $77, $68
 	ror $76, X                                                  ; $f6f5 : $76, $76
 	adc ($76)                                                  ; $f6f7 : $72, $76

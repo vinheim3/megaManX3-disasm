@@ -2737,7 +2737,7 @@ br_2c_9236:
 	sta $06d9.w, Y                                                  ; $9275 : $99, $d9, $06
 	cmp ($0e), Y                                                  ; $9278 : $d1, $0e
 	sta $7c, S                                                  ; $927a : $83, $7c
-	lsr $b9                                                  ; $927c : $46, $b9
+	lsr wBG2HorizScroll                                                  ; $927c : $46, $b9
 	bit $0042.w, X                                                  ; $927e : $3c, $42, $00
 	.db $00                                                  ; $9281 : $00
 	bpl br_2c_9294                                                  ; $9282 : $10, $10
@@ -7114,7 +7114,7 @@ br_2c_a841:
 	eor ($3e, X)                                                  ; $a848 : $41, $3e
 	rol $1a                                                  ; $a84a : $26, $1a
 	and $427b.w, X                                                  ; $a84c : $3d, $7b, $42
-	ora $c0                                                  ; $a84f : $05, $c0
+	ora wBG3VertScroll+1                                                  ; $a84f : $05, $c0
 	.db $00                                                  ; $a851 : $00
 	cpx #$e000.w                                                  ; $a852 : $e0, $00, $e0
 	.db $00                                                  ; $a855 : $00
@@ -21136,7 +21136,7 @@ br_2c_f03a:
 	.db $00                                                  ; $f07f : $00
 	inc $fc00.w, X                                                  ; $f080 : $fe, $00, $fc
 	cop $f8.b                                                  ; $f083 : $02, $f8
-	asl $bc                                                  ; $f085 : $06, $bc
+	asl wBG2VertScroll+1                                                  ; $f085 : $06, $bc
 	wdm                                                  ; $f087 : $42
 	stx $68, Y                                                  ; $f088 : $96, $68
 	ldx $7e51.w                                                  ; $f08a : $ae, $51, $7e
@@ -21944,7 +21944,7 @@ br_2c_f4b8:
 	rts                                                  ; $f4c9 : $60
 
 
-	rol $c0                                                  ; $f4ca : $26, $c0
+	rol wBG3VertScroll+1                                                  ; $f4ca : $26, $c0
 	cmp ($10)                                                  ; $f4cc : $d2, $10
 	tax                                                  ; $f4ce : $aa
 	tay                                                  ; $f4cf : $a8

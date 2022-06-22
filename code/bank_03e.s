@@ -1811,8 +1811,8 @@ br_3e_88e2:
 	.db $00                                                  ; $89a4 : $00
 	.db $00                                                  ; $89a5 : $00
 	ldx $af04.w                                                  ; $89a6 : $ae, $04, $af
-	tsb $be                                                  ; $89a9 : $04, $be
-	tsb $bf                                                  ; $89ab : $04, $bf
+	tsb wBG3HorizScroll+1                                                  ; $89a9 : $04, $be
+	tsb wBG3VertScroll                                                  ; $89ab : $04, $bf
 	tsb $cd                                                  ; $89ad : $04, $cd
 	tsb $ce                                                  ; $89af : $04, $ce
 	tsb $cf                                                  ; $89b1 : $04, $cf
@@ -6550,7 +6550,7 @@ br_3e_a354:
 
 	cli                                                  ; $a37b : $58
 	eor $28                                                  ; $a37c : $45, $28
-	and $c0                                                  ; $a37e : $25, $c0
+	and wBG3VertScroll+1                                                  ; $a37e : $25, $c0
 	jsr $56324a.l                                                  ; $a380 : $22, $4a, $32, $56
 	.db $30, $52                                                  ; $a384 : $30, $52
 
@@ -8609,7 +8609,7 @@ br_3e_b07c:
 
 	cpy #$b1.b                                                  ; $b0ab : $c0, $b1
 	cpy $92                                                  ; $b0ad : $c4, $92
-	sbc $c0                                                  ; $b0af : $e5, $c0
+	sbc wBG3VertScroll+1                                                  ; $b0af : $e5, $c0
 	.db $00                                                  ; $b0b1 : $00
 	cpx $00                                                  ; $b0b2 : $e4, $00
 	sbc $00                                                  ; $b0b4 : $e5, $00
@@ -9529,7 +9529,7 @@ br_3e_b4c0:
 	.db $00                                                  ; $b66f : $00
 	sbc $b906.w, Y                                                  ; $b670 : $f9, $06, $b9
 	asl $59                                                  ; $b673 : $06, $59
-	asl $b9                                                  ; $b675 : $06, $b9
+	asl wBG2HorizScroll                                                  ; $b675 : $06, $b9
 	asl $f8                                                  ; $b677 : $06, $f8
 	ora [$fc]                                                  ; $b679 : $07, $fc
 	ora $fe, S                                                  ; $b67b : $03, $fe

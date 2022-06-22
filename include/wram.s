@@ -5,7 +5,6 @@
 w00:
     ds $30
 
-; -8 as the last 8 bytes are unused
 wThreads: ; $30
     .db
 
@@ -91,7 +90,28 @@ wJoy2CurrBtnsPressed: ; $b2
     dw
 
 wb4:
-    ds $c3-$b4
+    ds 5-4
+
+wBG1HorizScroll: ; $b5
+    dw
+
+wBG1VertScroll: ; $b7
+    dw
+
+wBG2HorizScroll: ; $b9
+    dw
+
+wBG2VertScroll: ; $bb
+    dw
+
+wBG3HorizScroll: ; $bd
+    dw
+
+wBG3VertScroll: ; $bf
+    dw
+
+wc1:
+    ds 3-1
 
 wIntsEnabled: ; $c3
     db
@@ -195,7 +215,10 @@ w1d18_Entities: ; $1d18
     ds _1d18_Entity.sizeof * NUM_1D18_ENTITIES
 
 w1e18:
-    ds $5d-$18
+    ds $58-$18
+
+wCameraEntity: ; $1e58
+    ds $d-8
 
 ; High byte - x room idxed 1
 ; Loq byte - scroll x within room
@@ -227,8 +250,10 @@ wDynamicSpriteTileDatasIdx: ; $1f18
 w1f19:
     ds $ae-$19
 
-; 1 - top-left stage, 7 - tunnel rhino, etc
-; 18 in total
+; $1-$8 - stages from left-right, up-down
+; $9 - vile area
+; $c - has bit/byte cutscene
+; $12 in total
 wStageIdx: ; $1fae
     db
 
@@ -287,8 +312,8 @@ w1fd3:
 ; Bit 4 set: volt catfish
 ; Bit 3 set: toxic seahorse
 ; Bit 2 set: gravity beetle
-; Bit 1 set:
-; Bit 0 set:
+; Bit 1 set: blizzard buffalo
+; Bit 0 set: blast hornet
 wHealthTanksGottenBitfield: ; $1fd4
     db
 

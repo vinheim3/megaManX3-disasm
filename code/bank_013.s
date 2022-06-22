@@ -89,7 +89,7 @@ CapsuleState0_Init:
 	bra @br_c071                                                  ; $c06b : $80, $04
 
 @deleteSelf:
-	jmp Func_2_d928.l                                                  ; $c06d : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $c06d : $5c, $28, $d9, $02
 
 @br_c071:
 	jsr Func_2_e15c.l                                                  ; $c071 : $22, $5c, $e1, $02
@@ -259,15 +259,21 @@ CapsuleMainSubstate1:
 	asl                                                  ; $c19c : $0a
 	tax                                                  ; $c19d : $aa
 
+.ifdef HACK
+; Prevent camera snapping in on capsule (as it requires text to snap back)
+	bra @cont_c1b4
+	nop
+.else
 ;
-	lda $cd9f.w, X                                                  ; $c19e : $bd, $9f, $cd
+	lda todo_StageCameraDataForCapsules.w, X                                                  ; $c19e : $bd, $9f, $cd
+.endif
 	beq @cont_c1b2                                                  ; $c1a1 : $f0, $0f
 
 	sta $1e6e.w                                                  ; $c1a3 : $8d, $6e, $1e
 	sta $1e70.w                                                  ; $c1a6 : $8d, $70, $1e
 
 ;
-	lda $cda1.w, X                                                  ; $c1a9 : $bd, $a1, $cd
+	lda todo_StageCameraDataForCapsules.w+2, X                                                  ; $c1a9 : $bd, $a1, $cd
 	sta $1e78.w                                                  ; $c1ac : $8d, $78, $1e
 	sta $1e7e.w                                                  ; $c1af : $8d, $7e, $1e
 
@@ -297,7 +303,7 @@ CapsuleMainSubstate2SubSubstate0:
 	asl                                                  ; $c1cc : $0a
 	asl                                                  ; $c1cd : $0a
 	tax                                                  ; $c1ce : $aa
-	lda Data_6_cd9f.w, X                                                  ; $c1cf : $bd, $9f, $cd
+	lda todo_StageCameraDataForCapsules.w, X                                                  ; $c1cf : $bd, $9f, $cd
 	beq @toNextSubSubstate                                                  ; $c1d2 : $f0, $13
 
 ; go to next subsubstate once scrolling is done
@@ -419,7 +425,7 @@ CapsuleMainSubstate4:
 	cop $85.b                                                  ; $c279 : $02, $85
 	ora $c2, S                                                  ; $c27b : $03, $c2
 	jsr $05a5.w                                                  ; $c27d : $20, $a5, $05
-	sta $09dd.w                                                  ; $c280 : $8d, $dd, $09
+	sta wPlayerEntity.x.w                                                  ; $c280 : $8d, $dd, $09
 	stz wJoy1CurrButtonsHeld.w                                                  ; $c283 : $9c, $a8, $00
 	stz $00aa.w                                                  ; $c286 : $9c, $aa, $00
 	stz $00ac.w                                                  ; $c289 : $9c, $ac, $00
@@ -692,7 +698,7 @@ br_13_c466:
 
 
 CapsuleState2_Delete:
-	jmp Func_2_d928.l                                                  ; $c46b : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $c46b : $5c, $28, $d9, $02
 
 
 Call_13_c46f:
@@ -737,7 +743,7 @@ br_13_c493:
 	lda $08                                                  ; $c4b2 : $a5, $08
 	adc #$ffe8.w                                                  ; $c4b4 : $69, $e8, $ff
 	sta $0008.w, X                                                  ; $c4b7 : $9d, $08, $00
-	jsr $04be35.l                                                  ; $c4ba : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $c4ba : $22, $35, $be, $04
 	and #$001f.w                                                  ; $c4be : $29, $1f, $00
 	sta $0000.w                                                  ; $c4c1 : $8d, $00, $00
 	lda $05                                                  ; $c4c4 : $a5, $05
@@ -1158,7 +1164,7 @@ br_13_c6e5:
 	bne br_13_c7c5                                                  ; $c791 : $d0, $32
 
 br_13_c793:
-	jsr $02db3f.l                                                  ; $c793 : $22, $3f, $db, $02
+	jsr Func_2_db3f.l                                                  ; $c793 : $22, $3f, $db, $02
 	rts                                                  ; $c797 : $60
 
 
@@ -1166,7 +1172,7 @@ br_13_c793:
 	sta $02                                                  ; $c79a : $85, $02
 	bra br_13_c7c5                                                  ; $c79c : $80, $27
 
-	jsr $02ddfe.l                                                  ; $c79e : $22, $fe, $dd, $02
+	jsr Func_2_ddfe.l                                                  ; $c79e : $22, $fe, $dd, $02
 	lda $0b                                                  ; $c7a2 : $a5, $0b
 	beq br_13_c7bb                                                  ; $c7a4 : $f0, $15
 
@@ -2048,7 +2054,7 @@ br_13_cd0d:
 	inc $1f36.w                                                  ; $cd25 : $ee, $36, $1f
 
 br_13_cd28:
-	jsr Func_2_d928.l                                                  ; $cd28 : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $cd28 : $22, $28, $d9, $02
 	rts                                                  ; $cd2c : $60
 
 
@@ -2306,7 +2312,7 @@ br_13_cee4:
 	bne br_13_cf31                                                  ; $cee8 : $d0, $47
 
 	rep #ACCU_8                                                  ; $ceea : $c2, $20
-	lda $09dd.w                                                  ; $ceec : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $ceec : $ad, $dd, $09
 	cmp #$16d0.w                                                  ; $ceef : $c9, $d0, $16
 	bpl br_13_cf07                                                  ; $cef2 : $10, $13
 
@@ -2525,7 +2531,7 @@ Call_13_d02e:
 
 Call_13_d042:
 	rep #ACCU_8                                                  ; $d042 : $c2, $20
-	lda $09dd.w                                                  ; $d044 : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $d044 : $ad, $dd, $09
 	and #$00ff.w                                                  ; $d047 : $29, $ff, $00
 	cmp #$00c8.w                                                  ; $d04a : $c9, $c8, $00
 	sep #ACCU_8                                                  ; $d04d : $e2, $20
@@ -2545,7 +2551,7 @@ br_13_d05a:
 Call_13_d05d:
 	rep #ACCU_8                                                  ; $d05d : $c2, $20
 	lda $05                                                  ; $d05f : $a5, $05
-	sta $09dd.w                                                  ; $d061 : $8d, $dd, $09
+	sta wPlayerEntity.x.w                                                  ; $d061 : $8d, $dd, $09
 	lda $08                                                  ; $d064 : $a5, $08
 	sta $09e0.w                                                  ; $d066 : $8d, $e0, $09
 	sep #ACCU_8                                                  ; $d069 : $e2, $20
@@ -2973,7 +2979,7 @@ br_13_d324:
 	sta $0e                                                  ; $d32c : $85, $0e
 
 br_13_d32e:
-	jsr $02db3f.l                                                  ; $d32e : $22, $3f, $db, $02
+	jsr Func_2_db3f.l                                                  ; $d32e : $22, $3f, $db, $02
 	rts                                                  ; $d332 : $60
 
 
@@ -3477,14 +3483,14 @@ br_13_d5e4:
 	bne br_13_d604                                                  ; $d5eb : $d0, $17
 
 br_13_d5ed:
-	jmp $02db3f.l                                                  ; $d5ed : $5c, $3f, $db, $02
+	jmp Func_2_db3f.l                                                  ; $d5ed : $5c, $3f, $db, $02
 
 
 	lda #$02.b                                                  ; $d5f1 : $a9, $02
 	sta $01                                                  ; $d5f3 : $85, $01
 	bra br_13_d604                                                  ; $d5f5 : $80, $0d
 
-	jsr $02ddfe.l                                                  ; $d5f7 : $22, $fe, $dd, $02
+	jsr Func_2_ddfe.l                                                  ; $d5f7 : $22, $fe, $dd, $02
 	lda $01                                                  ; $d5fb : $a5, $01
 	cmp #$04.b                                                  ; $d5fd : $c9, $04
 	bne br_13_d604                                                  ; $d5ff : $d0, $03
@@ -4560,14 +4566,14 @@ Call_13_dc72:
 	bne br_13_dcd2                                                  ; $dcb9 : $d0, $17
 
 br_13_dcbb:
-	jmp $02db3f.l                                                  ; $dcbb : $5c, $3f, $db, $02
+	jmp Func_2_db3f.l                                                  ; $dcbb : $5c, $3f, $db, $02
 
 
 	lda #$02.b                                                  ; $dcbf : $a9, $02
 	sta $01                                                  ; $dcc1 : $85, $01
 	bra br_13_dcd2                                                  ; $dcc3 : $80, $0d
 
-	jsr $02ddfe.l                                                  ; $dcc5 : $22, $fe, $dd, $02
+	jsr Func_2_ddfe.l                                                  ; $dcc5 : $22, $fe, $dd, $02
 	lda $01                                                  ; $dcc9 : $a5, $01
 	cmp #$04.b                                                  ; $dccb : $c9, $04
 	bne br_13_dcd2                                                  ; $dccd : $d0, $03
@@ -4600,7 +4606,7 @@ br_13_dcee:
 	cmp #$0b.b                                                  ; $dcf1 : $c9, $0b
 	beq br_13_dcf9                                                  ; $dcf3 : $f0, $04
 
-	jmp Func_2_d928.l                                                  ; $dcf5 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $dcf5 : $5c, $28, $d9, $02
 
 
 br_13_dcf9:
@@ -4914,7 +4920,7 @@ br_13_df12:
 
 br_13_df1e:
 	stz $3d                                                  ; $df1e : $64, $3d
-	jsr $04be35.l                                                  ; $df20 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $df20 : $22, $35, $be, $04
 	and #$03.b                                                  ; $df24 : $29, $03
 	tax                                                  ; $df26 : $aa
 	lda $27                                                  ; $df27 : $a5, $27
@@ -5033,7 +5039,7 @@ br_13_dfae:
 	bne br_13_dfe9                                                  ; $dfc4 : $d0, $23
 
 	stz $03                                                  ; $dfc6 : $64, $03
-	jsr $04be35.l                                                  ; $dfc8 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $dfc8 : $22, $35, $be, $04
 	and #$03.b                                                  ; $dfcc : $29, $03
 	tax                                                  ; $dfce : $aa
 	lda $ecd7.w, X                                                  ; $dfcf : $bd, $d7, $ec
@@ -5261,7 +5267,7 @@ br_13_e123:
 br_13_e125:
 	sta $1b                                                  ; $e125 : $85, $1b
 	stz $1a                                                  ; $e127 : $64, $1a
-	lda $09dd.w                                                  ; $e129 : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $e129 : $ad, $dd, $09
 	sta $7fcdb0.l                                                  ; $e12c : $8f, $b0, $cd, $7f
 	lda #$04.b                                                  ; $e130 : $a9, $04
 	sta $03                                                  ; $e132 : $85, $03
@@ -5702,7 +5708,7 @@ br_13_e3b2:
 	tsb $1fda.w                                                  ; $e3b8 : $0c, $da, $1f
 
 br_13_e3bb:
-	jmp Func_2_d928.l                                                  ; $e3bb : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $e3bb : $5c, $28, $d9, $02
 
 
 Call_13_e3bf:
@@ -5853,14 +5859,14 @@ Call_13_e461:
 	bne br_13_e4c3                                                  ; $e4aa : $d0, $17
 
 br_13_e4ac:
-	jmp $02db3f.l                                                  ; $e4ac : $5c, $3f, $db, $02
+	jmp Func_2_db3f.l                                                  ; $e4ac : $5c, $3f, $db, $02
 
 
 	lda #$02.b                                                  ; $e4b0 : $a9, $02
 	sta $01                                                  ; $e4b2 : $85, $01
 	bra br_13_e4c3                                                  ; $e4b4 : $80, $0d
 
-	jsr $02ddfe.l                                                  ; $e4b6 : $22, $fe, $dd, $02
+	jsr Func_2_ddfe.l                                                  ; $e4b6 : $22, $fe, $dd, $02
 	lda $01                                                  ; $e4ba : $a5, $01
 	cmp #$04.b                                                  ; $e4bc : $c9, $04
 	bne br_13_e4c3                                                  ; $e4be : $d0, $03
@@ -5892,7 +5898,7 @@ br_13_e4df:
 	cmp #$07.b                                                  ; $e4e2 : $c9, $07
 	beq br_13_e4ea                                                  ; $e4e4 : $f0, $04
 
-	jmp Func_2_d928.l                                                  ; $e4e6 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $e4e6 : $5c, $28, $d9, $02
 
 
 br_13_e4ea:
@@ -6254,7 +6260,7 @@ br_13_e751:
 	dec $3a                                                  ; $e75c : $c6, $3a
 	bne br_13_e788                                                  ; $e75e : $d0, $28
 
-	jsr $04be35.l                                                  ; $e760 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $e760 : $22, $35, $be, $04
 	and #$07.b                                                  ; $e764 : $29, $07
 	beq br_13_e783                                                  ; $e766 : $f0, $1b
 
@@ -6375,7 +6381,7 @@ br_13_e815:
 	dec $39                                                  ; $e816 : $c6, $39
 	bne br_13_e838                                                  ; $e818 : $d0, $1e
 
-	jsr $04be35.l                                                  ; $e81a : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $e81a : $22, $35, $be, $04
 	and #$07.b                                                  ; $e81e : $29, $07
 	tax                                                  ; $e820 : $aa
 	lda $ecea.w, X                                                  ; $e821 : $bd, $ea, $ec
@@ -6529,7 +6535,7 @@ br_13_e8f9:
 	bit #$10.b                                                  ; $e902 : $89, $10
 	bne br_13_e91a                                                  ; $e904 : $d0, $14
 
-	jsr $04be35.l                                                  ; $e906 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $e906 : $22, $35, $be, $04
 	lsr                                                  ; $e90a : $4a
 	bcc br_13_e91a                                                  ; $e90b : $90, $0d
 
@@ -6544,7 +6550,7 @@ br_13_e8f9:
 Call_13_e91a:
 Jump_13_e91a:
 br_13_e91a:
-	jsr $04be35.l                                                  ; $e91a : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $e91a : $22, $35, $be, $04
 	and #$01.b                                                  ; $e91e : $29, $01
 	ina                                                  ; $e920 : $1a
 	sta $3a                                                  ; $e921 : $85, $3a
@@ -6672,7 +6678,7 @@ br_13_e9cf:
 	tsb $1fda.w                                                  ; $e9d5 : $0c, $da, $1f
 
 br_13_e9d8:
-	jmp Func_2_d928.l                                                  ; $e9d8 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $e9d8 : $5c, $28, $d9, $02
 
 
 Call_13_e9dc:
@@ -6772,14 +6778,14 @@ br_13_ea51:
 	bne br_13_ea97                                                  ; $ea7e : $d0, $17
 
 br_13_ea80:
-	jmp $02db3f.l                                                  ; $ea80 : $5c, $3f, $db, $02
+	jmp Func_2_db3f.l                                                  ; $ea80 : $5c, $3f, $db, $02
 
 
 	lda #$02.b                                                  ; $ea84 : $a9, $02
 	sta $01                                                  ; $ea86 : $85, $01
 	bra br_13_ea97                                                  ; $ea88 : $80, $0d
 
-	jsr $02ddfe.l                                                  ; $ea8a : $22, $fe, $dd, $02
+	jsr Func_2_ddfe.l                                                  ; $ea8a : $22, $fe, $dd, $02
 	lda $01                                                  ; $ea8e : $a5, $01
 	cmp #$04.b                                                  ; $ea90 : $c9, $04
 	bne br_13_ea97                                                  ; $ea92 : $d0, $03
@@ -7243,7 +7249,7 @@ br_13_ed64:
 	jsr $02e13f.l                                                  ; $ed77 : $22, $3f, $e1, $02
 	lda #$00.b                                                  ; $ed7b : $a9, $00
 	jsr Func_4_b967.l                                                  ; $ed7d : $22, $67, $b9, $04
-	jsr $04be35.l                                                  ; $ed81 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $ed81 : $22, $35, $be, $04
 	and #$01.b                                                  ; $ed85 : $29, $01
 	clc                                                  ; $ed87 : $18
 	adc #$02.b                                                  ; $ed88 : $69, $02
@@ -7441,19 +7447,19 @@ br_13_ee8c:
 	bit #$40.b                                                  ; $ee95 : $89, $40
 	beq br_13_eea5                                                  ; $ee97 : $f0, $0c
 
-	lda $09dd.w                                                  ; $ee99 : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $ee99 : $ad, $dd, $09
 	cmp $05                                                  ; $ee9c : $c5, $05
 	bcc br_13_eeaf                                                  ; $ee9e : $90, $0f
 
-	dec $09dd.w                                                  ; $eea0 : $ce, $dd, $09
+	dec wPlayerEntity.x.w                                                  ; $eea0 : $ce, $dd, $09
 	bra br_13_eeaf                                                  ; $eea3 : $80, $0a
 
 br_13_eea5:
-	lda $09dd.w                                                  ; $eea5 : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $eea5 : $ad, $dd, $09
 	cmp $05                                                  ; $eea8 : $c5, $05
 	bcs br_13_eeaf                                                  ; $eeaa : $b0, $03
 
-	inc $09dd.w                                                  ; $eeac : $ee, $dd, $09
+	inc wPlayerEntity.x.w                                                  ; $eeac : $ee, $dd, $09
 
 br_13_eeaf:
 	rts                                                  ; $eeaf : $60
@@ -7809,7 +7815,7 @@ br_13_f0c6:
 	tsb $1fda.w                                                  ; $f0cc : $0c, $da, $1f
 
 br_13_f0cf:
-	jmp Func_2_d928.l                                                  ; $f0cf : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f0cf : $5c, $28, $d9, $02
 
 
 Call_13_f0d3:
@@ -8065,7 +8071,7 @@ br_13_f223:
 	cmp #$06.b                                                  ; $f28a : $c9, $06
 	beq br_13_f292                                                  ; $f28c : $f0, $04
 
-	jmp Func_2_d928.l                                                  ; $f28e : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f28e : $5c, $28, $d9, $02
 
 
 br_13_f292:
@@ -8496,7 +8502,7 @@ br_13_f55f:
 
 	stz $03                                                  ; $f568 : $64, $03
 	jsr $02e13f.l                                                  ; $f56a : $22, $3f, $e1, $02
-	jsr $04be35.l                                                  ; $f56e : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $f56e : $22, $35, $be, $04
 	and #$03.b                                                  ; $f572 : $29, $03
 	beq br_13_f5a2                                                  ; $f574 : $f0, $2c
 
@@ -8520,7 +8526,7 @@ br_13_f55f:
 	bra br_13_f5bf                                                  ; $f592 : $80, $2b
 
 br_13_f594:
-	jsr $04be35.l                                                  ; $f594 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $f594 : $22, $35, $be, $04
 	and #$01.b                                                  ; $f598 : $29, $01
 	asl                                                  ; $f59a : $0a
 	clc                                                  ; $f59b : $18
@@ -8904,7 +8910,7 @@ br_13_f7c9:
 	tsb $1fda.w                                                  ; $f7cf : $0c, $da, $1f
 
 br_13_f7d2:
-	jmp Func_2_d928.l                                                  ; $f7d2 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f7d2 : $5c, $28, $d9, $02
 
 
 	jsr Call_13_f7da.w                                                  ; $f7d6 : $20, $da, $f7
@@ -8992,7 +8998,7 @@ Jump_13_f83a:
 Call_13_f868:
 Jump_13_f868:
 	jsr $02e13f.l                                                  ; $f868 : $22, $3f, $e1, $02
-	jsr $04be35.l                                                  ; $f86c : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $f86c : $22, $35, $be, $04
 	and #$03.b                                                  ; $f870 : $29, $03
 	bne br_13_f875                                                  ; $f872 : $d0, $01
 
@@ -9017,7 +9023,7 @@ Call_13_f87c:
 	sta $0028.w, X                                                  ; $f88e : $9d, $28, $00
 	stz $000b.w, X                                                  ; $f891 : $9e, $0b, $00
 	rep #ACCU_8                                                  ; $f894 : $c2, $20
-	lda $09dd.w                                                  ; $f896 : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $f896 : $ad, $dd, $09
 	sta $0005.w, X                                                  ; $f899 : $9d, $05, $00
 	lda $09e0.w                                                  ; $f89c : $ad, $e0, $09
 	sta $0008.w, X                                                  ; $f89f : $9d, $08, $00
@@ -9145,7 +9151,7 @@ Call_13_f979:
 	and #$03.b                                                  ; $f97c : $29, $03
 	bne br_13_f99d                                                  ; $f97e : $d0, $1d
 
-	jsr $04be35.l                                                  ; $f980 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $f980 : $22, $35, $be, $04
 	and #$03.b                                                  ; $f984 : $29, $03
 	tay                                                  ; $f986 : $a8
 	lda $ed2e.w, Y                                                  ; $f987 : $b9, $2e, $ed
@@ -9168,7 +9174,7 @@ Call_13_f9a0:
 	and #$03.b                                                  ; $f9a3 : $29, $03
 	bne br_13_f99d                                                  ; $f9a5 : $d0, $f6
 
-	jsr $04be35.l                                                  ; $f9a7 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $f9a7 : $22, $35, $be, $04
 	and #$03.b                                                  ; $f9ab : $29, $03
 	tay                                                  ; $f9ad : $a8
 	lda $ed2e.w, Y                                                  ; $f9ae : $b9, $2e, $ed

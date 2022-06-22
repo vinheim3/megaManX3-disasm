@@ -2,7 +2,7 @@ import clipboard
 from util import getRom, bankAddr, stringB
 
 data = getRom()
-start = bankAddr(0x3c, 0xd510)
+start = bankAddr(0x3c, 0xe4bf)
 
 comps = []
 prevColX = None

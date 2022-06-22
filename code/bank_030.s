@@ -2893,7 +2893,7 @@ br_30_91d2:
 	sbc $fcfff3.l, X                                                  ; $91f8 : $ff, $f3, $ff, $fc
 	sbc $ff1ff8.l, X                                                  ; $91fc : $ff, $f8, $1f, $ff
 	ldy $e0                                                  ; $9200 : $a4, $e0
-	cpy $c0                                                  ; $9202 : $c4, $c0
+	cpy wBG3VertScroll+1                                                  ; $9202 : $c4, $c0
 	sty $80                                                  ; $9204 : $84, $80
 	tsb $00                                                  ; $9206 : $04, $00
 	sty $80                                                  ; $9208 : $84, $80
@@ -3861,7 +3861,7 @@ br_30_983e:
 	.db $62                                                  ; $9858 : $62
 
 	stz $bec2.w, X                                                  ; $9859 : $9e, $c2, $be
-	dec $be                                                  ; $985c : $c6, $be
+	dec wBG3HorizScroll+1                                                  ; $985c : $c6, $be
 	sbc $008d.w, X                                                  ; $985e : $fd, $8d, $00
 	.db $00                                                  ; $9861 : $00
 	.db $00                                                  ; $9862 : $00
@@ -6437,7 +6437,7 @@ br_30_a83c:
 	lda [$b0]                                                  ; $a851 : $a7, $b0
 	adc $bfef71.l                                                  ; $a853 : $6f, $71, $ef, $bf
 	sbc $bf, S                                                  ; $a857 : $e3, $bf
-	adc $bf                                                  ; $a859 : $65, $bf
+	adc wBG3VertScroll                                                  ; $a859 : $65, $bf
 	adc $5f                                                  ; $a85b : $65, $5f
 	sep #$6f.b                                                  ; $a85d : $e2, $6f
 	dec $92c6.w, X                                                  ; $a85f : $de, $c6, $92
@@ -6833,7 +6833,7 @@ br_30_aab8:
 	xce                                                  ; $aacc : $fb
 	trb $ad                                                  ; $aacd : $14, $ad
 	phx                                                  ; $aacf : $da
-	cpy $bc                                                  ; $aad0 : $c4, $bc
+	cpy wBG2VertScroll+1                                                  ; $aad0 : $c4, $bc
 	ldy $fccc.w, X                                                  ; $aad2 : $bc, $cc, $fc
 	pea $fcfc.w                                                  ; $aad5 : $f4, $fc, $fc
 	cpx $e4                                                  ; $aad8 : $e4, $e4
@@ -8003,7 +8003,7 @@ br_30_b18c:
 	jmp ($adec.w, X)                                                  ; $b202 : $7c, $ec, $ad
 
 
-	lda $b7                                                  ; $b205 : $a5, $b7
+	lda wBG1VertScroll                                                  ; $b205 : $a5, $b7
 
 br_30_b207:
 	and [$f5], Y                                                  ; $b207 : $37, $f5
@@ -8028,7 +8028,7 @@ br_30_b207:
 	.db $00                                                  ; $b225 : $00
 	trb $341c.w                                                  ; $b226 : $1c, $1c, $34
 	bit $6c, X                                                  ; $b229 : $34, $6c
-	stz $bc                                                  ; $b22b : $64, $bc
+	stz wBG2VertScroll+1                                                  ; $b22b : $64, $bc
 	jml [$cc94.w]                                                  ; $b22d : $dc, $94, $cc
 
 
@@ -8675,10 +8675,10 @@ br_30_b562:
 	inc $fe3b.w, X                                                  ; $b5d5 : $fe, $3b, $fe
 	sbc ($ff), Y                                                  ; $b5d8 : $f1, $ff
 	inc $dcf3.w                                                  ; $b5da : $ee, $f3, $dc
-	sbc $c0                                                  ; $b5dd : $e5, $c0
+	sbc wBG3VertScroll+1                                                  ; $b5dd : $e5, $c0
 	cmp $3d2e2b.l, X                                                  ; $b5df : $df, $2b, $2e, $3d
 	and [$56], Y                                                  ; $b5e3 : $37, $56
-	trb $bb                                                  ; $b5e5 : $14, $bb
+	trb wBG2VertScroll                                                  ; $b5e5 : $14, $bb
 	asl $3fff.w, X                                                  ; $b5e7 : $1e, $ff, $3f
 	.db $f0, $f0                                                  ; $b5ea : $f0, $f0
 
@@ -9237,7 +9237,7 @@ br_30_b908:
 	txa                                                  ; $b92e : $8a
 	ldx $1ce4.w                                                  ; $b92f : $ae, $e4, $1c
 	sbc [$9f]                                                  ; $b932 : $e7, $9f
-	cmp $bf                                                  ; $b934 : $c5, $bf
+	cmp wBG3VertScroll                                                  ; $b934 : $c5, $bf
 	cmp $ffbf.w                                                  ; $b936 : $cd, $bf, $ff
 	sta $bfd9bf.l                                                  ; $b939 : $8f, $bf, $d9, $bf
 	cmp $4abe.w, Y                                                  ; $b93d : $d9, $be, $4a
@@ -9994,7 +9994,7 @@ br_30_bd7e:
 	sbc $e7464e.l, X                                                  ; $bdbf : $ff, $4e, $46, $e7
 	sbc $f3, S                                                  ; $bdc3 : $e3, $f3
 	cmp $4e3cfd.l                                                  ; $bdc5 : $cf, $fd, $3c, $4e
-	cmp $b7                                                  ; $bdc9 : $c5, $b7
+	cmp wBG1VertScroll                                                  ; $bdc9 : $c5, $b7
 	lda ($b3, S), Y                                                  ; $bdcb : $b3, $b3
 	lda ($bf), Y                                                  ; $bdcd : $b1, $bf
 	sta $e3be46.l                                                  ; $bdcf : $8f, $46, $be, $e3
@@ -11479,7 +11479,7 @@ br_30_c69b:
 	and ($2f), Y                                                  ; $c6ae : $31, $2f
 	ora $fc3ff7.l, X                                                  ; $c6b0 : $1f, $f7, $3f, $fc
 	adc $fff3fc.l, X                                                  ; $c6b4 : $7f, $fc, $f3, $ff
-	ldx $b9                                                  ; $c6b8 : $a6, $b9
+	ldx wBG2HorizScroll                                                  ; $c6b8 : $a6, $b9
 
 br_30_c6ba:
 	bit $2733.w                                                  ; $c6ba : $2c, $33, $27
@@ -11740,7 +11740,7 @@ br_30_c711:
 	cpx $c4                                                  ; $c881 : $e4, $c4
 	cpy $cc                                                  ; $c883 : $c4, $cc
 	cpy $9c                                                  ; $c885 : $c4, $9c
-	sty $b8                                                  ; $c887 : $84, $b8
+	sty wBG1VertScroll+1                                                  ; $c887 : $84, $b8
 	dey                                                  ; $c889 : $88
 	cli                                                  ; $c88a : $58
 	clc                                                  ; $c88b : $18
@@ -14310,7 +14310,7 @@ br_30_d750:
 	sbc $795ffe.l, X                                                  ; $d789 : $ff, $fe, $5f, $79
 	rol $3f7f.w, X                                                  ; $d78d : $3e, $7f, $3f
 	txy                                                  ; $d790 : $9b
-	dec $b7                                                  ; $d791 : $c6, $b7
+	dec wBG1VertScroll                                                  ; $d791 : $c6, $b7
 	cpy $7c5f.w                                                  ; $d793 : $cc, $5f, $7c
 	rol $3d, X                                                  ; $d796 : $36, $3d
 	cpx #$f2ff.w                                                  ; $d798 : $e0, $ff, $f2
@@ -16860,7 +16860,7 @@ br_30_e7c8:
 	and [$00]                                                  ; $e7d4 : $27, $00
 	stx $81                                                  ; $e7d6 : $86, $81
 	sta $9b83.w                                                  ; $e7d8 : $8d, $83, $9b
-	dec $b7                                                  ; $e7db : $c6, $b7
+	dec wBG1VertScroll                                                  ; $e7db : $c6, $b7
 	cpy $7c5f.w                                                  ; $e7dd : $cc, $5f, $7c
 	inc $f6ea.w                                                  ; $e7e0 : $ee, $ea, $f6
 	sbc ($f6)                                                  ; $e7e3 : $f2, $f6
@@ -18586,7 +18586,7 @@ br_30_f228:
 	.db $00                                                  ; $f236 : $00
 	.db $80, $80                                                  ; $f237 : $80, $80
 
-	cpy $c0                                                  ; $f239 : $c4, $c0
+	cpy wBG3VertScroll+1                                                  ; $f239 : $c4, $c0
 	sep #$e0.b                                                  ; $f23b : $e2, $e0
 	sbc ($e0)                                                  ; $f23d : $f2, $e0
 	sbc ($e0)                                                  ; $f23f : $f2, $e0

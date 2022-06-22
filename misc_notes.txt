@@ -66,7 +66,7 @@ FURTHER: 1dc3a is when you get a tank
 from struct 1518 (d_8000 table 96 idx, then 01 idx)
 01 - its the 2nd of the subtank sprite (0 and 1 for flashing)
 96 - its the energy tank
-1:db1a writes 96 to 16 with D = 1518; traced back to Funcs_0_f49b
+1:db1a writes 96 to 16 with D = 1518; traced back to ItemUpdateFuncs
 Call_00_daa0 references 1518
 ------
 todo_LoadInEntitiesForColAndRows loads it from 7efaf2

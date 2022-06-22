@@ -5,9 +5,7 @@ To swap items
 * chimera armour - have it fall and get destroyed (or initially hide) + display text
   5:ec9a - when armour changes subsubstate
   3:95e5 - armour giving item
+* move capsules themselves
 
-
-TODO: graphics for chimera armour and upgrades
-TODO: replace capsules with upgrade items
-TODO: skip cutscenes
+TODO: skip cutscenes (convos with bit/byte)
 TODO: work with patch blobs for eg Zero mod

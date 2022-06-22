@@ -12,7 +12,7 @@ Func_1_8000:
 	pha                                                  ; $8007 : $48
 	lda $05                                                  ; $8008 : $a5, $05
 	sec                                                  ; $800a : $38
-	sbc $09dd.w                                                  ; $800b : $ed, $dd, $09
+	sbc wPlayerEntity.x.w                                                  ; $800b : $ed, $dd, $09
 	bpl br_01_801e                                                  ; $800e : $10, $0e
 
 	lsr                                                  ; $8010 : $4a
@@ -318,7 +318,7 @@ br_01_81de:
 
 br_01_81e3:
 	lda #$0080.w                                                  ; $81e3 : $a9, $80, $00
-	sta $09dd.w                                                  ; $81e6 : $8d, $dd, $09
+	sta wPlayerEntity.x.w                                                  ; $81e6 : $8d, $dd, $09
 	sep #ACCU_8                                                  ; $81e9 : $e2, $20
 	lda #$2b.b                                                  ; $81eb : $a9, $2b
 	jmp Func_1_8000.l                                                  ; $81ed : $5c, $00, $80, $01
@@ -405,7 +405,7 @@ br_01_826e:
 	stz $1a                                                  ; $8271 : $64, $1a
 	stz $1c                                                  ; $8273 : $64, $1c
 	sep #ACCU_8                                                  ; $8275 : $e2, $20
-	jsr Func_2_d928.l                                                  ; $8277 : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $8277 : $22, $28, $d9, $02
 	rts                                                  ; $827b : $60
 
 
@@ -607,7 +607,7 @@ br_01_837f:
 	lda $09f1.w                                                  ; $838e : $ad, $f1, $09
 	sta $19                                                  ; $8391 : $85, $19
 	rep #ACCU_8                                                  ; $8393 : $c2, $20
-	lda $09dd.w                                                  ; $8395 : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $8395 : $ad, $dd, $09
 	sta $05                                                  ; $8398 : $85, $05
 	lda $09e0.w                                                  ; $839a : $ad, $e0, $09
 	sta $08                                                  ; $839d : $85, $08
@@ -693,7 +693,7 @@ br_01_83ea:
 	ora ($22, X)                                                  ; $8418 : $01, $22
 	lsr                                                  ; $841a : $4a
 	lda $6004.w, Y                                                  ; $841b : $b9, $04, $60
-	jmp Func_2_d928.l                                                  ; $841e : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $841e : $5c, $28, $d9, $02
 
 
 Jump_01_8422:
@@ -719,12 +719,12 @@ Jump_01_8422:
 	stz $1a                                                  ; $8447 : $64, $1a
 	lda #$0020.w                                                  ; $8449 : $a9, $20, $00
 	sta $1e                                                  ; $844c : $85, $1e
-	jsr $04be35.l                                                  ; $844e : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $844e : $22, $35, $be, $04
 	and #$00ff.w                                                  ; $8452 : $29, $ff, $00
 	clc                                                  ; $8455 : $18
 	adc wNewStageScrollX.w                                                  ; $8456 : $6d, $5d, $1e
 	sta $05                                                  ; $8459 : $85, $05
-	jsr $04be35.l                                                  ; $845b : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $845b : $22, $35, $be, $04
 	and #$00ff.w                                                  ; $845f : $29, $ff, $00
 	clc                                                  ; $8462 : $18
 	adc wNewStageScrollY.w                                                  ; $8463 : $6d, $60, $1e
@@ -766,7 +766,7 @@ Call_01_848d:
 
 br_01_84a4:
 	clc                                                  ; $84a4 : $18
-	adc $09dd.w                                                  ; $84a5 : $6d, $dd, $09
+	adc wPlayerEntity.x.w                                                  ; $84a5 : $6d, $dd, $09
 	sta $05                                                  ; $84a8 : $85, $05
 	lda $b7cb.w, X                                                  ; $84aa : $bd, $cb, $b7
 	and #$00ff.w                                                  ; $84ad : $29, $ff, $00
@@ -838,7 +838,7 @@ br_01_8509:
 br_01_8514:
 	lda #$01.b                                                  ; $8514 : $a9, $01
 	trb $0a7d.w                                                  ; $8516 : $1c, $7d, $0a
-	jmp Func_2_d928.l                                                  ; $8519 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $8519 : $5c, $28, $d9, $02
 
 
 br_01_851d:
@@ -882,7 +882,7 @@ br_01_854e:
 
 br_01_8554:
 	rep #ACCU_8                                                  ; $8554 : $c2, $20
-	lda $09dd.w                                                  ; $8556 : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $8556 : $ad, $dd, $09
 	sta $05                                                  ; $8559 : $85, $05
 	lda $09e0.w                                                  ; $855b : $ad, $e0, $09
 	sta $08                                                  ; $855e : $85, $08
@@ -958,7 +958,7 @@ br_01_85b9:
 	sep #ACCU_8                                                  ; $85de : $e2, $20
 	dec $0a82.w                                                  ; $85e0 : $ce, $82, $0a
 	lda #$ff.b                                                  ; $85e3 : $a9, $ff
-	jmp Func_2_d928.l                                                  ; $85e5 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $85e5 : $5c, $28, $d9, $02
 
 
 br_01_85e9:
@@ -1009,7 +1009,7 @@ br_01_8627:
 	bne br_01_8640                                                  ; $863a : $d0, $04
 
 br_01_863c:
-	jmp Func_2_d928.l                                                  ; $863c : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $863c : $5c, $28, $d9, $02
 
 
 br_01_8640:
@@ -1153,12 +1153,12 @@ br_01_8721:
 	sep #ACCU_8                                                  ; $8721 : $e2, $20
 	lda #$f0.b                                                  ; $8723 : $a9, $f0
 	trb $1fff.w                                                  ; $8725 : $1c, $ff, $1f
-	jmp Func_2_d928.l                                                  ; $8728 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $8728 : $5c, $28, $d9, $02
 
 
 Call_01_872c:
 	rep #ACCU_8                                                  ; $872c : $c2, $20
-	lda $09dd.w                                                  ; $872e : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $872e : $ad, $dd, $09
 	sta $05                                                  ; $8731 : $85, $05
 	lda $09e0.w                                                  ; $8733 : $ad, $e0, $09
 	sta $08                                                  ; $8736 : $85, $08
@@ -1186,7 +1186,7 @@ br_01_8755:
 	bit $1f5f.w                                                  ; $8756 : $2c, $5f, $1f
 	bvc br_01_875f                                                  ; $8759 : $50, $04
 
-	jmp Func_2_d928.l                                                  ; $875b : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $875b : $5c, $28, $d9, $02
 
 
 br_01_875f:
@@ -1223,7 +1223,7 @@ br_01_8776:
 	plb                                                  ; $8797 : $ab
 	sep #ACCU_8                                                  ; $8798 : $e2, $20
 	dec $0a82.w                                                  ; $879a : $ce, $82, $0a
-	jmp Func_2_d928.l                                                  ; $879d : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $879d : $5c, $28, $d9, $02
 
 
 br_01_87a1:
@@ -1259,7 +1259,7 @@ br_01_87a1:
 	jsr $018ca4.l                                                  ; $87d5 : $22, $a4, $8c, $01
 	sta $1f                                                  ; $87d9 : $85, $1f
 	stz $1e                                                  ; $87db : $64, $1e
-	jsr $04be35.l                                                  ; $87dd : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $87dd : $22, $35, $be, $04
 	sta $0000.w                                                  ; $87e1 : $8d, $00, $00
 	stz $0001.w                                                  ; $87e4 : $9c, $01, $00
 	rep #ACCU_8|IDX_8                                                  ; $87e7 : $c2, $30
@@ -1298,7 +1298,7 @@ br_01_8821:
 br_01_8825:
 	sep #ACCU_8                                                  ; $8825 : $e2, $20
 	dec $0a82.w                                                  ; $8827 : $ce, $82, $0a
-	jmp Func_2_d928.l                                                  ; $882a : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $882a : $5c, $28, $d9, $02
 
 
 br_01_882e:
@@ -1339,7 +1339,7 @@ br_01_8843:
 	bne br_01_886c                                                  ; $8866 : $d0, $04
 
 br_01_8868:
-	jmp Func_2_d928.l                                                  ; $8868 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $8868 : $5c, $28, $d9, $02
 
 
 br_01_886c:
@@ -1370,7 +1370,7 @@ br_01_8892:
 	and $09e9.w                                                  ; $8896 : $2d, $e9, $09
 	tsb $11                                                  ; $8899 : $04, $11
 	rep #ACCU_8                                                  ; $889b : $c2, $20
-	lda $09dd.w                                                  ; $889d : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $889d : $ad, $dd, $09
 	sta $05                                                  ; $88a0 : $85, $05
 	lda $09e0.w                                                  ; $88a2 : $ad, $e0, $09
 	sta $08                                                  ; $88a5 : $85, $08
@@ -1400,7 +1400,7 @@ br_01_88c6:
 
 
 br_01_88ce:
-	jmp Func_2_d928.l                                                  ; $88ce : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $88ce : $5c, $28, $d9, $02
 
 
 	ldx $01                                                  ; $88d2 : $a6, $01
@@ -1916,7 +1916,7 @@ br_01_8c0f:
 
 br_01_8c18:
 	clc                                                  ; $8c18 : $18
-	adc $09dd.w                                                  ; $8c19 : $6d, $dd, $09
+	adc wPlayerEntity.x.w                                                  ; $8c19 : $6d, $dd, $09
 	sta $0005.w, X                                                  ; $8c1c : $9d, $05, $00
 	clc                                                  ; $8c1f : $18
 
@@ -1977,7 +1977,7 @@ br_01_8c69:
 
 br_01_8c72:
 	clc                                                  ; $8c72 : $18
-	adc $09dd.w                                                  ; $8c73 : $6d, $dd, $09
+	adc wPlayerEntity.x.w                                                  ; $8c73 : $6d, $dd, $09
 	sta $05                                                  ; $8c76 : $85, $05
 	clc                                                  ; $8c78 : $18
 
@@ -1990,7 +1990,7 @@ br_01_8c79:
 	lda #$0002.w                                                  ; $8c7e : $a9, $02, $00
 	jsr $018ca4.l                                                  ; $8c81 : $22, $a4, $8c, $01
 	clc                                                  ; $8c85 : $18
-	adc $09dd.w                                                  ; $8c86 : $6d, $dd, $09
+	adc wPlayerEntity.x.w                                                  ; $8c86 : $6d, $dd, $09
 	sta $05                                                  ; $8c89 : $85, $05
 	lda wSubTanksAndUpgradesGottenBitfield.w                                                  ; $8c8b : $ad, $d1, $1f
 	bit #$0002.w                                                  ; $8c8e : $89, $02, $00
@@ -3073,13 +3073,13 @@ br_01_936b:
 	and #$9d0e.w                                                  ; $9380 : $29, $0e, $9d
 	ora ($00), Y                                                  ; $9383 : $11, $00
 	rep #ACCU_8|F_CARRY                                                  ; $9385 : $c2, $21
-	jsr $04be35.l                                                  ; $9387 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $9387 : $22, $35, $be, $04
 	and #$000f.w                                                  ; $938b : $29, $0f, $00
 	adc $05                                                  ; $938e : $65, $05
 	sec                                                  ; $9390 : $38
 	sbc #$0008.w                                                  ; $9391 : $e9, $08, $00
 	sta $0005.w, X                                                  ; $9394 : $9d, $05, $00
-	jsr $04be35.l                                                  ; $9397 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $9397 : $22, $35, $be, $04
 	and #$0007.w                                                  ; $939b : $29, $07, $00
 	clc                                                  ; $939e : $18
 	adc $08                                                  ; $939f : $65, $08
@@ -3561,7 +3561,7 @@ Call_01_969e:
 	adc $08                                                  ; $96d2 : $65, $08
 	sta $0008.w, X                                                  ; $96d4 : $9d, $08, $00
 	stz $001a.w, X                                                  ; $96d7 : $9e, $1a, $00
-	jsr $04be35.l                                                  ; $96da : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $96da : $22, $35, $be, $04
 	and #$00ff.w                                                  ; $96de : $29, $ff, $00
 	clc                                                  ; $96e1 : $18
 	adc #$0100.w                                                  ; $96e2 : $69, $00, $01
@@ -4104,13 +4104,13 @@ br_01_9a01:
 	sta $1a                                                  ; $9a74 : $85, $1a
 	lda $b99a.w, X                                                  ; $9a76 : $bd, $9a, $b9
 	sta $1c                                                  ; $9a79 : $85, $1c
-	lda $09dd.w                                                  ; $9a7b : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $9a7b : $ad, $dd, $09
 	sta $05                                                  ; $9a7e : $85, $05
 	lda $09e0.w                                                  ; $9a80 : $ad, $e0, $09
 	clc                                                  ; $9a83 : $18
 	adc #$fff8.w                                                  ; $9a84 : $69, $f8, $ff
 	sta $08                                                  ; $9a87 : $85, $08
-	lda $09dd.w                                                  ; $9a89 : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $9a89 : $ad, $dd, $09
 	sta $3b                                                  ; $9a8c : $85, $3b
 	lda $09e0.w                                                  ; $9a8e : $ad, $e0, $09
 	sta $3d                                                  ; $9a91 : $85, $3d
@@ -4269,7 +4269,7 @@ br_01_9b80:
 	lda #$06.b                                                  ; $9b90 : $a9, $06
 	sta $02                                                  ; $9b92 : $85, $02
 	sta $39                                                  ; $9b94 : $85, $39
-	jsr $04be35.l                                                  ; $9b96 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $9b96 : $22, $35, $be, $04
 	and #$07.b                                                  ; $9b9a : $29, $07
 	clc                                                  ; $9b9c : $18
 	adc #$0a.b                                                  ; $9b9d : $69, $0a
@@ -4453,7 +4453,7 @@ br_01_9c9e:
 
 Call_01_9ca0:
 	rep #ACCU_8                                                  ; $9ca0 : $c2, $20
-	lda $09dd.w                                                  ; $9ca2 : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $9ca2 : $ad, $dd, $09
 	sec                                                  ; $9ca5 : $38
 	sbc $3b                                                  ; $9ca6 : $e5, $3b
 	clc                                                  ; $9ca8 : $18
@@ -4465,7 +4465,7 @@ Call_01_9ca0:
 	clc                                                  ; $9cb3 : $18
 	adc $08                                                  ; $9cb4 : $65, $08
 	sta $08                                                  ; $9cb6 : $85, $08
-	lda $09dd.w                                                  ; $9cb8 : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $9cb8 : $ad, $dd, $09
 	sta $3b                                                  ; $9cbb : $85, $3b
 	lda $09e0.w                                                  ; $9cbd : $ad, $e0, $09
 	sta $3d                                                  ; $9cc0 : $85, $3d
@@ -4632,7 +4632,7 @@ br_01_9dc7:
 	rep #ACCU_8                                                  ; $9dcc : $c2, $20
 	lda $b989.w, X                                                  ; $9dce : $bd, $89, $b9
 	clc                                                  ; $9dd1 : $18
-	adc $09dd.w                                                  ; $9dd2 : $6d, $dd, $09
+	adc wPlayerEntity.x.w                                                  ; $9dd2 : $6d, $dd, $09
 	sta $05                                                  ; $9dd5 : $85, $05
 	lda $b98b.w, X                                                  ; $9dd7 : $bd, $8b, $b9
 	jsr $018cb3.l                                                  ; $9dda : $22, $b3, $8c, $01
@@ -4713,7 +4713,7 @@ br_01_9e4e:
 	tax                                                  ; $9e57 : $aa
 	lda $b9b0.w, X                                                  ; $9e58 : $bd, $b0, $b9
 	clc                                                  ; $9e5b : $18
-	adc $09dd.w                                                  ; $9e5c : $6d, $dd, $09
+	adc wPlayerEntity.x.w                                                  ; $9e5c : $6d, $dd, $09
 	sta $05                                                  ; $9e5f : $85, $05
 	lda $b9b2.w, X                                                  ; $9e61 : $bd, $b2, $b9
 	jsr $018cb3.l                                                  ; $9e64 : $22, $b3, $8c, $01
@@ -6348,7 +6348,7 @@ Call_01_a93a:
 	lda $08                                                  ; $a99e : $a5, $08
 	sta $0008.w, X                                                  ; $a9a0 : $9d, $08, $00
 	txy                                                  ; $a9a3 : $9b
-	jsr $04be35.l                                                  ; $a9a4 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $a9a4 : $22, $35, $be, $04
 	and #$0003.w                                                  ; $a9a8 : $29, $03, $00
 	clc                                                  ; $a9ab : $18
 	adc #$0007.w                                                  ; $a9ac : $69, $07, $00
@@ -7321,7 +7321,7 @@ Call_01_afab:
 	rep #ACCU_8                                                  ; $afb2 : $c2, $20
 	lda $ba62.w, X                                                  ; $afb4 : $bd, $62, $ba
 	clc                                                  ; $afb7 : $18
-	adc $09dd.w                                                  ; $afb8 : $6d, $dd, $09
+	adc wPlayerEntity.x.w                                                  ; $afb8 : $6d, $dd, $09
 	sta $05                                                  ; $afbb : $85, $05
 	lda $ba64.w, X                                                  ; $afbd : $bd, $64, $ba
 	clc                                                  ; $afc0 : $18
@@ -7771,7 +7771,7 @@ br_01_b2b0:
 
 
 	rep #ACCU_8                                                  ; $b2b1 : $c2, $20
-	lda $09dd.w                                                  ; $b2b3 : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $b2b3 : $ad, $dd, $09
 	sta $05                                                  ; $b2b6 : $85, $05
 	sta $22                                                  ; $b2b8 : $85, $22
 	lda $09e0.w                                                  ; $b2ba : $ad, $e0, $09
@@ -8149,7 +8149,7 @@ Jump_01_b521:
 	ldx $0c                                                  ; $b52c : $a6, $0c
 	lda $0001.w, X                                                  ; $b52e : $bd, $01, $00
 	cmp #$d002.w                                                  ; $b531 : $c9, $02, $d0
-	ora $bd                                                  ; $b534 : $05, $bd
+	ora wBG3HorizScroll                                                  ; $b534 : $05, $bd
 	bmi br_01_b538                                                  ; $b536 : $30, $00
 
 br_01_b538:
@@ -8547,7 +8547,7 @@ br_01_b7a7:
 
 
 	clv                                                  ; $b7c4 : $b8
-	stx $b8                                                  ; $b7c5 : $86, $b8
+	stx wBG1VertScroll+1                                                  ; $b7c5 : $86, $b8
 	lda #$8502.w                                                  ; $b7c7 : $a9, $02, $85
 	ora ($ee, X)                                                  ; $b7ca : $01, $ee
 	eor $0a, X                                                  ; $b7cc : $55, $0a
@@ -8748,7 +8748,7 @@ br_01_b913:
 	jmp ($b91a.w, X)                                                  ; $b917 : $7c, $1a, $b9
 
 
-	rol $b9                                                  ; $b91a : $26, $b9
+	rol wBG2HorizScroll                                                  ; $b91a : $26, $b9
 	jmp ($6cb9.w)                                                  ; $b91c : $6c, $b9, $6c
 
 
@@ -8795,7 +8795,7 @@ br_01_b913:
 
 
 	sta $b9, S                                                  ; $b971 : $83, $b9
-	lda $b9                                                  ; $b973 : $a5, $b9
+	lda wBG2HorizScroll                                                  ; $b973 : $a5, $b9
 	cpy #$adb9.w                                                  ; $b975 : $c0, $b9, $ad
 	phx                                                  ; $b978 : $da
 	ora #$c9.b                                                  ; $b979 : $09, $c9
@@ -8888,7 +8888,7 @@ br_01_b9d8:
 	sta $0011.w, X                                                  ; $ba05 : $9d, $11, $00
 	stz $0018.w, X                                                  ; $ba08 : $9e, $18, $00
 	phx                                                  ; $ba0b : $da
-	jsr $04be35.l                                                  ; $ba0c : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $ba0c : $22, $35, $be, $04
 	plx                                                  ; $ba10 : $fa
 	and #$03.b                                                  ; $ba11 : $29, $03
 	clc                                                  ; $ba13 : $18
@@ -8897,7 +8897,7 @@ br_01_b9d8:
 	lda #$1c.b                                                  ; $ba19 : $a9, $1c
 	sta $0002.w, X                                                  ; $ba1b : $9d, $02, $00
 	rep #ACCU_8                                                  ; $ba1e : $c2, $20
-	jsr $04be35.l                                                  ; $ba20 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $ba20 : $22, $35, $be, $04
 	and #$007f.w                                                  ; $ba24 : $29, $7f, $00
 	clc                                                  ; $ba27 : $18
 	adc wNewStageScrollX.w                                                  ; $ba28 : $6d, $5d, $1e
@@ -9466,7 +9466,7 @@ Call_01_bd9e:
 	lda $08                                                  ; $be07 : $a5, $08
 	sta $0008.w, X                                                  ; $be09 : $9d, $08, $00
 	txy                                                  ; $be0c : $9b
-	jsr $04be35.l                                                  ; $be0d : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $be0d : $22, $35, $be, $04
 	and #$0003.w                                                  ; $be11 : $29, $03, $00
 	clc                                                  ; $be14 : $18
 	adc #$0007.w                                                  ; $be15 : $69, $07, $00
@@ -9712,7 +9712,7 @@ br_01_bfa7:
 
 br_01_bfb0:
 	clc                                                  ; $bfb0 : $18
-	adc $09dd.w                                                  ; $bfb1 : $6d, $dd, $09
+	adc wPlayerEntity.x.w                                                  ; $bfb1 : $6d, $dd, $09
 	sta $05                                                  ; $bfb4 : $85, $05
 	sep #ACCU_8                                                  ; $bfb6 : $e2, $20
 	lda $399106.l, X                                                  ; $bfb8 : $bf, $06, $91, $39
@@ -9861,7 +9861,7 @@ br_01_c093:
 	jmp ($c09a.w, X)                                                  ; $c097 : $7c, $9a, $c0
 
 
-	ldy $c0                                                  ; $c09a : $a4, $c0
+	ldy wBG3VertScroll+1                                                  ; $c09a : $a4, $c0
 	lda $c0afc0.l                                                  ; $c09c : $af, $c0, $af, $c0
 	lda $c0afc0.l                                                  ; $c0a0 : $af, $c0, $af, $c0
 	lda #$8502.w                                                  ; $c0a4 : $a9, $02, $85
@@ -11599,7 +11599,7 @@ br_01_cb92:
 
 	jsr Func_2_d636.l                                                  ; $cbe7 : $22, $36, $d6, $02
 	jsr Func_4_b94a.l                                                  ; $cbeb : $22, $4a, $b9, $04
-	jsr $02db3f.l                                                  ; $cbef : $22, $3f, $db, $02
+	jsr Func_2_db3f.l                                                  ; $cbef : $22, $3f, $db, $02
 	lda $35                                                  ; $cbf3 : $a5, $35
 	bne br_01_cc0d                                                  ; $cbf5 : $d0, $16
 
@@ -11771,7 +11771,7 @@ Call_01_ccbb:
 	bne br_01_cd0a                                                  ; $ccf8 : $d0, $10
 
 br_01_ccfa:
-	jsr $02db3f.l                                                  ; $ccfa : $22, $3f, $db, $02
+	jsr Func_2_db3f.l                                                  ; $ccfa : $22, $3f, $db, $02
 	rts                                                  ; $ccfe : $60
 
 
@@ -11901,7 +11901,7 @@ br_01_cdc2:
 	rts                                                  ; $cdc6 : $60
 
 
-	jsr Func_2_d928.l                                                  ; $cdc7 : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $cdc7 : $22, $28, $d9, $02
 	rts                                                  ; $cdcb : $60
 
 
@@ -11983,7 +11983,7 @@ br_01_ce3e:
 
 	eor ($ce), Y                                                  ; $ce48 : $51, $ce
 	adc [$ce]                                                  ; $ce4a : $67, $ce
-	jsr Func_2_d928.l                                                  ; $ce4c : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $ce4c : $22, $28, $d9, $02
 	rts                                                  ; $ce50 : $60
 
 
@@ -12212,7 +12212,7 @@ br_01_cfb2:
 	rts                                                  ; $cfb2 : $60
 
 
-	jmp Func_2_d928.l                                                  ; $cfb3 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $cfb3 : $5c, $28, $d9, $02
 
 
 	ldx $0b                                                  ; $cfb7 : $a6, $0b
@@ -12252,7 +12252,7 @@ br_01_cfed:
 
 
 br_01_cff0:
-	jmp Func_2_d928.l                                                  ; $cff0 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $cff0 : $5c, $28, $d9, $02
 
 
 Call_01_cff4:
@@ -12337,7 +12337,7 @@ br_01_d06c:
 
 
 br_01_d073:
-	jmp Func_2_d928.l                                                  ; $d073 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $d073 : $5c, $28, $d9, $02
 
 
 	ldx $02                                                  ; $d077 : $a6, $02
@@ -12388,7 +12388,7 @@ br_01_d0b4:
 
 br_01_d0c6:
 	rep #ACCU_8                                                  ; $d0c6 : $c2, $20
-	lda $09dd.w                                                  ; $d0c8 : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $d0c8 : $ad, $dd, $09
 	sta $05                                                  ; $d0cb : $85, $05
 	lda $09e0.w                                                  ; $d0cd : $ad, $e0, $09
 	sta $08                                                  ; $d0d0 : $85, $08
@@ -12416,7 +12416,7 @@ br_01_d0dc:
 	jsr $02d9c0.l                                                  ; $d106 : $22, $c0, $d9, $02
 	lda #$2c.b                                                  ; $d10a : $a9, $2c
 	jsr $01802b.l                                                  ; $d10c : $22, $2b, $80, $01
-	jmp Func_2_d928.l                                                  ; $d110 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $d110 : $5c, $28, $d9, $02
 
 
 Call_01_d114:
@@ -12634,7 +12634,7 @@ br_01_d24d:
 
 	stz $08ed.w                                                  ; $d25b : $9c, $ed, $08
 	stz $08f4.w                                                  ; $d25e : $9c, $f4, $08
-	jmp Func_2_d928.l                                                  ; $d261 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $d261 : $5c, $28, $d9, $02
 
 
 br_01_d265:
@@ -12670,7 +12670,7 @@ br_01_d265:
 	sep #ACCU_8                                                  ; $d2a0 : $e2, $20
 	lda #$02.b                                                  ; $d2a2 : $a9, $02
 	sta $01                                                  ; $d2a4 : $85, $01
-	jsr $04be35.l                                                  ; $d2a6 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $d2a6 : $22, $35, $be, $04
 	and #$03.b                                                  ; $d2aa : $29, $03
 	tay                                                  ; $d2ac : $a8
 	lda $da1c.w, Y                                                  ; $d2ad : $b9, $1c, $da
@@ -12742,7 +12742,7 @@ br_01_d308:
 	rtl                                                  ; $d308 : $6b
 
 
-	jmp Func_2_d928.l                                                  ; $d309 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $d309 : $5c, $28, $d9, $02
 
 
 	ldx $01                                                  ; $d30d : $a6, $01
@@ -12753,7 +12753,7 @@ br_01_d308:
 	eor ($d3, S), Y                                                  ; $d314 : $53, $d3
 	lda #$0c.b                                                  ; $d316 : $a9, $0c
 	sta $1e                                                  ; $d318 : $85, $1e
-	jsr $04be35.l                                                  ; $d31a : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $d31a : $22, $35, $be, $04
 	and #$0f.b                                                  ; $d31e : $29, $0f
 	asl                                                  ; $d320 : $0a
 	asl                                                  ; $d321 : $0a
@@ -12789,7 +12789,7 @@ br_01_d308:
 
 
 br_01_d363:
-	jmp Func_2_d928.l                                                  ; $d363 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $d363 : $5c, $28, $d9, $02
 
 
 Call_01_d367:
@@ -12865,7 +12865,7 @@ br_01_d3c2:
 
 br_01_d3e4:
 	jsr $04d6e0.l                                                  ; $d3e4 : $22, $e0, $d6, $04
-	jmp Func_2_d928.l                                                  ; $d3e8 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $d3e8 : $5c, $28, $d9, $02
 
 
 	ldx $01                                                  ; $d3ec : $a6, $01
@@ -13211,7 +13211,7 @@ br_01_d5e5:
 	rts                                                  ; $d60e : $60
 
 
-	jsr Func_2_d928.l                                                  ; $d60f : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $d60f : $22, $28, $d9, $02
 	rts                                                  ; $d613 : $60
 
 
@@ -13729,7 +13729,7 @@ br_01_d92d:
 
 
 br_01_d92e:
-	jsr Func_2_d928.l                                                  ; $d92e : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $d92e : $22, $28, $d9, $02
 	rts                                                  ; $d932 : $60
 
 
@@ -13973,7 +13973,7 @@ br_01_da97:
 	rts                                                  ; $da9b : $60
 
 
-	jsr Func_2_d928.l                                                  ; $da9c : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $da9c : $22, $28, $d9, $02
 	rts                                                  ; $daa0 : $60
 
 
@@ -14035,7 +14035,7 @@ SubtankState0:
 	and StageItemEntity.param                                                  ; $dae4 : $25, $0b
 	beq @itemNotGotten                                                  ; $dae6 : $f0, $05
 
-	jsr Func_2_d928.l                                                  ; $dae8 : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $dae8 : $22, $28, $d9, $02
 	rts                                                  ; $daec : $60
 
 @itemNotGotten:
@@ -14338,7 +14338,7 @@ br_01_dc87:
 
 SubtankState2:
 	stz $1f4f.w                                                  ; $dcaa : $9c, $4f, $1f
-	jsr Func_2_d928.l                                                  ; $dcad : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $dcad : $22, $28, $d9, $02
 	rts                                                  ; $dcb1 : $60
 
 
@@ -14580,7 +14580,7 @@ br_01_de3a:
 	cmp #$0d.b                                                  ; $de60 : $c9, $0d
 	beq br_01_de69                                                  ; $de62 : $f0, $05
 
-	jsr Func_2_d928.l                                                  ; $de64 : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $de64 : $22, $28, $d9, $02
 	rts                                                  ; $de68 : $60
 
 
@@ -14599,7 +14599,7 @@ br_01_de69:
 
 br_01_de76:
 	jsr $04d1ef.l                                                  ; $de76 : $22, $ef, $d1, $04
-	jsr Func_2_d928.l                                                  ; $de7a : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $de7a : $22, $28, $d9, $02
 	rts                                                  ; $de7e : $60
 
 
@@ -14808,7 +14808,7 @@ br_01_e052:
 
 
 br_01_e053:
-	jmp Func_2_d928.l                                                  ; $e053 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $e053 : $5c, $28, $d9, $02
 
 
 	adc $e0                                                  ; $e057 : $65, $e0
@@ -15303,7 +15303,7 @@ br_01_e3f4:
 	trb $1f3f.w                                                  ; $e40a : $1c, $3f, $1f
 	lda #$13.b                                                  ; $e40d : $a9, $13
 	sta $00c1.w                                                  ; $e40f : $8d, $c1, $00
-	sta $212c.w                                                  ; $e412 : $8d, $2c, $21
+	sta TM.w                                                  ; $e412 : $8d, $2c, $21
 	stz $00c2.w                                                  ; $e415 : $9c, $c2, $00
 	stz $212d.w                                                  ; $e418 : $9c, $2d, $21
 	stz $2124.w                                                  ; $e41b : $9c, $24, $21
@@ -15336,7 +15336,7 @@ br_01_e44e:
 
 
 br_01_e44f:
-	jmp Func_2_d928.l                                                  ; $e44f : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $e44f : $5c, $28, $d9, $02
 
 
 	adc $e4, S                                                  ; $e453 : $63, $e4
@@ -15346,7 +15346,7 @@ br_01_e44f:
 	sbc $46                                                  ; $e45a : $e5, $46
 	sbc $4f                                                  ; $e45c : $e5, $4f
 	cpx $9e                                                  ; $e45e : $e4, $9e
-	sbc $bf                                                  ; $e460 : $e5, $bf
+	sbc wBG3VertScroll                                                  ; $e460 : $e5, $bf
 	sbc $a9                                                  ; $e462 : $e5, $a9
 	asl $0185.w                                                  ; $e464 : $0e, $85, $01
 	rep #ACCU_8                                                  ; $e467 : $c2, $20
@@ -15904,7 +15904,7 @@ br_01_e83a:
 	bit wHealthTanksGottenBitfield.w                                                  ; $e84a : $2c, $d4, $1f
 	beq br_01_e853                                                  ; $e84d : $f0, $04
 
-	jmp Func_2_d928.l                                                  ; $e84f : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $e84f : $5c, $28, $d9, $02
 
 
 br_01_e853:
@@ -16171,7 +16171,7 @@ br_01_e9f8:
 	bra br_01_ea35                                                  ; $ea1b : $80, $18
 
 	stz $1f4f.w                                                  ; $ea1d : $9c, $4f, $1f
-	jmp Func_2_d928.l                                                  ; $ea20 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $ea20 : $5c, $28, $d9, $02
 
 
 br_01_ea24:
@@ -16378,7 +16378,7 @@ br_01_eb47:
 	rtl                                                  ; $eb47 : $6b
 
 
-	jmp Func_2_d928.l                                                  ; $eb48 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $eb48 : $5c, $28, $d9, $02
 
 
 	ldx $01                                                  ; $eb4c : $a6, $01
@@ -16468,7 +16468,7 @@ Jump_01_ebbc:
 	beq br_01_ebea                                                  ; $ebe4 : $f0, $04
 
 br_01_ebe6:
-	jmp Func_2_d928.l                                                  ; $ebe6 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $ebe6 : $5c, $28, $d9, $02
 
 
 br_01_ebea:
@@ -16524,7 +16524,7 @@ br_01_ec35:
 	sta $02                                                  ; $ec37 : $85, $02
 	rep #ACCU_8                                                  ; $ec39 : $c2, $20
 	lda $05                                                  ; $ec3b : $a5, $05
-	sta $09dd.w                                                  ; $ec3d : $8d, $dd, $09
+	sta wPlayerEntity.x.w                                                  ; $ec3d : $8d, $dd, $09
 	lda $08                                                  ; $ec40 : $a5, $08
 	sta $09e0.w                                                  ; $ec42 : $8d, $e0, $09
 	sep #ACCU_8                                                  ; $ec45 : $e2, $20
@@ -16592,7 +16592,7 @@ br_01_eca7:
 	lda $0000.w                                                  ; $eca7 : $ad, $00, $00
 	clc                                                  ; $ecaa : $18
 	adc $05                                                  ; $ecab : $65, $05
-	sta $09dd.w                                                  ; $ecad : $8d, $dd, $09
+	sta wPlayerEntity.x.w                                                  ; $ecad : $8d, $dd, $09
 	sep #ACCU_8                                                  ; $ecb0 : $e2, $20
 	rtl                                                  ; $ecb2 : $6b
 
@@ -16684,7 +16684,7 @@ br_01_ed2a:
 	lda #$18.b                                                  ; $ed43 : $a9, $18
 	sta $0008.w                                                  ; $ed45 : $8d, $08, $00
 	jsr $02fcb1.l                                                  ; $ed48 : $22, $b1, $fc, $02
-	jmp Func_2_d928.l                                                  ; $ed4c : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $ed4c : $5c, $28, $d9, $02
 
 
 	ldx #$00.b                                                  ; $ed50 : $a2, $00
@@ -16715,7 +16715,7 @@ br_01_ed76:
 	bne br_01_ed52                                                  ; $ed79 : $d0, $d7
 
 	sep #ACCU_8|IDX_8                                                  ; $ed7b : $e2, $30
-	jmp Func_2_d928.l                                                  ; $ed7d : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $ed7d : $5c, $28, $d9, $02
 
 
 	ldx $01                                                  ; $ed81 : $a6, $01
@@ -16825,7 +16825,7 @@ br_01_ee2f:
 	rts                                                  ; $ee2f : $60
 
 
-	jmp Func_2_d928.l                                                  ; $ee30 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $ee30 : $5c, $28, $d9, $02
 
 
 	ldx $01                                                  ; $ee34 : $a6, $01
@@ -17033,14 +17033,14 @@ br_01_ef66:
 	bne br_01_ef9b                                                  ; $ef69 : $d0, $30
 
 	inc $02                                                  ; $ef6b : $e6, $02
-	jsr $04be35.l                                                  ; $ef6d : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $ef6d : $22, $35, $be, $04
 	and #$02.b                                                  ; $ef71 : $29, $02
 	sta $12                                                  ; $ef73 : $85, $12
 	rep #ACCU_8|F_CARRY                                                  ; $ef75 : $c2, $21
 	lda wNewStageScrollY.w                                                  ; $ef77 : $ad, $60, $1e
 	adc #$00e0.w                                                  ; $ef7a : $69, $e0, $00
 	sta $08                                                  ; $ef7d : $85, $08
-	jsr $04be35.l                                                  ; $ef7f : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $ef7f : $22, $35, $be, $04
 	and #$00ff.w                                                  ; $ef83 : $29, $ff, $00
 	clc                                                  ; $ef86 : $18
 	adc wNewStageScrollX.w                                                  ; $ef87 : $6d, $5d, $1e
@@ -17087,7 +17087,7 @@ br_01_efa3:
 	lda wHealthTanksGottenBitfield.w                                                  ; $efbe : $ad, $d4, $1f
 	beq br_01_efc7                                                  ; $efc1 : $f0, $04
 
-	jmp Func_2_d928.l                                                  ; $efc3 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $efc3 : $5c, $28, $d9, $02
 
 
 br_01_efc7:
@@ -17283,94 +17283,124 @@ br_01_f0f0:
 	rts                                                  ; $f0f4 : $60
 
 
-	ldx $01                                                  ; $f0f5 : $a6, $01
-	jsr ($f0fb.w, X)                                                  ; $f0f7 : $fc, $fb, $f0
+UpdateRideArmourItem:
+	ldx StageItemEntity.state                                                  ; $f0f5 : $a6, $01
+	jsr (@states.w, X)                                                  ; $f0f7 : $fc, $fb, $f0
 	rtl                                                  ; $f0fa : $6b
 
+@states:
+	.dw RideArmourItemState0_Init
+	.dw RideArmourItemState1_Main
+	.dw RideArmourItemState2_Disable
 
-	ora ($f1, X)                                                  ; $f0fb : $01, $f1
-	adc ($f1, X)                                                  ; $f0fd : $61, $f1
-	stz $a5f2.w, X                                                  ; $f0ff : $9e, $f2, $a5
-	phd                                                  ; $f102 : $0b
+
+; param 08 - frog in gravity beetle
+; param 04 - hawk in crush crawfish
+; param 02 - kangaroo in toxic seahorse
+RideArmourItemState0_Init:
+; Don't spawn entity if item already gotten
+	lda StageItemEntity.param                                                  ; $f101 : $a5, $0b
 	bit wChipsAndRideArmoursGottenBitfield.w                                                  ; $f103 : $2c, $d7, $1f
-	beq br_01_f10d                                                  ; $f106 : $f0, $05
+	beq @itemNotGotten                                                  ; $f106 : $f0, $05
 
-	jsr Func_2_d928.l                                                  ; $f108 : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $f108 : $22, $28, $d9, $02
 	rts                                                  ; $f10c : $60
 
-
-br_01_f10d:
+@itemNotGotten:
+; To next state
 	lda #$02.b                                                  ; $f10d : $a9, $02
-	sta $01                                                  ; $f10f : $85, $01
+	sta StageItemEntity.state                                                  ; $f10f : $85, $01
+
+;
 	stz $12                                                  ; $f111 : $64, $12
 	stz $28                                                  ; $f113 : $64, $28
 	lda $7f823b.l                                                  ; $f115 : $af, $3b, $82, $7f
 	sta $18                                                  ; $f119 : $85, $18
+
+;
 	ldx wStageIdx.w                                                  ; $f11b : $ae, $ae, $1f
 	lda $b3a2.w, X                                                  ; $f11e : $bd, $a2, $b3
 	sta $0000.w                                                  ; $f121 : $8d, $00, $00
-	lda $7f833b.l                                                  ; $f124 : $af, $3b, $83, $7f
+
+;
+	lda $7f8300.l+DECOMP_IDX_OAM_TILEDATA_RIDE_ARMOUR_ITEM                                                  ; $f124 : $af, $3b, $83, $7f
 	ora $0000.w                                                  ; $f128 : $0d, $00, $00
 	sta $11                                                  ; $f12b : $85, $11
 	sta $2f                                                  ; $f12d : $85, $2f
+
+;
 	rep #ACCU_8                                                  ; $f12f : $c2, $20
 	lda #$d8a2.w                                                  ; $f131 : $a9, $a2, $d8
 	sta $20                                                  ; $f134 : $85, $20
 	sep #ACCU_8                                                  ; $f136 : $e2, $20
+
+;
 	jsr Func_2_d636.l                                                  ; $f138 : $22, $36, $d6, $02
 	lda #$3e.b                                                  ; $f13c : $a9, $3e
 	sta $16                                                  ; $f13e : $85, $16
-	lda $0b                                                  ; $f140 : $a5, $0b
+
+; chimera == 1 (if it existed)
+	lda StageItemEntity.param                                                  ; $f140 : $a5, $0b
 	cmp #$01.b                                                  ; $f142 : $c9, $01
-	beq br_01_f152                                                  ; $f144 : $f0, $0c
+	beq @chimera                                                  ; $f144 : $f0, $0c
 
+; kanga == 5
 	cmp #$02.b                                                  ; $f146 : $c9, $02
-	beq br_01_f156                                                  ; $f148 : $f0, $0c
+	beq @kangaroo                                                  ; $f148 : $f0, $0c
 
+; hawk == 6
 	cmp #$04.b                                                  ; $f14a : $c9, $04
-	beq br_01_f15a                                                  ; $f14c : $f0, $0c
+	beq @hawk                                                  ; $f14c : $f0, $0c
 
+; frog == 7
 	lda #$07.b                                                  ; $f14e : $a9, $07
-	bra br_01_f15c                                                  ; $f150 : $80, $0a
+	bra @cont_f15c                                                  ; $f150 : $80, $0a
 
-br_01_f152:
+@chimera:
 	lda #$00.b                                                  ; $f152 : $a9, $00
-	bra br_01_f15c                                                  ; $f154 : $80, $06
+	bra @cont_f15c                                                  ; $f154 : $80, $06
 
-br_01_f156:
+@kangaroo:
 	lda #$05.b                                                  ; $f156 : $a9, $05
-	bra br_01_f15c                                                  ; $f158 : $80, $02
+	bra @cont_f15c                                                  ; $f158 : $80, $02
 
-br_01_f15a:
+@hawk:
 	lda #$06.b                                                  ; $f15a : $a9, $06
 
-br_01_f15c:
+@cont_f15c:
 	jsr Func_4_b967.l                                                  ; $f15c : $22, $67, $b9, $04
 	rts                                                  ; $f160 : $60
 
 
+RideArmourItemState1_Main:
+; Despawn entity if out of view
 	jsr SetCarryIfEntityWayOutOfView.l                                                  ; $f161 : $22, $8a, $d5, $02
-	bcc br_01_f16c                                                  ; $f165 : $90, $05
+	bcc @inView                                                  ; $f165 : $90, $05
 
 	jsr Func_2_d917.l                                                  ; $f167 : $22, $17, $d9, $02
 	rts                                                  ; $f16b : $60
 
-
-br_01_f16c:
+@inView:
 	jsr Call_01_f2a6.w                                                  ; $f16c : $20, $a6, $f2
-	ldx $02                                                  ; $f16f : $a6, $02
-	jsr ($f175.w, X)                                                  ; $f171 : $fc, $75, $f1
+	ldx StageItemEntity.substate                                                  ; $f16f : $a6, $02
+	jsr (@substates.w, X)                                                  ; $f171 : $fc, $75, $f1
 	rts                                                  ; $f174 : $60
 
+@substates:
+	.dw RideArmourItemMainSubstate0
+	.dw RideArmourItemMainSubstate1
+	.dw RideArmourItemMainSubstate2
+	.dw Call_01_f231
 
-	adc $c4f1.w, X                                                  ; $f175 : $7d, $f1, $c4
-	sbc ($03), Y                                                  ; $f178 : $f1, $03
-	sbc ($31)                                                  ; $f17a : $f2, $31
-	sbc ($a6)                                                  ; $f17c : $f2, $a6
-	ora $d0, S                                                  ; $f17e : $03, $d0
-	ora ($e6), Y                                                  ; $f180 : $11, $e6
-	ora $c2, S                                                  ; $f182 : $03, $c2
-	jsr $1a64.w                                                  ; $f184 : $20, $64, $1a
+
+RideArmourItemMainSubstate0:
+; skip below if already exec'd
+	ldx StageItemEntity.subsubstate                                                  ; $f17d : $a6, $03
+	bne @br_f192                                                  ; $f17f : $d0, $11
+
+	inc StageItemEntity.subsubstate                                                  ; $f181 : $e6, $03
+	rep #ACCU_8                                                  ; $f183 : $c2, $20
+	stz $1a                                                  ; $f185 : $64, $1a
 	stz $1c                                                  ; $f187 : $64, $1c
 	sep #ACCU_8                                                  ; $f189 : $e2, $20
 	lda #$37.b                                                  ; $f18b : $a9, $37
@@ -17378,116 +17408,132 @@ br_01_f16c:
 	stz $1f                                                  ; $f18f : $64, $1f
 	rts                                                  ; $f191 : $60
 
-
+@br_f192:
 	lda $2b                                                  ; $f192 : $a5, $2b
 	bit #$08.b                                                  ; $f194 : $89, $08
-	bne br_01_f1a4                                                  ; $f196 : $d0, $0c
+	bne @br_f1a4                                                  ; $f196 : $d0, $0c
 
 	jsr $02d6f8.l                                                  ; $f198 : $22, $f8, $d6, $02
 	jsr Func_2_d636.l                                                  ; $f19c : $22, $36, $d6, $02
 	lda $1d                                                  ; $f1a0 : $a5, $1d
-	bpl br_01_f1ad                                                  ; $f1a2 : $10, $09
+	bpl @br_f1ad                                                  ; $f1a2 : $10, $09
 
-br_01_f1a4:
+@br_f1a4:
+; to next substate
 	lda #$02.b                                                  ; $f1a4 : $a9, $02
-	sta $02                                                  ; $f1a6 : $85, $02
+	sta StageItemEntity.substate                                                  ; $f1a6 : $85, $02
 	stz $1c                                                  ; $f1a8 : $64, $1c
 	stz $1d                                                  ; $f1aa : $64, $1d
 	rts                                                  ; $f1ac : $60
 
-
-br_01_f1ad:
+@br_f1ad:
 	jsr $01d614.l                                                  ; $f1ad : $22, $14, $d6, $01
 	jsr $01d69e.l                                                  ; $f1b1 : $22, $9e, $d6, $01
-	beq br_01_f1c3                                                  ; $f1b5 : $f0, $0c
+	beq @done                                                  ; $f1b5 : $f0, $0c
 
+; to substate 3
 	lda #$06.b                                                  ; $f1b7 : $a9, $06
-	sta $02                                                  ; $f1b9 : $85, $02
-	stz $03                                                  ; $f1bb : $64, $03
+	sta StageItemEntity.substate                                                 ; $f1b9 : $85, $02
+	stz StageItemEntity.subsubstate                                                  ; $f1bb : $64, $03
 	sta $1f4f.w                                                  ; $f1bd : $8d, $4f, $1f
 	jsr Call_01_f231.w                                                  ; $f1c0 : $20, $31, $f2
 
-br_01_f1c3:
+@done:
 	rts                                                  ; $f1c3 : $60
 
 
+RideArmourItemMainSubstate1:
 	lda $2b                                                  ; $f1c4 : $a5, $2b
 	bit #$04.b                                                  ; $f1c6 : $89, $04
-	beq br_01_f1d0                                                  ; $f1c8 : $f0, $06
+	beq @cont_f1d0                                                  ; $f1c8 : $f0, $06
 
 	stz $2f                                                  ; $f1ca : $64, $2f
-	lda #$04.b                                                  ; $f1cc : $a9, $04
-	sta $02                                                  ; $f1ce : $85, $02
 
-br_01_f1d0:
+; to substate 2
+	lda #$04.b                                                  ; $f1cc : $a9, $04
+	sta StageItemEntity.substate                                                  ; $f1ce : $85, $02
+
+@cont_f1d0:
 	jsr $02d6f8.l                                                  ; $f1d0 : $22, $f8, $d6, $02
 	rep #ACCU_8                                                  ; $f1d4 : $c2, $20
 	lda $1c                                                  ; $f1d6 : $a5, $1c
 	cmp #$fb00.w                                                  ; $f1d8 : $c9, $00, $fb
-	bpl br_01_f1e2                                                  ; $f1db : $10, $05
+	bpl +                                                  ; $f1db : $10, $05
 
 	lda #$fb00.w                                                  ; $f1dd : $a9, $00, $fb
 	sta $1c                                                  ; $f1e0 : $85, $1c
 
-br_01_f1e2:
-	sep #ACCU_8                                                  ; $f1e2 : $e2, $20
++	sep #ACCU_8                                                  ; $f1e2 : $e2, $20
 	jsr Func_2_d636.l                                                  ; $f1e4 : $22, $36, $d6, $02
 	jsr $01d614.l                                                  ; $f1e8 : $22, $14, $d6, $01
 	jsr $01d69e.l                                                  ; $f1ec : $22, $9e, $d6, $01
-	beq br_01_f1fe                                                  ; $f1f0 : $f0, $0c
+	beq @cont_f1fe                                                  ; $f1f0 : $f0, $0c
 
+; to substate 3
 	lda #$06.b                                                  ; $f1f2 : $a9, $06
-	sta $02                                                  ; $f1f4 : $85, $02
-	stz $03                                                  ; $f1f6 : $64, $03
+	sta StageItemEntity.substate                                                  ; $f1f4 : $85, $02
+	stz StageItemEntity.subsubstate                                                  ; $f1f6 : $64, $03
+
+;
 	sta $1f4f.w                                                  ; $f1f8 : $8d, $4f, $1f
 	jsr Call_01_f231.w                                                  ; $f1fb : $20, $31, $f2
 
-br_01_f1fe:
+@cont_f1fe:
 	jsr Func_4_b94a.l                                                  ; $f1fe : $22, $4a, $b9, $04
 	rts                                                  ; $f202 : $60
 
 
+RideArmourItemMainSubstate2:
 	jsr $01d614.l                                                  ; $f203 : $22, $14, $d6, $01
 	lda $2b                                                  ; $f207 : $a5, $2b
 	bit #$04.b                                                  ; $f209 : $89, $04
-	bne br_01_f216                                                  ; $f20b : $d0, $09
+	bne @br_f216                                                  ; $f20b : $d0, $09
 
+; to substate 1
 	lda #$02.b                                                  ; $f20d : $a9, $02
-	sta $02                                                  ; $f20f : $85, $02
+	sta StageItemEntity.substate                                                  ; $f20f : $85, $02
 	stz $1c                                                  ; $f211 : $64, $1c
 	stz $1d                                                  ; $f213 : $64, $1d
 	rts                                                  ; $f215 : $60
 
-
-br_01_f216:
+@br_f216:
 	jsr Func_2_d636.l                                                  ; $f216 : $22, $36, $d6, $02
 	jsr $01d69e.l                                                  ; $f21a : $22, $9e, $d6, $01
-	beq br_01_f22c                                                  ; $f21e : $f0, $0c
+	beq @cont_f22c                                                  ; $f21e : $f0, $0c
 
+; to substate 3 (below)
 	lda #$06.b                                                  ; $f220 : $a9, $06
-	sta $02                                                  ; $f222 : $85, $02
-	stz $03                                                  ; $f224 : $64, $03
+	sta StageItemEntity.substate                                                  ; $f222 : $85, $02
+	stz StageItemEntity.subsubstate                                                  ; $f224 : $64, $03
 	sta $1f4f.w                                                  ; $f226 : $8d, $4f, $1f
 	jsr Call_01_f231.w                                                  ; $f229 : $20, $31, $f2
 
-br_01_f22c:
+@cont_f22c:
 	jsr Func_4_b94a.l                                                  ; $f22c : $22, $4a, $b9, $04
 	rts                                                  ; $f230 : $60
 
 
 Call_01_f231:
-	ldx $03                                                  ; $f231 : $a6, $03
-	jsr ($f237.w, X)                                                  ; $f233 : $fc, $37, $f2
+	ldx StageItemEntity.subsubstate                                                  ; $f231 : $a6, $03
+	jsr (@subsubstates.w, X)                                                  ; $f233 : $fc, $37, $f2
 	rts                                                  ; $f236 : $60
 
+@subsubstates:
+	.dw Func_1_f23d
+	.dw Func_1_f273
+	.dw Func_1_f27c
 
-	and $73f2.w, X                                                  ; $f237 : $3d, $f2, $73
-	sbc ($7c)                                                  ; $f23a : $f2, $7c
-	sbc ($a5)                                                  ; $f23c : $f2, $a5
-	phd                                                  ; $f23e : $0b
+
+Func_1_f23d:
+; give item
+	lda StageItemEntity.param                                                  ; $f23d : $a5, $0b
 	tsb wChipsAndRideArmoursGottenBitfield.w                                                  ; $f23f : $0c, $d7, $1f
+
+; to next subsubstate
 	lda #$02.b                                                  ; $f242 : $a9, $02
-	sta $03                                                  ; $f244 : $85, $03
+	sta StageItemEntity.subsubstate                                                  ; $f244 : $85, $03
+
+;
 	lda #$01.b                                                  ; $f246 : $a9, $01
 	sta $1f25.w                                                  ; $f248 : $8d, $25, $1f
 	sta $1f26.w                                                  ; $f24b : $8d, $26, $1f
@@ -17507,16 +17553,18 @@ Call_01_f231:
 	rts                                                  ; $f272 : $60
 
 
+Func_1_f273:
+; once timer 0, go to next subsubstate
 	dec $26                                                  ; $f273 : $c6, $26
-	bne br_01_f27b                                                  ; $f275 : $d0, $04
+	bne +                                                  ; $f275 : $d0, $04
 
 	lda #$04.b                                                  ; $f277 : $a9, $04
-	sta $03                                                  ; $f279 : $85, $03
+	sta StageItemEntity.subsubstate                                                  ; $f279 : $85, $03
 
-br_01_f27b:
-	rts                                                  ; $f27b : $60
++	rts                                                  ; $f27b : $60
 
 
+Func_1_f27c:
 	stz $1f25.w                                                  ; $f27c : $9c, $25, $1f
 	stz $1f26.w                                                  ; $f27f : $9c, $26, $1f
 	stz $1f27.w                                                  ; $f282 : $9c, $27, $1f
@@ -17524,16 +17572,21 @@ br_01_f27b:
 	stz $1f29.w                                                  ; $f288 : $9c, $29, $1f
 	stz $1f2a.w                                                  ; $f28b : $9c, $2a, $1f
 	stz $1f2b.w                                                  ; $f28e : $9c, $2b, $1f
+
+; go to disable state
 	lda #$04.b                                                  ; $f291 : $a9, $04
-	sta $01                                                  ; $f293 : $85, $01
+	sta StageItemEntity.state                                                  ; $f293 : $85, $01
+
+;
 	lda #$80.b                                                  ; $f295 : $a9, $80
 	trb $00                                                  ; $f297 : $14, $00
 	jsr $04d130.l                                                  ; $f299 : $22, $30, $d1, $04
 	rts                                                  ; $f29d : $60
 
 
+RideArmourItemState2_Disable:
 	stz $1f4f.w                                                  ; $f29e : $9c, $4f, $1f
-	jsr Func_2_d928.l                                                  ; $f2a1 : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $f2a1 : $22, $28, $d9, $02
 	rts                                                  ; $f2a5 : $60
 
 
@@ -17614,7 +17667,7 @@ br_01_f313:
 
 br_01_f316:
 	sep #ACCU_8|IDX_8                                                  ; $f316 : $e2, $30
-	jmp Func_2_d928.l                                                  ; $f318 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f318 : $5c, $28, $d9, $02
 
 
 	lda $01                                                  ; $f31c : $a5, $01
@@ -17653,7 +17706,7 @@ br_01_f342:
 
 
 br_01_f352:
-	jmp Func_2_d928.l                                                  ; $f352 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f352 : $5c, $28, $d9, $02
 
 
 	ldx $01                                                  ; $f356 : $a6, $01
@@ -17667,7 +17720,7 @@ br_01_f352:
 	tya                                                  ; $f365 : $98
 	beq br_01_f36c                                                  ; $f366 : $f0, $04
 
-	jmp Func_2_d928.l                                                  ; $f368 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f368 : $5c, $28, $d9, $02
 
 
 br_01_f36c:
@@ -17703,11 +17756,11 @@ br_01_f36c:
 	cmp #$0480.w                                                  ; $f3b2 : $c9, $80, $04
 	bcs br_01_f3bb                                                  ; $f3b5 : $b0, $04
 
-	jmp Func_2_d928.l                                                  ; $f3b7 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f3b7 : $5c, $28, $d9, $02
 
 
 br_01_f3bb:
-	lda $09dd.w                                                  ; $f3bb : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $f3bb : $ad, $dd, $09
 	cmp #$0b80.w                                                  ; $f3be : $c9, $80, $0b
 	bcc br_01_f3cb                                                  ; $f3c1 : $90, $08
 
@@ -17725,7 +17778,7 @@ br_01_f3cb:
 	rtl                                                  ; $f3d5 : $6b
 
 
-	jmp Func_2_d928.l                                                  ; $f3d6 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f3d6 : $5c, $28, $d9, $02
 
 
 Call_01_f3da:
@@ -17847,7 +17900,7 @@ br_01_f47d:
 	rtl                                                  ; $f48e : $6b
 
 
-	jmp Func_2_d928.l                                                  ; $f48f : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f48f : $5c, $28, $d9, $02
 
 
 	ldx $01                                                  ; $f493 : $a6, $01
@@ -17888,7 +17941,7 @@ br_01_f47d:
 
 
 br_01_f4da:
-	jmp Func_2_d928.l                                                  ; $f4da : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f4da : $5c, $28, $d9, $02
 
 
 	lda $01                                                  ; $f4de : $a5, $01
@@ -17951,7 +18004,7 @@ br_01_f528:
 	bne br_01_f544                                                  ; $f53e : $d0, $04
 
 br_01_f540:
-	jmp Func_2_d928.l                                                  ; $f540 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f540 : $5c, $28, $d9, $02
 
 
 br_01_f544:
@@ -17983,7 +18036,7 @@ br_01_f560:
 
 br_01_f568:
 	sep #ACCU_8                                                  ; $f568 : $e2, $20
-	jmp Func_2_d928.l                                                  ; $f56a : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f56a : $5c, $28, $d9, $02
 
 
 	lda $01                                                  ; $f56e : $a5, $01
@@ -18029,7 +18082,7 @@ br_01_f5ac:
 	lda $0f                                                  ; $f5ac : $a5, $0f
 	bpl br_01_f5b4                                                  ; $f5ae : $10, $04
 
-	jmp Func_2_d928.l                                                  ; $f5b0 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f5b0 : $5c, $28, $d9, $02
 
 
 br_01_f5b4:
@@ -18051,7 +18104,7 @@ br_01_f5b4:
 	ora #$02.b                                                  ; $f5d0 : $09, $02
 	sta $11                                                  ; $f5d2 : $85, $11
 	rep #ACCU_8                                                  ; $f5d4 : $c2, $20
-	lda $09dd.w                                                  ; $f5d6 : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $f5d6 : $ad, $dd, $09
 	sta $05                                                  ; $f5d9 : $85, $05
 	lda $09e0.w                                                  ; $f5db : $ad, $e0, $09
 	sta $08                                                  ; $f5de : $85, $08
@@ -18079,7 +18132,7 @@ br_01_f601:
 	bne br_01_f613                                                  ; $f603 : $d0, $0e
 
 	rep #ACCU_8                                                  ; $f605 : $c2, $20
-	lda $09dd.w                                                  ; $f607 : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $f607 : $ad, $dd, $09
 	sta $05                                                  ; $f60a : $85, $05
 	lda $09e0.w                                                  ; $f60c : $ad, $e0, $09
 	sta $08                                                  ; $f60f : $85, $08
@@ -18094,7 +18147,7 @@ br_01_f613:
 	bpl br_01_f623                                                  ; $f61d : $10, $04
 
 br_01_f61f:
-	jmp Func_2_d928.l                                                  ; $f61f : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f61f : $5c, $28, $d9, $02
 
 
 br_01_f623:
@@ -18166,7 +18219,7 @@ br_01_f68a:
 	bpl br_01_f6d4                                                  ; $f68e : $10, $44
 
 	stz $19                                                  ; $f690 : $64, $19
-	jmp Func_2_d928.l                                                  ; $f692 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f692 : $5c, $28, $d9, $02
 
 
 br_01_f696:
@@ -18214,7 +18267,7 @@ br_01_f6ca:
 	bcc br_01_f6d4                                                  ; $f6ce : $90, $04
 
 br_01_f6d0:
-	jmp Func_2_d928.l                                                  ; $f6d0 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f6d0 : $5c, $28, $d9, $02
 
 
 br_01_f6d4:
@@ -18257,7 +18310,7 @@ Call_01_f6dd:
 	lda $0e                                                  ; $f71a : $a5, $0e
 	bne br_01_f722                                                  ; $f71c : $d0, $04
 
-	jmp Func_2_d928.l                                                  ; $f71e : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f71e : $5c, $28, $d9, $02
 
 
 br_01_f722:
@@ -18340,7 +18393,7 @@ br_01_f79e:
 	dec $0d                                                  ; $f7a2 : $c6, $0d
 	bne br_01_f7aa                                                  ; $f7a4 : $d0, $04
 
-	jsr Func_2_d928.l                                                  ; $f7a6 : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $f7a6 : $22, $28, $d9, $02
 
 br_01_f7aa:
 	rts                                                  ; $f7aa : $60
@@ -18361,12 +18414,12 @@ br_01_f7aa:
 	lda #$30.b                                                  ; $f7bf : $a9, $30
 	sta $19                                                  ; $f7c1 : $85, $19
 	rep #ACCU_8                                                  ; $f7c3 : $c2, $20
-	jsr $04be35.l                                                  ; $f7c5 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $f7c5 : $22, $35, $be, $04
 	and #$000e.w                                                  ; $f7c9 : $29, $0e, $00
 	tax                                                  ; $f7cc : $aa
 	lda $dae6.w, X                                                  ; $f7cd : $bd, $e6, $da
 	sta $1a                                                  ; $f7d0 : $85, $1a
-	jsr $04be35.l                                                  ; $f7d2 : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $f7d2 : $22, $35, $be, $04
 	and #$000e.w                                                  ; $f7d6 : $29, $0e, $00
 	tax                                                  ; $f7d9 : $aa
 	lda $daf6.w, X                                                  ; $f7da : $bd, $f6, $da
@@ -18399,7 +18452,7 @@ br_01_f800:
 	rts                                                  ; $f804 : $60
 
 
-	jsr Func_2_d928.l                                                  ; $f805 : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $f805 : $22, $28, $d9, $02
 	rts                                                  ; $f809 : $60
 
 
@@ -18445,7 +18498,7 @@ br_01_f839:
 	sep #IDX_8                                                  ; $f851 : $e2, $10
 	bne br_01_f859                                                  ; $f853 : $d0, $04
 
-	jmp Func_2_d928.l                                                  ; $f855 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f855 : $5c, $28, $d9, $02
 
 
 br_01_f859:
@@ -18471,7 +18524,7 @@ br_01_f870:
 
 
 br_01_f87d:
-	jmp Func_2_d928.l                                                  ; $f87d : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f87d : $5c, $28, $d9, $02
 
 
 Call_01_f881:
@@ -18507,7 +18560,7 @@ Call_01_f881:
 	tya                                                  ; $f8bd : $98
 	beq br_01_f8c4                                                  ; $f8be : $f0, $04
 
-	jmp Func_2_d928.l                                                  ; $f8c0 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $f8c0 : $5c, $28, $d9, $02
 
 
 br_01_f8c4:
@@ -18526,7 +18579,7 @@ br_01_f8c4:
 
 br_01_f8dd:
 	rep #ACCU_8|F_CARRY                                                  ; $f8dd : $c2, $21
-	lda $09dd.w                                                  ; $f8df : $ad, $dd, $09
+	lda wPlayerEntity.x.w                                                  ; $f8df : $ad, $dd, $09
 	sta $05                                                  ; $f8e2 : $85, $05
 	lda $09e0.w                                                  ; $f8e4 : $ad, $e0, $09
 	adc #$0008.w                                                  ; $f8e7 : $69, $08, $00
@@ -18668,7 +18721,7 @@ Call_01_f9a2:
 	lda $08                                                  ; $f9b7 : $a5, $08
 	adc #$0010.w                                                  ; $f9b9 : $69, $10, $00
 	sta $0008.w, X                                                  ; $f9bc : $9d, $08, $00
-	jsr $04be35.l                                                  ; $f9bf : $22, $35, $be, $04
+	jsr Func_4_be35.l                                                  ; $f9bf : $22, $35, $be, $04
 	and #$000f.w                                                  ; $f9c3 : $29, $0f, $00
 	sta $0000.w                                                  ; $f9c6 : $8d, $00, $00
 	lda $05                                                  ; $f9c9 : $a5, $05
@@ -18700,7 +18753,7 @@ br_01_f9d8:
 	sep #IDX_8                                                  ; $f9f0 : $e2, $10
 	bne br_01_f9f9                                                  ; $f9f2 : $d0, $05
 
-	jsr Func_2_d928.l                                                  ; $f9f4 : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $f9f4 : $22, $28, $d9, $02
 	rts                                                  ; $f9f8 : $60
 
 
@@ -18770,7 +18823,7 @@ br_01_fa46:
 
 br_01_fa5a:
 	sep #IDX_8                                                  ; $fa5a : $e2, $10
-	jsr Func_2_d928.l                                                  ; $fa5c : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $fa5c : $22, $28, $d9, $02
 	rts                                                  ; $fa60 : $60
 
 
@@ -18906,7 +18959,7 @@ br_01_fb1c:
 
 
 br_01_fb20:
-	jmp Func_2_d928.l                                                  ; $fb20 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $fb20 : $5c, $28, $d9, $02
 
 
 	lda $01                                                  ; $fb24 : $a5, $01
@@ -18944,7 +18997,7 @@ br_01_fb55:
 	lda $0f                                                  ; $fb57 : $a5, $0f
 	bpl br_01_fb5f                                                  ; $fb59 : $10, $04
 
-	jmp Func_2_d928.l                                                  ; $fb5b : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $fb5b : $5c, $28, $d9, $02
 
 
 br_01_fb5f:
@@ -19106,7 +19159,7 @@ br_01_fc38:
 	cli                                                  ; $fc4d : $58
 	jsr ($fc93.w, X)                                                  ; $fc4e : $fc, $93, $fc
 	ldx $fc                                                  ; $fc51 : $a6, $fc
-	jsr Func_2_d928.l                                                  ; $fc53 : $22, $28, $d9, $02
+	jsr todo_DisablesEntity_d928.l                                                  ; $fc53 : $22, $28, $d9, $02
 	rts                                                  ; $fc57 : $60
 
 
@@ -19328,7 +19381,7 @@ br_01_fd82:
 	cmp #$04.b                                                  ; $fd90 : $c9, $04
 	bne br_01_fd98                                                  ; $fd92 : $d0, $04
 
-	jmp Func_2_d928.l                                                  ; $fd94 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $fd94 : $5c, $28, $d9, $02
 
 
 br_01_fd98:
@@ -19460,7 +19513,7 @@ br_01_fe50:
 	lda $0f                                                  ; $fe50 : $a5, $0f
 	bpl br_01_fe58                                                  ; $fe52 : $10, $04
 
-	jmp Func_2_d928.l                                                  ; $fe54 : $5c, $28, $d9, $02
+	jmp todo_DisablesEntity_d928.l                                                  ; $fe54 : $5c, $28, $d9, $02
 
 
 br_01_fe58:

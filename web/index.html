@@ -23,7 +23,17 @@
                 greyCols.push([greyCol, greyCol, greyCol]);
             }
             // 13 is the last that looks good (should be up to 17)
-            const stageIdx = 3;
+            // 0 - Intro
+            // 1 - Blast Hornet
+            // 2 - Blizzard Buffalo
+            // 3 - Gravity Beetle
+            // 4 - Toxic Seahorse
+            // 5 - Volt Catfish
+            // 6 - Crush Crawfish
+            // 7 - Tunnel Rhino
+            // 8 - Neon Tiger
+            // 10 - Doppler 1
+            const stageIdx = 10;
 
             let bankConv = function(bank, addr) {
                 return bank * 0x8000 + (addr % 0x8000)
