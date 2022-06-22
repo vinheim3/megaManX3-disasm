@@ -922,1240 +922,1696 @@ PollInput:
 
 
 Data_8_8623:
-	.dw Data_8_8647-Data_8_8623
-	.dw Data_8_868b-Data_8_8623
-	.dw Data_8_86b1-Data_8_8623 ; 2 - blizzard buffalo
-	.dw Data_8_86d7-Data_8_8623
-	.dw Data_8_86ff-Data_8_8623
-	.dw Data_8_8725-Data_8_8623
-	.dw Data_8_874b-Data_8_8623
-	.dw Data_8_8771-Data_8_8623 ; 7 tunnel rhino
-	.dw Data_8_8797-Data_8_8623
-	.dw Data_8_87bd-Data_8_8623
-	.dw Data_8_87cd-Data_8_8623
-	.dw Data_8_87f3-Data_8_8623
-	.dw Data_8_880b-Data_8_8623
-	.dw Data_8_882f-Data_8_8623
-	.dw Data_8_8839-Data_8_8623
-	.dw Data_8_8851-Data_8_8623
-	.dw Data_8_8861-Data_8_8623 ; $10 - title screen
-	.dw Data_8_8863-Data_8_8623 ; $11 - title screen
+	.dw DynamicSpritesStage00-Data_8_8623
+	.dw DynamicSpritesStage01-Data_8_8623
+	.dw DynamicSpritesStage02-Data_8_8623
+	.dw DynamicSpritesStage03-Data_8_8623
+	.dw DynamicSpritesStage04-Data_8_8623
+	.dw DynamicSpritesStage05-Data_8_8623
+	.dw DynamicSpritesStage06-Data_8_8623
+	.dw DynamicSpritesStage07-Data_8_8623
+	.dw DynamicSpritesStage08-Data_8_8623
+	.dw DynamicSpritesStage09-Data_8_8623
+	.dw DynamicSpritesStage0a-Data_8_8623
+	.dw DynamicSpritesStage0b-Data_8_8623
+	.dw DynamicSpritesStage0c-Data_8_8623
+	.dw DynamicSpritesStage0d-Data_8_8623
+	.dw DynamicSpritesStage0e-Data_8_8623
+	.dw DynamicSpritesStage0f-Data_8_8623
+	.dw DynamicSpritesStage10-Data_8_8623
+	.dw DynamicSpritesStage11-Data_8_8623
 
 
-Data_8_8647:
-	.dw $0272
-	.dw $0272
-	.dw $027f
-	.dw $0292
-	.dw $02a5
-	.dw $02c4
-	.dw $02cb
-	.dw $02cb
-	.dw $02cb
-	.dw $02cb
-	.dw Data_8_8865-Data_8_8623
-	.dw $024f
-	.dw $0b22
-	.dw $02d8
-	.dw $02df
-	.dw $0256
-	.dw $025d
-	.dw $0264
-	.dw $026b
-	.dw $0a22
-	.dw $0a29
-	.dw $0a30
-	.dw $0a37
-	.dw $0a3e
-	.dw $0a45
-	.dw $0a4c
-	.dw $0a53
-	.dw $0b22
-	.dw $0b29
-	.dw $0b37
-	.dw $0b30
-	.dw $0bc1
-	.dw $0a8d
-	.dw $0bc8
+DynamicSpritesStage00:
+	.dw DynamicSpritesStage00Idx00-Data_8_8623
+	.dw DynamicSpritesStage00Idx01-Data_8_8623
+	.dw DynamicSpritesStage00Idx02-Data_8_8623
+	.dw DynamicSpritesStage00Idx03-Data_8_8623
+	.dw DynamicSpritesStage00Idx04-Data_8_8623
+	.dw DynamicSpritesStage00Idx05-Data_8_8623
+	.dw DynamicSpritesStage00Idx06-Data_8_8623
+	.dw DynamicSpritesStage00Idx07-Data_8_8623
+	.dw DynamicSpritesStage00Idx08-Data_8_8623
+	.dw DynamicSpritesStage00Idx09-Data_8_8623
+	.dw DynamicSpritesStage00Idx0a-Data_8_8623
+	.dw DynamicSpritesStage00Idx0b-Data_8_8623
+	.dw DynamicSpritesStage00Idx0c-Data_8_8623
+	.dw DynamicSpritesStage00Idx0d-Data_8_8623
+	.dw DynamicSpritesStage00Idx0e-Data_8_8623
+	.dw DynamicSpritesStage00Idx0f-Data_8_8623
+	.dw DynamicSpritesStage00Idx10-Data_8_8623
+	.dw DynamicSpritesStage00Idx11-Data_8_8623
+	.dw DynamicSpritesStage00Idx12-Data_8_8623
+	.dw DynamicSpritesStage00Idx13-Data_8_8623
+	.dw DynamicSpritesStage00Idx14-Data_8_8623
+	.dw DynamicSpritesStage00Idx15-Data_8_8623
+	.dw DynamicSpritesStage00Idx16-Data_8_8623
+	.dw DynamicSpritesStage00Idx17-Data_8_8623
+	.dw DynamicSpritesStage00Idx18-Data_8_8623
+	.dw DynamicSpritesStage00Idx19-Data_8_8623
+	.dw DynamicSpritesStage00Idx1a-Data_8_8623
+	.dw DynamicSpritesStage00Idx1b-Data_8_8623
+	.dw DynamicSpritesStage00Idx1c-Data_8_8623
+	.dw DynamicSpritesStage00Idx1d-Data_8_8623
+	.dw DynamicSpritesStage00Idx1e-Data_8_8623
+	.dw DynamicSpritesStage00Idx1f-Data_8_8623
+	.dw DynamicSpritesStage00Idx20-Data_8_8623
+	.dw DynamicSpritesStage00Idx21-Data_8_8623
 
 
-Data_8_868b:
-	.dw $02e6
-	.dw $02f9
-	.dw $030c
-	.dw $031f
-	.dw $032c
-	.dw $0339
-	.dw $034c
-	.dw $0365
-	.dw $037e
-	.dw $038b
-	.dw $0392
-	.dw $0393
-	.dw $03ac
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $0b22
-	.dw $0b29
-	.dw $0bba
+DynamicSpritesStage01:
+	.dw DynamicSpritesStage01Idx00-Data_8_8623
+	.dw DynamicSpritesStage01Idx01-Data_8_8623
+	.dw DynamicSpritesStage01Idx02-Data_8_8623
+	.dw DynamicSpritesStage01Idx03-Data_8_8623
+	.dw DynamicSpritesStage01Idx04-Data_8_8623
+	.dw DynamicSpritesStage01Idx05-Data_8_8623
+	.dw DynamicSpritesStage01Idx06-Data_8_8623
+	.dw DynamicSpritesStage01Idx07-Data_8_8623
+	.dw DynamicSpritesStage01Idx08-Data_8_8623
+	.dw DynamicSpritesStage01Idx09-Data_8_8623
+	.dw DynamicSpritesStage01Idx0a-Data_8_8623
+	.dw DynamicSpritesStage01Idx0b-Data_8_8623
+	.dw DynamicSpritesStage01Idx0c-Data_8_8623
+	.dw DynamicSpritesStage01Idx0d-Data_8_8623
+	.dw DynamicSpritesStage01Idx0e-Data_8_8623
+	.dw DynamicSpritesStage01Idx0f-Data_8_8623
+	.dw DynamicSpritesStage01Idx10-Data_8_8623
+	.dw DynamicSpritesStage01Idx11-Data_8_8623
+	.dw DynamicSpritesStage01Idx12-Data_8_8623
 
 
-Data_8_86b1:
-	.dw $03b9
-	.dw $03d2
-	.dw $03d9
-	.dw $03e6
-	.dw $03e7
-	.dw $03fa
-	.dw $0413
-	.dw $0420
-	.dw $0427
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $0b22
-	.dw $0b29
-	.dw $0bb3
+DynamicSpritesStage02:
+	.dw DynamicSpritesStage02Idx00-Data_8_8623
+	.dw DynamicSpritesStage02Idx01-Data_8_8623
+	.dw DynamicSpritesStage02Idx02-Data_8_8623
+	.dw DynamicSpritesStage02Idx03-Data_8_8623
+	.dw DynamicSpritesStage02Idx04-Data_8_8623
+	.dw DynamicSpritesStage02Idx05-Data_8_8623
+	.dw DynamicSpritesStage02Idx06-Data_8_8623
+	.dw DynamicSpritesStage02Idx07-Data_8_8623
+	.dw DynamicSpritesStage02Idx08-Data_8_8623
+	.dw DynamicSpritesStage02Idx09-Data_8_8623
+	.dw DynamicSpritesStage02Idx0a-Data_8_8623
+	.dw DynamicSpritesStage02Idx0b-Data_8_8623
+	.dw DynamicSpritesStage02Idx0c-Data_8_8623
+	.dw DynamicSpritesStage02Idx0d-Data_8_8623
+	.dw DynamicSpritesStage02Idx0e-Data_8_8623
+	.dw DynamicSpritesStage02Idx0f-Data_8_8623
+	.dw DynamicSpritesStage02Idx10-Data_8_8623
+	.dw DynamicSpritesStage02Idx11-Data_8_8623
+	.dw DynamicSpritesStage02Idx12-Data_8_8623
 
 
-Data_8_86d7:
-	.dw $043b
-	.dw $0454
-	.dw $0455
-	.dw $045c
-	.dw $045d
-	.dw $0464
-	.dw $047d
-	.dw $0490
-	.dw $04af
-	.dw $04bc
-	.dw $04c3
-	.dw $04d0
-	.dw $04e3
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $0b22
-	.dw $0b29
-	.dw $0bba
-	.dw $0434
+DynamicSpritesStage03:
+	.dw DynamicSpritesStage03Idx00-Data_8_8623
+	.dw DynamicSpritesStage03Idx01-Data_8_8623
+	.dw DynamicSpritesStage03Idx02-Data_8_8623
+	.dw DynamicSpritesStage03Idx03-Data_8_8623
+	.dw DynamicSpritesStage03Idx04-Data_8_8623
+	.dw DynamicSpritesStage03Idx05-Data_8_8623
+	.dw DynamicSpritesStage03Idx06-Data_8_8623
+	.dw DynamicSpritesStage03Idx07-Data_8_8623
+	.dw DynamicSpritesStage03Idx08-Data_8_8623
+	.dw DynamicSpritesStage03Idx09-Data_8_8623
+	.dw DynamicSpritesStage03Idx0a-Data_8_8623
+	.dw DynamicSpritesStage03Idx0b-Data_8_8623
+	.dw DynamicSpritesStage03Idx0c-Data_8_8623
+	.dw DynamicSpritesStage03Idx0d-Data_8_8623
+	.dw DynamicSpritesStage03Idx0e-Data_8_8623
+	.dw DynamicSpritesStage03Idx0f-Data_8_8623
+	.dw DynamicSpritesStage03Idx10-Data_8_8623
+	.dw DynamicSpritesStage03Idx11-Data_8_8623
+	.dw DynamicSpritesStage03Idx12-Data_8_8623
+	.dw DynamicSpritesStage03Idx13-Data_8_8623
 
 
-Data_8_86ff:
-	.dw $04f0
-	.dw $04f7
-	.dw $0510
-	.dw $0517
-	.dw $052a
-	.dw $053d
-	.dw $0550
-	.dw $0557
-	.dw $0564
-	.dw $056b
-	.dw $057e
-	.dw $0586
-	.dw $057f
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $0b22
-	.dw $0b29
-	.dw $0bba
+DynamicSpritesStage04:
+	.dw DynamicSpritesStage04Idx00-Data_8_8623
+	.dw DynamicSpritesStage04Idx01-Data_8_8623
+	.dw DynamicSpritesStage04Idx02-Data_8_8623
+	.dw DynamicSpritesStage04Idx03-Data_8_8623
+	.dw DynamicSpritesStage04Idx04-Data_8_8623
+	.dw DynamicSpritesStage04Idx05-Data_8_8623
+	.dw DynamicSpritesStage04Idx06-Data_8_8623
+	.dw DynamicSpritesStage04Idx07-Data_8_8623
+	.dw DynamicSpritesStage04Idx08-Data_8_8623
+	.dw DynamicSpritesStage04Idx09-Data_8_8623
+	.dw DynamicSpritesStage04Idx0a-Data_8_8623
+	.dw DynamicSpritesStage04Idx0b-Data_8_8623
+	.dw DynamicSpritesStage04Idx0c-Data_8_8623
+	.dw DynamicSpritesStage04Idx0d-Data_8_8623
+	.dw DynamicSpritesStage04Idx0e-Data_8_8623
+	.dw DynamicSpritesStage04Idx0f-Data_8_8623
+	.dw DynamicSpritesStage04Idx10-Data_8_8623
+	.dw DynamicSpritesStage04Idx11-Data_8_8623
+	.dw DynamicSpritesStage04Idx12-Data_8_8623
 
 
-Data_8_8725:
-	.dw $0593
-	.dw $05ac
-	.dw $05b3
-	.dw $05c6
-	.dw $05cd
-	.dw $05e0
-	.dw $05f3
-	.dw $0606
-	.dw $0619
-	.dw $0620
-	.dw $0633
-	.dw $0640
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $0b22
-	.dw $0b29
-	.dw $0bb3
+DynamicSpritesStage05:
+	.dw DynamicSpritesStage05Idx00-Data_8_8623
+	.dw DynamicSpritesStage05Idx01-Data_8_8623
+	.dw DynamicSpritesStage05Idx02-Data_8_8623
+	.dw DynamicSpritesStage05Idx03-Data_8_8623
+	.dw DynamicSpritesStage05Idx04-Data_8_8623
+	.dw DynamicSpritesStage05Idx05-Data_8_8623
+	.dw DynamicSpritesStage05Idx06-Data_8_8623
+	.dw DynamicSpritesStage05Idx07-Data_8_8623
+	.dw DynamicSpritesStage05Idx08-Data_8_8623
+	.dw DynamicSpritesStage05Idx09-Data_8_8623
+	.dw DynamicSpritesStage05Idx0a-Data_8_8623
+	.dw DynamicSpritesStage05Idx0b-Data_8_8623
+	.dw DynamicSpritesStage05Idx0c-Data_8_8623
+	.dw DynamicSpritesStage05Idx0d-Data_8_8623
+	.dw DynamicSpritesStage05Idx0e-Data_8_8623
+	.dw DynamicSpritesStage05Idx0f-Data_8_8623
+	.dw DynamicSpritesStage05Idx10-Data_8_8623
+	.dw DynamicSpritesStage05Idx11-Data_8_8623
+	.dw DynamicSpritesStage05Idx12-Data_8_8623
 
 
-Data_8_874b:
-	.dw $064d
-	.dw $064d
-	.dw $066c
-	.dw $067f
-	.dw $068c
-	.dw $0693
-	.dw $0694
-	.dw $06a7
-	.dw $06ba
-	.dw $06c1
-	.dw $06d4
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $0b22
-	.dw $0b29
-	.dw $0bba
+DynamicSpritesStage06:
+	.dw DynamicSpritesStage06Idx00-Data_8_8623
+	.dw DynamicSpritesStage06Idx01-Data_8_8623
+	.dw DynamicSpritesStage06Idx02-Data_8_8623
+	.dw DynamicSpritesStage06Idx03-Data_8_8623
+	.dw DynamicSpritesStage06Idx04-Data_8_8623
+	.dw DynamicSpritesStage06Idx05-Data_8_8623
+	.dw DynamicSpritesStage06Idx06-Data_8_8623
+	.dw DynamicSpritesStage06Idx07-Data_8_8623
+	.dw DynamicSpritesStage06Idx08-Data_8_8623
+	.dw DynamicSpritesStage06Idx09-Data_8_8623
+	.dw DynamicSpritesStage06Idx0a-Data_8_8623
+	.dw DynamicSpritesStage06Idx0b-Data_8_8623
+	.dw DynamicSpritesStage06Idx0c-Data_8_8623
+	.dw DynamicSpritesStage06Idx0d-Data_8_8623
+	.dw DynamicSpritesStage06Idx0e-Data_8_8623
+	.dw DynamicSpritesStage06Idx0f-Data_8_8623
+	.dw DynamicSpritesStage06Idx10-Data_8_8623
+	.dw DynamicSpritesStage06Idx11-Data_8_8623
+	.dw DynamicSpritesStage06Idx12-Data_8_8623
 
 
-Data_8_8771:
-	.dw $06e1
-	.dw $06ee
-	.dw Data_8_8d24-Data_8_8623
-	.dw Data_8_8d31-Data_8_8623
-	.dw Data_8_8d44-Data_8_8623
-	.dw Data_8_8d57-Data_8_8623
-	.dw Data_8_8d58-Data_8_8623
-	.dw $074e
-	.dw $0761
-	.dw $0768
-	.dw $076f
-	.dw $0788
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $0b22
-	.dw $0b29
-	.dw $0bb3
+DynamicSpritesStage07:
+	.dw DynamicSpritesStage07Idx00-Data_8_8623
+	.dw DynamicSpritesStage07Idx01-Data_8_8623
+	.dw DynamicSpritesStage07Idx02-Data_8_8623
+	.dw DynamicSpritesStage07Idx03-Data_8_8623
+	.dw DynamicSpritesStage07Idx04-Data_8_8623
+	.dw DynamicSpritesStage07Idx05-Data_8_8623
+	.dw DynamicSpritesStage07Idx06-Data_8_8623
+	.dw DynamicSpritesStage07Idx07-Data_8_8623
+	.dw DynamicSpritesStage07Idx08-Data_8_8623
+	.dw DynamicSpritesStage07Idx09-Data_8_8623
+	.dw DynamicSpritesStage07Idx0a-Data_8_8623
+	.dw DynamicSpritesStage07Idx0b-Data_8_8623
+	.dw DynamicSpritesStage07Idx0c-Data_8_8623
+	.dw DynamicSpritesStage07Idx0d-Data_8_8623
+	.dw DynamicSpritesStage07Idx0e-Data_8_8623
+	.dw DynamicSpritesStage07Idx0f-Data_8_8623
+	.dw DynamicSpritesStage07Idx10-Data_8_8623
+	.dw DynamicSpritesStage07Idx11-Data_8_8623
+	.dw DynamicSpritesStage07Idx12-Data_8_8623
 
 
-Data_8_8797:
-	.dw $0795
-	.dw $07ae
-	.dw $07c7
-	.dw $07d4
-	.dw $07db
-	.dw $07f4
-	.dw $0801
-	.dw $0802
-	.dw $0815
-	.dw $0822
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $0b22
-	.dw $0b29
-	.dw $0bb3
+DynamicSpritesStage08:
+	.dw DynamicSpritesStage08Idx00-Data_8_8623
+	.dw DynamicSpritesStage08Idx01-Data_8_8623
+	.dw DynamicSpritesStage08Idx02-Data_8_8623
+	.dw DynamicSpritesStage08Idx03-Data_8_8623
+	.dw DynamicSpritesStage08Idx04-Data_8_8623
+	.dw DynamicSpritesStage08Idx05-Data_8_8623
+	.dw DynamicSpritesStage08Idx06-Data_8_8623
+	.dw DynamicSpritesStage08Idx07-Data_8_8623
+	.dw DynamicSpritesStage08Idx08-Data_8_8623
+	.dw DynamicSpritesStage08Idx09-Data_8_8623
+	.dw DynamicSpritesStage08Idx0a-Data_8_8623
+	.dw DynamicSpritesStage08Idx0b-Data_8_8623
+	.dw DynamicSpritesStage08Idx0c-Data_8_8623
+	.dw DynamicSpritesStage08Idx0d-Data_8_8623
+	.dw DynamicSpritesStage08Idx0e-Data_8_8623
+	.dw DynamicSpritesStage08Idx0f-Data_8_8623
+	.dw DynamicSpritesStage08Idx10-Data_8_8623
+	.dw DynamicSpritesStage08Idx11-Data_8_8623
+	.dw DynamicSpritesStage08Idx12-Data_8_8623
 
 
-Data_8_87bd:
-	.dw $082f
-	.dw $0848
-	.dw $0855
-	.dw $086e
-	.dw $0881
-	.dw $0894
-	.dw $08a1
-	.dw $0b30
+DynamicSpritesStage09:
+	.dw DynamicSpritesStage09Idx00-Data_8_8623
+	.dw DynamicSpritesStage09Idx01-Data_8_8623
+	.dw DynamicSpritesStage09Idx02-Data_8_8623
+	.dw DynamicSpritesStage09Idx03-Data_8_8623
+	.dw DynamicSpritesStage09Idx04-Data_8_8623
+	.dw DynamicSpritesStage09Idx05-Data_8_8623
+	.dw DynamicSpritesStage09Idx06-Data_8_8623
+	.dw DynamicSpritesStage09Idx07-Data_8_8623
 
 
-Data_8_87cd:
-	.dw $08a8
-	.dw $08c1
-	.dw $08ce
-	.dw $08e1
-	.dw $08ee
-	.dw $0901
-	.dw $0914
-	.dw $0921
-	.dw $092e
-	.dw $093b
-	.dw $095b
-	.dw $0961
-	.dw $0b37
-	.dw $0968
-	.dw $094e
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $0bba
+DynamicSpritesStage0a:
+	.dw DynamicSpritesStage0aIdx00-Data_8_8623
+	.dw DynamicSpritesStage0aIdx01-Data_8_8623
+	.dw DynamicSpritesStage0aIdx02-Data_8_8623
+	.dw DynamicSpritesStage0aIdx03-Data_8_8623
+	.dw DynamicSpritesStage0aIdx04-Data_8_8623
+	.dw DynamicSpritesStage0aIdx05-Data_8_8623
+	.dw DynamicSpritesStage0aIdx06-Data_8_8623
+	.dw DynamicSpritesStage0aIdx07-Data_8_8623
+	.dw DynamicSpritesStage0aIdx08-Data_8_8623
+	.dw DynamicSpritesStage0aIdx09-Data_8_8623
+	.dw DynamicSpritesStage0aIdx0a-Data_8_8623
+	.dw DynamicSpritesStage0aIdx0b-Data_8_8623
+	.dw DynamicSpritesStage0aIdx0c-Data_8_8623
+	.dw DynamicSpritesStage0aIdx0d-Data_8_8623
+	.dw DynamicSpritesStage0aIdx0e-Data_8_8623
+	.dw DynamicSpritesStage0aIdx0f-Data_8_8623
+	.dw DynamicSpritesStage0aIdx10-Data_8_8623
+	.dw DynamicSpritesStage0aIdx11-Data_8_8623
+	.dw DynamicSpritesStage0aIdx12-Data_8_8623
 
 
-Data_8_87f3:
-	.dw $096f
-	.dw $0982
-	.dw $0995
-	.dw $09a8
-	.dw $09bb
-	.dw $09d4
-	.dw $09db
-	.dw $09ee
-	.dw $027e
-	.dw $027e
-	.dw $027e
-	.dw $027e
+DynamicSpritesStage0b:
+	.dw DynamicSpritesStage0bIdx00-Data_8_8623
+	.dw DynamicSpritesStage0bIdx01-Data_8_8623
+	.dw DynamicSpritesStage0bIdx02-Data_8_8623
+	.dw DynamicSpritesStage0bIdx03-Data_8_8623
+	.dw DynamicSpritesStage0bIdx04-Data_8_8623
+	.dw DynamicSpritesStage0bIdx05-Data_8_8623
+	.dw DynamicSpritesStage0bIdx06-Data_8_8623
+	.dw DynamicSpritesStage0bIdx07-Data_8_8623
+	.dw DynamicSpritesStage0bIdx08-Data_8_8623
+	.dw DynamicSpritesStage0bIdx09-Data_8_8623
+	.dw DynamicSpritesStage0bIdx0a-Data_8_8623
+	.dw DynamicSpritesStage0bIdx0b-Data_8_8623
 
 
-Data_8_880b:
-	.dw $09ef
-	.dw $0a02
-	.dw $0a0f
-	.dw $0a5e
-	.dw $0a22
-	.dw $0a29
-	.dw $0a30
-	.dw $0a37
-	.dw $0a3e
-	.dw $0a45
-	.dw $0a4c
-	.dw $0a53
-	.dw $0a5a
-	.dw $0a5b
-	.dw $0a5c
-	.dw $0a5d
-	.dw $0a72
-	.dw $0a6b
+DynamicSpritesStage0c:
+	.dw DynamicSpritesStage0cIdx00-Data_8_8623
+	.dw DynamicSpritesStage0cIdx01-Data_8_8623
+	.dw DynamicSpritesStage0cIdx02-Data_8_8623
+	.dw DynamicSpritesStage0cIdx03-Data_8_8623
+	.dw DynamicSpritesStage0cIdx04-Data_8_8623
+	.dw DynamicSpritesStage0cIdx05-Data_8_8623
+	.dw DynamicSpritesStage0cIdx06-Data_8_8623
+	.dw DynamicSpritesStage0cIdx07-Data_8_8623
+	.dw DynamicSpritesStage0cIdx08-Data_8_8623
+	.dw DynamicSpritesStage0cIdx09-Data_8_8623
+	.dw DynamicSpritesStage0cIdx0a-Data_8_8623
+	.dw DynamicSpritesStage0cIdx0b-Data_8_8623
+	.dw DynamicSpritesStage0cIdx0c-Data_8_8623
+	.dw DynamicSpritesStage0cIdx0d-Data_8_8623
+	.dw DynamicSpritesStage0cIdx0e-Data_8_8623
+	.dw DynamicSpritesStage0cIdx0f-Data_8_8623
+	.dw DynamicSpritesStage0cIdx10-Data_8_8623
+	.dw DynamicSpritesStage0cIdx11-Data_8_8623
 
 
-Data_8_882f:
-	.dw $0a79
-	.dw $0a86
-	.dw $0a8d
-	.dw $0a9a
-	.dw $0aa1
+DynamicSpritesStage0d:
+	.dw DynamicSpritesStage0dIdx00-Data_8_8623
+	.dw DynamicSpritesStage0dIdx01-Data_8_8623
+	.dw DynamicSpritesStage0dIdx02-Data_8_8623
+	.dw DynamicSpritesStage0dIdx03-Data_8_8623
+	.dw DynamicSpritesStage0dIdx04-Data_8_8623
 
 
-Data_8_8839:
-	.dw $0ab4
-	.dw $0ac7
-	.dw $0ada
-	.dw $0ae7
-	.dw $0ae8
-	.dw $0b01
-	.dw $0b08
-	.dw $0b15
-	.dw $0b30
-	.dw $027e
-	.dw $027e
-	.dw $027e
+DynamicSpritesStage0e:
+	.dw DynamicSpritesStage0eIdx00-Data_8_8623
+	.dw DynamicSpritesStage0eIdx01-Data_8_8623
+	.dw DynamicSpritesStage0eIdx02-Data_8_8623
+	.dw DynamicSpritesStage0eIdx03-Data_8_8623
+	.dw DynamicSpritesStage0eIdx04-Data_8_8623
+	.dw DynamicSpritesStage0eIdx05-Data_8_8623
+	.dw DynamicSpritesStage0eIdx06-Data_8_8623
+	.dw DynamicSpritesStage0eIdx07-Data_8_8623
+	.dw DynamicSpritesStage0eIdx08-Data_8_8623
+	.dw DynamicSpritesStage0eIdx09-Data_8_8623
+	.dw DynamicSpritesStage0eIdx0a-Data_8_8623
+	.dw DynamicSpritesStage0eIdx0b-Data_8_8623
 
 
-Data_8_8851:
-	.dw $0b3e
-	.dw $0b4b
-	.dw $0b58
-	.dw $0b65
-	.dw $0b72
-	.dw $0b7f
-	.dw $0b8c
-	.dw $0b99
+DynamicSpritesStage0f:
+	.dw DynamicSpritesStage0fIdx00-Data_8_8623
+	.dw DynamicSpritesStage0fIdx01-Data_8_8623
+	.dw DynamicSpritesStage0fIdx02-Data_8_8623
+	.dw DynamicSpritesStage0fIdx03-Data_8_8623
+	.dw DynamicSpritesStage0fIdx04-Data_8_8623
+	.dw DynamicSpritesStage0fIdx05-Data_8_8623
+	.dw DynamicSpritesStage0fIdx06-Data_8_8623
+	.dw DynamicSpritesStage0fIdx07-Data_8_8623
 
 
-Data_8_8861:
-	.dw $0ba6
+DynamicSpritesStage10:
+	.dw DynamicSpritesStage10Idx00-Data_8_8623
 
 
-Data_8_8863:
-	.dw $0bac
+DynamicSpritesStage11:
+	.dw DynamicSpritesStage11Idx00-Data_8_8623
 
 
-Data_8_8865:
+DynamicSpritesStage00Idx0a:
 	.db $1e
-	.db $00                                                  ; $8866 : $00
-	bpl br_08_88c3                                                  ; $8867 : $10, $5a
+	.dw $1000
+	.dw $005a
+	.db $40
+
+	.db $cb
+	.dw $1f00
+	.dw $01f4
+	.db $50
 
-	.db $00                                                  ; $8869 : $00
-	rti                                                  ; $886a : $40
-
-
-	wai                                                  ; $886b : $cb
-	.db $00                                                  ; $886c : $00
-	ora $5001f4.l, X                                                  ; $886d : $1f, $f4, $01, $50
-	sbc $10001f.l, X                                                  ; $8871 : $ff, $1f, $00, $10
-	jmp $ff4000.l                                                  ; $8875 : $5c, $00, $40, $ff
-
-
-	sta ($00, X)                                                  ; $8879 : $81, $00
-	.db $80, $0c                                                  ; $887b : $80, $0c
-
-	.db $00                                                  ; $887d : $00
-	.db $00                                                  ; $887e : $00
-	sbc $800082.l, X                                                  ; $887f : $ff, $82, $00, $80
-	tsb $0000.w                                                  ; $8883 : $0c, $00, $00
-	sbc $8000a2.l, X                                                  ; $8886 : $ff, $a2, $00, $80
-	tsb $0000.w                                                  ; $888a : $0c, $00, $00
-	sbc $8000a3.l, X                                                  ; $888d : $ff, $a3, $00, $80
-	tsb $0000.w                                                  ; $8891 : $0c, $00, $00
-	sbc $100002.l, X                                                  ; $8894 : $ff, $02, $00, $10
-	php                                                  ; $8898 : $08
-	.db $00                                                  ; $8899 : $00
-	rti                                                  ; $889a : $40
-
-
-	php                                                  ; $889b : $08
-	.db $00                                                  ; $889c : $00
-	asl $0a, X                                                  ; $889d : $16, $0a
-	.db $00                                                  ; $889f : $00
-	.db $50, $ff                                                  ; $88a0 : $50, $ff
-
-	adc ($00)                                                  ; $88a2 : $72, $00
-	.db $10, $6c                                                  ; $88a4 : $10, $6c
-
-	ora ($40, X)                                                  ; $88a6 : $01, $40
-	eor #$1b00.w                                                  ; $88a8 : $49, $00, $1b
-	rep #$00.b                                                  ; $88ab : $c2, $00
-	bvs br_08_88f4                                                  ; $88ad : $70, $45
-
-	.db $00                                                  ; $88af : $00
-	ora $009e.w, X                                                  ; $88b0 : $1d, $9e, $00
-	rts                                                  ; $88b3 : $60
-
-
-	sbc $100028.l, X                                                  ; $88b4 : $ff, $28, $00, $10
-	stx $00                                                  ; $88b8 : $86, $00
-	rti                                                  ; $88ba : $40
-
-
-	ora $00                                                  ; $88bb : $05, $00
-	asl $20, X                                                  ; $88bd : $16, $20
-	.db $00                                                  ; $88bf : $00
-	bvc br_08_8907                                                  ; $88c0 : $50, $45
-
-	.db $00                                                  ; $88c2 : $00
-
-br_08_88c3:
-	ora $009e.w, X                                                  ; $88c3 : $1d, $9e, $00
-	rts                                                  ; $88c6 : $60
-
-
-	sbc $150031.l, X                                                  ; $88c7 : $ff, $31, $00, $15
-	sta ($00)                                                  ; $88cb : $92, $00
-	bvc br_08_8916                                                  ; $88cd : $50, $47
-
-	.db $00                                                  ; $88cf : $00
-	clc                                                  ; $88d0 : $18
-	sta ($00)                                                  ; $88d1 : $92, $00
-	.db $50, $8a
-
-	.db $00                                                  ; $88d5 : $00
-	ina                                                  ; $88d6 : $1a
-	ror $6001.w                                                  ; $88d7 : $6e, $01, $60
-	eor #$1000.w                                                  ; $88da : $49, $00, $10
-	rep #$00.b                                                  ; $88dd : $c2, $00
-	rti                                                  ; $88df : $40
-
-
-	ora $1f00.w, Y                                                  ; $88e0 : $19, $00, $1f
-	bit $00, X                                                  ; $88e3 : $34, $00
-	.db $70, $ff                                                  ; $88e5 : $70, $ff
-
-	ora $1f00.w, Y                                                  ; $88e7 : $19, $00, $1f
-	bit $00, X                                                  ; $88ea : $34, $00
-	.db $70, $ff                                                  ; $88ec : $70, $ff
-
-	pha                                                  ; $88ee : $48
-	.db $00                                                  ; $88ef : $00
-	.db $10, $c0                                                  ; $88f0 : $10, $c0
-
-	.db $00                                                  ; $88f2 : $00
-	rti                                                  ; $88f3 : $40
-
-
-br_08_88f4:
-	ora $1f00.w, Y                                                  ; $88f4 : $19, $00, $1f
-	bit $00, X                                                  ; $88f7 : $34, $00
-	.db $70, $ff                                                  ; $88f9 : $70, $ff
-
-	adc ($00)                                                  ; $88fb : $72, $00
-	ora $6c, X                                                  ; $88fd : $15, $6c
-	ora ($60, X)                                                  ; $88ff : $01, $60
-	sbc $1000a4.l, X                                                  ; $8901 : $ff, $a4, $00, $10
-	bra br_08_8908                                                  ; $8905 : $80, $01
-
-br_08_8907:
-	rti                                                  ; $8907 : $40
-
-
-br_08_8908:
-	sbc $100002.l, X                                                  ; $8908 : $ff, $02, $00, $10
-	php                                                  ; $890c : $08
-	.db $00                                                  ; $890d : $00
-	rti                                                  ; $890e : $40
-
-
-	plp                                                  ; $890f : $28
-	.db $00                                                  ; $8910 : $00
-	trb $86                                                  ; $8911 : $14, $86
-	.db $00                                                  ; $8913 : $00
-	bvc br_08_8916                                                  ; $8914 : $50, $00
-
-br_08_8916:
-	.db $00                                                  ; $8916 : $00
-	trb $0004.w                                                  ; $8917 : $1c, $04, $00
-	rts                                                  ; $891a : $60
-
-
-	sbc $100025.l, X                                                  ; $891b : $ff, $25, $00, $10
-	trb $2000.w                                                  ; $891f : $1c, $00, $20
-	bit $1800.w, X                                                  ; $8922 : $3c, $00, $18
-	stx $00, Y                                                  ; $8925 : $96, $00
-	bvc br_08_8964                                                  ; $8927 : $50, $3b
-
-	.db $00                                                  ; $8929 : $00
-	ina                                                  ; $892a : $1a
-	trb $2000.w                                                  ; $892b : $1c, $00, $20
-	sbc $100025.l, X                                                  ; $892e : $ff, $25, $00, $10
-	trb $2000.w                                                  ; $8932 : $1c, $00, $20
-	cop $00.b                                                  ; $8935 : $02, $00
-	tcs                                                  ; $8937 : $1b
-	php                                                  ; $8938 : $08
-	.db $00                                                  ; $8939 : $00
-	rts                                                  ; $893a : $60
-
-
-	lsr $00, X                                                  ; $893b : $56, $00
-	ora $700034.l, X                                                  ; $893d : $1f, $34, $00, $70
-	sbc $1e0088.l, X                                                  ; $8941 : $ff, $88, $00, $1e
-	pei ($00)                                                  ; $8945 : $d4, $00
-	.db $70, $89                                                  ; $8947 : $70, $89
-
-	.db $00                                                  ; $8949 : $00
-	trb $00d4.w                                                  ; $894a : $1c, $d4, $00
-	.db $70, $ff                                                  ; $894d : $70, $ff
-
-	lsr $1d00.w, X                                                  ; $894f : $5e, $00, $1d
-	clc                                                  ; $8952 : $18
-	ora ($60, X)                                                  ; $8953 : $01, $60
-	lsr $00, X                                                  ; $8955 : $56, $00
-	ora $700034.l, X                                                  ; $8957 : $1f, $34, $00, $70
-	sbc $100025.l, X                                                  ; $895b : $ff, $25, $00, $10
-
-br_08_895f:
-	trb $2000.w                                                  ; $895f : $1c, $00, $20
-	cop $00.b                                                  ; $8962 : $02, $00
-
-br_08_8964:
-	clc                                                  ; $8964 : $18
-	php                                                  ; $8965 : $08
-	.db $00                                                  ; $8966 : $00
-	bvc br_08_896d                                                  ; $8967 : $50, $04
-
-	.db $00                                                  ; $8969 : $00
-	trb $00c4.w                                                  ; $896a : $1c, $c4, $00
-
-br_08_896d:
-	rts                                                  ; $896d : $60
-
-
-	sbc $100025.l, X                                                  ; $896e : $ff, $25, $00, $10
-	trb $2000.w                                                  ; $8972 : $1c, $00, $20
-	and ($00)                                                  ; $8975 : $32, $00
-	bpl br_08_895f                                                  ; $8977 : $10, $e6
-
-	.db $00                                                  ; $8979 : $00
-	rti                                                  ; $897a : $40
-
-
-	and $9c1b00.l, X                                                  ; $897b : $3f, $00, $1b, $9c
-	.db $00                                                  ; $897f : $00
-	rts                                                  ; $8980 : $60
-
-
-	eor #$1d00.w                                                  ; $8981 : $49, $00, $1d
-	rep #$00.b                                                  ; $8984 : $c2, $00
-	.db $70, $ff                                                  ; $8986 : $70, $ff
-
-	and $00                                                  ; $8988 : $25, $00
-	.db $10, $1c                                                  ; $898a : $10, $1c
-
-	.db $00                                                  ; $898c : $00
-	jsr $002b.w                                                  ; $898d : $20, $2b, $00
-	ina                                                  ; $8990 : $1a
-	rol $00                                                  ; $8991 : $26, $00
-	rts                                                  ; $8993 : $60
-
-
-	ora [$00]                                                  ; $8994 : $07, $00
-	asl $0030.w, X                                                  ; $8996 : $1e, $30, $00
-	bvc br_08_89c4                                                  ; $8999 : $50, $29
-
-	.db $00                                                  ; $899b : $00
-	clc                                                  ; $899c : $18
-	dey                                                  ; $899d : $88
-	.db $00                                                  ; $899e : $00
-	.db $70, $ff                                                  ; $899f : $70, $ff
-
-	and $00                                                  ; $89a1 : $25, $00
-	bpl br_08_89c1                                                  ; $89a3 : $10, $1c
-
-	.db $00                                                  ; $89a5 : $00
-	jsr $0056.w                                                  ; $89a6 : $20, $56, $00
-	ora $700034.l, X                                                  ; $89a9 : $1f, $34, $00, $70
-	sbc $100036.l, X                                                  ; $89ad : $ff, $36, $00, $10
-	tya                                                  ; $89b1 : $98
-	.db $00                                                  ; $89b2 : $00
-	rti                                                  ; $89b3 : $40
-
-
-	sbc $0028ff.l, X                                                  ; $89b4 : $ff, $ff, $28, $00
-	.db $10, $86                                                  ; $89b8 : $10, $86
-
-	.db $00                                                  ; $89ba : $00
-	rti                                                  ; $89bb : $40
-
-
-	pld                                                  ; $89bc : $2b
-	.db $00                                                  ; $89bd : $00
-	asl $26, X                                                  ; $89be : $16, $26
-	.db $00                                                  ; $89c0 : $00
-
-br_08_89c1:
-	rts                                                  ; $89c1 : $60
-
-
-	cop $00.b                                                  ; $89c2 : $02, $00
-
-br_08_89c4:
-	ina                                                  ; $89c4 : $1a
-	php                                                  ; $89c5 : $08
-
-br_08_89c6:
-	.db $00                                                  ; $89c6 : $00
-	.db $50, $19                                                  ; $89c7 : $50, $19
-
-	.db $00                                                  ; $89c9 : $00
-	ora $700034.l, X                                                  ; $89ca : $1f, $34, $00, $70
-	sbc $100023.l, X                                                  ; $89ce : $ff, $23, $00, $10
-	cpx $4000.w                                                  ; $89d2 : $ec, $00, $40
-	ora $1f00.w, Y                                                  ; $89d5 : $19, $00, $1f
-	bit $00, X                                                  ; $89d8 : $34, $00
-	.db $70, $ff                                                  ; $89da : $70, $ff
-
-	and $00                                                  ; $89dc : $25, $00
-	bpl br_08_89fc                                                  ; $89de : $10, $1c
-
-	.db $00                                                  ; $89e0 : $00
-	jsr $003c.w                                                  ; $89e1 : $20, $3c, $00
-	clc                                                  ; $89e4 : $18
-	stx $00, Y                                                  ; $89e5 : $96, $00
-	.db $50, $3b                                                  ; $89e7 : $50, $3b
-
-	.db $00                                                  ; $89e9 : $00
-	ina                                                  ; $89ea : $1a
-	trb $2000.w                                                  ; $89eb : $1c, $00, $20
-	tsb $00                                                  ; $89ee : $04, $00
-	trb $00c4.w                                                  ; $89f0 : $1c, $c4, $00
-	rts                                                  ; $89f3 : $60
-
-
-	sbc $1f0036.l, X                                                  ; $89f4 : $ff, $36, $00, $1f
-	tya                                                  ; $89f8 : $98
-	.db $00                                                  ; $89f9 : $00
-	.db $70, $ff                                                  ; $89fa : $70, $ff
-
-br_08_89fc:
-	cop $00.b                                                  ; $89fc : $02, $00
-	clc                                                  ; $89fe : $18
-	php                                                  ; $89ff : $08
-	.db $00                                                  ; $8a00 : $00
-	bvc br_08_8a59                                                  ; $8a01 : $50, $56
-
-	.db $00                                                  ; $8a03 : $00
-	ora $700034.l, X                                                  ; $8a04 : $1f, $34, $00, $70
-	sbc $00d6ff.l, X                                                  ; $8a08 : $ff, $ff, $d6, $00
-	.db $10, $d4                                                  ; $8a0c : $10, $d4
-
-	ora ($40, X)                                                  ; $8a0e : $01, $40
-	eor [$00], Y                                                  ; $8a10 : $57, $00
-	ora ($c6)                                                  ; $8a12 : $12, $c6
-	ora ($50, X)                                                  ; $8a14 : $01, $50
-	cop $00.b                                                  ; $8a16 : $02, $00
-	asl $08, X                                                  ; $8a18 : $16, $08
-	.db $00                                                  ; $8a1a : $00
-	rts                                                  ; $8a1b : $60
-
-
-	sbc $100012.l, X                                                  ; $8a1c : $ff, $12, $00, $10
-	dea                                                  ; $8a20 : $3a
-	.db $00                                                  ; $8a21 : $00
-	rti                                                  ; $8a22 : $40
-
-
-	tsb $00                                                  ; $8a23 : $04, $00
-	trb $c4                                                  ; $8a25 : $14, $c4
-	.db $00                                                  ; $8a27 : $00
-	bvc br_08_8a70                                                  ; $8a28 : $50, $46
-
-	.db $00                                                  ; $8a2a : $00
-	asl $a6, X                                                  ; $8a2b : $16, $a6
-	.db $00                                                  ; $8a2d : $00
-	rts                                                  ; $8a2e : $60
-
-
-	sty $1a00.w                                                  ; $8a2f : $8c, $00, $1a
-	inc $00                                                  ; $8a32 : $e6, $00
-	.db $70, $ff                                                  ; $8a34 : $70, $ff
-
-	dey                                                  ; $8a36 : $88
-	.db $00                                                  ; $8a37 : $00
-	asl $00e4.w, X                                                  ; $8a38 : $1e, $e4, $00
-	bvs br_08_89c6                                                  ; $8a3b : $70, $89
-
-	.db $00                                                  ; $8a3d : $00
-	trb $00e4.w                                                  ; $8a3e : $1c, $e4, $00
-	.db $70, $ff                                                  ; $8a41 : $70, $ff
-
-	ora $1f00.w, Y                                                  ; $8a43 : $19, $00, $1f
-	bit $00, X                                                  ; $8a46 : $34, $00
-	.db $70, $ff                                                  ; $8a48 : $70, $ff
-
-br_08_8a4a:
-	phy                                                  ; $8a4a : $5a
-	.db $00                                                  ; $8a4b : $00
-	bpl br_08_8a4a                                                  ; $8a4c : $10, $fc
-
-	.db $00                                                  ; $8a4e : $00
-	rti                                                  ; $8a4f : $40
-
-
-	ora $1f00.w, Y                                                  ; $8a50 : $19, $00, $1f
-	bit $00, X                                                  ; $8a53 : $34, $00
-	.db $70, $ff                                                  ; $8a55 : $70, $ff
-
-	eor $00, X                                                  ; $8a57 : $55, $00
-
-br_08_8a59:
-	.db $80, $0c                                                  ; $8a59 : $80, $0c
-
-	.db $00                                                  ; $8a5b : $00
-	.db $00                                                  ; $8a5c : $00
-	sbc $100028.l, X                                                  ; $8a5d : $ff, $28, $00, $10
-	stx $00                                                  ; $8a61 : $86, $00
-	rti                                                  ; $8a63 : $40
-
-
-	cop $00.b                                                  ; $8a64 : $02, $00
-	asl $08, X                                                  ; $8a66 : $16, $08
-	.db $00                                                  ; $8a68 : $00
-	.db $50, $16                                                  ; $8a69 : $50, $16
-
-	.db $00                                                  ; $8a6b : $00
-
-br_08_8a6c:
-	ina                                                  ; $8a6c : $1a
-	bra br_08_8a6f                                                  ; $8a6d : $80, $00
-
-br_08_8a6f:
-	rts                                                  ; $8a6f : $60
-
-
-br_08_8a70:
-	rol $00, X                                                  ; $8a70 : $36, $00
-	ora $0098.w, X                                                  ; $8a72 : $1d, $98, $00
-	.db $70, $ff                                                  ; $8a75 : $70, $ff
-
-	sbc $1f0056.l, X                                                  ; $8a77 : $ff, $56, $00, $1f
-	bit $00, X                                                  ; $8a7b : $34, $00
-	.db $70, $ff                                                  ; $8a7d : $70, $ff
-
-	sbc $1f0056.l, X                                                  ; $8a7f : $ff, $56, $00, $1f
-	bit $00, X                                                  ; $8a83 : $34, $00
-	.db $70, $ff                                                  ; $8a85 : $70, $ff
-
-	cop $00.b                                                  ; $8a87 : $02, $00
-	.db $10, $08                                                  ; $8a89 : $10, $08
-
-	.db $00                                                  ; $8a8b : $00
-	rti                                                  ; $8a8c : $40
-
-
-	ora $00                                                  ; $8a8d : $05, $00
-	trb $20                                                  ; $8a8f : $14, $20
-	.db $00                                                  ; $8a91 : $00
-	bvc br_08_8aae                                                  ; $8a92 : $50, $1a
-
-	.db $00                                                  ; $8a94 : $00
-	ora $003c.w, Y                                                  ; $8a95 : $19, $3c, $00
-	rts                                                  ; $8a98 : $60
-
-
-	tsc                                                  ; $8a99 : $3b
-	.db $00                                                  ; $8a9a : $00
-	asl $001c.w, X                                                  ; $8a9b : $1e, $1c, $00
-	jsr $00ff.w                                                  ; $8a9e : $20, $ff, $00
-	.db $00                                                  ; $8aa1 : $00
-	bpl br_08_8a6c                                                  ; $8aa2 : $10, $c8
-
-	ora ($40, X)                                                  ; $8aa4 : $01, $40
-	plp                                                  ; $8aa6 : $28
-	.db $00                                                  ; $8aa7 : $00
-	ora ($86)                                                  ; $8aa8 : $12, $86
-	.db $00                                                  ; $8aaa : $00
-	.db $50, $56                                                  ; $8aab : $50, $56
-
-	.db $00                                                  ; $8aad : $00
-
-br_08_8aae:
-	ora $700034.l, X                                                  ; $8aae : $1f, $34, $00, $70
-	sbc $100025.l, X                                                  ; $8ab2 : $ff, $25, $00, $10
-	trb $2000.w                                                  ; $8ab6 : $1c, $00, $20
-	bit $1800.w, X                                                  ; $8ab9 : $3c, $00, $18
-	stx $00, Y                                                  ; $8abc : $96, $00
-	bvc br_08_8afb                                                  ; $8abe : $50, $3b
-
-	.db $00                                                  ; $8ac0 : $00
-	ina                                                  ; $8ac1 : $1a
-	trb $2000.w                                                  ; $8ac2 : $1c, $00, $20
-	and $1d00.w, X                                                  ; $8ac5 : $3d, $00, $1d
-	txs                                                  ; $8ac8 : $9a
-	.db $00                                                  ; $8ac9 : $00
-	rts                                                  ; $8aca : $60
-
-
-	lsr $00, X                                                  ; $8acb : $56, $00
-	ora $700034.l, X                                                  ; $8acd : $1f, $34, $00, $70
-	sbc $180002.l, X                                                  ; $8ad1 : $ff, $02, $00, $18
-	php                                                  ; $8ad5 : $08
-	.db $00                                                  ; $8ad6 : $00
-	bvc br_08_8b16                                                  ; $8ad7 : $50, $3d
-
-	.db $00                                                  ; $8ad9 : $00
-	ora $009a.w, X                                                  ; $8ada : $1d, $9a, $00
-	rts                                                  ; $8add : $60
-
-
-	sbc $180028.l, X                                                  ; $8ade : $ff, $28, $00, $18
-	stx $00                                                  ; $8ae2 : $86, $00
-	rts                                                  ; $8ae4 : $60
-
-
-	sbc $1e0088.l, X                                                  ; $8ae5 : $ff, $88, $00, $1e
-	pei ($00)                                                  ; $8ae9 : $d4, $00
-	.db $70, $89                                                  ; $8aeb : $70, $89
-
-	.db $00                                                  ; $8aed : $00
-	trb $00d4.w                                                  ; $8aee : $1c, $d4, $00
-	.db $70, $ff                                                  ; $8af1 : $70, $ff
-
-	cop $00.b                                                  ; $8af3 : $02, $00
-	clc                                                  ; $8af5 : $18
-	php                                                  ; $8af6 : $08
-	.db $00                                                  ; $8af7 : $00
-	.db $50, $16                                                  ; $8af8 : $50, $16
-
-	.db $00                                                  ; $8afa : $00
-
-br_08_8afb:
-	trb $0080.w                                                  ; $8afb : $1c, $80, $00
-	rts                                                  ; $8afe : $60
-
-
-	ora $1f00.w, Y                                                  ; $8aff : $19, $00, $1f
-	bit $00, X                                                  ; $8b02 : $34, $00
-	.db $70, $ff                                                  ; $8b04 : $70, $ff
-
-	eor $1000.w, Y                                                  ; $8b06 : $59, $00, $10
-	plx                                                  ; $8b09 : $fa
-
-br_08_8b0a:
-	.db $00                                                  ; $8b0a : $00
-	rti                                                  ; $8b0b : $40
-
-
-	ora $1f00.w, Y                                                  ; $8b0c : $19, $00, $1f
-	bit $00, X                                                  ; $8b0f : $34, $00
-	.db $70, $ff                                                  ; $8b11 : $70, $ff
-
-	jsr $1000.w                                                  ; $8b13 : $20, $00, $10
-
-br_08_8b16:
-	.db $82, $00, $40                                                  ; $8b16 : $82, $00, $40
-
-	sbc $10002c.l, X                                                  ; $8b19 : $ff, $2c, $00, $10
-	bit $4000.w                                                  ; $8b1d : $2c, $00, $40
-	cop $00.b                                                  ; $8b20 : $02, $00
-	ora ($08)                                                  ; $8b22 : $12, $08
-	.db $00                                                  ; $8b24 : $00
-	bvc br_08_8b2c                                                  ; $8b25 : $50, $05
-
-	.db $00                                                  ; $8b27 : $00
-	ora [$20], Y                                                  ; $8b28 : $17, $20
-	.db $00                                                  ; $8b2a : $00
-	rts                                                  ; $8b2b : $60
-
-
-br_08_8b2c:
-	rol $00, X                                                  ; $8b2c : $36, $00
-	trb $0098.w                                                  ; $8b2e : $1c, $98, $00
-	.db $70, $ff                                                  ; $8b31 : $70, $ff
-
-	lsr $00, X                                                  ; $8b33 : $56, $00
-	ora $700034.l, X                                                  ; $8b35 : $1f, $34, $00, $70
-	sbc $100025.l, X                                                  ; $8b39 : $ff, $25, $00, $10
-	trb $2000.w                                                  ; $8b3d : $1c, $00, $20
-	clc                                                  ; $8b40 : $18
-	.db $00                                                  ; $8b41 : $00
-	trb $001c.w                                                  ; $8b42 : $1c, $1c, $00
-	rts                                                  ; $8b45 : $60
-
-
-	tsc                                                  ; $8b46 : $3b
-	.db $00                                                  ; $8b47 : $00
-	asl $001c.w, X                                                  ; $8b48 : $1e, $1c, $00
-	jsr $30ff.w                                                  ; $8b4b : $20, $ff, $30
-	.db $00                                                  ; $8b4e : $00
-	clc                                                  ; $8b4f : $18
-	bcc br_08_8b52                                                  ; $8b50 : $90, $00
-
-br_08_8b52:
-	.db $50, $18                                                  ; $8b52 : $50, $18
-
-	.db $00                                                  ; $8b54 : $00
-	trb $001c.w                                                  ; $8b55 : $1c, $1c, $00
-	rts                                                  ; $8b58 : $60
-
-
-	tsc                                                  ; $8b59 : $3b
-	.db $00                                                  ; $8b5a : $00
-	asl $001c.w, X                                                  ; $8b5b : $1e, $1c, $00
-	jsr $25ff.w                                                  ; $8b5e : $20, $ff, $25
-	.db $00                                                  ; $8b61 : $00
-	.db $10, $1c                                                  ; $8b62 : $10, $1c
-
-	.db $00                                                  ; $8b64 : $00
-	jsr $003c.w                                                  ; $8b65 : $20, $3c, $00
-	clc                                                  ; $8b68 : $18
-	stx $00, Y                                                  ; $8b69 : $96, $00
-	bvc br_08_8ba8                                                  ; $8b6b : $50, $3b
-
-	.db $00                                                  ; $8b6d : $00
-	ina                                                  ; $8b6e : $1a
-	trb $2000.w                                                  ; $8b6f : $1c, $00, $20
-	sbc $1e00d6.l, X                                                  ; $8b72 : $ff, $d6, $00, $1e
-	pei ($01)                                                  ; $8b76 : $d4, $01
-	.db $70, $ff                                                  ; $8b78 : $70, $ff
-
-	dey                                                  ; $8b7a : $88
-	.db $00                                                  ; $8b7b : $00
-	asl $00d4.w, X                                                  ; $8b7c : $1e, $d4, $00
-	bvs br_08_8b0a                                                  ; $8b7f : $70, $89
-
-	.db $00                                                  ; $8b81 : $00
-	trb $00d4.w                                                  ; $8b82 : $1c, $d4, $00
-	.db $70, $ff                                                  ; $8b85 : $70, $ff
-
-	lsr $00, X                                                  ; $8b87 : $56, $00
-	ora $700034.l, X                                                  ; $8b89 : $1f, $34, $00, $70
-	sbc $100028.l, X                                                  ; $8b8d : $ff, $28, $00, $10
-	stx $00                                                  ; $8b91 : $86, $00
-	rti                                                  ; $8b93 : $40
-
-
-	php                                                  ; $8b94 : $08
-	.db $00                                                  ; $8b95 : $00
-	asl $0a, X                                                  ; $8b96 : $16, $0a
-	.db $00                                                  ; $8b98 : $00
-	bvc br_08_8bb4                                                  ; $8b99 : $50, $19
-
-	.db $00                                                  ; $8b9b : $00
-	ora $700034.l, X                                                  ; $8b9c : $1f, $34, $00, $70
-	sbc $0015ff.l, X                                                  ; $8ba0 : $ff, $ff, $15, $00
-	bpl br_08_8bc8                                                  ; $8ba4 : $10, $22
-
-	.db $00                                                  ; $8ba6 : $00
-	rti                                                  ; $8ba7 : $40
-
-
-br_08_8ba8:
-	sbc $100099.l, X                                                  ; $8ba8 : $ff, $99, $00, $10
-	brl br_08_cbb0                                                  ; $8bac : $82, $01, $40
-
-	ora $1f00.w, Y                                                  ; $8baf : $19, $00, $1f
-	bit $00, X                                                  ; $8bb2 : $34, $00
-
-br_08_8bb4:
-	.db $70, $ff                                                  ; $8bb4 : $70, $ff
-
-	and $9c1000.l, X                                                  ; $8bb6 : $3f, $00, $10, $9c
-	.db $00                                                  ; $8bba : $00
-	rti                                                  ; $8bbb : $40
-
-
-	plp                                                  ; $8bbc : $28
-	.db $00                                                  ; $8bbd : $00
-	ora ($86)                                                  ; $8bbe : $12, $86
-	.db $00                                                  ; $8bc0 : $00
-	bvc br_08_8bd4                                                  ; $8bc1 : $50, $11
-
-	.db $00                                                  ; $8bc3 : $00
-	clc                                                  ; $8bc4 : $18
-	cli                                                  ; $8bc5 : $58
-	.db $00                                                  ; $8bc6 : $00
-	rts                                                  ; $8bc7 : $60
-
-
-br_08_8bc8:
-	dec $00                                                  ; $8bc8 : $c6, $00
-	ora $01ec.w, X                                                  ; $8bca : $1d, $ec, $01
-	.db $70, $ff                                                  ; $8bcd : $70, $ff
-
-	dec $00, X                                                  ; $8bcf : $d6, $00
-	asl $01d4.w, X                                                  ; $8bd1 : $1e, $d4, $01
-
-br_08_8bd4:
-	.db $70, $ff                                                  ; $8bd4 : $70, $ff
-
-	plp                                                  ; $8bd6 : $28
-	.db $00                                                  ; $8bd7 : $00
-	ora ($86, S), Y                                                  ; $8bd8 : $13, $86
-	.db $00                                                  ; $8bda : $00
-	.db $50, $29                                                  ; $8bdb : $50, $29
-
-	.db $00                                                  ; $8bdd : $00
-	ora $0088.w, Y                                                  ; $8bde : $19, $88, $00
-	rts                                                  ; $8be1 : $60
-
-
-	php                                                  ; $8be2 : $08
-	.db $00                                                  ; $8be3 : $00
-	tcs                                                  ; $8be4 : $1b
-	asl                                                  ; $8be5 : $0a
-	.db $00                                                  ; $8be6 : $00
-	.db $70, $ff                                                  ; $8be7 : $70, $ff
-
-	rol $00, X                                                  ; $8be9 : $36, $00
-	ora $0098.w, X                                                  ; $8beb : $1d, $98, $00
-	.db $70, $ff                                                  ; $8bee : $70, $ff
-
-	bvs br_08_8bf2                                                  ; $8bf0 : $70, $00
-
-br_08_8bf2:
-	ora ($1e, S), Y                                                  ; $8bf2 : $13, $1e
-	ora ($50, X)                                                  ; $8bf4 : $01, $50
-	dey                                                  ; $8bf6 : $88
-	.db $00                                                  ; $8bf7 : $00
-	asl $00e4.w, X                                                  ; $8bf8 : $1e, $e4, $00
-	.db $70, $89                                                  ; $8bfb : $70, $89
-
-	.db $00                                                  ; $8bfd : $00
-	trb $00e4.w                                                  ; $8bfe : $1c, $e4, $00
-	.db $70, $ff                                                  ; $8c01 : $70, $ff
-
-	ora $00                                                  ; $8c03 : $05, $00
-	ora ($20, S), Y                                                  ; $8c05 : $13, $20
-	.db $00                                                  ; $8c07 : $00
-	.db $50, $11                                                  ; $8c08 : $50, $11
-
-	.db $00                                                  ; $8c0a : $00
-	clc                                                  ; $8c0b : $18
-	cli                                                  ; $8c0c : $58
-	.db $00                                                  ; $8c0d : $00
-	rts                                                  ; $8c0e : $60
-
-
-	lsr $00, X                                                  ; $8c0f : $56, $00
-	ora $700034.l, X                                                  ; $8c11 : $1f, $34, $00, $70
-	sbc $100025.l, X                                                  ; $8c15 : $ff, $25, $00, $10
-	trb $2000.w                                                  ; $8c19 : $1c, $00, $20
-	ora ($00), Y                                                  ; $8c1c : $11, $00
-	clc                                                  ; $8c1e : $18
-	cli                                                  ; $8c1f : $58
-	.db $00                                                  ; $8c20 : $00
-	.db $50, $a8                                                  ; $8c21 : $50, $a8
-
-	.db $00                                                  ; $8c23 : $00
-	ora $013e.w, X                                                  ; $8c24 : $1d, $3e, $01
-	rts                                                  ; $8c27 : $60
-
-
-	sbc $100025.l, X                                                  ; $8c28 : $ff, $25, $00, $10
-	trb $2000.w                                                  ; $8c2c : $1c, $00, $20
-	bit $1800.w, X                                                  ; $8c2f : $3c, $00, $18
-
-br_08_8c32:
-	stx $00, Y                                                  ; $8c32 : $96, $00
-	.db $50, $3b                                                  ; $8c34 : $50, $3b
-
-	.db $00                                                  ; $8c36 : $00
-	ina                                                  ; $8c37 : $1a
-	trb $2000.w                                                  ; $8c38 : $1c, $00, $20
-	sbc $1e008c.l, X                                                  ; $8c3b : $ff, $8c, $00, $1e
-	inc $00                                                  ; $8c3f : $e6, $00
-	.db $70, $ff                                                  ; $8c41 : $70, $ff
-
-	dec $00                                                  ; $8c43 : $c6, $00
-	.db $10, $ec                                                  ; $8c45 : $10, $ec
-
-	ora ($70, X)                                                  ; $8c47 : $01, $70
-	ora ($00), Y                                                  ; $8c49 : $11, $00
-	clc                                                  ; $8c4b : $18
-	cli                                                  ; $8c4c : $58
-	.db $00                                                  ; $8c4d : $00
-	.db $50, $08                                                  ; $8c4e : $50, $08
-
-	.db $00                                                  ; $8c50 : $00
-	ora $0a, X                                                  ; $8c51 : $15, $0a
-	.db $00                                                  ; $8c53 : $00
-	rti                                                  ; $8c54 : $40
-
-
-	sbc $180028.l, X                                                  ; $8c55 : $ff, $28, $00, $18
-	stx $00                                                  ; $8c59 : $86, $00
-	.db $50, $19                                                  ; $8c5b : $50, $19
-
-	.db $00                                                  ; $8c5d : $00
-	ora $700034.l, X                                                  ; $8c5e : $1f, $34, $00, $70
-	sbc $1000cd.l, X                                                  ; $8c62 : $ff, $cd, $00, $10
-	inc $4001.w, X                                                  ; $8c66 : $fe, $01, $40
-	ora $1f00.w, Y                                                  ; $8c69 : $19, $00, $1f
-	bit $00, X                                                  ; $8c6c : $34, $00
-	.db $70, $ff                                                  ; $8c6e : $70, $ff
-
-	and $00                                                  ; $8c70 : $25, $00
-	.db $10, $1c                                                  ; $8c72 : $10, $1c
-
-	.db $00                                                  ; $8c74 : $00
-	jsr $003c.w                                                  ; $8c75 : $20, $3c, $00
-	clc                                                  ; $8c78 : $18
-	stx $00, Y                                                  ; $8c79 : $96, $00
-	.db $50, $3b                                                  ; $8c7b : $50, $3b
-
-	.db $00                                                  ; $8c7d : $00
-	ina                                                  ; $8c7e : $1a
-	trb $2000.w                                                  ; $8c7f : $1c, $00, $20
-	tsc                                                  ; $8c82 : $3b
-	.db $00                                                  ; $8c83 : $00
-	ina                                                  ; $8c84 : $1a
-	trb $2000.w                                                  ; $8c85 : $1c, $00, $20
-	tsb $00                                                  ; $8c88 : $04, $00
-	trb $00c4.w                                                  ; $8c8a : $1c, $c4, $00
-	rts                                                  ; $8c8d : $60
-
-
-	sbc $18005d.l, X                                                  ; $8c8e : $ff, $5d, $00, $18
-	asl $01, X                                                  ; $8c92 : $16, $01
-	.db $50, $a7                                                  ; $8c94 : $50, $a7
-
-	.db $00                                                  ; $8c96 : $00
-	ora $0134.w, X                                                  ; $8c97 : $1d, $34, $01
-
-br_08_8c9a:
-	rts                                                  ; $8c9a : $60
-
-
-	rol $00, X                                                  ; $8c9b : $36, $00
-	ora $700098.l, X                                                  ; $8c9d : $1f, $98, $00, $70
-	sbc $1e0088.l, X                                                  ; $8ca1 : $ff, $88, $00, $1e
-	pei ($00)                                                  ; $8ca5 : $d4, $00
-	bvs br_08_8c32                                                  ; $8ca7 : $70, $89
-
-	.db $00                                                  ; $8ca9 : $00
-	trb $00d4.w                                                  ; $8caa : $1c, $d4, $00
-	.db $70, $ff                                                  ; $8cad : $70, $ff
-
-	lsr $00, X                                                  ; $8caf : $56, $00
-	ora $700034.l, X                                                  ; $8cb1 : $1f, $34, $00, $70
-	sbc $0050ff.l, X                                                  ; $8cb5 : $ff, $ff, $50, $00
-	.db $10, $f0                                                  ; $8cb9 : $10, $f0
-
-	.db $00                                                  ; $8cbb : $00
-	rti                                                  ; $8cbc : $40
-
-
-	asl $00, X                                                  ; $8cbd : $16, $00
-	ora ($80, S), Y                                                  ; $8cbf : $13, $80
-	.db $00                                                  ; $8cc1 : $00
-	bvc br_08_8c9a                                                  ; $8cc2 : $50, $d6
-
-	.db $00                                                  ; $8cc4 : $00
-	asl $d4, X                                                  ; $8cc5 : $16, $d4
-	ora ($60, X)                                                  ; $8cc7 : $01, $60
-	sbc $10005d.l, X                                                  ; $8cc9 : $ff, $5d, $00, $10
-	asl $01, X                                                  ; $8ccd : $16, $01
-	rti                                                  ; $8ccf : $40
-
-
-	tsb $00                                                  ; $8cd0 : $04, $00
-	ora $c4, X                                                  ; $8cd2 : $15, $c4
-	.db $00                                                  ; $8cd4 : $00
-	bvc $56                                                  ; $8cd5 : $50, $56
-
-	.db $00                                                  ; $8cd7 : $00
-	ora $700034.l, X                                                  ; $8cd8 : $1f, $34, $00, $70
-	sbc $1f0056.l, X                                                  ; $8cdc : $ff, $56, $00, $1f
-	bit $00, X                                                  ; $8ce0 : $34, $00
-	.db $70, $ff                                                  ; $8ce2 : $70, $ff
-
-	asl $00, X                                                  ; $8ce4 : $16, $00
-	.db $10, $80                                                  ; $8ce6 : $10, $80
-
-	.db $00                                                  ; $8ce8 : $00
-	rti                                                  ; $8ce9 : $40
-
-
-	bvc br_08_8cec                                                  ; $8cea : $50, $00
-
-br_08_8cec:
-	ora ($f0, S), Y                                                  ; $8cec : $13, $f0
-	.db $00                                                  ; $8cee : $00
-	bvc br_08_8d0a                                                  ; $8cef : $50, $19
-
-	.db $00                                                  ; $8cf1 : $00
-	ora $700034.l, X                                                  ; $8cf2 : $1f, $34, $00, $70
-	sbc $10005f.l, X                                                  ; $8cf6 : $ff, $5f, $00, $10
-	inc $4000.w, X                                                  ; $8cfa : $fe, $00, $40
-	ora $1f00.w, Y                                                  ; $8cfd : $19, $00, $1f
-	bit $00, X                                                  ; $8d00 : $34, $00
-	.db $70, $ff                                                  ; $8d02 : $70, $ff
-
-	txa                                                  ; $8d04 : $8a
-	.db $00                                                  ; $8d05 : $00
-	.db $10, $6e                                                  ; $8d06 : $10, $6e
-
-	ora ($40, X)                                                  ; $8d08 : $01, $40
-
-br_08_8d0a:
-	ldy $1800.w                                                  ; $8d0a : $ac, $00, $18
-	jmp $5001.w                                                  ; $8d0d : $4c, $01, $50
-
-
-	sbc $100057.l, X                                                  ; $8d10 : $ff, $57, $00, $10
-	pea $4000.w                                                  ; $8d14 : $f4, $00, $40
-	eor $ee1400.l                                                  ; $8d17 : $4f, $00, $14, $ee
-	.db $00                                                  ; $8d1b : $00
-	bvc br_08_8d21                                                  ; $8d1c : $50, $03
-
-	.db $00                                                  ; $8d1e : $00
-	ora [$1e], Y                                                  ; $8d1f : $17, $1e
-
-br_08_8d21:
-	.db $00                                                  ; $8d21 : $00
-	rts                                                  ; $8d22 : $60
 	.db $ff
 
 
-Data_8_8d24:
-; heart into ee00
-.ifdef SWAP_EXPERIMENT
-	.db DECOMP_IDX_OAM_TILEDATA_SUBTANK
+DynamicSpritesStage00Idx0b:
+	.db $1f
+	.dw $1000
+	.dw $005c
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx0f:
+	.db $81
+	.dw $8000
+	.dw $000c
+	.db $00
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx10:
+	.db $82
+	.dw $8000
+	.dw $000c
+	.db $00
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx11:
+	.db $a2
+	.dw $8000
+	.dw $000c
+	.db $00
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx12:
+	.db $a3
+	.dw $8000
+	.dw $000c
+	.db $00
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx00:
+DynamicSpritesStage00Idx01:
+	.db $02
+	.dw $1000
+	.dw $0008
+	.db $40
+
+	.db $08
 	.dw $1600
+	.dw $000a
+	.db $50
+
+
+DynamicSpritesStage01Idx0d:
+DynamicSpritesStage01Idx0e:
+DynamicSpritesStage01Idx0f:
+DynamicSpritesStage02Idx09:
+DynamicSpritesStage02Idx0a:
+DynamicSpritesStage02Idx0b:
+DynamicSpritesStage02Idx0c:
+DynamicSpritesStage02Idx0d:
+DynamicSpritesStage02Idx0e:
+DynamicSpritesStage02Idx0f:
+DynamicSpritesStage03Idx0d:
+DynamicSpritesStage03Idx0e:
+DynamicSpritesStage03Idx0f:
+DynamicSpritesStage04Idx0d:
+DynamicSpritesStage04Idx0e:
+DynamicSpritesStage04Idx0f:
+DynamicSpritesStage05Idx0c:
+DynamicSpritesStage05Idx0d:
+DynamicSpritesStage05Idx0e:
+DynamicSpritesStage05Idx0f:
+DynamicSpritesStage06Idx0b:
+DynamicSpritesStage06Idx0c:
+DynamicSpritesStage06Idx0d:
+DynamicSpritesStage06Idx0e:
+DynamicSpritesStage06Idx0f:
+DynamicSpritesStage07Idx0c:
+DynamicSpritesStage07Idx0d:
+DynamicSpritesStage07Idx0e:
+DynamicSpritesStage07Idx0f:
+DynamicSpritesStage08Idx0a:
+DynamicSpritesStage08Idx0b:
+DynamicSpritesStage08Idx0c:
+DynamicSpritesStage08Idx0d:
+DynamicSpritesStage08Idx0e:
+DynamicSpritesStage08Idx0f:
+DynamicSpritesStage0aIdx0f:
+DynamicSpritesStage0aIdx10:
+DynamicSpritesStage0aIdx11:
+DynamicSpritesStage0bIdx08:
+DynamicSpritesStage0bIdx09:
+DynamicSpritesStage0bIdx0a:
+DynamicSpritesStage0bIdx0b:
+DynamicSpritesStage0eIdx09:
+DynamicSpritesStage0eIdx0a:
+DynamicSpritesStage0eIdx0b:
+	.db $ff
+
+
+DynamicSpritesStage00Idx02:
+	.db $72
+	.dw $1000
+	.dw $016c
+	.db $40
+
+	.db $49
+	.dw $1b00
+	.dw $00c2
+	.db $70
+
+	.db $45
+	.dw $1d00
+	.dw $009e
+	.db $60
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx03:
+	.db $28
+	.dw $1000
+	.dw $0086
+	.db $40
+
+	.db $05
+	.dw $1600
+	.dw $0020
+	.db $50
+
+	.db $45
+	.dw $1d00
+	.dw $009e
+	.db $60
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx04:
+	.db $31
+	.dw $1500
+	.dw $0092
+	.db $50
+
+	.db $47
+	.dw $1800
+	.dw $0092
+	.db $50
+
+	.db $8a
+	.dw $1a00
+	.dw $016e
+	.db $60
+
+	.db $49
+	.dw $1000
+	.dw $00c2
+	.db $40
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx05:
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx06:
+DynamicSpritesStage00Idx07:
+DynamicSpritesStage00Idx08:
+DynamicSpritesStage00Idx09:
+	.db $48
+	.dw $1000
+	.dw $00c0
+	.db $40
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx0d:
+	.db $72
+	.dw $1500
+	.dw $016c
+	.db $60
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx0e:
+	.db $a4
+	.dw $1000
+	.dw $0180
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage01Idx00:
+	.db $02
+	.dw $1000
+	.dw $0008
+	.db $40
+
+	.db $28
+	.dw $1400
+	.dw $0086
+	.db $50
+
+	.db $00
+	.dw $1c00
+	.dw $0004
+	.db $60
+
+	.db $ff
+
+
+DynamicSpritesStage01Idx01:
+	.db DECOMP_IDX_OAM_TILEDATA_CHIMERA_RIDER_ARMOUR
+	.dw $1000
+	.dw $001c
+	.db $20
+
+	.db $3c
+	.dw $1800
+	.dw $0096
+	.db $50
+
+	.db DECOMP_IDX_OAM_TILEDATA_RIDE_ARMOUR_ITEM
+	.dw $1a00
+	.dw $001c
+	.db $20
+
+	.db $ff
+
+
+DynamicSpritesStage01Idx02:
+	.db DECOMP_IDX_OAM_TILEDATA_CHIMERA_RIDER_ARMOUR
+	.dw $1000
+	.dw $001c
+	.db $20
+
+	.db $02
+	.dw $1b00
+	.dw $0008
+	.db $60
+
+	.db $56
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage01Idx03:
+	.db $88
+	.dw $1e00
+	.dw $00d4
+	.db $70
+
+	.db $89
+	.dw $1c00
+	.dw $00d4
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage01Idx04:
+	.db $5e
+	.dw $1d00
 	.dw $0118
-.else
+	.db $60
+
+	.db $56
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage01Idx05:
+	.db DECOMP_IDX_OAM_TILEDATA_CHIMERA_RIDER_ARMOUR
+	.dw $1000
+	.dw $001c
+	.db $20
+
+	.db $02
+	.dw $1800
+	.dw $0008
+	.db $50
+
+	.db $04
+	.dw $1c00
+	.dw $00c4
+	.db $60
+
+	.db $ff
+
+
+DynamicSpritesStage01Idx06:
+	.db DECOMP_IDX_OAM_TILEDATA_CHIMERA_RIDER_ARMOUR
+	.dw $1000
+	.dw $001c
+	.db $20
+
+	.db $32
+	.dw $1000
+	.dw $00e6
+	.db $40
+
+	.db $3f
+	.dw $1b00
+	.dw $009c
+	.db $60
+
+	.db $49
+	.dw $1d00
+	.dw $00c2
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage01Idx07:
+	.db DECOMP_IDX_OAM_TILEDATA_CHIMERA_RIDER_ARMOUR
+	.dw $1000
+	.dw $001c
+	.db $20
+
+	.db $2b
+	.dw $1a00
+	.dw $0026
+	.db $60
+
+	.db $07
+	.dw $1e00
+	.dw $0030
+	.db $50
+
+	.db $29
+	.dw $1800
+	.dw $0088
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage01Idx08:
+	.db DECOMP_IDX_OAM_TILEDATA_CHIMERA_RIDER_ARMOUR
+	.dw $1000
+	.dw $001c
+	.db $20
+
+	.db $56
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage01Idx09:
+	.db $36
+	.dw $1000
+	.dw $0098
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage01Idx0a:
+	.db $ff
+
+
+DynamicSpritesStage01Idx0b:
+	.db $28
+	.dw $1000
+	.dw $0086
+	.db $40
+
+	.db $2b
+	.dw $1600
+	.dw $0026
+	.db $60
+
+	.db $02
+	.dw $1a00
+	.dw $0008
+	.db $50
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage01Idx0c:
+	.db $23
+	.dw $1000
+	.dw $00ec
+	.db $40
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage02Idx00:
+	.db DECOMP_IDX_OAM_TILEDATA_CHIMERA_RIDER_ARMOUR
+	.dw $1000
+	.dw $001c
+	.db $20
+
+	.db $3c
+	.dw $1800
+	.dw $0096
+	.db $50
+
+	.db DECOMP_IDX_OAM_TILEDATA_RIDE_ARMOUR_ITEM
+	.dw $1a00
+	.dw $001c
+	.db $20
+
+	.db $04
+	.dw $1c00
+	.dw $00c4
+	.db $60
+
+	.db $ff
+
+
+DynamicSpritesStage02Idx01:
+	.db $36
+	.dw $1f00
+	.dw $0098
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage02Idx02:
+	.db $02
+	.dw $1800
+	.dw $0008
+	.db $50
+
+	.db $56
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage02Idx03:
+	.db $ff
+
+
+DynamicSpritesStage02Idx04:
+	.db $d6
+	.dw $1000
+	.dw $01d4
+	.db $40
+
+	.db $57
+	.dw $1200
+	.dw $01c6
+	.db $50
+
+	.db $02
+	.dw $1600
+	.dw $0008
+	.db $60
+
+	.db $ff
+
+
+DynamicSpritesStage02Idx05:
+	.db $12
+	.dw $1000
+	.dw $003a
+	.db $40
+
+	.db $04
+	.dw $1400
+	.dw $00c4
+	.db $50
+
+	.db $46
+	.dw $1600
+	.dw $00a6
+	.db $60
+
+	.db DECOMP_IDX_OAM_TILEDATA_SUBTANK
+	.dw $1a00
+	.dw $00e6
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage02Idx06:
+	.db $88
+	.dw $1e00
+	.dw $00e4
+	.db $70
+
+	.db $89
+	.dw $1c00
+	.dw $00e4
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage02Idx07:
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage02Idx08:
+	.db $5a
+	.dw $1000
+	.dw $00fc
+	.db $40
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage03Idx13:
+	.db $55
+	.dw $8000
+	.dw $000c
+	.db $00
+
+	.db $ff
+
+
+DynamicSpritesStage03Idx00:
+	.db $28
+	.dw $1000
+	.dw $0086
+	.db $40
+
+	.db $02
+	.dw $1600
+	.dw $0008
+	.db $50
+
+	.db $16
+	.dw $1a00
+	.dw $0080
+	.db $60
+
+	.db $36
+	.dw $1d00
+	.dw $0098
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage03Idx01:
+	.db $ff
+
+
+DynamicSpritesStage03Idx02:
+	.db $56
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage03Idx03:
+	.db $ff
+
+
+DynamicSpritesStage03Idx04:
+	.db $56
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage03Idx05:
+	.db $02
+	.dw $1000
+	.dw $0008
+	.db $40
+
+	.db $05
+	.dw $1400
+	.dw $0020
+	.db $50
+
+	.db $1a
+	.dw $1900
+	.dw $003c
+	.db $60
+
+	.db DECOMP_IDX_OAM_TILEDATA_RIDE_ARMOUR_ITEM
+	.dw $1e00
+	.dw $001c
+	.db $20
+
+	.db $ff
+
+
+DynamicSpritesStage03Idx06:
+	.db $00
+	.dw $1000
+	.dw $01c8
+	.db $40
+
+	.db $28
+	.dw $1200
+	.dw $0086
+	.db $50
+
+	.db $56
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage03Idx07:
+	.db DECOMP_IDX_OAM_TILEDATA_CHIMERA_RIDER_ARMOUR
+	.dw $1000
+	.dw $001c
+	.db $20
+
+	.db $3c
+	.dw $1800
+	.dw $0096
+	.db $50
+
+	.db DECOMP_IDX_OAM_TILEDATA_RIDE_ARMOUR_ITEM
+	.dw $1a00
+	.dw $001c
+	.db $20
+
+	.db $3d
+	.dw $1d00
+	.dw $009a
+	.db $60
+
+	.db $56
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage03Idx08:
+	.db $02
+	.dw $1800
+	.dw $0008
+	.db $50
+
+	.db $3d
+	.dw $1d00
+	.dw $009a
+	.db $60
+
+	.db $ff
+
+
+DynamicSpritesStage03Idx09:
+	.db $28
+	.dw $1800
+	.dw $0086
+	.db $60
+
+	.db $ff
+
+
+DynamicSpritesStage03Idx0a:
+	.db $88
+	.dw $1e00
+	.dw $00d4
+	.db $70
+
+	.db $89
+	.dw $1c00
+	.dw $00d4
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage03Idx0b:
+	.db $02
+	.dw $1800
+	.dw $0008
+	.db $50
+
+	.db $16
+	.dw $1c00
+	.dw $0080
+	.db $60
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage03Idx0c:
+	.db $59
+	.dw $1000
+	.dw $00fa
+	.db $40
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage04Idx00:
+	.db $20
+	.dw $1000
+	.dw $0082
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage04Idx01:
+	.db $2c
+	.dw $1000
+	.dw $002c
+	.db $40
+
+	.db $02
+	.dw $1200
+	.dw $0008
+	.db $50
+
+	.db $05
+	.dw $1700
+	.dw $0020
+	.db $60
+
+	.db $36
+	.dw $1c00
+	.dw $0098
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage04Idx02:
+	.db $56
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage04Idx03:
+	.db DECOMP_IDX_OAM_TILEDATA_CHIMERA_RIDER_ARMOUR
+	.dw $1000
+	.dw $001c
+	.db $20
+
+	.db $18
+	.dw $1c00
+	.dw $001c
+	.db $60
+
+	.db DECOMP_IDX_OAM_TILEDATA_RIDE_ARMOUR_ITEM
+	.dw $1e00
+	.dw $001c
+	.db $20
+
+	.db $ff
+
+
+DynamicSpritesStage04Idx04:
+	.db $30
+	.dw $1800
+	.dw $0090
+	.db $50
+
+	.db $18
+	.dw $1c00
+	.dw $001c
+	.db $60
+
+	.db DECOMP_IDX_OAM_TILEDATA_RIDE_ARMOUR_ITEM
+	.dw $1e00
+	.dw $001c
+	.db $20
+
+	.db $ff
+
+
+DynamicSpritesStage04Idx05:
+	.db DECOMP_IDX_OAM_TILEDATA_CHIMERA_RIDER_ARMOUR
+	.dw $1000
+	.dw $001c
+	.db $20
+
+	.db $3c
+	.dw $1800
+	.dw $0096
+	.db $50
+
+	.db DECOMP_IDX_OAM_TILEDATA_RIDE_ARMOUR_ITEM
+	.dw $1a00
+	.dw $001c
+	.db $20
+
+	.db $ff
+
+
+DynamicSpritesStage04Idx06:
+	.db $d6
+	.dw $1e00
+	.dw $01d4
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage04Idx07:
+	.db $88
+	.dw $1e00
+	.dw $00d4
+	.db $70
+
+	.db $89
+	.dw $1c00
+	.dw $00d4
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage04Idx08:
+	.db $56
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage04Idx09:
+	.db $28
+	.dw $1000
+	.dw $0086
+	.db $40
+
+	.db $08
+	.dw $1600
+	.dw $000a
+	.db $50
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage04Idx0a:
+	.db $ff
+
+
+DynamicSpritesStage04Idx0c:
+	.db $15
+	.dw $1000
+	.dw $0022
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage04Idx0b:
+	.db $99
+	.dw $1000
+	.dw $0182
+	.db $40
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage05Idx00:
+	.db $3f
+	.dw $1000
+	.dw $009c
+	.db $40
+
+	.db $28
+	.dw $1200
+	.dw $0086
+	.db $50
+
+	.db $11
+	.dw $1800
+	.dw $0058
+	.db $60
+
+	.db $c6
+	.dw $1d00
+	.dw $01ec
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage05Idx01:
+	.db $d6
+	.dw $1e00
+	.dw $01d4
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage05Idx02:
+	.db $28
+	.dw $1300
+	.dw $0086
+	.db $50
+
+	.db $29
+	.dw $1900
+	.dw $0088
+	.db $60
+
+	.db $08
+	.dw $1b00
+	.dw $000a
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage05Idx03:
+	.db $36
+	.dw $1d00
+	.dw $0098
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage05Idx04:
+	.db $70
+	.dw $1300
+	.dw $011e
+	.db $50
+
+	.db $88
+	.dw $1e00
+	.dw $00e4
+	.db $70
+
+	.db $89
+	.dw $1c00
+	.dw $00e4
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage05Idx05:
+	.db $05
+	.dw $1300
+	.dw $0020
+	.db $50
+
+	.db $11
+	.dw $1800
+	.dw $0058
+	.db $60
+
+	.db $56
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage05Idx06:
+	.db DECOMP_IDX_OAM_TILEDATA_CHIMERA_RIDER_ARMOUR
+	.dw $1000
+	.dw $001c
+	.db $20
+
+	.db $11
+	.dw $1800
+	.dw $0058
+	.db $50
+
+	.db $a8
+	.dw $1d00
+	.dw $013e
+	.db $60
+
+	.db $ff
+
+
+DynamicSpritesStage05Idx07:
+	.db DECOMP_IDX_OAM_TILEDATA_CHIMERA_RIDER_ARMOUR
+	.dw $1000
+	.dw $001c
+	.db $20
+
+	.db $3c
+	.dw $1800
+	.dw $0096
+	.db $50
+
+	.db DECOMP_IDX_OAM_TILEDATA_RIDE_ARMOUR_ITEM
+	.dw $1a00
+	.dw $001c
+	.db $20
+
+	.db $ff
+
+
+DynamicSpritesStage05Idx08:
+	.db DECOMP_IDX_OAM_TILEDATA_SUBTANK
+	.dw $1e00
+	.dw $00e6
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage05Idx09:
+	.db $c6
+	.dw $1000
+	.dw $01ec
+	.db $70
+
+	.db $11
+	.dw $1800
+	.dw $0058
+	.db $50
+
+	.db $08
+	.dw $1500
+	.dw $000a
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage05Idx0a:
+	.db $28
+	.dw $1800
+	.dw $0086
+	.db $50
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage05Idx0b:
+	.db $cd
+	.dw $1000
+	.dw $01fe
+	.db $40
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage06Idx00:
+DynamicSpritesStage06Idx01:
+	.db DECOMP_IDX_OAM_TILEDATA_CHIMERA_RIDER_ARMOUR
+	.dw $1000
+	.dw $001c
+	.db $20
+
+	.db $3c
+	.dw $1800
+	.dw $0096
+	.db $50
+
+	.db DECOMP_IDX_OAM_TILEDATA_RIDE_ARMOUR_ITEM
+	.dw $1a00
+	.dw $001c
+	.db $20
+
+	.db DECOMP_IDX_OAM_TILEDATA_RIDE_ARMOUR_ITEM
+	.dw $1a00
+	.dw $001c
+	.db $20
+
+	.db $04
+	.dw $1c00
+	.dw $00c4
+	.db $60
+
+	.db $ff
+
+
+DynamicSpritesStage06Idx02:
+	.db $5d
+	.dw $1800
+	.dw $0116
+	.db $50
+
+	.db $a7
+	.dw $1d00
+	.dw $0134
+	.db $60
+
+	.db $36
+	.dw $1f00
+	.dw $0098
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage06Idx03:
+	.db $88
+	.dw $1e00
+	.dw $00d4
+	.db $70
+
+	.db $89
+	.dw $1c00
+	.dw $00d4
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage06Idx04:
+	.db $56
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage06Idx05:
+	.db $ff
+
+
+DynamicSpritesStage06Idx06:
+	.db $50
+	.dw $1000
+	.dw $00f0
+	.db $40
+
+	.db $16
+	.dw $1300
+	.dw $0080
+	.db $50
+
+	.db $d6
+	.dw $1600
+	.dw $01d4
+	.db $60
+
+	.db $ff
+
+
+DynamicSpritesStage06Idx07:
+	.db $5d
+	.dw $1000
+	.dw $0116
+	.db $40
+
+	.db $04
+	.dw $1500
+	.dw $00c4
+	.db $50
+
+	.db $56
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage06Idx08:
+	.db $56
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage06Idx09:
+	.db $16
+	.dw $1000
+	.dw $0080
+	.db $40
+
+	.db $50
+	.dw $1300
+	.dw $00f0
+	.db $50
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage06Idx0a:
+	.db $5f
+	.dw $1000
+	.dw $00fe
+	.db $40
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage07Idx00:
+	.db $8a
+	.dw $1000
+	.dw $016e
+	.db $40
+
+	.db $ac
+	.dw $1800
+	.dw $014c
+	.db $50
+
+	.db $ff
+
+
+DynamicSpritesStage07Idx01:
+	.db $57
+	.dw $1000
+	.dw $00f4
+	.db $40
+
+	.db $4f
+	.dw $1400
+	.dw $00ee
+	.db $50
+
+	.db $03
+	.dw $1700
+	.dw $001e
+	.db $60
+
+	.db $ff
+
+
+DynamicSpritesStage07Idx02:
 	.db $36
 	.dw $1700
 	.dw $0098
-.endif
 	.db $60
-	
-; large boulder into f000
+
 	.db $ac
 	.dw $1800
 	.dw $014c
@@ -2164,11 +2620,11 @@ Data_8_8d24:
 	.db $ff
 
 
-Data_8_8d31:
-	.db $57 ; decompress data idx
-	.dw $1000 ; vram dest start
-	.dw $00f4 ; idx into Data_6_8180 (palette idx)
-	.db $40 ; used to write to 300+40*2 (cgram related)
+DynamicSpritesStage07Idx03:
+	.db $57
+	.dw $1000
+	.dw $00f4
+	.db $40
 
 	.db $4f
 	.dw $1400
@@ -2176,19 +2632,19 @@ Data_8_8d31:
 	.db $50
 
 	.db $09
-	.dw $1700 ; offset into 6000, eg 7700->ee00
+	.dw $1700
 	.dw $0002
 	.db $60
 
 	.db $ff
 
 
-Data_8_8d44:
+DynamicSpritesStage07Idx04:
 	.db DECOMP_IDX_OAM_TILEDATA_SUBTANK
 	.dw $1000
 	.dw $0118
 	.db $40
-	
+
 	.db $16
 	.dw $1200
 	.dw $0080
@@ -2202,825 +2658,1324 @@ Data_8_8d44:
 	.db $ff
 
 
-Data_8_8d57:
+DynamicSpritesStage07Idx05:
 	.db $ff
 
 
-Data_8_8d58:
-	.db $ac, $00                                                  ; $8d58 : $ac, $00
-	.db $10, $4c                                                  ; $8d5a : $10, $4c
-
-	ora ($40, X)                                                  ; $8d5c : $01, $40
-	ora $00, S                                                  ; $8d5e : $03, $00
-	clc                                                  ; $8d60 : $18
-	asl $5000.w, X                                                  ; $8d61 : $1e, $00, $50
-	eor $ee1c00.l                                                  ; $8d64 : $4f, $00, $1c, $ee
-	.db $00                                                  ; $8d68 : $00
-	rts                                                  ; $8d69 : $60
-
-
-	lsr $00, X                                                  ; $8d6a : $56, $00
-	ora $700034.l, X                                                  ; $8d6c : $1f, $34, $00, $70
-	sbc $1000ac.l, X                                                  ; $8d70 : $ff, $ac, $00, $10
-	jmp $4001.w                                                  ; $8d74 : $4c, $01, $40
-
-
-	dey                                                  ; $8d77 : $88
-	.db $00                                                  ; $8d78 : $00
-	asl $00e4.w, X                                                  ; $8d79 : $1e, $e4, $00
-	.db $70, $89                                                  ; $8d7c : $70, $89
-
-	.db $00                                                  ; $8d7e : $00
-	trb $00e4.w                                                  ; $8d7f : $1c, $e4, $00
-	.db $70, $ff                                                  ; $8d82 : $70, $ff
-
-	lsr $00, X                                                  ; $8d84 : $56, $00
-	ora $700034.l, X                                                  ; $8d86 : $1f, $34, $00, $70
-	sbc $1000a9.l, X                                                  ; $8d8a : $ff, $a9, $00, $10
-	cld                                                  ; $8d8e : $d8
-	ora ($40, X)                                                  ; $8d8f : $01, $40
-	sbc $100057.l, X                                                  ; $8d91 : $ff, $57, $00, $10
-	pea $4000.w                                                  ; $8d95 : $f4, $00, $40
-	asl $00, X                                                  ; $8d98 : $16, $00
-	trb $80                                                  ; $8d9a : $14, $80
-	.db $00                                                  ; $8d9c : $00
-	bvc br_08_8da2                                                  ; $8d9d : $50, $03
-
-	.db $00                                                  ; $8d9f : $00
-	ora [$1e], Y                                                  ; $8da0 : $17, $1e
-
-br_08_8da2:
-	.db $00                                                  ; $8da2 : $00
-	rts                                                  ; $8da3 : $60
-
-
-	ora $1f00.w, Y                                                  ; $8da4 : $19, $00, $1f
-
-br_08_8da7:
-	bit $00, X                                                  ; $8da7 : $34, $00
-	.db $70, $ff                                                  ; $8da9 : $70, $ff
-
-	ora $1000.w, X                                                  ; $8dab : $1d, $00, $10
-	rol $4000.w, X                                                  ; $8dae : $3e, $00, $40
-
-br_08_8db1:
-	ora $1f00.w, Y                                                  ; $8db1 : $19, $00, $1f
-	bit $00, X                                                  ; $8db4 : $34, $00
-	.db $70, $ff                                                  ; $8db6 : $70, $ff
-
-	eor $1000.w, X                                                  ; $8db8 : $5d, $00, $10
-	asl $01, X                                                  ; $8dbb : $16, $01
-	rti                                                  ; $8dbd : $40
-
-
-	lsr                                                  ; $8dbe : $4a
-	.db $00                                                  ; $8dbf : $00
-	ora [$c6], Y                                                  ; $8dc0 : $17, $c6
-	.db $00                                                  ; $8dc2 : $00
-	.db $50, $21                                                  ; $8dc3 : $50, $21
+DynamicSpritesStage07Idx06:
+	.db $ac
+	.dw $1000
+	.dw $014c
+	.db $40
 
-	.db $00                                                  ; $8dc5 : $00
-	ina                                                  ; $8dc6 : $1a
-	sty $00                                                  ; $8dc7 : $84, $00
-	rts                                                  ; $8dc9 : $60
-
-
-	sty $1e00.w                                                  ; $8dca : $8c, $00, $1e
-	clc                                                  ; $8dcd : $18
-	ora ($70, X)                                                  ; $8dce : $01, $70
-	sbc $10004f.l, X                                                  ; $8dd0 : $ff, $4f, $00, $10
-	inc $4000.w                                                  ; $8dd4 : $ee, $00, $40
-	php                                                  ; $8dd7 : $08
-	.db $00                                                  ; $8dd8 : $00
-	clc                                                  ; $8dd9 : $18
-	asl                                                  ; $8dda : $0a
-	.db $00                                                  ; $8ddb : $00
-	bvc br_08_8de0                                                  ; $8ddc : $50, $02
+	.db $03
+	.dw $1800
+	.dw $001e
+	.db $50
 
-	.db $00                                                  ; $8dde : $00
-	ina                                                  ; $8ddf : $1a
-
-br_08_8de0:
-	php                                                  ; $8de0 : $08
-	.db $00                                                  ; $8de1 : $00
-	rts                                                  ; $8de2 : $60
-
+	.db $4f
+	.dw $1c00
+	.dw $00ee
+	.db $60
 
-	lsr $00, X                                                  ; $8de3 : $56, $00
-	ora $700034.l, X                                                  ; $8de5 : $1f, $34, $00, $70
-	sbc $1e0088.l, X                                                  ; $8de9 : $ff, $88, $00, $1e
-	cpx $00                                                  ; $8ded : $e4, $00
-	.db $70, $89                                                  ; $8def : $70, $89
+	.db $56
+	.dw $1f00
+	.dw $0034
+	.db $70
 
-	.db $00                                                  ; $8df1 : $00
-	trb $00e4.w                                                  ; $8df2 : $1c, $e4, $00
-	.db $70, $ff                                                  ; $8df5 : $70, $ff
+	.db $ff
 
-	lsr $1000.w                                                  ; $8df7 : $4e, $00, $10
-	nop                                                  ; $8dfa : $ea
-	.db $00                                                  ; $8dfb : $00
-	rti                                                  ; $8dfc : $40
 
+DynamicSpritesStage07Idx07:
+	.db $ac
+	.dw $1000
+	.dw $014c
+	.db $40
 
-	sbc $100025.l, X                                                  ; $8dfd : $ff, $25, $00, $10
-	trb $2000.w                                                  ; $8e01 : $1c, $00, $20
-	bit $1800.w, X                                                  ; $8e04 : $3c, $00, $18
-	stx $00, Y                                                  ; $8e07 : $96, $00
-	.db $50, $3b                                                  ; $8e09 : $50, $3b
+	.db $88
+	.dw $1e00
+	.dw $00e4
+	.db $70
 
-	.db $00                                                  ; $8e0b : $00
-	ina                                                  ; $8e0c : $1a
-	trb $2000.w                                                  ; $8e0d : $1c, $00, $20
-	and #$1d00.w                                                  ; $8e10 : $29, $00, $1d
-	dey                                                  ; $8e13 : $88
-	.db $00                                                  ; $8e14 : $00
-	rts                                                  ; $8e15 : $60
+	.db $89
+	.dw $1c00
+	.dw $00e4
+	.db $70
 
+	.db $ff
 
-	sbc $18005d.l, X                                                  ; $8e16 : $ff, $5d, $00, $18
-	asl $01, X                                                  ; $8e1a : $16, $01
 
-br_08_8e1c:
-	bvc br_08_8e74                                                  ; $8e1c : $50, $56
+DynamicSpritesStage07Idx08:
+	.db $56
+	.dw $1f00
+	.dw $0034
+	.db $70
 
-	.db $00                                                  ; $8e1e : $00
-	ora $700034.l, X                                                  ; $8e1f : $1f, $34, $00, $70
-	sbc $0029ff.l, X                                                  ; $8e23 : $ff, $ff, $29, $00
-	bpl br_08_8db1                                                  ; $8e27 : $10, $88
+	.db $ff
 
-	.db $00                                                  ; $8e29 : $00
-	rti                                                  ; $8e2a : $40
 
+DynamicSpritesStage07Idx09:
+	.db $a9
+	.dw $1000
+	.dw $01d8
+	.db $40
 
-	phk                                                  ; $8e2b : $4b
-	.db $00                                                  ; $8e2c : $00
-	ora ($e8)                                                  ; $8e2d : $12, $e8
-	.db $00                                                  ; $8e2f : $00
-	bvc br_08_8e7c                                                  ; $8e30 : $50, $4a
+	.db $ff
 
-	.db $00                                                  ; $8e32 : $00
-	asl $c6, X                                                  ; $8e33 : $16, $c6
-	.db $00                                                  ; $8e35 : $00
-	rts                                                  ; $8e36 : $60
 
+DynamicSpritesStage07Idx0a:
+	.db $57
+	.dw $1000
+	.dw $00f4
+	.db $40
 
-	sbc $190036.l, X                                                  ; $8e37 : $ff, $36, $00, $19
-	tya                                                  ; $8e3b : $98
-	.db $00                                                  ; $8e3c : $00
-	rti                                                  ; $8e3d : $40
+	.db $16
+	.dw $1400
+	.dw $0080
+	.db $50
 
+	.db $03
+	.dw $1700
+	.dw $001e
+	.db $60
 
-	ora $1f00.w, Y                                                  ; $8e3e : $19, $00, $1f
-	bit $00, X                                                  ; $8e41 : $34, $00
-	.db $70, $ff                                                  ; $8e43 : $70, $ff
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
 
-	rol $00                                                  ; $8e45 : $26, $00
-	bpl br_08_8e6b                                                  ; $8e47 : $10, $22
+	.db $ff
 
-	ora ($40, X)                                                  ; $8e49 : $01, $40
-	ora $1f00.w, Y                                                  ; $8e4b : $19, $00, $1f
-	bit $00, X                                                  ; $8e4e : $34, $00
-	.db $70, $ff                                                  ; $8e50 : $70, $ff
 
-	lda [$00]                                                  ; $8e52 : $a7, $00
-	bpl br_08_8e8a                                                  ; $8e54 : $10, $34
+DynamicSpritesStage07Idx0b:
+	.db $1d
+	.dw $1000
+	.dw $003e
+	.db $40
 
-	ora ($40, X)                                                  ; $8e56 : $01, $40
-	per br_08_a05b                                                  ; $8e58 : $62, $00, $12
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
 
-	ina                                                  ; $8e5b : $1a
-	ora ($50, X)                                                  ; $8e5c : $01, $50
-	asl $00, X                                                  ; $8e5e : $16, $00
-	asl $80, X                                                  ; $8e60 : $16, $80
-	.db $00                                                  ; $8e62 : $00
-	rts                                                  ; $8e63 : $60
+	.db $ff
 
 
-	cop $00.b                                                  ; $8e64 : $02, $00
-	ora $0008.w, Y                                                  ; $8e66 : $19, $08, $00
-	.db $70, $ff                                                  ; $8e69 : $70, $ff
+DynamicSpritesStage08Idx00:
+	.db $5d
+	.dw $1000
+	.dw $0116
+	.db $40
 
-br_08_8e6b:
-	eor $1600.w, X                                                  ; $8e6b : $5d, $00, $16
-	asl $01, X                                                  ; $8e6e : $16, $01
-	rts                                                  ; $8e70 : $60
+	.db $4a
+	.dw $1700
+	.dw $00c6
+	.db $50
 
+	.db $21
+	.dw $1a00
+	.dw $0084
+	.db $60
 
-	ora $1f00.w, Y                                                  ; $8e71 : $19, $00, $1f
+	.db DECOMP_IDX_OAM_TILEDATA_SUBTANK
+	.dw $1e00
+	.dw $0118
+	.db $70
 
-br_08_8e74:
-	bit $00, X                                                  ; $8e74 : $34, $00
-	.db $70, $ff                                                  ; $8e76 : $70, $ff
+	.db $ff
 
-	and $00                                                  ; $8e78 : $25, $00
-	.db $10, $1c                                                  ; $8e7a : $10, $1c
 
-br_08_8e7c:
-	.db $00                                                  ; $8e7c : $00
-	jsr $0033.w                                                  ; $8e7d : $20, $33, $00
-	bpl br_08_8e1c                                                  ; $8e80 : $10, $9a
+DynamicSpritesStage08Idx01:
+	.db $4f
+	.dw $1000
+	.dw $00ee
+	.db $40
 
-	ora ($60, X)                                                  ; $8e82 : $01, $60
-	adc ($00, S), Y                                                  ; $8e84 : $73, $00
-	clc                                                  ; $8e86 : $18
-	jsr $4001.w                                                  ; $8e87 : $20, $01, $40
+	.db $08
+	.dw $1800
+	.dw $000a
+	.db $50
 
-br_08_8e8a:
-	ora $1f00.w, Y                                                  ; $8e8a : $19, $00, $1f
-	bit $00, X                                                  ; $8e8d : $34, $00
-	.db $70, $ff                                                  ; $8e8f : $70, $ff
+	.db $02
+	.dw $1a00
+	.dw $0008
+	.db $60
 
-	eor $ee1400.l                                                  ; $8e91 : $4f, $00, $14, $ee
-	.db $00                                                  ; $8e95 : $00
-	rts                                                  ; $8e96 : $60
+	.db $56
+	.dw $1f00
+	.dw $0034
+	.db $70
 
+	.db $ff
 
-	eor $1700.w, X                                                  ; $8e97 : $5d, $00, $17
-	asl $01, X                                                  ; $8e9a : $16, $01
-	rti                                                  ; $8e9c : $40
 
+DynamicSpritesStage08Idx02:
+	.db $88
+	.dw $1e00
+	.dw $00e4
+	.db $70
 
-	asl $00, X                                                  ; $8e9d : $16, $00
-	trb $0080.w                                                  ; $8e9f : $1c, $80, $00
-	.db $70, $ff                                                  ; $8ea2 : $70, $ff
+	.db $89
+	.dw $1c00
+	.dw $00e4
+	.db $70
 
-	eor $ee1400.l                                                  ; $8ea4 : $4f, $00, $14, $ee
-	.db $00                                                  ; $8ea8 : $00
-	rts                                                  ; $8ea9 : $60
+	.db $ff
 
 
-	lda [$00]                                                  ; $8eaa : $a7, $00
-	.db $10, $34                                                  ; $8eac : $10, $34
+DynamicSpritesStage08Idx03:
+	.db $4e
+	.dw $1000
+	.dw $00ea
+	.db $40
 
-	ora ($40, X)                                                  ; $8eae : $01, $40
-	per br_08_aab3                                                  ; $8eb0 : $62, $00, $1c
+	.db $ff
 
-	ina                                                  ; $8eb3 : $1a
-	ora ($70, X)                                                  ; $8eb4 : $01, $70
-	sbc $1c0062.l, X                                                  ; $8eb6 : $ff, $62, $00, $1c
-	ina                                                  ; $8eba : $1a
-	ora ($70, X)                                                  ; $8ebb : $01, $70
-	lda $1b00.w, X                                                  ; $8ebd : $bd, $00, $1b
-	cpx $01                                                  ; $8ec0 : $e4, $01
-	rts                                                  ; $8ec2 : $60
 
+DynamicSpritesStage08Idx04:
+	.db DECOMP_IDX_OAM_TILEDATA_CHIMERA_RIDER_ARMOUR
+	.dw $1000
+	.dw $001c
+	.db $20
 
-	sbc $1700d6.l, X                                                  ; $8ec3 : $ff, $d6, $00, $17
-	pei ($01)                                                  ; $8ec7 : $d4, $01
-	.db $70, $ff                                                  ; $8ec9 : $70, $ff
+	.db $3c
+	.dw $1800
+	.dw $0096
+	.db $50
 
-	plp                                                  ; $8ecb : $28
-	.db $00                                                  ; $8ecc : $00
-	.db $10, $d2                                                  ; $8ecd : $10, $d2
+	.db DECOMP_IDX_OAM_TILEDATA_RIDE_ARMOUR_ITEM
+	.dw $1a00
+	.dw $001c
+	.db $20
 
-	ora ($40, X)                                                  ; $8ecf : $01, $40
-	and #$1600.w                                                  ; $8ed1 : $29, $00, $16
-	dey                                                  ; $8ed4 : $88
-	.db $00                                                  ; $8ed5 : $00
-	bvc br_08_8ee0                                                  ; $8ed6 : $50, $08
+	.db $29
+	.dw $1d00
+	.dw $0088
+	.db $60
 
-	.db $00                                                  ; $8ed8 : $00
-	clc                                                  ; $8ed9 : $18
-	asl                                                  ; $8eda : $0a
-	.db $00                                                  ; $8edb : $00
-	rts                                                  ; $8edc : $60
+	.db $ff
 
 
-	cpy #$1b00.w                                                  ; $8edd : $c0, $00, $1b
+DynamicSpritesStage08Idx05:
+	.db $5d
+	.dw $1800
+	.dw $0116
+	.db $50
 
-br_08_8ee0:
-	nop                                                  ; $8ee0 : $ea
+	.db $56
+	.dw $1f00
+	.dw $0034
+	.db $70
 
-br_08_8ee1:
-	ora ($70, X)                                                  ; $8ee1 : $01, $70
-	sbc $100028.l, X                                                  ; $8ee3 : $ff, $28, $00, $10
-	cmp ($01)                                                  ; $8ee7 : $d2, $01
-	rti                                                  ; $8ee9 : $40
+	.db $ff
 
 
-	ldx $1b00.w, Y                                                  ; $8eea : $be, $00, $1b
-	inc $01                                                  ; $8eed : $e6, $01
-	.db $70, $ff                                                  ; $8eef : $70, $ff
+DynamicSpritesStage08Idx06:
+	.db $ff
 
-	eor $1000.w, X                                                  ; $8ef1 : $5d, $00, $10
-	asl $01, X                                                  ; $8ef4 : $16, $01
-	rti                                                  ; $8ef6 : $40
 
+DynamicSpritesStage08Idx07:
+	.db $29
+	.dw $1000
+	.dw $0088
+	.db $40
 
-	php                                                  ; $8ef7 : $08
-	.db $00                                                  ; $8ef8 : $00
-	ora $0a, X                                                  ; $8ef9 : $15, $0a
-	.db $00                                                  ; $8efb : $00
-	bvc br_08_8f17                                                  ; $8efc : $50, $19
+	.db $4b
+	.dw $1200
+	.dw $00e8
+	.db $50
 
-	.db $00                                                  ; $8efe : $00
-	ora $700034.l, X                                                  ; $8eff : $1f, $34, $00, $70
-	sbc $100065.l, X                                                  ; $8f03 : $ff, $65, $00, $10
-	cli                                                  ; $8f07 : $58
-	ora ($40, X)                                                  ; $8f08 : $01, $40
-	ora $1f00.w, Y                                                  ; $8f0a : $19, $00, $1f
-	bit $00, X                                                  ; $8f0d : $34, $00
-	.db $70, $ff                                                  ; $8f0f : $70, $ff
+	.db $4a
+	.dw $1600
+	.dw $00c6
+	.db $60
 
-	eor $1000.w, X                                                  ; $8f11 : $5d, $00, $10
-	asl $01, X                                                  ; $8f14 : $16, $01
-	rti                                                  ; $8f16 : $40
+	.db $ff
 
 
-br_08_8f17:
-	php                                                  ; $8f17 : $08
-	.db $00                                                  ; $8f18 : $00
-	trb $000a.w                                                  ; $8f19 : $1c, $0a, $00
-	rts                                                  ; $8f1c : $60
+DynamicSpritesStage08Idx08:
+	.db $36
+	.dw $1900
+	.dw $0098
+	.db $40
 
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
 
-	ora $1f00.w, Y                                                  ; $8f1d : $19, $00, $1f
-	bit $00, X                                                  ; $8f20 : $34, $00
-	.db $70, $ff                                                  ; $8f22 : $70, $ff
+	.db $ff
 
-	and $00                                                  ; $8f24 : $25, $00
-	.db $10, $1c                                                  ; $8f26 : $10, $1c
 
-	.db $00                                                  ; $8f28 : $00
-	jsr $003c.w                                                  ; $8f29 : $20, $3c, $00
-	clc                                                  ; $8f2c : $18
-	stx $00, Y                                                  ; $8f2d : $96, $00
-	.db $50, $3b                                                  ; $8f2f : $50, $3b
+DynamicSpritesStage08Idx09:
+	.db $26
+	.dw $1000
+	.dw $0122
+	.db $40
 
-	.db $00                                                  ; $8f31 : $00
-	ina                                                  ; $8f32 : $1a
-	trb $2000.w                                                  ; $8f33 : $1c, $00, $20
-	sbc $180050.l, X                                                  ; $8f36 : $ff, $50, $00, $18
-	beq br_08_8f3c                                                  ; $8f3a : $f0, $00
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
 
-br_08_8f3c:
-	.db $50, $08                                                  ; $8f3c : $50, $08
+	.db $ff
 
-	.db $00                                                  ; $8f3e : $00
-	trb $000a.w                                                  ; $8f3f : $1c, $0a, $00
-	rts                                                  ; $8f42 : $60
 
+DynamicSpritesStage09Idx00:
+	.db $a7
+	.dw $1000
+	.dw $0134
+	.db $40
 
-	sbc $180031.l, X                                                  ; $8f43 : $ff, $31, $00, $18
-	sta ($00)                                                  ; $8f47 : $92, $00
-	.db $50, $4f                                                  ; $8f49 : $50, $4f
+	.db $62
+	.dw $1200
+	.dw $011a
+	.db $50
 
-	.db $00                                                  ; $8f4b : $00
-	tcs                                                  ; $8f4c : $1b
-	inc $6000.w                                                  ; $8f4d : $ee, $00, $60
-	sbc $1e0088.l, X                                                  ; $8f50 : $ff, $88, $00, $1e
-	pei ($00)                                                  ; $8f54 : $d4, $00
-	bvs br_08_8ee1                                                  ; $8f56 : $70, $89
+	.db $16
+	.dw $1600
+	.dw $0080
+	.db $60
 
-	.db $00                                                  ; $8f58 : $00
-	trb $00d4.w                                                  ; $8f59 : $1c, $d4, $00
-	.db $70, $ff                                                  ; $8f5c : $70, $ff
+	.db $02
+	.dw $1900
+	.dw $0008
+	.db $70
 
-	eor $1800.w, X                                                  ; $8f5e : $5d, $00, $18
-	asl $01, X                                                  ; $8f61 : $16, $01
-	bvc br_08_8f6d                                                  ; $8f63 : $50, $08
+	.db $ff
 
-	.db $00                                                  ; $8f65 : $00
-	ora $000a.w, X                                                  ; $8f66 : $1d, $0a, $00
-	rts                                                  ; $8f69 : $60
 
+DynamicSpritesStage09Idx01:
+	.db $5d
+	.dw $1600
+	.dw $0116
+	.db $60
 
-	ora $1f00.w, Y                                                  ; $8f6a : $19, $00, $1f
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
 
-br_08_8f6d:
-	bit $00, X                                                  ; $8f6d : $34, $00
-	.db $70, $ff                                                  ; $8f6f : $70, $ff
+	.db $ff
 
-	cld                                                  ; $8f71 : $d8
-	.db $00                                                  ; $8f72 : $00
-	.db $10, $cc                                                  ; $8f73 : $10, $cc
 
-	ora ($40, X)                                                  ; $8f75 : $01, $40
-	ora $1f00.w, Y                                                  ; $8f77 : $19, $00, $1f
-	bit $00, X                                                  ; $8f7a : $34, $00
-	.db $70, $ff                                                  ; $8f7c : $70, $ff
+DynamicSpritesStage09Idx02:
+	.db DECOMP_IDX_OAM_TILEDATA_CHIMERA_RIDER_ARMOUR
+	.dw $1000
+	.dw $001c
+	.db $20
 
-	lda $1000.w                                                  ; $8f7e : $ad, $00, $10
-	eor ($01)                                                  ; $8f81 : $52, $01
-	rti                                                  ; $8f83 : $40
+	.db $33
+	.dw $1000
+	.dw $019a
+	.db $60
 
+	.db $73
+	.dw $1800
+	.dw $0120
+	.db $40
 
-	ora $1f00.w, Y                                                  ; $8f84 : $19, $00, $1f
-	bit $00, X                                                  ; $8f87 : $34, $00
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
 
-br_08_8f89:
-	.db $70, $ff                                                  ; $8f89 : $70, $ff
+	.db $ff
 
-	cmp $00, X                                                  ; $8f8b : $d5, $00
-	bpl br_08_8f89                                                  ; $8f8d : $10, $fa
 
-	ora ($40, X)                                                  ; $8f8f : $01, $40
-	sbc $100020.l, X                                                  ; $8f91 : $ff, $20, $00, $10
-	bne br_08_8f98                                                  ; $8f95 : $d0, $01
+DynamicSpritesStage09Idx03:
+	.db $4f
+	.dw $1400
+	.dw $00ee
+	.db $60
 
-	rti                                                  ; $8f97 : $40
+	.db $5d
+	.dw $1700
+	.dw $0116
+	.db $40
 
+	.db $16
+	.dw $1c00
+	.dw $0080
+	.db $70
 
-br_08_8f98:
-	and #$1c00.w                                                  ; $8f98 : $29, $00, $1c
-	dey                                                  ; $8f9b : $88
-	.db $00                                                  ; $8f9c : $00
-	rts                                                  ; $8f9d : $60
+	.db $ff
 
 
-	php                                                  ; $8f9e : $08
-	.db $00                                                  ; $8f9f : $00
-	asl $000a.w, X                                                  ; $8fa0 : $1e, $0a, $00
-	.db $70, $ff                                                  ; $8fa3 : $70, $ff
+DynamicSpritesStage09Idx04:
+	.db $4f
+	.dw $1400
+	.dw $00ee
+	.db $60
 
-	and $00                                                  ; $8fa5 : $25, $00
-	.db $10, $1c                                                  ; $8fa7 : $10, $1c
+	.db $a7
+	.dw $1000
+	.dw $0134
+	.db $40
 
-	.db $00                                                  ; $8fa9 : $00
-	jsr $003c.w                                                  ; $8faa : $20, $3c, $00
-	clc                                                  ; $8fad : $18
-	stx $00, Y                                                  ; $8fae : $96, $00
-	bvc br_08_8fed                                                  ; $8fb0 : $50, $3b
+	.db $62
+	.dw $1c00
+	.dw $011a
+	.db $70
 
-	.db $00                                                  ; $8fb2 : $00
-	ina                                                  ; $8fb3 : $1a
-	trb $2000.w                                                  ; $8fb4 : $1c, $00, $20
-	sbc $180030.l, X                                                  ; $8fb7 : $ff, $30, $00, $18
-	bcc br_08_8fbd                                                  ; $8fbb : $90, $00
+	.db $ff
 
-br_08_8fbd:
-	bvc br_08_8fd7                                                  ; $8fbd : $50, $18
 
-	.db $00                                                  ; $8fbf : $00
-	trb $001c.w                                                  ; $8fc0 : $1c, $1c, $00
-	jsr $0019.w                                                  ; $8fc3 : $20, $19, $00
-	ora $700034.l, X                                                  ; $8fc6 : $1f, $34, $00, $70
-	sbc $1000aa.l, X                                                  ; $8fca : $ff, $aa, $00, $10
-	pha                                                  ; $8fce : $48
-	ora ($40, X)                                                  ; $8fcf : $01, $40
-	plb                                                  ; $8fd1 : $ab
-	.db $00                                                  ; $8fd2 : $00
-	ora [$4a], Y                                                  ; $8fd3 : $17, $4a
-	ora ($50, X)                                                  ; $8fd5 : $01, $50
+DynamicSpritesStage09Idx05:
+	.db $62
+	.dw $1c00
+	.dw $011a
+	.db $70
 
-br_08_8fd7:
-	ora $1f00.w, Y                                                  ; $8fd7 : $19, $00, $1f
-	bit $00, X                                                  ; $8fda : $34, $00
-	.db $70, $ff                                                  ; $8fdc : $70, $ff
+	.db $bd
+	.dw $1b00
+	.dw $01e4
+	.db $60
 
-	jsr $1000.w                                                  ; $8fde : $20, $00, $10
-	bne br_08_8fe4                                                  ; $8fe1 : $d0, $01
+	.db $ff
 
-	rti                                                  ; $8fe3 : $40
 
+DynamicSpritesStage09Idx06:
+	.db $d6
+	.dw $1700
+	.dw $01d4
+	.db $70
 
-br_08_8fe4:
-	tsb $00                                                  ; $8fe4 : $04, $00
-	clc                                                  ; $8fe6 : $18
-	cpy $00                                                  ; $8fe7 : $c4, $00
+	.db $ff
 
-br_08_8fe9:
-	bvc br_08_903b                                                  ; $8fe9 : $50, $50
 
-	.db $00                                                  ; $8feb : $00
-	ina                                                  ; $8fec : $1a
+DynamicSpritesStage0aIdx00:
+	.db $28
+	.dw $1000
+	.dw $01d2
+	.db $40
 
-br_08_8fed:
-	beq br_08_8fef                                                  ; $8fed : $f0, $00
+	.db $29
+	.dw $1600
+	.dw $0088
+	.db $50
 
-br_08_8fef:
-	rts                                                  ; $8fef : $60
+	.db $08
+	.dw $1800
+	.dw $000a
+	.db $60
 
+	.db $c0
+	.dw $1b00
+	.dw $01ea
+	.db $70
 
-	ora $1f00.w, Y                                                  ; $8ff0 : $19, $00, $1f
-	bit $00, X                                                  ; $8ff3 : $34, $00
-	.db $70, $ff                                                  ; $8ff5 : $70, $ff
+	.db $ff
 
-	asl $00                                                  ; $8ff7 : $06, $00
-	bpl br_08_8fe9                                                  ; $8ff9 : $10, $ee
 
-	ora ($40, X)                                                  ; $8ffb : $01, $40
-	sbc $1000c8.l, X                                                  ; $8ffd : $ff, $c8, $00, $10
-	sbc ($01)                                                  ; $9001 : $f2, $01
-	rti                                                  ; $9003 : $40
+DynamicSpritesStage0aIdx01:
+	.db $28
+	.dw $1000
+	.dw $01d2
+	.db $40
 
+	.db $be
+	.dw $1b00
+	.dw $01e6
+	.db $70
 
-	clc                                                  ; $9004 : $18
-	.db $00                                                  ; $9005 : $00
-	ora $001c.w, X                                                  ; $9006 : $1d, $1c, $00
-	jsr $0019.w                                                  ; $9009 : $20, $19, $00
-	ora $700034.l, X                                                  ; $900c : $1f, $34, $00, $70
-	sbc $0008ff.l, X                                                  ; $9010 : $ff, $ff, $08, $00
-	bpl br_08_9020                                                  ; $9014 : $10, $0a
+	.db $ff
 
-	.db $00                                                  ; $9016 : $00
-	rti                                                  ; $9017 : $40
 
+DynamicSpritesStage0aIdx02:
+	.db $5d
+	.dw $1000
+	.dw $0116
+	.db $40
 
-	asl $00, X                                                  ; $9018 : $16, $00
-	ora ($80)                                                  ; $901a : $12, $80
-	.db $00                                                  ; $901c : $00
-	bvc br_08_9038                                                  ; $901d : $50, $19
+	.db $08
+	.dw $1500
+	.dw $000a
+	.db $50
 
-	.db $00                                                  ; $901f : $00
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
 
-br_08_9020:
-	ora $700034.l, X                                                  ; $9020 : $1f, $34, $00, $70
-	sbc $1d002f.l, X                                                  ; $9024 : $ff, $2f, $00, $1d
-	stx $6000.w                                                  ; $9028 : $8e, $00, $60
-	ora $1f00.w, Y                                                  ; $902b : $19, $00, $1f
-	bit $00, X                                                  ; $902e : $34, $00
-	.db $70, $ff                                                  ; $9030 : $70, $ff
+	.db $ff
 
-	dec $00                                                  ; $9032 : $c6, $00
-	clc                                                  ; $9034 : $18
 
-br_08_9035:
-	cpx $5001.w                                                  ; $9035 : $ec, $01, $50
+DynamicSpritesStage0aIdx03:
+	.db $65
+	.dw $1000
+	.dw $0158
+	.db $40
 
-br_08_9038:
-	bvc br_08_903a                                                  ; $9038 : $50, $00
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
 
-br_08_903a:
-	tcs                                                  ; $903a : $1b
+	.db $ff
 
-br_08_903b:
-	beq br_08_903d                                                  ; $903b : $f0, $00
 
-br_08_903d:
-	rts                                                  ; $903d : $60
+DynamicSpritesStage0aIdx04:
+	.db $5d
+	.dw $1000
+	.dw $0116
+	.db $40
 
+	.db $08
+	.dw $1c00
+	.dw $000a
+	.db $60
 
-	ora $1f00.w, Y                                                  ; $903e : $19, $00, $1f
-	bit $00, X                                                  ; $9041 : $34, $00
-	.db $70, $ff                                                  ; $9043 : $70, $ff
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
 
-	and $00, S                                                  ; $9045 : $23, $00
-	bpl br_08_9035                                                  ; $9047 : $10, $ec
+	.db $ff
 
-	.db $00                                                  ; $9049 : $00
-	rti                                                  ; $904a : $40
 
+DynamicSpritesStage0aIdx05:
+	.db DECOMP_IDX_OAM_TILEDATA_CHIMERA_RIDER_ARMOUR
+	.dw $1000
+	.dw $001c
+	.db $20
 
-	sbc $10005a.l, X                                                  ; $904b : $ff, $5a, $00, $10
-	jsr ($4000.w, X)                                                  ; $904f : $fc, $00, $40
-	sbc $100059.l, X                                                  ; $9052 : $ff, $59, $00, $10
-	plx                                                  ; $9056 : $fa
-	.db $00                                                  ; $9057 : $00
-	rti                                                  ; $9058 : $40
+	.db $3c
+	.dw $1800
+	.dw $0096
+	.db $50
 
+	.db DECOMP_IDX_OAM_TILEDATA_RIDE_ARMOUR_ITEM
+	.dw $1a00
+	.dw $001c
+	.db $20
 
-	sbc $100099.l, X                                                  ; $9059 : $ff, $99, $00, $10
-	brl br_08_d061                                                  ; $905d : $82, $01, $40
+	.db $ff
 
-	sbc $1000cd.l, X                                                  ; $9060 : $ff, $cd, $00, $10
-	inc $4001.w, X                                                  ; $9064 : $fe, $01, $40
-	sbc $10005f.l, X                                                  ; $9067 : $ff, $5f, $00, $10
-	inc $4000.w, X                                                  ; $906b : $fe, $00, $40
-	sbc $10001d.l, X                                                  ; $906e : $ff, $1d, $00, $10
-	rol $4000.w, X                                                  ; $9072 : $3e, $00, $40
-	sbc $100026.l, X                                                  ; $9075 : $ff, $26, $00, $10
-	jsr $ff4001.l                                                  ; $9079 : $22, $01, $40, $ff
-	sbc $ffffff.l, X                                                  ; $907d : $ff, $ff, $ff, $ff
-	txs                                                  ; $9081 : $9a
-	.db $00                                                  ; $9082 : $00
-	.db $10, $e0                                                  ; $9083 : $10, $e0
 
-	ora ($40, X)                                                  ; $9085 : $01, $40
-	ora $1f00.w, Y                                                  ; $9087 : $19, $00, $1f
-	bit $00, X                                                  ; $908a : $34, $00
-	.db $70, $ff                                                  ; $908c : $70, $ff
+DynamicSpritesStage0aIdx06:
+	.db $50
+	.dw $1800
+	.dw $00f0
+	.db $50
 
-	cmp $1000.w, Y                                                  ; $908e : $d9, $00, $10
-	dex                                                  ; $9091 : $ca
-	ora ($40, X)                                                  ; $9092 : $01, $40
-	sbc $1000d5.l, X                                                  ; $9094 : $ff, $d5, $00, $10
-	plx                                                  ; $9098 : $fa
-	ora ($40, X)                                                  ; $9099 : $01, $40
-	sbc $10008a.l, X                                                  ; $909b : $ff, $8a, $00, $10
-	ror $4001.w                                                  ; $909f : $6e, $01, $40
-	bvc br_08_90a4                                                  ; $90a2 : $50, $00
+	.db $08
+	.dw $1c00
+	.dw $000a
+	.db $60
 
-br_08_90a4:
-	ora $f0, X                                                  ; $90a4 : $15, $f0
-	.db $00                                                  ; $90a6 : $00
-	.db $50, $ff                                                  ; $90a7 : $50, $ff
+	.db $ff
 
-Call_08_90a9:
-	sec                                                  ; $90a9 : $38
-	.db $00                                                  ; $90aa : $00
-	ora $700034.l, X                                                  ; $90ab : $1f, $34, $00, $70
-	sbc $1000ce.l, X                                                  ; $90af : $ff, $ce, $00, $10
-	jml [$4001.w]                                                  ; $90b3 : $dc, $01, $40
 
+DynamicSpritesStage0aIdx07:
+	.db $31
+	.dw $1800
+	.dw $0092
+	.db $50
 
-	sec                                                  ; $90b6 : $38
-	.db $00                                                  ; $90b7 : $00
-	ora $700034.l, X                                                  ; $90b8 : $1f, $34, $00, $70
-	sbc $1000cf.l, X                                                  ; $90bc : $ff, $cf, $00, $10
-	dec $4001.w, X                                                  ; $90c0 : $de, $01, $40
-	sbc $1000d7.l, X                                                  ; $90c3 : $ff, $d7, $00, $10
-	dec $4001.w                                                  ; $90c7 : $ce, $01, $40
-	lda [$00]                                                  ; $90ca : $a7, $00
-	ora ($34, S), Y                                                  ; $90cc : $13, $34
-	ora ($50, X)                                                  ; $90ce : $01, $50
-	cmp $1500.w, Y                                                  ; $90d0 : $d9, $00, $15
-	dex                                                  ; $90d3 : $ca
-	ora ($60, X)                                                  ; $90d4 : $01, $60
-	sbc $10005d.l, X                                                  ; $90d6 : $ff, $5d, $00, $10
-	asl $01, X                                                  ; $90da : $16, $01
-	bvc br_08_90e0                                                  ; $90dc : $50, $02
+	.db $4f
+	.dw $1b00
+	.dw $00ee
+	.db $60
 
-	.db $00                                                  ; $90de : $00
-	clc                                                  ; $90df : $18
+	.db $ff
 
-br_08_90e0:
-	php                                                  ; $90e0 : $08
-	.db $00                                                  ; $90e1 : $00
-	rts                                                  ; $90e2 : $60
 
+DynamicSpritesStage0aIdx08:
+	.db $88
+	.dw $1e00
+	.dw $00d4
+	.db $70
 
-	asl $00, X                                                  ; $90e3 : $16, $00
-	trb $0080.w                                                  ; $90e5 : $1c, $80, $00
-	.db $70, $ff                                                  ; $90e8 : $70, $ff
+	.db $89
+	.dw $1c00
+	.dw $00d4
+	.db $70
 
-	and $00                                                  ; $90ea : $25, $00
-	.db $10, $1c                                                  ; $90ec : $10, $1c
+	.db $ff
 
-	.db $00                                                  ; $90ee : $00
-	jsr $003c.w                                                  ; $90ef : $20, $3c, $00
-	clc                                                  ; $90f2 : $18
-	stx $00, Y                                                  ; $90f3 : $96, $00
-	.db $50, $3b                                                  ; $90f5 : $50, $3b
 
-	.db $00                                                  ; $90f7 : $00
-	ina                                                  ; $90f8 : $1a
-	trb $2000.w                                                  ; $90f9 : $1c, $00, $20
-	sbc $18005d.l, X                                                  ; $90fc : $ff, $5d, $00, $18
-	asl $01, X                                                  ; $9100 : $16, $01
-	bvc br_08_911d                                                  ; $9102 : $50, $19
+DynamicSpritesStage0aIdx09:
+	.db $5d
+	.dw $1800
+	.dw $0116
+	.db $50
 
-	.db $00                                                  ; $9104 : $00
-	ora $700034.l, X                                                  ; $9105 : $1f, $34, $00, $70
-	sbc $005dff.l, X                                                  ; $9109 : $ff, $ff, $5d, $00
-	.db $10, $16                                                  ; $910d : $10, $16
+	.db $08
+	.dw $1d00
+	.dw $000a
+	.db $60
 
-	ora ($40, X)                                                  ; $910f : $01, $40
-	asl $00, X                                                  ; $9111 : $16, $00
-	ora $80, X                                                  ; $9113 : $15, $80
-	.db $00                                                  ; $9115 : $00
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
 
-br_08_9116:
-	bvc br_08_911c                                                  ; $9116 : $50, $04
+	.db $ff
 
-	.db $00                                                  ; $9118 : $00
-	clc                                                  ; $9119 : $18
-	cpy $00                                                  ; $911a : $c4, $00
 
-br_08_911c:
-	rts                                                  ; $911c : $60
+DynamicSpritesStage0aIdx0e:
+	.db $d8
+	.dw $1000
+	.dw $01cc
+	.db $40
 
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
 
-br_08_911d:
-	ora $1f00.w, Y                                                  ; $911d : $19, $00, $1f
-	bit $00, X                                                  ; $9120 : $34, $00
-	.db $70, $ff                                                  ; $9122 : $70, $ff
+	.db $ff
 
-	asl $00                                                  ; $9124 : $06, $00
-	bpl br_08_9116                                                  ; $9126 : $10, $ee
 
-	ora ($40, X)                                                  ; $9128 : $01, $40
-	sbc $1000c7.l, X                                                  ; $912a : $ff, $c7, $00, $10
-	beq br_08_9131                                                  ; $912e : $f0, $01
+DynamicSpritesStage0aIdx0a:
+	.db $ad
+	.dw $1000
+	.dw $0152
+	.db $40
 
-	rti                                                  ; $9130 : $40
 
+DynamicSpritesStage0aIdx0b:
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
 
-br_08_9131:
-	ora $1f00.w, Y                                                  ; $9131 : $19, $00, $1f
-	bit $00, X                                                  ; $9134 : $34, $00
-	.db $70, $ff                                                  ; $9136 : $70, $ff
+	.db $ff
 
-	cmp [$00]                                                  ; $9138 : $c7, $00
-	.db $10, $f0                                                  ; $913a : $10, $f0
 
-	ora ($40, X)                                                  ; $913c : $01, $40
-	ora $1f00.w, Y                                                  ; $913e : $19, $00, $1f
-	bit $00, X                                                  ; $9141 : $34, $00
-	.db $70, $ff                                                  ; $9143 : $70, $ff
+DynamicSpritesStage0aIdx0d:
+	.db $d5
+	.dw $1000
+	.dw $01fa
+	.db $40
 
-	ror $1000.w                                                  ; $9145 : $6e, $00, $10
-	rts                                                  ; $9148 : $60
+	.db $ff
 
 
-	ora ($40, X)                                                  ; $9149 : $01, $40
-	sbc $1000cc.l, X                                                  ; $914b : $ff, $cc, $00, $10
-	jsr ($4001.w, X)                                                  ; $914f : $fc, $01, $40
-	sbc $100074.l, X                                                  ; $9152 : $ff, $74, $00, $10
-	jsr $4001.w                                                  ; $9156 : $20, $01, $40
-	sbc $1000d0.l, X                                                  ; $9159 : $ff, $d0, $00, $10
-	phx                                                  ; $915d : $da
-	ora ($40, X)                                                  ; $915e : $01, $40
-	sbc $100023.l, X                                                  ; $9160 : $ff, $23, $00, $10
-	cpx $4000.w                                                  ; $9164 : $ec, $00, $40
-	cmp ($00)                                                  ; $9167 : $d2, $00
-	.db $00                                                  ; $9169 : $00
-	inc $01, X                                                  ; $916a : $f6, $01
-	.db $50, $ff                                                  ; $916c : $50, $ff
+DynamicSpritesStage0bIdx00:
+	.db $20
+	.dw $1000
+	.dw $01d0
+	.db $40
 
-br_08_916e:
-	phy                                                  ; $916e : $5a
-	.db $00                                                  ; $916f : $00
-	bpl br_08_916e                                                  ; $9170 : $10, $fc
+	.db $29
+	.dw $1c00
+	.dw $0088
+	.db $60
 
-	.db $00                                                  ; $9172 : $00
-	rti                                                  ; $9173 : $40
+	.db $08
+	.dw $1e00
+	.dw $000a
+	.db $70
 
+	.db $ff
 
-	cmp ($00)                                                  ; $9174 : $d2, $00
-	.db $00                                                  ; $9176 : $00
-	inc $01, X                                                  ; $9177 : $f6, $01
-	.db $50, $ff                                                  ; $9179 : $50, $ff
 
-	eor $1000.w, Y                                                  ; $917b : $59, $00, $10
-	plx                                                  ; $917e : $fa
-	.db $00                                                  ; $917f : $00
-	rti                                                  ; $9180 : $40
+DynamicSpritesStage0bIdx01:
+	.db DECOMP_IDX_OAM_TILEDATA_CHIMERA_RIDER_ARMOUR
+	.dw $1000
+	.dw $001c
+	.db $20
 
+	.db $3c
+	.dw $1800
+	.dw $0096
+	.db $50
 
-	cmp ($00)                                                  ; $9181 : $d2, $00
-	.db $00                                                  ; $9183 : $00
-	inc $01, X                                                  ; $9184 : $f6, $01
-	.db $50, $ff                                                  ; $9186 : $50, $ff
+	.db DECOMP_IDX_OAM_TILEDATA_RIDE_ARMOUR_ITEM
+	.dw $1a00
+	.dw $001c
+	.db $20
 
-	sta $1000.w, Y                                                  ; $9188 : $99, $00, $10
-	brl br_08_d18f                                                  ; $918b : $82, $01, $40
+	.db $ff
 
-	cmp ($00)                                                  ; $918e : $d2, $00
-	.db $00                                                  ; $9190 : $00
-	inc $01, X                                                  ; $9191 : $f6, $01
-	.db $50, $ff                                                  ; $9193 : $50, $ff
 
-	cmp $1000.w                                                  ; $9195 : $cd, $00, $10
-	inc $4001.w, X                                                  ; $9198 : $fe, $01, $40
-	cmp ($00)                                                  ; $919b : $d2, $00
-	.db $00                                                  ; $919d : $00
-	inc $01, X                                                  ; $919e : $f6, $01
-	.db $50, $ff                                                  ; $91a0 : $50, $ff
+DynamicSpritesStage0bIdx02:
+	.db $30
+	.dw $1800
+	.dw $0090
+	.db $50
 
-	eor $fe1000.l, X                                                  ; $91a2 : $5f, $00, $10, $fe
-	.db $00                                                  ; $91a6 : $00
-	rti                                                  ; $91a7 : $40
+	.db $18
+	.dw $1c00
+	.dw $001c
+	.db $20
 
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
 
-	cmp ($00)                                                  ; $91a8 : $d2, $00
-	.db $00                                                  ; $91aa : $00
-	inc $01, X                                                  ; $91ab : $f6, $01
-	.db $50, $ff                                                  ; $91ad : $50, $ff
+	.db $ff
 
-	ora $1000.w, X                                                  ; $91af : $1d, $00, $10
-	rol $4000.w, X                                                  ; $91b2 : $3e, $00, $40
-	cmp ($00)                                                  ; $91b5 : $d2, $00
-	.db $00                                                  ; $91b7 : $00
-	inc $01, X                                                  ; $91b8 : $f6, $01
-	.db $50, $ff                                                  ; $91ba : $50, $ff
 
-	rol $00                                                  ; $91bc : $26, $00
-	bpl br_08_91e2                                                  ; $91be : $10, $22
+DynamicSpritesStage0bIdx03:
+	.db $aa
+	.dw $1000
+	.dw $0148
+	.db $40
 
-	ora ($40, X)                                                  ; $91c0 : $01, $40
-	cmp ($00)                                                  ; $91c2 : $d2, $00
-	.db $00                                                  ; $91c4 : $00
-	inc $01, X                                                  ; $91c5 : $f6, $01
-	.db $50, $ff                                                  ; $91c7 : $50, $ff
+	.db $ab
+	.dw $1700
+	.dw $014a
+	.db $50
 
-	lda ($00, X)                                                  ; $91c9 : $a1, $00
-	.db $10, $7e                                                  ; $91cb : $10, $7e
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
 
-	ora ($40, X)                                                  ; $91cd : $01, $40
-	ora ($00, X)                                                  ; $91cf : $01, $00
-	trb $5a                                                  ; $91d1 : $14, $5a
-	ora ($70, X)                                                  ; $91d3 : $01, $70
-	sbc $000098.l, X                                                  ; $91d5 : $ff, $98, $00, $00
-	cpx $00                                                  ; $91d9 : $e4, $00
-	.db $70, $ff                                                  ; $91db : $70, $ff
+	.db $ff
 
-	tya                                                  ; $91dd : $98
-	.db $00                                                  ; $91de : $00
-	.db $00                                                  ; $91df : $00
-	pei ($00)                                                  ; $91e0 : $d4, $00
 
-br_08_91e2:
-	.db $70, $ff                                                  ; $91e2 : $70, $ff
+DynamicSpritesStage0bIdx04:
+	.db $20
+	.dw $1000
+	.dw $01d0
+	.db $40
 
-	txs                                                  ; $91e4 : $9a
-	.db $00                                                  ; $91e5 : $00
-	.db $10, $e0                                                  ; $91e6 : $10, $e0
+	.db $04
+	.dw $1800
+	.dw $00c4
+	.db $50
 
-	ora ($40, X)                                                  ; $91e8 : $01, $40
-	sbc $100071.l, X                                                  ; $91ea : $ff, $71, $00, $10
-	dec $4001.w                                                  ; $91ee : $ce, $01, $40
-	sbc $7c01a6.l, X                                                  ; $91f1 : $ff, $a6, $01, $7c
+	.db $50
+	.dw $1a00
+	.dw $00f0
+	.db $60
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage0bIdx05:
+	.db $06
+	.dw $1000
+	.dw $01ee
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage0bIdx06:
+	.db $c8
+	.dw $1000
+	.dw $01f2
+	.db $40
+
+	.db $18
+	.dw $1d00
+	.dw $001c
+	.db $20
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage0bIdx07:
+	.db $ff
+
+
+DynamicSpritesStage0cIdx00:
+	.db $08
+	.dw $1000
+	.dw $000a
+	.db $40
+
+	.db $16
+	.dw $1200
+	.dw $0080
+	.db $50
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage0cIdx01:
+	.db $2f
+	.dw $1d00
+	.dw $008e
+	.db $60
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage0cIdx02:
+	.db $c6
+	.dw $1800
+	.dw $01ec
+	.db $50
+
+	.db $50
+	.dw $1b00
+	.dw $00f0
+	.db $60
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx13:
+DynamicSpritesStage0cIdx04:
+	.db $23
+	.dw $1000
+	.dw $00ec
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx14:
+DynamicSpritesStage0cIdx05:
+	.db $5a
+	.dw $1000
+	.dw $00fc
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx15:
+DynamicSpritesStage0cIdx06:
+	.db $59
+	.dw $1000
+	.dw $00fa
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx16:
+DynamicSpritesStage0cIdx07:
+	.db $99
+	.dw $1000
+	.dw $0182
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx17:
+DynamicSpritesStage0cIdx08:
+	.db $cd
+	.dw $1000
+	.dw $01fe
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx18:
+DynamicSpritesStage0cIdx09:
+	.db $5f
+	.dw $1000
+	.dw $00fe
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx19:
+DynamicSpritesStage0cIdx0a:
+	.db $1d
+	.dw $1000
+	.dw $003e
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx1a:
+DynamicSpritesStage0cIdx0b:
+	.db $26
+	.dw $1000
+	.dw $0122
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage0cIdx0c:
+	.db $ff
+
+
+DynamicSpritesStage0cIdx0d:
+	.db $ff
+
+
+DynamicSpritesStage0cIdx0e:
+	.db $ff
+
+
+DynamicSpritesStage0cIdx0f:
+	.db $ff
+
+
+DynamicSpritesStage0cIdx03:
+	.db $9a
+	.dw $1000
+	.dw $01e0
+	.db $40
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage0cIdx11:
+	.db $d9
+	.dw $1000
+	.dw $01ca
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage0cIdx10:
+	.db $d5
+	.dw $1000
+	.dw $01fa
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage0dIdx00:
+	.db $8a
+	.dw $1000
+	.dw $016e
+	.db $40
+
+	.db $50
+	.dw $1500
+	.dw $00f0
+	.db $50
+
+	.db $ff
+
+
+DynamicSpritesStage0dIdx01:
+	.db $38
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx20:
+DynamicSpritesStage0dIdx02:
+	.db $ce
+	.dw $1000
+	.dw $01dc
+	.db $40
+
+	.db $38
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage0dIdx03:
+	.db $cf
+	.dw $1000
+	.dw $01de
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage0dIdx04:
+	.db $d7
+	.dw $1000
+	.dw $01ce
+	.db $40
+
+	.db $a7
+	.dw $1300
+	.dw $0134
+	.db $50
+
+	.db $d9
+	.dw $1500
+	.dw $01ca
+	.db $60
+
+	.db $ff
+
+
+DynamicSpritesStage0eIdx00:
+	.db $5d
+	.dw $1000
+	.dw $0116
+	.db $50
+
+	.db $02
+	.dw $1800
+	.dw $0008
+	.db $60
+
+	.db $16
+	.dw $1c00
+	.dw $0080
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage0eIdx01:
+	.db DECOMP_IDX_OAM_TILEDATA_CHIMERA_RIDER_ARMOUR
+	.dw $1000
+	.dw $001c
+	.db $20
+
+	.db $3c
+	.dw $1800
+	.dw $0096
+	.db $50
+
+	.db DECOMP_IDX_OAM_TILEDATA_RIDE_ARMOUR_ITEM
+	.dw $1a00
+	.dw $001c
+	.db $20
+
+	.db $ff
+
+
+DynamicSpritesStage0eIdx02:
+	.db $5d
+	.dw $1800
+	.dw $0116
+	.db $50
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage0eIdx03:
+	.db $ff
+
+
+DynamicSpritesStage0eIdx04:
+	.db $5d
+	.dw $1000
+	.dw $0116
+	.db $40
+
+	.db $16
+	.dw $1500
+	.dw $0080
+	.db $50
+
+	.db $04
+	.dw $1800
+	.dw $00c4
+	.db $60
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage0eIdx05:
+	.db $06
+	.dw $1000
+	.dw $01ee
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage0eIdx06:
+	.db $c7
+	.dw $1000
+	.dw $01f0
+	.db $40
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage0eIdx07:
+	.db $c7
+	.dw $1000
+	.dw $01f0
+	.db $40
+
+	.db $19
+	.dw $1f00
+	.dw $0034
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx0c:
+DynamicSpritesStage00Idx1b:
+DynamicSpritesStage01Idx10:
+DynamicSpritesStage02Idx10:
+DynamicSpritesStage03Idx10:
+DynamicSpritesStage04Idx10:
+DynamicSpritesStage05Idx10:
+DynamicSpritesStage06Idx10:
+DynamicSpritesStage07Idx10:
+DynamicSpritesStage08Idx10:
+	.db $6e
+	.dw $1000
+	.dw $0160
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx1c:
+DynamicSpritesStage01Idx11:
+DynamicSpritesStage02Idx11:
+DynamicSpritesStage03Idx11:
+DynamicSpritesStage04Idx11:
+DynamicSpritesStage05Idx11:
+DynamicSpritesStage06Idx11:
+DynamicSpritesStage07Idx11:
+DynamicSpritesStage08Idx11:
+	.db $cc
+	.dw $1000
+	.dw $01fc
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx1e:
+DynamicSpritesStage09Idx07:
+DynamicSpritesStage0eIdx08:
+	.db $74
+	.dw $1000
+	.dw $0120
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx1d:
+DynamicSpritesStage0aIdx0c:
+	.db $d0
+	.dw $1000
+	.dw $01da
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage0fIdx00:
+	.db $23
+	.dw $1000
+	.dw $00ec
+	.db $40
+
+	.db $d2
+	.dw $0000
+	.dw $01f6
+	.db $50
+
+	.db $ff
+
+
+DynamicSpritesStage0fIdx01:
+	.db $5a
+	.dw $1000
+	.dw $00fc
+	.db $40
+
+	.db $d2
+	.dw $0000
+	.dw $01f6
+	.db $50
+
+	.db $ff
+
+
+DynamicSpritesStage0fIdx02:
+	.db $59
+	.dw $1000
+	.dw $00fa
+	.db $40
+
+	.db $d2
+	.dw $0000
+	.dw $01f6
+	.db $50
+
+	.db $ff
+
+
+DynamicSpritesStage0fIdx03:
+	.db $99
+	.dw $1000
+	.dw $0182
+	.db $40
+
+	.db $d2
+	.dw $0000
+	.dw $01f6
+	.db $50
+
+	.db $ff
+
+
+DynamicSpritesStage0fIdx04:
+	.db $cd
+	.dw $1000
+	.dw $01fe
+	.db $40
+
+	.db $d2
+	.dw $0000
+	.dw $01f6
+	.db $50
+
+	.db $ff
+
+
+DynamicSpritesStage0fIdx05:
+	.db $5f
+	.dw $1000
+	.dw $00fe
+	.db $40
+
+	.db $d2
+	.dw $0000
+	.dw $01f6
+	.db $50
+
+	.db $ff
+
+
+DynamicSpritesStage0fIdx06:
+	.db $1d
+	.dw $1000
+	.dw $003e
+	.db $40
+
+	.db $d2
+	.dw $0000
+	.dw $01f6
+	.db $50
+
+	.db $ff
+
+
+DynamicSpritesStage0fIdx07:
+	.db $26
+	.dw $1000
+	.dw $0122
+	.db $40
+
+	.db $d2
+	.dw $0000
+	.dw $01f6
+	.db $50
+
+	.db $ff
+
+
+DynamicSpritesStage10Idx00:
+	.db $a1
+	.dw $1000
+	.dw $017e
+	.db $40
+
+
+DynamicSpritesStage11Idx00:
+	.db $01
+	.dw $1400
+	.dw $015a
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage02Idx12:
+DynamicSpritesStage05Idx12:
+DynamicSpritesStage07Idx12:
+DynamicSpritesStage08Idx12:
+	.db $98
+	.dw $0000
+	.dw $00e4
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage01Idx12:
+DynamicSpritesStage03Idx12:
+DynamicSpritesStage04Idx12:
+DynamicSpritesStage06Idx12:
+DynamicSpritesStage0aIdx12:
+	.db $98
+	.dw $0000
+	.dw $00d4
+	.db $70
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx1f:
+	.db $9a
+	.dw $1000
+	.dw $01e0
+	.db $40
+
+	.db $ff
+
+
+DynamicSpritesStage00Idx21:
+	.db $71
+	.dw $1000
+	.dw $01ce
+	.db $40
+
+	.db $ff
+
+	
+	.dl $7c01a6.l                                                  ; $91f2 : $a6, $01, $7c
 	sbc [$91], Y                                                  ; $91f5 : $f7, $91
 	rol $92                                                  ; $91f7 : $26, $92
 	inc $92, X                                                  ; $91f9 : $f6, $92
@@ -8486,7 +9441,7 @@ br_08_b3cd:
 	cpx $b3                                                  ; $b3de : $e4, $b3
 	sbc $1fb3.w, X                                                  ; $b3e0 : $fd, $b3, $1f
 	ldy $c2, X                                                  ; $b3e3 : $b4, $c2
-	jsr Call_08_90a9.w                                                  ; $b3e5 : $20, $a9, $90
+	jsr $90a9.w                                                  ; $b3e5 : $20, $a9, $90
 	ora ($85, X)                                                  ; $b3e8 : $01, $85
 	dea                                                  ; $b3ea : $3a
 	lda #$55.b                                                  ; $b3eb : $a9, $55
