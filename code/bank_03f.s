@@ -4007,7 +4007,7 @@ br_3f_9a75:
 	.db $00                                                  ; $9a75 : $00
 	ora ($00)                                                  ; $9a76 : $12, $00
 	ora [$00], Y                                                  ; $9a78 : $17, $00
-	trb $2100.w                                                  ; $9a7a : $1c, $00, $21
+	trb INIDISP.w                                                  ; $9a7a : $1c, $00, $21
 	.db $00                                                  ; $9a7d : $00
 	tsb $00                                                  ; $9a7e : $04, $00
 	.db $00                                                  ; $9a80 : $00
@@ -4361,7 +4361,7 @@ br_3f_9c9d:
 	sbc $12ff.w, X                                                  ; $9ca2 : $fd, $ff, $12
 	.db $00                                                  ; $9ca5 : $00
 	ora [$00], Y                                                  ; $9ca6 : $17, $00
-	trb $2100.w                                                  ; $9ca8 : $1c, $00, $21
+	trb INIDISP.w                                                  ; $9ca8 : $1c, $00, $21
 	.db $00                                                  ; $9cab : $00
 	bit $5b00.w                                                  ; $9cac : $2c, $00, $5b
 
@@ -14716,7 +14716,7 @@ br_3f_df04:
 	sbc [$ff], Y                                                  ; $df4b : $f7, $ff
 
 br_3f_df4d:
-	trb $2100.w                                                  ; $df4d : $1c, $00, $21
+	trb INIDISP.w                                                  ; $df4d : $1c, $00, $21
 	.db $00                                                  ; $df50 : $00
 	and #$00.b                                                  ; $df51 : $29, $00
 	rol $3900.w                                                  ; $df53 : $2e, $00, $39
@@ -15174,7 +15174,7 @@ br_3f_e208:
 	beq br_3f_e23b                                                  ; $e234 : $f0, $05
 
 	lda #$02.b                                                  ; $e236 : $a9, $02
-	trb $00c1.w                                                  ; $e238 : $1c, $c1, $00
+	trb wMainScreenDesignation.w                                                  ; $e238 : $1c, $c1, $00
 
 br_3f_e23b:
 	lda #$01.b                                                  ; $e23b : $a9, $01

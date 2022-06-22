@@ -11597,7 +11597,7 @@ br_0f_cc1f:
 	.db $00                                                  ; $cc4d : $00
 	inc $2210.w                                                  ; $cc4e : $ee, $10, $22
 	.db $00                                                  ; $cc51 : $00
-	cpx $2100.w                                                  ; $cc52 : $ec, $00, $21
+	cpx INIDISP.w                                                  ; $cc52 : $ec, $00, $21
 	.db $00                                                  ; $cc55 : $00
 	inc $20f0.w, X                                                  ; $cc56 : $fe, $f0, $20
 	jsr $0806.w                                                  ; $cc59 : $20, $06, $08
@@ -11620,7 +11620,7 @@ br_0f_cc1f:
 	and $00, S                                                  ; $cc7d : $23, $00
 	inc $2210.w                                                  ; $cc7f : $ee, $10, $22
 	.db $00                                                  ; $cc82 : $00
-	cpx $2100.w                                                  ; $cc83 : $ec, $00, $21
+	cpx INIDISP.w                                                  ; $cc83 : $ec, $00, $21
 	.db $00                                                  ; $cc86 : $00
 	inc $20f0.w, X                                                  ; $cc87 : $fe, $f0, $20
 	jsr $0806.w                                                  ; $cc8a : $20, $06, $08
@@ -16552,7 +16552,7 @@ br_0f_ea0e:
 
 	sbc $00ca0c.l                                                  ; $ea21 : $ef, $0c, $ca, $00
 	inx                                                  ; $ea25 : $e8
-	tsb $00ca.w                                                  ; $ea26 : $0c, $ca, $00
+	tsb wColourMathDesignation.w                                                  ; $ea26 : $0c, $ca, $00
 	cpx $d913.w                                                  ; $ea29 : $ec, $13, $d9
 	.db $00                                                  ; $ea2c : $00
 	sbc ($0d)                                                  ; $ea2d : $f2, $0d
@@ -17841,7 +17841,7 @@ br_0f_f161:
 	sbc ($fc)                                                  ; $f196 : $f2, $fc
 	eor ($00)                                                  ; $f198 : $52, $00
 	and ($fc), Y                                                  ; $f19a : $31, $fc
-	eor $2100.w                                                  ; $f19c : $4d, $00, $21
+	eor INIDISP.w                                                  ; $f19c : $4d, $00, $21
 	jsr ($004d.w, X)                                                  ; $f19f : $fc, $4d, $00
 	ora $4dfc.w, Y                                                  ; $f1a2 : $19, $fc, $4d
 	.db $00                                                  ; $f1a5 : $00

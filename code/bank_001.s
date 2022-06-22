@@ -15302,16 +15302,16 @@ br_01_e3f4:
 	lda #$80.b                                                  ; $e408 : $a9, $80
 	trb $1f3f.w                                                  ; $e40a : $1c, $3f, $1f
 	lda #$13.b                                                  ; $e40d : $a9, $13
-	sta $00c1.w                                                  ; $e40f : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $e40f : $8d, $c1, $00
 	sta TM.w                                                  ; $e412 : $8d, $2c, $21
-	stz $00c2.w                                                  ; $e415 : $9c, $c2, $00
-	stz $212d.w                                                  ; $e418 : $9c, $2d, $21
+	stz wSubScreenDesignation.w                                                  ; $e415 : $9c, $c2, $00
+	stz TS.w                                                  ; $e418 : $9c, $2d, $21
 	stz $2124.w                                                  ; $e41b : $9c, $24, $21
 	stz $00c6.w                                                  ; $e41e : $9c, $c6, $00
-	stz $2130.w                                                  ; $e421 : $9c, $30, $21
-	stz $00c9.w                                                  ; $e424 : $9c, $c9, $00
-	stz $2131.w                                                  ; $e427 : $9c, $31, $21
-	stz $00ca.w                                                  ; $e42a : $9c, $ca, $00
+	stz CGWSEL.w                                                  ; $e421 : $9c, $30, $21
+	stz wColourAdditionSelect.w                                                  ; $e424 : $9c, $c9, $00
+	stz CGADSUB.w                                                  ; $e427 : $9c, $31, $21
+	stz wColourMathDesignation.w                                                  ; $e42a : $9c, $ca, $00
 	stz $212e.w                                                  ; $e42d : $9c, $2e, $21
 	stz $1fa9.w                                                  ; $e430 : $9c, $a9, $1f
 	ldx $02                                                  ; $e433 : $a6, $02
@@ -15700,13 +15700,13 @@ br_01_e6d2:
 	sta $00c5.w                                                  ; $e6d4 : $8d, $c5, $00
 	stz $00c6.w                                                  ; $e6d7 : $9c, $c6, $00
 	stz $00c8.w                                                  ; $e6da : $9c, $c8, $00
-	lda $00c9.w                                                  ; $e6dd : $ad, $c9, $00
+	lda wColourAdditionSelect.w                                                  ; $e6dd : $ad, $c9, $00
 	and #$03.b                                                  ; $e6e0 : $29, $03
 	ora #$82.b                                                  ; $e6e2 : $09, $82
-	sta $00c9.w                                                  ; $e6e4 : $8d, $c9, $00
-	lda $00ca.w                                                  ; $e6e7 : $ad, $ca, $00
+	sta wColourAdditionSelect.w                                                  ; $e6e4 : $8d, $c9, $00
+	lda wColourMathDesignation.w                                                  ; $e6e7 : $ad, $ca, $00
 	ora #$23.b                                                  ; $e6ea : $09, $23
-	sta $00ca.w                                                  ; $e6ec : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $e6ec : $8d, $ca, $00
 	rts                                                  ; $e6ef : $60
 
 
@@ -15721,8 +15721,8 @@ Call_01_e6f0:
 	sta CX4_R4.w                                                  ; $e6fe : $8d, $8c, $7f
 	clc                                                  ; $e701 : $18
 	adc #$0020.w                                                  ; $e702 : $69, $20, $00
-	sta CX4_R6.w                                                  ; $e705 : $8d, $8f, $7f
-	stz CX4_R7.w                                                  ; $e708 : $9c, $92, $7f
+	sta CX4_R5.w                                                  ; $e705 : $8d, $8f, $7f
+	stz CX4_R6.w                                                  ; $e708 : $9c, $92, $7f
 	jsr Call_01_e710.w                                                  ; $e70b : $20, $10, $e7
 	plp                                                  ; $e70e : $28
 	rts                                                  ; $e70f : $60
@@ -15738,7 +15738,7 @@ Call_01_e710:
 	lda $28                                                  ; $e720 : $a5, $28
 	sta CX4_R2.w                                                  ; $e722 : $8d, $86, $7f
 	lda $2a                                                  ; $e725 : $a5, $2a
-	sta  CX4_R3.w                                                  ; $e727 : $8d, $89, $7f
+	sta CX4_R3.w                                                  ; $e727 : $8d, $89, $7f
 	sep #ACCU_8                                                  ; $e72a : $e2, $20
 	ldx #$12.b                                                  ; $e72c : $a2, $12
 
@@ -15767,7 +15767,7 @@ Call_01_e743:
 	stz $00c6.w                                                  ; $e74c : $9c, $c6, $00
 	stz $00c8.w                                                  ; $e74f : $9c, $c8, $00
 	lda #$f0.b                                                  ; $e752 : $a9, $f0
-	trb $00c9.w                                                  ; $e754 : $1c, $c9, $00
+	trb wColourAdditionSelect.w                                                  ; $e754 : $1c, $c9, $00
 	stz $2127.w                                                  ; $e757 : $9c, $27, $21
 	lda #$ff.b                                                  ; $e75a : $a9, $ff
 	sta $2126.w                                                  ; $e75c : $8d, $26, $21
@@ -16963,9 +16963,9 @@ br_01_eefa:
 	sta $02                                                  ; $ef00 : $85, $02
 	lda #$06.b                                                  ; $ef02 : $a9, $06
 	jsr $01802b.l                                                  ; $ef04 : $22, $2b, $80, $01
-	stz $00c9.w                                                  ; $ef08 : $9c, $c9, $00
+	stz wColourAdditionSelect.w                                                  ; $ef08 : $9c, $c9, $00
 	lda #$3f.b                                                  ; $ef0b : $a9, $3f
-	sta $00ca.w                                                  ; $ef0d : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $ef0d : $8d, $ca, $00
 
 br_01_ef10:
 	lda $09cc.w                                                  ; $ef10 : $ad, $cc, $09

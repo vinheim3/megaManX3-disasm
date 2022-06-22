@@ -7,7 +7,7 @@ build/wram.o: include/wram.s
 	wla-65816 -o $@ $<
 
 build/%.o: code/%.s
-	wla-65816 -D HACK -o $@ $<
+	wla-65816 -o $@ $<
 
 megaManX3.sfc: $(OBJS) $(RAM_OBJS)
 	wlalink -S linkfile $@

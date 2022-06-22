@@ -7651,132 +7651,50 @@ br_06_b11f:
 
 Call_06_b120:
 	.db $00                                                  ; $b120 : $00
-	bit $e6                                                  ; $b121 : $24, $e6
-	sbc $90ffae.l, X                                                  ; $b123 : $ff, $ae, $ff, $90
-	.db $00                                                  ; $b127 : $00
-	bpl br_06_b12a                                                  ; $b128 : $10, $00
 
-br_06_b12a:
-	ldx $90ff.w                                                  ; $b12a : $ae, $ff, $90
-	.db $00                                                  ; $b12d : $00
-	ina                                                  ; $b12e : $1a
-	.db $00                                                  ; $b12f : $00
-	ldx $90ff.w                                                  ; $b130 : $ae, $ff, $90
-	.db $00                                                  ; $b133 : $00
-	rol $ae00.w, X                                                  ; $b134 : $3e, $00, $ae
-	sbc $f20090.l, X                                                  ; $b137 : $ff, $90, $00, $f2
-	sbc $90ffb6.l, X                                                  ; $b13b : $ff, $b6, $ff, $90
-	.db $00                                                  ; $b13f : $00
-	tsb $00                                                  ; $b140 : $04, $00
-	ldx $ff, Y                                                  ; $b142 : $b6, $ff
-	bcc br_06_b146                                                  ; $b144 : $90, $00
 
-br_06_b146:
-	jsr $ffb600.l                                                  ; $b146 : $22, $00, $b6, $ff
-	bcc br_06_b14c                                                  ; $b14a : $90, $00
+XVector:
+@numVertices:
+	.db $24
+@vertexData:
+	.db $e6, $ff, $ae, $ff, $90, $00
+	.db $10, $00, $ae, $ff, $90, $00
+	.db $1a, $00, $ae, $ff, $90, $00
+	.db $3e, $00, $ae, $ff, $90, $00
+	.db $f2, $ff, $b6, $ff, $90, $00
+	.db $04, $00, $b6, $ff, $90, $00
+	.db $22, $00, $b6, $ff, $90, $00
+	.db $0a, $00, $cd, $ff, $90, $00
+	.db $fa, $ff, $dc, $ff, $90, $00
+	.db $0f, $00, $df, $ff, $90, $00
+	.db $fe, $ff, $ef, $ff, $90, $00
+	.db $e5, $ff, $08, $00, $90, $00
+	.db $04, $00, $06, $00, $90, $00
+	.db $16, $00, $06, $00, $90, $00
+	.db $cc, $ff, $0b, $00, $90, $00
+	.db $eb, $ff, $0b, $00, $90, $00
+	.db $fd, $ff, $0b, $00, $90, $00
+	.db $1f, $00, $0b, $00, $90, $00
+	.db $e6, $ff, $ae, $ff, $9a, $00
+	.db $10, $00, $ae, $ff, $9a, $00
+	.db $1a, $00, $ae, $ff, $9a, $00
+	.db $3e, $00, $ae, $ff, $9a, $00
+	.db $f2, $ff, $b6, $ff, $9a, $00
+	.db $04, $00, $b6, $ff, $9a, $00
+	.db $22, $00, $b6, $ff, $9a, $00
+	.db $0a, $00, $cd, $ff, $9a, $00
+	.db $fa, $ff, $dc, $ff, $9a, $00
+	.db $0f, $00, $df, $ff, $9a, $00
+	.db $fe, $ff, $ef, $ff, $9a, $00
+	.db $e5, $ff, $08, $00, $9a, $00
+	.db $04, $00, $06, $00, $9a, $00
+	.db $16, $00, $06, $00, $9a, $00
+	.db $cc, $ff, $0b, $00, $9a, $00
+	.db $eb, $ff, $0b, $00, $9a, $00
+	.db $fd, $ff, $0b, $00, $9a, $00
+	.db $1f, $00, $0b, $00, $9a, $00
 
-br_06_b14c:
-	asl                                                  ; $b14c : $0a
-	.db $00                                                  ; $b14d : $00
-	cmp $90ff.w                                                  ; $b14e : $cd, $ff, $90
-	.db $00                                                  ; $b151 : $00
-	plx                                                  ; $b152 : $fa
-	sbc $90ffdc.l, X                                                  ; $b153 : $ff, $dc, $ff, $90
-	.db $00                                                  ; $b157 : $00
-	ora $ffdf00.l                                                  ; $b158 : $0f, $00, $df, $ff
-	bcc br_06_b15e                                                  ; $b15c : $90, $00
 
-br_06_b15e:
-	inc $efff.w, X                                                  ; $b15e : $fe, $ff, $ef
-	sbc $e50090.l, X                                                  ; $b161 : $ff, $90, $00, $e5
-	sbc $900008.l, X                                                  ; $b165 : $ff, $08, $00, $90
-	.db $00                                                  ; $b169 : $00
-	tsb $00                                                  ; $b16a : $04, $00
-	asl $00                                                  ; $b16c : $06, $00
-	bcc br_06_b170                                                  ; $b16e : $90, $00
-
-br_06_b170:
-	asl $00, X                                                  ; $b170 : $16, $00
-	asl $00                                                  ; $b172 : $06, $00
-	bcc br_06_b176                                                  ; $b174 : $90, $00
-
-br_06_b176:
-	cpy $0bff.w                                                  ; $b176 : $cc, $ff, $0b
-	.db $00                                                  ; $b179 : $00
-	bcc br_06_b17c                                                  ; $b17a : $90, $00
-
-br_06_b17c:
-	xba                                                  ; $b17c : $eb
-	sbc $90000b.l, X                                                  ; $b17d : $ff, $0b, $00, $90
-	.db $00                                                  ; $b181 : $00
-	sbc $0bff.w, X                                                  ; $b182 : $fd, $ff, $0b
-	.db $00                                                  ; $b185 : $00
-	bcc br_06_b188                                                  ; $b186 : $90, $00
-
-br_06_b188:
-	ora $000b00.l, X                                                  ; $b188 : $1f, $00, $0b, $00
-	bcc br_06_b18e                                                  ; $b18c : $90, $00
-
-br_06_b18e:
-	inc $ff                                                  ; $b18e : $e6, $ff
-	ldx $9aff.w                                                  ; $b190 : $ae, $ff, $9a
-	.db $00                                                  ; $b193 : $00
-	bpl br_06_b196                                                  ; $b194 : $10, $00
-
-br_06_b196:
-	ldx $9aff.w                                                  ; $b196 : $ae, $ff, $9a
-	.db $00                                                  ; $b199 : $00
-	ina                                                  ; $b19a : $1a
-	.db $00                                                  ; $b19b : $00
-	ldx $9aff.w                                                  ; $b19c : $ae, $ff, $9a
-	.db $00                                                  ; $b19f : $00
-	rol $ae00.w, X                                                  ; $b1a0 : $3e, $00, $ae
-	sbc $f2009a.l, X                                                  ; $b1a3 : $ff, $9a, $00, $f2
-	sbc $9affb6.l, X                                                  ; $b1a7 : $ff, $b6, $ff, $9a
-	.db $00                                                  ; $b1ab : $00
-	tsb $00                                                  ; $b1ac : $04, $00
-	ldx $ff, Y                                                  ; $b1ae : $b6, $ff
-	txs                                                  ; $b1b0 : $9a
-	.db $00                                                  ; $b1b1 : $00
-	jsr $ffb600.l                                                  ; $b1b2 : $22, $00, $b6, $ff
-	txs                                                  ; $b1b6 : $9a
-	.db $00                                                  ; $b1b7 : $00
-	asl                                                  ; $b1b8 : $0a
-	.db $00                                                  ; $b1b9 : $00
-	cmp $9aff.w                                                  ; $b1ba : $cd, $ff, $9a
-	.db $00                                                  ; $b1bd : $00
-	plx                                                  ; $b1be : $fa
-	sbc $9affdc.l, X                                                  ; $b1bf : $ff, $dc, $ff, $9a
-	.db $00                                                  ; $b1c3 : $00
-	ora $ffdf00.l                                                  ; $b1c4 : $0f, $00, $df, $ff
-	txs                                                  ; $b1c8 : $9a
-	.db $00                                                  ; $b1c9 : $00
-	inc $efff.w, X                                                  ; $b1ca : $fe, $ff, $ef
-	sbc $e5009a.l, X                                                  ; $b1cd : $ff, $9a, $00, $e5
-	sbc $9a0008.l, X                                                  ; $b1d1 : $ff, $08, $00, $9a
-	.db $00                                                  ; $b1d5 : $00
-	tsb $00                                                  ; $b1d6 : $04, $00
-	asl $00                                                  ; $b1d8 : $06, $00
-	txs                                                  ; $b1da : $9a
-	.db $00                                                  ; $b1db : $00
-	asl $00, X                                                  ; $b1dc : $16, $00
-	asl $00                                                  ; $b1de : $06, $00
-	txs                                                  ; $b1e0 : $9a
-	.db $00                                                  ; $b1e1 : $00
-	cpy $0bff.w                                                  ; $b1e2 : $cc, $ff, $0b
-	.db $00                                                  ; $b1e5 : $00
-	txs                                                  ; $b1e6 : $9a
-	.db $00                                                  ; $b1e7 : $00
-	xba                                                  ; $b1e8 : $eb
-	sbc $9a000b.l, X                                                  ; $b1e9 : $ff, $0b, $00, $9a
-	.db $00                                                  ; $b1ed : $00
-	sbc $0bff.w, X                                                  ; $b1ee : $fd, $ff, $0b
-	.db $00                                                  ; $b1f1 : $00
-	txs                                                  ; $b1f2 : $9a
-	.db $00                                                  ; $b1f3 : $00
-	ora $000b00.l, X                                                  ; $b1f4 : $1f, $00, $0b, $00
-	txs                                                  ; $b1f8 : $9a
-	.db $00                                                  ; $b1f9 : $00
 	rol $00, X                                                  ; $b1fa : $36, $00
 	.db $00                                                  ; $b1fc : $00
 	ora ($02, X)                                                  ; $b1fd : $01, $02

@@ -3548,7 +3548,7 @@ br_31_95be:
 	bmi br_31_95f5                                                  ; $95cb : $30, $28
 
 	plp                                                  ; $95cd : $28
-	ldy $00b4.w, X                                                  ; $95ce : $bc, $b4, $00
+	ldy wScreenDisplay.w, X                                                  ; $95ce : $bc, $b4, $00
 	.db $00                                                  ; $95d1 : $00
 	.db $00                                                  ; $95d2 : $00
 	.db $00                                                  ; $95d3 : $00
@@ -15201,7 +15201,7 @@ br_31_ddde:
 br_31_ddee:
 	.db $00                                                  ; $ddee : $00
 	.db $00                                                  ; $ddef : $00
-	ror CX4_R6.w, X                                                  ; $ddf0 : $7e, $8f, $7f
+	ror CX4_R5.w, X                                                  ; $ddf0 : $7e, $8f, $7f
 	sta $308f7f.l                                                  ; $ddf3 : $8f, $7f, $8f, $30
 	beq br_31_ddb9                                                  ; $ddf7 : $f0, $c0
 

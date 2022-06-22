@@ -1774,10 +1774,10 @@ br_05_8cfc:
 	lda #$17.b                                                  ; $8d07 : $a9, $17
 	sta $212e.w                                                  ; $8d09 : $8d, $2e, $21
 	sta $1fa9.w                                                  ; $8d0c : $8d, $a9, $1f
-	lda $00c9.w                                                  ; $8d0f : $ad, $c9, $00
+	lda wColourAdditionSelect.w                                                  ; $8d0f : $ad, $c9, $00
 	and #$03.b                                                  ; $8d12 : $29, $03
 	ora #$82.b                                                  ; $8d14 : $09, $82
-	sta $00c9.w                                                  ; $8d16 : $8d, $c9, $00
+	sta wColourAdditionSelect.w                                                  ; $8d16 : $8d, $c9, $00
 	rts                                                  ; $8d19 : $60
 
 
@@ -1795,8 +1795,8 @@ Call_05_8d1a:
 	clc                                                  ; $8d30 : $18
 	adc $35                                                  ; $8d31 : $65, $35
 	and #$00ff.w                                                  ; $8d33 : $29, $ff, $00
-	sta CX4_R6.w                                                  ; $8d36 : $8d, $8f, $7f
-	stz CX4_R7.w                                                  ; $8d39 : $9c, $92, $7f
+	sta CX4_R5.w                                                  ; $8d36 : $8d, $8f, $7f
+	stz CX4_R6.w                                                  ; $8d39 : $9c, $92, $7f
 	jsr Call_05_8d41.w                                                  ; $8d3c : $20, $41, $8d
 	plp                                                  ; $8d3f : $28
 	rts                                                  ; $8d40 : $60
@@ -1811,7 +1811,7 @@ Call_05_8d41:
 	lda $36                                                  ; $8d4f : $a5, $36
 	sta CX4_R2.w                                                  ; $8d51 : $8d, $86, $7f
 	lda $38                                                  ; $8d54 : $a5, $38
-	sta  CX4_R3.w                                                  ; $8d56 : $8d, $89, $7f
+	sta CX4_R3.w                                                  ; $8d56 : $8d, $89, $7f
 	sep #ACCU_8                                                  ; $8d59 : $e2, $20
 	ldx #$9e12.w                                                  ; $8d5b : $a2, $12, $9e
 	.db $82                                                  ; $8d5e : $82
@@ -2638,7 +2638,7 @@ br_05_9257:
 	beq br_05_926e                                                  ; $925f : $f0, $0d
 
 	lda #$02.b                                                  ; $9261 : $a9, $02
-	trb $00c1.w                                                  ; $9263 : $1c, $c1, $00
+	trb wMainScreenDesignation.w                                                  ; $9263 : $1c, $c1, $00
 
 br_05_9266:
 	lda #$0a.b                                                  ; $9266 : $a9, $0a
@@ -4464,7 +4464,7 @@ br_05_9dfa:
 	beq br_05_9e0f                                                  ; $9e00 : $f0, $0d
 
 	lda #$11.b                                                  ; $9e02 : $a9, $11
-	sta $00c1.w                                                  ; $9e04 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $9e04 : $8d, $c1, $00
 	lda #$06.b                                                  ; $9e07 : $a9, $06
 	sta $3a                                                  ; $9e09 : $85, $3a
 	lda #$1e.b                                                  ; $9e0b : $a9, $1e
@@ -4752,7 +4752,7 @@ br_05_9fb2:
 	lda $08                                                  ; $9ff1 : $a5, $08
 	sta $08a3.w                                                  ; $9ff3 : $8d, $a3, $08
 	lda #$13.b                                                  ; $9ff6 : $a9, $13
-	sta $00c1.w                                                  ; $9ff8 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $9ff8 : $8d, $c1, $00
 	lda #$01.b                                                  ; $9ffb : $a9, $01
 	sta $0e                                                  ; $9ffd : $85, $0e
 	lda #$40.b                                                  ; $9fff : $a9, $40
@@ -4779,7 +4779,7 @@ br_05_9fb2:
 	lda #$09.b                                                  ; $a037 : $a9, $09
 	sta $00ce.w                                                  ; $a039 : $8d, $ce, $00
 	lda #$13.b                                                  ; $a03c : $a9, $13
-	sta $00c1.w                                                  ; $a03e : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $a03e : $8d, $c1, $00
 	stz $3d                                                  ; $a041 : $64, $3d
 	stz $3e                                                  ; $a043 : $64, $3e
 	stz $3f                                                  ; $a045 : $64, $3f
@@ -5171,7 +5171,7 @@ Call_05_a280:
 
 br_05_a285:
 	lda #$13.b                                                  ; $a285 : $a9, $13
-	sta $00c1.w                                                  ; $a287 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $a287 : $8d, $c1, $00
 	rts                                                  ; $a28a : $60
 
 
@@ -10389,7 +10389,7 @@ Call_05_c2e8:
 	jsr $00b4ff.l                                                  ; $c2f2 : $22, $ff, $b4, $00
 	pld                                                  ; $c2f6 : $2b
 	lda #$17.b                                                  ; $c2f7 : $a9, $17
-	sta $00c1.w                                                  ; $c2f9 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $c2f9 : $8d, $c1, $00
 	rep #ACCU_8                                                  ; $c2fc : $c2, $20
 	stz $00bf.w                                                  ; $c2fe : $9c, $bf, $00
 	stz $00bd.w                                                  ; $c301 : $9c, $bd, $00

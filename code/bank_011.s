@@ -6632,7 +6632,7 @@ br_11_a4e6:
 	jmp $1f00.w                                                  ; $a510 : $4c, $00, $1f
 
 
-	ora $00b9.w                                                  ; $a513 : $0d, $b9, $00
+	ora wBG2HorizScroll.w                                                  ; $a513 : $0d, $b9, $00
 	ora [$0d], Y                                                  ; $a516 : $17, $0d
 	clv                                                  ; $a518 : $b8
 	.db $00                                                  ; $a519 : $00
@@ -7066,7 +7066,7 @@ br_11_a7f1:
 	ora ($8f, S), Y                                                  ; $a7fe : $13, $8f
 	.db $00                                                  ; $a800 : $00
 	ora $0b, X                                                  ; $a801 : $15, $0b
-	sta $2100.w                                                  ; $a803 : $8d, $00, $21
+	sta INIDISP.w                                                  ; $a803 : $8d, $00, $21
 	phd                                                  ; $a806 : $0b
 	stx $1900.w                                                  ; $a807 : $8e, $00, $19
 	phd                                                  ; $a80a : $0b
@@ -7192,7 +7192,7 @@ br_11_a8a5:
 	.db $00                                                  ; $a8d1 : $00
 	tsb $18                                                  ; $a8d2 : $04, $18
 	sta $100400.l                                                  ; $a8d4 : $8f, $00, $04, $10
-	sta $2100.w                                                  ; $a8d8 : $8d, $00, $21
+	sta INIDISP.w                                                  ; $a8d8 : $8d, $00, $21
 	clc                                                  ; $a8db : $18
 	bcc br_11_a8de                                                  ; $a8dc : $90, $00
 
@@ -7203,7 +7203,7 @@ br_11_a8de:
 	.db $00                                                  ; $a8e5 : $00
 	trb $18                                                  ; $a8e6 : $14, $18
 	sta $101400.l                                                  ; $a8e8 : $8f, $00, $14, $10
-	sta $2100.w                                                  ; $a8ec : $8d, $00, $21
+	sta INIDISP.w                                                  ; $a8ec : $8d, $00, $21
 	.db $10, $8e                                                  ; $a8ef : $10, $8e
 
 br_11_a8f1:
@@ -7439,7 +7439,7 @@ br_11_aa59:
 	sta $1100.w                                                  ; $aa92 : $8d, $00, $11
 	clc                                                  ; $aa95 : $18
 	sta $101100.l                                                  ; $aa96 : $8f, $00, $11, $10
-	sta $2100.w                                                  ; $aa9a : $8d, $00, $21
+	sta INIDISP.w                                                  ; $aa9a : $8d, $00, $21
 	clc                                                  ; $aa9d : $18
 	bcc br_11_aaa0                                                  ; $aa9e : $90, $00
 
@@ -7559,7 +7559,7 @@ br_11_ab15:
 	sta $1300.w                                                  ; $ab6f : $8d, $00, $13
 	clc                                                  ; $ab72 : $18
 	sta $101300.l                                                  ; $ab73 : $8f, $00, $13, $10
-	sta $2100.w                                                  ; $ab77 : $8d, $00, $21
+	sta INIDISP.w                                                  ; $ab77 : $8d, $00, $21
 	clc                                                  ; $ab7a : $18
 	bcc br_11_ab7d                                                  ; $ab7b : $90, $00
 
@@ -7686,7 +7686,7 @@ br_11_abfa:
 	sta $1300.w                                                  ; $ac54 : $8d, $00, $13
 	clc                                                  ; $ac57 : $18
 	sta $101300.l                                                  ; $ac58 : $8f, $00, $13, $10
-	sta $2100.w                                                  ; $ac5c : $8d, $00, $21
+	sta INIDISP.w                                                  ; $ac5c : $8d, $00, $21
 	clc                                                  ; $ac5f : $18
 	bcc br_11_ac62                                                  ; $ac60 : $90, $00
 
@@ -7815,7 +7815,7 @@ Call_11_acff:
 	.db $00                                                  ; $ad36 : $00
 	tsb $18                                                  ; $ad37 : $04, $18
 	sta $100400.l                                                  ; $ad39 : $8f, $00, $04, $10
-	sta $2100.w                                                  ; $ad3d : $8d, $00, $21
+	sta INIDISP.w                                                  ; $ad3d : $8d, $00, $21
 	clc                                                  ; $ad40 : $18
 	bcc br_11_ad43                                                  ; $ad41 : $90, $00
 
@@ -7826,7 +7826,7 @@ br_11_ad43:
 	.db $00                                                  ; $ad4a : $00
 	trb $18                                                  ; $ad4b : $14, $18
 	sta $101400.l                                                  ; $ad4d : $8f, $00, $14, $10
-	sta $2100.w                                                  ; $ad51 : $8d, $00, $21
+	sta INIDISP.w                                                  ; $ad51 : $8d, $00, $21
 	.db $10, $8e                                                  ; $ad54 : $10, $8e
 
 br_11_ad56:
@@ -12920,7 +12920,7 @@ br_11_cd31:
 	sbc ($ec), Y                                                  ; $cd80 : $f1, $ec
 	.db $00                                                  ; $cd82 : $00
 	asl $ed                                                  ; $cd83 : $06, $ed
-	cpx $2100.w                                                  ; $cd85 : $ec, $00, $21
+	cpx INIDISP.w                                                  ; $cd85 : $ec, $00, $21
 	cop $ed.b                                                  ; $cd88 : $02, $ed
 	rol                                                  ; $cd8a : $2a
 	rts                                                  ; $cd8b : $60
@@ -13453,7 +13453,7 @@ br_11_d10d:
 	ora $e6, S                                                  ; $d179 : $03, $e6
 	cpx $0300.w                                                  ; $d17b : $ec, $00, $03
 	xba                                                  ; $d17e : $eb
-	cpx $2100.w                                                  ; $d17f : $ec, $00, $21
+	cpx INIDISP.w                                                  ; $d17f : $ec, $00, $21
 	plx                                                  ; $d182 : $fa
 	sbc $0029.w                                                  ; $d183 : $ed, $29, $00
 	inc $e5ef.w                                                  ; $d186 : $ee, $ef, $e5

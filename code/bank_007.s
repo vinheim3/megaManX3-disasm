@@ -3,11 +3,12 @@
 .bank $007 slot 3
 .org $0
 
-	lda #$eb00.w                                                  ; $8000 : $a9, $00, $eb
-	lda #$5b00.w                                                  ; $8003 : $a9, $00, $5b
-	lda #$8d01.w                                                  ; $8006 : $a9, $01, $8d
-	.db $00                                                  ; $8009 : $00
-	wdm                                                  ; $800a : $42
+	lda #$00.b                                                  ; $8000 : $a9, $00
+	xba                                                  ; $8002 : $eb
+	lda #$00.b                                                  ; $8003 : $a9, $00
+	tcd                                                  ; $8005 : $5b
+	lda #$01.b                                                  ; $8006 : $a9, $01
+	sta $4200.w                                                  ; $8008 : $8d, $00, $42
 	stz $1fde.w                                                  ; $800b : $9c, $de, $1f
 	lda $b11a.w                                                  ; $800e : $ad, $1a, $b1
 	sta $0a58.w                                                  ; $8011 : $8d, $58, $0a
@@ -17,39 +18,37 @@
 	sta $0a5a.w                                                  ; $801d : $8d, $5a, $0a
 	stz $0a5c.w                                                  ; $8020 : $9c, $5c, $0a
 	stz $0a5b.w                                                  ; $8023 : $9c, $5b, $0a
-	lda #$8f11.w                                                  ; $8026 : $a9, $11, $8f
-	.db $00                                                  ; $8029 : $00
-	sbc ($7f), Y                                                  ; $802a : $f1, $7f
-	lda #$8f06.w                                                  ; $802c : $a9, $06, $8f
-	ora ($f1, X)                                                  ; $802f : $01, $f1
-	adc $8f00a9.l, X                                                  ; $8031 : $7f, $a9, $00, $8f
-	cop $f1.b                                                  ; $8035 : $02, $f1
-	adc $8daea9.l, X                                                  ; $8037 : $7f, $a9, $ae, $8d
-	sed                                                  ; $803b : $f8
-	ora $8d24a9.l, X                                                  ; $803c : $1f, $a9, $24, $8d
-	sbc $a91f.w, Y                                                  ; $8040 : $f9, $1f, $a9
-	sbc $42078d.l, X                                                  ; $8043 : $ff, $8d, $07, $42
+	lda #$11.b                                                  ; $8026 : $a9, $11
+	sta $7ff100.l                                                  ; $8028 : $8f, $00, $f1, $7f
+	lda #$06.b                                                  ; $802c : $a9, $06
+	sta $7ff101.l                                                  ; $802e : $8f, $01, $f1, $7f
+	lda #$00.b                                                  ; $8032 : $a9, $00
+	sta $7ff102.l                                                  ; $8034 : $8f, $02, $f1, $7f
+	lda #$ae.b                                                  ; $8038 : $a9, $ae
+	sta $1ff8.w                                                  ; $803a : $8d, $f8, $1f
+	lda #$24.b                                                  ; $803d : $a9, $24
+	sta $1ff9.w                                                  ; $803f : $8d, $f9, $1f
+	lda #$ff.b                                                  ; $8042 : $a9, $ff
+	sta $4207.w                                                  ; $8044 : $8d, $07, $42
 	stz $4208.w                                                  ; $8047 : $9c, $08, $42
-	lda #$8d20.w                                                  ; $804a : $a9, $20, $8d
-	ora #$9c42.w                                                  ; $804d : $09, $42, $9c
-	asl                                                  ; $8050 : $0a
-	wdm                                                  ; $8051 : $42
+	lda #$20.b                                                  ; $804a : $a9, $20
+	sta $4209.w                                                  ; $804c : $8d, $09, $42
+	stz $420a.w                                                  ; $804f : $9c, $0a, $42
 	stz $1fdc.w                                                  ; $8052 : $9c, $dc, $1f
-	lda #$8d31.w                                                  ; $8055 : $a9, $31, $8d
-	.db $00                                                  ; $8058 : $00
-	wdm                                                  ; $8059 : $42
-	lda #$8d01.w                                                  ; $805a : $a9, $01, $8d
-	ora $21                                                  ; $805d : $05, $21
-	stz $2131.w                                                  ; $805f : $9c, $31, $21
-	stz $00ca.w                                                  ; $8062 : $9c, $ca, $00
-	lda #$8d06.w                                                  ; $8065 : $a9, $06, $8d
-	cmp [$00]                                                  ; $8068 : $c7, $00
-	lda #$8d78.w                                                  ; $806a : $a9, $78, $8d
-	dec $a900.w                                                  ; $806d : $ce, $00, $a9
-	ora #$cf8d.w                                                  ; $8070 : $09, $8d, $cf
-	.db $00                                                  ; $8073 : $00
-	inc $1fdd.w                                                  ; $8074 : $ee, $dd, $1f
-	jsr $008b78.l                                                  ; $8077 : $22, $78, $8b, $00
+	lda #$31.b                                                  ; $8055 : $a9, $31
+	sta $4200.w                                                  ; $8057 : $8d, $00, $42
+	lda #$01.b                                                  ; $805a : $a9, $01
+	sta $2105.w                                                  ; $805c : $8d, $05, $21
+	stz CGADSUB.w                                                  ; $805f : $9c, $31, $21
+	stz wColourMathDesignation.w                                                  ; $8062 : $9c, $ca, $00
+	lda #$06.b                                                  ; $8065 : $a9, $06
+	sta $00c7.w                                                  ; $8067 : $8d, $c7, $00
+	lda #$78.b                                                  ; $806a : $a9, $78
+	sta $00ce.w                                                  ; $806c : $8d, $ce, $00
+	lda #$09.b                                                  ; $806f : $a9, $09
+	sta $00cf.w                                                  ; $8071 : $8d, $cf, $00
+	inc wXVectorTileDataUpdatePending.w                                                  ; $8074 : $ee, $dd, $1f
+	jsr Func_0_8b78.l                                                  ; $8077 : $22, $78, $8b, $00
 	rep #ACCU_8                                                  ; $807b : $c2, $20
 	lda $b11d.w                                                  ; $807d : $ad, $1d, $b1
 	sta $09e9.w                                                  ; $8080 : $8d, $e9, $09
@@ -62,65 +61,73 @@
 	sta $0306.w                                                  ; $8095 : $8d, $06, $03
 	sep #ACCU_8                                                  ; $8098 : $e2, $20
 	inc $00a1.w                                                  ; $809a : $ee, $a1, $00
-	ldx #$bd0f.w                                                  ; $809d : $a2, $0f, $bd
-	cop $b1.b                                                  ; $80a0 : $02, $b1
+	ldx #$0f.b                                                  ; $809d : $a2, $0f
+-	lda $b102.w, X                                                  ; $809f : $bd, $02, $b1
 	sta $7eaf00.l, X                                                  ; $80a2 : $9f, $00, $af, $7e
 	dex                                                  ; $80a6 : $ca
-	.db $10, $f6                                                  ; $80a7 : $10, $f6
+	bpl -                                                  ; $80a7 : $10, $f6
 
 Call_07_80a9:
 	stz CX4_UNK_7F4C.w                                                  ; $80a9 : $9c, $4c, $7f
 	lda #$31.b                                                  ; $80ac : $a9, $31
 	sta NMITIMEN.w                                                  ; $80ae : $8d, $00, $42
+
+; Set page pointer to where transform lines is
 	sei                                                  ; $80b1 : $78
 	lda #$05.b                                                  ; $80b2 : $a9, $05
-	ldx #$2200.w                                                  ; $80b4 : $a2, $00, $22
-	lda $587e26.l                                                  ; $80b7 : $af, $26, $7e, $58
-	jsr $008879.l                                                  ; $80bb : $22, $79, $88, $00
+	ldx #$00.b                                                  ; $80b4 : $a2, $00
+	jsr wSetCx4InsPageWithIntsEnabled.l                                                  ; $80b6 : $22
+	cli                                                  ; $80ba : $58
+
+;
+	jsr Func_0_8879.l                                                  ; $80bb : $22, $79, $88, $00
 	lda #$05.b                                                  ; $80bf : $a9, $05
-	sta $00c1.w                                                  ; $80c1 : $8d, $c1, $00
-	sta $00c2.w                                                  ; $80c4 : $8d, $c2, $00
+	sta wMainScreenDesignation.w                                                  ; $80c1 : $8d, $c1, $00
+	sta wSubScreenDesignation.w                                                  ; $80c4 : $8d, $c2, $00
 	lda #$01.b                                                  ; $80c7 : $a9, $01
 	sta $0a5e.w                                                  ; $80c9 : $8d, $5e, $0a
 
-br_07_80cc:
-	jsr Call_07_8367.w                                                  ; $80cc : $20, $67, $83
+@loop_80cc:
+	jsr ClearShadowXVectorTileData.w                                                  ; $80cc : $20, $67, $83
 	jsr Call_07_82da.w                                                  ; $80cf : $20, $da, $82
 	jsr Call_07_829b.w                                                  ; $80d2 : $20, $9b, $82
 	lda #$31.b                                                  ; $80d5 : $a9, $31
 	sta NMITIMEN.w                                                  ; $80d7 : $8d, $00, $42
+
+; transform lines
 	sei                                                  ; $80da : $78
 	lda #$05.b                                                  ; $80db : $a9, $05
-	ldy #$2200.w                                                  ; $80dd : $a0, $00, $22
-	lda ($26)                                                  ; $80e0 : $b2, $26
-	ror $2058.w, X                                                  ; $80e2 : $7e, $58, $20
-	stz $ee83.w, X                                                  ; $80e5 : $9e, $83, $ee
-	cmp $201f.w, X                                                  ; $80e8 : $dd, $1f, $20
-	stx $81                                                  ; $80eb : $86, $81
-	jsr $008bb4.l                                                  ; $80ed : $22, $b4, $8b, $00
+	ldy #$00.b                                                  ; $80dd : $a0, $00
+	jsr wSetCx4InsPagePtrWithIntsEnabled.l                                                  ; $80df : $22, $b2, $26, $7e
+	cli                                                  ; $80e3 : $58
 
-br_07_80f1:
-	jsr $008879.l                                                  ; $80f1 : $22, $79, $88, $00
-	lda $1fdd.w                                                  ; $80f5 : $ad, $dd, $1f
-	bne br_07_80f1                                                  ; $80f8 : $d0, $f7
+;
+	jsr Func_7_839e.w                                                  ; $80e4 : $20, $9e, $83
+	inc wXVectorTileDataUpdatePending.w                                                  ; $80e7 : $ee, $dd, $1f
+	jsr Func_7_8186.w                                                  ; $80ea : $20, $86, $81
+	jsr Func_0_8bb4.l                                                  ; $80ed : $22, $b4, $8b, $00
+
+-	jsr Func_0_8879.l                                                  ; $80f1 : $22, $79, $88, $00
+	lda wXVectorTileDataUpdatePending.w                                                  ; $80f5 : $ad, $dd, $1f
+	bne -                                                  ; $80f8 : $d0, $f7
 
 	lda $0a5e.w                                                  ; $80fa : $ad, $5e, $0a
-	bne br_07_80cc                                                  ; $80fd : $d0, $cd
+	bne @loop_80cc                                                  ; $80fd : $d0, $cd
 
+;
 	lda #$40.b                                                  ; $80ff : $a9, $40
-	sta $00b9.w                                                  ; $8101 : $8d, $b9, $00
-	stz $00ba.w                                                  ; $8104 : $9c, $ba, $00
+	sta wBG2HorizScroll.w                                                  ; $8101 : $8d, $b9, $00
+	stz wBG2HorizScroll.w+1                                                  ; $8104 : $9c, $ba, $00
 	lda #$c0.b                                                  ; $8107 : $a9, $c0
-	sta $00bb.w                                                  ; $8109 : $8d, $bb, $00
+	sta wBG2VertScroll.w                                                  ; $8109 : $8d, $bb, $00
 	lda #$ff.b                                                  ; $810c : $a9, $ff
-	sta $00bc.w                                                  ; $810e : $8d, $bc, $00
+	sta wBG2VertScroll.w+1                                                  ; $810e : $8d, $bc, $00
 
-br_07_8111:
-	jsr $008879.l                                                  ; $8111 : $22, $79, $88, $00
+-	jsr Func_0_8879.l                                                  ; $8111 : $22, $79, $88, $00
 	lda $0040.w                                                  ; $8115 : $ad, $40, $00
-	bne br_07_8111                                                  ; $8118 : $d0, $f7
+	bne -                                                  ; $8118 : $d0, $f7
 
-	jsr $00883d.l                                                  ; $811a : $22, $3d, $88, $00
+	jsr Func_0_883d.l                                                  ; $811a : $22, $3d, $88, $00
 	lda #$01.b                                                  ; $811e : $a9, $01
 	sta $0d18.w                                                  ; $8120 : $8d, $18, $0d
 	lda #$02.b                                                  ; $8123 : $a9, $02
@@ -128,24 +135,22 @@ br_07_8111:
 	lda #$07.b                                                  ; $8128 : $a9, $07
 	sta $0d22.w                                                  ; $812a : $8d, $22, $0d
 	stz $0d55.w                                                  ; $812d : $9c, $55, $0d
-	ldy #$2202.w                                                  ; $8130 : $a0, $02, $22
-	tcd                                                  ; $8133 : $5b
-	.db $80, $01                                                  ; $8134 : $80, $01
-
+	ldy #$02.b                                                  ; $8130 : $a0, $02
+	jsr Func_1_805b.l                                                  ; $8132 : $22, $5b, $80, $01
 	lda #$04.b                                                  ; $8136 : $a9, $04
 	sta $1f22.w                                                  ; $8138 : $8d, $22, $1f
 	lda #$04.b                                                  ; $813b : $a9, $04
 	sta $1f23.w                                                  ; $813d : $8d, $23, $1f
-	jsr $00dd55.l                                                  ; $8140 : $22, $55, $dd, $00
+	jsr FarBuildOam.l                                                  ; $8140 : $22, $55, $dd, $00
 	stz $00e4.w                                                  ; $8144 : $9c, $e4, $00
 	stz $00e6.w                                                  ; $8147 : $9c, $e6, $00
 	lda #$08.b                                                  ; $814a : $a9, $08
 	sta $1f22.w                                                  ; $814c : $8d, $22, $1f
 
 br_07_814f:
-	jsr $008879.l                                                  ; $814f : $22, $79, $88, $00
+	jsr Func_0_8879.l                                                  ; $814f : $22, $79, $88, $00
 	jsr $00dd4f.l                                                  ; $8153 : $22, $4f, $dd, $00
-	jsr $00dd55.l                                                  ; $8157 : $22, $55, $dd, $00
+	jsr FarBuildOam.l                                                  ; $8157 : $22, $55, $dd, $00
 	lda $0d55.w                                                  ; $815b : $ad, $55, $0d
 	beq br_07_814f                                                  ; $815e : $f0, $ef
 
@@ -153,7 +158,7 @@ br_07_814f:
 	sta $0a5f.w                                                  ; $8162 : $8d, $5f, $0a
 
 br_07_8165:
-	jsr $008879.l                                                  ; $8165 : $22, $79, $88, $00
+	jsr Func_0_8879.l                                                  ; $8165 : $22, $79, $88, $00
 	dec $0a5f.w                                                  ; $8169 : $ce, $5f, $0a
 	bne br_07_8165                                                  ; $816c : $d0, $f7
 
@@ -168,6 +173,7 @@ br_07_8165:
 	rtl                                                  ; $8185 : $6b
 
 
+Func_7_8186:
 	lda $0a5e.w                                                  ; $8186 : $ad, $5e, $0a
 	.db $f0, $25                                                  ; $8189 : $f0, $25
 
@@ -254,7 +260,7 @@ br_07_8209:
 	dec $0a5d.w                                                  ; $8212 : $ce, $5d, $0a
 	bne br_07_8232                                                  ; $8215 : $d0, $1b
 
-	stz $1fdd.w                                                  ; $8217 : $9c, $dd, $1f
+	stz wXVectorTileDataUpdatePending.w                                                  ; $8217 : $9c, $dd, $1f
 	jsr $0088a2.l                                                  ; $821a : $22, $a2, $88, $00
 	jsr UpdateIntsEnabledWithVBlank.l                                                  ; $821e : $22, $6b, $da, $04
 	rep #ACCU_8                                                  ; $8222 : $c2, $20
@@ -304,7 +310,7 @@ Call_07_8233:
 
 	eor $d00a.w, X                                                  ; $826b : $5d, $0a, $d0
 	tcs                                                  ; $826e : $1b
-	stz $1fdd.w                                                  ; $826f : $9c, $dd, $1f
+	stz wXVectorTileDataUpdatePending.w                                                  ; $826f : $9c, $dd, $1f
 	jsr $0088a2.l                                                  ; $8272 : $22, $a2, $88, $00
 	jsr UpdateIntsEnabledWithVBlank.l                                                  ; $8276 : $22, $6b, $da, $04
 	rep #ACCU_8                                                  ; $827a : $c2, $20
@@ -332,23 +338,34 @@ Jump_07_828b:
 
 
 Call_07_829b:
-	lda $b121.w                                                  ; $829b : $ad, $21, $b1
+; R0 = num vertices
+	lda XVector@numVertices.w                                                  ; $829b : $ad, $21, $b1
 	sta CX4_R0.w                                                  ; $829e : $8d, $80, $7f
 	stz CX4_R0.w+1                                                  ; $82a1 : $9c, $81, $7f
 	stz CX4_R0.w+2                                                  ; $82a4 : $9c, $82, $7f
+
+; R1 = pitch value
 	lda $0a58.w                                                  ; $82a7 : $ad, $58, $0a
 	sta CX4_R1.w                                                  ; $82aa : $8d, $83, $7f
 	stz CX4_R1.w+1                                                  ; $82ad : $9c, $84, $7f
 	stz CX4_R1.w+2                                                  ; $82b0 : $9c, $85, $7f
+
+; R2 ??? has something to do with point of rotation?
 	lda $0a59.w                                                  ; $82b3 : $ad, $59, $0a
 	sta CX4_R2.w                                                  ; $82b6 : $8d, $86, $7f
 	stz CX4_R2.w+1                                                  ; $82b9 : $9c, $87, $7f
 	stz CX4_R2.w+2                                                  ; $82bc : $9c, $88, $7f
+
+; R3+0 = roll value
 	lda $0a5a.w                                                  ; $82bf : $ad, $5a, $0a
-	sta  CX4_R3.w                                                  ; $82c2 : $8d, $89, $7f
-	lda #$8d90.w                                                  ; $82c5 : $a9, $90, $8d
-	txa                                                  ; $82c8 : $8a
-	adc $7f8b9c.l, X                                                  ; $82c9 : $7f, $9c, $8b, $7f
+	sta CX4_R3.w                                                  ; $82c2 : $8d, $89, $7f
+
+; something like camera height from
+	lda #$90.b                                                  ; $82c5 : $a9, $90
+	sta CX4_R3.w+1                                                  ; $82c7 : $8d, $8a, $7f
+	stz CX4_R3.w+2                                                  ; $82ca : $9c, $8b, $7f
+
+; R4 = distance from back (maxed at $90)
 	lda $0a5b.w                                                  ; $82cd : $ad, $5b, $0a
 	sta CX4_R4.w                                                  ; $82d0 : $8d, $8c, $7f
 	stz CX4_R4.w+1                                                  ; $82d3 : $9c, $8d, $7f
@@ -357,122 +374,159 @@ Call_07_829b:
 
 
 Call_07_82da:
-	lda $b121.w                                                  ; $82da : $ad, $21, $b1
+	lda XVector@numVertices.w                                                  ; $82da : $ad, $21, $b1
 	sta $00                                                  ; $82dd : $85, $00
 	stz $01                                                  ; $82df : $64, $01
-	ldx #$9b00.w                                                  ; $82e1 : $a2, $00, $9b
+
+;
+	ldx #$00.b                                                  ; $82e1 : $a2, $00
+	txy                                                  ; $82e3 : $9b
 	rep #ACCU_8|IDX_8                                                  ; $82e4 : $c2, $30
 
-br_07_82e6:
+@nextVertex:
 	stz $6000.w, X                                                  ; $82e6 : $9e, $00, $60
 	stz $6004.w, X                                                  ; $82e9 : $9e, $04, $60
 	stz $6008.w, X                                                  ; $82ec : $9e, $08, $60
-	lda $b122.w, Y                                                  ; $82ef : $b9, $22, $b1
+
+	lda XVector@vertexData.w, Y                                                  ; $82ef : $b9, $22, $b1
 	sta $6001.w, X                                                  ; $82f2 : $9d, $01, $60
-	lda $b124.w, Y                                                  ; $82f5 : $b9, $24, $b1
+
+	lda XVector@vertexData.w+2, Y                                                  ; $82f5 : $b9, $24, $b1
 	sta $6005.w, X                                                  ; $82f8 : $9d, $05, $60
-	lda $b126.w, Y                                                  ; $82fb : $b9, $26, $b1
+
+	lda XVector@vertexData.w+4, Y                                                  ; $82fb : $b9, $26, $b1
 	sta $6009.w, X                                                  ; $82fe : $9d, $09, $60
+
+; Y += 6
 	clc                                                  ; $8301 : $18
 	tya                                                  ; $8302 : $98
 	adc #$0006.w                                                  ; $8303 : $69, $06, $00
 	tay                                                  ; $8306 : $a8
+
+; X += $10
 	clc                                                  ; $8307 : $18
 	txa                                                  ; $8308 : $8a
 	adc #$0010.w                                                  ; $8309 : $69, $10, $00
 	tax                                                  ; $830c : $aa
+
 	dec $00                                                  ; $830d : $c6, $00
-	bne br_07_82e6                                                  ; $830f : $d0, $d5
+	bne @nextVertex                                                  ; $830f : $d0, $d5
 
+;
 	ldx #$006e.w                                                  ; $8311 : $a2, $6e, $00
-
-br_07_8314:
-	lda $b1f8.w, X                                                  ; $8314 : $bd, $f8, $b1
+-	lda $b1f8.w, X                                                  ; $8314 : $bd, $f8, $b1
 	sta $6afe.w, X                                                  ; $8317 : $9d, $fe, $6a
 	dex                                                  ; $831a : $ca
 	dex                                                  ; $831b : $ca
-	bne br_07_8314                                                  ; $831c : $d0, $f6
+	bne -                                                  ; $831c : $d0, $f6
 
 	sep #ACCU_8|IDX_8                                                  ; $831e : $e2, $30
 	rts                                                  ; $8320 : $60
 
 
-	jsr Call_07_8325.w                                                  ; $8321 : $20, $25, $83
-	rtl                                                  ; $8324 : $6b
+FarSetupXVectorTilemap:
+	jsr SetupXVectorTilemap.w                                                 ; $8321 : $20, $25, $83
+	rtl                                                                       ; $8324 : $6b
 
 
-Call_07_8325:
-	lda #$80.b                                                  ; $8325 : $a9, $80
-	sta VMAIN.w                                                  ; $8327 : $8d, $15, $21
-	rep #ACCU_8                                                  ; $832a : $c2, $20
-	lda #$7800.w                                                  ; $832c : $a9, $00, $78
-	sta VMADDL.w                                                  ; $832f : $8d, $16, $21
-	ldx #$14.b                                                  ; $8332 : $a2, $14
-	lda #$2002.w                                                  ; $8334 : $a9, $02, $20
+SetupXVectorTilemap:
+; Set normal vmain
+	lda #VMAIN_INC_AFTER_2ND_BYTE.b                                           ; $8325 : $a9, $80
+	sta VMAIN.w                                                               ; $8327 : $8d, $15, $21
 
-br_07_8337:
-	stz VMDATAL.w                                                  ; $8337 : $9c, $18, $21
-	stz VMDATAL.w                                                  ; $833a : $9c, $18, $21
-	ldy #$1c.b                                                  ; $833d : $a0, $1c
+; Write to $f000 area
+	rep #ACCU_8                                                               ; $832a : $c2, $20
+	lda #$7800.w                                                              ; $832c : $a9, $00, $78
+	sta VMADDL.w                                                              ; $832f : $8d, $16, $21
 
-br_07_833f:
-	sta VMDATAL.w                                                  ; $833f : $8d, $18, $21
-	ina                                                  ; $8342 : $1a
-	dey                                                  ; $8343 : $88
-	bne br_07_833f                                                  ; $8344 : $d0, $f9
+; Loop for $14 rows, writing incremental tiles from A
+	ldx #$14.b                                                                ; $8332 : $a2, $14
+	lda #$2002.w                                                              ; $8334 : $a9, $02, $20
 
-	stz VMDATAL.w                                                  ; $8346 : $9c, $18, $21
-	stz VMDATAL.w                                                  ; $8349 : $9c, $18, $21
-	clc                                                  ; $834c : $18
-	adc #$0004.w                                                  ; $834d : $69, $04, $00
-	dex                                                  ; $8350 : $ca
-	bne br_07_8337                                                  ; $8351 : $d0, $e4
+@nextRow:
+; Clear the 1st 2 tiles
+	stz VMDATAL.w                                                             ; $8337 : $9c, $18, $21
+	stz VMDATAL.w                                                             ; $833a : $9c, $18, $21
 
-	ldx #$0c.b                                                  ; $8353 : $a2, $0c
-	ldy #$20.b                                                  ; $8355 : $a0, $20
+; Fill the inner $1c tiles with A incremented
+	ldy #NUM_TILES_PER_ROW.b-4                                                ; $833d : $a0, $1c
+-	sta VMDATAL.w                                                             ; $833f : $8d, $18, $21
+	ina                                                                       ; $8342 : $1a
+	dey                                                                       ; $8343 : $88
+	bne -                                                                     ; $8344 : $d0, $f9
 
-br_07_8357:
-	stz VMDATAL.w                                                  ; $8357 : $9c, $18, $21
-	dey                                                  ; $835a : $88
-	bne br_07_8357                                                  ; $835b : $d0, $fa
+; Clear the last 2 tiles
+	stz VMDATAL.w                                                             ; $8346 : $9c, $18, $21
+	stz VMDATAL.w                                                             ; $8349 : $9c, $18, $21
 
-	dex                                                  ; $835d : $ca
-	bne br_07_8357                                                  ; $835e : $d0, $f7
+; Skip 4 values, then go to next row
+	clc                                                                       ; $834c : $18
+	adc #$0004.w                                                              ; $834d : $69, $04, $00
 
-	sep #ACCU_8                                                  ; $8360 : $e2, $20
-	rts                                                  ; $8362 : $60
+	dex                                                                       ; $8350 : $ca
+	bne @nextRow                                                              ; $8351 : $d0, $e4
+
+; Clear the last $0c rows
+	ldx #NUM_TILEROWS.b-$14                                                   ; $8353 : $a2, $0c
+	ldy #NUM_TILES_PER_ROW.b                                                  ; $8355 : $a0, $20
+
+@clearNextByte:
+	stz VMDATAL.w                                                             ; $8357 : $9c, $18, $21
+	dey                                                                       ; $835a : $88
+	bne @clearNextByte                                                        ; $835b : $d0, $fa
+
+	dex                                                                       ; $835d : $ca
+	bne @clearNextByte                                                        ; $835e : $d0, $f7
+
+	sep #ACCU_8                                                               ; $8360 : $e2, $20
+	rts                                                                       ; $8362 : $60
 
 
-	jsr Call_07_8367.w                                                  ; $8363 : $20, $67, $83
+FarClearShadowXVectorTileData:
+	jsr ClearShadowXVectorTileData.w                                                  ; $8363 : $20, $67, $83
 	rtl                                                  ; $8366 : $6b
 
 
-Call_07_8367:
+ClearShadowXVectorTileData:
+; Set wram read/write addr to $00:$b000
 	lda #$00.b                                                  ; $8367 : $a9, $00
-	sta $2181.w                                                  ; $8369 : $8d, $81, $21
+	sta WMADDL.w                                                  ; $8369 : $8d, $81, $21
 	lda #$b0.b                                                  ; $836c : $a9, $b0
-	sta $2182.w                                                  ; $836e : $8d, $82, $21
+	sta WMADDM.w                                                  ; $836e : $8d, $82, $21
 	lda #$00.b                                                  ; $8371 : $a9, $00
-	sta $2183.w                                                  ; $8373 : $8d, $83, $21
+	sta WMADDH.w                                                  ; $8373 : $8d, $83, $21
+
+; write from the same src addr during dma
 	lda #$08.b                                                  ; $8376 : $a9, $08
-	sta $4310.w                                                  ; $8378 : $8d, $10, $43
-	lda #$80.b                                                  ; $837b : $a9, $80
-	sta $4311.w                                                  ; $837d : $8d, $11, $43
+	sta DMAP1.w                                                  ; $8378 : $8d, $10, $43
+
+; dest reg
+	lda #<WMDATA.b                                                  ; $837b : $a9, $80
+	sta BBAD1.w                                                  ; $837d : $8d, $11, $43
+
+; src is 07:839d below
 	lda #$9d.b                                                  ; $8380 : $a9, $9d
-	sta $4312.w                                                  ; $8382 : $8d, $12, $43
+	sta A1T1L.w                                                  ; $8382 : $8d, $12, $43
 	lda #$83.b                                                  ; $8385 : $a9, $83
-	sta $4313.w                                                  ; $8387 : $8d, $13, $43
+	sta A1T1H.w                                                  ; $8387 : $8d, $13, $43
 	lda #$07.b                                                  ; $838a : $a9, $07
-	sta $4314.w                                                  ; $838c : $8d, $14, $43
-	stz $4315.w                                                  ; $838f : $9c, $15, $43
+	sta A1B1.w                                                  ; $838c : $8d, $14, $43
+
+; size is $2800 bytes
+	stz DAS1L.w                                                  ; $838f : $9c, $15, $43
 	lda #$28.b                                                  ; $8392 : $a9, $28
-	sta $4316.w                                                  ; $8394 : $8d, $16, $43
+	sta DAS1H.w                                                  ; $8394 : $8d, $16, $43
+
+; transfer
 	lda #$02.b                                                  ; $8397 : $a9, $02
 	sta MDMAEN.w                                                  ; $8399 : $8d, $0b, $42
 	rts                                                  ; $839c : $60
 
+@clearByte:
+	.db $00
+	
 
-	.db $00                                                  ; $839d : $00
+Func_7_839e:
 	stz $2c                                                  ; $839e : $64, $2c
 	stz $2d                                                  ; $83a0 : $64, $2d
 	stz $06                                                  ; $83a2 : $64, $06
@@ -1626,8 +1680,8 @@ br_07_8aa1:
 	stz $00cb.w                                                  ; $8ac9 : $9c, $cb, $00
 	stz $00cc.w                                                  ; $8acc : $9c, $cc, $00
 	stz $00cd.w                                                  ; $8acf : $9c, $cd, $00
-	stz $00ca.w                                                  ; $8ad2 : $9c, $ca, $00
-	stz $2131.w                                                  ; $8ad5 : $9c, $31, $21
+	stz wColourMathDesignation.w                                                  ; $8ad2 : $9c, $ca, $00
+	stz CGADSUB.w                                                  ; $8ad5 : $9c, $31, $21
 	jmp todo_CausePlayerToFreeze.l                                                  ; $8ad8 : $5c, $ca, $d1, $04
 
 
@@ -4762,15 +4816,15 @@ br_07_9e61:
 	bra br_07_9e8a                                                  ; $9e65 : $80, $23
 
 	rep #ACCU_8                                                  ; $9e67 : $c2, $20
-	lda $00b9.w                                                  ; $9e69 : $ad, $b9, $00
+	lda wBG2HorizScroll.w                                                  ; $9e69 : $ad, $b9, $00
 
 br_07_9e6c:
 	beq br_07_9e84                                                  ; $9e6c : $f0, $16
 
-	dec $00b9.w                                                  ; $9e6e : $ce, $b9, $00
-	dec $00b9.w                                                  ; $9e71 : $ce, $b9, $00
-	inc $00bb.w                                                  ; $9e74 : $ee, $bb, $00
-	inc $00bb.w                                                  ; $9e77 : $ee, $bb, $00
+	dec wBG2HorizScroll.w                                                  ; $9e6e : $ce, $b9, $00
+	dec wBG2HorizScroll.w                                                  ; $9e71 : $ce, $b9, $00
+	inc wBG2VertScroll.w                                                  ; $9e74 : $ee, $bb, $00
+	inc wBG2VertScroll.w                                                  ; $9e77 : $ee, $bb, $00
 	inc $05                                                  ; $9e7a : $e6, $05
 	inc $05                                                  ; $9e7c : $e6, $05
 	dec $08                                                  ; $9e7e : $c6, $08
@@ -8282,7 +8336,7 @@ br_07_b470:
 	sta $08                                                  ; $b487 : $85, $08
 	sta $08a3.w                                                  ; $b489 : $8d, $a3, $08
 	lda #$13.b                                                  ; $b48c : $a9, $13
-	sta $00c1.w                                                  ; $b48e : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $b48e : $8d, $c1, $00
 	lda #$01.b                                                  ; $b491 : $a9, $01
 	sta $0e                                                  ; $b493 : $85, $0e
 	ldx $0d4f.w                                                  ; $b495 : $ae, $4f, $0d
@@ -8319,7 +8373,7 @@ br_07_b4e5:
 	lda #$09.b                                                  ; $b4e8 : $a9, $09
 	sta $00ce.w                                                  ; $b4ea : $8d, $ce, $00
 	lda #$13.b                                                  ; $b4ed : $a9, $13
-	sta $00c1.w                                                  ; $b4ef : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $b4ef : $8d, $c1, $00
 	stz $3d                                                  ; $b4f2 : $64, $3d
 	stz $3e                                                  ; $b4f4 : $64, $3e
 	stz $3f                                                  ; $b4f6 : $64, $3f
@@ -8507,7 +8561,7 @@ Call_07_b5d7:
 
 	jsr $02dae7.l                                                  ; $b5df : $22, $e7, $da, $02
 	lda #$17.b                                                  ; $b5e3 : $a9, $17
-	sta $00c1.w                                                  ; $b5e5 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $b5e5 : $8d, $c1, $00
 	inc $08a7.w                                                  ; $b5e8 : $ee, $a7, $08
 	rep #ACCU_8                                                  ; $b5eb : $c2, $20
 	stz $00                                                  ; $b5ed : $64, $00
@@ -8596,7 +8650,7 @@ Call_07_b680:
 
 br_07_b689:
 	lda #$13.b                                                  ; $b689 : $a9, $13
-	sta $00c1.w                                                  ; $b68b : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $b68b : $8d, $c1, $00
 	rts                                                  ; $b68e : $60
 
 
@@ -17780,11 +17834,11 @@ br_07_eedc:
 	lda #$e0.b                                                  ; $ef10 : $a9, $e0
 	sta $00cb.w                                                  ; $ef12 : $8d, $cb, $00
 	sta $2132.w                                                  ; $ef15 : $8d, $32, $21
-	stz $00c9.w                                                  ; $ef18 : $9c, $c9, $00
-	stz $2130.w                                                  ; $ef1b : $9c, $30, $21
+	stz wColourAdditionSelect.w                                                  ; $ef18 : $9c, $c9, $00
+	stz CGWSEL.w                                                  ; $ef1b : $9c, $30, $21
 	lda #$37.b                                                  ; $ef1e : $a9, $37
-	sta $00ca.w                                                  ; $ef20 : $8d, $ca, $00
-	sta $2131.w                                                  ; $ef23 : $8d, $31, $21
+	sta wColourMathDesignation.w                                                  ; $ef20 : $8d, $ca, $00
+	sta CGADSUB.w                                                  ; $ef23 : $8d, $31, $21
 	lda #$04.b                                                  ; $ef26 : $a9, $04
 	sta $02                                                  ; $ef28 : $85, $02
 
@@ -17868,8 +17922,8 @@ br_07_efaf:
 	rts                                                  ; $efaf : $60
 
 
-	stz $00ca.w                                                  ; $efb0 : $9c, $ca, $00
-	stz $2131.w                                                  ; $efb3 : $9c, $31, $21
+	stz wColourMathDesignation.w                                                  ; $efb0 : $9c, $ca, $00
+	stz CGADSUB.w                                                  ; $efb3 : $9c, $31, $21
 	jsr todo_DisablesEntity_d928.l                                                  ; $efb6 : $22, $28, $d9, $02
 	rts                                                  ; $efba : $60
 
@@ -20073,9 +20127,9 @@ br_07_fdd3:
 	rts                                                  ; $fdd5 : $60
 
 
-	stz $00c9.w                                                  ; $fdd6 : $9c, $c9, $00
+	stz wColourAdditionSelect.w                                                  ; $fdd6 : $9c, $c9, $00
 	lda #$84.b                                                  ; $fdd9 : $a9, $84
-	sta $00ca.w                                                  ; $fddb : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $fddb : $8d, $ca, $00
 	rep #ACCU_8|IDX_8                                                  ; $fdde : $c2, $30
 	phb                                                  ; $fde0 : $8b
 	ldx #$d005.w                                                  ; $fde1 : $a2, $05, $d0

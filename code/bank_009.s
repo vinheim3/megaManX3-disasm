@@ -4314,7 +4314,7 @@ br_09_ab33:
 	.db $00                                                  ; $ab4e : $00
 	ora ($c2, S), Y                                                  ; $ab4f : $13, $c2
 	asl $f0f1.w, X                                                  ; $ab51 : $1e, $f1, $f0
-	sbc $2100.w                                                  ; $ab54 : $ed, $00, $21
+	sbc INIDISP.w                                                  ; $ab54 : $ed, $00, $21
 	ora ($ce), Y                                                  ; $ab57 : $11, $ce
 	rep #$00.b                                                  ; $ab59 : $c2, $00
 	ora $ff3ec1.l, X                                                  ; $ab5b : $1f, $c1, $3e, $ff
@@ -6417,7 +6417,7 @@ br_09_ba50:
 	cmp $2d04.w, X                                                  ; $bbda : $dd, $04, $2d
 	ora ($21, S), Y                                                  ; $bbdd : $13, $21
 	ldy $f0, X                                                  ; $bbdf : $b4, $f0
-	jsr $2100.w                                                  ; $bbe1 : $20, $00, $21
+	jsr INIDISP.w                                                  ; $bbe1 : $20, $00, $21
 	and ($fe, X)                                                  ; $bbe4 : $21, $fe
 	inc $b461.w                                                  ; $bbe6 : $ee, $61, $b4
 	cmp ($51, X)                                                  ; $bbe9 : $c1, $51

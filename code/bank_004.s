@@ -2135,7 +2135,7 @@ br_04_8c70:
 	rts                                                  ; $8c7e : $60
 
 
-	lda $00c1.w                                                  ; $8c7f : $ad, $c1, $00
+	lda wMainScreenDesignation.w                                                  ; $8c7f : $ad, $c1, $00
 	sta $7fcd4b.l                                                  ; $8c82 : $8f, $4b, $cd, $7f
 	lda $00c8.w                                                  ; $8c86 : $ad, $c8, $00
 	sta $7fcd40.l                                                  ; $8c89 : $8f, $40, $cd, $7f
@@ -2143,13 +2143,13 @@ br_04_8c70:
 	sta $7fcd41.l                                                  ; $8c90 : $8f, $41, $cd, $7f
 	lda $00c6.w                                                  ; $8c94 : $ad, $c6, $00
 	sta $7fcd4a.l                                                  ; $8c97 : $8f, $4a, $cd, $7f
-	lda $00c2.w                                                  ; $8c9b : $ad, $c2, $00
+	lda wSubScreenDesignation.w                                                  ; $8c9b : $ad, $c2, $00
 	sta $7fcd49.l                                                  ; $8c9e : $8f, $49, $cd, $7f
 	lda $1fa9.w                                                  ; $8ca2 : $ad, $a9, $1f
 	sta $7fcd42.l                                                  ; $8ca5 : $8f, $42, $cd, $7f
-	lda $00c9.w                                                  ; $8ca9 : $ad, $c9, $00
+	lda wColourAdditionSelect.w                                                  ; $8ca9 : $ad, $c9, $00
 	sta $7fcd43.l                                                  ; $8cac : $8f, $43, $cd, $7f
-	lda $00ca.w                                                  ; $8cb0 : $ad, $ca, $00
+	lda wColourMathDesignation.w                                                  ; $8cb0 : $ad, $ca, $00
 	sta $7fcd44.l                                                  ; $8cb3 : $8f, $44, $cd, $7f
 	lda $00cb.w                                                  ; $8cb7 : $ad, $cb, $00
 	sta $7fcd45.l                                                  ; $8cba : $8f, $45, $cd, $7f
@@ -2169,9 +2169,9 @@ br_04_8c70:
 	lda $7fcd4a.l                                                  ; $8ce2 : $af, $4a, $cd, $7f
 	sta $00c6.w                                                  ; $8ce6 : $8d, $c6, $00
 	lda $7fcd43.l                                                  ; $8ce9 : $af, $43, $cd, $7f
-	sta $00c9.w                                                  ; $8ced : $8d, $c9, $00
+	sta wColourAdditionSelect.w                                                  ; $8ced : $8d, $c9, $00
 	lda $7fcd44.l                                                  ; $8cf0 : $af, $44, $cd, $7f
-	sta $00ca.w                                                  ; $8cf4 : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $8cf4 : $8d, $ca, $00
 	lda $7fcd45.l                                                  ; $8cf7 : $af, $45, $cd, $7f
 	sta $00cb.w                                                  ; $8cfb : $8d, $cb, $00
 	lda $7fcd46.l                                                  ; $8cfe : $af, $46, $cd, $7f
@@ -2179,9 +2179,9 @@ br_04_8c70:
 	lda $7fcd47.l                                                  ; $8d05 : $af, $47, $cd, $7f
 	sta $00cd.w                                                  ; $8d09 : $8d, $cd, $00
 	lda $7fcd4b.l                                                  ; $8d0c : $af, $4b, $cd, $7f
-	sta $00c1.w                                                  ; $8d10 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $8d10 : $8d, $c1, $00
 	lda $7fcd49.l                                                  ; $8d13 : $af, $49, $cd, $7f
-	sta $00c2.w                                                  ; $8d17 : $8d, $c2, $00
+	sta wSubScreenDesignation.w                                                  ; $8d17 : $8d, $c2, $00
 	lda $7fcd42.l                                                  ; $8d1a : $af, $42, $cd, $7f
 	sta $1fa9.w                                                  ; $8d1e : $8d, $a9, $1f
 	sta $212e.w                                                  ; $8d21 : $8d, $2e, $21
@@ -2439,7 +2439,7 @@ PlayerMainSubstate3c_HelmetUpgradeShowcase:
 	lda #$50.b                                                  ; $8ece : $a9, $50
 	jsr Call_04_b8f4.w                                                  ; $8ed0 : $20, $f4, $b8
 	lda #$93.b                                                  ; $8ed3 : $a9, $93
-	sta $00ca.w                                                  ; $8ed5 : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $8ed5 : $8d, $ca, $00
 	stz $00cb.w                                                  ; $8ed8 : $9c, $cb, $00
 	stz $00cc.w                                                  ; $8edb : $9c, $cc, $00
 	stz $00cd.w                                                  ; $8ede : $9c, $cd, $00
@@ -2548,7 +2548,7 @@ br_04_8f83:
 	ldy #$0a93.w                                                  ; $8f93 : $a0, $93, $0a
 	jsr Call_04_909a.w                                                  ; $8f96 : $20, $9a, $90
 	lda #$04.b                                                  ; $8f99 : $a9, $04
-	tsb $00c1.w                                                  ; $8f9b : $0c, $c1, $00
+	tsb wMainScreenDesignation.w                                                  ; $8f9b : $0c, $c1, $00
 	inc $03                                                  ; $8f9e : $e6, $03
 	inc $03                                                  ; $8fa0 : $e6, $03
 	rts                                                  ; $8fa2 : $60
@@ -2605,7 +2605,7 @@ br_04_8fd7:
 	bne br_04_8fff                                                  ; $8fee : $d0, $0f
 
 	lda #$04.b                                                  ; $8ff0 : $a9, $04
-	trb $00c1.w                                                  ; $8ff2 : $1c, $c1, $00
+	trb wMainScreenDesignation.w                                                  ; $8ff2 : $1c, $c1, $00
 	stz wBG2VertScroll+1                                                  ; $8ff5 : $64, $bc
 	lda #$1e.b                                                  ; $8ff7 : $a9, $1e
 	sta $4e                                                  ; $8ff9 : $85, $4e
@@ -15238,21 +15238,20 @@ Call_04_da41:
 	rts                                                  ; $da50 : $60
 
 
+todo_ForceBlankOn:
 	lda RDNMI.w                                                  ; $da51 : $ad, $10, $42
-	bpl br_04_da59                                                  ; $da54 : $10, $03
-
+	bpl +                                                  ; $da54 : $10, $03
 	lda RDNMI.w                                                  ; $da56 : $ad, $10, $42
-
-br_04_da59:
-	lda $00b4.w                                                  ; $da59 : $ad, $b4, $00
++	lda wScreenDisplay.w                                                  ; $da59 : $ad, $b4, $00
 	ora #$80.b                                                  ; $da5c : $09, $80
-	sta $2100.w                                                  ; $da5e : $8d, $00, $21
-	sta $00b4.w                                                  ; $da61 : $8d, $b4, $00
+	sta INIDISP.w                                                  ; $da5e : $8d, $00, $21
+	sta wScreenDisplay.w                                                  ; $da61 : $8d, $b4, $00
 	rtl                                                  ; $da64 : $6b
 
 
+SetMaxBrightnessNoBlankOnDisplay:
 	lda #$0f.b                                                  ; $da65 : $a9, $0f
-	sta $00b4.w                                                  ; $da67 : $8d, $b4, $00
+	sta wScreenDisplay.w                                                  ; $da67 : $8d, $b4, $00
 	rtl                                                  ; $da6a : $6b
 
 
@@ -15295,15 +15294,15 @@ Func_4_da7e:
 	sta CX4_R2.w+1                                                  ; $daab : $8d, $87, $7f
 	lda $1e2b.w, Y                                                  ; $daae : $b9, $2b, $1e
 	sta CX4_R2.w+2                                                  ; $dab1 : $8d, $88, $7f
-	stz CX4_R6.w                                                  ; $dab4 : $9c, $8f, $7f
+	stz CX4_R5.w                                                  ; $dab4 : $9c, $8f, $7f
 	lda $1e2c.w, Y                                                  ; $dab7 : $b9, $2c, $1e
-	sta CX4_R6.w+1                                                  ; $daba : $8d, $90, $7f
+	sta CX4_R5.w+1                                                  ; $daba : $8d, $90, $7f
 	lda $1e2d.w, Y                                                  ; $dabd : $b9, $2d, $1e
-	sta CX4_R6.w+2                                                  ; $dac0 : $8d, $91, $7f
-	stz CX4_RD.w                                                  ; $dac3 : $9c, $a4, $7f
+	sta CX4_R5.w+2                                                  ; $dac0 : $8d, $91, $7f
+	stz CX4_RC.w                                                  ; $dac3 : $9c, $a4, $7f
 	lda $1e2e.w, Y                                                  ; $dac6 : $b9, $2e, $1e
-	sta CX4_RD.w+1                                                  ; $dac9 : $8d, $a5, $7f
-	stz CX4_RD.w+2                                                  ; $dacc : $9c, $a6, $7f
+	sta CX4_RC.w+1                                                  ; $dac9 : $8d, $a5, $7f
+	stz CX4_RC.w+2                                                  ; $dacc : $9c, $a6, $7f
 	phy                                                  ; $dacf : $5a
 	tyx                                                  ; $dad0 : $bb
 
@@ -15580,7 +15579,7 @@ br_04_dc59:
 	beq br_04_dc94                                                  ; $dc5f : $f0, $33
 
 	lda #$04.b                                                  ; $dc61 : $a9, $04
-	trb $00c1.w                                                  ; $dc63 : $1c, $c1, $00
+	trb wMainScreenDesignation.w                                                  ; $dc63 : $1c, $c1, $00
 	phd                                                  ; $dc66 : $0b
 	pea $0000.w                                                  ; $dc67 : $f4, $00, $00
 	pld                                                  ; $dc6a : $2b
@@ -16505,16 +16504,16 @@ br_04_e1ec:
 	sta $01                                                  ; $e204 : $85, $01
 	stz $02                                                  ; $e206 : $64, $02
 	lda #$02.b                                                  ; $e208 : $a9, $02
-	sta $00c9.w                                                  ; $e20a : $8d, $c9, $00
-	sta $2130.w                                                  ; $e20d : $8d, $30, $21
+	sta wColourAdditionSelect.w                                                  ; $e20a : $8d, $c9, $00
+	sta CGWSEL.w                                                  ; $e20d : $8d, $30, $21
 	lda #$3f.b                                                  ; $e210 : $a9, $3f
-	sta $00ca.w                                                  ; $e212 : $8d, $ca, $00
-	sta $2131.w                                                  ; $e215 : $8d, $31, $21
+	sta wColourMathDesignation.w                                                  ; $e212 : $8d, $ca, $00
+	sta CGADSUB.w                                                  ; $e215 : $8d, $31, $21
 	lda #$13.b                                                  ; $e218 : $a9, $13
-	sta $00c1.w                                                  ; $e21a : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $e21a : $8d, $c1, $00
 	sta TM.w                                                  ; $e21d : $8d, $2c, $21
-	stz $00c2.w                                                  ; $e220 : $9c, $c2, $00
-	stz $212d.w                                                  ; $e223 : $9c, $2d, $21
+	stz wSubScreenDesignation.w                                                  ; $e220 : $9c, $c2, $00
+	stz TS.w                                                  ; $e223 : $9c, $2d, $21
 	lda #$09.b                                                  ; $e226 : $a9, $09
 	sta $00ce.w                                                  ; $e228 : $8d, $ce, $00
 	sta BG3SC.w                                                  ; $e22b : $8d, $09, $21
@@ -16535,17 +16534,17 @@ br_04_e1ec:
 
 
 	lda #$13.b                                                  ; $e24f : $a9, $13
-	sta $00c1.w                                                  ; $e251 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $e251 : $8d, $c1, $00
 	sta TM.w                                                  ; $e254 : $8d, $2c, $21
-	stz $00c2.w                                                  ; $e257 : $9c, $c2, $00
-	stz $212d.w                                                  ; $e25a : $9c, $2d, $21
+	stz wSubScreenDesignation.w                                                  ; $e257 : $9c, $c2, $00
+	stz TS.w                                                  ; $e25a : $9c, $2d, $21
 	lda #$08.b                                                  ; $e25d : $a9, $08
 	sta $00ce.w                                                  ; $e25f : $8d, $ce, $00
 	sta BG3SC.w                                                  ; $e262 : $8d, $09, $21
-	stz $2130.w                                                  ; $e265 : $9c, $30, $21
-	stz $00c9.w                                                  ; $e268 : $9c, $c9, $00
-	stz $2131.w                                                  ; $e26b : $9c, $31, $21
-	stz $00ca.w                                                  ; $e26e : $9c, $ca, $00
+	stz CGWSEL.w                                                  ; $e265 : $9c, $30, $21
+	stz wColourAdditionSelect.w                                                  ; $e268 : $9c, $c9, $00
+	stz CGADSUB.w                                                  ; $e26b : $9c, $31, $21
+	stz wColourMathDesignation.w                                                  ; $e26e : $9c, $ca, $00
 	stz $1f60.w                                                  ; $e271 : $9c, $60, $1f
 	jmp Func_2_d917.l                                                  ; $e274 : $5c, $17, $d9, $02
 
@@ -16601,8 +16600,8 @@ br_04_e2bc:
 	bne br_04_e2cd                                                  ; $e2bf : $d0, $0c
 
 	lda #$04.b                                                  ; $e2c1 : $a9, $04
-	sta $00c2.w                                                  ; $e2c3 : $8d, $c2, $00
-	sta $212d.w                                                  ; $e2c6 : $8d, $2d, $21
+	sta wSubScreenDesignation.w                                                  ; $e2c3 : $8d, $c2, $00
+	sta TS.w                                                  ; $e2c6 : $8d, $2d, $21
 	lda #$08.b                                                  ; $e2c9 : $a9, $08
 	sta $02                                                  ; $e2cb : $85, $02
 

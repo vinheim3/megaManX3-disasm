@@ -6705,7 +6705,7 @@ br_2e_a940:
 
 	sty $7c                                                  ; $a990 : $84, $7c
 	dex                                                  ; $a992 : $ca
-	rol CX4_R6.w+2, X                                                  ; $a993 : $3e, $91, $7f
+	rol CX4_R5.w+2, X                                                  ; $a993 : $3e, $91, $7f
 	cpx #$ff.b                                                  ; $a996 : $e0, $ff
 	sei                                                  ; $a998 : $78
 	sta [$bc]                                                  ; $a999 : $87, $bc
@@ -9615,7 +9615,7 @@ br_2e_b974:
 	sec                                                  ; $ba50 : $38
 	sbc [$1e]                                                  ; $ba51 : $e7, $1e
 	sbc ($1e), Y                                                  ; $ba53 : $f1, $1e
-	sbc  CX4_R3.w, Y                                                  ; $ba55 : $f9, $89, $7f
+	sbc CX4_R3.w, Y                                                  ; $ba55 : $f9, $89, $7f
 	dec $e43e.w                                                  ; $ba58 : $ce, $3e, $e4
 	trb $8c74.w                                                  ; $ba5b : $1c, $74, $8c
 	sed                                                  ; $ba5e : $f8

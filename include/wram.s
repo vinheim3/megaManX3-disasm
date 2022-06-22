@@ -89,8 +89,8 @@ wJoy2PrevBtnsHeld: ; $b0
 wJoy2CurrBtnsPressed: ; $b2
     dw
 
-wb4:
-    ds 5-4
+wScreenDisplay: ; $b4
+    db
 
 wBG1HorizScroll: ; $b5
     dw
@@ -110,14 +110,26 @@ wBG3HorizScroll: ; $bd
 wBG3VertScroll: ; $bf
     dw
 
-wc1:
-    ds 3-1
+wMainScreenDesignation: ; $c1
+    db
+
+wSubScreenDesignation: ; $c2
+    db
 
 wIntsEnabled: ; $c3
     db
 
 wc4:
-    ds $e9-$c4
+    ds 9-4
+
+wColourAdditionSelect: ; $c9
+    db
+
+wColourMathDesignation: ; $ca
+    db
+
+wcb:
+    ds $e9-$cb
 
 wtodo_WordIdxInto_740_struct: ; $e9
     db
@@ -332,7 +344,14 @@ wChipsAndRideArmoursGottenBitfield: ; $1fd7
     db
 
 w1fd8:
-    ds $ec-$d8
+    ds $d-8
+
+; todo: used in other places
+wXVectorTileDataUpdatePending: ; $1fdd
+    db
+
+w1fde:
+    ds $ec-$de
 
 wBaseMetatiles7ehRamSrcAddr: ; $1fec
     dw
@@ -371,9 +390,14 @@ wStartCx4Dma: ; $26a9
 ; A - prg rom instruction pointer (PC/2)
 wStartCx4PrgExecution: ; $26ac
     ds 3
+wSetCx4InsPageWithIntsEnabled: ; $26af
+    ds 3
+wSetCx4InsPagePtrWithIntsEnabled: ; $26b2
+    ds 3
 
-w26af:
-    ds $f000-$26af
+; todo: rest of cx4 code ehre
+w26b5:
+    ds $f000-$26b5
 
 ; Sequences of:
 ; vmain - b

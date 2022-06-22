@@ -3349,7 +3349,7 @@ br_3d_91b4:
 	.db $00                                                  ; $951d : $00
 	rol $2c03.w, X                                                  ; $951e : $3e, $03, $2c
 	.db $00                                                  ; $9521 : $00
-	bit $2100.w                                                  ; $9522 : $2c, $00, $21
+	bit INIDISP.w                                                  ; $9522 : $2c, $00, $21
 	ora ($ec, X)                                                  ; $9525 : $01, $ec
 	.db $00                                                  ; $9527 : $00
 	cpx $ed00.w                                                  ; $9528 : $ec, $00, $ed
@@ -5538,7 +5538,7 @@ br_3d_a1a2:
 	.db $00                                                  ; $a1d1 : $00
 	ora $000000.l, X                                                  ; $a1d2 : $1f, $00, $00, $00
 	ora ($00)                                                  ; $a1d6 : $12, $00
-	jsr $2100.w                                                  ; $a1d8 : $20, $00, $21
+	jsr INIDISP.w                                                  ; $a1d8 : $20, $00, $21
 	.db $00                                                  ; $a1db : $00
 	jsr $002300.l                                                  ; $a1dc : $22, $00, $23, $00
 	bit $00                                                  ; $a1e0 : $24, $00
@@ -10320,7 +10320,7 @@ br_3d_bf8c:
 	.db $00                                                  ; $bfa7 : $00
 	asl $1f00.w, X                                                  ; $bfa8 : $1e, $00, $1f
 	.db $00                                                  ; $bfab : $00
-	jsr $2100.w                                                  ; $bfac : $20, $00, $21
+	jsr INIDISP.w                                                  ; $bfac : $20, $00, $21
 	.db $00                                                  ; $bfaf : $00
 	jsr $002300.l                                                  ; $bfb0 : $22, $00, $23, $00
 	bit $00                                                  ; $bfb4 : $24, $00
@@ -12798,7 +12798,7 @@ br_3d_ce2c:
 	trb $00                                                  ; $ce4e : $14, $00
 	asl $1f00.w, X                                                  ; $ce50 : $1e, $00, $1f
 	.db $00                                                  ; $ce53 : $00
-	jsr $2100.w                                                  ; $ce54 : $20, $00, $21
+	jsr INIDISP.w                                                  ; $ce54 : $20, $00, $21
 	.db $00                                                  ; $ce57 : $00
 	jsr $002300.l                                                  ; $ce58 : $22, $00, $23, $00
 	bit $00                                                  ; $ce5c : $24, $00
@@ -17733,7 +17733,7 @@ br_3d_ec2e:
 	asl $1f00.w, X                                                  ; $ec4e : $1e, $00, $1f
 	.db $00                                                  ; $ec51 : $00
 	ora $001f00.l, X                                                  ; $ec52 : $1f, $00, $1f, $00
-	jsr $2100.w                                                  ; $ec56 : $20, $00, $21
+	jsr INIDISP.w                                                  ; $ec56 : $20, $00, $21
 	.db $00                                                  ; $ec59 : $00
 	ora $001f00.l, X                                                  ; $ec5a : $1f, $00, $1f, $00
 	ora $000100.l, X                                                  ; $ec5e : $1f, $00, $01, $00
@@ -18999,8 +18999,8 @@ br_3d_f23e:
 	sta $1ea2.w                                                  ; $f829 : $8d, $a2, $1e
 	lda #$fd00.w                                                  ; $f82c : $a9, $00, $fd
 	sta $1ea4.w                                                  ; $f82f : $8d, $a4, $1e
-	stz $00bb.w                                                  ; $f832 : $9c, $bb, $00
-	stz $00b9.w                                                  ; $f835 : $9c, $b9, $00
+	stz wBG2VertScroll.w                                                  ; $f832 : $9c, $bb, $00
+	stz wBG2HorizScroll.w                                                  ; $f835 : $9c, $b9, $00
 	stz $05                                                  ; $f838 : $64, $05
 	stz $08                                                  ; $f83a : $64, $08
 	stz $1e9d.w                                                  ; $f83c : $9c, $9d, $1e
@@ -19016,12 +19016,12 @@ br_3d_f23e:
 	lda #$fd00.w                                                  ; $f856 : $a9, $00, $fd
 	sta $1ea4.w                                                  ; $f859 : $8d, $a4, $1e
 	lda #$0080.w                                                  ; $f85c : $a9, $80, $00
-	sta $00bb.w                                                  ; $f85f : $8d, $bb, $00
+	sta wBG2VertScroll.w                                                  ; $f85f : $8d, $bb, $00
 	sta $08                                                  ; $f862 : $85, $08
 	sta $1ea0.w                                                  ; $f864 : $8d, $a0, $1e
 	sta $1ebc.w                                                  ; $f867 : $8d, $bc, $1e
 	lda #$0180.w                                                  ; $f86a : $a9, $80, $01
-	sta $00b9.w                                                  ; $f86d : $8d, $b9, $00
+	sta wBG2HorizScroll.w                                                  ; $f86d : $8d, $b9, $00
 	sta $05                                                  ; $f870 : $85, $05
 	sta $1e9d.w                                                  ; $f872 : $8d, $9d, $1e
 	sta $1eba.w                                                  ; $f875 : $8d, $ba, $1e

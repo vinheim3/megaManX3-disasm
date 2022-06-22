@@ -5792,7 +5792,7 @@ br_30_a3f3:
 	.db $00                                                  ; $a44d : $00
 	.db $00                                                  ; $a44e : $00
 	.db $00                                                  ; $a44f : $00
-	ror CX4_R6.w, X                                                  ; $a450 : $7e, $8f, $7f
+	ror CX4_R5.w, X                                                  ; $a450 : $7e, $8f, $7f
 	sta $3f8f7f.l                                                  ; $a453 : $8f, $7f, $8f, $3f
 	sbc $00c0c0.l, X                                                  ; $a457 : $ff, $c0, $c0, $00
 	.db $00                                                  ; $a45b : $00
@@ -9981,7 +9981,7 @@ br_30_bd7e:
 	cpy #$7c.b                                                  ; $bda5 : $c0, $7c
 	tdc                                                  ; $bda7 : $7b
 	sta $00, S                                                  ; $bda8 : $83, $00
-	rol $00c1.w, X                                                  ; $bdaa : $3e, $c1, $00
+	rol wMainScreenDesignation.w, X                                                  ; $bdaa : $3e, $c1, $00
 	sbc $f000ff.l, X                                                  ; $bdad : $ff, $ff, $00, $f0
 	.db $f0, $01                                                  ; $bdb1 : $f0, $01
 
@@ -16765,7 +16765,7 @@ br_30_e6fa:
 
 br_30_e74c:
 	ror $b5b4.w                                                  ; $e74c : $6e, $b4, $b5
-	cmp CX4_R6.w, X                                                  ; $e74f : $dd, $8f, $7f
+	cmp CX4_R5.w, X                                                  ; $e74f : $dd, $8f, $7f
 	cmp $3f, S                                                  ; $e752 : $c3, $3f
 	cpy #$dd3f.w                                                  ; $e754 : $c0, $3f, $dd
 	and $bf, S                                                  ; $e757 : $23, $bf

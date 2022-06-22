@@ -19318,7 +19318,7 @@ br_2d_f55a:
 	adc $36767f.l, X                                                  ; $f586 : $7f, $7f, $76, $36
 	sbc $1f1fff.l, X                                                  ; $f58a : $ff, $ff, $1f, $1f
 	asl $961e.w, X                                                  ; $f58e : $1e, $1e, $96
-	adc CX4_R6.w, Y                                                  ; $f591 : $79, $8f, $7f
+	adc CX4_R5.w, Y                                                  ; $f591 : $79, $8f, $7f
 	phb                                                  ; $f594 : $8b
 	jsr ($f87f.w, X)                                                  ; $f595 : $fc, $7f, $f8
 	rol $f9, X                                                  ; $f598 : $36, $f9

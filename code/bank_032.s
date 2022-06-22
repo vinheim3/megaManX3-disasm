@@ -7996,7 +7996,7 @@ br_32_b033:
 	iny                                                  ; $b03b : $c8
 	tya                                                  ; $b03c : $98
 	tya                                                  ; $b03d : $98
-	lda $00b9.w, Y                                                  ; $b03e : $b9, $b9, $00
+	lda wBG2HorizScroll.w, Y                                                  ; $b03e : $b9, $b9, $00
 	.db $00                                                  ; $b041 : $00
 	.db $00                                                  ; $b042 : $00
 	.db $00                                                  ; $b043 : $00

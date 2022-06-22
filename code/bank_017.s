@@ -9319,7 +9319,7 @@ br_17_bede:
 	.db $00                                                  ; $bef9 : $00
 	ror                                                  ; $befa : $6a
 	.db $00                                                  ; $befb : $00
-	jsr $2100.w                                                  ; $befc : $20, $00, $21
+	jsr INIDISP.w                                                  ; $befc : $20, $00, $21
 	.db $00                                                  ; $beff : $00
 	jmp ($ac00.w)                                                  ; $bf00 : $6c, $00, $ac
 
@@ -17790,7 +17790,7 @@ br_17_fa1e:
 	bra br_17_fa5e                                                  ; $fa5c : $80, $00
 
 br_17_fa5e:
-	asl $2100.w, X                                                  ; $fa5e : $1e, $00, $21
+	asl INIDISP.w, X                                                  ; $fa5e : $1e, $00, $21
 	.db $00                                                  ; $fa61 : $00
 	jsr $002e00.l                                                  ; $fa62 : $22, $00, $2e, $00
 	and $00de00.l                                                  ; $fa66 : $2f, $00, $de, $00

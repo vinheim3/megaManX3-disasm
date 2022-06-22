@@ -15622,9 +15622,9 @@ br_0e_e31f:
 
 
 	php                                                  ; $e323 : $08
-	cpy $00b9.w                                                  ; $e324 : $cc, $b9, $00
+	cpy wBG2HorizScroll.w                                                  ; $e324 : $cc, $b9, $00
 	sed                                                  ; $e327 : $f8
-	cpy $00b9.w                                                  ; $e328 : $cc, $b9, $00
+	cpy wBG2HorizScroll.w                                                  ; $e328 : $cc, $b9, $00
 	beq br_0e_e2f9                                                  ; $e32b : $f0, $cc
 
 	clv                                                  ; $e32d : $b8
@@ -15723,7 +15723,7 @@ br_0e_e394:
 	pei ($a8)                                                  ; $e3be : $d4, $a8
 	ora #$00.b                                                  ; $e3c0 : $09, $00
 	clc                                                  ; $e3c2 : $18
-	cpy $00c9.w                                                  ; $e3c3 : $cc, $c9, $00
+	cpy wColourAdditionSelect.w                                                  ; $e3c3 : $cc, $c9, $00
 	bpl br_0e_e394                                                  ; $e3c6 : $10, $cc
 
 	iny                                                  ; $e3c8 : $c8

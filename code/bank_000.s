@@ -1113,8 +1113,8 @@ Call_00_85c5:
 	stz $1fa9.w                                                  ; $85ee : $9c, $a9, $1f
 	stz $212f.w                                                  ; $85f1 : $9c, $2f, $21
 	stz $1faa.w                                                  ; $85f4 : $9c, $aa, $1f
-	stz $00c9.w                                                  ; $85f7 : $9c, $c9, $00
-	stz $00ca.w                                                  ; $85fa : $9c, $ca, $00
+	stz wColourAdditionSelect.w                                                  ; $85f7 : $9c, $c9, $00
+	stz wColourMathDesignation.w                                                  ; $85fa : $9c, $ca, $00
 	lda #$e0.b                                                  ; $85fd : $a9, $e0
 	sta $2132.w                                                  ; $85ff : $8d, $32, $21
 	sta $00cb.w                                                  ; $8602 : $8d, $cb, $00
@@ -1122,9 +1122,9 @@ Call_00_85c5:
 	sta $00cd.w                                                  ; $8608 : $8d, $cd, $00
 	lda #$17.b                                                  ; $860b : $a9, $17
 	sta TM.w                                                  ; $860d : $8d, $2c, $21
-	sta $00c1.w                                                  ; $8610 : $8d, $c1, $00
-	stz $212d.w                                                  ; $8613 : $9c, $2d, $21
-	stz $00c2.w                                                  ; $8616 : $9c, $c2, $00
+	sta wMainScreenDesignation.w                                                  ; $8610 : $8d, $c1, $00
+	stz TS.w                                                  ; $8613 : $9c, $2d, $21
+	stz wSubScreenDesignation.w                                                  ; $8616 : $9c, $c2, $00
 	lda #$0a.b                                                  ; $8619 : $a9, $0a
 	sta $00ce.w                                                  ; $861b : $8d, $ce, $00
 	rts                                                  ; $861e : $60
@@ -1498,9 +1498,9 @@ Call_00_879e:
 
 
 Call_00_87d7:
-	jsr $04da74.l                                                  ; $87d7 : $22, $74, $da, $04
+	jsr UpdateIntsEnabledWithOnlyAutoJoypadRead.l                                                  ; $87d7 : $22, $74, $da, $04
 	stz HDMAEN.w                                                  ; $87db : $9c, $0c, $42
-	jsr $04da51.l                                                  ; $87de : $22, $51, $da, $04
+	jsr todo_ForceBlankOn.l                                                  ; $87de : $22, $51, $da, $04
 	lda #$80.b                                                  ; $87e2 : $a9, $80
 	sta VMAIN.w                                                  ; $87e4 : $8d, $15, $21
 	stz VMADDL.w                                                  ; $87e7 : $9c, $16, $21
@@ -1547,7 +1547,7 @@ br_00_880b:
 	cmp #$10.b                                                  ; $8818 : $c9, $10
 	bcc br_00_87f2                                                  ; $881a : $90, $d6
 
-	stz $00b4.w                                                  ; $881c : $9c, $b4, $00
+	stz wScreenDisplay.w                                                  ; $881c : $9c, $b4, $00
 	jsr UpdateIntsEnabledWithVBlank.l                                                  ; $881f : $22, $6b, $da, $04
 	rts                                                  ; $8823 : $60
 
@@ -1564,6 +1564,7 @@ Call_00_8824:
 	rts                                                  ; $883c : $60
 
 
+Func_0_883d:
 	jsr Call_00_8841.w                                                  ; $883d : $20, $41, $88
 	rtl                                                  ; $8840 : $6b
 
@@ -1598,14 +1599,13 @@ Jump_00_885c:
 	stz $3c                                                  ; $8862 : $64, $3c
 
 Jump_00_8864:
-br_00_8864:
-	ldx $38                                                  ; $8864 : $a6, $38
+-	ldx $38                                                  ; $8864 : $a6, $38
 	jsr (@funcs.w, X)                                                  ; $8866 : $fc, $6e, $88
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $8869 : $20, $62, $81
-	bra br_00_8864                                                  ; $886c : $80, $f6
+	bra -                                                  ; $886c : $80, $f6
 
 @funcs:
-	.dw $88bb
+	.dw Func_0_88bb
 	.dw $8e14
 	.dw Func_2_8874
 
@@ -1615,27 +1615,30 @@ Func_2_8874:
 	rts                                                  ; $8878 : $60
 
 
-	lda #$2001.w                                                  ; $8879 : $a9, $01, $20
-	ror $a581.w                                                  ; $887c : $6e, $81, $a5
-	lda $1089.w                                                  ; $887f : $ad, $89, $10
-	beq br_00_88a1                                                  ; $8882 : $f0, $1d
+Func_0_8879:
+	lda #$01.b                                                  ; $8879 : $a9, $01
+	jsr PauseCurrThreadWithADelayCounterOfA.w                                                  ; $887b : $20, $6e, $81
+	lda $ad                                                  ; $887e : $a5, $ad
+	bit #$10.b                                                  ; $8880 : $89, $10
+	beq @done                                                  ; $8882 : $f0, $1d
 
 	jsr Call_00_88cf.w                                                  ; $8884 : $20, $cf, $88
 	jsr Call_00_88a6.w                                                  ; $8887 : $20, $a6, $88
+
+;
 	rep #IDX_8                                                  ; $888a : $c2, $10
 	ldx ThreadTopStackPointers.w                                                  ; $888c : $ae, $67, $80
 	txs                                                  ; $888f : $9a
 	sep #IDX_8                                                  ; $8890 : $e2, $10
-	lda #$8502.w                                                  ; $8892 : $a9, $02, $85
-	sec                                                  ; $8895 : $38
+	lda #$02.b                                                  ; $8892 : $a9, $02
+	sta $38                                                  ; $8894 : $85, $38
 	stz $39                                                  ; $8896 : $64, $39
 	stz $3a                                                  ; $8898 : $64, $3a
 	stz $3b                                                  ; $889a : $64, $3b
 	stz $3c                                                  ; $889c : $64, $3c
 	jmp Jump_00_8864.w                                                  ; $889e : $4c, $64, $88
 
-
-br_00_88a1:
+@done:
 	rtl                                                  ; $88a1 : $6b
 
 
@@ -1655,8 +1658,10 @@ Call_00_88a6:
 	rts                                                  ; $88ba : $60
 
 
+Func_0_88bb:
 	ldx $39                                                  ; $88bb : $a6, $39
-	jsr ($88e1.w, X)                                                  ; $88bd : $fc, $e1, $88
+	jsr (Funcs_0_88e1.w, X)                                                  ; $88bd : $fc, $e1, $88
+
 	ldx $39                                                  ; $88c0 : $a6, $39
 	beq br_00_88e0                                                  ; $88c2 : $f0, $1c
 
@@ -1681,10 +1686,14 @@ br_00_88e0:
 	rts                                                  ; $88e0 : $60
 
 
-	sbc #$88.b                                                  ; $88e1 : $e9, $88
-	asl $1389.w                                                  ; $88e3 : $0e, $89, $13
-	bit #$e1.b                                                  ; $88e6 : $89, $e1
-	phb                                                  ; $88e8 : $8b
+Funcs_0_88e1:
+	.dw $88e9
+	.dw $890e
+	.dw Func_0_8913
+	.dw $8be1
+
+
+;
 	lda #$02.b                                                  ; $88e9 : $a9, $02
 	sta $39                                                  ; $88eb : $85, $39
 	lda #$3c.b                                                  ; $88ed : $a9, $3c
@@ -1706,28 +1715,30 @@ br_00_88e0:
 	rts                                                  ; $8912 : $60
 
 
+Func_0_8913:
 	ldx $3a                                                  ; $8913 : $a6, $3a
-	jmp ($8918.w, X)                                                  ; $8915 : $7c, $18, $89
+	jmp (@funcs.w, X)                                                  ; $8915 : $7c, $18, $89
 
+@funcs:
+	.dw Func_0_891e
+	.dw $89a8
+	.dw $89e0
+	
 
-	asl $a889.w, X                                                  ; $8918 : $1e, $89, $a8
-	bit #$e0.b                                                  ; $891b : $89, $e0
-	bit #$22.b                                                  ; $891d : $89, $22
-	eor ($da), Y                                                  ; $891f : $51, $da
-	tsb $a9                                                  ; $8921 : $04, $a9
-	cop $85.b                                                  ; $8923 : $02, $85
-	dea                                                  ; $8925 : $3a
+Func_0_891e:
+	jsr todo_ForceBlankOn.l                                                  ; $891e : $22, $51, $da, $04
+	lda #$02.b                                                  ; $8922 : $a9, $02
+	sta $3a                                                  ; $8924 : $85, $3a
 	lda #$ff.b                                                  ; $8926 : $a9, $ff
 	sta $d6                                                  ; $8928 : $85, $d6
-	lda #$11.b                                                  ; $892a : $a9, $11
+	lda #STAGE_X_VECTOR_SCREEN.b                                                  ; $892a : $a9, $11
 	sta wStageIdx.w                                                  ; $892c : $8d, $ae, $1f
 	stz wDynamicSpriteTileDatasIdx.w                                                  ; $892f : $9c, $18, $1f
 	jsr todo_AddThreadToDynamicallyLoadSpriteTileData.w                                                  ; $8932 : $20, $e0, $b1
 
-br_00_8935:
-	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $8935 : $20, $62, $81
+-	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $8935 : $20, $62, $81
 	lda $0040.w                                                  ; $8938 : $ad, $40, $00
-	bne br_00_8935                                                  ; $893b : $d0, $f8
+	bne -                                                  ; $893b : $d0, $f8
 
 	ldy #$46.b                                                  ; $893d : $a0, $46
 	jsr todo_DecompressAndDmaData.w                                                  ; $893f : $20, $7a, $b4
@@ -1735,40 +1746,45 @@ br_00_8935:
 	jsr Func_1_805b.l                                                  ; $8944 : $22, $5b, $80, $01
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $8948 : $20, $62, $81
 	lda #$13.b                                                  ; $894b : $a9, $13
-	sta $00c1.w                                                  ; $894d : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $894d : $8d, $c1, $00
 	lda #$12.b                                                  ; $8950 : $a9, $12
-	sta $00c2.w                                                  ; $8952 : $8d, $c2, $00
+	sta wSubScreenDesignation.w                                                  ; $8952 : $8d, $c2, $00
 	lda #$63.b                                                  ; $8955 : $a9, $63
-	sta $00ca.w                                                  ; $8957 : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $8957 : $8d, $ca, $00
 	lda #$02.b                                                  ; $895a : $a9, $02
-	sta $00c9.w                                                  ; $895c : $8d, $c9, $00
+	sta wColourAdditionSelect.w                                                  ; $895c : $8d, $c9, $00
 	lda #$52.b                                                  ; $895f : $a9, $52
 	sta BG1SC.w                                                  ; $8961 : $8d, $07, $21
 	lda #$5a.b                                                  ; $8964 : $a9, $5a
 	sta BG2SC.w                                                  ; $8966 : $8d, $08, $21
 	rep #ACCU_8                                                  ; $8969 : $c2, $20
 	stz wBG1HorizScroll.w                                                  ; $896b : $9c, $b5, $00
-	stz $00b9.w                                                  ; $896e : $9c, $b9, $00
+	stz wBG2HorizScroll.w                                                  ; $896e : $9c, $b9, $00
 	lda #$0100.w                                                  ; $8971 : $a9, $00, $01
 	sta wBG1VertScroll.w                                                  ; $8974 : $8d, $b7, $00
-	sta $00bb.w                                                  ; $8977 : $8d, $bb, $00
+	sta wBG2VertScroll.w                                                  ; $8977 : $8d, $bb, $00
 	sep #ACCU_8                                                  ; $897a : $e2, $20
 	jsr Call_00_8b7c.w                                                  ; $897c : $20, $7c, $8b
 	lda #$01.b                                                  ; $897f : $a9, $01
-	sta $09de.w                                                  ; $8981 : $8d, $de, $09
-	sta $09e6.w                                                  ; $8984 : $8d, $e6, $09
-	jsr $008879.l                                                  ; $8987 : $22, $79, $88, $00
+	sta wPlayerEntity.x.w+1                                                  ; $8981 : $8d, $de, $09
+	sta wPlayerEntity.w+$0e                                                  ; $8984 : $8d, $e6, $09
+	jsr Func_0_8879.l                                                  ; $8987 : $22, $79, $88, $00
 	jsr Call_00_9043.w                                                  ; $898b : $20, $43, $90
+
+; sound-related
 	lda #$1c.b                                                  ; $898e : $a9, $1c
 	jsr Call_00_84ca.w                                                  ; $8990 : $20, $ca, $84
-	jsr $04da74.l                                                  ; $8993 : $22, $74, $da, $04
-	jsr $078321.l                                                  ; $8997 : $22, $21, $83, $07
-	jsr $078363.l                                                  ; $899b : $22, $63, $83, $07
+
+;
+	jsr UpdateIntsEnabledWithOnlyAutoJoypadRead.l                                                  ; $8993 : $22, $74, $da, $04
+	jsr FarSetupXVectorTilemap.l                                                  ; $8997 : $22, $21, $83, $07
+	jsr FarClearShadowXVectorTileData.l                                                  ; $899b : $22, $63, $83, $07
 	jsr UpdateIntsEnabledWithVBlank.l                                                  ; $899f : $22, $6b, $da, $04
-	jsr $04da65.l                                                  ; $89a3 : $22, $65, $da, $04
+	jsr SetMaxBrightnessNoBlankOnDisplay.l                                                  ; $89a3 : $22, $65, $da, $04
 	rts                                                  ; $89a7 : $60
 
 
+;
 	stz $0a19.w                                                  ; $89a8 : $9c, $19, $0a
 	lda #$01.b                                                  ; $89ab : $a9, $01
 	sta $0a39.w                                                  ; $89ad : $8d, $39, $0a
@@ -1781,7 +1797,7 @@ br_00_8935:
 br_00_89be:
 	jsr Call_00_8a40.w                                                  ; $89be : $20, $40, $8a
 	jsr Call_00_8bb8.w                                                  ; $89c1 : $20, $b8, $8b
-	jsr $008879.l                                                  ; $89c4 : $22, $79, $88, $00
+	jsr Func_0_8879.l                                                  ; $89c4 : $22, $79, $88, $00
 	lda $0a18.w                                                  ; $89c8 : $ad, $18, $0a
 	ora $0a38.w                                                  ; $89cb : $0d, $38, $0a
 	bne br_00_89be                                                  ; $89ce : $d0, $ee
@@ -2053,6 +2069,7 @@ br_00_8b72:
 	rts                                                  ; $8b77 : $60
 
 
+Func_0_8b78:
 	jsr Call_00_8b7c.w                                                  ; $8b78 : $20, $7c, $8b
 	rtl                                                  ; $8b7b : $6b
 
@@ -2085,6 +2102,7 @@ Call_00_8ba5:
 	rts                                                  ; $8bb3 : $60
 
 
+Func_0_8bb4:
 	jsr Call_00_8bb8.w                                                  ; $8bb4 : $20, $b8, $8b
 	rtl                                                  ; $8bb7 : $6b
 
@@ -2096,9 +2114,9 @@ Call_00_8bb8:
 	lda wPlayerEntity.x.w                                                  ; $8bc0 : $ad, $dd, $09
 	sta wBG1VertScroll.w                                                  ; $8bc3 : $8d, $b7, $00
 	lda $09e1.w                                                  ; $8bc6 : $ad, $e1, $09
-	sta $00b9.w                                                  ; $8bc9 : $8d, $b9, $00
+	sta wBG2HorizScroll.w                                                  ; $8bc9 : $8d, $b9, $00
 	lda $09e5.w                                                  ; $8bcc : $ad, $e5, $09
-	sta $00bb.w                                                  ; $8bcf : $8d, $bb, $00
+	sta wBG2VertScroll.w                                                  ; $8bcf : $8d, $bb, $00
 	lda $09e9.w                                                  ; $8bd2 : $ad, $e9, $09
 	sta $00bd.w                                                  ; $8bd5 : $8d, $bd, $00
 	lda $09ed.w                                                  ; $8bd8 : $ad, $ed, $09
@@ -2222,7 +2240,7 @@ br_00_8ca1:
 	inc $3c                                                  ; $8cc0 : $e6, $3c
 	lda #$04.b                                                  ; $8cc2 : $a9, $04
 	sta $1f23.w                                                  ; $8cc4 : $8d, $23, $1f
-	jsr Call_00_dd59.w                                                  ; $8cc7 : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $8cc7 : $20, $59, $dd
 	inc $1cf8.w                                                  ; $8cca : $ee, $f8, $1c
 	lda #$0a.b                                                  ; $8ccd : $a9, $0a
 	sta $1d02.w                                                  ; $8ccf : $8d, $02, $1d
@@ -2273,7 +2291,7 @@ br_00_8d1e:
 	jsr Call_00_e0c6.w                                                  ; $8d26 : $20, $c6, $e0
 	pld                                                  ; $8d29 : $2b
 	plp                                                  ; $8d2a : $28
-	jsr Call_00_dd59.w                                                  ; $8d2b : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $8d2b : $20, $59, $dd
 	lda $1cf8.w                                                  ; $8d2e : $ad, $f8, $1c
 	bne br_00_8d3c                                                  ; $8d31 : $d0, $09
 
@@ -2323,7 +2341,7 @@ br_00_8d63:
 	bne br_00_8d7f                                                  ; $8d7a : $d0, $03
 
 br_00_8d7c:
-	jsr Call_00_dd59.w                                                  ; $8d7c : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $8d7c : $20, $59, $dd
 
 br_00_8d7f:
 	lda $7f8400.l                                                  ; $8d7f : $af, $00, $84, $7f
@@ -2381,7 +2399,7 @@ br_00_8db7:
 	jsr Call_00_a4fd.w                                                  ; $8dc9 : $20, $fd, $a4
 
 br_00_8dcc:
-	jsr Call_00_dd59.w                                                  ; $8dcc : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $8dcc : $20, $59, $dd
 	stz $1f37.w                                                  ; $8dcf : $9c, $37, $1f
 	lda $d6                                                  ; $8dd2 : $a5, $d6
 	sta $09d1.w                                                  ; $8dd4 : $8d, $d1, $09
@@ -2397,7 +2415,7 @@ br_00_8dde:
 	inc $09cc.w                                                  ; $8de1 : $ee, $cc, $09
 	jsr Call_00_d957.w                                                  ; $8de4 : $20, $57, $d9
 	jsr LoadNewVisibleEntities.w                                                  ; $8de7 : $20, $3a, $de
-	jsr Call_00_dd59.w                                                  ; $8dea : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $8dea : $20, $59, $dd
 	lda $7f8400.l                                                  ; $8ded : $af, $00, $84, $7f
 	cmp #$04.b                                                  ; $8df1 : $c9, $04
 	beq br_00_8dfa                                                  ; $8df3 : $f0, $05
@@ -2503,7 +2521,7 @@ br_00_8e86:
 	sta $1f22.w                                                  ; $8ee2 : $8d, $22, $1f
 	lda #$04.b                                                  ; $8ee5 : $a9, $04
 	sta $1f23.w                                                  ; $8ee7 : $8d, $23, $1f
-	jsr Call_00_dd59.w                                                  ; $8eea : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $8eea : $20, $59, $dd
 	stz $00e4.w                                                  ; $8eed : $9c, $e4, $00
 	stz $00e6.w                                                  ; $8ef0 : $9c, $e6, $00
 	lda #$08.b                                                  ; $8ef3 : $a9, $08
@@ -2512,7 +2530,7 @@ br_00_8e86:
 	jsr Call_00_8691.w                                                  ; $8efa : $20, $91, $86
 	lda #$10.b                                                  ; $8efd : $a9, $10
 	jsr Call_00_8691.w                                                  ; $8eff : $20, $91, $86
-	jsr $04da51.l                                                  ; $8f02 : $22, $51, $da, $04
+	jsr todo_ForceBlankOn.l                                                  ; $8f02 : $22, $51, $da, $04
 	jsr Call_00_9043.w                                                  ; $8f06 : $20, $43, $90
 	jsr Call_00_9050.w                                                  ; $8f09 : $20, $50, $90
 	lda #$01.b                                                  ; $8f0c : $a9, $01
@@ -2526,14 +2544,14 @@ br_00_8f1b:
 	phx                                                  ; $8f1b : $da
 	phd                                                  ; $8f1c : $0b
 	jsr Call_00_dcc0.w                                                  ; $8f1d : $20, $c0, $dc
-	jsr Call_00_dd59.w                                                  ; $8f20 : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $8f20 : $20, $59, $dd
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $8f23 : $20, $62, $81
 	pld                                                  ; $8f26 : $2b
 	plx                                                  ; $8f27 : $fa
 	dex                                                  ; $8f28 : $ca
 	bne br_00_8f1b                                                  ; $8f29 : $d0, $f0
 
-	stz $00b4.w                                                  ; $8f2b : $9c, $b4, $00
+	stz wScreenDisplay.w                                                  ; $8f2b : $9c, $b4, $00
 	jsr Call_00_8669.w                                                  ; $8f2e : $20, $69, $86
 	lda #$ff.b                                                  ; $8f31 : $a9, $ff
 	sta $3b                                                  ; $8f33 : $85, $3b
@@ -2594,7 +2612,7 @@ br_00_8f81:
 	phd                                                  ; $8f81 : $0b
 	jsr Call_00_dcc0.w                                                  ; $8f82 : $20, $c0, $dc
 	pld                                                  ; $8f85 : $2b
-	jsr Call_00_dd59.w                                                  ; $8f86 : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $8f86 : $20, $59, $dd
 	jsr Func_4_be35.l                                                  ; $8f89 : $22, $35, $be, $04
 	dec $3b                                                  ; $8f8d : $c6, $3b
 
@@ -2625,7 +2643,7 @@ br_00_8f92:
 	jsr Call_00_dcc0.w                                                  ; $8fb5 : $20, $c0, $dc
 	pld                                                  ; $8fb8 : $2b
 	plp                                                  ; $8fb9 : $28
-	jsr Call_00_dd59.w                                                  ; $8fba : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $8fba : $20, $59, $dd
 	lda $3b                                                  ; $8fbd : $a5, $3b
 	beq br_00_8fcd                                                  ; $8fbf : $f0, $0c
 
@@ -2749,7 +2767,7 @@ Call_00_9070:
 	lda $00a4.w                                                  ; $9076 : $ad, $a4, $00
 	sbc #$08.b                                                  ; $9079 : $e9, $08
 	sta $00a4.w                                                  ; $907b : $8d, $a4, $00
-	jsr $04da74.l                                                  ; $907e : $22, $74, $da, $04
+	jsr UpdateIntsEnabledWithOnlyAutoJoypadRead.l                                                  ; $907e : $22, $74, $da, $04
 	rep #IDX_8                                                  ; $9082 : $c2, $10
 	lda #$08.b                                                  ; $9084 : $a9, $08
 	ldy #$5000.w                                                  ; $9086 : $a0, $00, $50
@@ -3095,7 +3113,7 @@ br_00_92a4:
 
 br_00_92bb:
 	jsr Call_00_d957.w                                                  ; $92bb : $20, $57, $d9
-	jmp Call_00_dd59.w                                                  ; $92be : $4c, $59, $dd
+	jmp NearBuildOam.w                                                  ; $92be : $4c, $59, $dd
 
 
 	lda $1f50.w                                                  ; $92c1 : $ad, $50, $1f
@@ -3187,10 +3205,10 @@ br_00_9302:
 
 
 	rep #ACCU_8                                                  ; $935b : $c2, $20
-	lda $00b9.w                                                  ; $935d : $ad, $b9, $00
+	lda wBG2HorizScroll.w                                                  ; $935d : $ad, $b9, $00
 	sec                                                  ; $9360 : $38
 	sbc #$0008.w                                                  ; $9361 : $e9, $08, $00
-	sta $00b9.w                                                  ; $9364 : $8d, $b9, $00
+	sta wBG2HorizScroll.w                                                  ; $9364 : $8d, $b9, $00
 	sep #ACCU_8                                                  ; $9367 : $e2, $20
 	ldx $3b                                                  ; $9369 : $a6, $3b
 	jmp ($936e.w, X)                                                  ; $936b : $7c, $6e, $93
@@ -3249,12 +3267,12 @@ br_00_93a8:
 	lda #$01.b                                                  ; $93b0 : $a9, $01
 	sta $1fb5.w                                                  ; $93b2 : $8d, $b5, $1f
 	lda #$14.b                                                  ; $93b5 : $a9, $14
-	sta $00c1.w                                                  ; $93b7 : $8d, $c1, $00
-	stz $00c2.w                                                  ; $93ba : $9c, $c2, $00
+	sta wMainScreenDesignation.w                                                  ; $93b7 : $8d, $c1, $00
+	stz wSubScreenDesignation.w                                                  ; $93ba : $9c, $c2, $00
 	lda #$01.b                                                  ; $93bd : $a9, $01
-	sta $00c9.w                                                  ; $93bf : $8d, $c9, $00
+	sta wColourAdditionSelect.w                                                  ; $93bf : $8d, $c9, $00
 	lda #$a0.b                                                  ; $93c2 : $a9, $a0
-	sta $00ca.w                                                  ; $93c4 : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $93c4 : $8d, $ca, $00
 	lda #$10.b                                                  ; $93c7 : $a9, $10
 	sta $00cb.w                                                  ; $93c9 : $8d, $cb, $00
 	sta $00cc.w                                                  ; $93cc : $8d, $cc, $00
@@ -3266,7 +3284,7 @@ br_00_93a8:
 	jsr Call_00_a54f.w                                                  ; $93da : $20, $4f, $a5
 	jsr Call_00_9571.w                                                  ; $93dd : $20, $71, $95
 	lda #$04.b                                                  ; $93e0 : $a9, $04
-	sta $00c1.w                                                  ; $93e2 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $93e2 : $8d, $c1, $00
 	jsr Call_00_95dc.w                                                  ; $93e5 : $20, $dc, $95
 	sep #ACCU_8                                                  ; $93e8 : $e2, $20
 	jsr Func_4_8000.l                                                  ; $93ea : $22, $00, $80, $04
@@ -3296,7 +3314,7 @@ br_00_93a8:
 	tdc                                                  ; $9418 : $7b
 	sbc #$00.b                                                  ; $9419 : $e9, $00
 	lda #$04.b                                                  ; $941b : $a9, $04
-	sta $00c1.w                                                  ; $941d : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $941d : $8d, $c1, $00
 	inc $3b                                                  ; $9420 : $e6, $3b
 	inc $3b                                                  ; $9422 : $e6, $3b
 	jmp Jump_00_8669.w                                                  ; $9424 : $4c, $69, $86
@@ -3320,7 +3338,7 @@ br_00_93a8:
 	jsr todo_AddThreadToDynamicallyLoadSpriteTileData.w                                                  ; $9447 : $20, $e0, $b1
 	jsr Call_00_95dc.w                                                  ; $944a : $20, $dc, $95
 	lda #$17.b                                                  ; $944d : $a9, $17
-	sta $00c1.w                                                  ; $944f : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $944f : $8d, $c1, $00
 	stz $1f2b.w                                                  ; $9452 : $9c, $2b, $1f
 	rep #ACCU_8                                                  ; $9455 : $c2, $20
 	lda #$0100.w                                                  ; $9457 : $a9, $00, $01
@@ -3359,7 +3377,7 @@ br_00_9491:
 	inc $3b                                                  ; $9493 : $e6, $3b
 	inc $3b                                                  ; $9495 : $e6, $3b
 	lda #$03.b                                                  ; $9497 : $a9, $03
-	sta $00ca.w                                                  ; $9499 : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $9499 : $8d, $ca, $00
 	stz $d9                                                  ; $949c : $64, $d9
 	stz $d8                                                  ; $949e : $64, $d8
 	inc $1f55.w                                                  ; $94a0 : $ee, $55, $1f
@@ -3404,7 +3422,7 @@ br_00_94e0:
 br_00_94e6:
 	sep #ACCU_8                                                  ; $94e6 : $e2, $20
 	jsr Call_00_d957.w                                                  ; $94e8 : $20, $57, $d9
-	jmp Call_00_dd59.w                                                  ; $94eb : $4c, $59, $dd
+	jmp NearBuildOam.w                                                  ; $94eb : $4c, $59, $dd
 
 
 	jsr Call_00_95ed.w                                                  ; $94ee : $20, $ed, $95
@@ -3456,9 +3474,9 @@ br_00_953c:
 	lda #$59.b                                                  ; $9542 : $a9, $59
 	sta BG2SC.w                                                  ; $9544 : $8d, $08, $21
 	lda #$13.b                                                  ; $9547 : $a9, $13
-	sta $00c1.w                                                  ; $9549 : $8d, $c1, $00
-	stz $00c9.w                                                  ; $954c : $9c, $c9, $00
-	stz $00ca.w                                                  ; $954f : $9c, $ca, $00
+	sta wMainScreenDesignation.w                                                  ; $9549 : $8d, $c1, $00
+	stz wColourAdditionSelect.w                                                  ; $954c : $9c, $c9, $00
+	stz wColourMathDesignation.w                                                  ; $954f : $9c, $ca, $00
 	stz $00cb.w                                                  ; $9552 : $9c, $cb, $00
 	stz $00cc.w                                                  ; $9555 : $9c, $cc, $00
 	stz $00cd.w                                                  ; $9558 : $9c, $cd, $00
@@ -3480,8 +3498,8 @@ Call_00_9571:
 	lda #$0a.b                                                  ; $9571 : $a9, $0a
 	sta BG3SC.w                                                  ; $9573 : $8d, $09, $21
 	lda #$17.b                                                  ; $9576 : $a9, $17
-	sta $00c1.w                                                  ; $9578 : $8d, $c1, $00
-	sta $00c2.w                                                  ; $957b : $8d, $c2, $00
+	sta wMainScreenDesignation.w                                                  ; $9578 : $8d, $c1, $00
+	sta wSubScreenDesignation.w                                                  ; $957b : $8d, $c2, $00
 	sta $212e.w                                                  ; $957e : $8d, $2e, $21
 	lda #$33.b                                                  ; $9581 : $a9, $33
 	sta $00c5.w                                                  ; $9583 : $8d, $c5, $00
@@ -3490,12 +3508,12 @@ Call_00_9571:
 	sta $00c6.w                                                  ; $958b : $8d, $c6, $00
 	lda #$08.b                                                  ; $958e : $a9, $08
 	trb $00cf.w                                                  ; $9590 : $1c, $cf, $00
-	stz $00c9.w                                                  ; $9593 : $9c, $c9, $00
+	stz wColourAdditionSelect.w                                                  ; $9593 : $9c, $c9, $00
 	stz $00cb.w                                                  ; $9596 : $9c, $cb, $00
 	stz $00cc.w                                                  ; $9599 : $9c, $cc, $00
 	stz $00cd.w                                                  ; $959c : $9c, $cd, $00
 	lda #$01.b                                                  ; $959f : $a9, $01
-	sta $00ca.w                                                  ; $95a1 : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $95a1 : $8d, $ca, $00
 	rep #ACCU_8|IDX_8                                                  ; $95a4 : $c2, $30
 	stz $00bd.w                                                  ; $95a6 : $9c, $bd, $00
 	stz $00bf.w                                                  ; $95a9 : $9c, $bf, $00
@@ -3581,12 +3599,12 @@ Call_00_9619:
 	lda #$8504.w                                                  ; $9620 : $a9, $04, $85
 	cld                                                  ; $9623 : $d8
 	rep #ACCU_8                                                  ; $9624 : $c2, $20
-	inc $00b9.w                                                  ; $9626 : $ee, $b9, $00
-	lda $00b9.w                                                  ; $9629 : $ad, $b9, $00
+	inc wBG2HorizScroll.w                                                  ; $9626 : $ee, $b9, $00
+	lda wBG2HorizScroll.w                                                  ; $9629 : $ad, $b9, $00
 	cmp #$0200.w                                                  ; $962c : $c9, $00, $02
 	bne br_00_9634                                                  ; $962f : $d0, $03
 
-	stz $00b9.w                                                  ; $9631 : $9c, $b9, $00
+	stz wBG2HorizScroll.w                                                  ; $9631 : $9c, $b9, $00
 
 br_00_9634:
 	sep #ACCU_8                                                  ; $9634 : $e2, $20
@@ -3597,11 +3615,11 @@ br_00_9636:
 
 Call_00_9637:
 	rep #ACCU_8                                                  ; $9637 : $c2, $20
-	lda $00b9.w                                                  ; $9639 : $ad, $b9, $00
+	lda wBG2HorizScroll.w                                                  ; $9639 : $ad, $b9, $00
 	clc                                                  ; $963c : $18
 	adc #$0108.w                                                  ; $963d : $69, $08, $01
 	sta $00                                                  ; $9640 : $85, $00
-	lda $00bb.w                                                  ; $9642 : $ad, $bb, $00
+	lda wBG2VertScroll.w                                                  ; $9642 : $ad, $bb, $00
 	sta $02                                                  ; $9645 : $85, $02
 	sep #ACCU_8                                                  ; $9647 : $e2, $20
 	jmp Jump_00_b868.w                                                  ; $9649 : $4c, $68, $b8
@@ -3628,8 +3646,8 @@ Call_00_9637:
 	stz $00cc.w                                                  ; $9676 : $9c, $cc, $00
 	stz $00cd.w                                                  ; $9679 : $9c, $cd, $00
 	lda #$3f.b                                                  ; $967c : $a9, $3f
-	sta $00ca.w                                                  ; $967e : $8d, $ca, $00
-	stz $00c9.w                                                  ; $9681 : $9c, $c9, $00
+	sta wColourMathDesignation.w                                                  ; $967e : $8d, $ca, $00
+	stz wColourAdditionSelect.w                                                  ; $9681 : $9c, $c9, $00
 
 br_00_9684:
 	inc $00cb.w                                                  ; $9684 : $ee, $cb, $00
@@ -3644,7 +3662,7 @@ br_00_9684:
 	jsr todo_PrintTextFromTable.l                                                  ; $9699 : $22, $8d, $86, $00
 	jsr $00904c.l                                                  ; $969d : $22, $4c, $90, $00
 	lda #$13.b                                                  ; $96a1 : $a9, $13
-	sta $00c1.w                                                  ; $96a3 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $96a3 : $8d, $c1, $00
 	lda #$1f.b                                                  ; $96a6 : $a9, $1f
 	jsr PauseCurrThreadWithADelayCounterOfA.w                                                  ; $96a8 : $20, $6e, $81
 
@@ -3661,7 +3679,7 @@ br_00_96ab:
 
 Func_0_96bf:
 	lda #$17.b                                                  ; $96bf : $a9, $17
-	sta $00c1.w                                                  ; $96c1 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $96c1 : $8d, $c1, $00
 	lda #$09.b                                                  ; $96c4 : $a9, $09
 	sta $00ce.w                                                  ; $96c6 : $8d, $ce, $00
 	lda #$ff.b                                                  ; $96c9 : $a9, $ff
@@ -4333,7 +4351,7 @@ br_00_9b72:
 	lda $09d6.w                                                  ; $9bae : $ad, $d6, $09
 	sta $7f8406.l                                                  ; $9bb1 : $8f, $06, $84, $7f
 	sep #ACCU_8                                                  ; $9bb5 : $e2, $20
-	jsr Call_00_dd59.w                                                  ; $9bb7 : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $9bb7 : $20, $59, $dd
 	inc $1cf8.w                                                  ; $9bba : $ee, $f8, $1c
 	lda #$0a.b                                                  ; $9bbd : $a9, $0a
 	sta $1d02.w                                                  ; $9bbf : $8d, $02, $1d
@@ -4382,7 +4400,7 @@ br_00_9c09:
 	jsr Call_00_e0c6.w                                                  ; $9c11 : $20, $c6, $e0
 	pld                                                  ; $9c14 : $2b
 	plp                                                  ; $9c15 : $28
-	jsr Call_00_dd59.w                                                  ; $9c16 : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $9c16 : $20, $59, $dd
 	lda $1cf8.w                                                  ; $9c19 : $ad, $f8, $1c
 	bne br_00_9c27                                                  ; $9c1c : $d0, $09
 
@@ -4419,7 +4437,7 @@ Func_0_9c28:
 	jsr Call_00_d957.w                                                  ; $9c51 : $20, $57, $d9
 	jsr LoadNewVisibleEntities.w                                                  ; $9c54 : $20, $3a, $de
 	jsr Call_00_a2fa.w                                                  ; $9c57 : $20, $fa, $a2
-	jsr Call_00_dd59.w                                                  ; $9c5a : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $9c5a : $20, $59, $dd
 	stz $1f71.w                                                  ; $9c5d : $9c, $71, $1f
 	lda wCurrHealth.w                                                  ; $9c60 : $ad, $ff, $09
 	bne @br_9c7b                                                  ; $9c63 : $d0, $16
@@ -4479,7 +4497,7 @@ Func_0_9c28:
 	bit $1f37.w                                                  ; $9cb7 : $2c, $37, $1f
 	bvc +                                                  ; $9cba : $50, $03
 	jsr Call_00_a4fd.w                                                  ; $9cbc : $20, $fd, $a4
-+	jsr Call_00_dd59.w                                                  ; $9cbf : $20, $59, $dd
++	jsr NearBuildOam.w                                                  ; $9cbf : $20, $59, $dd
 	stz $1f37.w                                                  ; $9cc2 : $9c, $37, $1f
 	lda $d6                                                  ; $9cc5 : $a5, $d6
 	sta $09d1.w                                                  ; $9cc7 : $8d, $d1, $09
@@ -4505,7 +4523,7 @@ Func_0_9cde:
 	inc $09cc.w                                                  ; $9ce2 : $ee, $cc, $09
 	jsr Call_00_d957.w                                                  ; $9ce5 : $20, $57, $d9
 	jsr LoadNewVisibleEntities.w                                                  ; $9ce8 : $20, $3a, $de
-	jsr Call_00_dd59.w                                                  ; $9ceb : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $9ceb : $20, $59, $dd
 	lda $1f1c.w                                                  ; $9cee : $ad, $1c, $1f
 	beq br_00_9d5e                                                  ; $9cf1 : $f0, $6b
 
@@ -4577,7 +4595,7 @@ br_00_9d5e:
 	beq br_00_9d72                                                  ; $9d65 : $f0, $0b
 
 	jsr Call_00_d957.w                                                  ; $9d67 : $20, $57, $d9
-	jsr Call_00_dd59.w                                                  ; $9d6a : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $9d6a : $20, $59, $dd
 	lda $1f36.w                                                  ; $9d6d : $ad, $36, $1f
 	bpl br_00_9d78                                                  ; $9d70 : $10, $06
 
@@ -4797,7 +4815,7 @@ br_00_9ebc:
 	sta $1f45.w                                                  ; $9ebe : $8d, $45, $1f
 	sta $1f4f.w                                                  ; $9ec1 : $8d, $4f, $1f
 	jsr Call_00_d957.w                                                  ; $9ec4 : $20, $57, $d9
-	jmp Call_00_dd59.w                                                  ; $9ec7 : $4c, $59, $dd
+	jmp NearBuildOam.w                                                  ; $9ec7 : $4c, $59, $dd
 
 
 	inc $09cc.w                                                  ; $9eca : $ee, $cc, $09
@@ -4806,7 +4824,7 @@ br_00_9ebc:
 	sta $1f45.w                                                  ; $9ed2 : $8d, $45, $1f
 	sta $1f4f.w                                                  ; $9ed5 : $8d, $4f, $1f
 	jsr Call_00_d957.w                                                  ; $9ed8 : $20, $57, $d9
-	jsr Call_00_dd59.w                                                  ; $9edb : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $9edb : $20, $59, $dd
 	lda $1f36.w                                                  ; $9ede : $ad, $36, $1f
 	bpl br_00_9f1a                                                  ; $9ee1 : $10, $37
 
@@ -4920,7 +4938,7 @@ br_00_9fcb:
 	jsr $04dcd4.l                                                  ; $9fe1 : $22, $d4, $dc, $04
 
 br_00_9fe5:
-	jsr Call_00_dd59.w                                                  ; $9fe5 : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $9fe5 : $20, $59, $dd
 	rep #ACCU_8                                                  ; $9fe8 : $c2, $20
 	lda wNewStageScrollY.w                                                  ; $9fea : $ad, $60, $1e
 	sta $d6                                                  ; $9fed : $85, $d6
@@ -5010,7 +5028,7 @@ br_00_a07b:
 	jsr Call_00_e0c6.w                                                  ; $a086 : $20, $c6, $e0
 	pld                                                  ; $a089 : $2b
 	plp                                                  ; $a08a : $28
-	jsr Call_00_dd59.w                                                  ; $a08b : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $a08b : $20, $59, $dd
 	lda $b4                                                  ; $a08e : $a5, $b4
 	and #$0f.b                                                  ; $a090 : $29, $0f
 	cmp #$0f.b                                                  ; $a092 : $c9, $0f
@@ -5115,7 +5133,7 @@ br_00_a136:
 	sta $1f45.w                                                  ; $a138 : $8d, $45, $1f
 	sta $1f4f.w                                                  ; $a13b : $8d, $4f, $1f
 	jsr Call_00_d957.w                                                  ; $a13e : $20, $57, $d9
-	jmp Call_00_dd59.w                                                  ; $a141 : $4c, $59, $dd
+	jmp NearBuildOam.w                                                  ; $a141 : $4c, $59, $dd
 
 
 	inc $09cc.w                                                  ; $a144 : $ee, $cc, $09
@@ -5124,7 +5142,7 @@ br_00_a136:
 	sta $1f45.w                                                  ; $a14c : $8d, $45, $1f
 	sta $1f4f.w                                                  ; $a14f : $8d, $4f, $1f
 	jsr Call_00_d957.w                                                  ; $a152 : $20, $57, $d9
-	jsr Call_00_dd59.w                                                  ; $a155 : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $a155 : $20, $59, $dd
 	lda $1f36.w                                                  ; $a158 : $ad, $36, $1f
 	bmi br_00_a15e                                                  ; $a15b : $30, $01
 
@@ -5154,7 +5172,7 @@ br_00_a15e:
 	stz $1fb6.w                                                  ; $a182 : $9c, $b6, $1f
 	stz $1fda.w                                                  ; $a185 : $9c, $da, $1f
 	lda #$17.b                                                  ; $a188 : $a9, $17
-	sta $00c1.w                                                  ; $a18a : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $a18a : $8d, $c1, $00
 	jsr Call_00_85c5.w                                                  ; $a18d : $20, $c5, $85
 	jsr Call_00_8824.w                                                  ; $a190 : $20, $24, $88
 	ldx #$10.b                                                  ; $a193 : $a2, $10
@@ -5252,7 +5270,7 @@ br_00_a258:
 
 br_00_a25b:
 	lda #$04.b                                                  ; $a25b : $a9, $04
-	trb $00c1.w                                                  ; $a25d : $1c, $c1, $00
+	trb wMainScreenDesignation.w                                                  ; $a25d : $1c, $c1, $00
 	lda wStageIdx.w                                                  ; $a260 : $ad, $ae, $1f
 	cmp #$0e.b                                                  ; $a263 : $c9, $0e
 	bne br_00_a269                                                  ; $a265 : $d0, $02
@@ -5374,7 +5392,7 @@ br_00_a338:
 	sta $1f37.w                                                  ; $a33f : $8d, $37, $1f
 	stz $1f24.w                                                  ; $a342 : $9c, $24, $1f
 	jsr Call_00_a370.w                                                  ; $a345 : $20, $70, $a3
-	jsr Call_00_dd59.w                                                  ; $a348 : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $a348 : $20, $59, $dd
 	lda #$f1.b                                                  ; $a34b : $a9, $f1
 	jsr Call_00_8579.w                                                  ; $a34d : $20, $79, $85
 	ldx #$01.b                                                  ; $a350 : $a2, $01
@@ -5821,7 +5839,7 @@ br_00_a5df:
 	stz $1f1e.w                                                  ; $a5f6 : $9c, $1e, $1f
 	pea $0000.w                                                  ; $a5f9 : $f4, $00, $00
 	pld                                                  ; $a5fc : $2b
-	jsr Call_00_dd59.w                                                  ; $a5fd : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $a5fd : $20, $59, $dd
 	jsr Call_00_aa6b.w                                                  ; $a600 : $20, $6b, $aa
 	bra br_00_a5c5                                                  ; $a603 : $80, $c0
 
@@ -5931,7 +5949,7 @@ br_00_a6b0:
 	sta $08                                                  ; $a6dd : $85, $08
 	lda #$0100.w                                                  ; $a6df : $a9, $00, $01
 	sta wBG1VertScroll.w                                                  ; $a6e2 : $8d, $b7, $00
-	sta $00b9.w                                                  ; $a6e5 : $8d, $b9, $00
+	sta wBG2HorizScroll.w                                                  ; $a6e5 : $8d, $b9, $00
 	sep #ACCU_8                                                  ; $a6e8 : $e2, $20
 	lda $7f83a1.l                                                  ; $a6ea : $af, $a1, $83, $7f
 	sta $11                                                  ; $a6ee : $85, $11
@@ -5966,8 +5984,8 @@ br_00_a70d:
 	lda #$08.b                                                  ; $a720 : $a9, $08
 	sta $1d                                                  ; $a722 : $85, $1d
 	lda #$14.b                                                  ; $a724 : $a9, $14
-	sta $00c1.w                                                  ; $a726 : $8d, $c1, $00
-	stz $00c2.w                                                  ; $a729 : $9c, $c2, $00
+	sta wMainScreenDesignation.w                                                  ; $a726 : $8d, $c1, $00
+	stz wSubScreenDesignation.w                                                  ; $a729 : $9c, $c2, $00
 	stz $3b                                                  ; $a72c : $64, $3b
 	stz $3c                                                  ; $a72e : $64, $3c
 	lda #$02.b                                                  ; $a730 : $a9, $02
@@ -5979,7 +5997,7 @@ br_00_a70d:
 	cmp #$10.b                                                  ; $a737 : $c9, $10
 	bcs br_00_a743                                                  ; $a739 : $b0, $08
 
-	sta $00b4.w                                                  ; $a73b : $8d, $b4, $00
+	sta wScreenDisplay.w                                                  ; $a73b : $8d, $b4, $00
 	ina                                                  ; $a73e : $1a
 	sta $36                                                  ; $a73f : $85, $36
 	bra br_00_a7ad                                                  ; $a741 : $80, $6a
@@ -6027,9 +6045,9 @@ br_00_a743:
 	lda #$30.b                                                  ; $a790 : $a9, $30
 	sta $00c8.w                                                  ; $a792 : $8d, $c8, $00
 	lda #$10.b                                                  ; $a795 : $a9, $10
-	sta $00c9.w                                                  ; $a797 : $8d, $c9, $00
+	sta wColourAdditionSelect.w                                                  ; $a797 : $8d, $c9, $00
 	lda #$30.b                                                  ; $a79a : $a9, $30
-	sta $00ca.w                                                  ; $a79c : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $a79c : $8d, $ca, $00
 	stz $2126.w                                                  ; $a79f : $9c, $26, $21
 	lda #$ff.b                                                  ; $a7a2 : $a9, $ff
 	sta $2127.w                                                  ; $a7a4 : $8d, $27, $21
@@ -6119,9 +6137,9 @@ br_00_a807:
 	stz $2126.w                                                  ; $a82d : $9c, $26, $21
 	lda #$ff.b                                                  ; $a830 : $a9, $ff
 	sta $2127.w                                                  ; $a832 : $8d, $27, $21
-	stz $00c9.w                                                  ; $a835 : $9c, $c9, $00
+	stz wColourAdditionSelect.w                                                  ; $a835 : $9c, $c9, $00
 	lda #$3f.b                                                  ; $a838 : $a9, $3f
-	sta $00ca.w                                                  ; $a83a : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $a83a : $8d, $ca, $00
 	lda #$01.b                                                  ; $a83d : $a9, $01
 	sta $3b                                                  ; $a83f : $85, $3b
 	lda #$1f.b                                                  ; $a841 : $a9, $1f
@@ -6222,11 +6240,11 @@ br_00_a89e:
 	.db $00                                                  ; $a8bb : $00
 	sta $00cc.w                                                  ; $a8bc : $8d, $cc, $00
 	sta $00cd.w                                                  ; $a8bf : $8d, $cd, $00
-	stz $00c9.w                                                  ; $a8c2 : $9c, $c9, $00
+	stz wColourAdditionSelect.w                                                  ; $a8c2 : $9c, $c9, $00
 	lda #$81.b                                                  ; $a8c5 : $a9, $81
-	sta $00ca.w                                                  ; $a8c7 : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $a8c7 : $8d, $ca, $00
 	lda #$17.b                                                  ; $a8ca : $a9, $17
-	sta $00c1.w                                                  ; $a8cc : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $a8cc : $8d, $c1, $00
 	lda #$02.b                                                  ; $a8cf : $a9, $02
 	sta $02                                                  ; $a8d1 : $85, $02
 	rts                                                  ; $a8d3 : $60
@@ -6244,7 +6262,7 @@ br_00_a89e:
 
 
 br_00_a8e5:
-	stz $00ca.w                                                  ; $a8e5 : $9c, $ca, $00
+	stz wColourMathDesignation.w                                                  ; $a8e5 : $9c, $ca, $00
 	lda #$72.b                                                  ; $a8e8 : $a9, $72
 	sta $09e9.w                                                  ; $a8ea : $8d, $e9, $09
 	lda #$40.b                                                  ; $a8ed : $a9, $40
@@ -6255,10 +6273,10 @@ br_00_a8e5:
 
 
 	rep #ACCU_8                                                  ; $a8f6 : $c2, $20
-	lda $00b9.w                                                  ; $a8f8 : $ad, $b9, $00
+	lda wBG2HorizScroll.w                                                  ; $a8f8 : $ad, $b9, $00
 	sec                                                  ; $a8fb : $38
 	sbc #$0004.w                                                  ; $a8fc : $e9, $04, $00
-	sta $00b9.w                                                  ; $a8ff : $8d, $b9, $00
+	sta wBG2HorizScroll.w                                                  ; $a8ff : $8d, $b9, $00
 	sep #ACCU_8                                                  ; $a902 : $e2, $20
 	dec $35                                                  ; $a904 : $c6, $35
 	bne br_00_a927                                                  ; $a906 : $d0, $1f
@@ -6270,9 +6288,9 @@ br_00_a8e5:
 	sta $00cb.w                                                  ; $a912 : $8d, $cb, $00
 	sta $00cc.w                                                  ; $a915 : $8d, $cc, $00
 	sta $00cd.w                                                  ; $a918 : $8d, $cd, $00
-	stz $00c9.w                                                  ; $a91b : $9c, $c9, $00
+	stz wColourAdditionSelect.w                                                  ; $a91b : $9c, $c9, $00
 	lda #$3f.b                                                  ; $a91e : $a9, $3f
-	sta $00ca.w                                                  ; $a920 : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $a920 : $8d, $ca, $00
 	lda #$06.b                                                  ; $a923 : $a9, $06
 	sta $02                                                  ; $a925 : $85, $02
 
@@ -6429,10 +6447,10 @@ br_00_aa14:
 	and #$00ff.w                                                  ; $aa23 : $29, $ff, $00
 	beq br_00_aa37                                                  ; $aa26 : $f0, $0f
 
-	lda $00b9.w                                                  ; $aa28 : $ad, $b9, $00
+	lda wBG2HorizScroll.w                                                  ; $aa28 : $ad, $b9, $00
 	sec                                                  ; $aa2b : $38
 	sbc #$0004.w                                                  ; $aa2c : $e9, $04, $00
-	sta $00b9.w                                                  ; $aa2f : $8d, $b9, $00
+	sta wBG2HorizScroll.w                                                  ; $aa2f : $8d, $b9, $00
 	sep #ACCU_8                                                  ; $aa32 : $e2, $20
 	jmp Jump_00_ab12.w                                                  ; $aa34 : $4c, $12, $ab
 
@@ -6680,7 +6698,7 @@ Jump_00_ab85:
 	lda #$0020.w                                                  ; $abf1 : $a9, $20, $00
 	sta wBG1VertScroll.w                                                  ; $abf4 : $8d, $b7, $00
 	lda #$ffe0.w                                                  ; $abf7 : $a9, $e0, $ff
-	sta $00bb.w                                                  ; $abfa : $8d, $bb, $00
+	sta wBG2VertScroll.w                                                  ; $abfa : $8d, $bb, $00
 	stz $00bd.w                                                  ; $abfd : $9c, $bd, $00
 	stz $00bf.w                                                  ; $ac00 : $9c, $bf, $00
 	phd                                                  ; $ac03 : $0b
@@ -6719,7 +6737,7 @@ Jump_00_ab85:
 	ldx $d4                                                  ; $ac55 : $a6, $d4
 	jsr ($ac60.w, X)                                                  ; $ac57 : $fc, $60, $ac
 	jsr Call_00_d957.w                                                  ; $ac5a : $20, $57, $d9
-	jmp Call_00_dd59.w                                                  ; $ac5d : $4c, $59, $dd
+	jmp NearBuildOam.w                                                  ; $ac5d : $4c, $59, $dd
 
 
 	.db $70, $ac                                                  ; $ac60 : $70, $ac
@@ -6823,7 +6841,7 @@ br_00_acfc:
 	bne br_00_ad20                                                  ; $ad12 : $d0, $0c
 
 	dec wBG1VertScroll.w                                                  ; $ad14 : $ce, $b7, $00
-	inc $00bb.w                                                  ; $ad17 : $ee, $bb, $00
+	inc wBG2VertScroll.w                                                  ; $ad17 : $ee, $bb, $00
 	dec $09e0.w                                                  ; $ad1a : $ce, $e0, $09
 	dec $0cd0.w                                                  ; $ad1d : $ce, $d0, $0c
 
@@ -6886,7 +6904,7 @@ br_00_ad72:
 	inc $d3                                                  ; $ad7a : $e6, $d3
 	stz $d4                                                  ; $ad7c : $64, $d4
 	lda #$04.b                                                  ; $ad7e : $a9, $04
-	trb $00c1.w                                                  ; $ad80 : $1c, $c1, $00
+	trb wMainScreenDesignation.w                                                  ; $ad80 : $1c, $c1, $00
 	lda #$b4.b                                                  ; $ad83 : $a9, $b4
 	sta $de                                                  ; $ad85 : $85, $de
 	ldy #$2002.w                                                  ; $ad87 : $a0, $02, $20
@@ -6900,7 +6918,7 @@ br_00_ad8c:
 	beq br_00_ad97                                                  ; $ad8f : $f0, $06
 
 	jsr Call_00_d957.w                                                  ; $ad91 : $20, $57, $d9
-	jmp Call_00_dd59.w                                                  ; $ad94 : $4c, $59, $dd
+	jmp NearBuildOam.w                                                  ; $ad94 : $4c, $59, $dd
 
 
 br_00_ad97:
@@ -6965,7 +6983,7 @@ br_00_adf8:
 	jsr $04dc97.l                                                  ; $ae09 : $22, $97, $dc, $04
 	rep #ACCU_8                                                  ; $ae0d : $c2, $20
 	stz wBG1VertScroll.w                                                  ; $ae0f : $9c, $b7, $00
-	stz $00bb.w                                                  ; $ae12 : $9c, $bb, $00
+	stz wBG2VertScroll.w                                                  ; $ae12 : $9c, $bb, $00
 	lda #$00a8.w                                                  ; $ae15 : $a9, $a8, $00
 	sta wPlayerEntity.x.w                                                  ; $ae18 : $8d, $dd, $09
 	lda #$00d0.w                                                  ; $ae1b : $a9, $d0, $00
@@ -7011,15 +7029,15 @@ br_00_adf8:
 	lda #$0a.b                                                  ; $ae7e : $a9, $0a
 	sta BG3SC.w                                                  ; $ae80 : $8d, $09, $21
 	lda #$17.b                                                  ; $ae83 : $a9, $17
-	sta $00c1.w                                                  ; $ae85 : $8d, $c1, $00
-	sta $00c2.w                                                  ; $ae88 : $8d, $c2, $00
+	sta wMainScreenDesignation.w                                                  ; $ae85 : $8d, $c1, $00
+	sta wSubScreenDesignation.w                                                  ; $ae88 : $8d, $c2, $00
 	sta $212e.w                                                  ; $ae8b : $8d, $2e, $21
 	lda #$33.b                                                  ; $ae8e : $a9, $33
 	sta $00c5.w                                                  ; $ae90 : $8d, $c5, $00
 	lda #$03.b                                                  ; $ae93 : $a9, $03
 	sta $00c8.w                                                  ; $ae95 : $8d, $c8, $00
 	lda #$0f.b                                                  ; $ae98 : $a9, $0f
-	sta $00b4.w                                                  ; $ae9a : $8d, $b4, $00
+	sta wScreenDisplay.w                                                  ; $ae9a : $8d, $b4, $00
 	rts                                                  ; $ae9d : $60
 
 
@@ -7035,7 +7053,7 @@ br_00_adf8:
 	lda $109d.w                                                  ; $aeb2 : $ad, $9d, $10
 	sta wBG1HorizScroll.w                                                  ; $aeb5 : $8d, $b5, $00
 	lda $10dd.w                                                  ; $aeb8 : $ad, $dd, $10
-	sta $00b9.w                                                  ; $aebb : $8d, $b9, $00
+	sta wBG2HorizScroll.w                                                  ; $aebb : $8d, $b9, $00
 	sep #ACCU_8                                                  ; $aebe : $e2, $20
 	php                                                  ; $aec0 : $08
 	ldx $d4                                                  ; $aec1 : $a6, $d4
@@ -7044,7 +7062,7 @@ br_00_adf8:
 	lda $1f36.w                                                  ; $aec7 : $ad, $36, $1f
 	bpl br_00_aed8                                                  ; $aeca : $10, $0c
 
-	stz $00b4.w                                                  ; $aecc : $9c, $b4, $00
+	stz wScreenDisplay.w                                                  ; $aecc : $9c, $b4, $00
 	lda #$04.b                                                  ; $aecf : $a9, $04
 	sta $d3                                                  ; $aed1 : $85, $d3
 	stz $d4                                                  ; $aed3 : $64, $d4
@@ -7054,7 +7072,7 @@ br_00_adf8:
 
 br_00_aed8:
 	jsr Call_00_d957.w                                                  ; $aed8 : $20, $57, $d9
-	jmp Call_00_dd59.w                                                  ; $aedb : $4c, $59, $dd
+	jmp NearBuildOam.w                                                  ; $aedb : $4c, $59, $dd
 
 
 	pea $2aae.w                                                  ; $aede : $f4, $ae, $2a
@@ -7136,13 +7154,13 @@ br_00_af44:
 	plb                                                  ; $af65 : $ab
 	sep #ACCU_8|IDX_8                                                  ; $af66 : $e2, $30
 	lda #$02.b                                                  ; $af68 : $a9, $02
-	sta $00c9.w                                                  ; $af6a : $8d, $c9, $00
+	sta wColourAdditionSelect.w                                                  ; $af6a : $8d, $c9, $00
 	stz $00c5.w                                                  ; $af6d : $9c, $c5, $00
 	stz $00c6.w                                                  ; $af70 : $9c, $c6, $00
 	lda #$03.b                                                  ; $af73 : $a9, $03
 	sta $00c8.w                                                  ; $af75 : $8d, $c8, $00
 	lda #$03.b                                                  ; $af78 : $a9, $03
-	sta $00ca.w                                                  ; $af7a : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $af7a : $8d, $ca, $00
 	inc $d4                                                  ; $af7d : $e6, $d4
 	inc $d4                                                  ; $af7f : $e6, $d4
 	lda #$78.b                                                  ; $af81 : $a9, $78
@@ -7256,7 +7274,7 @@ br_00_b00e:
 	bcc br_00_b03a                                                  ; $b02c : $90, $0c
 
 	stz $08d1.w                                                  ; $b02e : $9c, $d1, $08
-	stz $00c9.w                                                  ; $b031 : $9c, $c9, $00
+	stz wColourAdditionSelect.w                                                  ; $b031 : $9c, $c9, $00
 	lda #$12.b                                                  ; $b034 : $a9, $12
 	sta $d4                                                  ; $b036 : $85, $d4
 	bra br_00_b03e                                                  ; $b038 : $80, $04
@@ -7346,8 +7364,8 @@ br_00_b09d:
 	stz wNewStageScrollY.w                                                  ; $b0ab : $9c, $60, $1e
 	stz wBG1HorizScroll.w                                                  ; $b0ae : $9c, $b5, $00
 	stz wBG1VertScroll.w                                                  ; $b0b1 : $9c, $b7, $00
-	stz $00b9.w                                                  ; $b0b4 : $9c, $b9, $00
-	stz $00bb.w                                                  ; $b0b7 : $9c, $bb, $00
+	stz wBG2HorizScroll.w                                                  ; $b0b4 : $9c, $b9, $00
+	stz wBG2VertScroll.w                                                  ; $b0b7 : $9c, $bb, $00
 	sep #ACCU_8                                                  ; $b0ba : $e2, $20
 	stz $1f54.w                                                  ; $b0bc : $9c, $54, $1f
 	lda #$0e.b                                                  ; $b0bf : $a9, $0e
@@ -9929,7 +9947,7 @@ Jump_00_bece:
 br_00_befc:
 	pea $0000.w                                                  ; $befc : $f4, $00, $00
 	pld                                                  ; $beff : $2b
-	jmp Call_00_dd59.w                                                  ; $bf00 : $4c, $59, $dd
+	jmp NearBuildOam.w                                                  ; $bf00 : $4c, $59, $dd
 
 
 	ora [$bf], Y                                                  ; $bf03 : $17, $bf
@@ -9994,7 +10012,7 @@ br_00_bf70:
 	jsr Func_1_805b.l                                                  ; $bf8b : $22, $5b, $80, $01
 	sep #IDX_8                                                  ; $bf8f : $e2, $10
 	lda #$17.b                                                  ; $bf91 : $a9, $17
-	sta $00c1.w                                                  ; $bf93 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $bf93 : $8d, $c1, $00
 	pld                                                  ; $bf96 : $2b
 	pea $0000.w                                                  ; $bf97 : $f4, $00, $00
 	pld                                                  ; $bf9a : $2b
@@ -10013,7 +10031,7 @@ br_00_bf70:
 	bcs br_00_bfba                                                  ; $bfb1 : $b0, $07
 
 	lsr                                                  ; $bfb3 : $4a
-	sta $00b4.w                                                  ; $bfb4 : $8d, $b4, $00
+	sta wScreenDisplay.w                                                  ; $bfb4 : $8d, $b4, $00
 	inc $35                                                  ; $bfb7 : $e6, $35
 	rts                                                  ; $bfb9 : $60
 
@@ -10077,10 +10095,10 @@ br_00_bff1:
 
 br_00_c01a:
 	lda #$17.b                                                  ; $c01a : $a9, $17
-	sta $00c1.w                                                  ; $c01c : $8d, $c1, $00
-	stz $00c9.w                                                  ; $c01f : $9c, $c9, $00
+	sta wMainScreenDesignation.w                                                  ; $c01c : $8d, $c1, $00
+	stz wColourAdditionSelect.w                                                  ; $c01f : $9c, $c9, $00
 	lda #$3f.b                                                  ; $c022 : $a9, $3f
-	sta $00ca.w                                                  ; $c024 : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $c024 : $8d, $ca, $00
 	lda #$1f.b                                                  ; $c027 : $a9, $1f
 	sta $35                                                  ; $c029 : $85, $35
 	jsr $01819a.l                                                  ; $c02b : $22, $9a, $81, $01
@@ -10136,7 +10154,7 @@ br_00_c05d:
 
 br_00_c08b:
 	lda #$3f.b                                                  ; $c08b : $a9, $3f
-	sta $00ca.w                                                  ; $c08d : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $c08d : $8d, $ca, $00
 	lda #$1f.b                                                  ; $c090 : $a9, $1f
 	sta $35                                                  ; $c092 : $85, $35
 	jsr $01819a.l                                                  ; $c094 : $22, $9a, $81, $01
@@ -10209,10 +10227,10 @@ br_00_c109:
 	lda #$02.b                                                  ; $c109 : $a9, $02
 	sta $12                                                  ; $c10b : $85, $12
 	lda #$17.b                                                  ; $c10d : $a9, $17
-	sta $00c1.w                                                  ; $c10f : $8d, $c1, $00
-	stz $00c9.w                                                  ; $c112 : $9c, $c9, $00
+	sta wMainScreenDesignation.w                                                  ; $c10f : $8d, $c1, $00
+	stz wColourAdditionSelect.w                                                  ; $c112 : $9c, $c9, $00
 	lda #$90.b                                                  ; $c115 : $a9, $90
-	sta $00ca.w                                                  ; $c117 : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $c117 : $8d, $ca, $00
 	lda #$1f.b                                                  ; $c11a : $a9, $1f
 	sta $35                                                  ; $c11c : $85, $35
 	jsr $01819a.l                                                  ; $c11e : $22, $9a, $81, $01
@@ -10236,7 +10254,7 @@ br_00_c130:
 
 br_00_c13d:
 	lda #$3f.b                                                  ; $c13d : $a9, $3f
-	sta $00ca.w                                                  ; $c13f : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $c13f : $8d, $ca, $00
 	lda #$04.b                                                  ; $c142 : $a9, $04
 	sta $00d4.w                                                  ; $c144 : $8d, $d4, $00
 
@@ -10287,7 +10305,7 @@ br_00_c175:
 	sta $35                                                  ; $c189 : $85, $35
 	jsr $01819a.l                                                  ; $c18b : $22, $9a, $81, $01
 	lda #$15.b                                                  ; $c18f : $a9, $15
-	sta $00c1.w                                                  ; $c191 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $c191 : $8d, $c1, $00
 	lda $26                                                  ; $c194 : $a5, $26
 	clc                                                  ; $c196 : $18
 	adc #$37.b                                                  ; $c197 : $69, $37
@@ -10367,7 +10385,7 @@ Jump_00_c203:
 	pld                                                  ; $c220 : $2b
 	jsr Call_00_db07.w                                                  ; $c221 : $20, $07, $db
 	pld                                                  ; $c224 : $2b
-	jmp Call_00_dd59.w                                                  ; $c225 : $4c, $59, $dd
+	jmp NearBuildOam.w                                                  ; $c225 : $4c, $59, $dd
 
 
 	rol $c2, X                                                  ; $c228 : $36, $c2
@@ -10546,7 +10564,7 @@ br_00_c35e:
 	lda #$02.b                                                  ; $c35e : $a9, $02
 	sta $26                                                  ; $c360 : $85, $26
 	lda $28                                                  ; $c362 : $a5, $28
-	sta $00b4.w                                                  ; $c364 : $8d, $b4, $00
+	sta wScreenDisplay.w                                                  ; $c364 : $8d, $b4, $00
 	ina                                                  ; $c367 : $1a
 	sta $28                                                  ; $c368 : $85, $28
 	cmp #$10.b                                                  ; $c36a : $c9, $10
@@ -10615,12 +10633,12 @@ br_00_c3be:
 
 	lda #$0002.w                                                  ; $c3c7 : $a9, $02, $00
 	sta wBG1VertScroll.w                                                  ; $c3ca : $8d, $b7, $00
-	sta $00bb.w                                                  ; $c3cd : $8d, $bb, $00
+	sta wBG2VertScroll.w                                                  ; $c3cd : $8d, $bb, $00
 	bra br_00_c3d8                                                  ; $c3d0 : $80, $06
 
 br_00_c3d2:
 	stz wBG1VertScroll.w                                                  ; $c3d2 : $9c, $b7, $00
-	stz $00bb.w                                                  ; $c3d5 : $9c, $bb, $00
+	stz wBG2VertScroll.w                                                  ; $c3d5 : $9c, $bb, $00
 
 br_00_c3d8:
 	sep #ACCU_8                                                  ; $c3d8 : $e2, $20
@@ -10872,10 +10890,10 @@ br_00_c4f5:
 	lda #$08.b                                                  ; $c537 : $a9, $08
 	sta $27                                                  ; $c539 : $85, $27
 	lda #$17.b                                                  ; $c53b : $a9, $17
-	sta $00c1.w                                                  ; $c53d : $8d, $c1, $00
-	stz $00c9.w                                                  ; $c540 : $9c, $c9, $00
+	sta wMainScreenDesignation.w                                                  ; $c53d : $8d, $c1, $00
+	stz wColourAdditionSelect.w                                                  ; $c540 : $9c, $c9, $00
 	lda #$3f.b                                                  ; $c543 : $a9, $3f
-	sta $00ca.w                                                  ; $c545 : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $c545 : $8d, $ca, $00
 	lda #$02.b                                                  ; $c548 : $a9, $02
 	sta $02                                                  ; $c54a : $85, $02
 	stz $03                                                  ; $c54c : $64, $03
@@ -10903,8 +10921,8 @@ br_00_c4f5:
 
 
 br_00_c571:
-	stz $00c9.w                                                  ; $c571 : $9c, $c9, $00
-	stz $00ca.w                                                  ; $c574 : $9c, $ca, $00
+	stz wColourAdditionSelect.w                                                  ; $c571 : $9c, $c9, $00
+	stz wColourMathDesignation.w                                                  ; $c574 : $9c, $ca, $00
 	pea $0000.w                                                  ; $c577 : $f4, $00, $00
 	pld                                                  ; $c57a : $2b
 	lda #$08.b                                                  ; $c57b : $a9, $08
@@ -10928,7 +10946,7 @@ br_00_c593:
 	lda #$02.b                                                  ; $c593 : $a9, $02
 	sta $26                                                  ; $c595 : $85, $26
 	lda $28                                                  ; $c597 : $a5, $28
-	sta $00b4.w                                                  ; $c599 : $8d, $b4, $00
+	sta wScreenDisplay.w                                                  ; $c599 : $8d, $b4, $00
 	dea                                                  ; $c59c : $3a
 	sta $28                                                  ; $c59d : $85, $28
 	bmi br_00_c5a2                                                  ; $c59f : $30, $01
@@ -10969,7 +10987,7 @@ Jump_00_c5ce:
 	jsr ($c5e0.w, X)                                                  ; $c5d8 : $fc, $e0, $c5
 	pld                                                  ; $c5db : $2b
 	plp                                                  ; $c5dc : $28
-	jmp Call_00_dd59.w                                                  ; $c5dd : $4c, $59, $dd
+	jmp NearBuildOam.w                                                  ; $c5dd : $4c, $59, $dd
 
 
 	inc $c5                                                  ; $c5e0 : $e6, $c5
@@ -10999,11 +11017,11 @@ Jump_00_c5ce:
 	lda $00bd.w                                                  ; $c616 : $ad, $bd, $00
 	sta $32                                                  ; $c619 : $85, $32
 	stz wBG1HorizScroll.w                                                  ; $c61b : $9c, $b5, $00
-	stz $00b9.w                                                  ; $c61e : $9c, $b9, $00
+	stz wBG2HorizScroll.w                                                  ; $c61e : $9c, $b9, $00
 	stz wBG1VertScroll.w                                                  ; $c621 : $9c, $b7, $00
-	stz $00bb.w                                                  ; $c624 : $9c, $bb, $00
+	stz wBG2VertScroll.w                                                  ; $c624 : $9c, $bb, $00
 	sep #ACCU_8|IDX_8                                                  ; $c627 : $e2, $30
-	lda $00c1.w                                                  ; $c629 : $ad, $c1, $00
+	lda wMainScreenDesignation.w                                                  ; $c629 : $ad, $c1, $00
 	sta $3c                                                  ; $c62c : $85, $3c
 	lda $00ce.w                                                  ; $c62e : $ad, $ce, $00
 	sta $3e                                                  ; $c631 : $85, $3e
@@ -11793,9 +11811,9 @@ br_00_caf5:
 	sta wNewStageScrollY.w                                                  ; $cb01 : $8d, $60, $1e
 	sta wBG1VertScroll.w                                                  ; $cb04 : $8d, $b7, $00
 	lda $1e9d.w                                                  ; $cb07 : $ad, $9d, $1e
-	sta $00b9.w                                                  ; $cb0a : $8d, $b9, $00
+	sta wBG2HorizScroll.w                                                  ; $cb0a : $8d, $b9, $00
 	lda $1ea0.w                                                  ; $cb0d : $ad, $a0, $1e
-	sta $00bb.w                                                  ; $cb10 : $8d, $bb, $00
+	sta wBG2VertScroll.w                                                  ; $cb10 : $8d, $bb, $00
 	sep #ACCU_8                                                  ; $cb13 : $e2, $20
 	lda #$04.b                                                  ; $cb15 : $a9, $04
 	sta $1f22.w                                                  ; $cb17 : $8d, $22, $1f
@@ -11806,7 +11824,7 @@ br_00_caf5:
 	stz $1f21.w                                                  ; $cb25 : $9c, $21, $1f
 	jsr Call_00_cc88.w                                                  ; $cb28 : $20, $88, $cc
 	lda $3c                                                  ; $cb2b : $a5, $3c
-	sta $00c1.w                                                  ; $cb2d : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $cb2d : $8d, $c1, $00
 	lda $3e                                                  ; $cb30 : $a5, $3e
 	sta $00ce.w                                                  ; $cb32 : $8d, $ce, $00
 	lda $27                                                  ; $cb35 : $a5, $27
@@ -11837,7 +11855,7 @@ br_00_caf5:
 	phd                                                  ; $cb71 : $0b
 	pea $0000.w                                                  ; $cb72 : $f4, $00, $00
 	pld                                                  ; $cb75 : $2b
-	jsr Call_00_dd59.w                                                  ; $cb76 : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $cb76 : $20, $59, $dd
 	pld                                                  ; $cb79 : $2b
 	rts                                                  ; $cb7a : $60
 
@@ -11851,7 +11869,7 @@ Call_00_cb7b:
 	tcd                                                  ; $cb83 : $5b
 	sep #ACCU_8                                                  ; $cb84 : $e2, $20
 	lda #$80.b                                                  ; $cb86 : $a9, $80
-	sta $2100.w                                                  ; $cb88 : $8d, $00, $21
+	sta INIDISP.w                                                  ; $cb88 : $8d, $00, $21
 	sta $b4                                                  ; $cb8b : $85, $b4
 	jsr Call_00_d5b9.w                                                  ; $cb8d : $20, $b9, $d5
 	lda #$07.b                                                  ; $cb90 : $a9, $07
@@ -11952,8 +11970,8 @@ br_00_cc13:
 	jsr Call_00_873b.w                                                  ; $cc49 : $20, $3b, $87
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $cc4c : $20, $62, $81
 	lda #$80.b                                                  ; $cc4f : $a9, $80
-	sta $2100.w                                                  ; $cc51 : $8d, $00, $21
-	jsr $04da74.l                                                  ; $cc54 : $22, $74, $da, $04
+	sta INIDISP.w                                                  ; $cc51 : $8d, $00, $21
+	jsr UpdateIntsEnabledWithOnlyAutoJoypadRead.l                                                  ; $cc54 : $22, $74, $da, $04
 	stz HDMAEN.w                                                  ; $cc58 : $9c, $0c, $42
 	jsr Call_00_d113.w                                                  ; $cc5b : $20, $13, $d1
 	jsr Call_00_d1eb.w                                                  ; $cc5e : $20, $eb, $d1
@@ -11984,9 +12002,9 @@ Call_00_cc88:
 	tcd                                                  ; $cc90 : $5b
 	sep #ACCU_8|IDX_8                                                  ; $cc91 : $e2, $30
 	lda #$80.b                                                  ; $cc93 : $a9, $80
-	sta $2100.w                                                  ; $cc95 : $8d, $00, $21
+	sta INIDISP.w                                                  ; $cc95 : $8d, $00, $21
 	jsr Call_00_d5f7.w                                                  ; $cc98 : $20, $f7, $d5
-	stz $00b4.w                                                  ; $cc9b : $9c, $b4, $00
+	stz wScreenDisplay.w                                                  ; $cc9b : $9c, $b4, $00
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $cc9e : $20, $62, $81
 	jsr Call_00_b819.w                                                  ; $cca1 : $20, $19, $b8
 
@@ -12499,11 +12517,11 @@ Call_00_cfcb:
 
 
 Call_00_cfea:
-	lda $00b4.w                                                  ; $cfea : $ad, $b4, $00
+	lda wScreenDisplay.w                                                  ; $cfea : $ad, $b4, $00
 	sta $14                                                  ; $cfed : $85, $14
-	lda $00c1.w                                                  ; $cfef : $ad, $c1, $00
+	lda wMainScreenDesignation.w                                                  ; $cfef : $ad, $c1, $00
 	sta $15                                                  ; $cff2 : $85, $15
-	lda $00c2.w                                                  ; $cff4 : $ad, $c2, $00
+	lda wSubScreenDesignation.w                                                  ; $cff4 : $ad, $c2, $00
 	sta $16                                                  ; $cff7 : $85, $16
 	lda $1fad.w                                                  ; $cff9 : $ad, $ad, $1f
 	sta $2f                                                  ; $cffc : $85, $2f
@@ -12513,9 +12531,9 @@ Call_00_cfea:
 	sta $1a                                                  ; $d006 : $85, $1a
 	lda $00c8.w                                                  ; $d008 : $ad, $c8, $00
 	sta $1b                                                  ; $d00b : $85, $1b
-	lda $00c9.w                                                  ; $d00d : $ad, $c9, $00
+	lda wColourAdditionSelect.w                                                  ; $d00d : $ad, $c9, $00
 	sta $1c                                                  ; $d010 : $85, $1c
-	lda $00ca.w                                                  ; $d012 : $ad, $ca, $00
+	lda wColourMathDesignation.w                                                  ; $d012 : $ad, $ca, $00
 	sta $1d                                                  ; $d015 : $85, $1d
 	lda $00cf.w                                                  ; $d017 : $ad, $cf, $00
 	sta $1e                                                  ; $d01a : $85, $1e
@@ -12532,7 +12550,7 @@ Call_00_cfea:
 	cop $a9.b                                                  ; $d036 : $02, $a9
 	ora ($8d)                                                  ; $d038 : $12, $8d
 	cmp ($00, X)                                                  ; $d03a : $c1, $00
-	stz $00c2.w                                                  ; $d03c : $9c, $c2, $00
+	stz wSubScreenDesignation.w                                                  ; $d03c : $9c, $c2, $00
 	lda #$8d09.w                                                  ; $d03f : $a9, $09, $8d
 	cmp $0ca900.l                                                  ; $d042 : $cf, $00, $a9, $0c
 	sta $00cb.w                                                  ; $d046 : $8d, $cb, $00
@@ -12576,9 +12594,9 @@ Call_00_cfea:
 
 Call_00_d0a5:
 	lda $15                                                  ; $d0a5 : $a5, $15
-	sta $00c1.w                                                  ; $d0a7 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $d0a7 : $8d, $c1, $00
 	lda $16                                                  ; $d0aa : $a5, $16
-	sta $00c2.w                                                  ; $d0ac : $8d, $c2, $00
+	sta wSubScreenDesignation.w                                                  ; $d0ac : $8d, $c2, $00
 	lda $1fa9.w                                                  ; $d0af : $ad, $a9, $1f
 	sta $212e.w                                                  ; $d0b2 : $8d, $2e, $21
 	lda $1faa.w                                                  ; $d0b5 : $ad, $aa, $1f
@@ -12596,9 +12614,9 @@ Call_00_d0a5:
 	lda $1fac.w                                                  ; $d0d5 : $ad, $ac, $1f
 	sta $212b.w                                                  ; $d0d8 : $8d, $2b, $21
 	lda $1c                                                  ; $d0db : $a5, $1c
-	sta $00c9.w                                                  ; $d0dd : $8d, $c9, $00
+	sta wColourAdditionSelect.w                                                  ; $d0dd : $8d, $c9, $00
 	lda $1d                                                  ; $d0e0 : $a5, $1d
-	sta $00ca.w                                                  ; $d0e2 : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $d0e2 : $8d, $ca, $00
 	lda $1e                                                  ; $d0e5 : $a5, $1e
 	sta $00cf.w                                                  ; $d0e7 : $8d, $cf, $00
 	lda $1f                                                  ; $d0ea : $a5, $1f
@@ -13311,7 +13329,7 @@ br_00_d5b3:
 
 
 Call_00_d5b9:
-	jsr $04da74.l                                                  ; $d5b9 : $22, $74, $da, $04
+	jsr UpdateIntsEnabledWithOnlyAutoJoypadRead.l                                                  ; $d5b9 : $22, $74, $da, $04
 	stz HDMAEN.w                                                  ; $d5bd : $9c, $0c, $42
 	lda #$80.b                                                  ; $d5c0 : $a9, $80
 	sta VMAIN.w                                                  ; $d5c2 : $8d, $15, $21
@@ -13337,7 +13355,7 @@ Call_00_d5b9:
 
 
 Call_00_d5f7:
-	jsr $04da74.l                                                  ; $d5f7 : $22, $74, $da, $04
+	jsr UpdateIntsEnabledWithOnlyAutoJoypadRead.l                                                  ; $d5f7 : $22, $74, $da, $04
 	stz HDMAEN.w                                                  ; $d5fb : $9c, $0c, $42
 	lda #$80.b                                                  ; $d5fe : $a9, $80
 	sta VMAIN.w                                                  ; $d600 : $8d, $15, $21
@@ -13564,7 +13582,7 @@ br_00_d75c:
 	phd                                                  ; $d75e : $0b
 	pea $0000.w                                                  ; $d75f : $f4, $00, $00
 	pld                                                  ; $d762 : $2b
-	jsr Call_00_dd59.w                                                  ; $d763 : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $d763 : $20, $59, $dd
 	pld                                                  ; $d766 : $2b
 	rtl                                                  ; $d767 : $6b
 
@@ -14671,10 +14689,11 @@ br_00_dd4c:
 	rtl                                                  ; $dd54 : $6b
 
 
+FarBuildOam:
 	jmp todo_BuildOam.l                                                  ; $dd55 : $5c, $a0, $8d, $03
 
 
-Call_00_dd59:
+NearBuildOam:
 	jsr todo_BuildOam.l                                                  ; $dd59 : $22, $a0, $8d, $03
 	rts                                                  ; $dd5d : $60
 
@@ -15414,9 +15433,9 @@ br_00_e0da:
 
 br_00_e0e6:
 	lda $05                                                  ; $e0e6 : $a5, $05
-	sta $00b9.w                                                  ; $e0e8 : $8d, $b9, $00
+	sta wBG2HorizScroll.w                                                  ; $e0e8 : $8d, $b9, $00
 	lda $08                                                  ; $e0eb : $a5, $08
-	sta $00bb.w                                                  ; $e0ed : $8d, $bb, $00
+	sta wBG2VertScroll.w                                                  ; $e0ed : $8d, $bb, $00
 	pld                                                  ; $e0f0 : $2b
 	plp                                                  ; $e0f1 : $28
 	rts                                                  ; $e0f2 : $60
@@ -16216,11 +16235,11 @@ Call_00_e552:
 	lda $a8f0.w, X                                                  ; $e580 : $bd, $f0, $a8
 	sta $1e9d.w                                                  ; $e583 : $8d, $9d, $1e
 	sta $1eba.w                                                  ; $e586 : $8d, $ba, $1e
-	sta $00b9.w                                                  ; $e589 : $8d, $b9, $00
+	sta wBG2HorizScroll.w                                                  ; $e589 : $8d, $b9, $00
 	lda $a8f2.w, X                                                  ; $e58c : $bd, $f2, $a8
 	sta $1ea0.w                                                  ; $e58f : $8d, $a0, $1e
 	sta $1ebc.w                                                  ; $e592 : $8d, $bc, $1e
-	sta $00bb.w                                                  ; $e595 : $8d, $bb, $00
+	sta wBG2VertScroll.w                                                  ; $e595 : $8d, $bb, $00
 	lda $a8f4.w, X                                                  ; $e598 : $bd, $f4, $a8
 	sta $1e66.w                                                  ; $e59b : $8d, $66, $1e
 	sta $1e6e.w                                                  ; $e59e : $8d, $6e, $1e
@@ -17375,14 +17394,14 @@ br_00_ed46:
 	jsr Call_00_f3e4.w                                                  ; $ed62 : $20, $e4, $f3
 	pea $0000.w                                                  ; $ed65 : $f4, $00, $00
 	pld                                                  ; $ed68 : $2b
-	jsr Call_00_dd59.w                                                  ; $ed69 : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $ed69 : $20, $59, $dd
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $ed6c : $20, $62, $81
 	bra br_00_ed46                                                  ; $ed6f : $80, $d5
 
 br_00_ed71:
 	pea $0000.w                                                  ; $ed71 : $f4, $00, $00
 	pld                                                  ; $ed74 : $2b
-	jsr Call_00_dd59.w                                                  ; $ed75 : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $ed75 : $20, $59, $dd
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $ed78 : $20, $62, $81
 	pld                                                  ; $ed7b : $2b
 	plp                                                  ; $ed7c : $28
@@ -17628,14 +17647,14 @@ br_00_eef0:
 	pld                                                  ; $ef02 : $2b
 	jsr $00f322.l                                                  ; $ef03 : $22, $22, $f3, $00
 	jsr Call_00_f3e4.w                                                  ; $ef07 : $20, $e4, $f3
-	jsr Call_00_dd59.w                                                  ; $ef0a : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $ef0a : $20, $59, $dd
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $ef0d : $20, $62, $81
 	bra br_00_eef0                                                  ; $ef10 : $80, $de
 
 br_00_ef12:
 	pea $0000.w                                                  ; $ef12 : $f4, $00, $00
 	pld                                                  ; $ef15 : $2b
-	jsr Call_00_dd59.w                                                  ; $ef16 : $20, $59, $dd
+	jsr NearBuildOam.w                                                  ; $ef16 : $20, $59, $dd
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $ef19 : $20, $62, $81
 	pld                                                  ; $ef1c : $2b
 	plp                                                  ; $ef1d : $28
@@ -17688,7 +17707,7 @@ br_00_ef12:
 	phd                                                  ; $ef83 : $0b
 	pea $0000.w                                                  ; $ef84 : $f4, $00, $00
 	pld                                                  ; $ef87 : $2b
-	stz $00b4.w                                                  ; $ef88 : $9c, $b4, $00
+	stz wScreenDisplay.w                                                  ; $ef88 : $9c, $b4, $00
 	jsr Call_00_861f.w                                                  ; $ef8b : $20, $1f, $86
 	pld                                                  ; $ef8e : $2b
 	lda #$04.b                                                  ; $ef8f : $a9, $04

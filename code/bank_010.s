@@ -4301,7 +4301,7 @@ br_10_9cb1:
 	asl $04fb.w                                                  ; $9cd4 : $0e, $fb, $04
 	jsr Call_10_f6e5.w                                                  ; $9cd7 : $20, $e5, $f6
 	cmp $e520.w, Y                                                  ; $9cda : $d9, $20, $e5
-	inc $00c9.w                                                  ; $9cdd : $ee, $c9, $00
+	inc wColourAdditionSelect.w                                                  ; $9cdd : $ee, $c9, $00
 	ora $8cf7.w                                                  ; $9ce0 : $0d, $f7, $8c
 	.db $00                                                  ; $9ce3 : $00
 	sbc $f4, X                                                  ; $9ce4 : $f5, $f4
@@ -6521,7 +6521,7 @@ br_10_aaf4:
 	rti                                                  ; $ab23 : $40
 
 
-	jsr $4314.w                                                  ; $ab24 : $20, $14, $43
+	jsr A1B1.w                                                  ; $ab24 : $20, $14, $43
 	rti                                                  ; $ab27 : $40
 
 
@@ -6681,7 +6681,7 @@ br_10_abc7:
 	rti                                                  ; $abd8 : $40
 
 
-	jsr $4314.w                                                  ; $abd9 : $20, $14, $43
+	jsr A1B1.w                                                  ; $abd9 : $20, $14, $43
 	rti                                                  ; $abdc : $40
 
 
@@ -10385,7 +10385,7 @@ br_10_c159:
 	ora ($c0), Y                                                  ; $c18d : $11, $c0
 	.db $00                                                  ; $c18f : $00
 	xce                                                  ; $c190 : $fb
-	ora $00c2.w, Y                                                  ; $c191 : $19, $c2, $00
+	ora wSubScreenDesignation.w, Y                                                  ; $c191 : $19, $c2, $00
 	ora $19, S                                                  ; $c194 : $03, $19
 	cmp $00, S                                                  ; $c196 : $c3, $00
 	ora $11, S                                                  ; $c198 : $03, $11

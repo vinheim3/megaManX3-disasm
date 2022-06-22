@@ -3977,7 +3977,7 @@ br_12_97a2:
 	txs                                                  ; $97c8 : $9a
 	ora [$00]                                                  ; $97c9 : $07, $00
 	sed                                                  ; $97cb : $f8
-	pea $00c9.w                                                  ; $97cc : $f4, $c9, $00
+	pea wColourAdditionSelect.w                                                  ; $97cc : $f4, $c9, $00
 	sed                                                  ; $97cf : $f8
 	jsr ($00c8.w, X)                                                  ; $97d0 : $fc, $c8, $00
 	php                                                  ; $97d3 : $08
@@ -5482,7 +5482,7 @@ br_12_a0cf:
 
 br_12_a189:
 	ina                                                  ; $a189 : $1a
-	jsr $00bb.w                                                  ; $a18a : $20, $bb, $00
+	jsr wBG2VertScroll.w                                                  ; $a18a : $20, $bb, $00
 	ora ($20)                                                  ; $a18d : $12, $20
 	tsx                                                  ; $a18f : $ba
 	.db $00                                                  ; $a190 : $00
@@ -5548,7 +5548,7 @@ br_12_a1c9:
 
 br_12_a20e:
 	ina                                                  ; $a20e : $1a
-	jsr $00bb.w                                                  ; $a20f : $20, $bb, $00
+	jsr wBG2VertScroll.w                                                  ; $a20f : $20, $bb, $00
 	ora ($20)                                                  ; $a212 : $12, $20
 	tsx                                                  ; $a214 : $ba
 	.db $00                                                  ; $a215 : $00
@@ -5643,7 +5643,7 @@ br_12_a256:
 
 br_12_a2ab:
 	ina                                                  ; $a2ab : $1a
-	jsr $00bb.w                                                  ; $a2ac : $20, $bb, $00
+	jsr wBG2VertScroll.w                                                  ; $a2ac : $20, $bb, $00
 	ora ($20)                                                  ; $a2af : $12, $20
 	tsx                                                  ; $a2b1 : $ba
 	.db $00                                                  ; $a2b2 : $00
@@ -5734,7 +5734,7 @@ br_12_a2d4:
 
 br_12_a33c:
 	ina                                                  ; $a33c : $1a
-	jsr $00bb.w                                                  ; $a33d : $20, $bb, $00
+	jsr wBG2VertScroll.w                                                  ; $a33d : $20, $bb, $00
 	ora ($20)                                                  ; $a340 : $12, $20
 	tsx                                                  ; $a342 : $ba
 	.db $00                                                  ; $a343 : $00
@@ -5816,7 +5816,7 @@ br_12_a33c:
 
 br_12_a3c5:
 	ina                                                  ; $a3c5 : $1a
-	jsr $00bb.w                                                  ; $a3c6 : $20, $bb, $00
+	jsr wBG2VertScroll.w                                                  ; $a3c6 : $20, $bb, $00
 	ora ($20)                                                  ; $a3c9 : $12, $20
 	tsx                                                  ; $a3cb : $ba
 	.db $00                                                  ; $a3cc : $00
@@ -5904,7 +5904,7 @@ br_12_a438:
 
 br_12_a44e:
 	ina                                                  ; $a44e : $1a
-	jsr $00bb.w                                                  ; $a44f : $20, $bb, $00
+	jsr wBG2VertScroll.w                                                  ; $a44f : $20, $bb, $00
 	ora ($20)                                                  ; $a452 : $12, $20
 	tsx                                                  ; $a454 : $ba
 	.db $00                                                  ; $a455 : $00
@@ -5989,7 +5989,7 @@ br_12_a44e:
 
 br_12_a4d7:
 	ina                                                  ; $a4d7 : $1a
-	jsr $00bb.w                                                  ; $a4d8 : $20, $bb, $00
+	jsr wBG2VertScroll.w                                                  ; $a4d8 : $20, $bb, $00
 	ora ($20)                                                  ; $a4db : $12, $20
 	tsx                                                  ; $a4dd : $ba
 	.db $00                                                  ; $a4de : $00
@@ -6074,7 +6074,7 @@ br_12_a4d7:
 
 br_12_a568:
 	ina                                                  ; $a568 : $1a
-	jsr $00bb.w                                                  ; $a569 : $20, $bb, $00
+	jsr wBG2VertScroll.w                                                  ; $a569 : $20, $bb, $00
 	ora ($20)                                                  ; $a56c : $12, $20
 	tsx                                                  ; $a56e : $ba
 	.db $00                                                  ; $a56f : $00
@@ -6162,7 +6162,7 @@ br_12_a57e:
 
 br_12_a5f9:
 	ina                                                  ; $a5f9 : $1a
-	jsr $00bb.w                                                  ; $a5fa : $20, $bb, $00
+	jsr wBG2VertScroll.w                                                  ; $a5fa : $20, $bb, $00
 	ora ($20)                                                  ; $a5fd : $12, $20
 	tsx                                                  ; $a5ff : $ba
 	.db $00                                                  ; $a600 : $00
@@ -6246,7 +6246,7 @@ br_12_a655:
 
 br_12_a686:
 	ina                                                  ; $a686 : $1a
-	jsr $00bb.w                                                  ; $a687 : $20, $bb, $00
+	jsr wBG2VertScroll.w                                                  ; $a687 : $20, $bb, $00
 	ora ($20)                                                  ; $a68a : $12, $20
 	tsx                                                  ; $a68c : $ba
 	.db $00                                                  ; $a68d : $00
@@ -6330,7 +6330,7 @@ br_12_a6b8:
 
 br_12_a713:
 	ina                                                  ; $a713 : $1a
-	jsr $00bb.w                                                  ; $a714 : $20, $bb, $00
+	jsr wBG2VertScroll.w                                                  ; $a714 : $20, $bb, $00
 	ora ($20)                                                  ; $a717 : $12, $20
 	tsx                                                  ; $a719 : $ba
 	.db $00                                                  ; $a71a : $00
@@ -6394,7 +6394,7 @@ br_12_a713:
 
 br_12_a794:
 	ina                                                  ; $a794 : $1a
-	jsr $00bb.w                                                  ; $a795 : $20, $bb, $00
+	jsr wBG2VertScroll.w                                                  ; $a795 : $20, $bb, $00
 	ora ($20)                                                  ; $a798 : $12, $20
 	tsx                                                  ; $a79a : $ba
 	.db $00                                                  ; $a79b : $00
@@ -6472,7 +6472,7 @@ br_12_a7d4:
 
 br_12_a829:
 	ina                                                  ; $a829 : $1a
-	jsr $00bb.w                                                  ; $a82a : $20, $bb, $00
+	jsr wBG2VertScroll.w                                                  ; $a82a : $20, $bb, $00
 	ora ($20)                                                  ; $a82d : $12, $20
 	tsx                                                  ; $a82f : $ba
 	.db $00                                                  ; $a830 : $00
@@ -12017,7 +12017,7 @@ br_12_cea3:
 	.db $00                                                  ; $cf11 : $00
 	lda ($00, S), Y                                                  ; $cf12 : $b3, $00
 	.db $00                                                  ; $cf14 : $00
-	sbc $00b4.w, Y                                                  ; $cf15 : $f9, $b4, $00
+	sbc wScreenDisplay.w, Y                                                  ; $cf15 : $f9, $b4, $00
 	sed                                                  ; $cf18 : $f8
 	sbc $00b3.w, Y                                                  ; $cf19 : $f9, $b3, $00
 	tsb $fc                                                  ; $cf1c : $04, $fc

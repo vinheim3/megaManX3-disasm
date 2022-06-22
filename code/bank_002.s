@@ -1543,203 +1543,308 @@ Func_2_8928:
 	.ds $8a00-$8936, $ff
 
 
+; R0 - num vertices
+; R1+0 - pitch angle
+; R2+0 - ??? an angle
+; R3+0 - roll angle 
+; R3+1 - eg 90
 Cx4_TransformLines:
-	mov A, OP R1                                                             ; $8a00 / 5:00 / $6061
-	mov PH, IMM Func_2_8c60                                                             ; $8a02 / 5:01 / $7d00
-	mov PL, IMM Func_2_8c60                                                             ; $8a04 / 5:02 / $7c06
-	fcall Func_2_8c60                                                             ; $8a06 / 5:03 / $2a30
-	mov A, OP R9                                                             ; $8a08 / 5:04 / $6069
-	mov OP R5, A                                                             ; $8a0a / 5:05 / $e065
-	mov A, OP RA                                                             ; $8a0c / 5:06 / $606a
-	mov OP R6, A                                                             ; $8a0e / 5:07 / $e066
-	mov A, OP R2                                                             ; $8a10 / 5:08 / $6062
-	mov PH, IMM Func_2_8c60                                                             ; $8a12 / 5:09 / $7d00
-	mov PL, IMM Func_2_8c60                                                             ; $8a14 / 5:0a / $7c06
-	fcall Func_2_8c60                                                             ; $8a16 / 5:0b / $2a30
-	mov A, OP R9                                                             ; $8a18 / 5:0c / $6069
-	mov OP R7, A                                                             ; $8a1a / 5:0d / $e067
-	mov A, OP RA                                                             ; $8a1c / 5:0e / $606a
-	mov OP R8, A                                                             ; $8a1e / 5:0f / $e068
-	mov A, OP R3                                                             ; $8a20 / 5:10 / $6063
-	mov PH, IMM Func_2_8c60                                                             ; $8a22 / 5:11 / $7d00
-	mov PL, IMM Func_2_8c60                                                             ; $8a24 / 5:12 / $7c06
-	fcall Func_2_8c60                                                             ; $8a26 / 5:13 / $2a30
+; R5 = sin R1 * $10000
+; R6 = cos R1 * $10000
+	mov A, OP R1                                                              ; $8a00 / 5:00 / $6061
+	mov PH, IMM GetSinCosAforTransformLines                                   ; $8a02 / 5:01 / $7d00
+	mov PL, IMM GetSinCosAforTransformLines                                   ; $8a04 / 5:02 / $7c06
+	fcall GetSinCosAforTransformLines                                         ; $8a06 / 5:03 / $2a30
+
+	mov A, OP R9                                                              ; $8a08 / 5:04 / $6069
+	mov OP R5, A                                                              ; $8a0a / 5:05 / $e065
+	mov A, OP RA                                                              ; $8a0c / 5:06 / $606a
+	mov OP R6, A                                                              ; $8a0e / 5:07 / $e066
+
+; R7 = sin R2 * $10000
+; R8 = cos R2 * $10000
+	mov A, OP R2                                                              ; $8a10 / 5:08 / $6062
+	mov PH, IMM GetSinCosAforTransformLines                                   ; $8a12 / 5:09 / $7d00
+	mov PL, IMM GetSinCosAforTransformLines                                   ; $8a14 / 5:0a / $7c06
+	fcall GetSinCosAforTransformLines                                         ; $8a16 / 5:0b / $2a30
+
+	mov A, OP R9                                                              ; $8a18 / 5:0c / $6069
+	mov OP R7, A                                                              ; $8a1a / 5:0d / $e067
+	mov A, OP RA                                                              ; $8a1c / 5:0e / $606a
+	mov OP R8, A                                                              ; $8a1e / 5:0f / $e068
+
+; R9 = sin R3 * $10000
+; RA = cos R3 * $10000
+	mov A, OP R3                                                              ; $8a20 / 5:10 / $6063
+	mov PH, IMM GetSinCosAforTransformLines                                   ; $8a22 / 5:11 / $7d00
+	mov PL, IMM GetSinCosAforTransformLines                                   ; $8a24 / 5:12 / $7c06
+	fcall GetSinCosAforTransformLines                                         ; $8a26 / 5:13 / $2a30
+
+; ram_ptr = 0
 	mov A, IMM $00                                                             ; $8a28 / 5:14 / $6400
 	mov OP RAM_PTR, A                                                             ; $8a2a / 5:15 / $e01c
+
+; eg 90
 	mov A, OP R3                                                             ; $8a2c / 5:16 / $6063
 	shar A, IMM $08                                                             ; $8a2e / 5:17 / $cc08
 	mov OP R3, A                                                             ; $8a30 / 5:18 / $e063
 
-Func_2_8a32:
+@nextVertex:
+; eg A = 009000
 	rdram mid, IMM $09                                                             ; $8a32 / 5:19 / $6d09
 	rdram msb, IMM $0a                                                             ; $8a34 / 5:1a / $6e0a
 	mov A, OP RAM_DTA                                                             ; $8a36 / 5:1b / $600c
+
+; eg back to 0090 with the right sign, ram_dta = that val - roll angle
 	shar A, IMM $08                                                             ; $8a38 / 5:1c / $cc08
 	sub A, OP R3                                                             ; $8a3a / 5:1d / $9063
 	mov OP RAM_DTA, A                                                             ; $8a3c / 5:1e / $e00c
+
+; write back to ram
 	wrram lsb, IMM $09                                                             ; $8a3e / 5:1f / $ec09
 	wrram mid, IMM $0a                                                             ; $8a40 / 5:20 / $ed0a
-	call Func_2_8bce                                                             ; $8a42 / 5:21 / $28e7
+
+; RB = eg ffae00
+	call AequLongInRamPtrPlus4                                                             ; $8a42 / 5:21 / $28e7
 	mov OP RB, A                                                             ; $8a44 / 5:22 / $e06b
-	call Func_2_8be2                                                             ; $8a46 / 5:23 / $28f1
+
+; RC = eg 009000 (val above adjusted)
+	call AequLongInRamPtrPlus8                                                             ; $8a46 / 5:23 / $28f1
 	mov OP RC, A                                                             ; $8a48 / 5:24 / $e06c
+
+; 1) Do RB * cos R1 * $10000
 	mov A, OP RB                                                             ; $8a4a / 5:25 / $606b
 	mul OP R6                                                             ; $8a4c / 5:26 / $9866
 	noop                                                             ; $8a4e / 5:27 / $0000
+
+; RD = RB * cos R1 (low byte)
 	mov A, OP ML                                                             ; $8a50 / 5:28 / $6002
 	shlr A, IMM $10                                                             ; $8a52 / 5:29 / $c410
 	mov OP RD, A                                                             ; $8a54 / 5:2a / $e06d
+
+; Attach higher bytes
 	mov A, OP MH                                                             ; $8a56 / 5:2b / $6001
 	add _100hA, OP RD                                                             ; $8a58 / 5:2c / $826d
 	mov OP RD, A                                                             ; $8a5a / 5:2d / $e06d
+
+; Repeat 1) getting RC * sin R1
 	mov A, OP RC                                                             ; $8a5c / 5:2e / $606c
 	mul OP R5                                                             ; $8a5e / 5:2f / $9865
 	noop                                                             ; $8a60 / 5:30 / $0000
+
 	mov A, OP ML                                                             ; $8a62 / 5:31 / $6002
 	shlr A, IMM $10                                                             ; $8a64 / 5:32 / $c410
 	mov OP RE, A                                                             ; $8a66 / 5:33 / $e06e
+
 	mov A, OP MH                                                             ; $8a68 / 5:34 / $6001
 	add _100hA, OP RE                                                             ; $8a6a / 5:35 / $826e
+
+; write RBcosR1 + RCsinR1 in ram_ptr+4 (where RB was)
 	add A, OP RD                                                             ; $8a6c / 5:36 / $806d
-	call Func_2_8bd8                                                             ; $8a6e / 5:37 / $28ec
+	call WriteAtoRamPtrPlus4                                                             ; $8a6e / 5:37 / $28ec
+
+; Repeat 1) getting RD = RB * sin R1
 	mov A, OP RB                                                             ; $8a70 / 5:38 / $606b
 	mul OP R5                                                             ; $8a72 / 5:39 / $9865
 	noop                                                             ; $8a74 / 5:3a / $0000
+
 	mov A, OP ML                                                             ; $8a76 / 5:3b / $6002
 	shlr A, IMM $10                                                             ; $8a78 / 5:3c / $c410
 	mov OP RD, A                                                             ; $8a7a / 5:3d / $e06d
+
 	mov A, OP MH                                                             ; $8a7c / 5:3e / $6001
 	add _100hA, OP RD                                                             ; $8a7e / 5:3f / $826d
 	mov OP RD, A                                                             ; $8a80 / 5:40 / $e06d
+
+; Repeat 1) getting RC * cos R1
 	mov A, OP RC                                                             ; $8a82 / 5:41 / $606c
 	mul OP R6                                                             ; $8a84 / 5:42 / $9866
 	noop                                                             ; $8a86 / 5:43 / $0000
+
 	mov A, OP ML                                                             ; $8a88 / 5:44 / $6002
 	shlr A, IMM $10                                                             ; $8a8a / 5:45 / $c410
 	mov OP RE, A                                                             ; $8a8c / 5:46 / $e06e
+
 	mov A, OP MH                                                             ; $8a8e / 5:47 / $6001
 	add _100hA, OP RE                                                             ; $8a90 / 5:48 / $826e
+
+; write RCcosR1 - RBsinR1 in ram_ptr+8 (where RC was)
 	sub A, OP RD                                                             ; $8a92 / 5:49 / $906d
-	call Func_2_8bec                                                             ; $8a94 / 5:4a / $28f6
-	call Func_2_8bba                                                             ; $8a96 / 5:4b / $28dd
+	call WriteAtoRamPtrPlus8                                                             ; $8a94 / 5:4a / $28f6
+
+; RB = eg ffe600
+	call AequLongInRamPtr                                                             ; $8a96 / 5:4b / $28dd
 	mov OP RB, A                                                             ; $8a98 / 5:4c / $e06b
-	call Func_2_8be2                                                             ; $8a9a / 5:4d / $28f1
+
+; RC = RCcosR1 - RBsinR1
+	call AequLongInRamPtrPlus8                                                             ; $8a9a / 5:4d / $28f1
 	mov OP RC, A                                                             ; $8a9c / 5:4e / $e06c
+
+; Repeat 1) getting RD = RB * cos R2
 	mov A, OP RB                                                             ; $8a9e / 5:4f / $606b
 	mul OP R8                                                             ; $8aa0 / 5:50 / $9868
 	noop                                                             ; $8aa2 / 5:51 / $0000
+
 	mov A, OP ML                                                             ; $8aa4 / 5:52 / $6002
 	shlr A, IMM $10                                                             ; $8aa6 / 5:53 / $c410
 	mov OP RD, A                                                             ; $8aa8 / 5:54 / $e06d
+
 	mov A, OP MH                                                             ; $8aaa / 5:55 / $6001
 	add _100hA, OP RD                                                             ; $8aac / 5:56 / $826d
 	mov OP RD, A                                                             ; $8aae / 5:57 / $e06d
+
+; Repeat 1) getting RC * sin R2
 	mov A, OP RC                                                             ; $8ab0 / 5:58 / $606c
 	mul OP R7                                                             ; $8ab2 / 5:59 / $9867
 	noop                                                             ; $8ab4 / 5:5a / $0000
+
 	mov A, OP ML                                                             ; $8ab6 / 5:5b / $6002
 	shlr A, IMM $10                                                             ; $8ab8 / 5:5c / $c410
 	mov OP RE, A                                                             ; $8aba / 5:5d / $e06e
+
 	mov A, OP MH                                                             ; $8abc / 5:5e / $6001
 	add _100hA, OP RE                                                             ; $8abe / 5:5f / $826e
+
+; write RCsinR2 - RBcosR2 in ram_ptr
 	sub OP RD, A                                                             ; $8ac0 / 5:60 / $886d
-	call Func_2_8bc4                                                             ; $8ac2 / 5:61 / $28e2
+	call WriteAtoRamPtr                                                             ; $8ac2 / 5:61 / $28e2
+
+; Repeat 1) getting RD = RB * sin R2
 	mov A, OP RB                                                             ; $8ac4 / 5:62 / $606b
 	mul OP R7                                                             ; $8ac6 / 5:63 / $9867
 	noop                                                             ; $8ac8 / 5:64 / $0000
+
 	mov A, OP ML                                                             ; $8aca / 5:65 / $6002
 	shlr A, IMM $10                                                             ; $8acc / 5:66 / $c410
 	mov OP RD, A                                                             ; $8ace / 5:67 / $e06d
+
 	mov A, OP MH                                                             ; $8ad0 / 5:68 / $6001
 	add _100hA, OP RD                                                             ; $8ad2 / 5:69 / $826d
 	mov OP RD, A                                                             ; $8ad4 / 5:6a / $e06d
+
+; Repeat 1) getting RC * cos R2
 	mov A, OP RC                                                             ; $8ad6 / 5:6b / $606c
 	mul OP R8                                                             ; $8ad8 / 5:6c / $9868
 	noop                                                             ; $8ada / 5:6d / $0000
+
 	mov A, OP ML                                                             ; $8adc / 5:6e / $6002
 	shlr A, IMM $10                                                             ; $8ade / 5:6f / $c410
 	mov OP RE, A                                                             ; $8ae0 / 5:70 / $e06e
+
 	mov A, OP MH                                                             ; $8ae2 / 5:71 / $6001
 	add _100hA, OP RE                                                             ; $8ae4 / 5:72 / $826e
+
+; write RBsinR2 + RCcosR2 in ram_ptr+8
 	add A, OP RD                                                             ; $8ae6 / 5:73 / $806d
-	call Func_2_8bec                                                             ; $8ae8 / 5:74 / $28f6
-	call Func_2_8bba                                                             ; $8aea / 5:75 / $28dd
+	call WriteAtoRamPtrPlus8                                                             ; $8ae8 / 5:74 / $28f6
+
+; RB = RCsinR2 - RBcosR2
+	call AequLongInRamPtr                                                             ; $8aea / 5:75 / $28dd
 	mov OP RB, A                                                             ; $8aec / 5:76 / $e06b
-	call Func_2_8bce                                                             ; $8aee / 5:77 / $28e7
+
+; RC = RBcosR1 + RCsinR1
+	call AequLongInRamPtrPlus4                                                             ; $8aee / 5:77 / $28e7
 	mov OP RC, A                                                             ; $8af0 / 5:78 / $e06c
+
+; Repeat 1) getting RD = RB * cos R3
 	mov A, OP RB                                                             ; $8af2 / 5:79 / $606b
 	mul OP RA                                                             ; $8af4 / 5:7a / $986a
 	noop                                                             ; $8af6 / 5:7b / $0000
+
 	mov A, OP ML                                                             ; $8af8 / 5:7c / $6002
 	shlr A, IMM $10                                                             ; $8afa / 5:7d / $c410
 	mov OP RD, A                                                             ; $8afc / 5:7e / $e06d
+
 	mov A, OP MH                                                             ; $8afe / 5:7f / $6001
 	add _100hA, OP RD                                                             ; $8b00 / 5:80 / $826d
 	mov OP RD, A                                                             ; $8b02 / 5:81 / $e06d
+
+; Repeat 1) getting RC * sin R3
 	mov A, OP RC                                                             ; $8b04 / 5:82 / $606c
 	mul OP R9                                                             ; $8b06 / 5:83 / $9869
 	noop                                                             ; $8b08 / 5:84 / $0000
+
 	mov A, OP ML                                                             ; $8b0a / 5:85 / $6002
 	shlr A, IMM $10                                                             ; $8b0c / 5:86 / $c410
 	mov OP RE, A                                                             ; $8b0e / 5:87 / $e06e
+
 	mov A, OP MH                                                             ; $8b10 / 5:88 / $6001
 	add _100hA, OP RE                                                             ; $8b12 / 5:89 / $826e
+
+; write RBcosR3 + RCsinR3 in ram_ptr
 	add A, OP RD                                                             ; $8b14 / 5:8a / $806d
-	call Func_2_8bc4                                                             ; $8b16 / 5:8b / $28e2
+	call WriteAtoRamPtr                                                             ; $8b16 / 5:8b / $28e2
+
+; Repeat 1) getting RD = RB * sin R3
 	mov A, OP RB                                                             ; $8b18 / 5:8c / $606b
 	mul OP R9                                                             ; $8b1a / 5:8d / $9869
 	noop                                                             ; $8b1c / 5:8e / $0000
+
 	mov A, OP ML                                                             ; $8b1e / 5:8f / $6002
 	shlr A, IMM $10                                                             ; $8b20 / 5:90 / $c410
 	mov OP RD, A                                                             ; $8b22 / 5:91 / $e06d
+
 	mov A, OP MH                                                             ; $8b24 / 5:92 / $6001
 	add _100hA, OP RD                                                             ; $8b26 / 5:93 / $826d
 	mov OP RD, A                                                             ; $8b28 / 5:94 / $e06d
+
+; Repeat 1) getting RC * cos R3
 	mov A, OP RC                                                             ; $8b2a / 5:95 / $606c
 	mul OP RA                                                             ; $8b2c / 5:96 / $986a
 	noop                                                             ; $8b2e / 5:97 / $0000
+
 	mov A, OP ML                                                             ; $8b30 / 5:98 / $6002
 	shlr A, IMM $10                                                             ; $8b32 / 5:99 / $c410
 	mov OP RE, A                                                             ; $8b34 / 5:9a / $e06e
+
 	mov A, OP MH                                                             ; $8b36 / 5:9b / $6001
 	add _100hA, OP RE                                                             ; $8b38 / 5:9c / $826e
+
+; write RCcosR3 - RBsinR3 in ram_ptr+4
 	sub A, OP RD                                                             ; $8b3a / 5:9d / $906d
-	call Func_2_8bd8                                                             ; $8b3c / 5:9e / $28ec
+	call WriteAtoRamPtrPlus4                                                             ; $8b3c / 5:9e / $28ec
+
+; A = vector at +9.w
 	rdram mid, IMM $09                                                             ; $8b3e / 5:9f / $6d09
 	rdram msb, IMM $0a                                                             ; $8b40 / 5:a0 / $6e0a
 	mov A, OP RAM_DTA                                                             ; $8b42 / 5:a1 / $600c
 	shar A, IMM $08                                                             ; $8b44 / 5:a2 / $cc08
+
+; add 90(roll), and write back to +9.w
 	add A, OP R3                                                             ; $8b46 / 5:a3 / $8063
 	mov OP RAM_DTA, A                                                             ; $8b48 / 5:a4 / $e00c
 	wrram lsb, IMM $09                                                             ; $8b4a / 5:a5 / $ec09
 	wrram mid, IMM $0a                                                             ; $8b4c / 5:a6 / $ed0a
-	call Func_2_8be2                                                             ; $8b4e / 5:a7 / $28f1
+
+; RF = long in ram_ptr+8
+	call AequLongInRamPtrPlus8                                                             ; $8b4e / 5:a7 / $28f1
 	mov OP RF, A                                                             ; $8b50 / 5:a8 / $e06f
+
+; get the word and neg if negative
 	shar A, IMM $08                                                             ; $8b52 / 5:a9 / $cc08
 	skips                                                             ; $8b54 / 5:aa / $2701
-	jp Func_2_8b5c                                                             ; $8b56 / 5:ab / $08ae
+	jp +                                                             ; $8b56 / 5:ab / $08ae
 
 	xor A, OP _FFFFFF                                                             ; $8b58 / 5:ac / $a851
 	add A, IMM $01                                                             ; $8b5a / 5:ad / $8401
 
-Func_2_8b5c:
-	mov PH, IMM Func_2_8c00                                                             ; $8b5c / 5:ae / $7d00
+;
++	mov PH, IMM Func_2_8c00                                                             ; $8b5c / 5:ae / $7d00
 	mov PL, IMM Func_2_8c00                                                             ; $8b5e / 5:af / $7c06
 	fcall Func_2_8c00                                                             ; $8b60 / 5:b0 / $2a00
 	shlr A, IMM $07                                                             ; $8b62 / 5:b1 / $c407
 	mul OP R4                                                             ; $8b64 / 5:b2 / $9864
-	call Func_2_8bba                                                             ; $8b66 / 5:b3 / $28dd
+	call AequLongInRamPtr                                                             ; $8b66 / 5:b3 / $28dd
 	mov A, OP RF                                                             ; $8b68 / 5:b4 / $606f
 	add A, IMM $00                                                             ; $8b6a / 5:b5 / $8400
 	mov A, OP ML                                                             ; $8b6c / 5:b6 / $6002
 	skips                                                             ; $8b6e / 5:b7 / $2701
-	jp Func_2_8b76                                                             ; $8b70 / 5:b8 / $08bb
+	jp +                                                             ; $8b70 / 5:b8 / $08bb
 
 	xor A, OP _FFFFFF                                                             ; $8b72 / 5:b9 / $a851
 	add A, IMM $01                                                             ; $8b74 / 5:ba / $8401
 
-Func_2_8b76:
-	mov OP RB, A                                                             ; $8b76 / 5:bb / $e06b
++	mov OP RB, A                                                             ; $8b76 / 5:bb / $e06b
 	mul OP RAM_DTA                                                             ; $8b78 / 5:bc / $980c
 	noop                                                             ; $8b7a / 5:bd / $0000
 	mov A, OP MH                                                             ; $8b7c / 5:be / $6001
@@ -1747,7 +1852,7 @@ Func_2_8b76:
 	mov OP RAM_DTA, A                                                             ; $8b80 / 5:c0 / $e00c
 	wrram lsb, IMM $01                                                             ; $8b82 / 5:c1 / $ec01
 	wrram mid, IMM $02                                                             ; $8b84 / 5:c2 / $ed02
-	call Func_2_8bce                                                             ; $8b86 / 5:c3 / $28e7
+	call AequLongInRamPtrPlus4                                                             ; $8b86 / 5:c3 / $28e7
 	mul OP RB                                                             ; $8b88 / 5:c4 / $986b
 	noop                                                             ; $8b8a / 5:c5 / $0000
 	mov A, OP MH                                                             ; $8b8c / 5:c6 / $6001
@@ -1755,67 +1860,78 @@ Func_2_8b76:
 	mov OP RAM_DTA, A                                                             ; $8b90 / 5:c8 / $e00c
 	wrram lsb, IMM $05                                                             ; $8b92 / 5:c9 / $ec05
 	wrram mid, IMM $06                                                             ; $8b94 / 5:ca / $ed06
-	call Func_2_8be2                                                             ; $8b96 / 5:cb / $28f1
+	call AequLongInRamPtrPlus8                                                             ; $8b96 / 5:cb / $28f1
 	shar A, IMM $08                                                             ; $8b98 / 5:cc / $cc08
 	sub A, OP R4                                                             ; $8b9a / 5:cd / $9064
 	mov OP RAM_DTA, A                                                             ; $8b9c / 5:ce / $e00c
 	wrram lsb, IMM $09                                                             ; $8b9e / 5:cf / $ec09
 	wrram mid, IMM $0a                                                             ; $8ba0 / 5:d0 / $ed0a
+
+; ram_ptr += $10
 	mov A, OP RAM_PTR                                                             ; $8ba2 / 5:d1 / $601c
 	add A, IMM $10                                                             ; $8ba4 / 5:d2 / $8410
 	mov OP RAM_PTR, A                                                             ; $8ba6 / 5:d3 / $e01c
+
+; R0 -= 1, looping until 0
 	mov A, OP R0                                                             ; $8ba8 / 5:d4 / $6060
 	sub A, IMM $01                                                             ; $8baa / 5:d5 / $9401
 	mov OP R0, A                                                             ; $8bac / 5:d6 / $e060
 	skipz                                                             ; $8bae / 5:d7 / $2601
-	jp Func_2_8a32                                                             ; $8bb0 / 5:d8 / $0819
+	jp @nextVertex                                                             ; $8bb0 / 5:d8 / $0819
 
+; Process sides
 	mov PH, IMM Func_2_8cce                                                             ; $8bb2 / 5:d9 / $7d00
 	mov PL, IMM Func_2_8cce                                                             ; $8bb4 / 5:da / $7c06
 	fcall Func_2_8cce                                                             ; $8bb6 / 5:db / $2a67
 	halt                                                             ; $8bb8 / 5:dc / $fc00
 
-Func_2_8bba:
-	rdram lsb, IMM $00                                                             ; $8bba / 5:dd / $6c00
-	rdram mid, IMM $01                                                             ; $8bbc / 5:de / $6d01
-	rdram msb, IMM $02                                                             ; $8bbe / 5:df / $6e02
-	mov A, OP RAM_DTA                                                             ; $8bc0 / 5:e0 / $600c
-	ret                                                             ; $8bc2 / 5:e1 / $3c00
 
-Func_2_8bc4:
-	mov OP RAM_DTA, A                                                             ; $8bc4 / 5:e2 / $e00c
-	wrram lsb, IMM $00                                                             ; $8bc6 / 5:e3 / $ec00
-	wrram mid, IMM $01                                                             ; $8bc8 / 5:e4 / $ed01
-	wrram msb, IMM $02                                                             ; $8bca / 5:e5 / $ee02
-	ret                                                             ; $8bcc / 5:e6 / $3c00
+AequLongInRamPtr:
+	rdram lsb, IMM $00                                                        ; $8bba / 5:dd / $6c00
+	rdram mid, IMM $01                                                        ; $8bbc / 5:de / $6d01
+	rdram msb, IMM $02                                                        ; $8bbe / 5:df / $6e02
+	mov A, OP RAM_DTA                                                         ; $8bc0 / 5:e0 / $600c
+	ret                                                                       ; $8bc2 / 5:e1 / $3c00
 
-Func_2_8bce:
-	rdram lsb, IMM $04                                                             ; $8bce / 5:e7 / $6c04
-	rdram mid, IMM $05                                                             ; $8bd0 / 5:e8 / $6d05
-	rdram msb, IMM $06                                                             ; $8bd2 / 5:e9 / $6e06
-	mov A, OP RAM_DTA                                                             ; $8bd4 / 5:ea / $600c
-	ret                                                             ; $8bd6 / 5:eb / $3c00
 
-Func_2_8bd8:
-	mov OP RAM_DTA, A                                                             ; $8bd8 / 5:ec / $e00c
-	wrram lsb, IMM $04                                                             ; $8bda / 5:ed / $ec04
-	wrram mid, IMM $05                                                             ; $8bdc / 5:ee / $ed05
-	wrram msb, IMM $06                                                             ; $8bde / 5:ef / $ee06
-	ret                                                             ; $8be0 / 5:f0 / $3c00
+WriteAtoRamPtr:
+	mov OP RAM_DTA, A                                                         ; $8bc4 / 5:e2 / $e00c
+	wrram lsb, IMM $00                                                        ; $8bc6 / 5:e3 / $ec00
+	wrram mid, IMM $01                                                        ; $8bc8 / 5:e4 / $ed01
+	wrram msb, IMM $02                                                        ; $8bca / 5:e5 / $ee02
+	ret                                                                       ; $8bcc / 5:e6 / $3c00
 
-Func_2_8be2:
-	rdram lsb, IMM $08                                                             ; $8be2 / 5:f1 / $6c08
-	rdram mid, IMM $09                                                             ; $8be4 / 5:f2 / $6d09
-	rdram msb, IMM $0a                                                             ; $8be6 / 5:f3 / $6e0a
-	mov A, OP RAM_DTA                                                             ; $8be8 / 5:f4 / $600c
-	ret                                                             ; $8bea / 5:f5 / $3c00
 
-Func_2_8bec:
-	mov OP RAM_DTA, A                                                             ; $8bec / 5:f6 / $e00c
-	wrram lsb, IMM $08                                                             ; $8bee / 5:f7 / $ec08
-	wrram mid, IMM $09                                                             ; $8bf0 / 5:f8 / $ed09
-	wrram msb, IMM $0a                                                             ; $8bf2 / 5:f9 / $ee0a
-	ret                                                             ; $8bf4 / 5:fa / $3c00
+AequLongInRamPtrPlus4:
+	rdram lsb, IMM $04                                                        ; $8bce / 5:e7 / $6c04
+	rdram mid, IMM $05                                                        ; $8bd0 / 5:e8 / $6d05
+	rdram msb, IMM $06                                                        ; $8bd2 / 5:e9 / $6e06
+	mov A, OP RAM_DTA                                                         ; $8bd4 / 5:ea / $600c
+	ret                                                                       ; $8bd6 / 5:eb / $3c00
+
+
+WriteAtoRamPtrPlus4:
+	mov OP RAM_DTA, A                                                         ; $8bd8 / 5:ec / $e00c
+	wrram lsb, IMM $04                                                        ; $8bda / 5:ed / $ec04
+	wrram mid, IMM $05                                                        ; $8bdc / 5:ee / $ed05
+	wrram msb, IMM $06                                                        ; $8bde / 5:ef / $ee06
+	ret                                                                       ; $8be0 / 5:f0 / $3c00
+
+
+AequLongInRamPtrPlus8:
+	rdram lsb, IMM $08                                                        ; $8be2 / 5:f1 / $6c08
+	rdram mid, IMM $09                                                        ; $8be4 / 5:f2 / $6d09
+	rdram msb, IMM $0a                                                        ; $8be6 / 5:f3 / $6e0a
+	mov A, OP RAM_DTA                                                         ; $8be8 / 5:f4 / $600c
+	ret                                                                       ; $8bea / 5:f5 / $3c00
+
+
+WriteAtoRamPtrPlus8:
+	mov OP RAM_DTA, A                                                         ; $8bec / 5:f6 / $e00c
+	wrram lsb, IMM $08                                                        ; $8bee / 5:f7 / $ec08
+	wrram mid, IMM $09                                                        ; $8bf0 / 5:f8 / $ed09
+	wrram msb, IMM $0a                                                        ; $8bf2 / 5:f9 / $ee0a
+	ret                                                                       ; $8bf4 / 5:fa / $3c00
 
 
 	.ds $8c00-$8bf6, $ff
@@ -1825,7 +1941,7 @@ Func_2_8c00:
 	mov OP RB, A                                                             ; $8c00 / 6:00 / $e06b
 	shlr A, IMM $08                                                             ; $8c02 / 6:01 / $c408
 	skipz                                                             ; $8c04 / 6:02 / $2601
-	jp Func_2_8c12                                                             ; $8c06 / 6:03 / $0809
+	jp @br_8c12                                                             ; $8c06 / 6:03 / $0809
 
 	mov A, OP RB                                                             ; $8c08 / 6:04 / $606b
 	rdrom OP REG_A                                                             ; $8c0a / 6:05 / $7000
@@ -1833,29 +1949,30 @@ Func_2_8c00:
 	mov OP RC, A                                                             ; $8c0e / 6:07 / $e06c
 	ret                                                             ; $8c10 / 6:08 / $3c00
 
-Func_2_8c12:
+@br_8c12:
 	_cmp A, OP _000100                                                             ; $8c12 / 6:09 / $505e
 	skipc                                                             ; $8c14 / 6:0a / $2501
-	jp Func_2_8c22                                                             ; $8c16 / 6:0b / $0811
+	jp @br_8c22                                                             ; $8c16 / 6:0b / $0811
 
 	shlr A, IMM $08                                                             ; $8c18 / 6:0c / $c408
 	rdrom OP REG_A                                                             ; $8c1a / 6:0d / $7000
 	mov A, OP ROM_DTA                                                             ; $8c1c / 6:0e / $6008
 	shlr A, IMM $10                                                             ; $8c1e / 6:0f / $c410
-	jp Func_2_8c28                                                             ; $8c20 / 6:10 / $0814
+	jp @cont_8c28                                                             ; $8c20 / 6:10 / $0814
 
-Func_2_8c22:
+@br_8c22:
 	rdrom OP REG_A                                                             ; $8c22 / 6:11 / $7000
 	mov A, OP ROM_DTA                                                             ; $8c24 / 6:12 / $6008
 	shlr A, IMM $08                                                             ; $8c26 / 6:13 / $c408
 
-Func_2_8c28:
+@cont_8c28:
+; preserving A, set RD (num below loops) to 2
 	mov OP RC, A                                                             ; $8c28 / 6:14 / $e06c
 	mov A, IMM $02                                                             ; $8c2a / 6:15 / $6402
 	mov OP RD, A                                                             ; $8c2c / 6:16 / $e06d
 	mov A, OP RC                                                             ; $8c2e / 6:17 / $606c
 
-Func_2_8c30:
+@loop_8c30:
 	shll A, IMM $01                                                             ; $8c30 / 6:18 / $dc01
 	mov OP RF, A                                                             ; $8c32 / 6:19 / $e06f
 	mov A, OP RC                                                             ; $8c34 / 6:1a / $606c
@@ -1874,105 +1991,140 @@ Func_2_8c30:
 	or A, OP RE                                                             ; $8c4e / 6:27 / $b86e
 	sub OP RF, A                                                             ; $8c50 / 6:28 / $886f
 	mov OP RC, A                                                             ; $8c52 / 6:29 / $e06c
+
+; RD -= 1 until -1
 	mov A, OP RD                                                             ; $8c54 / 6:2a / $606d
 	sub A, IMM $01                                                             ; $8c56 / 6:2b / $9401
 	mov OP RD, A                                                             ; $8c58 / 6:2c / $e06d
-	jc Func_2_8c30                                                             ; $8c5a / 6:2d / $1018
+	jc @loop_8c30                                                             ; $8c5a / 6:2d / $1018
 
+; return RC in A
 	mov A, OP RC                                                             ; $8c5c / 6:2e / $606c
 	ret                                                             ; $8c5e / 6:2f / $3c00
 
 
-Func_2_8c60:
-	_and A, IMM $ff                                                             ; $8c60 / 6:30 / $b4ff
-	shll A, IMM $02                                                             ; $8c62 / 6:31 / $dc02
-	mov OP RF, A                                                             ; $8c64 / 6:32 / $e06f
-	_and A, IMM $7f                                                             ; $8c66 / 6:33 / $b47f
-	mov OP RAM_DTA, A                                                             ; $8c68 / 6:34 / $e00c
-	mov A, OP RF                                                             ; $8c6a / 6:35 / $606f
-	_and A, IMM $80                                                             ; $8c6c / 6:36 / $b480
-	jz Func_2_8c78                                                             ; $8c6e / 6:37 / $0c3c
+; A - byte angle out of 2pi
+; Returns signed sin value in R9, max $ffff
+; Returns signed cos value in RA, max $ffff
+GetSinCosAforTransformLines:
+; RF = A.b * 4, to get angle out of 180 degrees
+	_and A, IMM $ff                                                           ; $8c60 / 6:30 / $b4ff
+	shll A, IMM $02                                                           ; $8c62 / 6:31 / $dc02
+	mov OP RF, A                                                              ; $8c64 / 6:32 / $e06f
 
-	mov A, OP RAM_DTA                                                             ; $8c70 / 6:38 / $600c
-	sub IMM $80, A                                                             ; $8c72 / 6:39 / $8c80
-	mov OP RAM_DTA, A                                                             ; $8c74 / 6:3a / $e00c
-	jp Func_2_8c7a                                                             ; $8c76 / 6:3b / $083d
+; ram_dta = low 7 bits of above
+	_and A, IMM $7f                                                           ; $8c66 / 6:33 / $b47f
+	mov OP RAM_DTA, A                                                         ; $8c68 / 6:34 / $e00c
 
-Func_2_8c78:
-	mov A, OP RAM_DTA                                                             ; $8c78 / 6:3c / $600c
+; Jump if bit 7 was clear (< 90 degrees)
+	mov A, OP RF                                                              ; $8c6a / 6:35 / $606f
+	_and A, IMM $80                                                           ; $8c6c / 6:36 / $b480
+	jz @aEquRamDta                                                            ; $8c6e / 6:37 / $0c3c
 
-Func_2_8c7a:
-	_cmp A, IMM $80                                                             ; $8c7a / 6:3d / $5480
-	jz Func_2_8c9c                                                             ; $8c7c / 6:3e / $0c4e
+; Else do ram_dta -= $80, and copy in A
+	mov A, OP RAM_DTA                                                         ; $8c70 / 6:38 / $600c
+	sub IMM $80, A                                                            ; $8c72 / 6:39 / $8c80
+	mov OP RAM_DTA, A                                                         ; $8c74 / 6:3a / $e00c
+	jp +                                                                      ; $8c76 / 6:3b / $083d
 
-	mov A, IMM $02                                                             ; $8c7e / 6:3f / $6402
-	add _100hA, IMM $00                                                             ; $8c80 / 6:40 / $8600
-	or A, OP RAM_DTA                                                             ; $8c82 / 6:41 / $b80c
-	rdrom OP REG_A                                                             ; $8c84 / 6:42 / $7000
-	mov A, OP ROM_DTA                                                             ; $8c86 / 6:43 / $6008
-	shlr A, IMM $08                                                             ; $8c88 / 6:44 / $c408
-	mov OP R9, A                                                             ; $8c8a / 6:45 / $e069
-	mov A, IMM $03                                                             ; $8c8c / 6:46 / $6403
-	add _100hA, IMM $80                                                             ; $8c8e / 6:47 / $8680
-	or A, OP RAM_DTA                                                             ; $8c90 / 6:48 / $b80c
-	rdrom OP REG_A                                                             ; $8c92 / 6:49 / $7000
-	mov A, OP ROM_DTA                                                             ; $8c94 / 6:4a / $6008
-	shlr A, IMM $08                                                             ; $8c96 / 6:4b / $c408
-	mov OP RA, A                                                             ; $8c98 / 6:4c / $e06a
-	jp Func_2_8ca6                                                             ; $8c9a / 6:4d / $0853
+@aEquRamDta:
+	mov A, OP RAM_DTA                                                         ; $8c78 / 6:3c / $600c
 
-Func_2_8c9c:
-	mov A, OP _FFFFFF                                                             ; $8c9c / 6:4e / $6051
-	shlr A, IMM $08                                                             ; $8c9e / 6:4f / $c408
-	mov OP R9, A                                                             ; $8ca0 / 6:50 / $e069
-	mov A, IMM $00                                                             ; $8ca2 / 6:51 / $6400
-	mov OP RA, A                                                             ; $8ca4 / 6:52 / $e06a
+; A is now a signed val, < $80 (90 degrees each sign)
++	_cmp A, IMM $80                                                           ; $8c7a / 6:3d / $5480
+	jz @angleEqu0                                                             ; $8c7c / 6:3e / $0c4e
 
-Func_2_8ca6:
-	mov A, OP RF                                                             ; $8ca6 / 6:53 / $606f
-	shll A, IMM $0f                                                             ; $8ca8 / 6:54 / $dc0f
-	skips                                                             ; $8caa / 6:55 / $2701
-	jp Func_2_8cb6                                                             ; $8cac / 6:56 / $085b
+; rom_dta = sin A * $1000000
+	mov A, IMM >CX4_SIN_TABLE                                                 ; $8c7e / 6:3f / $6402
+	add _100hA, IMM <CX4_SIN_TABLE                                            ; $8c80 / 6:40 / $8600
+	or A, OP RAM_DTA                                                          ; $8c82 / 6:41 / $b80c
+	rdrom OP REG_A                                                            ; $8c84 / 6:42 / $7000
 
-	mov A, OP R9                                                             ; $8cae / 6:57 / $6069
-	xor A, OP _FFFFFF                                                             ; $8cb0 / 6:58 / $a851
-	add A, IMM $01                                                             ; $8cb2 / 6:59 / $8401
-	mov OP R9, A                                                             ; $8cb4 / 6:5a / $e069
+; R9 = sin A * $10000
+	mov A, OP ROM_DTA                                                         ; $8c86 / 6:43 / $6008
+	shlr A, IMM $08                                                           ; $8c88 / 6:44 / $c408
+	mov OP R9, A                                                              ; $8c8a / 6:45 / $e069
 
-Func_2_8cb6:
-	mov A, OP RF                                                             ; $8cb6 / 6:5b / $606f
-	shlr A, IMM $07                                                             ; $8cb8 / 6:5c / $c407
-	add A, IMM $01                                                             ; $8cba / 6:5d / $8401
-	_and A, IMM $03                                                             ; $8cbc / 6:5e / $b403
-	_cmp A, IMM $02                                                             ; $8cbe / 6:5f / $5402
-	skipc                                                             ; $8cc0 / 6:60 / $2501
-	jp Func_2_8ccc                                                             ; $8cc2 / 6:61 / $0866
+; rom_dta = cos A * $1000000
+	mov A, IMM >CX4_COS_TABLE                                                 ; $8c8c / 6:46 / $6403
+	add _100hA, IMM <CX4_COS_TABLE                                            ; $8c8e / 6:47 / $8680
+	or A, OP RAM_DTA                                                          ; $8c90 / 6:48 / $b80c
+	rdrom OP REG_A                                                            ; $8c92 / 6:49 / $7000
 
-	mov A, OP RA                                                             ; $8cc4 / 6:62 / $606a
-	xor A, OP _FFFFFF                                                             ; $8cc6 / 6:63 / $a851
-	add A, IMM $01                                                             ; $8cc8 / 6:64 / $8401
-	mov OP RA, A                                                             ; $8cca / 6:65 / $e06a
+; RA = cos A * $10000
+	mov A, OP ROM_DTA                                                         ; $8c94 / 6:4a / $6008
+	shlr A, IMM $08                                                           ; $8c96 / 6:4b / $c408
+	mov OP RA, A                                                              ; $8c98 / 6:4c / $e06a
+	jp @afterSinCos                                                           ; $8c9a / 6:4d / $0853
 
-Func_2_8ccc:
-	ret                                                             ; $8ccc / 6:66 / $3c00
+@angleEqu0:
+; R9 = $ffff
+	mov A, OP _FFFFFF                                                         ; $8c9c / 6:4e / $6051
+	shlr A, IMM $08                                                           ; $8c9e / 6:4f / $c408
+	mov OP R9, A                                                              ; $8ca0 / 6:50 / $e069
+
+; RA = 0
+	mov A, IMM $00                                                            ; $8ca2 / 6:51 / $6400
+	mov OP RA, A                                                              ; $8ca4 / 6:52 / $e06a
+
+@afterSinCos:
+; Jump if high bit of angle is clear (< 90 degrees)
+	mov A, OP RF                                                              ; $8ca6 / 6:53 / $606f
+	shll A, IMM $0f                                                           ; $8ca8 / 6:54 / $dc0f
+	skips                                                                     ; $8caa / 6:55 / $2701
+	jp @afterSinSignCheck                                                     ; $8cac / 6:56 / $085b
+
+; For sin, 90 to 179 degrees is neg'd
+	mov A, OP R9                                                              ; $8cae / 6:57 / $6069
+	xor A, OP _FFFFFF                                                         ; $8cb0 / 6:58 / $a851
+	add A, IMM $01                                                            ; $8cb2 / 6:59 / $8401
+	mov OP R9, A                                                              ; $8cb4 / 6:5a / $e069
+
+@afterSinSignCheck:
+; Shift to get num 90 degrees in low bits
+	mov A, OP RF                                                              ; $8cb6 / 6:5b / $606f
+	shlr A, IMM $07                                                           ; $8cb8 / 6:5c / $c407
+
+; Jump if sector is 0 or 4 (positive cos)
+	add A, IMM $01                                                            ; $8cba / 6:5d / $8401
+	_and A, IMM $03                                                           ; $8cbc / 6:5e / $b403
+	_cmp A, IMM $02                                                           ; $8cbe / 6:5f / $5402
+	skipc                                                                     ; $8cc0 / 6:60 / $2501
+	jp @done                                                                  ; $8cc2 / 6:61 / $0866
+
+; Else neg cos value RA
+	mov A, OP RA                                                              ; $8cc4 / 6:62 / $606a
+	xor A, OP _FFFFFF                                                         ; $8cc6 / 6:63 / $a851
+	add A, IMM $01                                                            ; $8cc8 / 6:64 / $8401
+	mov OP RA, A                                                              ; $8cca / 6:65 / $e06a
+
+@done:
+	ret                                                                       ; $8ccc / 6:66 / $3c00
 
 
 Func_2_8cce:
+; R1 = $600
 	mov A, IMM $06                                                             ; $8cce / 6:67 / $6406
 	add _100hA, IMM $00                                                             ; $8cd0 / 6:68 / $8600
 	mov OP R1, A                                                             ; $8cd2 / 6:69 / $e061
+
+; ram_ptr = $0b00
 	mov A, IMM $0b                                                             ; $8cd4 / 6:6a / $640b
 	add _100hA, IMM $00                                                             ; $8cd6 / 6:6b / $8600
 	mov OP RAM_PTR, A                                                             ; $8cd8 / 6:6c / $e01c
+
+; R0 = val in ram as a byte
 	rdram lsb, IMM $00                                                             ; $8cda / 6:6d / $6c00
 	mov A, OP RAM_DTA                                                             ; $8cdc / 6:6e / $600c
 	_and A, IMM $ff                                                             ; $8cde / 6:6f / $b4ff
 	mov OP R0, A                                                             ; $8ce0 / 6:70 / $e060
+
+; ram_ptr += 2
 	mov A, OP RAM_PTR                                                             ; $8ce2 / 6:71 / $601c
 	add A, IMM $02                                                             ; $8ce4 / 6:72 / $8402
 	mov OP RAM_PTR, A                                                             ; $8ce6 / 6:73 / $e01c
 
-Func_2_8ce8:
+@nextSide:
 	rdram lsb, IMM $00                                                             ; $8ce8 / 6:74 / $6c00
 	mov A, OP RAM_DTA                                                             ; $8cea / 6:75 / $600c
 	_and A, IMM $ff                                                             ; $8cec / 6:76 / $b4ff
@@ -2007,27 +2159,27 @@ Func_2_8ce8:
 	mov OP EXT_PTR, A                                                             ; $8d26 / 6:93 / $e013
 	mov A, OP R2                                                             ; $8d28 / 6:94 / $6062
 	sub A, OP R4                                                             ; $8d2a / 6:95 / $9064
-	jc Func_2_8d34                                                             ; $8d2c / 6:96 / $109a
+	jc @cont_8d34                                                             ; $8d2c / 6:96 / $109a
 
 	xor A, OP _FFFFFF                                                             ; $8d2e / 6:97 / $a851
 	add A, IMM $01                                                             ; $8d30 / 6:98 / $8401
 	inc_ext_ptr                                                             ; $8d32 / 6:99 / $4000
 
-Func_2_8d34:
+@cont_8d34:
 	mov OP R6, A                                                             ; $8d34 / 6:9a / $e066
 	mov A, OP R3                                                             ; $8d36 / 6:9b / $6063
 	sub A, OP R5                                                             ; $8d38 / 6:9c / $9065
-	jc Func_2_8d44                                                             ; $8d3a / 6:9d / $10a2
+	jc @cont_8d44                                                             ; $8d3a / 6:9d / $10a2
 
 	xor A, OP _FFFFFF                                                             ; $8d3c / 6:9e / $a851
 	add A, IMM $01                                                             ; $8d3e / 6:9f / $8401
 	inc_ext_ptr                                                             ; $8d40 / 6:a0 / $4000
 	inc_ext_ptr                                                             ; $8d42 / 6:a1 / $4000
 
-Func_2_8d44:
+@cont_8d44:
 	mov OP R7, A                                                             ; $8d44 / 6:a2 / $e067
 	_cmp A, OP R6                                                             ; $8d46 / 6:a3 / $5066
-	jc Func_2_8d58                                                             ; $8d48 / 6:a4 / $10ac
+	jc @br_8d58                                                             ; $8d48 / 6:a4 / $10ac
 
 	swap OP R6                                                             ; $8d4a / 6:a5 / $f066
 	mov OP R7, A                                                             ; $8d4c / 6:a6 / $e067
@@ -2035,35 +2187,35 @@ Func_2_8d44:
 	mov OP R9, A                                                             ; $8d50 / 6:a8 / $e069
 	mov A, OP _010000                                                             ; $8d52 / 6:a9 / $605c
 	mov OP R8, A                                                             ; $8d54 / 6:aa / $e068
-	jp Func_2_8d60                                                             ; $8d56 / 6:ab / $08b0
+	jp @cont_8d60                                                             ; $8d56 / 6:ab / $08b0
 
-Func_2_8d58:
+@br_8d58:
 	call Func_2_8db4                                                             ; $8d58 / 6:ac / $28da
 	mov OP R8, A                                                             ; $8d5a / 6:ad / $e068
 	mov A, OP _010000                                                             ; $8d5c / 6:ae / $605c
 	mov OP R9, A                                                             ; $8d5e / 6:af / $e069
 
-Func_2_8d60:
+@cont_8d60:
 	mov A, OP EXT_PTR                                                             ; $8d60 / 6:b0 / $6013
 	shll A, IMM $17                                                             ; $8d62 / 6:b1 / $dc17
-	js Func_2_8d6e                                                             ; $8d64 / 6:b2 / $14b7
+	js @cont_8d6e                                                             ; $8d64 / 6:b2 / $14b7
 
 	mov A, OP R8                                                             ; $8d66 / 6:b3 / $6068
 	xor A, OP _FFFFFF                                                             ; $8d68 / 6:b4 / $a851
 	add A, IMM $01                                                             ; $8d6a / 6:b5 / $8401
 	mov OP R8, A                                                             ; $8d6c / 6:b6 / $e068
 
-Func_2_8d6e:
+@cont_8d6e:
 	mov A, OP EXT_PTR                                                             ; $8d6e / 6:b7 / $6013
 	shll A, IMM $16                                                             ; $8d70 / 6:b8 / $dc16
-	js Func_2_8d7c                                                             ; $8d72 / 6:b9 / $14be
+	js @cont_8d7c                                                             ; $8d72 / 6:b9 / $14be
 
 	mov A, OP R9                                                             ; $8d74 / 6:ba / $6069
 	xor A, OP _FFFFFF                                                             ; $8d76 / 6:bb / $a851
 	add A, IMM $01                                                             ; $8d78 / 6:bc / $8401
 	mov OP R9, A                                                             ; $8d7a / 6:bd / $e069
 
-Func_2_8d7c:
+@cont_8d7c:
 	mov A, OP RAM_PTR                                                             ; $8d7c / 6:be / $601c
 	swap OP R1                                                             ; $8d7e / 6:bf / $f061
 	mov OP RAM_PTR, A                                                             ; $8d80 / 6:c0 / $e01c
@@ -2081,34 +2233,43 @@ Func_2_8d7c:
 	wrram lsb, IMM $04                                                             ; $8d98 / 6:cc / $ec04
 	wrram mid, IMM $05                                                             ; $8d9a / 6:cd / $ed05
 	wrram msb, IMM $06                                                             ; $8d9c / 6:ce / $ee06
+
+;
 	mov A, OP RAM_PTR                                                             ; $8d9e / 6:cf / $601c
 	add A, IMM $08                                                             ; $8da0 / 6:d0 / $8408
 	swap OP R1                                                             ; $8da2 / 6:d1 / $f061
 	add A, IMM $02                                                             ; $8da4 / 6:d2 / $8402
 	mov OP RAM_PTR, A                                                             ; $8da6 / 6:d3 / $e01c
+
+; R0 -= 1, looping until 0
 	mov A, OP R0                                                             ; $8da8 / 6:d4 / $6060
 	sub A, IMM $01                                                             ; $8daa / 6:d5 / $9401
 	mov OP R0, A                                                             ; $8dac / 6:d6 / $e060
 	skipz                                                             ; $8dae / 6:d7 / $2601
-	jp Func_2_8ce8                                                             ; $8db0 / 6:d8 / $0874
+	jp @nextSide                                                             ; $8db0 / 6:d8 / $0874
 
 	ret                                                             ; $8db2 / 6:d9 / $3c00
 
+
 Func_2_8db4:
+; If R6 != 0...
 	mov A, OP R6                                                             ; $8db4 / 6:da / $6066
 	_cmp A, IMM $00                                                             ; $8db6 / 6:db / $5400
-	jz Func_2_8dca                                                             ; $8db8 / 6:dc / $0ce5
+	jz @done                                                             ; $8db8 / 6:dc / $0ce5
 
+; Get A in ram idxed R7
 	mov A, IMM $00                                                             ; $8dba / 6:dd / $6400
 	add A, OP R7                                                             ; $8dbc / 6:de / $8067
 	rdrom OP REG_A                                                             ; $8dbe / 6:df / $7000
 	mov A, OP ROM_DTA                                                             ; $8dc0 / 6:e0 / $6008
+
+;
 	shlr A, IMM $07                                                             ; $8dc2 / 6:e1 / $c407
 	mul OP R6                                                             ; $8dc4 / 6:e2 / $9866
 	noop                                                             ; $8dc6 / 6:e3 / $0000
 	mov A, OP ML                                                             ; $8dc8 / 6:e4 / $6002
 
-Func_2_8dca:
+@done:
 	ret                                                             ; $8dca / 6:e5 / $3c00
 
 
@@ -12736,14 +12897,14 @@ br_02_dae3:
 	sta $00bf.w                                                  ; $db2c : $8d, $bf, $00
 	sep #ACCU_8|IDX_8                                                  ; $db2f : $e2, $30
 	lda #$17.b                                                  ; $db31 : $a9, $17
-	sta $00c1.w                                                  ; $db33 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $db33 : $8d, $c1, $00
 	rtl                                                  ; $db36 : $6b
 
 
 br_02_db37:
 	sep #ACCU_8|IDX_8                                                  ; $db37 : $e2, $30
 	lda #$13.b                                                  ; $db39 : $a9, $13
-	sta $00c1.w                                                  ; $db3b : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $db3b : $8d, $c1, $00
 	rtl                                                  ; $db3e : $6b
 
 
@@ -16980,13 +17141,13 @@ Call_02_f54f:
 	jsr $00b4ff.l                                                  ; $f576 : $22, $ff, $b4, $00
 	pld                                                  ; $f57a : $2b
 	lda #$02.b                                                  ; $f57b : $a9, $02
-	sta $00c9.w                                                  ; $f57d : $8d, $c9, $00
+	sta wColourAdditionSelect.w                                                  ; $f57d : $8d, $c9, $00
 	lda #$7f.b                                                  ; $f580 : $a9, $7f
-	sta $00ca.w                                                  ; $f582 : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $f582 : $8d, $ca, $00
 	lda #$13.b                                                  ; $f585 : $a9, $13
-	sta $00c1.w                                                  ; $f587 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $f587 : $8d, $c1, $00
 	lda #$04.b                                                  ; $f58a : $a9, $04
-	sta $00c2.w                                                  ; $f58c : $8d, $c2, $00
+	sta wSubScreenDesignation.w                                                  ; $f58c : $8d, $c2, $00
 	lda #$09.b                                                  ; $f58f : $a9, $09
 	sta $00ce.w                                                  ; $f591 : $8d, $ce, $00
 	ldy #$b0.b                                                  ; $f594 : $a0, $b0
@@ -17008,9 +17169,9 @@ br_02_f59a:
 	sep #ACCU_8                                                  ; $f5b7 : $e2, $20
 	lda #$0a.b                                                  ; $f5b9 : $a9, $0a
 	sta $00ce.w                                                  ; $f5bb : $8d, $ce, $00
-	stz $00c9.w                                                  ; $f5be : $9c, $c9, $00
-	stz $00ca.w                                                  ; $f5c1 : $9c, $ca, $00
-	stz $00c2.w                                                  ; $f5c4 : $9c, $c2, $00
+	stz wColourAdditionSelect.w                                                  ; $f5be : $9c, $c9, $00
+	stz wColourMathDesignation.w                                                  ; $f5c1 : $9c, $ca, $00
+	stz wSubScreenDesignation.w                                                  ; $f5c4 : $9c, $c2, $00
 	stz $00bd.w                                                  ; $f5c7 : $9c, $bd, $00
 	stz $00be.w                                                  ; $f5ca : $9c, $be, $00
 	stz $00bf.w                                                  ; $f5cd : $9c, $bf, $00
@@ -17772,7 +17933,7 @@ br_02_fa59:
 	sta $2105.w                                                  ; $fa5b : $8d, $05, $21
 	jsr $048c86.l                                                  ; $fa5e : $22, $86, $8c, $04
 	lda #$04.b                                                  ; $fa62 : $a9, $04
-	tsb $00c1.w                                                  ; $fa64 : $0c, $c1, $00
+	tsb wMainScreenDesignation.w                                                  ; $fa64 : $0c, $c1, $00
 	lda #$22.b                                                  ; $fa67 : $a9, $22
 	sta $00c5.w                                                  ; $fa69 : $8d, $c5, $00
 	stz $00c6.w                                                  ; $fa6c : $9c, $c6, $00
@@ -17786,9 +17947,9 @@ br_02_fa59:
 	sta $212e.w                                                  ; $fa82 : $8d, $2e, $21
 	sta $1fa9.w                                                  ; $fa85 : $8d, $a9, $1f
 	lda #$80.b                                                  ; $fa88 : $a9, $80
-	sta $00c9.w                                                  ; $fa8a : $8d, $c9, $00
+	sta wColourAdditionSelect.w                                                  ; $fa8a : $8d, $c9, $00
 	lda #$a0.b                                                  ; $fa8d : $a9, $a0
-	sta $00ca.w                                                  ; $fa8f : $8d, $ca, $00
+	sta wColourMathDesignation.w                                                  ; $fa8f : $8d, $ca, $00
 	lda #$3f.b                                                  ; $fa92 : $a9, $3f
 	sta $00cb.w                                                  ; $fa94 : $8d, $cb, $00
 	lda #$5f.b                                                  ; $fa97 : $a9, $5f
@@ -17925,8 +18086,8 @@ br_02_fb47:
 
 	stz $2123.w                                                  ; $fb64 : $9c, $23, $21
 	stz $00c5.w                                                  ; $fb67 : $9c, $c5, $00
-	stz $00c9.w                                                  ; $fb6a : $9c, $c9, $00
-	stz $00ca.w                                                  ; $fb6d : $9c, $ca, $00
+	stz wColourAdditionSelect.w                                                  ; $fb6a : $9c, $c9, $00
+	stz wColourMathDesignation.w                                                  ; $fb6d : $9c, $ca, $00
 	lda #$e0.b                                                  ; $fb70 : $a9, $e0
 	sta $2132.w                                                  ; $fb72 : $8d, $32, $21
 	lda #$20.b                                                  ; $fb75 : $a9, $20
@@ -17960,7 +18121,7 @@ br_02_fb9c:
 	beq br_02_fbc3                                                  ; $fba0 : $f0, $21
 
 	lda #$04.b                                                  ; $fba2 : $a9, $04
-	trb $00c1.w                                                  ; $fba4 : $1c, $c1, $00
+	trb wMainScreenDesignation.w                                                  ; $fba4 : $1c, $c1, $00
 	stz $1f2c.w                                                  ; $fba7 : $9c, $2c, $1f
 	rep #ACCU_8|IDX_8                                                  ; $fbaa : $c2, $30
 	phb                                                  ; $fbac : $8b
@@ -17978,7 +18139,7 @@ br_02_fbc3:
 	beq br_02_fbd4                                                  ; $fbc6 : $f0, $0c
 
 	lda #$04.b                                                  ; $fbc8 : $a9, $04
-	trb $00c1.w                                                  ; $fbca : $1c, $c1, $00
+	trb wMainScreenDesignation.w                                                  ; $fbca : $1c, $c1, $00
 	lda #$0c.b                                                  ; $fbcd : $a9, $0c
 	trb $1f5f.w                                                  ; $fbcf : $1c, $5f, $1f
 	bra br_02_fbd9                                                  ; $fbd2 : $80, $05
@@ -18147,10 +18308,10 @@ Func_2_fcc8:
 	lda #$2a.b                                                  ; $fcd1 : $a9, $2a
 	sta _1818_Entity.type.w, X                                                  ; $fcd3 : $9d, $0a, $00
 	inc $1f4f.w                                                  ; $fcd6 : $ee, $4f, $1f
-	lda $00c1.w                                                  ; $fcd9 : $ad, $c1, $00
+	lda wMainScreenDesignation.w                                                  ; $fcd9 : $ad, $c1, $00
 	sta $7fcd4b.l                                                  ; $fcdc : $8f, $4b, $cd, $7f
 	lda #$04.b                                                  ; $fce0 : $a9, $04
-	trb $00c1.w                                                  ; $fce2 : $1c, $c1, $00
+	trb wMainScreenDesignation.w                                                  ; $fce2 : $1c, $c1, $00
 	lda #$80.b                                                  ; $fce5 : $a9, $80
 	tsb $1f3f.w                                                  ; $fce7 : $0c, $3f, $1f
 	lda $0000.w                                                  ; $fcea : $ad, $00, $00

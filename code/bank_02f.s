@@ -7336,7 +7336,7 @@ br_2f_b236:
 	.db $00                                                  ; $b41d : $00
 	.db $00                                                  ; $b41e : $00
 	.db $00                                                  ; $b41f : $00
-	ldx $00c1.w, Y                                                  ; $b420 : $be, $c1, $00
+	ldx wMainScreenDesignation.w, Y                                                  ; $b420 : $be, $c1, $00
 	sbc $d3ff3e.l, X                                                  ; $b423 : $ff, $3e, $ff, $d3
 	eor $dedf.w                                                  ; $b427 : $4d, $df, $de
 	ora $000011.l, X                                                  ; $b42a : $1f, $11, $00, $00

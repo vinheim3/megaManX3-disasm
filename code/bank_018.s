@@ -6166,7 +6166,7 @@ br_18_adc2:
 	stx $8e5c.w                                                  ; $ae25 : $8e, $5c, $8e
 	lsr $5e0e.w, X                                                  ; $ae28 : $5e, $0e, $5e
 	asl $8e5c.w                                                  ; $ae2b : $0e, $5c, $8e
-	eor CX4_R8.w+1, X                                                  ; $ae2e : $5d, $96, $7f
+	eor CX4_R7.w+1, X                                                  ; $ae2e : $5d, $96, $7f
 	tsb $0c07.w                                                  ; $ae31 : $0c, $07, $0c
 	adc $0c200c.l, X                                                  ; $ae34 : $7f, $0c, $20, $0c
 	ora [$0c]                                                  ; $ae38 : $07, $0c

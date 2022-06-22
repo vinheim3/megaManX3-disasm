@@ -11972,7 +11972,7 @@ br_3a_c662:
 	ora $0e0b0d.l                                                  ; $c679 : $0f, $0d, $0b, $0e
 	ora #$0f.b                                                  ; $c67d : $09, $0f
 	php                                                  ; $c67f : $08
-	cmp CX4_RC.w+2, X                                                  ; $c680 : $dd, $a3, $7f
+	cmp CX4_RB.w+2, X                                                  ; $c680 : $dd, $a3, $7f
 	eor ($7b, X)                                                  ; $c683 : $41, $7b
 	cli                                                  ; $c685 : $58
 	inc $dd89.w                                                  ; $c686 : $ee, $89, $dd

@@ -10160,7 +10160,7 @@ br_0b_ce2a:
 	and $1132cf.l, X                                                  ; $cecf : $3f, $cf, $32, $11
 	ora ($56, X)                                                  ; $ced3 : $01, $56
 	tcs                                                  ; $ced5 : $1b
-	lda $00c2.w                                                  ; $ced6 : $ad, $c2, $00
+	lda wSubScreenDesignation.w                                                  ; $ced6 : $ad, $c2, $00
 	.db $00                                                  ; $ced9 : $00
 	sbc $0c02ed.l, X                                                  ; $ceda : $ff, $ed, $02, $0c
 	cpy #$20.b                                                  ; $cede : $c0, $20

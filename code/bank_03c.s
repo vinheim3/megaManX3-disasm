@@ -5856,7 +5856,7 @@ br_3c_a193:
 	sta $1ea4.w                                                  ; $a1ae : $8d, $a4, $1e
 	sep #ACCU_8|IDX_8                                                  ; $a1b1 : $e2, $30
 	lda #$13.b                                                  ; $a1b3 : $a9, $13
-	sta $00c1.w                                                  ; $a1b5 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $a1b5 : $8d, $c1, $00
 	stz $36                                                  ; $a1b8 : $64, $36
 	rts                                                  ; $a1ba : $60
 
@@ -6526,7 +6526,7 @@ br_3c_a607:
 	bne br_3c_a624                                                  ; $a60f : $d0, $13
 
 	lda #$02.b                                                  ; $a611 : $a9, $02
-	trb $00c1.w                                                  ; $a613 : $1c, $c1, $00
+	trb wMainScreenDesignation.w                                                  ; $a613 : $1c, $c1, $00
 	jsr Call_3c_a9ca.w                                                  ; $a616 : $20, $ca, $a9
 	ldx #$20.b                                                  ; $a619 : $a2, $20
 
@@ -6568,7 +6568,7 @@ br_3c_a629:
 	trb $1f5f.w                                                  ; $a664 : $1c, $5f, $1f
 	stz $1f2c.w                                                  ; $a667 : $9c, $2c, $1f
 	lda #$02.b                                                  ; $a66a : $a9, $02
-	tsb $00c1.w                                                  ; $a66c : $0c, $c1, $00
+	tsb wMainScreenDesignation.w                                                  ; $a66c : $0c, $c1, $00
 	jsr todo_DisablesEntity_d928.l                                                  ; $a66f : $22, $28, $d9, $02
 	rts                                                  ; $a673 : $60
 
@@ -9209,11 +9209,11 @@ br_3c_b666:
 	lda #$59.b                                                  ; $b6b5 : $a9, $59
 	sta BG2SC.w                                                  ; $b6b7 : $8d, $08, $21
 	lda #$17.b                                                  ; $b6ba : $a9, $17
-	sta $00c1.w                                                  ; $b6bc : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $b6bc : $8d, $c1, $00
 	lda #$13.b                                                  ; $b6bf : $a9, $13
-	sta $00c2.w                                                  ; $b6c1 : $8d, $c2, $00
-	stz $00b9.w                                                  ; $b6c4 : $9c, $b9, $00
-	stz $00bb.w                                                  ; $b6c7 : $9c, $bb, $00
+	sta wSubScreenDesignation.w                                                  ; $b6c1 : $8d, $c2, $00
+	stz wBG2HorizScroll.w                                                  ; $b6c4 : $9c, $b9, $00
+	stz wBG2VertScroll.w                                                  ; $b6c7 : $9c, $bb, $00
 	rep #ACCU_8                                                  ; $b6ca : $c2, $20
 	jsr Call_3c_bdc6.w                                                  ; $b6cc : $20, $c6, $bd
 	lda #$1200.w                                                  ; $b6cf : $a9, $00, $12
@@ -9983,12 +9983,12 @@ br_3c_bbba:
 	tsb $11                                                  ; $bbe5 : $04, $11
 
 br_3c_bbe7:
-	lda $00c1.w                                                  ; $bbe7 : $ad, $c1, $00
+	lda wMainScreenDesignation.w                                                  ; $bbe7 : $ad, $c1, $00
 	eor #$02.b                                                  ; $bbea : $49, $02
-	sta $00c1.w                                                  ; $bbec : $8d, $c1, $00
-	lda $00c2.w                                                  ; $bbef : $ad, $c2, $00
+	sta wMainScreenDesignation.w                                                  ; $bbec : $8d, $c1, $00
+	lda wSubScreenDesignation.w                                                  ; $bbef : $ad, $c2, $00
 	eor #$02.b                                                  ; $bbf2 : $49, $02
-	sta $00c2.w                                                  ; $bbf4 : $8d, $c2, $00
+	sta wSubScreenDesignation.w                                                  ; $bbf4 : $8d, $c2, $00
 	jsr Func_2_d636.l                                                  ; $bbf7 : $22, $36, $d6, $02
 	rts                                                  ; $bbfb : $60
 
@@ -10015,8 +10015,8 @@ br_3c_bc11:
 	bne br_3c_bbe7                                                  ; $bc15 : $d0, $d0
 
 	lda #$02.b                                                  ; $bc17 : $a9, $02
-	trb $00c1.w                                                  ; $bc19 : $1c, $c1, $00
-	trb $00c2.w                                                  ; $bc1c : $1c, $c2, $00
+	trb wMainScreenDesignation.w                                                  ; $bc19 : $1c, $c1, $00
+	trb wSubScreenDesignation.w                                                  ; $bc1c : $1c, $c2, $00
 	rts                                                  ; $bc1f : $60
 
 
@@ -10437,19 +10437,19 @@ Call_3c_beb0:
 	lda $37                                                  ; $beb0 : $a5, $37
 	beq br_3c_bec5                                                  ; $beb2 : $f0, $11
 
-	lda $00c1.w                                                  ; $beb4 : $ad, $c1, $00
+	lda wMainScreenDesignation.w                                                  ; $beb4 : $ad, $c1, $00
 	eor #$02.b                                                  ; $beb7 : $49, $02
-	sta $00c1.w                                                  ; $beb9 : $8d, $c1, $00
-	lda $00c2.w                                                  ; $bebc : $ad, $c2, $00
+	sta wMainScreenDesignation.w                                                  ; $beb9 : $8d, $c1, $00
+	lda wSubScreenDesignation.w                                                  ; $bebc : $ad, $c2, $00
 	eor #$02.b                                                  ; $bebf : $49, $02
-	sta $00c2.w                                                  ; $bec1 : $8d, $c2, $00
+	sta wSubScreenDesignation.w                                                  ; $bec1 : $8d, $c2, $00
 	rts                                                  ; $bec4 : $60
 
 
 br_3c_bec5:
 	lda #$02.b                                                  ; $bec5 : $a9, $02
-	tsb $00c1.w                                                  ; $bec7 : $0c, $c1, $00
-	tsb $00c2.w                                                  ; $beca : $0c, $c2, $00
+	tsb wMainScreenDesignation.w                                                  ; $bec7 : $0c, $c1, $00
+	tsb wSubScreenDesignation.w                                                  ; $beca : $0c, $c2, $00
 	rts                                                  ; $becd : $60
 
 
@@ -10534,7 +10534,7 @@ br_3c_bf22:
 	sta $08                                                  ; $bf3c : $85, $08
 	sta $08a3.w                                                  ; $bf3e : $8d, $a3, $08
 	lda #$13.b                                                  ; $bf41 : $a9, $13
-	sta $00c1.w                                                  ; $bf43 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $bf43 : $8d, $c1, $00
 	lda #$01.b                                                  ; $bf46 : $a9, $01
 	sta $0e                                                  ; $bf48 : $85, $0e
 	stz $11                                                  ; $bf4a : $64, $11
@@ -10568,7 +10568,7 @@ br_3c_bf22:
 	lda #$09.b                                                  ; $bf91 : $a9, $09
 	sta $00ce.w                                                  ; $bf93 : $8d, $ce, $00
 	lda #$13.b                                                  ; $bf96 : $a9, $13
-	sta $00c1.w                                                  ; $bf98 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $bf98 : $8d, $c1, $00
 	stz $3d                                                  ; $bf9b : $64, $3d
 	stz $3e                                                  ; $bf9d : $64, $3e
 	stz $3f                                                  ; $bf9f : $64, $3f
@@ -11123,7 +11123,7 @@ br_3c_c338:
 
 
 	jsr $02dae7.l                                                  ; $c344 : $22, $e7, $da, $02
-	lda $00c1.w                                                  ; $c348 : $ad, $c1, $00
+	lda wMainScreenDesignation.w                                                  ; $c348 : $ad, $c1, $00
 	and #$04.b                                                  ; $c34b : $29, $04
 	beq br_3c_c35b                                                  ; $c34d : $f0, $0c
 
@@ -11132,7 +11132,7 @@ br_3c_c338:
 	beq br_3c_c35b                                                  ; $c354 : $f0, $05
 
 	lda #$13.b                                                  ; $c356 : $a9, $13
-	sta $00c1.w                                                  ; $c358 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $c358 : $8d, $c1, $00
 
 br_3c_c35b:
 	rep #ACCU_8                                                  ; $c35b : $c2, $20
@@ -11150,7 +11150,7 @@ br_3c_c35b:
 	bne br_3c_c397                                                  ; $c37e : $d0, $17
 
 	lda #$13.b                                                  ; $c380 : $a9, $13
-	sta $00c1.w                                                  ; $c382 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $c382 : $8d, $c1, $00
 	lda #$01.b                                                  ; $c385 : $a9, $01
 	jsr $04d5e5.l                                                  ; $c387 : $22, $e5, $d5, $04
 	lda #$01.b                                                  ; $c38b : $a9, $01
@@ -11264,7 +11264,7 @@ Call_3c_c435:
 
 br_3c_c43e:
 	lda #$13.b                                                  ; $c43e : $a9, $13
-	sta $00c1.w                                                  ; $c440 : $8d, $c1, $00
+	sta wMainScreenDesignation.w                                                  ; $c440 : $8d, $c1, $00
 	rts                                                  ; $c443 : $60
 
 
