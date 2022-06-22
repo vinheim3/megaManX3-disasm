@@ -87,10 +87,10 @@ Call_07_80a9:
 	lda #$01.b                                                  ; $80c7 : $a9, $01
 	sta $0a5e.w                                                  ; $80c9 : $8d, $5e, $0a
 
-@loop_80cc:
+@xvectorloop:
 	jsr ClearShadowXVectorTileData.w                                                  ; $80cc : $20, $67, $83
-	jsr Call_07_82da.w                                                  ; $80cf : $20, $da, $82
-	jsr Call_07_829b.w                                                  ; $80d2 : $20, $9b, $82
+	jsr LoadXVectorVertices.w                                                  ; $80cf : $20, $da, $82
+	jsr SetCx4TransformLinesRParams.w                                                  ; $80d2 : $20, $9b, $82
 	lda #$31.b                                                  ; $80d5 : $a9, $31
 	sta NMITIMEN.w                                                  ; $80d7 : $8d, $00, $42
 
@@ -104,15 +104,20 @@ Call_07_80a9:
 ;
 	jsr Func_7_839e.w                                                  ; $80e4 : $20, $9e, $83
 	inc wXVectorTileDataUpdatePending.w                                                  ; $80e7 : $ee, $dd, $1f
+
+; update angles, etc
 	jsr Func_7_8186.w                                                  ; $80ea : $20, $86, $81
+
+; updates bg scroll vals
 	jsr Func_0_8bb4.l                                                  ; $80ed : $22, $b4, $8b, $00
 
+; Process threads until tile data is no longer pending
 -	jsr Func_0_8879.l                                                  ; $80f1 : $22, $79, $88, $00
 	lda wXVectorTileDataUpdatePending.w                                                  ; $80f5 : $ad, $dd, $1f
 	bne -                                                  ; $80f8 : $d0, $f7
 
 	lda $0a5e.w                                                  ; $80fa : $ad, $5e, $0a
-	bne @loop_80cc                                                  ; $80fd : $d0, $cd
+	bne @xvectorloop                                                  ; $80fd : $d0, $cd
 
 ;
 	lda #$40.b                                                  ; $80ff : $a9, $40
@@ -337,26 +342,26 @@ Jump_07_828b:
 	rts                                                  ; $829a : $60
 
 
-Call_07_829b:
+SetCx4TransformLinesRParams:
 ; R0 = num vertices
 	lda XVector@numVertices.w                                                  ; $829b : $ad, $21, $b1
 	sta CX4_R0.w                                                  ; $829e : $8d, $80, $7f
 	stz CX4_R0.w+1                                                  ; $82a1 : $9c, $81, $7f
 	stz CX4_R0.w+2                                                  ; $82a4 : $9c, $82, $7f
 
-; R1 = pitch value
+; R1 = yaw angle
 	lda $0a58.w                                                  ; $82a7 : $ad, $58, $0a
 	sta CX4_R1.w                                                  ; $82aa : $8d, $83, $7f
 	stz CX4_R1.w+1                                                  ; $82ad : $9c, $84, $7f
 	stz CX4_R1.w+2                                                  ; $82b0 : $9c, $85, $7f
 
-; R2 ??? has something to do with point of rotation?
+; R2 = pitch angle
 	lda $0a59.w                                                  ; $82b3 : $ad, $59, $0a
 	sta CX4_R2.w                                                  ; $82b6 : $8d, $86, $7f
 	stz CX4_R2.w+1                                                  ; $82b9 : $9c, $87, $7f
 	stz CX4_R2.w+2                                                  ; $82bc : $9c, $88, $7f
 
-; R3+0 = roll value
+; R3+0 = roll angle
 	lda $0a5a.w                                                  ; $82bf : $ad, $5a, $0a
 	sta CX4_R3.w                                                  ; $82c2 : $8d, $89, $7f
 
@@ -373,7 +378,7 @@ Call_07_829b:
 	rts                                                  ; $82d9 : $60
 
 
-Call_07_82da:
+LoadXVectorVertices:
 	lda XVector@numVertices.w                                                  ; $82da : $ad, $21, $b1
 	sta $00                                                  ; $82dd : $85, $00
 	stz $01                                                  ; $82df : $64, $01

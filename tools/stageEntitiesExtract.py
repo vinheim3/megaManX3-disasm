@@ -2,7 +2,7 @@ import clipboard
 from util import getRom, bankAddr, stringB
 
 data = getRom()
-start = bankAddr(0x3c, 0xe4bf)
+start = bankAddr(0x3c, 0xfbd2)
 
 comps = []
 prevColX = None
@@ -23,3 +23,4 @@ while 1:
 final_str = '\n'.join(comps)
 print(final_str)
 clipboard.copy(final_str)
+print(hex((start%0x8000)+0x8000))

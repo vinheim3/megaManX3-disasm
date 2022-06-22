@@ -2118,9 +2118,9 @@ Call_00_8bb8:
 	lda $09e5.w                                                  ; $8bcc : $ad, $e5, $09
 	sta wBG2VertScroll.w                                                  ; $8bcf : $8d, $bb, $00
 	lda $09e9.w                                                  ; $8bd2 : $ad, $e9, $09
-	sta $00bd.w                                                  ; $8bd5 : $8d, $bd, $00
+	sta wBG3HorizScroll.w                                                  ; $8bd5 : $8d, $bd, $00
 	lda $09ed.w                                                  ; $8bd8 : $ad, $ed, $09
-	sta $00bf.w                                                  ; $8bdb : $8d, $bf, $00
+	sta wBG3VertScroll.w                                                  ; $8bdb : $8d, $bf, $00
 	sep #ACCU_8                                                  ; $8bde : $e2, $20
 	rts                                                  ; $8be0 : $60
 
@@ -14720,32 +14720,33 @@ Call_00_dd5e:
 	rts                                                  ; $dd74 : $60
 
 
+PTR_TO_STAGE_ENTITY_DATA = $10
 LoadStageEntitiesDetails:
-	phb                                                  ; $dd75 : $8b
-	phd                                                  ; $dd76 : $0b
-	php                                                  ; $dd77 : $08
+	phb                                                                       ; $dd75 : $8b
+	phd                                                                       ; $dd76 : $0b
+	php                                                                       ; $dd77 : $08
 
-; direct page = 0
-	rep #ACCU_8                                                  ; $dd78 : $c2, $20
-	lda #$0000.w                                                  ; $dd7a : $a9, $00, $00
-	tcd                                                  ; $dd7d : $5b
-	sep #ACCU_8|IDX_8                                                  ; $dd7e : $e2, $30
+; Direct page = 0
+	rep #ACCU_8                                                               ; $dd78 : $c2, $20
+	lda #$0000.w                                                              ; $dd7a : $a9, $00, $00
+	tcd                                                                       ; $dd7d : $5b
+	sep #ACCU_8|IDX_8                                                         ; $dd7e : $e2, $30
 
-; data bank is 3c
-	lda #:Data_3c_ce4b.b                                                  ; $dd80 : $a9, $3c
-	pha                                                  ; $dd82 : $48
-	plb                                                  ; $dd83 : $ab
+; Set data bank for entity locations data
+	lda #:AllStagesEntityData.b                                               ; $dd80 : $a9, $3c
+	pha                                                                       ; $dd82 : $48
+	plb                                                                       ; $dd83 : $ab
 
-; eg 7, 3c:e888 into 10
-	lda wStageIdx.w                                                  ; $dd84 : $ad, $ae, $1f
-	asl                                                  ; $dd87 : $0a
-	tax                                                  ; $dd88 : $aa
-	rep #ACCU_8                                                  ; $dd89 : $c2, $20
-	lda Data_3c_ce4b.w, X                                                  ; $dd8b : $bd, $4b, $ce
-	sta $10                                                  ; $dd8e : $85, $10
+; Store table entry for stage's entity locations data
+	lda wStageIdx.w                                                           ; $dd84 : $ad, $ae, $1f
+	asl                                                                       ; $dd87 : $0a
+	tax                                                                       ; $dd88 : $aa
+	rep #ACCU_8                                                               ; $dd89 : $c2, $20
+	lda AllStagesEntityData.w, X                                              ; $dd8b : $bd, $4b, $ce
+	sta PTR_TO_STAGE_ENTITY_DATA                                              ; $dd8e : $85, $10
 
 ; f800 into 14
-	lda #$f800.w                                                  ; $dd90 : $a9, $00, $f8
+	lda #wStage20hColumnPointersToEntityData.w                                                  ; $dd90 : $a9, $00, $f8
 	sta $14                                                  ; $dd93 : $85, $14
 
 ; fa02 into 18
@@ -14759,12 +14760,12 @@ LoadStageEntitiesDetails:
 
 @loop_dda0:
 ; 1st byte into 02 eg $14
-	lda ($10)                                                  ; $dda0 : $b2, $10
+	lda (PTR_TO_STAGE_ENTITY_DATA)                                                  ; $dda0 : $b2, $10
 	and #$00ff.w                                                  ; $dda2 : $29, $ff, $00
 	sta $02                                                  ; $dda5 : $85, $02
 
 ;
-	inc $10                                                  ; $dda7 : $e6, $10
+	inc PTR_TO_STAGE_ENTITY_DATA                                                  ; $dda7 : $e6, $10
 	cmp $00                                                  ; $dda9 : $c5, $00
 	beq @cont_de1b                                                  ; $ddab : $f0, $6e
 
@@ -14790,28 +14791,28 @@ LoadStageEntitiesDetails:
 
 ; data bank is 3c
 	sep #ACCU_8                                                  ; $ddc5 : $e2, $20
-	lda #:Data_3c_ce4b.b                                                  ; $ddc7 : $a9, $3c
+	lda #:AllStagesEntityData.b                                                  ; $ddc7 : $a9, $3c
 	pha                                                  ; $ddc9 : $48
 	plb                                                  ; $ddca : $ab
 	rep #ACCU_8                                                  ; $ddcb : $c2, $20
 
 @loop_ddcd:
 ; preserve src addr
-	ldx $10                                                  ; $ddcd : $a6, $10
+	ldx PTR_TO_STAGE_ENTITY_DATA                                                  ; $ddcd : $a6, $10
 
 ; store next byte from src addr into 04 eg 03
-	lda ($10)                                                  ; $ddcf : $b2, $10
+	lda (PTR_TO_STAGE_ENTITY_DATA)                                                  ; $ddcf : $b2, $10
 	and #$00ff.w                                                  ; $ddd1 : $29, $ff, $00
 	sta $04                                                  ; $ddd4 : $85, $04
 
 ; store next word from src into 06 eg 0730
-	inc $10                                                  ; $ddd6 : $e6, $10
-	lda ($10)                                                  ; $ddd8 : $b2, $10
+	inc PTR_TO_STAGE_ENTITY_DATA                                                  ; $ddd6 : $e6, $10
+	lda (PTR_TO_STAGE_ENTITY_DATA)                                                  ; $ddd8 : $b2, $10
 	sta $06                                                  ; $ddda : $85, $06
 
 ; skip past word to e88c
-	inc $10                                                  ; $dddc : $e6, $10
-	inc $10                                                  ; $ddde : $e6, $10
+	inc PTR_TO_STAGE_ENTITY_DATA                                                  ; $dddc : $e6, $10
+	inc PTR_TO_STAGE_ENTITY_DATA                                                 ; $ddde : $e6, $10
 
 ; push data bank 3c, data bank is 7e
 	phb                                                  ; $dde0 : $8b
@@ -14847,11 +14848,11 @@ LoadStageEntitiesDetails:
 
 ; data bank is 3c, get byte from e88f, eg 82, then 10=e890, loop if eg 82 & 80 == 0
 	plb                                                  ; $de09 : $ab
-	inc $10                                                  ; $de0a : $e6, $10
-	inc $10                                                  ; $de0c : $e6, $10
-	inc $10                                                  ; $de0e : $e6, $10
-	lda ($10)                                                  ; $de10 : $b2, $10
-	inc $10                                                  ; $de12 : $e6, $10
+	inc PTR_TO_STAGE_ENTITY_DATA                                                 ; $de0a : $e6, $10
+	inc PTR_TO_STAGE_ENTITY_DATA                                                  ; $de0c : $e6, $10
+	inc PTR_TO_STAGE_ENTITY_DATA                                                 ; $de0e : $e6, $10
+	lda (PTR_TO_STAGE_ENTITY_DATA)                                                  ; $de10 : $b2, $10
+	inc PTR_TO_STAGE_ENTITY_DATA                                                  ; $de12 : $e6, $10
 	and #$0080.w                                                  ; $de14 : $29, $80, $00
 	beq @loop_ddcd                                                  ; $de17 : $f0, $b4
 

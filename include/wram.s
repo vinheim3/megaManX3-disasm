@@ -408,7 +408,13 @@ wTilemapDmaStructs: ; $f000
     .db
 
 wf000:
-    ds $fc0-0
+    ds $800-0
+
+wStage20hColumnPointersToEntityData: ; $f800
+    ds $202
+
+wfa02:
+    ds $fc0-$a02
 
 wShotBtnMapped: ; $ffc0
     db

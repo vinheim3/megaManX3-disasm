@@ -1544,10 +1544,11 @@ Func_2_8928:
 
 
 ; R0 - num vertices
-; R1+0 - pitch angle
-; R2+0 - ??? an angle
+; R1+0 - yaw angle
+; R2+0 - pitch angle
 ; R3+0 - roll angle 
 ; R3+1 - eg 90
+; R4 - distance from the far away ($90 at closest) / size
 Cx4_TransformLines:
 ; R5 = sin R1 * $10000
 ; R6 = cos R1 * $10000
@@ -1810,7 +1811,7 @@ Cx4_TransformLines:
 	mov A, OP RAM_DTA                                                             ; $8b42 / 5:a1 / $600c
 	shar A, IMM $08                                                             ; $8b44 / 5:a2 / $cc08
 
-; add 90(roll), and write back to +9.w
+; add 90, and write back to +9.w
 	add A, OP R3                                                             ; $8b46 / 5:a3 / $8063
 	mov OP RAM_DTA, A                                                             ; $8b48 / 5:a4 / $e00c
 	wrram lsb, IMM $09                                                             ; $8b4a / 5:a5 / $ec09
@@ -1832,9 +1833,13 @@ Cx4_TransformLines:
 +	mov PH, IMM Func_2_8c00                                                             ; $8b5c / 5:ae / $7d00
 	mov PL, IMM Func_2_8c00                                                             ; $8b5e / 5:af / $7c06
 	fcall Func_2_8c00                                                             ; $8b60 / 5:b0 / $2a00
+
+; do a mult against vector size
 	shlr A, IMM $07                                                             ; $8b62 / 5:b1 / $c407
 	mul OP R4                                                             ; $8b64 / 5:b2 / $9864
 	call AequLongInRamPtr                                                             ; $8b66 / 5:b3 / $28dd
+
+; neg ML if RF bit 7 set
 	mov A, OP RF                                                             ; $8b68 / 5:b4 / $606f
 	add A, IMM $00                                                             ; $8b6a / 5:b5 / $8400
 	mov A, OP ML                                                             ; $8b6c / 5:b6 / $6002
@@ -1844,7 +1849,10 @@ Cx4_TransformLines:
 	xor A, OP _FFFFFF                                                             ; $8b72 / 5:b9 / $a851
 	add A, IMM $01                                                             ; $8b74 / 5:ba / $8401
 
+; and put in RB
 +	mov OP RB, A                                                             ; $8b76 / 5:bb / $e06b
+
+;
 	mul OP RAM_DTA                                                             ; $8b78 / 5:bc / $980c
 	noop                                                             ; $8b7a / 5:bd / $0000
 	mov A, OP MH                                                             ; $8b7c / 5:be / $6001
