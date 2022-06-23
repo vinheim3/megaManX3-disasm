@@ -4,7 +4,7 @@ from util import bankAddr, getRom, wordIn, stringB
 
 data = getRom()
 comps = []
-tblName = 'Data_8_8623'
+tblName = 'DynamicSpritesSpecs'
 stagePrefix = 'DynamicSpritesStage'
 base = bankAddr(8, 0x8623)
 

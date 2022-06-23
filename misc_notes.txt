@@ -166,8 +166,9 @@ src bank=7f
 
 
 TODO: ride armour health
-TODO: spikes deal damage
+TODO: somewhere, earth spikes deal damage
 TODO: final boss laser damage
+TODO: figure out how remap affects 8:85a4
 
 
 Event type 2 (blue)

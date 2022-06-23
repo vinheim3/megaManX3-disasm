@@ -536,18 +536,18 @@ Func_7_839e:
 	stz $2d                                                  ; $83a0 : $64, $2d
 	stz $06                                                  ; $83a2 : $64, $06
 	stz $07                                                  ; $83a4 : $64, $07
-	lda $b1fa.w                                                  ; $83a6 : $ad, $fa, $b1
+	lda Data_6_b1fa.w                                                  ; $83a6 : $ad, $fa, $b1
 	sta $0c                                                  ; $83a9 : $85, $0c
 	stz $0d                                                  ; $83ab : $64, $0d
 	ldy #$00.b                                                  ; $83ad : $a0, $00
 	tyx                                                  ; $83af : $bb
 	rep #ACCU_8|IDX_8                                                  ; $83b0 : $c2, $30
 
-Jump_07_83b2:
+@loop_83b2:
 	phx                                                  ; $83b2 : $da
 	phy                                                  ; $83b3 : $5a
 	php                                                  ; $83b4 : $08
-	lda $b1fc.w, X                                                  ; $83b5 : $bd, $fc, $b1
+	lda Data_6_b1fa.w+2, X                                                  ; $83b5 : $bd, $fc, $b1
 	and #$00ff.w                                                  ; $83b8 : $29, $ff, $00
 	asl                                                  ; $83bb : $0a
 	asl                                                  ; $83bc : $0a
@@ -573,22 +573,21 @@ Jump_07_83b2:
 	pha                                                  ; $83e5 : $48
 	plb                                                  ; $83e6 : $ab
 
-br_07_83e7:
+@loop_83e7:
 	lda $12                                                  ; $83e7 : $a5, $12
 	and #$f8.b                                                  ; $83e9 : $29, $f8
 	cmp $06                                                  ; $83eb : $c5, $06
-	bne br_07_83f7                                                  ; $83ed : $d0, $08
+	bne @br_83f7                                                  ; $83ed : $d0, $08
 
 	lda $16                                                  ; $83ef : $a5, $16
 	and #$f8.b                                                  ; $83f1 : $29, $f8
 	cmp $07                                                  ; $83f3 : $c5, $07
-	beq br_07_83fa                                                  ; $83f5 : $f0, $03
+	beq +                                                  ; $83f5 : $f0, $03
 
-br_07_83f7:
+@br_83f7:
 	jsr Call_07_846c.w                                                  ; $83f7 : $20, $6c, $84
 
-br_07_83fa:
-	lda $16                                                  ; $83fa : $a5, $16
++	lda $16                                                  ; $83fa : $a5, $16
 	and #$07.b                                                  ; $83fc : $29, $07
 	tax                                                  ; $83fe : $aa
 	lda $12                                                  ; $83ff : $a5, $12
@@ -608,20 +607,19 @@ br_07_83fa:
 	sta $15                                                  ; $841b : $85, $15
 	sep #ACCU_8                                                  ; $841d : $e2, $20
 	dec $0e                                                  ; $841f : $c6, $0e
-	bne br_07_83e7                                                  ; $8421 : $d0, $c4
+	bne @loop_83e7                                                  ; $8421 : $d0, $c4
 
 	plb                                                  ; $8423 : $ab
 	plp                                                  ; $8424 : $28
 	pla                                                  ; $8425 : $68
 	clc                                                  ; $8426 : $18
-	adc #$08.b                                                  ; $8427 : $69, $08
-	.db $00                                                  ; $8429 : $00
+	adc #$0008.w                                                  ; $8427 : $69, $08, $00
 	tay                                                  ; $842a : $a8
 	plx                                                  ; $842b : $fa
 	inx                                                  ; $842c : $e8
 	inx                                                  ; $842d : $e8
 	dec $0c                                                  ; $842e : $c6, $0c
-	bne br_07_8469                                                  ; $8430 : $d0, $37
+	bne @br_8469                                                  ; $8430 : $d0, $37
 
 	sep #ACCU_8                                                  ; $8432 : $e2, $20
 	ldx $2c                                                  ; $8434 : $a6, $2c
@@ -644,9 +642,8 @@ br_07_83fa:
 	sep #ACCU_8|IDX_8                                                  ; $8466 : $e2, $30
 	rts                                                  ; $8468 : $60
 
-
-br_07_8469:
-	jmp Jump_07_83b2.w                                                  ; $8469 : $4c, $b2, $83
+@br_8469:
+	jmp @loop_83b2.w                                                  ; $8469 : $4c, $b2, $83
 
 
 Call_07_846c:
@@ -658,7 +655,7 @@ Call_07_846c:
 	sta $07                                                  ; $8476 : $85, $07
 	rep #IDX_8                                                  ; $8478 : $c2, $10
 	ldx $2c                                                  ; $847a : $a6, $2c
-	beq br_07_84a6                                                  ; $847c : $f0, $28
+	beq @cont_84a6                                                  ; $847c : $f0, $28
 
 	lda $20                                                  ; $847e : $a5, $20
 	sta $b000.w, X                                                  ; $8480 : $9d, $00, $b0
@@ -677,7 +674,7 @@ Call_07_846c:
 	lda $27                                                  ; $84a1 : $a5, $27
 	sta $b1c0.w, X                                                  ; $84a3 : $9d, $c0, $b1
 
-br_07_84a6:
+@cont_84a6:
 	rep #ACCU_8                                                  ; $84a6 : $c2, $20
 	lda $06                                                  ; $84a8 : $a5, $06
 	lsr                                                  ; $84aa : $4a

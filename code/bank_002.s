@@ -385,8 +385,7 @@ Cx4_BuildOam:
 	halt                                                             ; $81d8 / 0:ec / $fc00
 
 
-	.ds $8200-$81da, $ff
-
+.org $200
 
 Cx4_ScaleTiles:
 	mov A, OP R3                                                             ; $8200 / 1:00 / $6063
@@ -608,8 +607,7 @@ Func_2_835e:
 	ret                                                             ; $836c / 1:b6 / $3c00
 
 
-	.ds $8400-$836e, $ff
-
+.org $400
 
 Cx4_HiresSqrt:
 	mov A, OP R0                                                              ; $8400 / 2:00 / $6060
@@ -1040,8 +1038,7 @@ AequNegA:
 	ret                                                             ; $85d2 / 2:e9 / $3c00
 
 
-	.ds $8600-$85d4, $ff
-
+.org $600
 
 Cx4_ScaleRotate1:
 	mov A, IMM $00                                                             ; $8600 / 3:00 / $6400
@@ -1327,7 +1324,7 @@ Triangle2:
 	halt                                                             ; $87ea / 3:f5 / $fc00
 
 
-	.ds $8800-$87ec, $ff
+.org $800
 
 
 Trapezoid:
@@ -1540,8 +1537,7 @@ Func_2_8928:
 	ret                                                             ; $8934 / 4:9a / $3c00
 
 
-	.ds $8a00-$8936, $ff
-
+.org $a00
 
 ; R0 - num vertices
 ; R1+0 - yaw angle
@@ -1942,8 +1938,7 @@ WriteAtoRamPtrPlus8:
 	ret                                                                       ; $8bf4 / 5:fa / $3c00
 
 
-	.ds $8c00-$8bf6, $ff
-
+.org $c00
 
 Func_2_8c00:
 	mov OP RB, A                                                             ; $8c00 / 6:00 / $e06b
@@ -2281,8 +2276,7 @@ Func_2_8db4:
 	ret                                                             ; $8dca / 6:e5 / $3c00
 
 
-	.ds $8e00-$8dcc, $ff
-
+.org $e00
 
 Cx4_ScaleRotate2:
 	mov A, IMM $00                                                             ; $8e00 / 7:00 / $6400
@@ -2505,8 +2499,7 @@ Func_2_8f0a:
 	halt                                                             ; $8f7c / 7:be / $fc00
 
 
-	.ds $9000-$8f7e, $ff
-
+.org $1000
 
 Cx4_DrawWireframeWithoutClearingBuffer:
 	jp _DrawWireframe                                                         ; $9000 / 8:00 / $0815
@@ -2901,8 +2894,7 @@ Get3longsUsingRamOffset0Ch:
 	ret                                                             ; $91f4 / 8:fa / $3c00
 
 
-	.ds $9200-$91f6, $ff
-
+.org $1200
 
 SetVectorLength:
 	mov P, IMM AR2equR0divmodR1                                                             ; $9200 / 9:00 / $6702
@@ -3122,8 +3114,7 @@ Func_2_931c:
 	ret                                                             ; $9334 / 9:9a / $3c00
 
 
-	.ds $9400-$9336, $ff
-
+.org $1400
 
 Func_2_9400:
 	mov A, OP R6                                                             ; $9400 / a:00 / $6066
@@ -3509,8 +3500,7 @@ AequREdivRD:
 	ret                                                                       ; $95fa / a:fd / $3c00
 
 
-	.ds $9600-$95fc, $ff
-
+.org $1600
 
 Cx4_Disintegrate:
 	call Func_2_9700                                                             ; $9600 / b:00 / $2880
@@ -3682,8 +3672,7 @@ Func_2_970c:
 	ret                                                             ; $9718 / b:8c / $3c00
 
 
-	.ds $9800-$971a, $ff
-
+.org $1800
 
 ; R0 -
 ; R1 -
@@ -3940,8 +3929,7 @@ Cx4_Wave:
 
 
 
-	.ds $9a00-$9930, $ff
-
+.org $1a00
 
 TransformCoordinates:
 	mov A, OP R3                                                             ; $9a00 / d:00 / $6063
@@ -4171,8 +4159,7 @@ Func_2_9b2e:
 	ret                                                             ; $9b9c / d:ce / $3c00
 
 
-	.ds $9c00-$9b9e, $ff
-
+.org $1c00
 
 Cx4_TestSetR0to00h:
 	mov A, IMM $00                                                             ; $9c00 / e:00 / $6400
@@ -4420,8 +4407,7 @@ Cx4_Test3kRomChecksum:
 
 
 
-	.ds $a000-$9d48, $ff
-
+.org $2000
 
 ;
 	adc [$77], Y                                                  ; $a000 : $77, $77
@@ -13983,7 +13969,7 @@ _Func_2_e162:
 	lda $e290.w, X                                                  ; $e17f : $bd, $90, $e2
 	sta $26                                                  ; $e182 : $85, $26
 .ifdef HACK
-; Enemies spawn with 0 health here (does not apply to eg the Cx4 vector spiky spinner)
+; Enemies spawn with 1 health here (does not apply to eg the Cx4 vector spiky spinner)
 	lda #$01.b
 	nop
 .else
@@ -18759,6 +18745,3 @@ br_02_ff69:
 br_02_ff6e:
 	jsr todo_DisablesEntity_d928.l                                                  ; $ff6e : $22, $28, $d9, $02
 	rts                                                  ; $ff72 : $60
-
-
-	.ds $10000-$ff73, $ff

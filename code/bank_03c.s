@@ -12838,7 +12838,7 @@ br_3c_ce48:
 
 ; single-byte rows are column idxes
 ; 7-byte entries are:
-;   - entity major type
+;   - entity major type (0 - Item, 1 - ???, 2 - Event, 3 - Enemy)
 ;   - y coord
 ;   - entity minor type
 ;   - entity subtype/param
@@ -14279,11 +14279,7 @@ EntityLocations7_TunnelRhino:
 	.db $3d
 	.db $02, $58, $04, $15, $34, $a0, $87
 	.db $3f
-.ifdef SWAP_EXPERIMENT
-	.db $00, $58, $07, $05, $40, $e0, $87
-.else
 	.db $00, $58, $07, $0b, $40, $e0, $87
-.endif
 	.db $43
 	.db $03, $58, $04, $3f, $06, $70, $88
 	.db $44
@@ -15406,4 +15402,3 @@ EntityLocationsE:
 
 
 Data_3c_fe7e:
-	.ds $10000-$fe7e, $ff

@@ -51,3 +51,5 @@
 	RESET  ResetVector
 	IRQBRK $1ffb
 .endemuvector
+
+.emptyfill $ff

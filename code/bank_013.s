@@ -3,7 +3,7 @@
 .bank $013 slot 3
 .org $0
 
-	.ds $c000-$8000, $ff
+.org $4000
 
 UpdateEnemyCapsule:
 	ldx StageEnemyEntity.state                                                 ; $c000 : $a6, $01
@@ -9270,6 +9270,3 @@ br_13_fa52:
 	stz $08ed.w                                                  ; $fa67 : $9c, $ed, $08
 	stz $08f4.w                                                  ; $fa6a : $9c, $f4, $08
 	rts                                                  ; $fa6d : $60
-
-
-	.ds $10000-$fa6e, $ff

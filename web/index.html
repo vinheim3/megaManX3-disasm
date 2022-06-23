@@ -37,7 +37,7 @@
             // 11 - Doppler 2
             // 12 - Doppler 3 + his cutscenes
             // 13 - Doppler 4
-            const stageIdx = 2;
+            const stageIdx = 1;
 
             let bankConv = function(bank, addr) {
                 return bank * 0x8000 + (addr % 0x8000)
@@ -394,7 +394,7 @@
                 }
 
                 DynamicSprites(idx) {
-                    // Data_8_8623
+                    // DynamicSpritesSpecs
                     let offs = this.wordIn(this.baseDynamicSprites+idx*2);
                     let start = bankConv(8, 0x8623+offs);
                     while (1) {

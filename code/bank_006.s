@@ -7657,6 +7657,19 @@ XVector:
 @numVertices:
 	.db $24
 @vertexData:
+; When X is stood up
+; 1st word
+;   - determines how left/right it is
+;   - centered slightly left of the center cut of the X
+;   - a negative value is left, positive is right
+; 2nd word
+;   - determines how up/down it is
+;   - centered a quarter up from the bottom
+;   - a negative value is left, positive is right
+; 3rd word
+;   - determines how forward/backward it is
+;   - centered on ???
+;   - the smaller, the closer it is to us
 	.db $e6, $ff, $ae, $ff, $90, $00
 	.db $10, $00, $ae, $ff, $90, $00
 	.db $1a, $00, $ae, $ff, $90, $00
@@ -7695,6 +7708,7 @@ XVector:
 	.db $1f, $00, $0b, $00, $9a, $00
 
 
+Data_6_b1fa:
 	rol $00, X                                                  ; $b1fa : $36, $00
 	.db $00                                                  ; $b1fc : $00
 	ora ($02, X)                                                  ; $b1fd : $01, $02
@@ -18958,6 +18972,3 @@ DecompressedDataTable:
 	.row CompressedData_da, $0520
 	.row CompressedData_db, $0800
 	.row CompressedData_dc, $0980
-
-
-	.ds $10000-$fb83, $ff

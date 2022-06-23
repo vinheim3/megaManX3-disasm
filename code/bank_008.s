@@ -921,350 +921,350 @@ PollInput:
 	.db $00                                                  ; $8622 : $00
 
 
-Data_8_8623:
-	.dw DynamicSpritesStage00-Data_8_8623
-	.dw DynamicSpritesStage01-Data_8_8623
-	.dw DynamicSpritesStage02-Data_8_8623
-	.dw DynamicSpritesStage03-Data_8_8623
-	.dw DynamicSpritesStage04-Data_8_8623
-	.dw DynamicSpritesStage05-Data_8_8623
-	.dw DynamicSpritesStage06-Data_8_8623
-	.dw DynamicSpritesStage07-Data_8_8623
-	.dw DynamicSpritesStage08-Data_8_8623
-	.dw DynamicSpritesStage09-Data_8_8623
-	.dw DynamicSpritesStage0a-Data_8_8623
-	.dw DynamicSpritesStage0b-Data_8_8623
-	.dw DynamicSpritesStage0c-Data_8_8623
-	.dw DynamicSpritesStage0d-Data_8_8623
-	.dw DynamicSpritesStage0e-Data_8_8623
-	.dw DynamicSpritesStage0f-Data_8_8623
-	.dw DynamicSpritesStage10-Data_8_8623
-	.dw DynamicSpritesStage11-Data_8_8623
+DynamicSpritesSpecs:
+	.dw DynamicSpritesStage00-DynamicSpritesSpecs
+	.dw DynamicSpritesStage01-DynamicSpritesSpecs
+	.dw DynamicSpritesStage02-DynamicSpritesSpecs
+	.dw DynamicSpritesStage03-DynamicSpritesSpecs
+	.dw DynamicSpritesStage04-DynamicSpritesSpecs
+	.dw DynamicSpritesStage05-DynamicSpritesSpecs
+	.dw DynamicSpritesStage06-DynamicSpritesSpecs
+	.dw DynamicSpritesStage07-DynamicSpritesSpecs
+	.dw DynamicSpritesStage08-DynamicSpritesSpecs
+	.dw DynamicSpritesStage09-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0a-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0b-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0c-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0d-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0e-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0f-DynamicSpritesSpecs
+	.dw DynamicSpritesStage10-DynamicSpritesSpecs
+	.dw DynamicSpritesStage11-DynamicSpritesSpecs
 
 
 DynamicSpritesStage00:
-	.dw DynamicSpritesStage00Idx00-Data_8_8623
-	.dw DynamicSpritesStage00Idx01-Data_8_8623
-	.dw DynamicSpritesStage00Idx02-Data_8_8623
-	.dw DynamicSpritesStage00Idx03-Data_8_8623
-	.dw DynamicSpritesStage00Idx04-Data_8_8623
-	.dw DynamicSpritesStage00Idx05-Data_8_8623
-	.dw DynamicSpritesStage00Idx06-Data_8_8623
-	.dw DynamicSpritesStage00Idx07-Data_8_8623
-	.dw DynamicSpritesStage00Idx08-Data_8_8623
-	.dw DynamicSpritesStage00Idx09-Data_8_8623
-	.dw DynamicSpritesStage00Idx0a-Data_8_8623
-	.dw DynamicSpritesStage00Idx0b-Data_8_8623
-	.dw DynamicSpritesStage00Idx0c-Data_8_8623
-	.dw DynamicSpritesStage00Idx0d-Data_8_8623
-	.dw DynamicSpritesStage00Idx0e-Data_8_8623
-	.dw DynamicSpritesStage00Idx0f-Data_8_8623
-	.dw DynamicSpritesStage00Idx10-Data_8_8623
-	.dw DynamicSpritesStage00Idx11-Data_8_8623
-	.dw DynamicSpritesStage00Idx12-Data_8_8623
-	.dw DynamicSpritesStage00Idx13-Data_8_8623
-	.dw DynamicSpritesStage00Idx14-Data_8_8623
-	.dw DynamicSpritesStage00Idx15-Data_8_8623
-	.dw DynamicSpritesStage00Idx16-Data_8_8623
-	.dw DynamicSpritesStage00Idx17-Data_8_8623
-	.dw DynamicSpritesStage00Idx18-Data_8_8623
-	.dw DynamicSpritesStage00Idx19-Data_8_8623
-	.dw DynamicSpritesStage00Idx1a-Data_8_8623
-	.dw DynamicSpritesStage00Idx1b-Data_8_8623
-	.dw DynamicSpritesStage00Idx1c-Data_8_8623
-	.dw DynamicSpritesStage00Idx1d-Data_8_8623
-	.dw DynamicSpritesStage00Idx1e-Data_8_8623
-	.dw DynamicSpritesStage00Idx1f-Data_8_8623
-	.dw DynamicSpritesStage00Idx20-Data_8_8623
-	.dw DynamicSpritesStage00Idx21-Data_8_8623
+	.dw DynamicSpritesStage00Idx00-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx01-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx02-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx03-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx04-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx05-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx06-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx07-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx08-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx09-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx0a-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx0b-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx0c-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx0d-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx0e-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx0f-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx10-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx11-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx12-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx13-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx14-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx15-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx16-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx17-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx18-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx19-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx1a-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx1b-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx1c-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx1d-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx1e-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx1f-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx20-DynamicSpritesSpecs
+	.dw DynamicSpritesStage00Idx21-DynamicSpritesSpecs
 
 
 DynamicSpritesStage01:
-	.dw DynamicSpritesStage01Idx00-Data_8_8623
-	.dw DynamicSpritesStage01Idx01-Data_8_8623
-	.dw DynamicSpritesStage01Idx02-Data_8_8623
-	.dw DynamicSpritesStage01Idx03-Data_8_8623
-	.dw DynamicSpritesStage01Idx04-Data_8_8623
-	.dw DynamicSpritesStage01Idx05-Data_8_8623
-	.dw DynamicSpritesStage01Idx06-Data_8_8623
-	.dw DynamicSpritesStage01Idx07-Data_8_8623
-	.dw DynamicSpritesStage01Idx08-Data_8_8623
-	.dw DynamicSpritesStage01Idx09-Data_8_8623
-	.dw DynamicSpritesStage01Idx0a-Data_8_8623
-	.dw DynamicSpritesStage01Idx0b-Data_8_8623
-	.dw DynamicSpritesStage01Idx0c-Data_8_8623
-	.dw DynamicSpritesStage01Idx0d-Data_8_8623
-	.dw DynamicSpritesStage01Idx0e-Data_8_8623
-	.dw DynamicSpritesStage01Idx0f-Data_8_8623
-	.dw DynamicSpritesStage01Idx10-Data_8_8623
-	.dw DynamicSpritesStage01Idx11-Data_8_8623
-	.dw DynamicSpritesStage01Idx12-Data_8_8623
+	.dw DynamicSpritesStage01Idx00-DynamicSpritesSpecs
+	.dw DynamicSpritesStage01Idx01-DynamicSpritesSpecs
+	.dw DynamicSpritesStage01Idx02-DynamicSpritesSpecs
+	.dw DynamicSpritesStage01Idx03-DynamicSpritesSpecs
+	.dw DynamicSpritesStage01Idx04-DynamicSpritesSpecs
+	.dw DynamicSpritesStage01Idx05-DynamicSpritesSpecs
+	.dw DynamicSpritesStage01Idx06-DynamicSpritesSpecs
+	.dw DynamicSpritesStage01Idx07-DynamicSpritesSpecs
+	.dw DynamicSpritesStage01Idx08-DynamicSpritesSpecs
+	.dw DynamicSpritesStage01Idx09-DynamicSpritesSpecs
+	.dw DynamicSpritesStage01Idx0a-DynamicSpritesSpecs
+	.dw DynamicSpritesStage01Idx0b-DynamicSpritesSpecs
+	.dw DynamicSpritesStage01Idx0c-DynamicSpritesSpecs
+	.dw DynamicSpritesStage01Idx0d-DynamicSpritesSpecs
+	.dw DynamicSpritesStage01Idx0e-DynamicSpritesSpecs
+	.dw DynamicSpritesStage01Idx0f-DynamicSpritesSpecs
+	.dw DynamicSpritesStage01Idx10-DynamicSpritesSpecs
+	.dw DynamicSpritesStage01Idx11-DynamicSpritesSpecs
+	.dw DynamicSpritesStage01Idx12-DynamicSpritesSpecs
 
 
 DynamicSpritesStage02:
-	.dw DynamicSpritesStage02Idx00-Data_8_8623
-	.dw DynamicSpritesStage02Idx01-Data_8_8623
-	.dw DynamicSpritesStage02Idx02-Data_8_8623
-	.dw DynamicSpritesStage02Idx03-Data_8_8623
-	.dw DynamicSpritesStage02Idx04-Data_8_8623
-	.dw DynamicSpritesStage02Idx05-Data_8_8623
-	.dw DynamicSpritesStage02Idx06-Data_8_8623
-	.dw DynamicSpritesStage02Idx07-Data_8_8623
-	.dw DynamicSpritesStage02Idx08-Data_8_8623
-	.dw DynamicSpritesStage02Idx09-Data_8_8623
-	.dw DynamicSpritesStage02Idx0a-Data_8_8623
-	.dw DynamicSpritesStage02Idx0b-Data_8_8623
-	.dw DynamicSpritesStage02Idx0c-Data_8_8623
-	.dw DynamicSpritesStage02Idx0d-Data_8_8623
-	.dw DynamicSpritesStage02Idx0e-Data_8_8623
-	.dw DynamicSpritesStage02Idx0f-Data_8_8623
-	.dw DynamicSpritesStage02Idx10-Data_8_8623
-	.dw DynamicSpritesStage02Idx11-Data_8_8623
-	.dw DynamicSpritesStage02Idx12-Data_8_8623
+	.dw DynamicSpritesStage02Idx00-DynamicSpritesSpecs
+	.dw DynamicSpritesStage02Idx01-DynamicSpritesSpecs
+	.dw DynamicSpritesStage02Idx02-DynamicSpritesSpecs
+	.dw DynamicSpritesStage02Idx03-DynamicSpritesSpecs
+	.dw DynamicSpritesStage02Idx04-DynamicSpritesSpecs
+	.dw DynamicSpritesStage02Idx05-DynamicSpritesSpecs
+	.dw DynamicSpritesStage02Idx06-DynamicSpritesSpecs
+	.dw DynamicSpritesStage02Idx07-DynamicSpritesSpecs
+	.dw DynamicSpritesStage02Idx08-DynamicSpritesSpecs
+	.dw DynamicSpritesStage02Idx09-DynamicSpritesSpecs
+	.dw DynamicSpritesStage02Idx0a-DynamicSpritesSpecs
+	.dw DynamicSpritesStage02Idx0b-DynamicSpritesSpecs
+	.dw DynamicSpritesStage02Idx0c-DynamicSpritesSpecs
+	.dw DynamicSpritesStage02Idx0d-DynamicSpritesSpecs
+	.dw DynamicSpritesStage02Idx0e-DynamicSpritesSpecs
+	.dw DynamicSpritesStage02Idx0f-DynamicSpritesSpecs
+	.dw DynamicSpritesStage02Idx10-DynamicSpritesSpecs
+	.dw DynamicSpritesStage02Idx11-DynamicSpritesSpecs
+	.dw DynamicSpritesStage02Idx12-DynamicSpritesSpecs
 
 
 DynamicSpritesStage03:
-	.dw DynamicSpritesStage03Idx00-Data_8_8623
-	.dw DynamicSpritesStage03Idx01-Data_8_8623
-	.dw DynamicSpritesStage03Idx02-Data_8_8623
-	.dw DynamicSpritesStage03Idx03-Data_8_8623
-	.dw DynamicSpritesStage03Idx04-Data_8_8623
-	.dw DynamicSpritesStage03Idx05-Data_8_8623
-	.dw DynamicSpritesStage03Idx06-Data_8_8623
-	.dw DynamicSpritesStage03Idx07-Data_8_8623
-	.dw DynamicSpritesStage03Idx08-Data_8_8623
-	.dw DynamicSpritesStage03Idx09-Data_8_8623
-	.dw DynamicSpritesStage03Idx0a-Data_8_8623
-	.dw DynamicSpritesStage03Idx0b-Data_8_8623
-	.dw DynamicSpritesStage03Idx0c-Data_8_8623
-	.dw DynamicSpritesStage03Idx0d-Data_8_8623
-	.dw DynamicSpritesStage03Idx0e-Data_8_8623
-	.dw DynamicSpritesStage03Idx0f-Data_8_8623
-	.dw DynamicSpritesStage03Idx10-Data_8_8623
-	.dw DynamicSpritesStage03Idx11-Data_8_8623
-	.dw DynamicSpritesStage03Idx12-Data_8_8623
-	.dw DynamicSpritesStage03Idx13-Data_8_8623
+	.dw DynamicSpritesStage03Idx00-DynamicSpritesSpecs
+	.dw DynamicSpritesStage03Idx01-DynamicSpritesSpecs
+	.dw DynamicSpritesStage03Idx02-DynamicSpritesSpecs
+	.dw DynamicSpritesStage03Idx03-DynamicSpritesSpecs
+	.dw DynamicSpritesStage03Idx04-DynamicSpritesSpecs
+	.dw DynamicSpritesStage03Idx05-DynamicSpritesSpecs
+	.dw DynamicSpritesStage03Idx06-DynamicSpritesSpecs
+	.dw DynamicSpritesStage03Idx07-DynamicSpritesSpecs
+	.dw DynamicSpritesStage03Idx08-DynamicSpritesSpecs
+	.dw DynamicSpritesStage03Idx09-DynamicSpritesSpecs
+	.dw DynamicSpritesStage03Idx0a-DynamicSpritesSpecs
+	.dw DynamicSpritesStage03Idx0b-DynamicSpritesSpecs
+	.dw DynamicSpritesStage03Idx0c-DynamicSpritesSpecs
+	.dw DynamicSpritesStage03Idx0d-DynamicSpritesSpecs
+	.dw DynamicSpritesStage03Idx0e-DynamicSpritesSpecs
+	.dw DynamicSpritesStage03Idx0f-DynamicSpritesSpecs
+	.dw DynamicSpritesStage03Idx10-DynamicSpritesSpecs
+	.dw DynamicSpritesStage03Idx11-DynamicSpritesSpecs
+	.dw DynamicSpritesStage03Idx12-DynamicSpritesSpecs
+	.dw DynamicSpritesStage03Idx13-DynamicSpritesSpecs
 
 
 DynamicSpritesStage04:
-	.dw DynamicSpritesStage04Idx00-Data_8_8623
-	.dw DynamicSpritesStage04Idx01-Data_8_8623
-	.dw DynamicSpritesStage04Idx02-Data_8_8623
-	.dw DynamicSpritesStage04Idx03-Data_8_8623
-	.dw DynamicSpritesStage04Idx04-Data_8_8623
-	.dw DynamicSpritesStage04Idx05-Data_8_8623
-	.dw DynamicSpritesStage04Idx06-Data_8_8623
-	.dw DynamicSpritesStage04Idx07-Data_8_8623
-	.dw DynamicSpritesStage04Idx08-Data_8_8623
-	.dw DynamicSpritesStage04Idx09-Data_8_8623
-	.dw DynamicSpritesStage04Idx0a-Data_8_8623
-	.dw DynamicSpritesStage04Idx0b-Data_8_8623
-	.dw DynamicSpritesStage04Idx0c-Data_8_8623
-	.dw DynamicSpritesStage04Idx0d-Data_8_8623
-	.dw DynamicSpritesStage04Idx0e-Data_8_8623
-	.dw DynamicSpritesStage04Idx0f-Data_8_8623
-	.dw DynamicSpritesStage04Idx10-Data_8_8623
-	.dw DynamicSpritesStage04Idx11-Data_8_8623
-	.dw DynamicSpritesStage04Idx12-Data_8_8623
+	.dw DynamicSpritesStage04Idx00-DynamicSpritesSpecs
+	.dw DynamicSpritesStage04Idx01-DynamicSpritesSpecs
+	.dw DynamicSpritesStage04Idx02-DynamicSpritesSpecs
+	.dw DynamicSpritesStage04Idx03-DynamicSpritesSpecs
+	.dw DynamicSpritesStage04Idx04-DynamicSpritesSpecs
+	.dw DynamicSpritesStage04Idx05-DynamicSpritesSpecs
+	.dw DynamicSpritesStage04Idx06-DynamicSpritesSpecs
+	.dw DynamicSpritesStage04Idx07-DynamicSpritesSpecs
+	.dw DynamicSpritesStage04Idx08-DynamicSpritesSpecs
+	.dw DynamicSpritesStage04Idx09-DynamicSpritesSpecs
+	.dw DynamicSpritesStage04Idx0a-DynamicSpritesSpecs
+	.dw DynamicSpritesStage04Idx0b-DynamicSpritesSpecs
+	.dw DynamicSpritesStage04Idx0c-DynamicSpritesSpecs
+	.dw DynamicSpritesStage04Idx0d-DynamicSpritesSpecs
+	.dw DynamicSpritesStage04Idx0e-DynamicSpritesSpecs
+	.dw DynamicSpritesStage04Idx0f-DynamicSpritesSpecs
+	.dw DynamicSpritesStage04Idx10-DynamicSpritesSpecs
+	.dw DynamicSpritesStage04Idx11-DynamicSpritesSpecs
+	.dw DynamicSpritesStage04Idx12-DynamicSpritesSpecs
 
 
 DynamicSpritesStage05:
-	.dw DynamicSpritesStage05Idx00-Data_8_8623
-	.dw DynamicSpritesStage05Idx01-Data_8_8623
-	.dw DynamicSpritesStage05Idx02-Data_8_8623
-	.dw DynamicSpritesStage05Idx03-Data_8_8623
-	.dw DynamicSpritesStage05Idx04-Data_8_8623
-	.dw DynamicSpritesStage05Idx05-Data_8_8623
-	.dw DynamicSpritesStage05Idx06-Data_8_8623
-	.dw DynamicSpritesStage05Idx07-Data_8_8623
-	.dw DynamicSpritesStage05Idx08-Data_8_8623
-	.dw DynamicSpritesStage05Idx09-Data_8_8623
-	.dw DynamicSpritesStage05Idx0a-Data_8_8623
-	.dw DynamicSpritesStage05Idx0b-Data_8_8623
-	.dw DynamicSpritesStage05Idx0c-Data_8_8623
-	.dw DynamicSpritesStage05Idx0d-Data_8_8623
-	.dw DynamicSpritesStage05Idx0e-Data_8_8623
-	.dw DynamicSpritesStage05Idx0f-Data_8_8623
-	.dw DynamicSpritesStage05Idx10-Data_8_8623
-	.dw DynamicSpritesStage05Idx11-Data_8_8623
-	.dw DynamicSpritesStage05Idx12-Data_8_8623
+	.dw DynamicSpritesStage05Idx00-DynamicSpritesSpecs
+	.dw DynamicSpritesStage05Idx01-DynamicSpritesSpecs
+	.dw DynamicSpritesStage05Idx02-DynamicSpritesSpecs
+	.dw DynamicSpritesStage05Idx03-DynamicSpritesSpecs
+	.dw DynamicSpritesStage05Idx04-DynamicSpritesSpecs
+	.dw DynamicSpritesStage05Idx05-DynamicSpritesSpecs
+	.dw DynamicSpritesStage05Idx06-DynamicSpritesSpecs
+	.dw DynamicSpritesStage05Idx07-DynamicSpritesSpecs
+	.dw DynamicSpritesStage05Idx08-DynamicSpritesSpecs
+	.dw DynamicSpritesStage05Idx09-DynamicSpritesSpecs
+	.dw DynamicSpritesStage05Idx0a-DynamicSpritesSpecs
+	.dw DynamicSpritesStage05Idx0b-DynamicSpritesSpecs
+	.dw DynamicSpritesStage05Idx0c-DynamicSpritesSpecs
+	.dw DynamicSpritesStage05Idx0d-DynamicSpritesSpecs
+	.dw DynamicSpritesStage05Idx0e-DynamicSpritesSpecs
+	.dw DynamicSpritesStage05Idx0f-DynamicSpritesSpecs
+	.dw DynamicSpritesStage05Idx10-DynamicSpritesSpecs
+	.dw DynamicSpritesStage05Idx11-DynamicSpritesSpecs
+	.dw DynamicSpritesStage05Idx12-DynamicSpritesSpecs
 
 
 DynamicSpritesStage06:
-	.dw DynamicSpritesStage06Idx00-Data_8_8623
-	.dw DynamicSpritesStage06Idx01-Data_8_8623
-	.dw DynamicSpritesStage06Idx02-Data_8_8623
-	.dw DynamicSpritesStage06Idx03-Data_8_8623
-	.dw DynamicSpritesStage06Idx04-Data_8_8623
-	.dw DynamicSpritesStage06Idx05-Data_8_8623
-	.dw DynamicSpritesStage06Idx06-Data_8_8623
-	.dw DynamicSpritesStage06Idx07-Data_8_8623
-	.dw DynamicSpritesStage06Idx08-Data_8_8623
-	.dw DynamicSpritesStage06Idx09-Data_8_8623
-	.dw DynamicSpritesStage06Idx0a-Data_8_8623
-	.dw DynamicSpritesStage06Idx0b-Data_8_8623
-	.dw DynamicSpritesStage06Idx0c-Data_8_8623
-	.dw DynamicSpritesStage06Idx0d-Data_8_8623
-	.dw DynamicSpritesStage06Idx0e-Data_8_8623
-	.dw DynamicSpritesStage06Idx0f-Data_8_8623
-	.dw DynamicSpritesStage06Idx10-Data_8_8623
-	.dw DynamicSpritesStage06Idx11-Data_8_8623
-	.dw DynamicSpritesStage06Idx12-Data_8_8623
+	.dw DynamicSpritesStage06Idx00-DynamicSpritesSpecs
+	.dw DynamicSpritesStage06Idx01-DynamicSpritesSpecs
+	.dw DynamicSpritesStage06Idx02-DynamicSpritesSpecs
+	.dw DynamicSpritesStage06Idx03-DynamicSpritesSpecs
+	.dw DynamicSpritesStage06Idx04-DynamicSpritesSpecs
+	.dw DynamicSpritesStage06Idx05-DynamicSpritesSpecs
+	.dw DynamicSpritesStage06Idx06-DynamicSpritesSpecs
+	.dw DynamicSpritesStage06Idx07-DynamicSpritesSpecs
+	.dw DynamicSpritesStage06Idx08-DynamicSpritesSpecs
+	.dw DynamicSpritesStage06Idx09-DynamicSpritesSpecs
+	.dw DynamicSpritesStage06Idx0a-DynamicSpritesSpecs
+	.dw DynamicSpritesStage06Idx0b-DynamicSpritesSpecs
+	.dw DynamicSpritesStage06Idx0c-DynamicSpritesSpecs
+	.dw DynamicSpritesStage06Idx0d-DynamicSpritesSpecs
+	.dw DynamicSpritesStage06Idx0e-DynamicSpritesSpecs
+	.dw DynamicSpritesStage06Idx0f-DynamicSpritesSpecs
+	.dw DynamicSpritesStage06Idx10-DynamicSpritesSpecs
+	.dw DynamicSpritesStage06Idx11-DynamicSpritesSpecs
+	.dw DynamicSpritesStage06Idx12-DynamicSpritesSpecs
 
 
 DynamicSpritesStage07:
-	.dw DynamicSpritesStage07Idx00-Data_8_8623
-	.dw DynamicSpritesStage07Idx01-Data_8_8623
-	.dw DynamicSpritesStage07Idx02-Data_8_8623
-	.dw DynamicSpritesStage07Idx03-Data_8_8623
-	.dw DynamicSpritesStage07Idx04-Data_8_8623
-	.dw DynamicSpritesStage07Idx05-Data_8_8623
-	.dw DynamicSpritesStage07Idx06-Data_8_8623
-	.dw DynamicSpritesStage07Idx07-Data_8_8623
-	.dw DynamicSpritesStage07Idx08-Data_8_8623
-	.dw DynamicSpritesStage07Idx09-Data_8_8623
-	.dw DynamicSpritesStage07Idx0a-Data_8_8623
-	.dw DynamicSpritesStage07Idx0b-Data_8_8623
-	.dw DynamicSpritesStage07Idx0c-Data_8_8623
-	.dw DynamicSpritesStage07Idx0d-Data_8_8623
-	.dw DynamicSpritesStage07Idx0e-Data_8_8623
-	.dw DynamicSpritesStage07Idx0f-Data_8_8623
-	.dw DynamicSpritesStage07Idx10-Data_8_8623
-	.dw DynamicSpritesStage07Idx11-Data_8_8623
-	.dw DynamicSpritesStage07Idx12-Data_8_8623
+	.dw DynamicSpritesStage07Idx00-DynamicSpritesSpecs
+	.dw DynamicSpritesStage07Idx01-DynamicSpritesSpecs
+	.dw DynamicSpritesStage07Idx02-DynamicSpritesSpecs
+	.dw DynamicSpritesStage07Idx03-DynamicSpritesSpecs
+	.dw DynamicSpritesStage07Idx04-DynamicSpritesSpecs
+	.dw DynamicSpritesStage07Idx05-DynamicSpritesSpecs
+	.dw DynamicSpritesStage07Idx06-DynamicSpritesSpecs
+	.dw DynamicSpritesStage07Idx07-DynamicSpritesSpecs
+	.dw DynamicSpritesStage07Idx08-DynamicSpritesSpecs
+	.dw DynamicSpritesStage07Idx09-DynamicSpritesSpecs
+	.dw DynamicSpritesStage07Idx0a-DynamicSpritesSpecs
+	.dw DynamicSpritesStage07Idx0b-DynamicSpritesSpecs
+	.dw DynamicSpritesStage07Idx0c-DynamicSpritesSpecs
+	.dw DynamicSpritesStage07Idx0d-DynamicSpritesSpecs
+	.dw DynamicSpritesStage07Idx0e-DynamicSpritesSpecs
+	.dw DynamicSpritesStage07Idx0f-DynamicSpritesSpecs
+	.dw DynamicSpritesStage07Idx10-DynamicSpritesSpecs
+	.dw DynamicSpritesStage07Idx11-DynamicSpritesSpecs
+	.dw DynamicSpritesStage07Idx12-DynamicSpritesSpecs
 
 
 DynamicSpritesStage08:
-	.dw DynamicSpritesStage08Idx00-Data_8_8623
-	.dw DynamicSpritesStage08Idx01-Data_8_8623
-	.dw DynamicSpritesStage08Idx02-Data_8_8623
-	.dw DynamicSpritesStage08Idx03-Data_8_8623
-	.dw DynamicSpritesStage08Idx04-Data_8_8623
-	.dw DynamicSpritesStage08Idx05-Data_8_8623
-	.dw DynamicSpritesStage08Idx06-Data_8_8623
-	.dw DynamicSpritesStage08Idx07-Data_8_8623
-	.dw DynamicSpritesStage08Idx08-Data_8_8623
-	.dw DynamicSpritesStage08Idx09-Data_8_8623
-	.dw DynamicSpritesStage08Idx0a-Data_8_8623
-	.dw DynamicSpritesStage08Idx0b-Data_8_8623
-	.dw DynamicSpritesStage08Idx0c-Data_8_8623
-	.dw DynamicSpritesStage08Idx0d-Data_8_8623
-	.dw DynamicSpritesStage08Idx0e-Data_8_8623
-	.dw DynamicSpritesStage08Idx0f-Data_8_8623
-	.dw DynamicSpritesStage08Idx10-Data_8_8623
-	.dw DynamicSpritesStage08Idx11-Data_8_8623
-	.dw DynamicSpritesStage08Idx12-Data_8_8623
+	.dw DynamicSpritesStage08Idx00-DynamicSpritesSpecs
+	.dw DynamicSpritesStage08Idx01-DynamicSpritesSpecs
+	.dw DynamicSpritesStage08Idx02-DynamicSpritesSpecs
+	.dw DynamicSpritesStage08Idx03-DynamicSpritesSpecs
+	.dw DynamicSpritesStage08Idx04-DynamicSpritesSpecs
+	.dw DynamicSpritesStage08Idx05-DynamicSpritesSpecs
+	.dw DynamicSpritesStage08Idx06-DynamicSpritesSpecs
+	.dw DynamicSpritesStage08Idx07-DynamicSpritesSpecs
+	.dw DynamicSpritesStage08Idx08-DynamicSpritesSpecs
+	.dw DynamicSpritesStage08Idx09-DynamicSpritesSpecs
+	.dw DynamicSpritesStage08Idx0a-DynamicSpritesSpecs
+	.dw DynamicSpritesStage08Idx0b-DynamicSpritesSpecs
+	.dw DynamicSpritesStage08Idx0c-DynamicSpritesSpecs
+	.dw DynamicSpritesStage08Idx0d-DynamicSpritesSpecs
+	.dw DynamicSpritesStage08Idx0e-DynamicSpritesSpecs
+	.dw DynamicSpritesStage08Idx0f-DynamicSpritesSpecs
+	.dw DynamicSpritesStage08Idx10-DynamicSpritesSpecs
+	.dw DynamicSpritesStage08Idx11-DynamicSpritesSpecs
+	.dw DynamicSpritesStage08Idx12-DynamicSpritesSpecs
 
 
 DynamicSpritesStage09:
-	.dw DynamicSpritesStage09Idx00-Data_8_8623
-	.dw DynamicSpritesStage09Idx01-Data_8_8623
-	.dw DynamicSpritesStage09Idx02-Data_8_8623
-	.dw DynamicSpritesStage09Idx03-Data_8_8623
-	.dw DynamicSpritesStage09Idx04-Data_8_8623
-	.dw DynamicSpritesStage09Idx05-Data_8_8623
-	.dw DynamicSpritesStage09Idx06-Data_8_8623
-	.dw DynamicSpritesStage09Idx07-Data_8_8623
+	.dw DynamicSpritesStage09Idx00-DynamicSpritesSpecs
+	.dw DynamicSpritesStage09Idx01-DynamicSpritesSpecs
+	.dw DynamicSpritesStage09Idx02-DynamicSpritesSpecs
+	.dw DynamicSpritesStage09Idx03-DynamicSpritesSpecs
+	.dw DynamicSpritesStage09Idx04-DynamicSpritesSpecs
+	.dw DynamicSpritesStage09Idx05-DynamicSpritesSpecs
+	.dw DynamicSpritesStage09Idx06-DynamicSpritesSpecs
+	.dw DynamicSpritesStage09Idx07-DynamicSpritesSpecs
 
 
 DynamicSpritesStage0a:
-	.dw DynamicSpritesStage0aIdx00-Data_8_8623
-	.dw DynamicSpritesStage0aIdx01-Data_8_8623
-	.dw DynamicSpritesStage0aIdx02-Data_8_8623
-	.dw DynamicSpritesStage0aIdx03-Data_8_8623
-	.dw DynamicSpritesStage0aIdx04-Data_8_8623
-	.dw DynamicSpritesStage0aIdx05-Data_8_8623
-	.dw DynamicSpritesStage0aIdx06-Data_8_8623
-	.dw DynamicSpritesStage0aIdx07-Data_8_8623
-	.dw DynamicSpritesStage0aIdx08-Data_8_8623
-	.dw DynamicSpritesStage0aIdx09-Data_8_8623
-	.dw DynamicSpritesStage0aIdx0a-Data_8_8623
-	.dw DynamicSpritesStage0aIdx0b-Data_8_8623
-	.dw DynamicSpritesStage0aIdx0c-Data_8_8623
-	.dw DynamicSpritesStage0aIdx0d-Data_8_8623
-	.dw DynamicSpritesStage0aIdx0e-Data_8_8623
-	.dw DynamicSpritesStage0aIdx0f-Data_8_8623
-	.dw DynamicSpritesStage0aIdx10-Data_8_8623
-	.dw DynamicSpritesStage0aIdx11-Data_8_8623
-	.dw DynamicSpritesStage0aIdx12-Data_8_8623
+	.dw DynamicSpritesStage0aIdx00-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0aIdx01-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0aIdx02-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0aIdx03-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0aIdx04-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0aIdx05-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0aIdx06-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0aIdx07-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0aIdx08-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0aIdx09-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0aIdx0a-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0aIdx0b-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0aIdx0c-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0aIdx0d-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0aIdx0e-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0aIdx0f-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0aIdx10-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0aIdx11-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0aIdx12-DynamicSpritesSpecs
 
 
 DynamicSpritesStage0b:
-	.dw DynamicSpritesStage0bIdx00-Data_8_8623
-	.dw DynamicSpritesStage0bIdx01-Data_8_8623
-	.dw DynamicSpritesStage0bIdx02-Data_8_8623
-	.dw DynamicSpritesStage0bIdx03-Data_8_8623
-	.dw DynamicSpritesStage0bIdx04-Data_8_8623
-	.dw DynamicSpritesStage0bIdx05-Data_8_8623
-	.dw DynamicSpritesStage0bIdx06-Data_8_8623
-	.dw DynamicSpritesStage0bIdx07-Data_8_8623
-	.dw DynamicSpritesStage0bIdx08-Data_8_8623
-	.dw DynamicSpritesStage0bIdx09-Data_8_8623
-	.dw DynamicSpritesStage0bIdx0a-Data_8_8623
-	.dw DynamicSpritesStage0bIdx0b-Data_8_8623
+	.dw DynamicSpritesStage0bIdx00-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0bIdx01-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0bIdx02-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0bIdx03-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0bIdx04-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0bIdx05-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0bIdx06-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0bIdx07-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0bIdx08-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0bIdx09-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0bIdx0a-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0bIdx0b-DynamicSpritesSpecs
 
 
 DynamicSpritesStage0c:
-	.dw DynamicSpritesStage0cIdx00-Data_8_8623
-	.dw DynamicSpritesStage0cIdx01-Data_8_8623
-	.dw DynamicSpritesStage0cIdx02-Data_8_8623
-	.dw DynamicSpritesStage0cIdx03-Data_8_8623
-	.dw DynamicSpritesStage0cIdx04-Data_8_8623
-	.dw DynamicSpritesStage0cIdx05-Data_8_8623
-	.dw DynamicSpritesStage0cIdx06-Data_8_8623
-	.dw DynamicSpritesStage0cIdx07-Data_8_8623
-	.dw DynamicSpritesStage0cIdx08-Data_8_8623
-	.dw DynamicSpritesStage0cIdx09-Data_8_8623
-	.dw DynamicSpritesStage0cIdx0a-Data_8_8623
-	.dw DynamicSpritesStage0cIdx0b-Data_8_8623
-	.dw DynamicSpritesStage0cIdx0c-Data_8_8623
-	.dw DynamicSpritesStage0cIdx0d-Data_8_8623
-	.dw DynamicSpritesStage0cIdx0e-Data_8_8623
-	.dw DynamicSpritesStage0cIdx0f-Data_8_8623
-	.dw DynamicSpritesStage0cIdx10-Data_8_8623
-	.dw DynamicSpritesStage0cIdx11-Data_8_8623
+	.dw DynamicSpritesStage0cIdx00-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0cIdx01-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0cIdx02-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0cIdx03-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0cIdx04-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0cIdx05-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0cIdx06-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0cIdx07-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0cIdx08-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0cIdx09-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0cIdx0a-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0cIdx0b-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0cIdx0c-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0cIdx0d-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0cIdx0e-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0cIdx0f-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0cIdx10-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0cIdx11-DynamicSpritesSpecs
 
 
 DynamicSpritesStage0d:
-	.dw DynamicSpritesStage0dIdx00-Data_8_8623
-	.dw DynamicSpritesStage0dIdx01-Data_8_8623
-	.dw DynamicSpritesStage0dIdx02-Data_8_8623
-	.dw DynamicSpritesStage0dIdx03-Data_8_8623
-	.dw DynamicSpritesStage0dIdx04-Data_8_8623
+	.dw DynamicSpritesStage0dIdx00-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0dIdx01-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0dIdx02-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0dIdx03-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0dIdx04-DynamicSpritesSpecs
 
 
 DynamicSpritesStage0e:
-	.dw DynamicSpritesStage0eIdx00-Data_8_8623
-	.dw DynamicSpritesStage0eIdx01-Data_8_8623
-	.dw DynamicSpritesStage0eIdx02-Data_8_8623
-	.dw DynamicSpritesStage0eIdx03-Data_8_8623
-	.dw DynamicSpritesStage0eIdx04-Data_8_8623
-	.dw DynamicSpritesStage0eIdx05-Data_8_8623
-	.dw DynamicSpritesStage0eIdx06-Data_8_8623
-	.dw DynamicSpritesStage0eIdx07-Data_8_8623
-	.dw DynamicSpritesStage0eIdx08-Data_8_8623
-	.dw DynamicSpritesStage0eIdx09-Data_8_8623
-	.dw DynamicSpritesStage0eIdx0a-Data_8_8623
-	.dw DynamicSpritesStage0eIdx0b-Data_8_8623
+	.dw DynamicSpritesStage0eIdx00-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0eIdx01-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0eIdx02-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0eIdx03-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0eIdx04-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0eIdx05-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0eIdx06-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0eIdx07-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0eIdx08-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0eIdx09-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0eIdx0a-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0eIdx0b-DynamicSpritesSpecs
 
 
 DynamicSpritesStage0f:
-	.dw DynamicSpritesStage0fIdx00-Data_8_8623
-	.dw DynamicSpritesStage0fIdx01-Data_8_8623
-	.dw DynamicSpritesStage0fIdx02-Data_8_8623
-	.dw DynamicSpritesStage0fIdx03-Data_8_8623
-	.dw DynamicSpritesStage0fIdx04-Data_8_8623
-	.dw DynamicSpritesStage0fIdx05-Data_8_8623
-	.dw DynamicSpritesStage0fIdx06-Data_8_8623
-	.dw DynamicSpritesStage0fIdx07-Data_8_8623
+	.dw DynamicSpritesStage0fIdx00-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0fIdx01-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0fIdx02-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0fIdx03-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0fIdx04-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0fIdx05-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0fIdx06-DynamicSpritesSpecs
+	.dw DynamicSpritesStage0fIdx07-DynamicSpritesSpecs
 
 
 DynamicSpritesStage10:
-	.dw DynamicSpritesStage10Idx00-Data_8_8623
+	.dw DynamicSpritesStage10Idx00-DynamicSpritesSpecs
 
 
 DynamicSpritesStage11:
-	.dw DynamicSpritesStage11Idx00-Data_8_8623
+	.dw DynamicSpritesStage11Idx00-DynamicSpritesSpecs
 
 
 DynamicSpritesStage00Idx0a:
@@ -1665,7 +1665,7 @@ DynamicSpritesStage01Idx08:
 
 
 DynamicSpritesStage01Idx09:
-	.db $36
+	.db DECOMP_IDX_OAM_TILEDATA_HEART_TANK
 	.dw $1000
 	.dw $0098
 	.db $40
@@ -1740,7 +1740,7 @@ DynamicSpritesStage02Idx00:
 
 
 DynamicSpritesStage02Idx01:
-	.db $36
+	.db DECOMP_IDX_OAM_TILEDATA_HEART_TANK
 	.dw $1f00
 	.dw $0098
 	.db $70
@@ -1871,7 +1871,7 @@ DynamicSpritesStage03Idx00:
 	.dw $0080
 	.db $60
 
-	.db $36
+	.db DECOMP_IDX_OAM_TILEDATA_HEART_TANK
 	.dw $1d00
 	.dw $0098
 	.db $70
@@ -2072,7 +2072,7 @@ DynamicSpritesStage04Idx01:
 	.dw $0020
 	.db $60
 
-	.db $36
+	.db DECOMP_IDX_OAM_TILEDATA_HEART_TANK
 	.dw $1c00
 	.dw $0098
 	.db $70
@@ -2277,7 +2277,7 @@ DynamicSpritesStage05Idx02:
 
 
 DynamicSpritesStage05Idx03:
-	.db $36
+	.db DECOMP_IDX_OAM_TILEDATA_HEART_TANK
 	.dw $1d00
 	.dw $0098
 	.db $70
@@ -2458,7 +2458,7 @@ DynamicSpritesStage06Idx02:
 	.dw $0134
 	.db $60
 
-	.db $36
+	.db DECOMP_IDX_OAM_TILEDATA_HEART_TANK
 	.dw $1f00
 	.dw $0098
 	.db $70
@@ -2579,7 +2579,7 @@ DynamicSpritesStage07Idx00:
 	.dw $016e
 	.db $40
 
-	.db $ac
+	.db DECOMP_IDX_OAM_TILEDATA_TRIAD_WEAK_BOULDER
 	.dw $1800
 	.dw $014c
 	.db $50
@@ -2607,12 +2607,12 @@ DynamicSpritesStage07Idx01:
 
 
 DynamicSpritesStage07Idx02:
-	.db $36
+	.db DECOMP_IDX_OAM_TILEDATA_HEART_TANK
 	.dw $1700
 	.dw $0098
 	.db $60
 
-	.db $ac
+	.db DECOMP_IDX_OAM_TILEDATA_TRIAD_WEAK_BOULDER
 	.dw $1800
 	.dw $014c
 	.db $70
@@ -2663,7 +2663,7 @@ DynamicSpritesStage07Idx05:
 
 
 DynamicSpritesStage07Idx06:
-	.db $ac
+	.db DECOMP_IDX_OAM_TILEDATA_TRIAD_WEAK_BOULDER
 	.dw $1000
 	.dw $014c
 	.db $40
@@ -2687,7 +2687,7 @@ DynamicSpritesStage07Idx06:
 
 
 DynamicSpritesStage07Idx07:
-	.db $ac
+	.db DECOMP_IDX_OAM_TILEDATA_TRIAD_WEAK_BOULDER
 	.dw $1000
 	.dw $014c
 	.db $40
@@ -2894,7 +2894,7 @@ DynamicSpritesStage08Idx07:
 
 
 DynamicSpritesStage08Idx08:
-	.db $36
+	.db DECOMP_IDX_OAM_TILEDATA_HEART_TANK
 	.dw $1900
 	.dw $0098
 	.db $40
@@ -19765,8 +19765,7 @@ br_08_fb3f:
 	.db $00                                                  ; $fb41 : $00
 
 
-	.ds $ff00-$fb42, $ff
-
+.org $7f00
 
 Cx4SquareTestData:
 	.db $00, $00, $00, $00, $00, $00
@@ -19785,6 +19784,3 @@ Cx4SquareTestData:
 	.db $c9, $50, $d9, $15, $8d, $04
 	.db $44, $65, $87, $45, $23, $01
 	.db $01, $00, $00, $00, $00, $00
-
-
-	.ds $10000-$ff60, $ff

@@ -4,8 +4,9 @@
 
 .org $470
 
-	.ds $e200-$8470, $ff
+; compressed data ends here
 
+.org $6200
 
 	.dw 0                                                  ; $e200 : $00, $00
 	.db $00                                                  ; $e202 : $00

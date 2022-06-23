@@ -4071,7 +4071,7 @@ todo_InitGlobalVars:
 	stz wSubTanksAndUpgradesGottenBitfield.w                                                  ; $99ba : $9c, $d1, $1f
 .ifdef HACK
 ; by pianohombre (sets a flag that says intro cutscene is done?)
-	ldx #$04
+	ldx #$04.b
 	nop
 	stx $1fd3.w
 .else
@@ -4682,7 +4682,7 @@ br_00_9de2:
 	bne @br_9df3                                                  ; $9dea : $d0, $07
 
 	bit $1fb0.w                                                  ; $9dec : $2c, $b0, $1f
-.ifdef NOT_HACK
+.ifdef HACK
 ; Skip bit/byte cutscene
 	bra @br_9df3
 .else
@@ -7558,7 +7558,7 @@ todo_AddThreadToDynamicallyLoadSpriteTileData:
 	sep #IDX_8                                                  ; $b1e6 : $e2, $10
 	lda #$0000.w                                                  ; $b1e8 : $a9, $00, $00
 	tcd                                                  ; $b1eb : $5b
-	lda #Func_0_b1fc.w                                                  ; $b1ec : $a9, $fc, $b1
+	lda #LoadDynamicSpriteData.w                                                  ; $b1ec : $a9, $fc, $b1
 	ldx #$10.b                                                  ; $b1ef : $a2, $10
 	stx $0040.w                                                  ; $b1f1 : $8e, $40, $00
 	jsr SetThreadXsPCandStatusPending.w                                                  ; $b1f4 : $20, $a3, $81
@@ -7569,17 +7569,21 @@ todo_AddThreadToDynamicallyLoadSpriteTileData:
 	rts                                                  ; $b1fb : $60
 
 
-Func_0_b1fc:
-	rep #ACCU_8|IDX_8                                                  ; $b1fc : $c2, $30
-	lda #$0000.w                                                  ; $b1fe : $a9, $00, $00
-	tcd                                                  ; $b201 : $5b
-	peaw $08, $06                                                  ; $b202 : $f4, $08, $06
-	plb                                                  ; $b205 : $ab
-	stz wDecompressionDestAddr                                                  ; $b206 : $64, $f9
-	stz wCurrSpriteDecompDestAddrOffs                                                  ; $b208 : $64, $48
-	stz wCurrSpriteDecompDestAddrOffs+1                                                  ; $b20a : $64, $49
+LoadDynamicSpriteData:
+; Direct page = 0
+	rep #ACCU_8|IDX_8                                                         ; $b1fc : $c2, $30
+	lda #$0000.w                                                              ; $b1fe : $a9, $00, $00
+	tcd                                                                       ; $b201 : $5b
 
-Call_00_b20c:
+; Push data bank with src data, and normal bank to restore to at the ennd
+	peaw :DynamicSpritesSpecs, DATA_BANK_NORMAL                               ; $b202 : $f4, $08, $06
+	plb                                                                       ; $b205 : $ab
+
+; Clear tile data decomp dest and sprite decomp dest
+	stz wDecompressionDestAddr                                                ; $b206 : $64, $f9
+	stz wCurrSpriteDecompDestAddrOffs                                         ; $b208 : $64, $48
+	stz wCurrSpriteDecompDestAddrOffs+1                                       ; $b20a : $64, $49
+
 ; eg 3
 	lda wDynamicSpriteTileDatasIdx.w                                                  ; $b20c : $ad, $18, $1f
 	and #$00ff.w                                                  ; $b20f : $29, $ff, $00
@@ -7591,17 +7595,17 @@ Call_00_b20c:
 	and #$00ff.w                                                  ; $b218 : $29, $ff, $00
 	asl                                                  ; $b21b : $0a
 	tax                                                  ; $b21c : $aa
-	lda Data_8_8623.w, X                                                  ; $b21d : $bd, $23, $86
+	lda DynamicSpritesSpecs.w, X                                                  ; $b21d : $bd, $23, $86
 	clc                                                  ; $b220 : $18
 	adc $00                                                  ; $b221 : $65, $00
 	tax                                                  ; $b223 : $aa
-	lda Data_8_8623.w, X                                                  ; $b224 : $bd, $23, $86
+	lda DynamicSpritesSpecs.w, X                                                  ; $b224 : $bd, $23, $86
 	tax                                                  ; $b227 : $aa
 	sep #ACCU_8                                                  ; $b228 : $e2, $20
 
-@loop_b22a:
+@nextSpriteSpec:
 ; done once we read ff
-	lda Data_8_8623.w, X                                                  ; $b22a : $bd, $23, $86
+	lda DynamicSpritesSpecs.w, X                                                  ; $b22a : $bd, $23, $86
 	cmp #$ff.b                                                  ; $b22d : $c9, $ff
 	beq @cont_b280                                                  ; $b22f : $f0, $4f
 
@@ -7615,25 +7619,25 @@ Call_00_b20c:
 	bne -                                                  ; $b23b : $d0, $f9
 
 ; store next word in 48/49 eg 1000
-	lda Data_8_8623.w+1, X                                                  ; $b23d : $bd, $24, $86
+	lda DynamicSpritesSpecs.w+1, X                                                  ; $b23d : $bd, $24, $86
 	sta wCurrSpriteDecompDestAddrOffs                                                  ; $b240 : $85, $48
-	lda Data_8_8623.w+2, X                                                  ; $b242 : $bd, $25, $86
+	lda DynamicSpritesSpecs.w+2, X                                                  ; $b242 : $bd, $25, $86
 	sta wCurrSpriteDecompDestAddrOffs+1                                                  ; $b245 : $85, $49
 
 ; todo: this populates hdma structs
 	jsr todo_SetupChunkedDmaStructsForDecompressedData.w                                                  ; $b247 : $20, $db, $b2
 
 ; store next word in Y eg 00f4
-	lda Data_8_8623.w+4, X                                                  ; $b24a : $bd, $27, $86
+	lda DynamicSpritesSpecs.w+4, X                                                  ; $b24a : $bd, $27, $86
 	xba                                                  ; $b24d : $eb
-	lda Data_8_8623.w+3, X                                                  ; $b24e : $bd, $26, $86
+	lda DynamicSpritesSpecs.w+3, X                                                  ; $b24e : $bd, $26, $86
 	tay                                                  ; $b251 : $a8
 
 ;
 	phx                                                  ; $b252 : $da
 
 ; eg 40 into X
-	lda Data_8_8623.w+5, X                                                  ; $b253 : $bd, $28, $86
+	lda DynamicSpritesSpecs.w+5, X                                                  ; $b253 : $bd, $28, $86
 	tax                                                  ; $b256 : $aa
 
 ; A = 8, or with 4a
@@ -7670,7 +7674,7 @@ Call_00_b20c:
 	inx                                                  ; $b279 : $e8
 	inx                                                  ; $b27a : $e8
 	jsr SetDataBank6_PauseCurrThreadWithADelayCounterOf1.w                                                  ; $b27b : $20, $8d, $b2
-	bra @loop_b22a                                                  ; $b27e : $80, $aa
+	bra @nextSpriteSpec                                                  ; $b27e : $80, $aa
 
 @cont_b280:
 	lda #$04.b                                                  ; $b280 : $a9, $04
@@ -10599,19 +10603,25 @@ br_00_c388:
 
 
 	ldx $02                                                  ; $c38f : $a6, $02
-	jmp ($c394.w, X)                                                  ; $c391 : $7c, $94, $c3
+	jmp (@funcs.w, X)                                                  ; $c391 : $7c, $94, $c3
+
+@funcs:
+	.dw $c39e
+	.dw $c3ac
+	.dw $c3bf
+	.dw $c3f7
+	.dw $c410
 
 
-	stz $acc3.w, X                                                  ; $c394 : $9e, $c3, $ac
-	cmp $bf, S                                                  ; $c397 : $c3, $bf
-	cmp $f7, S                                                  ; $c399 : $c3, $f7
-	cmp $10, S                                                  ; $c39b : $c3, $10
-	cpy $a9                                                  ; $c39d : $c4, $a9
-	jsr Call_00_b20c.w                                                  ; $c39f : $20, $0c, $b2
-	ora $8550a9.l, X                                                  ; $c3a2 : $1f, $a9, $50, $85
-	rol $a9                                                  ; $c3a6 : $26, $a9
-	cop $85.b                                                  ; $c3a8 : $02, $85
-	cop $60.b                                                  ; $c3aa : $02, $60
+	lda #$20.b                                                  ; $c39e : $a9, $20
+	tsb $1fb2.w                                                  ; $c3a0 : $0c, $b2, $1f
+	lda #$50.b                                                  ; $c3a3 : $a9, $50
+	sta $26                                                  ; $c3a5 : $85, $26
+	lda #$02.b                                                  ; $c3a7 : $a9, $02
+	sta $02                                                  ; $c3a9 : $85, $02
+	rts                                                  ; $c3ab : $60
+
+
 	dec $26                                                  ; $c3ac : $c6, $26
 	bne br_00_c3be                                                  ; $c3ae : $d0, $0e
 
@@ -20224,14 +20234,11 @@ Func_0_fcd3:
 	rts                                                  ; $fd1f : $60
 
 
-	.ds $fef0-$fd20, $ff
-
+.org $7ef0
 
 ; $fef0
 
 	.asc " CAPCOM "
-	
-	.ds $ffb0-$fef8, $ff
 
 
 .org $7fb0
@@ -20239,8 +20246,11 @@ Func_0_fcd3:
 	.asc "08" ; maker code
 
 
-.org $7fbf
+.org $7fb6
 
+	.db $00, $00, $00, $00, $00, $00, $00
+	.db $00 ; expansion ram size
+	.db $00 ; special version
 	.db $10 ; cartridge type sub number
 
 
