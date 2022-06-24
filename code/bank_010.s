@@ -25,7 +25,7 @@
 	php                                                  ; $802a : $08
 	asl wJoy1CurrButtonsHeld.w+1                                                  ; $802b : $0e, $a9, $00
 	.db $00                                                  ; $802e : $00
-	asl $00aa.w                                                  ; $802f : $0e, $aa, $00
+	asl wJoy1PrevBtnsHeld.w                                                  ; $802f : $0e, $aa, $00
 
 br_10_8032:
 	sed                                                  ; $8032 : $f8
@@ -91,7 +91,7 @@ br_10_8046:
 	ldx #$0840.w                                                  ; $8091 : $a2, $40, $08
 	tsb wJoy1CurrButtonsHeld.w+1                                                  ; $8094 : $0c, $a9, $00
 	.db $00                                                  ; $8097 : $00
-	tsb $00aa.w                                                  ; $8098 : $0c, $aa, $00
+	tsb wJoy1PrevBtnsHeld.w                                                  ; $8098 : $0c, $aa, $00
 	sed                                                  ; $809b : $f8
 	tsb wJoy1CurrButtonsHeld.w+1                                                  ; $809c : $0c, $a9, $00
 	.db $f0, $fc                                                  ; $809f : $f0, $fc
@@ -231,7 +231,7 @@ br_10_813a:
 	php                                                  ; $815d : $08
 	tsb wJoy1CurrButtonsHeld.w+1                                                  ; $815e : $0c, $a9, $00
 	.db $00                                                  ; $8161 : $00
-	tsb $00aa.w                                                  ; $8162 : $0c, $aa, $00
+	tsb wJoy1PrevBtnsHeld.w                                                  ; $8162 : $0c, $aa, $00
 	sed                                                  ; $8165 : $f8
 	tsb wJoy1CurrButtonsHeld.w+1                                                  ; $8166 : $0c, $a9, $00
 	.db $f0, $fc                                                  ; $8169 : $f0, $fc
@@ -386,7 +386,7 @@ br_10_81f6:
 	php                                                  ; $823f : $08
 	tsb wJoy1CurrButtonsHeld.w+1                                                  ; $8240 : $0c, $a9, $00
 	.db $00                                                  ; $8243 : $00
-	tsb $00aa.w                                                  ; $8244 : $0c, $aa, $00
+	tsb wJoy1PrevBtnsHeld.w                                                  ; $8244 : $0c, $aa, $00
 	sed                                                  ; $8247 : $f8
 	tsb wJoy1CurrButtonsHeld.w+1                                                  ; $8248 : $0c, $a9, $00
 	.db $f0, $fc                                                  ; $824b : $f0, $fc
@@ -448,7 +448,7 @@ br_10_81f6:
 	php                                                  ; $82a0 : $08
 	asl wJoy1CurrButtonsHeld.w+1                                                  ; $82a1 : $0e, $a9, $00
 	.db $00                                                  ; $82a4 : $00
-	asl $00aa.w                                                  ; $82a5 : $0e, $aa, $00
+	asl wJoy1PrevBtnsHeld.w                                                  ; $82a5 : $0e, $aa, $00
 	sed                                                  ; $82a8 : $f8
 	asl wJoy1CurrButtonsHeld.w+1                                                  ; $82a9 : $0e, $a9, $00
 
@@ -1187,7 +1187,7 @@ br_10_86a5:
 	.db $00                                                  ; $8713 : $00
 
 br_10_8714:
-	tsb $00aa.w                                                  ; $8714 : $0c, $aa, $00
+	tsb wJoy1PrevBtnsHeld.w                                                  ; $8714 : $0c, $aa, $00
 	sed                                                  ; $8717 : $f8
 	tsb wJoy1CurrButtonsHeld.w+1                                                  ; $8718 : $0c, $a9, $00
 	.db $f0, $fc                                                  ; $871b : $f0, $fc
@@ -1460,7 +1460,7 @@ br_10_889d:
 	asl                                                  ; $88ab : $0a
 	tsb wJoy1CurrButtonsHeld.w+1                                                  ; $88ac : $0c, $a9, $00
 	.db $00                                                  ; $88af : $00
-	tsb $00aa.w                                                  ; $88b0 : $0c, $aa, $00
+	tsb wJoy1PrevBtnsHeld.w                                                  ; $88b0 : $0c, $aa, $00
 	sed                                                  ; $88b3 : $f8
 	tsb wJoy1CurrButtonsHeld.w+1                                                  ; $88b4 : $0c, $a9, $00
 	.db $f0, $fc                                                  ; $88b7 : $f0, $fc
@@ -1670,7 +1670,7 @@ br_10_8979:
 	php                                                  ; $8a03 : $08
 	asl wJoy1CurrButtonsHeld.w+1                                                  ; $8a04 : $0e, $a9, $00
 	.db $00                                                  ; $8a07 : $00
-	asl $00aa.w                                                  ; $8a08 : $0e, $aa, $00
+	asl wJoy1PrevBtnsHeld.w                                                  ; $8a08 : $0e, $aa, $00
 	sed                                                  ; $8a0b : $f8
 	asl wJoy1CurrButtonsHeld.w+1                                                  ; $8a0c : $0e, $a9, $00
 
@@ -1771,7 +1771,7 @@ br_10_8a0f:
 	php                                                  ; $8ac5 : $08
 	asl wJoy1CurrButtonsHeld.w+1                                                  ; $8ac6 : $0e, $a9, $00
 	.db $00                                                  ; $8ac9 : $00
-	asl $00aa.w                                                  ; $8aca : $0e, $aa, $00
+	asl wJoy1PrevBtnsHeld.w                                                  ; $8aca : $0e, $aa, $00
 	sed                                                  ; $8acd : $f8
 	asl wJoy1CurrButtonsHeld.w+1                                                  ; $8ace : $0e, $a9, $00
 
@@ -1888,7 +1888,7 @@ br_10_8ad1:
 	php                                                  ; $8b9f : $08
 	asl wJoy1CurrButtonsHeld.w+1                                                  ; $8ba0 : $0e, $a9, $00
 	.db $00                                                  ; $8ba3 : $00
-	asl $00aa.w                                                  ; $8ba4 : $0e, $aa, $00
+	asl wJoy1PrevBtnsHeld.w                                                  ; $8ba4 : $0e, $aa, $00
 
 br_10_8ba7:
 	sed                                                  ; $8ba7 : $f8
@@ -2004,7 +2004,7 @@ br_10_8c15:
 	php                                                  ; $8c79 : $08
 	asl wJoy1CurrButtonsHeld.w+1                                                  ; $8c7a : $0e, $a9, $00
 	.db $00                                                  ; $8c7d : $00
-	asl $00aa.w                                                  ; $8c7e : $0e, $aa, $00
+	asl wJoy1PrevBtnsHeld.w                                                  ; $8c7e : $0e, $aa, $00
 	sed                                                  ; $8c81 : $f8
 	asl wJoy1CurrButtonsHeld.w+1                                                  ; $8c82 : $0e, $a9, $00
 
@@ -2121,7 +2121,7 @@ br_10_8c85:
 	php                                                  ; $8d4f : $08
 	asl wJoy1CurrButtonsHeld.w+1                                                  ; $8d50 : $0e, $a9, $00
 	.db $00                                                  ; $8d53 : $00
-	asl $00aa.w                                                  ; $8d54 : $0e, $aa, $00
+	asl wJoy1PrevBtnsHeld.w                                                  ; $8d54 : $0e, $aa, $00
 	sed                                                  ; $8d57 : $f8
 	asl wJoy1CurrButtonsHeld.w+1                                                  ; $8d58 : $0e, $a9, $00
 

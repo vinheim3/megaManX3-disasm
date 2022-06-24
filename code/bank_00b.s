@@ -4855,7 +4855,7 @@ br_0b_a46a:
 	sbc $30454a.l                                                  ; $a4c9 : $ef, $4a, $45, $30
 	sbc $c04f15.l                                                  ; $a4cd : $ef, $15, $4f, $c0
 	wdm                                                  ; $a4d1 : $42
-	inc $00aa.w                                                  ; $a4d2 : $ee, $aa, $00
+	inc wJoy1PrevBtnsHeld.w                                                  ; $a4d2 : $ee, $aa, $00
 	.db $00                                                  ; $a4d5 : $00
 	.db $00                                                  ; $a4d6 : $00
 	.db $00                                                  ; $a4d7 : $00
@@ -4998,7 +4998,7 @@ br_0b_a5b9:
 	asl $ef86.w                                                  ; $a5e0 : $0e, $86, $ef
 	mvn $fe, $20                                                  ; $a5e3 : $54, $20, $fe
 	inc $cbed.w                                                  ; $a5e6 : $ee, $ed, $cb
-	cmp $00aa.w                                                  ; $a5e9 : $cd, $aa, $00
+	cmp wJoy1PrevBtnsHeld.w                                                  ; $a5e9 : $cd, $aa, $00
 	ora ($32), Y                                                  ; $a5ec : $11, $32
 	xce                                                  ; $a5ee : $fb
 	.db $d0, $11                                                  ; $a5ef : $d0, $11
@@ -5072,7 +5072,7 @@ br_0b_a62e:
 	cop $1d.b                                                  ; $a675 : $02, $1d
 	.db $b0, $31                                                  ; $a677 : $b0, $31
 
-	lda $00aa.w, X                                                  ; $a679 : $bd, $aa, $00
+	lda wJoy1PrevBtnsHeld.w, X                                                  ; $a679 : $bd, $aa, $00
 	.db $00                                                  ; $a67c : $00
 	.db $00                                                  ; $a67d : $00
 	.db $f0, $ff                                                  ; $a67e : $f0, $ff
@@ -8593,7 +8593,7 @@ br_0b_c252:
 	sbc $22f2.w, X                                                  ; $c25d : $fd, $f2, $22
 	tcs                                                  ; $c260 : $1b
 	inc $5d                                                  ; $c261 : $e6, $5d
-	dec $00aa.w                                                  ; $c263 : $ce, $aa, $00
+	dec wJoy1PrevBtnsHeld.w                                                  ; $c263 : $ce, $aa, $00
 	inc $3f04.w                                                  ; $c266 : $ee, $04, $3f
 	cpx #$00.b                                                  ; $c269 : $e0, $00
 	sbc $219a02.l, X                                                  ; $c26b : $ff, $02, $9a, $21
@@ -8667,7 +8667,7 @@ br_0b_c2a0:
 br_0b_c301:
 	cpx #$1f.b                                                  ; $c301 : $e0, $1f
 	sep #$51.b                                                  ; $c303 : $e2, $51
-	inc $00aa.w                                                  ; $c305 : $ee, $aa, $00
+	inc wJoy1PrevBtnsHeld.w                                                  ; $c305 : $ee, $aa, $00
 	asl $22cf.w                                                  ; $c308 : $0e, $cf, $22
 	jsr $0ff1fe.l                                                  ; $c30b : $22, $fe, $f1, $0f
 	txs                                                  ; $c30f : $9a
@@ -11363,7 +11363,7 @@ br_0b_d787:
 	ora ($00), Y                                                  ; $d7c6 : $11, $00
 	cop $3f.b                                                  ; $d7c8 : $02, $3f
 	dec $ffff.w, X                                                  ; $d7ca : $de, $ff, $ff
-	inc $00aa.w                                                  ; $d7cd : $ee, $aa, $00
+	inc wJoy1PrevBtnsHeld.w                                                  ; $d7cd : $ee, $aa, $00
 	and $fe, S                                                  ; $d7d0 : $23, $fe
 	ora $f00f00.l                                                  ; $d7d2 : $0f, $00, $0f, $f0
 	.db $00                                                  ; $d7d6 : $00
@@ -12622,7 +12622,7 @@ br_0b_e167:
 	ora ($01, X)                                                  ; $e183 : $01, $01
 	ora ($43), Y                                                  ; $e185 : $11, $43
 	cpx $11ce.w                                                  ; $e187 : $ec, $ce, $11
-	inc $00aa.w                                                  ; $e18a : $ee, $aa, $00
+	inc wJoy1PrevBtnsHeld.w                                                  ; $e18a : $ee, $aa, $00
 	.db $00                                                  ; $e18d : $00
 	sbc ($31), Y                                                  ; $e18e : $f1, $31
 	inc $2101.w                                                  ; $e190 : $ee, $01, $21

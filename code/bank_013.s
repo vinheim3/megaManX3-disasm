@@ -21,8 +21,14 @@ CapsuleState0_Init:
 	sta $7fcfff.l                                                  ; $c00d : $8f, $ff, $cf, $7f
 
 ; Jump if not the stage with the gold armour
+.ifdef SWAP_CAPSULE
+	lda StageEnemyEntity.subType.b
+	nop
+	cmp #$ff.b
+.else
 	lda wStageIdx.w                                                           ; $c011 : $ad, $ae, $1f
 	cmp #STAGE_DOPPLER_PT_1.b                                                 ; $c014 : $c9, $0a
+.endif
 	bne @notDoppler                                                           ; $c016 : $d0, $19
 
 ; All sub tanks and upgrades must be gotten
@@ -42,9 +48,16 @@ CapsuleState0_Init:
 	bne @deleteSelf                                                           ; $c02f : $d0, $3c
 
 @notDoppler:
+.ifdef SWAP_CAPSULE
+	jsr ConvertNewCapsuleParamToCapsuleItemGivingEntityParam.w
+	tay
+	nop
+	nop
+.else
 ; associate stage with a bit for the upgrade
 	ldx wStageIdx.w                                                  ; $c031 : $ae, $ae, $1f
 	ldy Data_6_ccfa.w, X                                                  ; $c034 : $bc, $fa, $cc
+.endif
 
 ; jump if the highest bits (chips), as upgrades are in a byte's low bits
 	lda BitTable.w, Y                                                  ; $c037 : $b9, $fd, $bb
@@ -71,19 +84,19 @@ CapsuleState0_Init:
 
 ; jump if the associated upgrade not yet gotten
 	and wSubTanksAndUpgradesGottenBitfield.w                                                  ; $c051 : $2d, $d1, $1f
-	beq @br_c065                                                  ; $c054 : $f0, $0f
+	beq @associatedUpgradeNotGotten                                                  ; $c054 : $f0, $0f
 
 ; jump if no chips gotten yet
 	lda wChipsAndRideArmoursGottenBitfield.w                                                  ; $c056 : $ad, $d7, $1f
 	and #$f0.b                                                  ; $c059 : $29, $f0
 	beq @br_c071                                                  ; $c05b : $f0, $14
 
-;
+; chips already gotten
 	lda #$02.b                                                  ; $c05d : $a9, $02
 	sta $7fcfff.l                                                  ; $c05f : $8f, $ff, $cf, $7f
 	bra @br_c071                                                  ; $c063 : $80, $0c
 
-@br_c065:
+@associatedUpgradeNotGotten:
 	lda #$01.b                                                  ; $c065 : $a9, $01
 	sta $7fcfff.l                                                  ; $c067 : $8f, $ff, $cf, $7f
 	bra @br_c071                                                  ; $c06b : $80, $04
@@ -93,11 +106,28 @@ CapsuleState0_Init:
 
 @br_c071:
 	jsr Func_2_e15c.l                                                  ; $c071 : $22, $5c, $e1, $02
+
+.ifdef SWAP_CAPSULE
+	jsr AdjustCapsuleBaseTileIdx.w
+	nop
+.else
+; force base tile idx to $a0
 	lda #$a0.b                                                  ; $c075 : $a9, $a0
 	sta $18                                                  ; $c077 : $85, $18
+.endif
+
 	stz $26                                                  ; $c079 : $64, $26
+
+.ifdef SWAP_CAPSULE
+; we need the highest obj priority
+	jsr SetCapsuleNonFlipForcedAttrs.w
+	nop
+.else
+; force usage of highest obj priority, palette 7, and page 1 of tile data
 	lda #$3f.b                                                  ; $c07b : $a9, $3f
 	sta $11                                                  ; $c07d : $85, $11
+.endif
+
 	lda #$02.b                                                  ; $c07f : $a9, $02
 	sta $12                                                  ; $c081 : $85, $12
 	sta $30                                                  ; $c083 : $85, $30
@@ -108,7 +138,7 @@ CapsuleState0_Init:
 	sta $10                                                  ; $c08d : $85, $10
 	lda #$02.b                                                  ; $c08f : $a9, $02
 	sta StageEnemyEntity.substate                                                  ; $c091 : $85, $02
-	rep #$20.b                                                  ; $c093 : $c2, $20
+	rep #ACCU_8                                                  ; $c093 : $c2, $20
 
 ; stage * 4, to get X's then Y's
 	lda wStageIdx.w                                                  ; $c095 : $ad, $ae, $1f
@@ -116,10 +146,20 @@ CapsuleState0_Init:
 	asl                                                  ; $c09b : $0a
 	asl                                                  ; $c09c : $0a
 	tax                                                  ; $c09d : $aa
+.ifdef SWAP_CAPSULE
+; coords
+	lda StageEnemyEntity.y
+	sec
+	sbc #$0018.w
+	sta StageEnemyEntity.y
+	nop
+	nop
+.else
 	lda Data_6_ccbe.w, X                                                  ; $c09e : $bd, $be, $cc
 	sta StageEnemyEntity.x                                                  ; $c0a1 : $85, $05
 	lda Data_6_ccbe.w+2, X                                                  ; $c0a3 : $bd, $c0, $cc
 	sta StageEnemyEntity.y                                                  ; $c0a6 : $85, $08
+.endif
 	lda #$cc96.w                                                  ; $c0a8 : $a9, $96, $cc
 	sta $20                                                  ; $c0ab : $85, $20
 	sep #ACCU_8                                                  ; $c0ad : $e2, $20
@@ -342,7 +382,7 @@ CapsuleMainSubstate2SubSubstate2:
 	bpl @br_c20f                                                  ; $c200 : $10, $0d
 
 	lda #$06.b                                                  ; $c202 : $a9, $06
-	sta $02                                                  ; $c204 : $85, $02
+	sta StageEnemyEntity.substate                                                  ; $c204 : $85, $02
 	stz StageEnemyEntity.subsubstate                                                 ; $c206 : $64, $03
 	jsr Func_4_d4bf.l                                                  ; $c208 : $22, $bf, $d4, $04
 .ifdef HACK
@@ -409,26 +449,29 @@ CapsuleMainSubstate3:
 
 CapsuleMainSubstate4:
 	ldx StageEnemyEntity.subsubstate                                                  ; $c261 : $a6, $03
-	jmp ($c266.w, X)                                                  ; $c263 : $7c, $66, $c2
+	jmp (@subsubstates.w, X)                                                  ; $c263 : $7c, $66, $c2
+
+@subsubstates:
+	.dw Func_13_c278
+	.dw $c304
+	.dw $c330
+	.dw $c352
+	.dw $c3a2
+	.dw Func_13_c3be
+	.dw $c3cf
+	.dw $c3fb
+	.dw Func_13_c45c
 
 
-	sei                                                  ; $c266 : $78
-	rep #$04.b                                                  ; $c267 : $c2, $04
-	cmp $30, S                                                  ; $c269 : $c3, $30
-	cmp $52, S                                                  ; $c26b : $c3, $52
-	cmp $a2, S                                                  ; $c26d : $c3, $a2
-	cmp $be, S                                                  ; $c26f : $c3, $be
-	cmp $cf, S                                                  ; $c271 : $c3, $cf
-	cmp $fb, S                                                  ; $c273 : $c3, $fb
-	cmp $5c, S                                                  ; $c275 : $c3, $5c
-	cpy $a9                                                  ; $c277 : $c4, $a9
-	cop $85.b                                                  ; $c279 : $02, $85
-	ora $c2, S                                                  ; $c27b : $03, $c2
-	jsr $05a5.w                                                  ; $c27d : $20, $a5, $05
+Func_13_c278:
+	lda #$02.b                                                  ; $c278 : $a9, $02
+	sta StageEnemyEntity.subsubstate                                                  ; $c27a : $85, $03
+	rep #ACCU_8                                                  ; $c27c : $c2, $20
+	lda StageEnemyEntity.x                                                  ; $c27e : $a5, $05
 	sta wPlayerEntity.x.w                                                  ; $c280 : $8d, $dd, $09
 	stz wJoy1CurrButtonsHeld.w                                                  ; $c283 : $9c, $a8, $00
-	stz $00aa.w                                                  ; $c286 : $9c, $aa, $00
-	stz $00ac.w                                                  ; $c289 : $9c, $ac, $00
+	stz wJoy1PrevBtnsHeld.w                                                  ; $c286 : $9c, $aa, $00
+	stz wJoy1CurrBtnsPressed.w                                                  ; $c289 : $9c, $ac, $00
 	stz wDashAndSelCurrBtnsHeld.w                                                  ; $c28c : $9c, $0e, $0a
 	stz wDashAndSelPrevBtnsHeld.w                                                  ; $c28f : $9c, $10, $0a
 	sep #ACCU_8                                                  ; $c292 : $e2, $20
@@ -548,7 +591,11 @@ br_13_c36c:
 	lda wStageIdx.w                                                  ; $c376 : $ad, $ae, $1f
 	and #$00ff.w                                                  ; $c379 : $29, $ff, $00
 	tax                                                  ; $c37c : $aa
+.ifdef SWAP_CAPSULE
+	jsr ConvertNewCapsuleParamToCapsuleItemGivingEntityParam.w
+.else
 	lda Data_6_ccfa.w, X                                                  ; $c37d : $bd, $fa, $cc
+.endif
 	and #$00ff.w                                                  ; $c380 : $29, $ff, $00
 	cmp #$0004.w                                                  ; $c383 : $c9, $04, $00
 	bmi br_13_c38d                                                  ; $c386 : $30, $05
@@ -580,7 +627,11 @@ br_13_c39b:
 	lda #$1e.b                                                  ; $c3aa : $a9, $1e
 	sta $34                                                  ; $c3ac : $85, $34
 	ldx wStageIdx.w                                                  ; $c3ae : $ae, $ae, $1f
+.ifdef SWAP_CAPSULE
+	jsr ConvertNewCapsuleParamToCapsuleItemGivingEntityParam.w
+.else
 	lda Data_6_ccfa.w, X                                                  ; $c3b1 : $bd, $fa, $cc
+.endif
 	cmp #$08.b                                                  ; $c3b4 : $c9, $08
 	beq br_13_c3bd                                                  ; $c3b6 : $f0, $05
 
@@ -591,6 +642,8 @@ br_13_c3bd:
 	rts                                                  ; $c3bd : $60
 
 
+; entry for chips?
+Func_13_c3be:
 	dec $34                                                  ; $c3be : $c6, $34
 	bne br_13_c3ce                                                  ; $c3c0 : $d0, $0c
 
@@ -676,23 +729,24 @@ br_13_c431:
 br_13_c443:
 	rep #ACCU_8                                                  ; $c443 : $c2, $20
 	lda wJoy1CurrButtonsHeld.w                                                  ; $c445 : $ad, $a8, $00
-	sta $00aa.w                                                  ; $c448 : $8d, $aa, $00
+	sta wJoy1PrevBtnsHeld.w                                                  ; $c448 : $8d, $aa, $00
 	lda $3e                                                  ; $c44b : $a5, $3e
 	sta wJoy1CurrButtonsHeld.w                                                  ; $c44d : $8d, $a8, $00
-	eor $00aa.w                                                  ; $c450 : $4d, $aa, $00
+	eor wJoy1PrevBtnsHeld.w                                                  ; $c450 : $4d, $aa, $00
 	and wJoy1CurrButtonsHeld.w                                                  ; $c453 : $2d, $a8, $00
-	sta $00ac.w                                                  ; $c456 : $8d, $ac, $00
+	sta wJoy1CurrBtnsPressed.w                                                  ; $c456 : $8d, $ac, $00
 	sep #ACCU_8                                                  ; $c459 : $e2, $20
 	rts                                                  ; $c45b : $60
 
 
+Func_13_c45c:
 	jsr SetCarryIfEntityWayOutOfView.l                                                  ; $c45c : $22, $8a, $d5, $02
-	bcc br_13_c466                                                  ; $c460 : $90, $04
+	bcc @inView                                                  ; $c460 : $90, $04
 
 	lda #$04.b                                                  ; $c462 : $a9, $04
-	sta $01                                                  ; $c464 : $85, $01
+	sta StageEnemyEntity.state                                                 ; $c464 : $85, $01
 
-br_13_c466:
+@inView:
 	jsr Func_4_b94a.l                                                  ; $c466 : $22, $4a, $b9, $04
 	rts                                                  ; $c46a : $60
 
@@ -799,10 +853,16 @@ Call_13_c4f3:
 	sta $000a.w, X                                                  ; $c501 : $9d, $0a, $00
 	lda $0000.w                                                  ; $c504 : $ad, $00, $00
 	sta $0003.w, X                                                  ; $c507 : $9d, $03, $00
+
+; spawn an entity that gives an item, with the appropriate bitfield
 	lda wStageIdx.w                                                  ; $c50a : $ad, $ae, $1f
 	and #$ff.b                                                  ; $c50d : $29, $ff
 	tay                                                  ; $c50f : $a8
+.ifdef SWAP_CAPSULE
+	jsr ConvertNewCapsuleParamToCapsuleItemGivingEntityParam.w
+.else
 	lda Data_6_ccfa.w, Y                                                  ; $c510 : $b9, $fa, $cc
+.endif
 	sta $000b.w, X                                                  ; $c513 : $9d, $0b, $00
 	rep #ACCU_8                                                  ; $c516 : $c2, $20
 	txa                                                  ; $c518 : $8a
@@ -841,7 +901,11 @@ br_13_c53b:
 	sta $0000.w                                                  ; $c542 : $8d, $00, $00
 	stz $0001.w                                                  ; $c545 : $9c, $01, $00
 	ldx wStageIdx.w                                                  ; $c548 : $ae, $ae, $1f
+.ifdef SWAP_CAPSULE
+	jsr ConvertNewCapsuleParamToCapsuleItemGivingEntityParam.w
+.else
 	lda Data_6_ccfa.w, X                                                  ; $c54b : $bd, $fa, $cc
+.endif
 	rep #ACCU_8|IDX_8|F_CARRY                                                  ; $c54e : $c2, $31
 	and #$00ff.w                                                  ; $c550 : $29, $ff, $00
 	cmp #$0004.w                                                  ; $c553 : $c9, $04, $00
@@ -924,7 +988,11 @@ br_13_c5ba:
 
 Call_13_c5bd:
 	ldx wStageIdx.w                                                  ; $c5bd : $ae, $ae, $1f
+.ifdef SWAP_CAPSULE
+	jsr ConvertNewCapsuleParamToCapsuleItemGivingEntityParam.w
+.else
 	lda Data_6_ccfa.w, X                                                  ; $c5c0 : $bd, $fa, $cc
+.endif
 	asl                                                  ; $c5c3 : $0a
 	tax                                                  ; $c5c4 : $aa
 	jmp ($c5c8.w, X)                                                  ; $c5c5 : $7c, $c8, $c5
@@ -9270,3 +9338,48 @@ br_13_fa52:
 	stz $08ed.w                                                  ; $fa67 : $9c, $ed, $08
 	stz $08f4.w                                                  ; $fa6a : $9c, $f4, $08
 	rts                                                  ; $fa6d : $60
+
+.ifdef SWAP_CAPSULE
+AdjustCapsuleBaseTileIdx:
+	lda $18
+	sec
+	sbc #$40
+	sta $18
+	rts
+
+
+SetCapsuleNonFlipForcedAttrs:
+	lda $11
+	ora #$30.b
+	sta $11
+	rts
+
+
+ConvertNewCapsuleParamToCapsuleItemGivingEntityParam:
+; this will utterly fail if subtype is 0
+; acc or idx can be 8/16
+	pha
+	phx
+	php
+
+	sep #ACCU_8|IDX_8
+	ldy #$08.b
+	lda StageEnemyEntity.subType.b
+	cmp #$ff.b
+	bne @nonHyper
+	bra @returnYasA
+
+@nonHyper:
+-	lsr
+	bcs @returnYasA
+	iny
+	bra -
+
+@returnYasA:
+	plp
+	plx
+	pla
+
+	tya
+	rts
+.endif

@@ -12853,11 +12853,11 @@ AllStagesEntityData:
 	.dw EntityLocations6_CrushCrawfish
 	.dw EntityLocations7_TunnelRhino
 	.dw EntityLocations8_NeonTiger
-	.dw EntityLocations9
-	.dw EntityLocationsA
-	.dw EntityLocationsB
-	.dw EntityLocationsC
-	.dw EntityLocationsD
+	.dw EntityLocations9_Vile
+	.dw EntityLocationsA_Doppler1
+	.dw EntityLocationsB_Doppler2
+	.dw EntityLocationsC_Doppler3
+	.dw EntityLocationsD_Doppler4
 	.dw EntityLocationsE
 	.dw Data_3c_fe7e
 
@@ -14279,7 +14279,11 @@ EntityLocations7_TunnelRhino:
 	.db $3d
 	.db $02, $58, $04, $15, $34, $a0, $87
 	.db $3f
+.ifdef SWAP_CAPSULE
+	.db $03, $58, $07, $4d, $ff, $e0, $87
+.else
 	.db $00, $58, $07, $0b, $40, $e0, $87
+.endif
 	.db $43
 	.db $03, $58, $04, $3f, $06, $70, $88
 	.db $44
@@ -14617,7 +14621,7 @@ EntityLocations8_NeonTiger:
 	.db $ee
 
 
-EntityLocations9:
+EntityLocations9_Vile:
 	.db $0c
 	.db $01, $80, $05, $33, $45, $80, $81
 	.db $13
@@ -14737,7 +14741,7 @@ EntityLocations9:
 	.db $9e
 
 
-EntityLocationsA:
+EntityLocationsA_Doppler1:
 	.db $0c
 	.db $01, $80, $08, $33, $49, $80, $01
 	.db $01, $80, $08, $33, $4a, $80, $01
@@ -14937,7 +14941,7 @@ EntityLocationsA:
 	.db $b7
 
 
-EntityLocationsB:
+EntityLocationsB_Doppler2:
 	.db $0c
 	.db $01, $80, $06, $33, $43, $80, $01
 	.db $01, $80, $06, $33, $64, $80, $01
@@ -15086,7 +15090,7 @@ EntityLocationsB:
 	.db $9c
 
 
-EntityLocationsC:
+EntityLocationsC_Doppler3:
 	.db $09
 	.db $03, $60, $02, $0e, $01, $28, $01
 	.db $03, $70, $03, $0e, $01, $28, $81
@@ -15213,7 +15217,7 @@ EntityLocationsC:
 	.db $7c
 
 
-EntityLocationsD:
+EntityLocationsD_Doppler4:
 	.db $0c
 	.db $01, $80, $0e, $33, $4c, $80, $01
 	.db $03, $80, $0e, $02, $06, $80, $01

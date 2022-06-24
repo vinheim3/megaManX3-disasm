@@ -4408,7 +4408,7 @@ br_39_ac2c:
 
 
 Call_39_ac3c:
-	lda $00ac.w                                                  ; $ac3c : $ad, $ac, $00
+	lda wJoy1CurrBtnsPressed.w                                                  ; $ac3c : $ad, $ac, $00
 	ora $00ad.w                                                  ; $ac3f : $0d, $ad, $00
 	beq br_39_ac46                                                  ; $ac42 : $f0, $02
 
@@ -5504,7 +5504,7 @@ br_39_b334:
 
 
 Call_39_b335:
-	lda $00ac.w                                                  ; $b335 : $ad, $ac, $00
+	lda wJoy1CurrBtnsPressed.w                                                  ; $b335 : $ad, $ac, $00
 	ora $00ad.w                                                  ; $b338 : $0d, $ad, $00
 	beq br_39_b33f                                                  ; $b33b : $f0, $02
 

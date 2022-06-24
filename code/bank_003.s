@@ -1889,7 +1889,7 @@ Call_03_8c0a:
 
 
 Call_03_8c25:
-	lda $00ac.w                                                  ; $8c25 : $ad, $ac, $00
+	lda wJoy1CurrBtnsPressed.w                                                  ; $8c25 : $ad, $ac, $00
 	and #$80.b                                                  ; $8c28 : $29, $80
 	beq br_03_8c37                                                  ; $8c2a : $f0, $0b
 
@@ -13707,7 +13707,7 @@ Call_03_d664:
 
 
 Call_03_d695:
-	lda $00ac.w                                                  ; $d695 : $ad, $ac, $00
+	lda wJoy1CurrBtnsPressed.w                                                  ; $d695 : $ad, $ac, $00
 	ora $00ad.w                                                  ; $d698 : $0d, $ad, $00
 	beq br_03_d69f                                                  ; $d69b : $f0, $02
 

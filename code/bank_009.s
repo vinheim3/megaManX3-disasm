@@ -8788,7 +8788,7 @@ br_09_ce50:
 	and ($03), Y                                                  ; $ce79 : $31, $03
 	tsb $00be.w                                                  ; $ce7b : $0c, $be, $00
 	ora ($54, X)                                                  ; $ce7e : $01, $54
-	inc $00aa.w, X                                                  ; $ce80 : $fe, $aa, $00
+	inc wJoy1PrevBtnsHeld.w, X                                                  ; $ce80 : $fe, $aa, $00
 	wai                                                  ; $ce83 : $cb
 	sep #ACCU_8|IDX_8                                                  ; $ce84 : $e2, $30
 	ora ($40, S), Y                                                  ; $ce86 : $13, $40
@@ -8821,7 +8821,7 @@ br_09_ce8f:
 	cmp $ede0.w, X                                                  ; $ceb8 : $dd, $e0, $ed
 	tsb $31                                                  ; $cebb : $04, $31
 	ora ($0e), Y                                                  ; $cebd : $11, $0e
-	dec $00aa.w                                                  ; $cebf : $ce, $aa, $00
+	dec wJoy1PrevBtnsHeld.w                                                  ; $cebf : $ce, $aa, $00
 	sbc ($44)                                                  ; $cec2 : $f2, $44
 	ora $e1dc01.l                                                  ; $cec4 : $0f, $01, $dc, $e1
 	jsr $4112aa.l                                                  ; $cec8 : $22, $aa, $12, $41

@@ -12432,7 +12432,7 @@ br_01_d11b:
 
 
 br_01_d122:
-	lda $00ac.w                                                  ; $d122 : $ad, $ac, $00
+	lda wJoy1CurrBtnsPressed.w                                                  ; $d122 : $ad, $ac, $00
 	ora $00ad.w                                                  ; $d125 : $0d, $ad, $00
 	beq br_01_d133                                                  ; $d128 : $f0, $09
 

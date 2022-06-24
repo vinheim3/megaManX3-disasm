@@ -5425,7 +5425,7 @@ br_12_a0cf:
 	inc $0e, X                                                  ; $a124 : $f6, $0e
 	lda $0eee00.l                                                  ; $a126 : $af, $00, $ee, $0e
 	ldx $ee00.w                                                  ; $a12a : $ae, $00, $ee
-	inc $00ac.w, X                                                  ; $a12d : $fe, $ac, $00
+	inc wJoy1CurrBtnsPressed.w, X                                                  ; $a12d : $fe, $ac, $00
 	inc $ad06.w                                                  ; $a130 : $ee, $06, $ad
 	jsr $fef6.w                                                  ; $a133 : $20, $f6, $fe
 	dey                                                  ; $a136 : $88
@@ -6275,7 +6275,7 @@ br_12_a686:
 
 br_12_a6b8:
 	ldx $f100.w                                                  ; $a6b8 : $ae, $00, $f1
-	sbc $00ac.w, X                                                  ; $a6bb : $fd, $ac, $00
+	sbc wJoy1CurrBtnsPressed.w, X                                                  ; $a6bb : $fd, $ac, $00
 	sbc ($05), Y                                                  ; $a6be : $f1, $05
 	lda $f920.w                                                  ; $a6c0 : $ad, $20, $f9
 	sbc $2088.w, X                                                  ; $a6c3 : $fd, $88, $20

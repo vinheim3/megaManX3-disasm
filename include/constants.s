@@ -18,9 +18,14 @@ NUM_TILEROWS = $20
 NUM_METATILES_PER_ROW = $10
 NUM_ROOMS_PER_STAGE_ROW = $20
 
+; https://megaman.fandom.com/wiki/List_of_Mega_Man_X3_enemies for enemies
+DECOMP_IDX_OAM_TILEDATA_NOTOR_BANGER = $02
 DECOMP_IDX_OAM_TILEDATA_CHIMERA_RIDER_ARMOUR = $25
 DECOMP_IDX_OAM_TILEDATA_HEART_TANK = $36
 DECOMP_IDX_OAM_TILEDATA_RIDE_ARMOUR_ITEM = $3b
+DECOMP_IDX_OAM_TILEDATA_DOOR = $56
+DECOMP_IDX_OAM_TILEDATA_CAPSULE = $88
+DECOMP_IDX_OAM_TILEDATA_DR_LIGHT = $89
 DECOMP_IDX_OAM_TILEDATA_SUBTANK = $8c
 DECOMP_IDX_OAM_TILEDATA_TRIAD_WEAK_BOULDER = $ac
 
@@ -38,6 +43,7 @@ ITEMID_RIDE_ARMOUR = $17
 ; subtype $20 in gravity beetle (arm chip)
 ; subtype $10 in tunnel rhino (head upgrade)
 ; subtype $10 in blast hornet (head chip)
+; subtype $10 in doppler 1
 ENEMYID_CAPSULE = $4d
 
 ; 15 stages

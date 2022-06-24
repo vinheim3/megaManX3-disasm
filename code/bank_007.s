@@ -536,17 +536,23 @@ Func_7_839e:
 	stz $2d                                                  ; $83a0 : $64, $2d
 	stz $06                                                  ; $83a2 : $64, $06
 	stz $07                                                  ; $83a4 : $64, $07
+
+; store num sides in 0c
 	lda Data_6_b1fa.w                                                  ; $83a6 : $ad, $fa, $b1
 	sta $0c                                                  ; $83a9 : $85, $0c
 	stz $0d                                                  ; $83ab : $64, $0d
+
+; clear x and y
 	ldy #$00.b                                                  ; $83ad : $a0, $00
 	tyx                                                  ; $83af : $bb
 	rep #ACCU_8|IDX_8                                                  ; $83b0 : $c2, $30
 
-@loop_83b2:
+@nextVertexPair:
 	phx                                                  ; $83b2 : $da
 	phy                                                  ; $83b3 : $5a
 	php                                                  ; $83b4 : $08
+
+; get vertex pair's 1st vertex, *4 and put in X
 	lda Data_6_b1fa.w+2, X                                                  ; $83b5 : $bd, $fc, $b1
 	and #$00ff.w                                                  ; $83b8 : $29, $ff, $00
 	asl                                                  ; $83bb : $0a
@@ -554,19 +560,31 @@ Func_7_839e:
 	asl                                                  ; $83bd : $0a
 	asl                                                  ; $83be : $0a
 	tax                                                  ; $83bf : $aa
+
+; get word from and store in 12
 	lda $6001.w, X                                                  ; $83c0 : $bd, $01, $60
 	stz $10                                                  ; $83c3 : $64, $10
 	sta $12                                                  ; $83c5 : $85, $12
+
+; get word and store in 16
 	lda $6005.w, X                                                  ; $83c7 : $bd, $05, $60
 	stz $14                                                  ; $83ca : $64, $14
 	sta $16                                                  ; $83cc : $85, $16
+
+; get byte and store in 0e (num loop_83e7)
 	lda $6600.w, Y                                                  ; $83ce : $b9, $00, $66
 	and #$00ff.w                                                  ; $83d1 : $29, $ff, $00
 	sta $0e                                                  ; $83d4 : $85, $0e
+
+; get word and store in 19
 	lda $6602.w, Y                                                  ; $83d6 : $b9, $02, $66
 	sta $19                                                  ; $83d9 : $85, $19
+
+; get word and store in 1d
 	lda $6605.w, Y                                                  ; $83db : $b9, $05, $66
 	sta $1d                                                  ; $83de : $85, $1d
+
+; set data bank to 7e (dest)
 	sep #ACCU_8|IDX_8                                                  ; $83e0 : $e2, $30
 	phb                                                  ; $83e2 : $8b
 	lda #$7e.b                                                  ; $83e3 : $a9, $7e
@@ -574,6 +592,7 @@ Func_7_839e:
 	plb                                                  ; $83e6 : $ab
 
 @loop_83e7:
+; if 12/16 != 6/7, call routine
 	lda $12                                                  ; $83e7 : $a5, $12
 	and #$f8.b                                                  ; $83e9 : $29, $f8
 	cmp $06                                                  ; $83eb : $c5, $06
@@ -587,16 +606,23 @@ Func_7_839e:
 @br_83f7:
 	jsr Call_07_846c.w                                                  ; $83f7 : $20, $6c, $84
 
+; x = low 3 bits of 16
 +	lda $16                                                  ; $83fa : $a5, $16
 	and #$07.b                                                  ; $83fc : $29, $07
 	tax                                                  ; $83fe : $aa
+
+; y = low 3 bits of 12
 	lda $12                                                  ; $83ff : $a5, $12
 	and #$07.b                                                  ; $8401 : $29, $07
 	tay                                                  ; $8403 : $a8
+
+;
 	lda $20, X                                                  ; $8404 : $b5, $20
 	and $af00.w, Y                                                  ; $8406 : $39, $00, $af
 	ora $af08.w, Y                                                  ; $8409 : $19, $08, $af
 	sta $20, X                                                  ; $840c : $95, $20
+
+; 11/15 += 19/1d
 	rep #ACCU_8|F_CARRY                                                  ; $840e : $c2, $21
 	lda $11                                                  ; $8410 : $a5, $11
 	adc $19                                                  ; $8412 : $65, $19
@@ -606,21 +632,28 @@ Func_7_839e:
 	adc $1d                                                  ; $8419 : $65, $1d
 	sta $15                                                  ; $841b : $85, $15
 	sep #ACCU_8                                                  ; $841d : $e2, $20
+
 	dec $0e                                                  ; $841f : $c6, $0e
 	bne @loop_83e7                                                  ; $8421 : $d0, $c4
 
 	plb                                                  ; $8423 : $ab
 	plp                                                  ; $8424 : $28
+
+; pulled Y += 8
 	pla                                                  ; $8425 : $68
 	clc                                                  ; $8426 : $18
 	adc #$0008.w                                                  ; $8427 : $69, $08, $00
 	tay                                                  ; $842a : $a8
+
+; pulled X += 2
 	plx                                                  ; $842b : $fa
 	inx                                                  ; $842c : $e8
 	inx                                                  ; $842d : $e8
-	dec $0c                                                  ; $842e : $c6, $0c
-	bne @br_8469                                                  ; $8430 : $d0, $37
 
+	dec $0c                                                  ; $842e : $c6, $0c
+	bne @toNextVertexPair                                                  ; $8430 : $d0, $37
+
+;
 	sep #ACCU_8                                                  ; $8432 : $e2, $20
 	ldx $2c                                                  ; $8434 : $a6, $2c
 	lda $20                                                  ; $8436 : $a5, $20
@@ -642,8 +675,8 @@ Func_7_839e:
 	sep #ACCU_8|IDX_8                                                  ; $8466 : $e2, $30
 	rts                                                  ; $8468 : $60
 
-@br_8469:
-	jmp @loop_83b2.w                                                  ; $8469 : $4c, $b2, $83
+@toNextVertexPair:
+	jmp @nextVertexPair.w                                                  ; $8469 : $4c, $b2, $83
 
 
 Call_07_846c:

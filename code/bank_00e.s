@@ -15646,7 +15646,7 @@ br_0e_e336:
 	clv                                                  ; $e347 : $b8
 	cpy $00ab.w                                                  ; $e348 : $cc, $ab, $00
 	.db $00                                                  ; $e34b : $00
-	cpy $00aa.w                                                  ; $e34c : $cc, $aa, $00
+	cpy wJoy1PrevBtnsHeld.w                                                  ; $e34c : $cc, $aa, $00
 	.db $00                                                  ; $e34f : $00
 	cpy $a9                                                  ; $e350 : $c4, $a9
 

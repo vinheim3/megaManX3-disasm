@@ -11148,15 +11148,15 @@ Jump_05_c7c0:
 	jmp (@funcs.w, X)                                                  ; $c7c4 : $7c, $c7, $c7
 
 @funcs:
-	.dw Func_5_c7d9
-	.dw Func_5_c7e0
-	.dw Func_5_c7f3
-	.dw Func_5_c808
-	.dw Func_5_c82e
-	.dw Func_5_c824
-	.dw Func_5_c82e
-	.dw Func_5_c82e
-	.dw Func_5_c824
+	.dw Func_5_c7d9 ; tunnel rhino helmet upgrade
+	.dw Func_5_c7e0 ; neon tiger arm upgrade
+	.dw Func_5_c7f3 ; volt catfish body upgrade
+	.dw Func_5_c808 ; blizzard buffalo leg upgrade
+	.dw Func_5_c82e ; blast hornet head chip
+	.dw Func_5_c824 ; gravity beetle arm chip
+	.dw Func_5_c82e ; crush crawfish body chip
+	.dw Func_5_c82e ; toxic seahorse leg chip
+	.dw Func_5_c824 ; doppler hyper chip
 
 
 Func_5_c7d9:
