@@ -15295,7 +15295,7 @@ Call_3f_e2fc:
 	and #$03.b                                                  ; $e2ff : $29, $03
 	bne br_3f_e349                                                  ; $e301 : $d0, $46
 
-	jsr $02d859.l                                                  ; $e303 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $e303 : $22, $59, $d8, $02
 	bne br_3f_e347                                                  ; $e307 : $d0, $3e
 
 	inc $0000.w, X                                                  ; $e309 : $fe, $00, $00
@@ -15626,7 +15626,7 @@ br_3f_e518:
 Call_3f_e519:
 	php                                                  ; $e519 : $08
 	rep #IDX_8                                                  ; $e51a : $c2, $10
-	jsr $02d859.l                                                  ; $e51c : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $e51c : $22, $59, $d8, $02
 	bne br_3f_e563                                                  ; $e520 : $d0, $41
 
 	inc $0000.w, X                                                  ; $e522 : $fe, $00, $00
@@ -17254,7 +17254,7 @@ Call_3f_ef32:
 	php                                                  ; $ef32 : $08
 	sep #ACCU_8                                                  ; $ef33 : $e2, $20
 	rep #IDX_8                                                  ; $ef35 : $c2, $10
-	jsr $02d859.l                                                  ; $ef37 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $ef37 : $22, $59, $d8, $02
 	bne br_3f_ef6d                                                  ; $ef3b : $d0, $30
 
 	lda #$88.b                                                  ; $ef3d : $a9, $88
@@ -17773,7 +17773,7 @@ br_3f_f243:
 	php                                                  ; $f247 : $08
 	sep #ACCU_8                                                  ; $f248 : $e2, $20
 	rep #IDX_8                                                  ; $f24a : $c2, $10
-	jsr $02d859.l                                                  ; $f24c : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $f24c : $22, $59, $d8, $02
 	bne br_3f_f282                                                  ; $f250 : $d0, $30
 
 	lda #$88.b                                                  ; $f252 : $a9, $88

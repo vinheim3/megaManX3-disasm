@@ -7083,7 +7083,7 @@ br_3c_a969:
 
 Call_3c_a96a:
 	rep #IDX_8                                                  ; $a96a : $c2, $10
-	jsr $02d859.l                                                  ; $a96c : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $a96c : $22, $59, $d8, $02
 	bne br_3c_a9c7                                                  ; $a970 : $d0, $55
 
 	inc $0000.w, X                                                  ; $a972 : $fe, $00, $00
@@ -8142,7 +8142,7 @@ br_3c_b024:
 
 Call_3c_b027:
 	rep #IDX_8                                                  ; $b027 : $c2, $10
-	jsr $02d859.l                                                  ; $b029 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $b029 : $22, $59, $d8, $02
 	bne br_3c_b066                                                  ; $b02d : $d0, $37
 
 	inc $0000.w, X                                                  ; $b02f : $fe, $00, $00
@@ -12731,7 +12731,7 @@ br_3c_cd95:
 
 Call_3c_cd96:
 	rep #IDX_8                                                  ; $cd96 : $c2, $10
-	jsr $02d859.l                                                  ; $cd98 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $cd98 : $22, $59, $d8, $02
 	bne br_3c_cda4                                                  ; $cd9c : $d0, $06
 
 	jsr Call_3c_cdc2.w                                                  ; $cd9e : $20, $c2, $cd
@@ -14280,7 +14280,7 @@ EntityLocations7_TunnelRhino:
 	.db $02, $58, $04, $15, $34, $a0, $87
 	.db $3f
 .ifdef SWAP_CAPSULE
-	.db $03, $58, $07, $4d, $ff, $e0, $87
+	.db $03, $58, $07, $4d, $10, $e0, $87
 .else
 	.db $00, $58, $07, $0b, $40, $e0, $87
 .endif

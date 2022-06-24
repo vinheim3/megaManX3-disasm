@@ -2832,7 +2832,7 @@ br_39_a242:
 
 Call_39_a245:
 	rep #IDX_8                                                  ; $a245 : $c2, $10
-	jsr $02d859.l                                                  ; $a247 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $a247 : $22, $59, $d8, $02
 	bne br_39_a242                                                  ; $a24b : $d0, $f5
 
 	inc $0000.w, X                                                  ; $a24d : $fe, $00, $00
@@ -3298,7 +3298,7 @@ Call_39_a4eb:
 	and #$07.b                                                  ; $a4ee : $29, $07
 	bne br_39_a538                                                  ; $a4f0 : $d0, $46
 
-	jsr $02d859.l                                                  ; $a4f2 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $a4f2 : $22, $59, $d8, $02
 	bne br_39_a536                                                  ; $a4f6 : $d0, $3e
 
 	inc $0000.w, X                                                  ; $a4f8 : $fe, $00, $00
@@ -4028,7 +4028,7 @@ br_39_a99c:
 Call_39_a9ad:
 	php                                                  ; $a9ad : $08
 	rep #IDX_8                                                  ; $a9ae : $c2, $10
-	jsr $02d859.l                                                  ; $a9b0 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $a9b0 : $22, $59, $d8, $02
 	bne br_39_a9f6                                                  ; $a9b4 : $d0, $40
 
 	lda #$01.b                                                  ; $a9b6 : $a9, $01
@@ -4101,7 +4101,7 @@ br_39_aa34:
 Call_39_aa37:
 	php                                                  ; $aa37 : $08
 	sep #ACCU_8                                                  ; $aa38 : $e2, $20
-	jsr $02d859.l                                                  ; $aa3a : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $aa3a : $22, $59, $d8, $02
 	bne br_39_aa82                                                  ; $aa3e : $d0, $42
 
 	rep #IDX_8                                                  ; $aa40 : $c2, $10
@@ -4679,7 +4679,7 @@ br_39_ade7:
 Call_39_adf9:
 	php                                                  ; $adf9 : $08
 	rep #IDX_8                                                  ; $adfa : $c2, $10
-	jsr $02d859.l                                                  ; $adfc : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $adfc : $22, $59, $d8, $02
 	bne br_39_ae34                                                  ; $ae00 : $d0, $32
 
 	inc $0000.w, X                                                  ; $ae02 : $fe, $00, $00
@@ -5029,7 +5029,7 @@ br_39_b034:
 Call_39_b035:
 	php                                                  ; $b035 : $08
 	rep #IDX_8                                                  ; $b036 : $c2, $10
-	jsr $02d859.l                                                  ; $b038 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $b038 : $22, $59, $d8, $02
 	bne br_39_b079                                                  ; $b03c : $d0, $3b
 
 	inc $0000.w, X                                                  ; $b03e : $fe, $00, $00
@@ -5903,7 +5903,7 @@ br_39_b59a:
 
 Call_39_b59d:
 	rep #IDX_8                                                  ; $b59d : $c2, $10
-	jsr $02d859.l                                                  ; $b59f : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $b59f : $22, $59, $d8, $02
 	bne br_39_b5d5                                                  ; $b5a3 : $d0, $30
 
 	jsr Call_39_b623.w                                                  ; $b5a5 : $20, $23, $b6
@@ -5934,7 +5934,7 @@ br_39_b5d5:
 
 Call_39_b5d8:
 	rep #IDX_8                                                  ; $b5d8 : $c2, $10
-	jsr $02d859.l                                                  ; $b5da : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $b5da : $22, $59, $d8, $02
 	bne br_39_b620                                                  ; $b5de : $d0, $40
 
 	jsr Call_39_b623.w                                                  ; $b5e0 : $20, $23, $b6
@@ -6904,7 +6904,7 @@ Call_39_bbf2:
 	and $0004.w                                                  ; $bc0f : $2d, $04, $00
 	bne br_39_bc78                                                  ; $bc12 : $d0, $64
 
-	jsr $02d859.l                                                  ; $bc14 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $bc14 : $22, $59, $d8, $02
 	bne br_39_bc78                                                  ; $bc18 : $d0, $5e
 
 	inc $0000.w, X                                                  ; $bc1a : $fe, $00, $00
@@ -7515,7 +7515,7 @@ Call_39_bfe5:
 	tax                                                  ; $bfeb : $aa
 	lda $e098.w, X                                                  ; $bfec : $bd, $98, $e0
 	tax                                                  ; $bfef : $aa
-	lda $09d8.w, X                                                  ; $bff0 : $bd, $d8, $09
+	lda wPlayerEntity.w, X                                                  ; $bff0 : $bd, $d8, $09
 	cmp $00, X                                                  ; $bff3 : $d5, $00
 	rts                                                  ; $bff5 : $60
 
@@ -7822,8 +7822,8 @@ Data_39_c1bc:
 	.dw $f30c
 	.dw $f321
 	.dw $cbf4
-	.dw $ccd0
-	.dw $cdf8
+	.dw Data_39_ccd0
+	.dw Data_39_cdf8
 	.dw $cee5
 	.dw $c8af
 	.dw $c928
@@ -9426,34 +9426,26 @@ br_39_cc89:
 	sta [$1e]                                                  ; $cccd : $87, $1e
 	.db $82                                                  ; $cccf : $82
 
+
+
+Data_39_ccd0:
 	txa                                                  ; $ccd0 : $8a
 	bit #$86.b                                                  ; $ccd1 : $89, $86
 	php                                                  ; $ccd3 : $08
 	cpy #$0488.w                                                  ; $ccd4 : $c0, $88, $04
-	plp                                                  ; $ccd7 : $28
-	mvp $2e, $52                                                  ; $ccd8 : $44, $52, $2e
-	jmp $4749.w                                                  ; $ccdb : $4c, $49, $47
 
+	.asc "(DR.LIGHT)"
+	
+	.db $80                                                  ; $cce1 : $80
+	.db $80                                                  ; $cce2 : $80
 
-	pha                                                  ; $ccde : $48
-	mvn $80, $29                                                  ; $ccdf : $54, $29, $80
-	bra br_39_cd29                                                  ; $cce2 : $80, $45
+	.asc "Enter this capsule,"
 
-	ror $6574.w                                                  ; $cce4 : $6e, $74, $65
-	adc ($20)                                                  ; $cce7 : $72, $20
-	stz $68, X                                                  ; $cce9 : $74, $68
-	adc #$73.b                                                  ; $cceb : $69, $73
-
-br_39_cced:
-	jsr $6163.w                                                  ; $cced : $20, $63, $61
-	.db $70, $73                                                  ; $ccf0 : $70, $73
-
-	adc $6c, X                                                  ; $ccf2 : $75, $6c
-	adc $2c                                                  ; $ccf4 : $65, $2c
 	.db $80, $80                                                  ; $ccf6 : $80, $80
 
-	cli                                                  ; $ccf8 : $58
-	rol $8080.w                                                  ; $ccf9 : $2e, $80, $80
+	.asc "X."
+
+	.dw $8080.w                                                  ; $ccfa : $80, $80
 	sta ($80, X)                                                  ; $ccfc : $81, $80
 	stx $07                                                  ; $ccfe : $86, $07
 	sta [$1e]                                                  ; $cd00 : $87, $1e
@@ -9514,7 +9506,7 @@ br_39_cd29:
 
 	adc ($73, X)                                                  ; $cd67 : $61, $73
 	adc $64                                                  ; $cd69 : $65, $64
-	bra br_39_cced                                                  ; $cd6b : $80, $80
+	.db $80, $80
 
 	adc $74206e.l                                                  ; $cd6d : $6f, $6e, $20, $74
 
@@ -9582,15 +9574,9 @@ br_39_cdc5:
 	adc [$72]                                                  ; $cdd4 : $67, $72
 	adc $646e75.l                                                  ; $cdd6 : $6f, $75, $6e, $64
 	and $8080.w                                                  ; $cdda : $2d, $80, $80
-	.db $70, $65                                                  ; $cddd : $70, $65
 
-	ror $7465.w                                                  ; $cddf : $6e, $65, $74
-	adc ($61)                                                  ; $cde2 : $72, $61
-	stz $69, X                                                  ; $cde4 : $74, $69
-	ror $2067.w                                                  ; $cde6 : $6e, $67, $20
-	adc ($61)                                                  ; $cde9 : $72, $61
-	stz $61                                                  ; $cdeb : $64, $61
-	adc ($2e)                                                  ; $cded : $72, $2e
+	.asc "penetrating radar."
+
 	bra br_39_cd71                                                  ; $cdef : $80, $80
 
 	sta ($80, X)                                                  ; $cdf1 : $81, $80
@@ -9598,6 +9584,9 @@ br_39_cdc5:
 	sta [$1e]                                                  ; $cdf5 : $87, $1e
 	.db $82                                                  ; $cdf7 : $82
 
+
+
+Data_39_cdf8:
 	txa                                                  ; $cdf8 : $8a
 	bit #$86.b                                                  ; $cdf9 : $89, $86
 	php                                                  ; $cdfb : $08

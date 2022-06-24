@@ -19724,7 +19724,7 @@ br_3d_fcaf:
 
 
 Call_3d_fcb2:
-	jsr $02d859.l                                                  ; $fcb2 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $fcb2 : $22, $59, $d8, $02
 	bne br_3d_fce9                                                  ; $fcb6 : $d0, $31
 
 	rep #IDX_8                                                  ; $fcb8 : $c2, $10

@@ -12165,129 +12165,185 @@ Data_6_ccfa:
 	.db $01, $ff, $08, $ff, $ff, $ff, $ff
 
 
-	ora $52, X                                                  ; $cd09 : $15, $52
-	asl $72, X                                                  ; $cd0b : $16, $72
-	jmp $0c8248.l                                                  ; $cd0d : $5c, $48, $82, $0c
+Data_6_cd09:
+	.db Data_6_cd1e-Data_6_cd09
+	.db Data_6_cd5b-Data_6_cd09
+	.db Data_6_cd1f-Data_6_cd09
+	.db Data_6_cd7b-Data_6_cd09
+	.db Data_6_cd65-Data_6_cd09
+	.db Data_6_cd51-Data_6_cd09
+	.db Data_6_cd8b-Data_6_cd09
+	.db Data_6_cd15-Data_6_cd09
+	.db Data_6_cd3b-Data_6_cd09
+	.db Data_6_cd1e-Data_6_cd09
+	.db Data_6_cd95-Data_6_cd09
+	.db Data_6_cd1e-Data_6_cd09
+	
+
+Data_6_cd15:
+	.db $10
+	.db $00
+	.db $00
+	.db $40
+	.db $00
+	.db $02
+	.db $10
+	.db $00
+	.db $00
+
+Data_6_cd1e:
+	.db $ff
 
 
-	and ($15)                                                  ; $cd11 : $32, $15
-	sty $1015.w                                                  ; $cd13 : $8c, $15, $10
-	.db $00                                                  ; $cd16 : $00
-	.db $00                                                  ; $cd17 : $00
-	rti                                                  ; $cd18 : $40
+Data_6_cd1f:
+	.db $10
+	.db $00
+	.db $00
+	.db $20
+	.db $00
+	.db $02
+	.db $10
+	.db $00
+	.db $00
+	.db $10
+	.db $00
+	.db $80
+	.db $10
+	.db $80
+	.db $00
+	.db $30
+	.db $00
+	.db $00
+	.db $10
+	.db $00
+	.db $80
+	.db $20
+	.db $80
+	.db $08
+	.db $38
+	.db $00
+	.db $00
+	.db $ff
 
 
-	.db $00                                                  ; $cd19 : $00
-	cop $10.b                                                  ; $cd1a : $02, $10
-	.db $00                                                  ; $cd1c : $00
-	.db $00                                                  ; $cd1d : $00
-	sbc $000010.l, X                                                  ; $cd1e : $ff, $10, $00, $00
-	jsr $0200.w                                                  ; $cd22 : $20, $00, $02
-	bpl br_06_cd27                                                  ; $cd25 : $10, $00
-
-br_06_cd27:
-	.db $00                                                  ; $cd27 : $00
-	bpl br_06_cd2a                                                  ; $cd28 : $10, $00
-
-br_06_cd2a:
-	.db $80, $10                                                  ; $cd2a : $80, $10
-
-	bra br_06_cd2e                                                  ; $cd2c : $80, $00
-
-br_06_cd2e:
-	bmi br_06_cd30                                                  ; $cd2e : $30, $00
-
-br_06_cd30:
-	.db $00                                                  ; $cd30 : $00
-	bpl br_06_cd33                                                  ; $cd31 : $10, $00
-
-br_06_cd33:
-	.db $80, $20                                                  ; $cd33 : $80, $20
-
-	.db $80, $08                                                  ; $cd35 : $80, $08
-
-	sec                                                  ; $cd37 : $38
-	.db $00                                                  ; $cd38 : $00
-	.db $00                                                  ; $cd39 : $00
-	sbc $000010.l, X                                                  ; $cd3a : $ff, $10, $00, $00
-	jsr $0200.w                                                  ; $cd3e : $20, $00, $02
-	jsr $0000.w                                                  ; $cd41 : $20, $00, $00
-	bne br_06_cd46                                                  ; $cd44 : $d0, $00
-
-br_06_cd46:
-	rti                                                  ; $cd46 : $40
+Data_6_cd3b:
+	.db $10
+	.db $00
+	.db $00
+	.db $20
+	.db $00
+	.db $02
+	.db $20
+	.db $00
+	.db $00
+	.db $d0
+	.db $00
+	.db $40
+	.db $01
+	.db $00
+	.db $00
+	.db $01
+	.db $00
+	.db $40
+	.db $78
+	.db $00
+	.db $00
+	.db $ff
 
 
-	ora ($00, X)                                                  ; $cd47 : $01, $00
-	.db $00                                                  ; $cd49 : $00
-	ora ($00, X)                                                  ; $cd4a : $01, $00
-	rti                                                  ; $cd4c : $40
+Data_6_cd51:
+	.db $10
+	.db $00
+	.db $00
+	.db $30
+	.db $00
+	.db $02
+	.db $10
+	.db $00
+	.db $00
+	.db $ff
 
 
-	sei                                                  ; $cd4d : $78
-	.db $00                                                  ; $cd4e : $00
-	.db $00                                                  ; $cd4f : $00
-	sbc $000010.l, X                                                  ; $cd50 : $ff, $10, $00, $00
-	bmi br_06_cd56                                                  ; $cd54 : $30, $00
-
-br_06_cd56:
-	cop $10.b                                                  ; $cd56 : $02, $10
-	.db $00                                                  ; $cd58 : $00
-	.db $00                                                  ; $cd59 : $00
-	sbc $000010.l, X                                                  ; $cd5a : $ff, $10, $00, $00
-	jsr $0200.w                                                  ; $cd5e : $20, $00, $02
-	bpl br_06_cd63                                                  ; $cd61 : $10, $00
-
-br_06_cd63:
-	.db $00                                                  ; $cd63 : $00
-	sbc $000010.l, X                                                  ; $cd64 : $ff, $10, $00, $00
-	rti                                                  ; $cd68 : $40
+Data_6_cd5b:
+	.db $10
+	.db $00
+	.db $00
+	.db $20
+	.db $00
+	.db $02
+	.db $10
+	.db $00
+	.db $00
+	.db $ff
 
 
-	.db $00                                                  ; $cd69 : $00
-	cop $10.b                                                  ; $cd6a : $02, $10
-	.db $00                                                  ; $cd6c : $00
-	.db $80, $20                                                  ; $cd6d : $80, $20
+Data_6_cd65:
+	.db $10
+	.db $00
+	.db $00
+	.db $40
+	.db $00
+	.db $02
+	.db $10
+	.db $00
+	.db $80
+	.db $20
+	.db $80
+	.db $08
+	.db $10
+	.db $00
+	.db $00
+	.db $20
+	.db $80
+	.db $00
+	.db $60
+	.db $00
+	.db $00
+	.db $ff
 
-	bra br_06_cd79                                                  ; $cd6f : $80, $08
 
-	bpl br_06_cd73                                                  ; $cd71 : $10, $00
+Data_6_cd7b:
+	.db $10
+	.db $00
+	.db $00
+	.db $20
+	.db $00
+	.db $02
+	.db $10
+	.db $00
+	.db $00
+	.db $10
+	.db $20
+	.db $00
+	.db $80
+	.db $00
+	.db $00
+	.db $ff
 
-br_06_cd73:
-	.db $00                                                  ; $cd73 : $00
-	jsr $0080.w                                                  ; $cd74 : $20, $80, $00
-	rts                                                  ; $cd77 : $60
+
+Data_6_cd8b:
+	.db $10
+	.db $00
+	.db $00
+	.db $20
+	.db $00
+	.db $01
+	.db $10
+	.db $00
+	.db $00
+	.db $ff
 
 
-	.db $00                                                  ; $cd78 : $00
-
-br_06_cd79:
-	.db $00                                                  ; $cd79 : $00
-	sbc $000010.l, X                                                  ; $cd7a : $ff, $10, $00, $00
-	jsr $0200.w                                                  ; $cd7e : $20, $00, $02
-	bpl br_06_cd83                                                  ; $cd81 : $10, $00
-
-br_06_cd83:
-	.db $00                                                  ; $cd83 : $00
-	bpl $20                                                  ; $cd84 : $10, $20
-
-	.db $00                                                  ; $cd86 : $00
-	bra br_06_cd89                                                  ; $cd87 : $80, $00
-
-br_06_cd89:
-	.db $00                                                  ; $cd89 : $00
-	sbc $000010.l, X                                                  ; $cd8a : $ff, $10, $00, $00
-	jsr $0100.w                                                  ; $cd8e : $20, $00, $01
-	bpl br_06_cd93                                                  ; $cd91 : $10, $00
-
-br_06_cd93:
-	.db $00                                                  ; $cd93 : $00
-	sbc $000010.l, X                                                  ; $cd94 : $ff, $10, $00, $00
-	jsr $0100.w                                                  ; $cd98 : $20, $00, $01
-	bpl br_06_cd9d                                                  ; $cd9b : $10, $00
-
-br_06_cd9d:
-	.db $00                                                  ; $cd9d : $00
+Data_6_cd95:
+	.db $10
+	.db $00
+	.db $00
+	.db $20
+	.db $00
+	.db $01
+	.db $10
+	.db $00
+	.db $00
 	.db $ff
 
 
@@ -12529,19 +12585,23 @@ br_06_ceab:
 	cmp ($00), Y                                                  ; $cee7 : $d1, $00
 	ora $01, S                                                  ; $cee9 : $03, $01
 	eor $47                                                  ; $ceeb : $45, $47
-	.db $00                                                  ; $ceed : $00
-	.db $00                                                  ; $ceee : $00
-	rti                                                  ; $ceef : $40
 
 
-	mvp $00, $0b                                                  ; $cef0 : $44, $0b, $00
-	wdm                                                  ; $cef3 : $42
-	mvp $44, $43                                                  ; $cef4 : $44, $43, $44
-	ora $4100.w                                                  ; $cef7 : $0d, $00, $41
-	mvp $00, $0c                                                  ; $cefa : $44, $0c, $00
-	asl $0000.w                                                  ; $cefd : $0e, $00, $00
-	.db $00                                                  ; $cf00 : $00
-	lsr $14                                                  ; $cf01 : $46, $14
+Data_6_ceed:
+	.db $00, $00
+	.db $40, $44 ; head chip $10
+	.db $0b, $00 ; leg upgrade $08
+	.db $42, $44 ; arm chip $20
+	.db $43, $44 ; leg chip $80
+	.db $0d, $00 ; body upgrade $04
+	.db $41, $44 ; body chip $40
+	.db $0c, $00 ; helmet upgrade $01
+	.db $0e, $00 ; arm upgrade $02
+	.db $00, $00
+	.db $46, $14 ; hyper armour $ff
+
+
+;
 	.db $00                                                  ; $cf03 : $00
 	asl $0b                                                  ; $cf04 : $06, $0b
 	ina                                                  ; $cf06 : $1a
@@ -15171,13 +15231,14 @@ br_06_e0d1:
 	and $4241.w, Y                                                  ; $e0dc : $39, $41, $42
 	eor $44, S                                                  ; $e0df : $43, $44
 	eor $46                                                  ; $e0e1 : $45, $46
-	rti                                                  ; $e0e3 : $40
 
 
-	.db $80, $20                                                  ; $e0e4 : $80, $20
+Data_6_e0e3:
+; shot, jump, dash, select L, select R, menu btn
+	.db $40, $80, $20, $08, $04, $01
 
-	php                                                  ; $e0e6 : $08
-	tsb $01                                                  ; $e0e7 : $04, $01
+
+;
 	.db $00                                                  ; $e0e9 : $00
 	.db $00                                                  ; $e0ea : $00
 	.db $10, $01                                                  ; $e0eb : $10, $01

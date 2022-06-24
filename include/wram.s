@@ -32,8 +32,11 @@ w58:
 wThread3: ; $60
     instanceof Thread
 
-w68:
-    ds $10-8
+wTextByteSrcAddr: ; $68
+    dw
+
+w6a:
+    ds $10-$a
 
 wThread4: ; $70
     instanceof Thread

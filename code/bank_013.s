@@ -273,7 +273,7 @@ CapsuleMainSubstate1:
 	lda #$04.b                                                  ; $c16d : $a9, $04
 	sta $02                                                  ; $c16f : $85, $02
 	stz StageEnemyEntity.subsubstate                                                  ; $c171 : $64, $03
-.ifdef HACK
+.ifdef _HACK
 ; Prevent player freezing so they can go in the capsule
 	nop
 	nop
@@ -299,7 +299,7 @@ CapsuleMainSubstate1:
 	asl                                                  ; $c19c : $0a
 	tax                                                  ; $c19d : $aa
 
-.ifdef HACK
+.ifdef _HACK
 ; Prevent camera snapping in on capsule (as it requires text to snap back)
 	bra @cont_c1b4
 	nop
@@ -385,7 +385,7 @@ CapsuleMainSubstate2SubSubstate2:
 	sta StageEnemyEntity.substate                                                  ; $c204 : $85, $02
 	stz StageEnemyEntity.subsubstate                                                 ; $c206 : $64, $03
 	jsr Func_4_d4bf.l                                                  ; $c208 : $22, $bf, $d4, $04
-.ifdef HACK
+.ifdef _HACK
 ; Prevent guy (and therefore text) from spawning
 	rts
 	nop
@@ -453,13 +453,13 @@ CapsuleMainSubstate4:
 
 @subsubstates:
 	.dw Func_13_c278
-	.dw $c304
-	.dw $c330
-	.dw $c352
-	.dw $c3a2
+	.dw Func_13_c304
+	.dw Func_13_c330
+	.dw Func_13_c352
+	.dw Func_13_c3a2
 	.dw Func_13_c3be
-	.dw $c3cf
-	.dw $c3fb
+	.dw Func_13_c3cf
+	.dw Func_13_c3fb
 	.dw Func_13_c45c
 
 
@@ -518,11 +518,12 @@ Func_13_c278:
 	rts                                                  ; $c303 : $60
 
 
+Func_13_c304:
 	dec $34                                                  ; $c304 : $c6, $34
 	bne br_13_c32f                                                  ; $c306 : $d0, $27
 
 	lda #$04.b                                                  ; $c308 : $a9, $04
-	sta $03                                                  ; $c30a : $85, $03
+	sta StageEnemyEntity.subsubstate                                                  ; $c30a : $85, $03
 	lda $7fcffe.l                                                  ; $c30c : $af, $fe, $cf, $7f
 	sta wDynamicSpriteTileDatasIdx.w                                                  ; $c310 : $8d, $18, $1f
 	lda #$ff.b                                                  ; $c313 : $a9, $ff
@@ -544,13 +545,14 @@ br_13_c32f:
 	rts                                                  ; $c32f : $60
 
 
+Func_13_c330:
 	lda #$00.b                                                  ; $c330 : $a9, $00
 	jsr Call_13_c46f.w                                                  ; $c332 : $20, $6f, $c4
 	dec $34                                                  ; $c335 : $c6, $34
 	bne br_13_c342                                                  ; $c337 : $d0, $09
 
 	lda #$06.b                                                  ; $c339 : $a9, $06
-	sta $03                                                  ; $c33b : $85, $03
+	sta StageEnemyEntity.subsubstate                                                  ; $c33b : $85, $03
 	lda #$80.b                                                  ; $c33d : $a9, $80
 	sta $34                                                  ; $c33f : $85, $34
 	rts                                                  ; $c341 : $60
@@ -569,6 +571,7 @@ br_13_c34d:
 	jmp Jump_13_c520.w                                                  ; $c34f : $4c, $20, $c5
 
 
+Func_13_c352:
 	lda #$01.b                                                  ; $c352 : $a9, $01
 	jsr Call_13_c46f.w                                                  ; $c354 : $20, $6f, $c4
 	rep #ACCU_8|IDX_8                                                  ; $c357 : $c2, $30
@@ -584,7 +587,7 @@ br_13_c34d:
 
 br_13_c36c:
 	lda #$08.b                                                  ; $c36c : $a9, $08
-	sta $03                                                  ; $c36e : $85, $03
+	sta StageEnemyEntity.subsubstate                                                  ; $c36e : $85, $03
 	lda #$1e.b                                                  ; $c370 : $a9, $1e
 	sta $34                                                  ; $c372 : $85, $34
 	rep #ACCU_8|IDX_8                                                  ; $c374 : $c2, $30
@@ -619,11 +622,12 @@ br_13_c39b:
 	jmp Jump_13_c520.w                                                  ; $c39f : $4c, $20, $c5
 
 
+Func_13_c3a2:
 	dec $34                                                  ; $c3a2 : $c6, $34
 	bne br_13_c3bd                                                  ; $c3a4 : $d0, $17
 
 	lda #$0a.b                                                  ; $c3a6 : $a9, $0a
-	sta $03                                                  ; $c3a8 : $85, $03
+	sta StageEnemyEntity.subsubstate                                                 ; $c3a8 : $85, $03
 	lda #$1e.b                                                  ; $c3aa : $a9, $1e
 	sta $34                                                  ; $c3ac : $85, $34
 	ldx wStageIdx.w                                                  ; $c3ae : $ae, $ae, $1f
@@ -645,88 +649,88 @@ br_13_c3bd:
 ; entry for chips?
 Func_13_c3be:
 	dec $34                                                  ; $c3be : $c6, $34
-	bne br_13_c3ce                                                  ; $c3c0 : $d0, $0c
+	bne @done                                                  ; $c3c0 : $d0, $0c
 
 	lda #$0c.b                                                  ; $c3c2 : $a9, $0c
-	sta $03                                                  ; $c3c4 : $85, $03
+	sta StageEnemyEntity.subsubstate                                                 ; $c3c4 : $85, $03
 	lda #$3c.b                                                  ; $c3c6 : $a9, $3c
 	sta $34                                                  ; $c3c8 : $85, $34
-	jsr $04d217.l                                                  ; $c3ca : $22, $17, $d2, $04
+	jsr Func_4_d217.l                                                  ; $c3ca : $22, $17, $d2, $04
 
-br_13_c3ce:
+@done:
 	rts                                                  ; $c3ce : $60
 
 
+Func_13_c3cf:
 	dec $34                                                  ; $c3cf : $c6, $34
-	bne br_13_c3fa                                                  ; $c3d1 : $d0, $27
+	bne @done                                                  ; $c3d1 : $d0, $27
 
 	stz $0a08.w                                                  ; $c3d3 : $9c, $08, $0a
 	lda #$0e.b                                                  ; $c3d6 : $a9, $0e
-	sta $03                                                  ; $c3d8 : $85, $03
+	sta StageEnemyEntity.subsubstate                                                  ; $c3d8 : $85, $03
 	stz $3c                                                  ; $c3da : $64, $3c
 	lda #$01.b                                                  ; $c3dc : $a9, $01
 	sta $3d                                                  ; $c3de : $85, $3d
-	ldx #$05.b                                                  ; $c3e0 : $a2, $05
 
-br_13_c3e2:
-	lda wShotBtnMapped.l, X                                                  ; $c3e2 : $bf, $c0, $ff, $7e
+; preserve button mapping
+	ldx #$05.b                                                  ; $c3e0 : $a2, $05
+-	lda wShotBtnMapped.l, X                                                  ; $c3e2 : $bf, $c0, $ff, $7e
 	sta $7ff008.l, X                                                  ; $c3e6 : $9f, $08, $f0, $7f
 	dex                                                  ; $c3ea : $ca
-	bpl br_13_c3e2                                                  ; $c3eb : $10, $f5
+	bpl -                                                  ; $c3eb : $10, $f5
 
+; set a new one for the purpose of easily moving the player
 	ldx #$05.b                                                  ; $c3ed : $a2, $05
-
-br_13_c3ef:
-	lda $06e0e3.l, X                                                  ; $c3ef : $bf, $e3, $e0, $06
+-	lda Data_6_e0e3.l, X                                                  ; $c3ef : $bf, $e3, $e0, $06
 	sta wShotBtnMapped.l, X                                                  ; $c3f3 : $9f, $c0, $ff, $7e
 	dex                                                  ; $c3f7 : $ca
-	bpl br_13_c3ef                                                  ; $c3f8 : $10, $f5
+	bpl -                                                  ; $c3f8 : $10, $f5
 
-br_13_c3fa:
+@done:
 	rts                                                  ; $c3fa : $60
 
 
+Func_13_c3fb:
 	dec $3d                                                  ; $c3fb : $c6, $3d
-	bne br_13_c443                                                  ; $c3fd : $d0, $44
+	bne @br_c443                                                  ; $c3fd : $d0, $44
 
 	ldx wStageIdx.w                                                  ; $c3ff : $ae, $ae, $1f
-	lda $cd09.w, X                                                  ; $c402 : $bd, $09, $cd
+	lda Data_6_cd09.w, X                                                  ; $c402 : $bd, $09, $cd
 	clc                                                  ; $c405 : $18
 	adc $3c                                                  ; $c406 : $65, $3c
 	tax                                                  ; $c408 : $aa
-	lda $cd09.w, X                                                  ; $c409 : $bd, $09, $cd
+	lda Data_6_cd09.w, X                                                  ; $c409 : $bd, $09, $cd
 	cmp #$ff.b                                                  ; $c40c : $c9, $ff
-	bne br_13_c431                                                  ; $c40e : $d0, $21
+	bne @br_c431                                                  ; $c40e : $d0, $21
 
 	lda #$10.b                                                  ; $c410 : $a9, $10
-	sta $03                                                  ; $c412 : $85, $03
+	sta StageEnemyEntity.subsubstate                                                 ; $c412 : $85, $03
 	dec $1f63.w                                                  ; $c414 : $ce, $63, $1f
 	dec $1f45.w                                                  ; $c417 : $ce, $45, $1f
 	stz $0a08.w                                                  ; $c41a : $9c, $08, $0a
 	dec $1f4f.w                                                  ; $c41d : $ce, $4f, $1f
 	jsr Call_13_c5bd.w                                                  ; $c420 : $20, $bd, $c5
-	ldx #$05.b                                                  ; $c423 : $a2, $05
 
-br_13_c425:
-	lda $7ff008.l, X                                                  ; $c425 : $bf, $08, $f0, $7f
+; restore button mapping
+	ldx #$05.b                                                  ; $c423 : $a2, $05
+-	lda $7ff008.l, X                                                  ; $c425 : $bf, $08, $f0, $7f
 	sta wShotBtnMapped.l, X                                                  ; $c429 : $9f, $c0, $ff, $7e
 	dex                                                  ; $c42d : $ca
-	bpl br_13_c425                                                  ; $c42e : $10, $f5
+	bpl -                                                  ; $c42e : $10, $f5
 
 	rts                                                  ; $c430 : $60
 
-
-br_13_c431:
+@br_c431:
 	sta $3d                                                  ; $c431 : $85, $3d
-	lda $cd0a.w, X                                                  ; $c433 : $bd, $0a, $cd
+	lda Data_6_cd09.w+1, X                                                  ; $c433 : $bd, $0a, $cd
 	sta $3e                                                  ; $c436 : $85, $3e
-	lda $cd0b.w, X                                                  ; $c438 : $bd, $0b, $cd
+	lda Data_6_cd09.w+2, X                                                  ; $c438 : $bd, $0b, $cd
 	sta $3f                                                  ; $c43b : $85, $3f
 	inc $3c                                                  ; $c43d : $e6, $3c
 	inc $3c                                                  ; $c43f : $e6, $3c
 	inc $3c                                                  ; $c441 : $e6, $3c
 
-br_13_c443:
+@br_c443:
 	rep #ACCU_8                                                  ; $c443 : $c2, $20
 	lda wJoy1CurrButtonsHeld.w                                                  ; $c445 : $ad, $a8, $00
 	sta wJoy1PrevBtnsHeld.w                                                  ; $c448 : $8d, $aa, $00
@@ -781,7 +785,7 @@ br_13_c48e:
 	ldy #$0003.w                                                  ; $c490 : $a0, $03, $00
 
 br_13_c493:
-	jsr $02d859.l                                                  ; $c493 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $c493 : $22, $59, $d8, $02
 	bne br_13_c4d6                                                  ; $c497 : $d0, $3d
 
 	inc $0000.w, X                                                  ; $c499 : $fe, $00, $00
@@ -4561,7 +4565,7 @@ Call_13_dc07:
 
 Call_13_dc3d:
 	rep #IDX_8                                                  ; $dc3d : $c2, $10
-	jsr $02d859.l                                                  ; $dc3f : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $dc3f : $22, $59, $d8, $02
 	bne br_13_dc6f                                                  ; $dc43 : $d0, $2a
 
 	jsr Call_13_dc72.w                                                  ; $dc45 : $20, $72, $dc
@@ -4571,7 +4575,7 @@ Call_13_dc3d:
 
 Jump_13_dc4f:
 	rep #IDX_8                                                  ; $dc4f : $c2, $10
-	jsr $02d859.l                                                  ; $dc51 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $dc51 : $22, $59, $d8, $02
 	bne br_13_dc6f                                                  ; $dc55 : $d0, $18
 
 	jsr Call_13_dc72.w                                                  ; $dc57 : $20, $72, $dc
@@ -4581,7 +4585,7 @@ Jump_13_dc4f:
 
 Call_13_dc61:
 	rep #IDX_8                                                  ; $dc61 : $c2, $10
-	jsr $02d859.l                                                  ; $dc63 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $dc63 : $22, $59, $d8, $02
 	bne br_13_dc6f                                                  ; $dc67 : $d0, $06
 
 	jsr Call_13_dc72.w                                                  ; $dc69 : $20, $72, $dc
@@ -8054,7 +8058,7 @@ Call_13_f1bf:
 
 Call_13_f1f9:
 	rep #IDX_8                                                  ; $f1f9 : $c2, $10
-	jsr $02d859.l                                                  ; $f1fb : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $f1fb : $22, $59, $d8, $02
 	bne br_13_f207                                                  ; $f1ff : $d0, $06
 
 	jsr Call_13_f20a.w                                                  ; $f201 : $20, $0a, $f2
@@ -9225,7 +9229,7 @@ Call_13_f979:
 	lda $ed2e.w, Y                                                  ; $f987 : $b9, $2e, $ed
 	sta $0000.w                                                  ; $f98a : $8d, $00, $00
 	rep #IDX_8                                                  ; $f98d : $c2, $10
-	jsr $02d859.l                                                  ; $f98f : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $f98f : $22, $59, $d8, $02
 	bne br_13_f99d                                                  ; $f993 : $d0, $08
 
 	jsr Call_13_f9ca.w                                                  ; $f995 : $20, $ca, $f9
@@ -9248,7 +9252,7 @@ Call_13_f9a0:
 	lda $ed2e.w, Y                                                  ; $f9ae : $b9, $2e, $ed
 	sta $0000.w                                                  ; $f9b1 : $8d, $00, $00
 	rep #IDX_8                                                  ; $f9b4 : $c2, $10
-	jsr $02d859.l                                                  ; $f9b6 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $f9b6 : $22, $59, $d8, $02
 	bne br_13_f99d                                                  ; $f9ba : $d0, $e1
 
 	jsr Call_13_f9ca.w                                                  ; $f9bc : $20, $ca, $f9
@@ -9370,6 +9374,7 @@ ConvertNewCapsuleParamToCapsuleItemGivingEntityParam:
 	bra @returnYasA
 
 @nonHyper:
+	ldy #$00.b
 -	lsr
 	bcs @returnYasA
 	iny

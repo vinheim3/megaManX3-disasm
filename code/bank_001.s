@@ -235,7 +235,7 @@ br_01_812d:
 
 	sep #ACCU_8                                                  ; $8156 : $e2, $20
 	rep #IDX_8                                                  ; $8158 : $c2, $10
-	jsr $02d859.l                                                  ; $815a : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $815a : $22, $59, $d8, $02
 	inc $0000.w, X                                                  ; $815e : $fe, $00, $00
 	lda #$1d.b                                                  ; $8161 : $a9, $1d
 	sta $000a.w, X                                                  ; $8163 : $9d, $0a, $00
@@ -2444,7 +2444,7 @@ br_01_8f5c:
 	stz $02                                                  ; $8f62 : $64, $02
 
 br_01_8f64:
-	jsr $02d859.l                                                  ; $8f64 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $8f64 : $22, $59, $d8, $02
 	bne br_01_8f95                                                  ; $8f68 : $d0, $2b
 
 	lda #$88.b                                                  ; $8f6a : $a9, $88
@@ -2691,7 +2691,7 @@ Call_01_9105:
 	cmp #$10.b                                                  ; $910a : $c9, $10
 	bpl br_01_9140                                                  ; $910c : $10, $32
 
-	jsr $02d859.l                                                  ; $910e : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $910e : $22, $59, $d8, $02
 	bne br_01_9140                                                  ; $9112 : $d0, $2c
 
 	lda #$88.b                                                  ; $9114 : $a9, $88
@@ -3059,7 +3059,7 @@ Call_01_935b:
 	ora $00, S                                                  ; $9369 : $03, $00
 
 br_01_936b:
-	jsr $02d859.l                                                  ; $936b : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $936b : $22, $59, $d8, $02
 	bne br_01_93a9                                                  ; $936f : $d0, $38
 
 	inc $0000.w, X                                                  ; $9371 : $fe, $00, $00
@@ -3537,7 +3537,7 @@ br_01_969c:
 Call_01_969e:
 	php                                                  ; $969e : $08
 	sep #ACCU_8                                                  ; $969f : $e2, $20
-	jsr $02d859.l                                                  ; $96a1 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $96a1 : $22, $59, $d8, $02
 	bne br_01_96e8                                                  ; $96a5 : $d0, $41
 
 	inc $0000.w, X                                                  ; $96a7 : $fe, $00, $00
@@ -4823,7 +4823,7 @@ Call_01_9f08:
 	php                                                  ; $9f08 : $08
 	sep #ACCU_8                                                  ; $9f09 : $e2, $20
 	rep #IDX_8                                                  ; $9f0b : $c2, $10
-	jsr $02d859.l                                                  ; $9f0d : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $9f0d : $22, $59, $d8, $02
 	beq br_01_9f15                                                  ; $9f11 : $f0, $02
 
 	plp                                                  ; $9f13 : $28
@@ -5481,7 +5481,7 @@ Call_01_a386:
 	ldy #$0001.w                                                  ; $a388 : $a0, $01, $00
 
 br_01_a38b:
-	jsr $02d859.l                                                  ; $a38b : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $a38b : $22, $59, $d8, $02
 	bne br_01_a3b4                                                  ; $a38f : $d0, $23
 
 	lda #$0f.b                                                  ; $a391 : $a9, $0f
@@ -6323,7 +6323,7 @@ Call_01_a93a:
 	php                                                  ; $a962 : $08
 	sep #ACCU_8                                                  ; $a963 : $e2, $20
 	rep #IDX_8                                                  ; $a965 : $c2, $10
-	jsr $02d859.l                                                  ; $a967 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $a967 : $22, $59, $d8, $02
 	bne br_01_a9c9                                                  ; $a96b : $d0, $5c
 
 	inc $0000.w, X                                                  ; $a96d : $fe, $00, $00
@@ -6715,7 +6715,7 @@ br_01_abda:
 	php                                                  ; $abdc : $08
 	sep #ACCU_8                                                  ; $abdd : $e2, $20
 	rep #IDX_8                                                  ; $abdf : $c2, $10
-	jsr $02d859.l                                                  ; $abe1 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $abe1 : $22, $59, $d8, $02
 	bne br_01_ac1b                                                  ; $abe5 : $d0, $34
 
 	lda #$88.b                                                  ; $abe7 : $a9, $88
@@ -8506,7 +8506,7 @@ Call_01_b775:
 	php                                                  ; $b775 : $08
 	sep #ACCU_8                                                  ; $b776 : $e2, $20
 	rep #IDX_8                                                  ; $b778 : $c2, $10
-	jsr $02d859.l                                                  ; $b77a : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $b77a : $22, $59, $d8, $02
 	bne br_01_b7a7                                                  ; $b77e : $d0, $27
 
 	lda #$88.b                                                  ; $b780 : $a9, $88
@@ -8877,7 +8877,7 @@ br_01_b9d8:
 	and #$03.b                                                  ; $b9ef : $29, $03
 	bne br_01_ba55                                                  ; $b9f1 : $d0, $62
 
-	jsr $02d859.l                                                  ; $b9f3 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $b9f3 : $22, $59, $d8, $02
 	bne br_01_ba55                                                  ; $b9f7 : $d0, $5c
 
 	lda #$88.b                                                  ; $b9f9 : $a9, $88
@@ -9391,7 +9391,7 @@ br_01_bd62:
 
 Call_01_bd65:
 	sta $0000.w                                                  ; $bd65 : $8d, $00, $00
-	jsr $02d859.l                                                  ; $bd68 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $bd68 : $22, $59, $d8, $02
 	bne br_01_bd9b                                                  ; $bd6c : $d0, $2d
 
 	lda #$88.b                                                  ; $bd6e : $a9, $88
@@ -9440,7 +9440,7 @@ Call_01_bd9e:
 	php                                                  ; $bdc8 : $08
 	sep #ACCU_8                                                  ; $bdc9 : $e2, $20
 	rep #IDX_8                                                  ; $bdcb : $c2, $10
-	jsr $02d859.l                                                  ; $bdcd : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $bdcd : $22, $59, $d8, $02
 	bne br_01_be32                                                  ; $bdd1 : $d0, $5f
 
 	inc $0000.w, X                                                  ; $bdd3 : $fe, $00, $00
@@ -9822,7 +9822,7 @@ Call_01_c046:
 	php                                                  ; $c046 : $08
 	sep #ACCU_8                                                  ; $c047 : $e2, $20
 	rep #IDX_8                                                  ; $c049 : $c2, $10
-	jsr $02d859.l                                                  ; $c04b : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $c04b : $22, $59, $d8, $02
 	bne br_01_c093                                                  ; $c04f : $d0, $42
 
 	lda #$88.b                                                  ; $c051 : $a9, $88
@@ -10546,7 +10546,7 @@ Call_01_c4f2:
 	ldy #$0001.w                                                  ; $c4f4 : $a0, $01, $00
 
 br_01_c4f7:
-	jsr $02d859.l                                                  ; $c4f7 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $c4f7 : $22, $59, $d8, $02
 	bne br_01_c525                                                  ; $c4fb : $d0, $28
 
 	lda #$88.b                                                  ; $c4fd : $a9, $88
@@ -10841,7 +10841,7 @@ Call_01_c6cd:
 	cmp #$10.b                                                  ; $c6d4 : $c9, $10
 	bpl br_01_c70a                                                  ; $c6d6 : $10, $32
 
-	jsr $02d859.l                                                  ; $c6d8 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $c6d8 : $22, $59, $d8, $02
 	bne br_01_c70a                                                  ; $c6dc : $d0, $2c
 
 	inc $0000.w, X                                                  ; $c6de : $fe, $00, $00
@@ -10873,7 +10873,7 @@ Call_01_c70d:
 	ldy #$0001.w                                                  ; $c70f : $a0, $01, $00
 
 br_01_c712:
-	jsr $02d859.l                                                  ; $c712 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $c712 : $22, $59, $d8, $02
 	bne br_01_c740                                                  ; $c716 : $d0, $28
 
 	lda #$0f.b                                                  ; $c718 : $a9, $0f
@@ -11168,7 +11168,7 @@ Call_01_c894:
 	lda #$0051.w                                                  ; $c904 : $a9, $51, $00
 	jsr $01802b.l                                                  ; $c907 : $22, $2b, $80, $01
 	sep #ACCU_8                                                  ; $c90b : $e2, $20
-	jsr $02d859.l                                                  ; $c90d : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $c90d : $22, $59, $d8, $02
 	bne br_01_c94c                                                  ; $c911 : $d0, $39
 
 	inc $0000.w, X                                                  ; $c913 : $fe, $00, $00
@@ -12794,7 +12794,7 @@ br_01_d363:
 
 Call_01_d367:
 	rep #IDX_8                                                  ; $d367 : $c2, $10
-	jsr $02d859.l                                                  ; $d369 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $d369 : $22, $59, $d8, $02
 	bne br_01_d384                                                  ; $d36d : $d0, $15
 
 	inc $0000.w, X                                                  ; $d36f : $fe, $00, $00
@@ -14496,7 +14496,7 @@ br_01_ddce:
 
 
 	phd                                                  ; $ddcf : $0b
-	pea $09d8.w                                                  ; $ddd0 : $f4, $d8, $09
+	pea wPlayerEntity.w                                                  ; $ddd0 : $f4, $d8, $09
 	pld                                                  ; $ddd3 : $2b
 	jsr Func_2_d812.l                                                  ; $ddd4 : $22, $12, $d8, $02
 	pld                                                  ; $ddd8 : $2b
@@ -15011,7 +15011,7 @@ br_01_e1bb:
 
 
 	phd                                                  ; $e1bc : $0b
-	pea $09d8.w                                                  ; $e1bd : $f4, $d8, $09
+	pea wPlayerEntity.w                                                  ; $e1bd : $f4, $d8, $09
 	pld                                                  ; $e1c0 : $2b
 	jsr AddEntityXSpeedOntoSubX.l                                                  ; $e1c1 : $22, $f3, $d7, $02
 	pld                                                  ; $e1c5 : $2b
@@ -15440,7 +15440,7 @@ br_01_e4eb:
 
 
 	phd                                                  ; $e517 : $0b
-	pea $09d8.w                                                  ; $e518 : $f4, $d8, $09
+	pea wPlayerEntity.w                                                  ; $e518 : $f4, $d8, $09
 	pld                                                  ; $e51b : $2b
 	jsr AddEntityXSpeedOntoSubX.l                                                  ; $e51c : $22, $f3, $d7, $02
 	pld                                                  ; $e520 : $2b
@@ -15515,7 +15515,7 @@ br_01_e594:
 	bne br_01_e5be                                                  ; $e5a4 : $d0, $18
 
 	phd                                                  ; $e5a6 : $0b
-	pea $09d8.w                                                  ; $e5a7 : $f4, $d8, $09
+	pea wPlayerEntity.w                                                  ; $e5a7 : $f4, $d8, $09
 	pld                                                  ; $e5aa : $2b
 	lda #$52.b                                                  ; $e5ab : $a9, $52
 	jsr Func_4_b967.l                                                  ; $e5ad : $22, $67, $b9, $04
@@ -16611,7 +16611,7 @@ br_01_eca7:
 	rtl                                                  ; $eccb : $6b
 
 
-	jsr $02d859.l                                                  ; $eccc : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $eccc : $22, $59, $d8, $02
 	bne br_01_ece9                                                  ; $ecd0 : $d0, $17
 
 	inc $0000.w, X                                                  ; $ecd2 : $fe, $00, $00
@@ -17140,7 +17140,7 @@ br_01_eff5:
 	jsr Func_4_b967.l                                                  ; $f01c : $22, $67, $b9, $04
 	lda #$40.b                                                  ; $f020 : $a9, $40
 	trb $11                                                  ; $f022 : $14, $11
-	jsr $02d859.l                                                  ; $f024 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $f024 : $22, $59, $d8, $02
 	bne br_01_f041                                                  ; $f028 : $d0, $17
 
 	inc $0000.w, X                                                  ; $f02a : $fe, $00, $00
@@ -17201,7 +17201,7 @@ Call_01_f084:
 
 
 Call_01_f085:
-	jsr $02d859.l                                                  ; $f085 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $f085 : $22, $59, $d8, $02
 	bne br_01_f0a3                                                  ; $f089 : $d0, $18
 
 	inc $0000.w, X                                                  ; $f08b : $fe, $00, $00
@@ -17226,7 +17226,7 @@ br_01_f0a3:
 
 
 Call_01_f0a6:
-	jsr $02d859.l                                                  ; $f0a6 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $f0a6 : $22, $59, $d8, $02
 	bne br_01_f0c2                                                  ; $f0aa : $d0, $16
 
 	inc $0000.w, X                                                  ; $f0ac : $fe, $00, $00
@@ -18709,7 +18709,7 @@ br_01_f99c:
 	bra br_01_f941                                                  ; $f9a0 : $80, $9f
 
 Call_01_f9a2:
-	jsr $02d859.l                                                  ; $f9a2 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $f9a2 : $22, $59, $d8, $02
 	bne br_01_f9d8                                                  ; $f9a6 : $d0, $30
 
 	inc $0000.w, X                                                  ; $f9a8 : $fe, $00, $00

@@ -12400,7 +12400,7 @@ todo_XequNextFreeEntitySlotForTypeX:
 
 @funcs:
 	.dw XequNextFreeEntitySlotForItems
-	.dw Func_2_d859
+	.dw todo_XequFree_1818_EntitySlot
 	.dw todo_XequNextFreeEntitySlotFor_1d18
 	.dw XequNextFreeEntitySlotForEnemies
 
@@ -12425,7 +12425,7 @@ XequNextFreeEntitySlotForItems:
 	rtl                                                  ; $d858 : $6b
 
 
-Func_2_d859:
+todo_XequFree_1818_EntitySlot:
 	rep #ACCU_8|IDX_8                                                  ; $d859 : $c2, $30
 	ldx #w1818_Entities.w                                                  ; $d85b : $a2, $18, $18
 
@@ -12610,7 +12610,7 @@ todo_DisablesEntity_d928:
 
 	php                                                  ; $d940 : $08
 	sep #ACCU_8|IDX_8                                                  ; $d941 : $e2, $30
-	jsr $02d859.l                                                  ; $d943 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $d943 : $22, $59, $d8, $02
 	bne br_02_d96b                                                  ; $d947 : $d0, $22
 
 	inc $0000.w, X                                                  ; $d949 : $fe, $00, $00
@@ -12672,7 +12672,7 @@ br_02_d9a3:
 	sta $0002.w                                                  ; $d9ad : $8d, $02, $00
 	lda #$37.b                                                  ; $d9b0 : $a9, $37
 	sta $0003.w                                                  ; $d9b2 : $8d, $03, $00
-	jsr $02d859.l                                                  ; $d9b5 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $d9b5 : $22, $59, $d8, $02
 	bne br_02_da18                                                  ; $d9b9 : $d0, $5d
 
 	inc $0a82.w                                                  ; $d9bb : $ee, $82, $0a
@@ -12686,7 +12686,7 @@ br_02_d9c1:
 	sta $0002.w                                                  ; $d9c5 : $8d, $02, $00
 	lda #$2b.b                                                  ; $d9c8 : $a9, $2b
 	sta $0003.w                                                  ; $d9ca : $8d, $03, $00
-	jsr $02d859.l                                                  ; $d9cd : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $d9cd : $22, $59, $d8, $02
 	bne br_02_da18                                                  ; $d9d1 : $d0, $45
 
 br_02_d9d3:
@@ -12733,7 +12733,7 @@ br_02_da18:
 	bne br_02_da78                                                  ; $da24 : $d0, $52
 
 	rep #IDX_8                                                  ; $da26 : $c2, $10
-	jsr $02d859.l                                                  ; $da28 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $da28 : $22, $59, $d8, $02
 	bne br_02_da78                                                  ; $da2c : $d0, $4a
 
 	inc $0000.w, X                                                  ; $da2e : $fe, $00, $00
@@ -13650,7 +13650,7 @@ br_02_df89:
 
 
 	rep #IDX_8                                                  ; $df8a : $c2, $10
-	jsr $02d859.l                                                  ; $df8c : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $df8c : $22, $59, $d8, $02
 	bne br_02_dff4                                                  ; $df90 : $d0, $62
 
 	inc $0000.w, X                                                  ; $df92 : $fe, $00, $00
@@ -13999,7 +13999,7 @@ _Func_2_e162:
 	stz $0002.w                                                  ; $e1b1 : $9c, $02, $00
 	sep #ACCU_8                                                  ; $e1b4 : $e2, $20
 	rep #IDX_8                                                  ; $e1b6 : $c2, $10
-	jsr $02d859.l                                                  ; $e1b8 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $e1b8 : $22, $59, $d8, $02
 	bne br_02_e1fa                                                  ; $e1bc : $d0, $3c
 
 	inc $0000.w, X                                                  ; $e1be : $fe, $00, $00
@@ -14623,7 +14623,7 @@ br_02_e569:
 
 Call_02_e572:
 	rep #IDX_8                                                  ; $e572 : $c2, $10
-	jsr $02d859.l                                                  ; $e574 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $e574 : $22, $59, $d8, $02
 	bne br_02_e5cf                                                  ; $e578 : $d0, $55
 
 	inc $0000.w, X                                                  ; $e57a : $fe, $00, $00
@@ -14909,7 +14909,7 @@ Call_02_e6f4:
 
 Call_02_e72f:
 	rep #IDX_8                                                  ; $e72f : $c2, $10
-	jsr $02d859.l                                                  ; $e731 : $22, $59, $d8, $02
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $e731 : $22, $59, $d8, $02
 	bne br_02_e76c                                                  ; $e735 : $d0, $35
 
 	inc $0000.w, X                                                  ; $e737 : $fe, $00, $00
@@ -17992,16 +17992,17 @@ br_02_faca:
 
 Jump_02_fae3:
 	ldx $02                                                  ; $fae3 : $a6, $02
-	jmp ($fae8.w, X)                                                  ; $fae5 : $7c, $e8, $fa
+	jmp (@substates.w, X)                                                  ; $fae5 : $7c, $e8, $fa
+
+@substates:
+	.dw Func_2_faf0
+	.dw Func_2_fb1c
+	.dw Func_2_fb26
+	.dw $fb9d
 
 
-	.db $f0, $fa                                                  ; $fae8 : $f0, $fa
-
-	trb $26fb.w                                                  ; $faea : $1c, $fb, $26
-	xce                                                  ; $faed : $fb
-	sta $9cfb.w, X                                                  ; $faee : $9d, $fb, $9c
-	.db $00                                                  ; $faf1 : $00
-	.db $00                                                  ; $faf2 : $00
+Func_2_faf0:
+	stz $0000.w                                                  ; $faf0 : $9c, $00, $00
 	lda $07                                                  ; $faf3 : $a5, $07
 	cmp $1a                                                  ; $faf5 : $c5, $1a
 	beq br_02_fafe                                                  ; $faf7 : $f0, $05
@@ -18031,6 +18032,7 @@ br_02_fb18:
 	rtl                                                  ; $fb1b : $6b
 
 
+Func_2_fb1c:
 	lda $0060.w                                                  ; $fb1c : $ad, $60, $00
 	bne br_02_fb25                                                  ; $fb1f : $d0, $04
 
@@ -18041,6 +18043,7 @@ br_02_fb25:
 	rtl                                                  ; $fb25 : $6b
 
 
+Func_2_fb26:
 	jsr Call_02_fd10.w                                                  ; $fb26 : $20, $10, $fd
 	beq br_02_fb47                                                  ; $fb29 : $f0, $1c
 
@@ -18295,8 +18298,8 @@ Call_02_fc9e:
 	sta $0006.w                                                  ; $fcc5 : $8d, $06, $00
 
 Func_2_fcc8:
-	jsr $02d859.l                                                  ; $fcc8 : $22, $59, $d8, $02
-	bne br_02_fd08                                                  ; $fccc : $d0, $3a
+	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $fcc8 : $22, $59, $d8, $02
+	bne @cont_fd08                                                  ; $fccc : $d0, $3a
 
 	inc $0000.w, X                                                  ; $fcce : $fe, $00, $00
 	lda #$2a.b                                                  ; $fcd1 : $a9, $2a
@@ -18316,10 +18319,18 @@ Func_2_fcc8:
 	sta $0007.w, X                                                  ; $fcf9 : $9d, $07, $00
 	lda $0006.w                                                  ; $fcfc : $ad, $06, $00
 	sta $0008.w, X                                                  ; $fcff : $9d, $08, $00
+
+.ifdef SWAP_CAPSULE
+	jsl SetCapsuleItemGiverTextIdx.l
+	nop
+	nop
+.else
+; store text idx
 	lda $0008.w                                                  ; $fd02 : $ad, $08, $00
 	sta $0006.w, X                                                  ; $fd05 : $9d, $06, $00
+.endif
 
-br_02_fd08:
+@cont_fd08:
 	sep #IDX_8                                                  ; $fd08 : $e2, $10
 	lda #$01.b                                                  ; $fd0a : $a9, $01
 	trb $1f3f.w                                                  ; $fd0c : $1c, $3f, $1f

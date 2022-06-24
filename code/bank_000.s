@@ -2076,7 +2076,7 @@ Func_0_8b78:
 
 Call_00_8b7c:
 	rep #ACCU_8                                                  ; $8b7c : $c2, $20
-	stz $09d8.w                                                  ; $8b7e : $9c, $d8, $09
+	stz wPlayerEntity.w                                                  ; $8b7e : $9c, $d8, $09
 	stz $09da.w                                                  ; $8b81 : $9c, $da, $09
 	stz $09dc.w                                                  ; $8b84 : $9c, $dc, $09
 	stz $09de.w                                                  ; $8b87 : $9c, $de, $09
@@ -2824,7 +2824,7 @@ Call_00_90de:
 	ldx #$010e.w                                                  ; $90e0 : $a2, $0e, $01
 
 br_00_90e3:
-	stz $09d8.w, X                                                  ; $90e3 : $9e, $d8, $09
+	stz wPlayerEntity.w, X                                                  ; $90e3 : $9e, $d8, $09
 	dex                                                  ; $90e6 : $ca
 	dex                                                  ; $90e7 : $ca
 	bpl br_00_90e3                                                  ; $90e8 : $10, $f9
@@ -16344,7 +16344,9 @@ todo_HandleTextThread:
 	tax                                                  ; $e644 : $aa
 	rep #ACCU_8                                                  ; $e645 : $c2, $20
 	lda Data_39_c1bc.l, X                                                  ; $e647 : $bf, $bc, $c1, $39
-	sta $68                                                  ; $e64b : $85, $68
+	sta wTextByteSrcAddr                                                 ; $e64b : $85, $68
+
+;
 	stz $6c                                                  ; $e64d : $64, $6c
 	stz $6e                                                  ; $e64f : $64, $6e
 	lda $1f75.w                                                  ; $e651 : $ad, $75, $1f
@@ -16364,6 +16366,7 @@ todo_HandleTextThread:
 	sta $1f4a.w                                                  ; $e66c : $8d, $4a, $1f
 
 Func_0_e66f:
+; jump if bit 7 clear on text byte
 	jsr todo_GetTextByte.w                                                  ; $e66f : $20, $21, $e9
 	bit #$80.b                                                  ; $e672 : $89, $80
 	beq Func_0_e679                                                  ; $e674 : $f0, $03
@@ -16477,28 +16480,30 @@ Func_0_e679:
 
 
 Func_0_e737:
+; jump if bit 6 set on text byte
 	bit #$40.b                                                  ; $e737 : $89, $40
 	bne @br_e75c                                                  ; $e739 : $d0, $21
 
+; else process special code
 	and #$0f.b                                                  ; $e73b : $29, $0f
 	asl                                                  ; $e73d : $0a
 	tax                                                  ; $e73e : $aa
 	jmp (@funcs.w, X)                                                  ; $e73f : $7c, $42, $e7
 
 @funcs:
-	.dw Func_0_e76f
-	.dw $e78c
-	.dw $e7b4
-	.dw $e7c5
-	.dw $e7d6
-	.dw $e7dc
-	.dw $e830
-	.dw $e8bd
-	.dw $e8df
-	.dw $e8e7
-	.dw $e906
-	.dw $e90f
-	.dw $e91b
+	.dw HandleTextByte80h
+	.dw HandleTextByte81h
+	.dw HandleTextByte82h
+	.dw HandleTextByte83h
+	.dw HandleTextByte84h
+	.dw HandleTextByte85h
+	.dw HandleTextByte86h
+	.dw HandleTextByte87h
+	.dw HandleTextByte88h
+	.dw HandleTextByte89h
+	.dw HandleTextByte8ah
+	.dw HandleTextByte8bh
+	.dw HandleTextByte8ch
 
 @br_e75c:
 	and #$0f.b                                                  ; $e75c : $29, $0f
@@ -16513,7 +16518,7 @@ Func_0_e737:
 	jmp Func_0_e66f.w                                                  ; $e76c : $4c, $6f, $e6
 
 
-Func_0_e76f:
+HandleTextByte80h:
 	rep #ACCU_8|F_CARRY                                                  ; $e76f : $c2, $21
 	lda $6a                                                  ; $e771 : $a5, $6a
 	adc #$0020.w                                                  ; $e773 : $69, $20, $00
@@ -16522,13 +16527,14 @@ Func_0_e76f:
 	sta $6a                                                  ; $e77c : $85, $6a
 	stz $6c                                                  ; $e77e : $64, $6c
 	tya                                                  ; $e780 : $98
-	adc $68                                                  ; $e781 : $65, $68
-	sta $68                                                  ; $e783 : $85, $68
+	adc wTextByteSrcAddr                                                  ; $e781 : $65, $68
+	sta wTextByteSrcAddr                                                  ; $e783 : $85, $68
 	sep #ACCU_8                                                  ; $e785 : $e2, $20
 	ldy #$00.b                                                  ; $e787 : $a0, $00
 	jmp Func_0_e66f.w                                                  ; $e789 : $4c, $6f, $e6
 
 
+HandleTextByte81h:
 	inc $1f51.w                                                  ; $e78c : $ee, $51, $1f
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e78f : $20, $62, $81
 
@@ -16556,6 +16562,7 @@ br_00_e7ab:
 	jmp Func_0_e66f.w                                                  ; $e7b1 : $4c, $6f, $e6
 
 
+HandleTextByte82h:
 	stz $0060.w                                                  ; $e7b4 : $9c, $60, $00
 	stz $1f50.w                                                  ; $e7b7 : $9c, $50, $1f
 	lda #$01.b                                                  ; $e7ba : $a9, $01
@@ -16564,6 +16571,7 @@ br_00_e7ab:
 	jmp StopCurrThreadProcessNexts.w                                                  ; $e7c2 : $4c, $5a, $81
 
 
+HandleTextByte83h:
 	lda #$00.b                                                  ; $e7c5 : $a9, $00
 	xba                                                  ; $e7c7 : $eb
 	jsr todo_GetTextByte.w                                                  ; $e7c8 : $20, $21, $e9
@@ -16574,10 +16582,13 @@ br_00_e7ab:
 	jmp Func_0_e66f.w                                                  ; $e7d3 : $4c, $6f, $e6
 
 
+HandleTextByte84h:
 	lda #$49.b                                                  ; $e7d6 : $a9, $49
 	sta $00                                                  ; $e7d8 : $85, $00
 	bra br_00_e7e0                                                  ; $e7da : $80, $04
 
+
+HandleTextByte85h:
 	lda #$47.b                                                  ; $e7dc : $a9, $47
 	sta $00                                                  ; $e7de : $85, $00
 
@@ -16619,20 +16630,21 @@ br_00_e82b:
 	jmp Func_0_e66f.w                                                  ; $e82d : $4c, $6f, $e6
 
 
+HandleTextByte86h:
 	inc $1f51.w                                                  ; $e830 : $ee, $51, $1f
 	jsr todo_GetTextByte.w                                                  ; $e833 : $20, $21, $e9
 	sta $1f4e.w                                                  ; $e836 : $8d, $4e, $1f
 
-br_00_e839:
+@loop_e839:
 	rep #ACCU_8|F_CARRY                                                  ; $e839 : $c2, $21
 	ldx $1f4b.w                                                  ; $e83b : $ae, $4b, $1f
-	beq br_00_e848                                                  ; $e83e : $f0, $08
+	beq @br_e848                                                  ; $e83e : $f0, $08
 
 	lda $09cc.w                                                  ; $e840 : $ad, $cc, $09
 	and #$0007.w                                                  ; $e843 : $29, $07, $00
-	bne br_00_e861                                                  ; $e846 : $d0, $19
+	bne @br_e861                                                  ; $e846 : $d0, $19
 
-br_00_e848:
+@br_e848:
 	lda $1f48.w                                                  ; $e848 : $ad, $48, $1f
 	and #$00ff.w                                                  ; $e84b : $29, $ff, $00
 	adc wBG3VertScroll                                                  ; $e84e : $65, $bf
@@ -16642,13 +16654,13 @@ br_00_e848:
 	lda $1f4c.w                                                  ; $e857 : $ad, $4c, $1f
 	and #$fff8.w                                                  ; $e85a : $29, $f8, $ff
 	cmp $00                                                  ; $e85d : $c5, $00
-	bne br_00_e866                                                  ; $e85f : $d0, $05
+	bne @br_e866                                                  ; $e85f : $d0, $05
 
-br_00_e861:
+@br_e861:
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e861 : $20, $62, $81
-	bra br_00_e839                                                  ; $e864 : $80, $d3
+	bra @loop_e839                                                  ; $e864 : $80, $d3
 
-br_00_e866:
+@br_e866:
 	lda wBG3VertScroll                                                  ; $e866 : $a5, $bf
 	sta $1f4c.w                                                  ; $e868 : $8d, $4c, $1f
 	ldx $a5                                                  ; $e86b : $a6, $a5
@@ -16670,13 +16682,12 @@ br_00_e866:
 	lda #$0020.w                                                  ; $e88e : $a9, $20, $00
 	sta $04                                                  ; $e891 : $85, $04
 
-br_00_e893:
-	lda #$0000.w                                                  ; $e893 : $a9, $00, $00
+-	lda #$0000.w                                                  ; $e893 : $a9, $00, $00
 	sta $0604.w, X                                                  ; $e896 : $9d, $04, $06
 	inx                                                  ; $e899 : $e8
 	inx                                                  ; $e89a : $e8
 	dec $04                                                  ; $e89b : $c6, $04
-	bne br_00_e893                                                  ; $e89d : $d0, $f4
+	bne -                                                  ; $e89d : $d0, $f4
 
 	sep #ACCU_8                                                  ; $e89f : $e2, $20
 	pla                                                  ; $e8a1 : $68
@@ -16685,18 +16696,16 @@ br_00_e893:
 	sta $a5                                                  ; $e8a5 : $85, $a5
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e8a7 : $20, $62, $81
 	dec $1f4e.w                                                  ; $e8aa : $ce, $4e, $1f
-	bne br_00_e839                                                  ; $e8ad : $d0, $8a
+	bne @loop_e839                                                  ; $e8ad : $d0, $8a
 
 	stz $1f51.w                                                  ; $e8af : $9c, $51, $1f
 	lda $1fb3.w                                                  ; $e8b2 : $ad, $b3, $1f
-	bne br_00_e8ba                                                  ; $e8b5 : $d0, $03
-
+	bne +                                                  ; $e8b5 : $d0, $03
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e8b7 : $20, $62, $81
-
-br_00_e8ba:
-	jmp Func_0_e66f.w                                                  ; $e8ba : $4c, $6f, $e6
++	jmp Func_0_e66f.w                                                  ; $e8ba : $4c, $6f, $e6
 
 
+HandleTextByte87h:
 	inc $1f51.w                                                  ; $e8bd : $ee, $51, $1f
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e8c0 : $20, $62, $81
 	jsr Call_00_e972.w                                                  ; $e8c3 : $20, $72, $e9
@@ -16716,11 +16725,13 @@ br_00_e8d3:
 	jmp Func_0_e66f.w                                                  ; $e8dc : $4c, $6f, $e6
 
 
+HandleTextByte88h:
 	jsr todo_GetTextByte.w                                                  ; $e8df : $20, $21, $e9
 	sta $6f                                                  ; $e8e2 : $85, $6f
 	jmp Func_0_e66f.w                                                  ; $e8e4 : $4c, $6f, $e6
 
 
+HandleTextByte89h:
 	jsr todo_GetTextByte.w                                                  ; $e8e7 : $20, $21, $e9
 	sta $6a                                                  ; $e8ea : $85, $6a
 	jsr todo_GetTextByte.w                                                  ; $e8ec : $20, $21, $e9
@@ -16738,17 +16749,20 @@ br_00_e8d3:
 	jmp Func_0_e66f.w                                                  ; $e903 : $4c, $6f, $e6
 
 
+HandleTextByte8ah:
 	inc $1f50.w                                                  ; $e906 : $ee, $50, $1f
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e909 : $20, $62, $81
 	jmp Func_0_e66f.w                                                  ; $e90c : $4c, $6f, $e6
 
 
+HandleTextByte8bh:
 	jsr todo_GetTextByte.w                                                  ; $e90f : $20, $21, $e9
 	sta $1f50.w                                                  ; $e912 : $8d, $50, $1f
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e915 : $20, $62, $81
 	jmp Func_0_e66f.w                                                  ; $e918 : $4c, $6f, $e6
 
 
+HandleTextByte8ch:
 	jsr todo_GetTextByte.w                                                  ; $e91b : $20, $21, $e9
 	jmp Func_0_e679.w                                                  ; $e91e : $4c, $79, $e6
 
@@ -16756,7 +16770,7 @@ br_00_e8d3:
 todo_GetTextByte:
 	peaw DATA_BANK_TEXT, DATA_BANK_NORMAL                                                  ; $e921 : $f4, $39, $06
 	plb                                                  ; $e924 : $ab
-	lda ($68), Y                                                  ; $e925 : $b1, $68
+	lda (wTextByteSrcAddr), Y                                                  ; $e925 : $b1, $68
 	iny                                                  ; $e927 : $c8
 	plb                                                  ; $e928 : $ab
 	rts                                                  ; $e929 : $60
@@ -16817,6 +16831,7 @@ Call_00_e972:
 	rts                                                  ; $e97a : $60
 
 
+; A - text idx
 AddTextThread:
 	phx                                                  ; $e97b : $da
 	phy                                                  ; $e97c : $5a
