@@ -15979,12 +15979,12 @@ br_04_deb5:
 
 Call_04_deb8:
 	lda $00                                                  ; $deb8 : $a5, $00
-	sta $211b.w                                                  ; $deba : $8d, $1b, $21
+	sta M7A.w                                                  ; $deba : $8d, $1b, $21
 	lda $01                                                  ; $debd : $a5, $01
-	sta $211b.w                                                  ; $debf : $8d, $1b, $21
+	sta M7A.w                                                  ; $debf : $8d, $1b, $21
 	lda $14                                                  ; $dec2 : $a5, $14
-	stz $211c.w                                                  ; $dec4 : $9c, $1c, $21
-	sta $211c.w                                                  ; $dec7 : $8d, $1c, $21
+	stz M7B.w                                                  ; $dec4 : $9c, $1c, $21
+	sta M7B.w                                                  ; $dec7 : $8d, $1c, $21
 	lda $2134.w                                                  ; $deca : $ad, $34, $21
 	rep #ACCU_8                                                  ; $decd : $c2, $20
 	lda $2135.w                                                  ; $decf : $ad, $35, $21
@@ -16088,24 +16088,24 @@ Call_04_df41:
 	tax                                                  ; $df4b : $aa
 	sep #ACCU_8                                                  ; $df4c : $e2, $20
 	lda $b55e.w, X                                                  ; $df4e : $bd, $5e, $b5
-	sta $211b.w                                                  ; $df51 : $8d, $1b, $21
+	sta M7A.w                                                  ; $df51 : $8d, $1b, $21
 	lda $b55f.w, X                                                  ; $df54 : $bd, $5f, $b5
-	sta $211b.w                                                  ; $df57 : $8d, $1b, $21
+	sta M7A.w                                                  ; $df57 : $8d, $1b, $21
 	lda $08                                                  ; $df5a : $a5, $08
-	stz $211c.w                                                  ; $df5c : $9c, $1c, $21
-	sta $211c.w                                                  ; $df5f : $8d, $1c, $21
+	stz M7B.w                                                  ; $df5c : $9c, $1c, $21
+	sta M7B.w                                                  ; $df5f : $8d, $1c, $21
 	lda $2134.w                                                  ; $df62 : $ad, $34, $21
 	lda $2135.w                                                  ; $df65 : $ad, $35, $21
 	sta $00                                                  ; $df68 : $85, $00
 	lda $2136.w                                                  ; $df6a : $ad, $36, $21
 	sta $01                                                  ; $df6d : $85, $01
 	lda $b560.w, X                                                  ; $df6f : $bd, $60, $b5
-	sta $211b.w                                                  ; $df72 : $8d, $1b, $21
+	sta M7A.w                                                  ; $df72 : $8d, $1b, $21
 	lda $b561.w, X                                                  ; $df75 : $bd, $61, $b5
-	sta $211b.w                                                  ; $df78 : $8d, $1b, $21
+	sta M7A.w                                                  ; $df78 : $8d, $1b, $21
 	lda $08                                                  ; $df7b : $a5, $08
-	stz $211c.w                                                  ; $df7d : $9c, $1c, $21
-	sta $211c.w                                                  ; $df80 : $8d, $1c, $21
+	stz M7B.w                                                  ; $df7d : $9c, $1c, $21
+	sta M7B.w                                                  ; $df80 : $8d, $1c, $21
 	lda $2134.w                                                  ; $df83 : $ad, $34, $21
 	lda $2135.w                                                  ; $df86 : $ad, $35, $21
 	sta $02                                                  ; $df89 : $85, $02
@@ -21407,30 +21407,3 @@ Call_04_ff75:
 	jsr $02c411.l                                                  ; $ff99 : $22, $11, $c4, $02
 	plp                                                  ; $ff9d : $28
 	rts                                                  ; $ff9e : $60
-
-
-	sbc $ffffff.l, X                                                  ; $ff9f : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffa3 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffa7 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffab : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffaf : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffb3 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffb7 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffbb : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffbf : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffc3 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffc7 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffcb : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffcf : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffd3 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffd7 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffdb : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffdf : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffe3 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffe7 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffeb : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffef : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff3 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff7 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fffb : $ff, $ff, $ff, $ff
-	.db $ff                                                  ; $ffff : $ff

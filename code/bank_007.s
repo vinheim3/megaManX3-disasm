@@ -29,16 +29,16 @@
 	lda #$24.b                                                  ; $803d : $a9, $24
 	sta $1ff9.w                                                  ; $803f : $8d, $f9, $1f
 	lda #$ff.b                                                  ; $8042 : $a9, $ff
-	sta $4207.w                                                  ; $8044 : $8d, $07, $42
-	stz $4208.w                                                  ; $8047 : $9c, $08, $42
+	sta HTIMEL.w                                                  ; $8044 : $8d, $07, $42
+	stz HTIMEH.w                                                  ; $8047 : $9c, $08, $42
 	lda #$20.b                                                  ; $804a : $a9, $20
-	sta $4209.w                                                  ; $804c : $8d, $09, $42
-	stz $420a.w                                                  ; $804f : $9c, $0a, $42
+	sta VTIMEL.w                                                  ; $804c : $8d, $09, $42
+	stz VTIMEH.w                                                  ; $804f : $9c, $0a, $42
 	stz $1fdc.w                                                  ; $8052 : $9c, $dc, $1f
 	lda #$31.b                                                  ; $8055 : $a9, $31
 	sta $4200.w                                                  ; $8057 : $8d, $00, $42
 	lda #$01.b                                                  ; $805a : $a9, $01
-	sta $2105.w                                                  ; $805c : $8d, $05, $21
+	sta BGMODE.w                                                  ; $805c : $8d, $05, $21
 	stz CGADSUB.w                                                  ; $805f : $9c, $31, $21
 	stz wColourMathDesignation.w                                                  ; $8062 : $9c, $ca, $00
 	lda #$06.b                                                  ; $8065 : $a9, $06
@@ -1902,7 +1902,7 @@ br_07_8bf0:
 	sta $1fa9.w                                                  ; $8c22 : $8d, $a9, $1f
 	lda #$22.b                                                  ; $8c25 : $a9, $22
 	sta $00c5.w                                                  ; $8c27 : $8d, $c5, $00
-	sta $2123.w                                                  ; $8c2a : $8d, $23, $21
+	sta W12SEL.w                                                  ; $8c2a : $8d, $23, $21
 	lda #$06.b                                                  ; $8c2d : $a9, $06
 	sta $02                                                  ; $8c2f : $85, $02
 
@@ -17868,7 +17868,7 @@ br_07_eedc:
 
 	lda #$e0.b                                                  ; $ef10 : $a9, $e0
 	sta $00cb.w                                                  ; $ef12 : $8d, $cb, $00
-	sta $2132.w                                                  ; $ef15 : $8d, $32, $21
+	sta COLDATA.w                                                  ; $ef15 : $8d, $32, $21
 	stz wColourAdditionSelect.w                                                  ; $ef18 : $9c, $c9, $00
 	stz CGWSEL.w                                                  ; $ef1b : $9c, $30, $21
 	lda #$37.b                                                  ; $ef1e : $a9, $37
@@ -20465,15 +20465,3 @@ br_07_ffa8:
 
 br_07_ffd7:
 	rts                                                  ; $ffd7 : $60
-
-
-	sbc $ffffff.l, X                                                  ; $ffd8 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffdc : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffe0 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffe4 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffe8 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffec : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff0 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff4 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff8 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fffc : $ff, $ff, $ff, $ff

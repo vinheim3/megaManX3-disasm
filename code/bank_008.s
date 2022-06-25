@@ -140,32 +140,32 @@ br_08_80bb:
 
 ;
 	lda $cf                                                  ; $80fa : $a5, $cf
-	sta $2105.w                                                  ; $80fc : $8d, $05, $21
+	sta BGMODE.w                                                  ; $80fc : $8d, $05, $21
 	lda wColourAdditionSelect                                                  ; $80ff : $a5, $c9
 	sta CGWSEL.w                                                  ; $8101 : $8d, $30, $21
 	lda wColourMathDesignation                                                  ; $8104 : $a5, $ca
 	sta CGADSUB.w                                                  ; $8106 : $8d, $31, $21
 	lda $c5                                                  ; $8109 : $a5, $c5
-	sta $2123.w                                                  ; $810b : $8d, $23, $21
+	sta W12SEL.w                                                  ; $810b : $8d, $23, $21
 	lda $c6                                                  ; $810e : $a5, $c6
-	sta $2124.w                                                  ; $8110 : $8d, $24, $21
+	sta W34SEL.w                                                  ; $8110 : $8d, $24, $21
 	lda $c8                                                  ; $8113 : $a5, $c8
-	sta $2125.w                                                  ; $8115 : $8d, $25, $21
+	sta WOBJSEL.w                                                  ; $8115 : $8d, $25, $21
 	lda $cb                                                  ; $8118 : $a5, $cb
 	ora #$20.b                                                  ; $811a : $09, $20
-	sta $2132.w                                                  ; $811c : $8d, $32, $21
+	sta COLDATA.w                                                  ; $811c : $8d, $32, $21
 	lda $cc                                                  ; $811f : $a5, $cc
 	ora #$40.b                                                  ; $8121 : $09, $40
-	sta $2132.w                                                  ; $8123 : $8d, $32, $21
+	sta COLDATA.w                                                  ; $8123 : $8d, $32, $21
 	lda $cd                                                  ; $8126 : $a5, $cd
 	ora #$80.b                                                  ; $8128 : $09, $80
-	sta $2132.w                                                  ; $812a : $8d, $32, $21
+	sta COLDATA.w                                                  ; $812a : $8d, $32, $21
 	lda $ce                                                  ; $812d : $a5, $ce
 	sta BG3SC.w                                                  ; $812f : $8d, $09, $21
 	lda $c7                                                  ; $8132 : $a5, $c7
 	sta BG34NBA.w                                                  ; $8134 : $8d, $0c, $21
 	lda $1fad.w                                                  ; $8137 : $ad, $ad, $1f
-	sta $2106.w                                                  ; $813a : $8d, $06, $21
+	sta MOSAIC.w                                                  ; $813a : $8d, $06, $21
 	lda $1f75.w                                                  ; $813d : $ad, $75, $1f
 	beq br_08_8156                                                  ; $8140 : $f0, $14
 
@@ -202,7 +202,7 @@ br_08_8166:
 	lda $08d6.w, X                                                  ; $817e : $bd, $d6, $08
 	sta A1B0.w, Y                                                  ; $8181 : $99, $04, $43
 	lda $08d7.w, X                                                  ; $8184 : $bd, $d7, $08
-	sta $4307.w, Y                                                  ; $8187 : $99, $07, $43
+	sta DASB0.w, Y                                                  ; $8187 : $99, $07, $43
 	sec                                                  ; $818a : $38
 
 br_08_818b:
@@ -308,7 +308,7 @@ br_08_8234:
 	lda $a4                                                  ; $8239 : $a5, $a4
 	beq br_08_827f                                                  ; $823b : $f0, $42
 
-	lda #$18.b                                                  ; $823d : $a9, $18
+	lda #<VMDATAL.b                                                  ; $823d : $a9, $18
 	sta BBAD0.w                                                  ; $823f : $8d, $01, $43
 	lda #$01.b                                                  ; $8242 : $a9, $01
 	sta DMAP0.w                                                  ; $8244 : $8d, $00, $43
@@ -391,12 +391,12 @@ br_08_82cc:
 	jmp Func_8_844e.w-$6000                                                  ; $82cc : $4c, $4e, $24
 
 
-	stz $211b.w                                                  ; $82cf : $9c, $1b, $21
+	stz M7A.w                                                  ; $82cf : $9c, $1b, $21
 	lda #$01.b                                                  ; $82d2 : $a9, $01
-	sta $211b.w                                                  ; $82d4 : $8d, $1b, $21
-	stz $211c.w                                                  ; $82d7 : $9c, $1c, $21
+	sta M7A.w                                                  ; $82d4 : $8d, $1b, $21
+	stz M7B.w                                                  ; $82d7 : $9c, $1c, $21
 	lda #$01.b                                                  ; $82da : $a9, $01
-	sta $211c.w                                                  ; $82dc : $8d, $1c, $21
+	sta M7B.w                                                  ; $82dc : $8d, $1c, $21
 	rts                                                  ; $82df : $60
 
 
@@ -410,16 +410,19 @@ Func_8_82e0:
 	ldx $09d1.w                                                  ; $82ec : $ae, $d1, $09
 
 br_08_82ef:
-	jmp ($22f2.w, X)                                                  ; $82ef : $7c, $f2, $22
+	jmp (@funcs.w-$6000, X)                                                  ; $82ef : $7c, $f2, $22
+
+@funcs:
+	.dw Func_8_82f8-$6000
+	.dw Func_8_8332-$6000
+	.dw Func_8_833f-$6000
 
 
-	sed                                                  ; $82f2 : $f8
-	jsr $3f2332.l                                                  ; $82f3 : $22, $32, $23, $3f
-	and $9c, S                                                  ; $82f7 : $23, $9c
-	cmp ($09)                                                  ; $82f9 : $d2, $09
+Func_8_82f8:
+	stz $09d2.w                                                  ; $82f8 : $9c, $d2, $09
 	lda #$60.b                                                  ; $82fb : $a9, $60
-	sta $4207.w                                                  ; $82fd : $8d, $07, $42
-	sta $4209.w                                                  ; $8300 : $8d, $09, $42
+	sta HTIMEL.w                                                  ; $82fd : $8d, $07, $42
+	sta VTIMEL.w                                                  ; $8300 : $8d, $09, $42
 
 br_08_8303:
 	lda wNmiVectorHandled.w                                                  ; $8303 : $ad, $ce, $09
@@ -445,6 +448,8 @@ br_08_832b:
 	sta INIDISP.w                                                  ; $832d : $8d, $00, $21
 	bra br_08_8334                                                  ; $8330 : $80, $02
 
+
+Func_8_8332:
 	bra br_08_8303                                                  ; $8332 : $80, $cf
 
 br_08_8334:
@@ -455,6 +460,7 @@ br_08_8334:
 	rts                                                  ; $833e : $60
 
 
+Func_8_833f:
 	jsr Func_8_8043.w-$6000                                                  ; $833f : $20, $43, $20
 	jsr Func_8_819d.w-$6000                                                  ; $8342 : $20, $9d, $21
 	lda #$b1.b                                                  ; $8345 : $a9, $b1
@@ -466,9 +472,9 @@ br_08_8334:
 	lda #$80.b                                                  ; $8354 : $a9, $80
 	sta $09d2.w                                                  ; $8356 : $8d, $d2, $09
 	lda #$88.b                                                  ; $8359 : $a9, $88
-	sta $4207.w                                                  ; $835b : $8d, $07, $42
+	sta HTIMEL.w                                                  ; $835b : $8d, $07, $42
 	lda #$47.b                                                  ; $835e : $a9, $47
-	sta $4209.w                                                  ; $8360 : $8d, $09, $42
+	sta VTIMEL.w                                                  ; $8360 : $8d, $09, $42
 	stz BG1HOFS.w                                                  ; $8363 : $9c, $0d, $21
 	stz BG1HOFS.w                                                  ; $8366 : $9c, $0d, $21
 	stz BG1VOFS.w                                                  ; $8369 : $9c, $0e, $21
@@ -496,7 +502,7 @@ Func_8_8388:
 	stx VMADDL.w                                                  ; $839a : $8e, $16, $21
 	lda #$01.b                                                  ; $839d : $a9, $01
 	sta DMAP0.w                                                  ; $839f : $8d, $00, $43
-	lda #$18.b                                                  ; $83a2 : $a9, $18
+	lda #<VMDATAL.b                                                  ; $83a2 : $a9, $18
 	sta BBAD0.w                                                  ; $83a4 : $8d, $01, $43
 	ldx #$6300.w                                                  ; $83a7 : $a2, $00, $63
 	stx A1T0L.w                                                  ; $83aa : $8e, $02, $43
@@ -700,20 +706,19 @@ Func_8_844e:
 	lda TIMEUP.w                                                  ; $84c0 : $ad, $11, $42
 	lda $1fdc.w                                                  ; $84c3 : $ad, $dc, $1f
 	and #$01.b                                                  ; $84c6 : $29, $01
-	bne br_08_84da                                                  ; $84c8 : $d0, $10
+	bne @br_84da                                                  ; $84c8 : $d0, $10
 
-br_08_84ca:
-	bit HVBJOY.w                                                  ; $84ca : $2c, $12, $42
-	bvc br_08_84ca                                                  ; $84cd : $50, $fb
+-	bit HVBJOY.w                                                  ; $84ca : $2c, $12, $42
+	bvc -                                                  ; $84cd : $50, $fb
 
 	lda wScreenDisplay.w                                                  ; $84cf : $ad, $b4, $00
 	sta INIDISP.w                                                  ; $84d2 : $8d, $00, $21
 	inc wNmiVectorHandled.w                                                  ; $84d5 : $ee, $ce, $09
-	bra br_08_8516                                                  ; $84d8 : $80, $3c
+	bra @cont_8516                                                  ; $84d8 : $80, $3c
 
-br_08_84da:
-	bit HVBJOY.w                                                  ; $84da : $2c, $12, $42
-	bvc br_08_84da                                                  ; $84dd : $50, $fb
+@br_84da:
+-	bit HVBJOY.w                                                  ; $84da : $2c, $12, $42
+	bvc -                                                  ; $84dd : $50, $fb
 
 	lda #$80.b                                                  ; $84df : $a9, $80
 	sta INIDISP.w                                                  ; $84e1 : $8d, $00, $21
@@ -722,9 +727,9 @@ br_08_84da:
 	lda wSubScreenDesignation.w                                                  ; $84ea : $ad, $c2, $00
 	sta TS.w                                                  ; $84ed : $8d, $2d, $21
 	lda $00cf.w                                                  ; $84f0 : $ad, $cf, $00
-	sta $2105.w                                                  ; $84f3 : $8d, $05, $21
+	sta BGMODE.w                                                  ; $84f3 : $8d, $05, $21
 	lda $00cb.w                                                  ; $84f6 : $ad, $cb, $00
-	sta $2132.w                                                  ; $84f9 : $8d, $32, $21
+	sta COLDATA.w                                                  ; $84f9 : $8d, $32, $21
 	lda $00ce.w                                                  ; $84fc : $ad, $ce, $00
 	sta BG3SC.w                                                  ; $84ff : $8d, $09, $21
 	lda $00c7.w                                                  ; $8502 : $ad, $c7, $00
@@ -735,21 +740,18 @@ br_08_84da:
 	jsr Func_8_853a.w-$6000                                                  ; $8510 : $20, $3a, $25
 	jsr UpdateHwScrollRegs.w-$6000                                                  ; $8513 : $20, $64, $25
 
-br_08_8516:
+@cont_8516:
 	lda #$80.b                                                  ; $8516 : $a9, $80
-	sta $4207.w                                                  ; $8518 : $8d, $07, $42
-	stz $4208.w                                                  ; $851b : $9c, $08, $42
+	sta HTIMEL.w                                                  ; $8518 : $8d, $07, $42
+	stz HTIMEH.w                                                  ; $851b : $9c, $08, $42
 	ldx #$0e.b                                                  ; $851e : $a2, $0e
 	inc $1fdc.w                                                  ; $8520 : $ee, $dc, $1f
 	lda $1fdc.w                                                  ; $8523 : $ad, $dc, $1f
 	and #$01.b                                                  ; $8526 : $29, $01
-	beq br_08_852c                                                  ; $8528 : $f0, $02
-
+	beq +                                                  ; $8528 : $f0, $02
 	ldx #$be.b                                                  ; $852a : $a2, $be
-
-br_08_852c:
-	stx $4209.w                                                  ; $852c : $8e, $09, $42
-	stz $420a.w                                                  ; $852f : $9c, $0a, $42
++	stx VTIMEL.w                                                  ; $852c : $8e, $09, $42
+	stz VTIMEH.w                                                  ; $852f : $9c, $0a, $42
 	rep #ACCU_8|IDX_8                                                  ; $8532 : $c2, $30
 	ply                                                  ; $8534 : $7a
 	plx                                                  ; $8535 : $fa
@@ -761,25 +763,24 @@ br_08_852c:
 
 Func_8_853a:
 	lda $a1                                                  ; $853a : $a5, $a1
-	beq br_08_8563                                                  ; $853c : $f0, $25
+	beq @done                                                  ; $853c : $f0, $25
 
 	rep #IDX_8                                                  ; $853e : $c2, $10
 	stz CGADD.w                                                  ; $8540 : $9c, $21, $21
 	stz DMAP0.w                                                  ; $8543 : $9c, $00, $43
-	lda #$8d22.w                                                  ; $8546 : $a9, $22, $8d
-	ora ($43, X)                                                  ; $8549 : $01, $43
+	lda #<CGDATA.b                                                  ; $8546 : $a9, $22
+	sta BBAD0.w                                                 ; $8548 : $8d, $01, $43
 	ldy #$0300.w                                                  ; $854b : $a0, $00, $03
 	sty A1T0L.w                                                  ; $854e : $8c, $02, $43
 	stz A1B0.w                                                  ; $8551 : $9c, $04, $43
 	ldy #$0200.w                                                  ; $8554 : $a0, $00, $02
 	sty DAS0L.w                                                  ; $8557 : $8c, $05, $43
-	lda #$8d01.w                                                  ; $855a : $a9, $01, $8d
-	phd                                                  ; $855d : $0b
-	wdm                                                  ; $855e : $42
+	lda #$01.b                                                  ; $855a : $a9, $01
+	sta MDMAEN.w                                                  ; $855c : $8d, $0b, $42
 	stz $a1                                                  ; $855f : $64, $a1
 	sep #IDX_8                                                  ; $8561 : $e2, $10
 
-br_08_8563:
+@done:
 	rts                                                  ; $8563 : $60
 
 

@@ -1728,7 +1728,7 @@ br_10_8a0f:
 	.db $00                                                  ; $8a76 : $00
 	jsr Call_10_ff08.w                                                  ; $8a77 : $20, $08, $ff
 	php                                                  ; $8a7a : $08
-	jsr Call_10_fff8.w                                                  ; $8a7b : $20, $f8, $ff
+	jsr $fff8.w                                                  ; $8a7b : $20, $f8, $ff
 	bit $0820.w                                                  ; $8a7e : $2c, $20, $08
 	sbc $f8202a.l                                                  ; $8a81 : $ef, $2a, $20, $f8
 	sbc $e82028.l                                                  ; $8a85 : $ef, $28, $20, $e8
@@ -1844,7 +1844,7 @@ br_10_8ad1:
 	.db $00                                                  ; $8b48 : $00
 	jsr Call_10_ff08.w                                                  ; $8b49 : $20, $08, $ff
 	php                                                  ; $8b4c : $08
-	jsr Call_10_fff8.w                                                  ; $8b4d : $20, $f8, $ff
+	jsr $fff8.w                                                  ; $8b4d : $20, $f8, $ff
 	bit $0820.w                                                  ; $8b50 : $2c, $20, $08
 	sbc $f8202a.l                                                  ; $8b53 : $ef, $2a, $20, $f8
 	sbc $e82028.l                                                  ; $8b57 : $ef, $28, $20, $e8
@@ -1960,7 +1960,7 @@ br_10_8c15:
 	.db $00                                                  ; $8c22 : $00
 	jsr Call_10_ff08.w                                                  ; $8c23 : $20, $08, $ff
 	php                                                  ; $8c26 : $08
-	jsr Call_10_fff8.w                                                  ; $8c27 : $20, $f8, $ff
+	jsr $fff8.w                                                  ; $8c27 : $20, $f8, $ff
 	bit $0820.w                                                  ; $8c2a : $2c, $20, $08
 	sbc $f8202a.l                                                  ; $8c2d : $ef, $2a, $20, $f8
 	sbc $e82028.l                                                  ; $8c31 : $ef, $28, $20, $e8
@@ -2075,7 +2075,7 @@ br_10_8c85:
 	.db $00                                                  ; $8cfc : $00
 	jsr Call_10_ff08.w                                                  ; $8cfd : $20, $08, $ff
 	php                                                  ; $8d00 : $08
-	jsr Call_10_fff8.w                                                  ; $8d01 : $20, $f8, $ff
+	jsr $fff8.w                                                  ; $8d01 : $20, $f8, $ff
 	bit $0820.w                                                  ; $8d04 : $2c, $20, $08
 	sbc $f8202a.l                                                  ; $8d07 : $ef, $2a, $20, $f8
 	sbc $e82028.l                                                  ; $8d0b : $ef, $28, $20, $e8
@@ -2188,7 +2188,7 @@ br_10_8d5b:
 	.db $00                                                  ; $8dce : $00
 	jsr Call_10_ff08.w                                                  ; $8dcf : $20, $08, $ff
 	php                                                  ; $8dd2 : $08
-	jsr Call_10_fff8.w                                                  ; $8dd3 : $20, $f8, $ff
+	jsr $fff8.w                                                  ; $8dd3 : $20, $f8, $ff
 	bit $0820.w                                                  ; $8dd6 : $2c, $20, $08
 	sbc $f8202a.l                                                  ; $8dd9 : $ef, $2a, $20, $f8
 	sbc $e82028.l                                                  ; $8ddd : $ef, $28, $20, $e8
@@ -12987,7 +12987,7 @@ br_10_d0a4:
 	jsr ($9416.w, X)                                                  ; $d0f2 : $fc, $16, $94
 	.db $00                                                  ; $d0f5 : $00
 	jsr ($840e.w, X)                                                  ; $d0f6 : $fc, $0e, $84
-	jsr Call_10_fff8.w                                                  ; $d0f9 : $20, $f8, $ff
+	jsr $fff8.w                                                  ; $d0f9 : $20, $f8, $ff
 	ror $2002.w                                                  ; $d0fc : $6e, $02, $20
 	sbc [$f1], Y                                                  ; $d0ff : $f7, $f1
 	bra br_10_d103                                                  ; $d101 : $80, $00
@@ -19975,7 +19975,7 @@ br_10_fb6a:
 	php                                                  ; $fbda : $08
 	asl $30, X                                                  ; $fbdb : $16, $30
 	and ($fa, X)                                                  ; $fbdd : $21, $fa
-	sbc $2106.w, Y                                                  ; $fbdf : $f9, $06, $21
+	sbc MOSAIC.w, Y                                                  ; $fbdf : $f9, $06, $21
 	nop                                                  ; $fbe2 : $ea
 	sbc $2104.w, Y                                                  ; $fbe3 : $f9, $04, $21
 	plx                                                  ; $fbe6 : $fa
@@ -20558,37 +20558,3 @@ br_10_ff73:
 
 	inx                                                  ; $ff7d : $e8
 	inc $ff                                                  ; $ff7e : $e6, $ff
-	sbc $ffffff.l, X                                                  ; $ff80 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff84 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff88 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff8c : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff90 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff94 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff98 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff9c : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffa0 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffa4 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffa8 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffac : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffb0 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffb4 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffb8 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffbc : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffc0 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffc4 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffc8 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffcc : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffd0 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffd4 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffd8 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffdc : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffe0 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffe4 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffe8 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffec : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff0 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff4 : $ff, $ff, $ff, $ff
-
-Call_10_fff8:
-	sbc $ffffff.l, X                                                  ; $fff8 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fffc : $ff, $ff, $ff, $ff

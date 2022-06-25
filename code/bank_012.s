@@ -3948,7 +3948,7 @@ br_12_9711:
 	sbc $b002.w, Y                                                  ; $9790 : $f9, $02, $b0
 	.db $00                                                  ; $9793 : $00
 	sbc $affa.w, Y                                                  ; $9794 : $f9, $fa, $af
-	jsr Call_12_f601.w                                                  ; $9797 : $20, $01, $f6
+	jsr $f601.w                                                  ; $9797 : $20, $01, $f6
 	bcc br_12_97a2                                                  ; $979a : $90, $06
 
 	.db $00                                                  ; $979c : $00
@@ -3973,7 +3973,7 @@ br_12_97a2:
 	sbc $c003.w, Y                                                  ; $97be : $f9, $03, $c0
 	.db $00                                                  ; $97c1 : $00
 	sbc $bffb.w, Y                                                  ; $97c2 : $f9, $fb, $bf
-	jsr Call_12_fb01.w                                                  ; $97c5 : $20, $01, $fb
+	jsr $fb01.w                                                  ; $97c5 : $20, $01, $fb
 	txs                                                  ; $97c8 : $9a
 	ora [$00]                                                  ; $97c9 : $07, $00
 	sed                                                  ; $97cb : $f8
@@ -4395,7 +4395,7 @@ br_12_9a59:
 
 br_12_9a72:
 	cop $06.b                                                  ; $9a72 : $02, $06
-	jsr Call_12_ecf9.w                                                  ; $9a74 : $20, $f9, $ec
+	jsr $ecf9.w                                                  ; $9a74 : $20, $f9, $ec
 	asl $00                                                  ; $9a77 : $06, $00
 	ora ($fc, X)                                                  ; $9a79 : $01, $fc
 	ora $00, X                                                  ; $9a7b : $15, $00
@@ -5093,7 +5093,7 @@ br_12_9eb9:
 	.db $00                                                  ; $9ec0 : $00
 	sbc ($e0), Y                                                  ; $9ec1 : $f1, $e0
 	txa                                                  ; $9ec3 : $8a
-	jsr Call_12_e8e9.w                                                  ; $9ec4 : $20, $e9, $e8
+	jsr $e8e9.w                                                  ; $9ec4 : $20, $e9, $e8
 	lsr $1820.w                                                  ; $9ec7 : $4e, $20, $18
 	pea $c060.w                                                  ; $9eca : $f4, $60, $c0
 	clc                                                  ; $9ecd : $18
@@ -6683,7 +6683,7 @@ br_12_a8f2:
 	php                                                  ; $a987 : $08
 	asl $20d2.w                                                  ; $a988 : $0e, $d2, $20
 	inc $4cec.w                                                  ; $a98b : $ee, $ec, $4c
-	jsr Call_12_f5e9.w                                                  ; $a98e : $20, $e9, $f5
+	jsr $f5e9.w                                                  ; $a98e : $20, $e9, $f5
 	mvp $cc, $00                                                  ; $a991 : $44, $00, $cc
 	inc wJoy1CurrButtonsHeld.w, X                                                  ; $a994 : $fe, $a8, $00
 	cpy $a7f6.w                                                  ; $a997 : $cc, $f6, $a7
@@ -6983,7 +6983,7 @@ br_12_aaf6:
 	php                                                  ; $abae : $08
 	asl $20d2.w                                                  ; $abaf : $0e, $d2, $20
 	inc $4cec.w                                                  ; $abb2 : $ee, $ec, $4c
-	jsr Call_12_f5e9.w                                                  ; $abb5 : $20, $e9, $f5
+	jsr $f5e9.w                                                  ; $abb5 : $20, $e9, $f5
 	mvp $de, $40                                                  ; $abb8 : $44, $40, $de
 
 br_12_abbb:
@@ -7138,7 +7138,7 @@ br_12_abc3:
 	.db $00                                                  ; $acc7 : $00
 	ora $04                                                  ; $acc8 : $05, $04
 	txy                                                  ; $acca : $9b
-	jsr Call_12_fcf5.w                                                  ; $accb : $20, $f5, $fc
+	jsr $fcf5.w                                                  ; $accb : $20, $f5, $fc
 	pla                                                  ; $acce : $68
 	jsr $f5ff.w                                                  ; $accf : $20, $ff, $f5
 	ror                                                  ; $acd2 : $6a
@@ -7277,7 +7277,7 @@ br_12_ad51:
 	jsr $030001.l                                                  ; $ad9f : $22, $01, $00, $03
 	and $01, S                                                  ; $ada3 : $23, $01
 	clc                                                  ; $ada5 : $18
-	sbc $2124.w, X                                                  ; $ada6 : $fd, $24, $21
+	sbc W34SEL.w, X                                                  ; $ada6 : $fd, $24, $21
 	php                                                  ; $ada9 : $08
 	xce                                                  ; $adaa : $fb
 	cop $20.b                                                  ; $adab : $02, $20
@@ -7418,7 +7418,7 @@ br_12_ae36:
 	txy                                                  ; $aea5 : $9b
 	jsr $0303.w                                                  ; $aea6 : $20, $03, $03
 	pla                                                  ; $aea9 : $68
-	jsr Call_12_fc0d.w                                                  ; $aeaa : $20, $0d, $fc
+	jsr $fc0d.w                                                  ; $aeaa : $20, $0d, $fc
 	ror                                                  ; $aead : $6a
 
 br_12_aeae:
@@ -7447,7 +7447,7 @@ br_12_aeae:
 	cpx $0126.w                                                  ; $aed8 : $ec, $26, $01
 	jsr ($25ec.w, X)                                                  ; $aedb : $fc, $ec, $25
 	and ($04, X)                                                  ; $aede : $21, $04
-	pea $2106.w                                                  ; $aee0 : $f4, $06, $21
+	pea MOSAIC.w                                                  ; $aee0 : $f4, $06, $21
 	pea $04f4.w                                                  ; $aee3 : $f4, $f4, $04
 	ora ($0a, X)                                                  ; $aee6 : $01, $0a
 	tsb $29                                                  ; $aee8 : $04, $29
@@ -7542,7 +7542,7 @@ br_12_af70:
 	.db $00                                                  ; $af77 : $00
 	sbc ($e0), Y                                                  ; $af78 : $f1, $e0
 	txa                                                  ; $af7a : $8a
-	jsr Call_12_e8e9.w                                                  ; $af7b : $20, $e9, $e8
+	jsr $e8e9.w                                                  ; $af7b : $20, $e9, $e8
 	lsr $1820.w                                                  ; $af7e : $4e, $20, $18
 	pea $c060.w                                                  ; $af81 : $f4, $60, $c0
 	clc                                                  ; $af84 : $18
@@ -8173,7 +8173,7 @@ br_12_b257:
 	eor $e920.w, Y                                                  ; $b30c : $59, $20, $e9
 	php                                                  ; $b30f : $08
 	dey                                                  ; $b310 : $88
-	jsr Call_12_f7d9.w                                                  ; $b311 : $20, $d9, $f7
+	jsr $f7d9.w                                                  ; $b311 : $20, $d9, $f7
 	cpy #$a0.b                                                  ; $b314 : $c0, $a0
 	dec $a2fc.w, X                                                  ; $b316 : $de, $fc, $a2
 	ora [$21], Y                                                  ; $b319 : $17, $21
@@ -8484,7 +8484,7 @@ br_12_b538:
 	sbc ($23)                                                  ; $b549 : $f2, $23
 	and ($d6, X)                                                  ; $b54b : $21, $d6
 	plx                                                  ; $b54d : $fa
-	jsr Call_12_ea21.w                                                  ; $b54e : $20, $21, $ea
+	jsr $ea21.w                                                  ; $b54e : $20, $21, $ea
 	ora ($28), Y                                                  ; $b551 : $11, $28
 	jsr $07d8.w                                                  ; $b553 : $20, $d8, $07
 	cpy $20                                                  ; $b556 : $c4, $20
@@ -9926,7 +9926,7 @@ br_12_c09e:
 
 	and ($da, X)                                                  ; $c0a4 : $21, $da
 	sed                                                  ; $c0a6 : $f8
-	jsr Call_12_ff01.w                                                  ; $c0a7 : $20, $01, $ff
+	jsr $ff01.w                                                  ; $c0a7 : $20, $01, $ff
 	sbc $f7012c.l                                                  ; $c0aa : $ef, $2c, $01, $f7
 	sbc $f42137.l                                                  ; $c0ae : $ef, $37, $21, $f4
 	sbc [$2a], Y                                                  ; $c0b2 : $f7, $2a
@@ -9952,7 +9952,7 @@ br_12_c09e:
 br_12_c0d6:
 	sbc BG2SC.w, Y                                                  ; $c0d6 : $f9, $08, $21
 	sed                                                  ; $c0d9 : $f8
-	sbc $2106.w, Y                                                  ; $c0da : $f9, $06, $21
+	sbc MOSAIC.w, Y                                                  ; $c0da : $f9, $06, $21
 	inx                                                  ; $c0dd : $e8
 	sbc $2104.w, Y                                                  ; $c0de : $f9, $04, $21
 	.db $00                                                  ; $c0e1 : $00
@@ -10274,7 +10274,7 @@ br_12_c2e0:
 
 	.db $00                                                  ; $c305 : $00
 	sbc ($4a), Y                                                  ; $c306 : $f1, $4a
-	jsr Call_12_f1f1.w                                                  ; $c308 : $20, $f1, $f1
+	jsr $f1f1.w                                                  ; $c308 : $20, $f1, $f1
 	lsr                                                  ; $c30b : $4a
 	tsb $e0                                                  ; $c30c : $04, $e0
 	.db $00                                                  ; $c30e : $00
@@ -10338,7 +10338,7 @@ br_12_c2e0:
 	.db $62, $60, $00                                                  ; $c35a : $62, $60, $00
 
 	sbc ($62), Y                                                  ; $c35d : $f1, $62
-	jsr Call_12_f1f1.w                                                  ; $c35f : $20, $f1, $f1
+	jsr $f1f1.w                                                  ; $c35f : $20, $f1, $f1
 	.db $62, $05, $20                                                  ; $c362 : $62, $05, $20
 
 	sed                                                  ; $c365 : $f8
@@ -10354,7 +10354,7 @@ br_12_c2e0:
 	sbc ($64), Y                                                  ; $c372 : $f1, $64
 
 br_12_c374:
-	jsr Call_12_f1f1.w                                                  ; $c374 : $20, $f1, $f1
+	jsr $f1f1.w                                                  ; $c374 : $20, $f1, $f1
 	stz $05                                                  ; $c377 : $64, $05
 	jsr $f8f8.w                                                  ; $c379 : $20, $f8, $f8
 	rts                                                  ; $c37c : $60
@@ -10366,7 +10366,7 @@ br_12_c374:
 	ror $60                                                  ; $c384 : $66, $60
 	.db $00                                                  ; $c386 : $00
 	sbc ($66), Y                                                  ; $c387 : $f1, $66
-	jsr Call_12_f1f1.w                                                  ; $c389 : $20, $f1, $f1
+	jsr $f1f1.w                                                  ; $c389 : $20, $f1, $f1
 	ror $05                                                  ; $c38c : $66, $05
 	jsr $f8f8.w                                                  ; $c38e : $20, $f8, $f8
 	ror $00e0.w                                                  ; $c391 : $6e, $e0, $00
@@ -10377,7 +10377,7 @@ br_12_c374:
 	.db $62, $60, $00                                                  ; $c399 : $62, $60, $00
 
 	sbc ($62), Y                                                  ; $c39c : $f1, $62
-	jsr Call_12_f1f1.w                                                  ; $c39e : $20, $f1, $f1
+	jsr $f1f1.w                                                  ; $c39e : $20, $f1, $f1
 	per br_12_e3a9                                                  ; $c3a1 : $62, $05, $20
 
 	sed                                                  ; $c3a4 : $f8
@@ -10389,7 +10389,7 @@ br_12_c374:
 	stz $60                                                  ; $c3ae : $64, $60
 	.db $00                                                  ; $c3b0 : $00
 	sbc ($64), Y                                                  ; $c3b1 : $f1, $64
-	jsr Call_12_f1f1.w                                                  ; $c3b3 : $20, $f1, $f1
+	jsr $f1f1.w                                                  ; $c3b3 : $20, $f1, $f1
 	stz $05                                                  ; $c3b6 : $64, $05
 	jsr $f8f8.w                                                  ; $c3b8 : $20, $f8, $f8
 	ror $00e0.w                                                  ; $c3bb : $6e, $e0, $00
@@ -10399,7 +10399,7 @@ br_12_c374:
 	ror $60                                                  ; $c3c3 : $66, $60
 	.db $00                                                  ; $c3c5 : $00
 	sbc ($66), Y                                                  ; $c3c6 : $f1, $66
-	jsr Call_12_f1f1.w                                                  ; $c3c8 : $20, $f1, $f1
+	jsr $f1f1.w                                                  ; $c3c8 : $20, $f1, $f1
 	ror $05                                                  ; $c3cb : $66, $05
 	jsr $f8f8.w                                                  ; $c3cd : $20, $f8, $f8
 	txa                                                  ; $c3d0 : $8a
@@ -10410,7 +10410,7 @@ br_12_c374:
 	per br_12_c43b                                                  ; $c3d8 : $62, $60, $00
 
 	sbc ($62), Y                                                  ; $c3db : $f1, $62
-	jsr Call_12_f1f1.w                                                  ; $c3dd : $20, $f1, $f1
+	jsr $f1f1.w                                                  ; $c3dd : $20, $f1, $f1
 	.db $62, $05, $20                                                  ; $c3e0 : $62, $05, $20
 
 	sed                                                  ; $c3e3 : $f8
@@ -10422,7 +10422,7 @@ br_12_c374:
 	stz $60                                                  ; $c3ed : $64, $60
 	.db $00                                                  ; $c3ef : $00
 	sbc ($64), Y                                                  ; $c3f0 : $f1, $64
-	jsr Call_12_f1f1.w                                                  ; $c3f2 : $20, $f1, $f1
+	jsr $f1f1.w                                                  ; $c3f2 : $20, $f1, $f1
 	stz $05                                                  ; $c3f5 : $64, $05
 	jsr $f8f8.w                                                  ; $c3f7 : $20, $f8, $f8
 	txa                                                  ; $c3fa : $8a
@@ -10432,7 +10432,7 @@ br_12_c374:
 	ror $60                                                  ; $c402 : $66, $60
 	.db $00                                                  ; $c404 : $00
 	sbc ($66), Y                                                  ; $c405 : $f1, $66
-	jsr Call_12_f1f1.w                                                  ; $c407 : $20, $f1, $f1
+	jsr $f1f1.w                                                  ; $c407 : $20, $f1, $f1
 	ror $01                                                  ; $c40a : $66, $01
 	jsr $f8f8.w                                                  ; $c40c : $20, $f8, $f8
 	pla                                                  ; $c40f : $68
@@ -10630,7 +10630,7 @@ br_12_c500:
 	lsr $60                                                  ; $c50c : $46, $60
 	.db $00                                                  ; $c50e : $00
 	sbc ($46), Y                                                  ; $c50f : $f1, $46
-	jsr Call_12_f1f1.w                                                  ; $c511 : $20, $f1, $f1
+	jsr $f1f1.w                                                  ; $c511 : $20, $f1, $f1
 	lsr $20                                                  ; $c514 : $46, $20
 	sed                                                  ; $c516 : $f8
 	sbc ($44, X)                                                  ; $c517 : $e1, $44
@@ -10646,7 +10646,7 @@ br_12_c521:
 
 br_12_c525:
 	dex                                                  ; $c525 : $ca
-	jsr Call_12_f101.w                                                  ; $c526 : $20, $01, $f1
+	jsr $f101.w                                                  ; $c526 : $20, $01, $f1
 	cpy $f120.w                                                  ; $c529 : $cc, $20, $f1
 	sbc ($ca), Y                                                  ; $c52c : $f1, $ca
 	jsr Call_12_e1f9.w                                                  ; $c52e : $20, $f9, $e1
@@ -10899,7 +10899,7 @@ br_12_c717:
 	tsb $0120.w                                                  ; $c718 : $0c, $20, $01
 	.db $f0, $0a                                                  ; $c71b : $f0, $0a
 
-	jsr Call_12_f0f1.w                                                  ; $c71d : $20, $f1, $f0
+	jsr $f0f1.w                                                  ; $c71d : $20, $f1, $f0
 	php                                                  ; $c720 : $08
 	jsr $e0f6.w                                                  ; $c721 : $20, $f6, $e0
 	asl $00                                                  ; $c724 : $06, $00
@@ -10973,7 +10973,7 @@ br_12_c717:
 	.db $82, $20, $05                                                  ; $c7a1 : $82, $20, $05
 
 	ora $04, S                                                  ; $c7a4 : $03, $04
-	jsr Call_12_f305.w                                                  ; $c7a6 : $20, $05, $f3
+	jsr $f305.w                                                  ; $c7a6 : $20, $05, $f3
 	cop $20.b                                                  ; $c7a9 : $02, $20
 	sbc [$eb]                                                  ; $c7ab : $e7, $eb
 	.db $00                                                  ; $c7ad : $00
@@ -11451,7 +11451,7 @@ br_12_ca7a:
 	brl br_12_d035                                                  ; $cb12 : $82, $20, $05
 
 	ora $04, S                                                  ; $cb15 : $03, $04
-	jsr Call_12_f305.w                                                  ; $cb17 : $20, $05, $f3
+	jsr $f305.w                                                  ; $cb17 : $20, $05, $f3
 	cop $20.b                                                  ; $cb1a : $02, $20
 	sbc [$eb]                                                  ; $cb1c : $e7, $eb
 	.db $00                                                  ; $cb1e : $00
@@ -11493,9 +11493,9 @@ br_12_ca7a:
 	ora $90                                                  ; $cb5a : $05, $90
 	jsr $0502.w                                                  ; $cb5c : $20, $02, $05
 	rol                                                  ; $cb5f : $2a
-	jsr Call_12_f5f9.w                                                  ; $cb60 : $20, $f9, $f5
+	jsr $f5f9.w                                                  ; $cb60 : $20, $f9, $f5
 	plp                                                  ; $cb63 : $28
-	jsr Call_12_f5e9.w                                                  ; $cb64 : $20, $e9, $f5
+	jsr $f5e9.w                                                  ; $cb64 : $20, $e9, $f5
 	rol $00                                                  ; $cb67 : $26, $00
 	sbc [$f2], Y                                                  ; $cb69 : $f7, $f2
 	sta $f2ef00.l                                                  ; $cb6b : $8f, $00, $ef, $f2
@@ -11558,9 +11558,9 @@ br_12_cbb1:
 	ora $90                                                  ; $cbd3 : $05, $90
 	jsr $0502.w                                                  ; $cbd5 : $20, $02, $05
 	rol                                                  ; $cbd8 : $2a
-	jsr Call_12_f5f9.w                                                  ; $cbd9 : $20, $f9, $f5
+	jsr $f5f9.w                                                  ; $cbd9 : $20, $f9, $f5
 	plp                                                  ; $cbdc : $28
-	jsr Call_12_f5e9.w                                                  ; $cbdd : $20, $e9, $f5
+	jsr $f5e9.w                                                  ; $cbdd : $20, $e9, $f5
 	rol $00                                                  ; $cbe0 : $26, $00
 	sbc [$f2], Y                                                  ; $cbe2 : $f7, $f2
 	sta $f2ef00.l                                                  ; $cbe4 : $8f, $00, $ef, $f2
@@ -11697,7 +11697,7 @@ br_12_ccb5:
 	tsb $20                                                  ; $ccca : $04, $20
 	tsb $f8                                                  ; $cccc : $04, $f8
 	cop $18.b                                                  ; $ccce : $02, $18
-	jsr Call_12_efe5.w                                                  ; $ccd0 : $20, $e5, $ef
+	jsr $efe5.w                                                  ; $ccd0 : $20, $e5, $ef
 	wdm                                                  ; $ccd3 : $42
 	.db $00                                                  ; $ccd4 : $00
 	pea $a9f4.w                                                  ; $ccd5 : $f4, $f4, $a9
@@ -11969,7 +11969,7 @@ br_12_cea3:
 	tsb $0120.w                                                  ; $ceab : $0c, $20, $01
 	.db $f0, $0a                                                  ; $ceae : $f0, $0a
 
-	jsr Call_12_f0f1.w                                                  ; $ceb0 : $20, $f1, $f0
+	jsr $f0f1.w                                                  ; $ceb0 : $20, $f1, $f0
 	php                                                  ; $ceb3 : $08
 	jsr $e0f6.w                                                  ; $ceb4 : $20, $f6, $e0
 	asl $00                                                  ; $ceb7 : $06, $00
@@ -13079,7 +13079,7 @@ br_12_d5e8:
 	nop                                                  ; $d5f1 : $ea
 	cmp $1320.w                                                  ; $d5f2 : $cd, $20, $13
 	phx                                                  ; $d5f5 : $da
-	brl br_12_edf9                                                  ; $d5f6 : $82, $00, $18
+	.db $82, $00, $18
 
 	sbc $1100cc.l, X                                                  ; $d5f9 : $ff, $cc, $00, $11
 	ora $cb                                                  ; $d5fd : $05, $cb
@@ -13614,7 +13614,7 @@ Call_12_d8f8:
 	bit $20                                                  ; $d9dc : $24, $20
 	inx                                                  ; $d9de : $e8
 	ora ($22, X)                                                  ; $d9df : $01, $22
-	jsr Call_12_f1f5.w                                                  ; $d9e1 : $20, $f5, $f1
+	jsr $f1f5.w                                                  ; $d9e1 : $20, $f5, $f1
 	jsr $e520.w                                                  ; $d9e4 : $20, $20, $e5
 	sbc ($0e), Y                                                  ; $d9e7 : $f1, $0e
 	jsr Call_12_e10d.w                                                  ; $d9e9 : $20, $0d, $e1
@@ -13710,7 +13710,7 @@ br_12_da0c:
 	bit $20                                                  ; $da96 : $24, $20
 	inx                                                  ; $da98 : $e8
 	ora ($22, X)                                                  ; $da99 : $01, $22
-	jsr Call_12_f1f5.w                                                  ; $da9b : $20, $f5, $f1
+	jsr $f1f5.w                                                  ; $da9b : $20, $f5, $f1
 	jsr $e520.w                                                  ; $da9e : $20, $20, $e5
 	sbc ($0e), Y                                                  ; $daa1 : $f1, $0e
 	jsr Call_12_e10d.w                                                  ; $daa3 : $20, $0d, $e1
@@ -13759,7 +13759,7 @@ Call_12_daf3:
 	bit $20                                                  ; $dafb : $24, $20
 	inx                                                  ; $dafd : $e8
 	ora ($22, X)                                                  ; $dafe : $01, $22
-	jsr Call_12_f1f5.w                                                  ; $db00 : $20, $f5, $f1
+	jsr $f1f5.w                                                  ; $db00 : $20, $f5, $f1
 	jsr $e520.w                                                  ; $db03 : $20, $20, $e5
 	sbc ($0e), Y                                                  ; $db06 : $f1, $0e
 	jsr Call_12_e10d.w                                                  ; $db08 : $20, $0d, $e1
@@ -13803,7 +13803,7 @@ Call_12_daf3:
 	bit $20                                                  ; $db60 : $24, $20
 	inx                                                  ; $db62 : $e8
 	ora ($22, X)                                                  ; $db63 : $01, $22
-	jsr Call_12_f1f5.w                                                  ; $db65 : $20, $f5, $f1
+	jsr $f1f5.w                                                  ; $db65 : $20, $f5, $f1
 	jsr $e520.w                                                  ; $db68 : $20, $20, $e5
 	sbc ($0e), Y                                                  ; $db6b : $f1, $0e
 	jsr Call_12_e10d.w                                                  ; $db6d : $20, $0d, $e1
@@ -13855,7 +13855,7 @@ br_12_dbba:
 	bit $20                                                  ; $dbc5 : $24, $20
 	inx                                                  ; $dbc7 : $e8
 	ora ($22, X)                                                  ; $dbc8 : $01, $22
-	jsr Call_12_f1f5.w                                                  ; $dbca : $20, $f5, $f1
+	jsr $f1f5.w                                                  ; $dbca : $20, $f5, $f1
 	jsr $e520.w                                                  ; $dbcd : $20, $20, $e5
 	sbc ($0e), Y                                                  ; $dbd0 : $f1, $0e
 	jsr Call_12_e10d.w                                                  ; $dbd2 : $20, $0d, $e1
@@ -13907,7 +13907,7 @@ br_12_dc1f:
 	bit $20                                                  ; $dc2a : $24, $20
 	inx                                                  ; $dc2c : $e8
 	ora ($22, X)                                                  ; $dc2d : $01, $22
-	jsr Call_12_f1f5.w                                                  ; $dc2f : $20, $f5, $f1
+	jsr $f1f5.w                                                  ; $dc2f : $20, $f5, $f1
 	jsr $e520.w                                                  ; $dc32 : $20, $20, $e5
 	sbc ($0e), Y                                                  ; $dc35 : $f1, $0e
 	jsr Call_12_e10d.w                                                  ; $dc37 : $20, $0d, $e1
@@ -13958,7 +13958,7 @@ br_12_dc3a:
 	bit $20                                                  ; $dc8f : $24, $20
 	inx                                                  ; $dc91 : $e8
 	ora ($22, X)                                                  ; $dc92 : $01, $22
-	jsr Call_12_f1f5.w                                                  ; $dc94 : $20, $f5, $f1
+	jsr $f1f5.w                                                  ; $dc94 : $20, $f5, $f1
 	jsr $e520.w                                                  ; $dc97 : $20, $20, $e5
 	sbc ($0e), Y                                                  ; $dc9a : $f1, $0e
 	jsr Call_12_e10d.w                                                  ; $dc9c : $20, $0d, $e1
@@ -14026,7 +14026,7 @@ Call_12_dcfc:
 	bit $20                                                  ; $dcfc : $24, $20
 	inx                                                  ; $dcfe : $e8
 	ora ($22, X)                                                  ; $dcff : $01, $22
-	jsr Call_12_f1f5.w                                                  ; $dd01 : $20, $f5, $f1
+	jsr $f1f5.w                                                  ; $dd01 : $20, $f5, $f1
 	jsr $e520.w                                                  ; $dd04 : $20, $20, $e5
 	sbc ($0e), Y                                                  ; $dd07 : $f1, $0e
 	jsr Call_12_e10d.w                                                  ; $dd09 : $20, $0d, $e1
@@ -14083,7 +14083,7 @@ br_12_dd57:
 	bit $20                                                  ; $dd61 : $24, $20
 	inx                                                  ; $dd63 : $e8
 	ora ($22, X)                                                  ; $dd64 : $01, $22
-	jsr Call_12_f1f5.w                                                  ; $dd66 : $20, $f5, $f1
+	jsr $f1f5.w                                                  ; $dd66 : $20, $f5, $f1
 	jsr $e520.w                                                  ; $dd69 : $20, $20, $e5
 	sbc ($0e), Y                                                  ; $dd6c : $f1, $0e
 	jsr Call_12_e10d.w                                                  ; $dd6e : $20, $0d, $e1
@@ -14148,7 +14148,7 @@ br_12_dd57:
 	bit $20                                                  ; $ddce : $24, $20
 	inx                                                  ; $ddd0 : $e8
 	ora ($22, X)                                                  ; $ddd1 : $01, $22
-	jsr Call_12_f1f5.w                                                  ; $ddd3 : $20, $f5, $f1
+	jsr $f1f5.w                                                  ; $ddd3 : $20, $f5, $f1
 	jsr $e520.w                                                  ; $ddd6 : $20, $20, $e5
 	sbc ($0e), Y                                                  ; $ddd9 : $f1, $0e
 	jsr Call_12_e10d.w                                                  ; $dddb : $20, $0d, $e1
@@ -14274,7 +14274,7 @@ br_12_de88:
 	stx $df20.w                                                  ; $dea6 : $8e, $20, $df
 	cop $8c.b                                                  ; $dea9 : $02, $8c
 	jsr $fd03.w                                                  ; $deab : $20, $03, $fd
-	brl br_12_f2b1                                                  ; $deae : $82, $00, $14
+	.db $82, $00, $14
 
 	.db $00                                                  ; $deb1 : $00
 	lda [$00], Y                                                  ; $deb2 : $b7, $00
@@ -14375,9 +14375,9 @@ br_12_df09:
 	pea $078c.w                                                  ; $df52 : $f4, $8c, $07
 	jsr $08f9.w                                                  ; $df55 : $20, $f9, $08
 	lsr                                                  ; $df58 : $4a
-	jsr Call_12_f8f5.w                                                  ; $df59 : $20, $f5, $f8
+	jsr $f8f5.w                                                  ; $df59 : $20, $f5, $f8
 	pha                                                  ; $df5c : $48
-	jsr Call_12_e8f5.w                                                  ; $df5d : $20, $f5, $e8
+	jsr $e8f5.w                                                  ; $df5d : $20, $f5, $e8
 	lsr $40                                                  ; $df60 : $46, $40
 	tsb $00                                                  ; $df62 : $04, $00
 	cli                                                  ; $df64 : $58
@@ -15201,14 +15201,14 @@ Call_12_e400:
 	tsb $0920.w                                                  ; $e437 : $0c, $20, $09
 	sed                                                  ; $e43a : $f8
 	asl                                                  ; $e43b : $0a
-	jsr Call_12_f8f9.w                                                  ; $e43c : $20, $f9, $f8
+	jsr $f8f9.w                                                  ; $e43c : $20, $f9, $f8
 	php                                                  ; $e43f : $08
-	jsr Call_12_f8e9.w                                                  ; $e440 : $20, $e9, $f8
+	jsr $f8e9.w                                                  ; $e440 : $20, $e9, $f8
 	asl $20                                                  ; $e443 : $06, $20
 	ora #$e8.b                                                  ; $e445 : $09, $e8
 	tsb $20                                                  ; $e447 : $04, $20
 	sbc $02e8.w, Y                                                  ; $e449 : $f9, $e8, $02
-	jsr Call_12_e8e9.w                                                  ; $e44c : $20, $e9, $e8
+	jsr $e8e9.w                                                  ; $e44c : $20, $e9, $e8
 	.db $00                                                  ; $e44f : $00
 	.db $00                                                  ; $e450 : $00
 	cop $e5.b                                                  ; $e451 : $02, $e5
@@ -15238,14 +15238,14 @@ br_12_e458:
 	tsb $0920.w                                                  ; $e484 : $0c, $20, $09
 	sed                                                  ; $e487 : $f8
 	asl                                                  ; $e488 : $0a
-	jsr Call_12_f8f9.w                                                  ; $e489 : $20, $f9, $f8
+	jsr $f8f9.w                                                  ; $e489 : $20, $f9, $f8
 	php                                                  ; $e48c : $08
-	jsr Call_12_f8e9.w                                                  ; $e48d : $20, $e9, $f8
+	jsr $f8e9.w                                                  ; $e48d : $20, $e9, $f8
 	asl $20                                                  ; $e490 : $06, $20
 	ora #$e8.b                                                  ; $e492 : $09, $e8
 	tsb $20                                                  ; $e494 : $04, $20
 	sbc $02e8.w, Y                                                  ; $e496 : $f9, $e8, $02
-	jsr Call_12_e8e9.w                                                  ; $e499 : $20, $e9, $e8
+	jsr $e8e9.w                                                  ; $e499 : $20, $e9, $e8
 	.db $00                                                  ; $e49c : $00
 	.db $00                                                  ; $e49d : $00
 	cop $e5.b                                                  ; $e49e : $02, $e5
@@ -15278,14 +15278,14 @@ br_12_e4a5:
 	tsb $0920.w                                                  ; $e4d1 : $0c, $20, $09
 	sed                                                  ; $e4d4 : $f8
 	asl                                                  ; $e4d5 : $0a
-	jsr Call_12_f8f9.w                                                  ; $e4d6 : $20, $f9, $f8
+	jsr $f8f9.w                                                  ; $e4d6 : $20, $f9, $f8
 	php                                                  ; $e4d9 : $08
-	jsr Call_12_f8e9.w                                                  ; $e4da : $20, $e9, $f8
+	jsr $f8e9.w                                                  ; $e4da : $20, $e9, $f8
 	asl $20                                                  ; $e4dd : $06, $20
 	ora #$e8.b                                                  ; $e4df : $09, $e8
 	tsb $20                                                  ; $e4e1 : $04, $20
 	sbc $02e8.w, Y                                                  ; $e4e3 : $f9, $e8, $02
-	jsr Call_12_e8e9.w                                                  ; $e4e6 : $20, $e9, $e8
+	jsr $e8e9.w                                                  ; $e4e6 : $20, $e9, $e8
 	.db $00                                                  ; $e4e9 : $00
 	.db $00                                                  ; $e4ea : $00
 	cop $e5.b                                                  ; $e4eb : $02, $e5
@@ -15764,1582 +15764,3 @@ Call_12_e804:
 	sbc ($26, S), Y                                                  ; $e804 : $f3, $26
 	jsr $fb00.w                                                  ; $e806 : $20, $00, $fb
 	jsr $ffffff.l                                                  ; $e809 : $22, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e80d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e811 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e815 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e819 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e81d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e821 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e825 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e829 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e82d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e831 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e835 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e839 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e83d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e841 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e845 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e849 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e84d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e851 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e855 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e859 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e85d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e861 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e865 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e869 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e86d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e871 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e875 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e879 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e87d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e881 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e885 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e889 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e88d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e891 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e895 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e899 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e89d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8a1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8a5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8a9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8ad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8b1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8b5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8b9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8bd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8c1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8c5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8c9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8cd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8d1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8d5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8d9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8dd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8e1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8e5 : $ff, $ff, $ff, $ff
-
-Call_12_e8e9:
-	sbc $ffffff.l, X                                                  ; $e8e9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8ed : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8f1 : $ff, $ff, $ff, $ff
-
-Call_12_e8f5:
-	sbc $ffffff.l, X                                                  ; $e8f5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8f9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e8fd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e901 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e905 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e909 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e90d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e911 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e915 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e919 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e91d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e921 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e925 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e929 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e92d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e931 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e935 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e939 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e93d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e941 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e945 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e949 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e94d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e951 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e955 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e959 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e95d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e961 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e965 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e969 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e96d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e971 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e975 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e979 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e97d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e981 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e985 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e989 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e98d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e991 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e995 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e999 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e99d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9a1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9a5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9a9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9ad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9b1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9b5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9b9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9bd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9c1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9c5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9c9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9cd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9d1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9d5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9d9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9dd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9e1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9e5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9e9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9ed : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9f1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9f5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9f9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $e9fd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea01 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea05 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea09 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea0d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea11 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea15 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea19 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea1d : $ff, $ff, $ff, $ff
-
-Call_12_ea21:
-	sbc $ffffff.l, X                                                  ; $ea21 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea25 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea29 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea2d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea31 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea35 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea39 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea3d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea41 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea45 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea49 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea4d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea51 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea55 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea59 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea5d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea61 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea65 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea69 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea6d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea71 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea75 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea79 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea7d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea81 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea85 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea89 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea8d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea91 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea95 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea99 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ea9d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eaa1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eaa5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eaa9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eaad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eab1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eab5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eab9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eabd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eac1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eac5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eac9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eacd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ead1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ead5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ead9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eadd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eae1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eae5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eae9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eaed : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eaf1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eaf5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eaf9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eafd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb01 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb05 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb09 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb0d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb11 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb15 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb19 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb1d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb21 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb25 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb29 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb2d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb31 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb35 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb39 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb3d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb41 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb45 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb49 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb4d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb51 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb55 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb59 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb5d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb61 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb65 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb69 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb6d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb71 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb75 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb79 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb7d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb81 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb85 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb89 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb8d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb91 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb95 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb99 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eb9d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eba1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eba5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eba9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebb1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebb5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebb9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebbd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebc1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebc5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebc9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebcd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebd1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebd5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebd9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebdd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebe1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebe5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebe9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebed : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebf1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebf5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebf9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ebfd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec01 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec05 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec09 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec0d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec11 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec15 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec19 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec1d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec21 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec25 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec29 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec2d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec31 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec35 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec39 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec3d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec41 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec45 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec49 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec4d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec51 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec55 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec59 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec5d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec61 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec65 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec69 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec6d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec71 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec75 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec79 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec7d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec81 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec85 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec89 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec8d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec91 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec95 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec99 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ec9d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eca1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eca5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eca9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ecad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ecb1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ecb5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ecb9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ecbd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ecc1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ecc5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ecc9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eccd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ecd1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ecd5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ecd9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ecdd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ece1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ece5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ece9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eced : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ecf1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ecf5 : $ff, $ff, $ff, $ff
-
-Call_12_ecf9:
-	sbc $ffffff.l, X                                                  ; $ecf9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ecfd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed01 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed05 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed09 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed0d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed11 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed15 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed19 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed1d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed21 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed25 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed29 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed2d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed31 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed35 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed39 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed3d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed41 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed45 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed49 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed4d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed51 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed55 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed59 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed5d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed61 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed65 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed69 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed6d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed71 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed75 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed79 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed7d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed81 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed85 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed89 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed8d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed91 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed95 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed99 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ed9d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eda1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eda5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eda9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $edad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $edb1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $edb5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $edb9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $edbd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $edc1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $edc5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $edc9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $edcd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $edd1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $edd5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $edd9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eddd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ede1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ede5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ede9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eded : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $edf1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $edf5 : $ff, $ff, $ff, $ff
-
-br_12_edf9:
-	sbc $ffffff.l, X                                                  ; $edf9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $edfd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee01 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee05 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee09 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee0d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee11 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee15 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee19 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee1d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee21 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee25 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee29 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee2d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee31 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee35 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee39 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee3d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee41 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee45 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee49 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee4d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee51 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee55 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee59 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee5d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee61 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee65 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee69 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee6d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee71 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee75 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee79 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee7d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee81 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee85 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee89 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee8d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee91 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee95 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee99 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ee9d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eea1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eea5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eea9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eead : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eeb1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eeb5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eeb9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eebd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eec1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eec5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eec9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eecd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eed1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eed5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eed9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eedd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eee1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eee5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eee9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eeed : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eef1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eef5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eef9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eefd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef01 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef05 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef09 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef0d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef11 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef15 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef19 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef1d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef21 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef25 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef29 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef2d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef31 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef35 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef39 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef3d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef41 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef45 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef49 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef4d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef51 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef55 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef59 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef5d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef61 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef65 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef69 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef6d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef71 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef75 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef79 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef7d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef81 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef85 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef89 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef8d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef91 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef95 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef99 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ef9d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $efa1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $efa5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $efa9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $efad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $efb1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $efb5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $efb9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $efbd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $efc1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $efc5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $efc9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $efcd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $efd1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $efd5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $efd9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $efdd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $efe1 : $ff, $ff, $ff, $ff
-
-Call_12_efe5:
-	sbc $ffffff.l, X                                                  ; $efe5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $efe9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $efed : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eff1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eff5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $eff9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $effd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f001 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f005 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f009 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f00d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f011 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f015 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f019 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f01d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f021 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f025 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f029 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f02d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f031 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f035 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f039 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f03d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f041 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f045 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f049 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f04d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f051 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f055 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f059 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f05d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f061 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f065 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f069 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f06d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f071 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f075 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f079 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f07d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f081 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f085 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f089 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f08d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f091 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f095 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f099 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f09d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0a1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0a5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0a9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0ad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0b1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0b5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0b9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0bd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0c1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0c5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0c9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0cd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0d1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0d5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0d9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0dd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0e1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0e5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0e9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0ed : $ff, $ff, $ff, $ff
-
-Call_12_f0f1:
-	sbc $ffffff.l, X                                                  ; $f0f1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0f5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0f9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f0fd : $ff, $ff, $ff, $ff
-
-Call_12_f101:
-	sbc $ffffff.l, X                                                  ; $f101 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f105 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f109 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f10d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f111 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f115 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f119 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f11d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f121 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f125 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f129 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f12d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f131 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f135 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f139 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f13d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f141 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f145 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f149 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f14d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f151 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f155 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f159 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f15d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f161 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f165 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f169 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f16d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f171 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f175 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f179 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f17d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f181 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f185 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f189 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f18d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f191 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f195 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f199 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f19d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1a1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1a5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1a9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1ad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1b1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1b5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1b9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1bd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1c1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1c5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1c9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1cd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1d1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1d5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1d9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1dd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1e1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1e5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1e9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1ed : $ff, $ff, $ff, $ff
-
-Call_12_f1f1:
-	sbc $ffffff.l, X                                                  ; $f1f1 : $ff, $ff, $ff, $ff
-
-Call_12_f1f5:
-	sbc $ffffff.l, X                                                  ; $f1f5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1f9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f1fd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f201 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f205 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f209 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f20d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f211 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f215 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f219 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f21d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f221 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f225 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f229 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f22d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f231 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f235 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f239 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f23d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f241 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f245 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f249 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f24d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f251 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f255 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f259 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f25d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f261 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f265 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f269 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f26d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f271 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f275 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f279 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f27d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f281 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f285 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f289 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f28d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f291 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f295 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f299 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f29d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2a1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2a5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2a9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2ad : $ff, $ff, $ff, $ff
-
-br_12_f2b1:
-	sbc $ffffff.l, X                                                  ; $f2b1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2b5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2b9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2bd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2c1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2c5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2c9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2cd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2d1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2d5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2d9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2dd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2e1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2e5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2e9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2ed : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2f1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2f5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2f9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f2fd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f301 : $ff, $ff, $ff, $ff
-
-Call_12_f305:
-	sbc $ffffff.l, X                                                  ; $f305 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f309 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f30d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f311 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f315 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f319 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f31d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f321 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f325 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f329 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f32d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f331 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f335 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f339 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f33d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f341 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f345 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f349 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f34d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f351 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f355 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f359 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f35d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f361 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f365 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f369 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f36d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f371 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f375 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f379 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f37d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f381 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f385 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f389 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f38d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f391 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f395 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f399 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f39d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3a1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3a5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3a9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3ad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3b1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3b5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3b9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3bd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3c1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3c5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3c9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3cd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3d1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3d5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3d9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3dd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3e1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3e5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3e9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3ed : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3f1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3f5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3f9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f3fd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f401 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f405 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f409 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f40d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f411 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f415 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f419 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f41d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f421 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f425 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f429 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f42d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f431 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f435 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f439 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f43d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f441 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f445 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f449 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f44d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f451 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f455 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f459 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f45d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f461 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f465 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f469 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f46d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f471 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f475 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f479 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f47d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f481 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f485 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f489 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f48d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f491 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f495 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f499 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f49d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4a1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4a5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4a9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4ad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4b1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4b5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4b9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4bd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4c1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4c5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4c9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4cd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4d1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4d5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4d9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4dd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4e1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4e5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4e9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4ed : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4f1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4f5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4f9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f4fd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f501 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f505 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f509 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f50d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f511 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f515 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f519 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f51d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f521 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f525 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f529 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f52d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f531 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f535 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f539 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f53d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f541 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f545 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f549 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f54d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f551 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f555 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f559 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f55d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f561 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f565 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f569 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f56d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f571 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f575 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f579 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f57d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f581 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f585 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f589 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f58d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f591 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f595 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f599 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f59d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5a1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5a5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5a9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5ad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5b1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5b5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5b9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5bd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5c1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5c5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5c9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5cd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5d1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5d5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5d9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5dd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5e1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5e5 : $ff, $ff, $ff, $ff
-
-Call_12_f5e9:
-	sbc $ffffff.l, X                                                  ; $f5e9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5ed : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5f1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5f5 : $ff, $ff, $ff, $ff
-
-Call_12_f5f9:
-	sbc $ffffff.l, X                                                  ; $f5f9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f5fd : $ff, $ff, $ff, $ff
-
-Call_12_f601:
-	sbc $ffffff.l, X                                                  ; $f601 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f605 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f609 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f60d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f611 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f615 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f619 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f61d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f621 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f625 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f629 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f62d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f631 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f635 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f639 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f63d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f641 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f645 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f649 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f64d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f651 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f655 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f659 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f65d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f661 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f665 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f669 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f66d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f671 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f675 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f679 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f67d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f681 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f685 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f689 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f68d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f691 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f695 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f699 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f69d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6a1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6a5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6a9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6ad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6b1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6b5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6b9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6bd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6c1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6c5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6c9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6cd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6d1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6d5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6d9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6dd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6e1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6e5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6e9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6ed : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6f1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6f5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6f9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f6fd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f701 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f705 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f709 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f70d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f711 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f715 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f719 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f71d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f721 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f725 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f729 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f72d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f731 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f735 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f739 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f73d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f741 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f745 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f749 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f74d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f751 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f755 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f759 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f75d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f761 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f765 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f769 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f76d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f771 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f775 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f779 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f77d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f781 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f785 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f789 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f78d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f791 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f795 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f799 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f79d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7a1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7a5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7a9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7ad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7b1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7b5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7b9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7bd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7c1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7c5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7c9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7cd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7d1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7d5 : $ff, $ff, $ff, $ff
-
-Call_12_f7d9:
-	sbc $ffffff.l, X                                                  ; $f7d9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7dd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7e1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7e5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7e9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7ed : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7f1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7f5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7f9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f7fd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f801 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f805 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f809 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f80d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f811 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f815 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f819 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f81d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f821 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f825 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f829 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f82d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f831 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f835 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f839 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f83d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f841 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f845 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f849 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f84d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f851 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f855 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f859 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f85d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f861 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f865 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f869 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f86d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f871 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f875 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f879 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f87d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f881 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f885 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f889 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f88d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f891 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f895 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f899 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f89d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8a1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8a5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8a9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8ad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8b1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8b5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8b9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8bd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8c1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8c5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8c9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8cd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8d1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8d5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8d9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8dd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8e1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8e5 : $ff, $ff, $ff, $ff
-
-Call_12_f8e9:
-	sbc $ffffff.l, X                                                  ; $f8e9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8ed : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8f1 : $ff, $ff, $ff, $ff
-
-Call_12_f8f5:
-	sbc $ffffff.l, X                                                  ; $f8f5 : $ff, $ff, $ff, $ff
-
-Call_12_f8f9:
-	sbc $ffffff.l, X                                                  ; $f8f9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f8fd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f901 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f905 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f909 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f90d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f911 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f915 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f919 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f91d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f921 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f925 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f929 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f92d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f931 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f935 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f939 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f93d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f941 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f945 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f949 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f94d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f951 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f955 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f959 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f95d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f961 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f965 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f969 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f96d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f971 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f975 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f979 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f97d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f981 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f985 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f989 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f98d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f991 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f995 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f999 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f99d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9a1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9a5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9a9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9ad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9b1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9b5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9b9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9bd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9c1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9c5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9c9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9cd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9d1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9d5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9d9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9dd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9e1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9e5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9e9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9ed : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9f1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9f5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9f9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $f9fd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa01 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa05 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa09 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa0d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa11 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa15 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa19 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa1d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa21 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa25 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa29 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa2d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa31 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa35 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa39 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa3d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa41 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa45 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa49 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa4d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa51 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa55 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa59 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa5d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa61 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa65 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa69 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa6d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa71 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa75 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa79 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa7d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa81 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa85 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa89 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa8d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa91 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa95 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa99 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fa9d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $faa1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $faa5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $faa9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $faad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fab1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fab5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fab9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fabd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fac1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fac5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fac9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $facd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fad1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fad5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fad9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fadd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fae1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fae5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fae9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $faed : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $faf1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $faf5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $faf9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fafd : $ff, $ff, $ff, $ff
-
-Call_12_fb01:
-	sbc $ffffff.l, X                                                  ; $fb01 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb05 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb09 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb0d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb11 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb15 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb19 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb1d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb21 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb25 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb29 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb2d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb31 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb35 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb39 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb3d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb41 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb45 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb49 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb4d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb51 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb55 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb59 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb5d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb61 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb65 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb69 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb6d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb71 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb75 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb79 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb7d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb81 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb85 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb89 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb8d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb91 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb95 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb99 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fb9d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fba1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fba5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fba9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbb1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbb5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbb9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbbd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbc1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbc5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbc9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbcd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbd1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbd5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbd9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbdd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbe1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbe5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbe9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbed : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbf1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbf5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbf9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fbfd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc01 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc05 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc09 : $ff, $ff, $ff, $ff
-
-Call_12_fc0d:
-	sbc $ffffff.l, X                                                  ; $fc0d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc11 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc15 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc19 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc1d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc21 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc25 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc29 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc2d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc31 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc35 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc39 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc3d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc41 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc45 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc49 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc4d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc51 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc55 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc59 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc5d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc61 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc65 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc69 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc6d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc71 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc75 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc79 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc7d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc81 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc85 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc89 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc8d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc91 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc95 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc99 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fc9d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fca1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fca5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fca9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fcad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fcb1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fcb5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fcb9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fcbd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fcc1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fcc5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fcc9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fccd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fcd1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fcd5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fcd9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fcdd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fce1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fce5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fce9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fced : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fcf1 : $ff, $ff, $ff, $ff
-
-Call_12_fcf5:
-	sbc $ffffff.l, X                                                  ; $fcf5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fcf9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fcfd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd01 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd05 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd09 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd0d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd11 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd15 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd19 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd1d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd21 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd25 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd29 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd2d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd31 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd35 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd39 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd3d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd41 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd45 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd49 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd4d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd51 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd55 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd59 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd5d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd61 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd65 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd69 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd6d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd71 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd75 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd79 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd7d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd81 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd85 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd89 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd8d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd91 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd95 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd99 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fd9d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fda1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fda5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fda9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fdad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fdb1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fdb5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fdb9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fdbd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fdc1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fdc5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fdc9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fdcd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fdd1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fdd5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fdd9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fddd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fde1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fde5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fde9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fded : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fdf1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fdf5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fdf9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fdfd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe01 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe05 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe09 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe0d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe11 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe15 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe19 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe1d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe21 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe25 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe29 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe2d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe31 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe35 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe39 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe3d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe41 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe45 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe49 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe4d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe51 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe55 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe59 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe5d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe61 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe65 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe69 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe6d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe71 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe75 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe79 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe7d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe81 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe85 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe89 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe8d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe91 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe95 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe99 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fe9d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fea1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fea5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fea9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fead : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $feb1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $feb5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $feb9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $febd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fec1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fec5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fec9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fecd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fed1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fed5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fed9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fedd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fee1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fee5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fee9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $feed : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fef1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fef5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fef9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fefd : $ff, $ff, $ff, $ff
-
-Call_12_ff01:
-	sbc $ffffff.l, X                                                  ; $ff01 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff05 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff09 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff0d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff11 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff15 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff19 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff1d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff21 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff25 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff29 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff2d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff31 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff35 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff39 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff3d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff41 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff45 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff49 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff4d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff51 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff55 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff59 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff5d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff61 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff65 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff69 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff6d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff71 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff75 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff79 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff7d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff81 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff85 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff89 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff8d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff91 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff95 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff99 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff9d : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffa1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffa5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffa9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffad : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffb1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffb5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffb9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffbd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffc1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffc5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffc9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffcd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffd1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffd5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffd9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffdd : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffe1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffe5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffe9 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffed : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff1 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff5 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff9 : $ff, $ff, $ff, $ff
-	.db $ff, $ff, $ff                                                  ; $fffd : $ff, $ff, $ff

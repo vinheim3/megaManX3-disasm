@@ -3888,7 +3888,7 @@ br_0e_97aa:
 	.db $00                                                  ; $9804 : $00
 	.db $00                                                  ; $9805 : $00
 	sbc ($2e, S), Y                                                  ; $9806 : $f3, $2e
-	jsr Call_0e_fff7.w                                                  ; $9808 : $20, $f7, $ff
+	jsr $fff7.w                                                  ; $9808 : $20, $f7, $ff
 	tsb $00                                                  ; $980b : $04, $00
 	sed                                                  ; $980d : $f8
 	sbc ($2d, S), Y                                                  ; $980e : $f3, $2d
@@ -3952,7 +3952,7 @@ br_0e_9812:
 	.db $00                                                  ; $986d : $00
 	.db $00                                                  ; $986e : $00
 	sbc ($2e, S), Y                                                  ; $986f : $f3, $2e
-	jsr Call_0e_fff7.w                                                  ; $9871 : $20, $f7, $ff
+	jsr $fff7.w                                                  ; $9871 : $20, $f7, $ff
 	tsb $00                                                  ; $9874 : $04, $00
 	sed                                                  ; $9876 : $f8
 	sbc ($2d, S), Y                                                  ; $9877 : $f3, $2d
@@ -4196,7 +4196,7 @@ br_0e_9966:
 	.db $00                                                  ; $9a11 : $00
 	.db $00                                                  ; $9a12 : $00
 	sbc ($2e, S), Y                                                  ; $9a13 : $f3, $2e
-	jsr Call_0e_fff7.w                                                  ; $9a15 : $20, $f7, $ff
+	jsr $fff7.w                                                  ; $9a15 : $20, $f7, $ff
 	tsb $00                                                  ; $9a18 : $04, $00
 	sed                                                  ; $9a1a : $f8
 	sbc ($2d, S), Y                                                  ; $9a1b : $f3, $2d
@@ -4256,7 +4256,7 @@ br_0e_9966:
 	.db $00                                                  ; $9a7a : $00
 	.db $00                                                  ; $9a7b : $00
 	sbc ($2e, S), Y                                                  ; $9a7c : $f3, $2e
-	jsr Call_0e_fff7.w                                                  ; $9a7e : $20, $f7, $ff
+	jsr $fff7.w                                                  ; $9a7e : $20, $f7, $ff
 	tsb $00                                                  ; $9a81 : $04, $00
 	sed                                                  ; $9a83 : $f8
 	sbc ($2d, S), Y                                                  ; $9a84 : $f3, $2d
@@ -7817,7 +7817,7 @@ Call_0e_afcc:
 	ora ($17, X)                                                  ; $b088 : $01, $17
 	sbc $1f2146.l, X                                                  ; $b08a : $ff, $46, $21, $1f
 	sbc $1a2047.l, X                                                  ; $b08e : $ff, $47, $20, $1a
-	sbc $2124.w, Y                                                  ; $b092 : $f9, $24, $21
+	sbc W34SEL.w, Y                                                  ; $b092 : $f9, $24, $21
 	asl $f2, X                                                  ; $b095 : $16, $f2
 	eor $0d00.w                                                  ; $b097 : $4d, $00, $0d
 	xce                                                  ; $b09a : $fb
@@ -8070,7 +8070,7 @@ br_0e_b1e1:
 	inc $002b.w, X                                                  ; $b261 : $fe, $2b, $00
 	.db $00                                                  ; $b264 : $00
 	sbc ($2e, S), Y                                                  ; $b265 : $f3, $2e
-	jsr Call_0e_fff7.w                                                  ; $b267 : $20, $f7, $ff
+	jsr $fff7.w                                                  ; $b267 : $20, $f7, $ff
 	tsb $00                                                  ; $b26a : $04, $00
 	sed                                                  ; $b26c : $f8
 	sbc ($2d, S), Y                                                  ; $b26d : $f3, $2d
@@ -8151,7 +8151,7 @@ br_0e_b271:
 	inc $002b.w, X                                                  ; $b2ee : $fe, $2b, $00
 	.db $00                                                  ; $b2f1 : $00
 	sbc ($2e, S), Y                                                  ; $b2f2 : $f3, $2e
-	jsr Call_0e_fff7.w                                                  ; $b2f4 : $20, $f7, $ff
+	jsr $fff7.w                                                  ; $b2f4 : $20, $f7, $ff
 	tsb $00                                                  ; $b2f7 : $04, $00
 	sed                                                  ; $b2f9 : $f8
 	sbc ($2d, S), Y                                                  ; $b2fa : $f3, $2d
@@ -8470,7 +8470,7 @@ br_0e_b439:
 	inc $002b.w, X                                                  ; $b532 : $fe, $2b, $00
 	.db $00                                                  ; $b535 : $00
 	sbc ($2e, S), Y                                                  ; $b536 : $f3, $2e
-	jsr Call_0e_fff7.w                                                  ; $b538 : $20, $f7, $ff
+	jsr $fff7.w                                                  ; $b538 : $20, $f7, $ff
 	tsb $00                                                  ; $b53b : $04, $00
 	sed                                                  ; $b53d : $f8
 	sbc ($2d, S), Y                                                  ; $b53e : $f3, $2d
@@ -8548,7 +8548,7 @@ br_0e_b439:
 	inc $002b.w, X                                                  ; $b5c3 : $fe, $2b, $00
 	.db $00                                                  ; $b5c6 : $00
 	sbc ($2e, S), Y                                                  ; $b5c7 : $f3, $2e
-	jsr Call_0e_fff7.w                                                  ; $b5c9 : $20, $f7, $ff
+	jsr $fff7.w                                                  ; $b5c9 : $20, $f7, $ff
 	tsb $00                                                  ; $b5cc : $04, $00
 	sed                                                  ; $b5ce : $f8
 	sbc ($2d, S), Y                                                  ; $b5cf : $f3, $2d
@@ -20182,20 +20182,3 @@ br_0e_ffb7:
 	ora $f06000.l                                                  ; $ffbc : $0f, $00, $60, $f0
 	ora $fc0000.l                                                  ; $ffc0 : $0f, $00, $00, $fc
 	asl $ff13.w                                                  ; $ffc4 : $0e, $13, $ff
-	sbc $ffffff.l, X                                                  ; $ffc7 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffcb : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffcf : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffd3 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffd7 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffdb : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffdf : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffe3 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffe7 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffeb : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffef : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff3 : $ff, $ff, $ff, $ff
-
-Call_0e_fff7:
-	sbc $ffffff.l, X                                                  ; $fff7 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fffb : $ff, $ff, $ff, $ff
-	.db $ff                                                  ; $ffff : $ff

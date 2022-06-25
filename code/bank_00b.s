@@ -2435,7 +2435,7 @@ br_0b_91f9:
 	txs                                                  ; $92c9 : $9a
 	ora ($55, X)                                                  ; $92ca : $01, $55
 	ora $ecde.w, X                                                  ; $92cc : $1d, $de, $ec
-	stz $2125.w                                                  ; $92cf : $9c, $25, $21
+	stz WOBJSEL.w                                                  ; $92cf : $9c, $25, $21
 	txs                                                  ; $92d2 : $9a
 	.db $00                                                  ; $92d3 : $00
 	bit $40                                                  ; $92d4 : $24, $40

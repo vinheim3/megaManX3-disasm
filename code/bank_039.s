@@ -6122,7 +6122,7 @@ br_39_b6f8:
 
 br_39_b712:
 	lda #$e0.b                                                  ; $b712 : $a9, $e0
-	sta $2132.w                                                  ; $b714 : $8d, $32, $21
+	sta COLDATA.w                                                  ; $b714 : $8d, $32, $21
 	sta $00cb.w                                                  ; $b717 : $8d, $cb, $00
 	lda #$01.b                                                  ; $b71a : $a9, $01
 	sta $2126.w                                                  ; $b71c : $8d, $26, $21
@@ -6132,7 +6132,7 @@ br_39_b712:
 	lda #$13.b                                                  ; $b727 : $a9, $13
 	sta wSubScreenDesignation.w                                                  ; $b729 : $8d, $c2, $00
 	lda #$03.b                                                  ; $b72c : $a9, $03
-	sta $2124.w                                                  ; $b72e : $8d, $24, $21
+	sta W34SEL.w                                                  ; $b72e : $8d, $24, $21
 	sta $00c6.w                                                  ; $b731 : $8d, $c6, $00
 	lda #$02.b                                                  ; $b734 : $a9, $02
 	sta CGWSEL.w                                                  ; $b736 : $8d, $30, $21
@@ -6277,7 +6277,7 @@ Jump_39_b821:
 	sta TM.w                                                  ; $b826 : $8d, $2c, $21
 	stz wSubScreenDesignation.w                                                  ; $b829 : $9c, $c2, $00
 	stz TS.w                                                  ; $b82c : $9c, $2d, $21
-	stz $2124.w                                                  ; $b82f : $9c, $24, $21
+	stz W34SEL.w                                                  ; $b82f : $9c, $24, $21
 	stz $00c6.w                                                  ; $b832 : $9c, $c6, $00
 	stz CGWSEL.w                                                  ; $b835 : $9c, $30, $21
 	stz wColourAdditionSelect.w                                                  ; $b838 : $9c, $c9, $00
@@ -6966,7 +6966,7 @@ br_39_bc78:
 
 	lda #$e0.b                                                  ; $bc8f : $a9, $e0
 	sta $00cb.w                                                  ; $bc91 : $8d, $cb, $00
-	sta $2132.w                                                  ; $bc94 : $8d, $32, $21
+	sta COLDATA.w                                                  ; $bc94 : $8d, $32, $21
 	lda #$00.b                                                  ; $bc97 : $a9, $00
 	sta wColourAdditionSelect.w                                                  ; $bc99 : $8d, $c9, $00
 	sta CGWSEL.w                                                  ; $bc9c : $8d, $30, $21
@@ -17111,10 +17111,3 @@ br_39_ff94:
 	sta ($80, X)                                                  ; $ffe0 : $81, $80
 	stx $03                                                  ; $ffe2 : $86, $03
 	sta [$1e]                                                  ; $ffe4 : $87, $1e
-	sbc $ffffff.l, X                                                  ; $ffe6 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffea : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffee : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff2 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff6 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fffa : $ff, $ff, $ff, $ff
-	.db $ff, $ff                                                  ; $fffe : $ff, $ff

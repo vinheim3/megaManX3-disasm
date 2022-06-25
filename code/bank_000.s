@@ -1094,8 +1094,8 @@ todo_UpdateBGTilemapAndCharAddrRegs:
 
 Call_00_85c5:
 	lda #$09.b                                                  ; $85c5 : $a9, $09
-	sta $2105.w                                                  ; $85c7 : $8d, $05, $21
-	stz $2106.w                                                  ; $85ca : $9c, $06, $21
+	sta BGMODE.w                                                  ; $85c7 : $8d, $05, $21
+	stz MOSAIC.w                                                  ; $85ca : $9c, $06, $21
 	rep #ACCU_8                                                  ; $85cd : $c2, $20
 	stz wBG1HorizScroll                                                  ; $85cf : $64, $b5
 	stz wBG1VertScroll                                                  ; $85d1 : $64, $b7
@@ -1104,9 +1104,9 @@ Call_00_85c5:
 	stz wBG3HorizScroll                                                  ; $85d7 : $64, $bd
 	stz wBG3VertScroll                                                  ; $85d9 : $64, $bf
 	sep #ACCU_8                                                  ; $85db : $e2, $20
-	stz $2123.w                                                  ; $85dd : $9c, $23, $21
+	stz W12SEL.w                                                  ; $85dd : $9c, $23, $21
 	stz $00c5.w                                                  ; $85e0 : $9c, $c5, $00
-	stz $2124.w                                                  ; $85e3 : $9c, $24, $21
+	stz W34SEL.w                                                  ; $85e3 : $9c, $24, $21
 	stz $00c6.w                                                  ; $85e6 : $9c, $c6, $00
 	stz $c2                                                  ; $85e9 : $64, $c2
 	stz $212e.w                                                  ; $85eb : $9c, $2e, $21
@@ -1116,7 +1116,7 @@ Call_00_85c5:
 	stz wColourAdditionSelect.w                                                  ; $85f7 : $9c, $c9, $00
 	stz wColourMathDesignation.w                                                  ; $85fa : $9c, $ca, $00
 	lda #$e0.b                                                  ; $85fd : $a9, $e0
-	sta $2132.w                                                  ; $85ff : $8d, $32, $21
+	sta COLDATA.w                                                  ; $85ff : $8d, $32, $21
 	sta $00cb.w                                                  ; $8602 : $8d, $cb, $00
 	sta $00cc.w                                                  ; $8605 : $8d, $cc, $00
 	sta $00cd.w                                                  ; $8608 : $8d, $cd, $00
@@ -6133,7 +6133,7 @@ br_00_a807:
 	sta $00cc.w                                                  ; $a821 : $8d, $cc, $00
 	sta $00cd.w                                                  ; $a824 : $8d, $cd, $00
 	stz $00c8.w                                                  ; $a827 : $9c, $c8, $00
-	stz $2125.w                                                  ; $a82a : $9c, $25, $21
+	stz WOBJSEL.w                                                  ; $a82a : $9c, $25, $21
 	stz $2126.w                                                  ; $a82d : $9c, $26, $21
 	lda #$ff.b                                                  ; $a830 : $a9, $ff
 	sta $2127.w                                                  ; $a832 : $8d, $27, $21

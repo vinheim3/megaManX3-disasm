@@ -20711,7 +20711,7 @@ br_31_fe8d:
 	.db $00                                                  ; $fe8d : $00
 	bra br_31_fe10                                                  ; $fe8e : $80, $80
 
-	bvs br_31_ff02                                                  ; $fe90 : $70, $70
+	bvs $70                                                  ; $fe90 : $70, $70
 
 	.db $80, $80                                                  ; $fe92 : $80, $80
 
@@ -20746,85 +20746,3 @@ br_31_fe8d:
 	sed                                                  ; $febc : $f8
 	tsb $00                                                  ; $febd : $04, $00
 	jsr ($ffff.w, X)                                                  ; $febf : $fc, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fec2 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fec6 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $feca : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fece : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fed2 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fed6 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $feda : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fede : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fee2 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fee6 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $feea : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $feee : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fef2 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fef6 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fefa : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fefe : $ff, $ff, $ff, $ff
-
-br_31_ff02:
-	sbc $ffffff.l, X                                                  ; $ff02 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff06 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff0a : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff0e : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff12 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff16 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff1a : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff1e : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff22 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff26 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff2a : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff2e : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff32 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff36 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff3a : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff3e : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff42 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff46 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff4a : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff4e : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff52 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff56 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff5a : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff5e : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff62 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff66 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff6a : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff6e : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff72 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff76 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff7a : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff7e : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff82 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff86 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff8a : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff8e : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff92 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff96 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff9a : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ff9e : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffa2 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffa6 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffaa : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffae : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffb2 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffb6 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffba : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffbe : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffc2 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffc6 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffca : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffce : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffd2 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffd6 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffda : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffde : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffe2 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffe6 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffea : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffee : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff2 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff6 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fffa : $ff, $ff, $ff, $ff
-	.db $ff, $ff                                                  ; $fffe : $ff, $ff

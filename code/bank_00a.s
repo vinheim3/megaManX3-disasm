@@ -11925,7 +11925,7 @@ br_0a_cf6e:
 	clc                                                  ; $cf91 : $18
 	cpx #$f40b.w                                                  ; $cf92 : $e0, $0b, $f4
 	php                                                  ; $cf95 : $08
-	and $4207.w                                                  ; $cf96 : $2d, $07, $42
+	and HTIMEL.w                                                  ; $cf96 : $2d, $07, $42
 	asl $b0                                                  ; $cf99 : $06, $b0
 	ora $0912.w, X                                                  ; $cf9b : $1d, $12, $09
 	cop $16.b                                                  ; $cf9e : $02, $16
@@ -16114,7 +16114,7 @@ br_0a_ea35:
 
 	tsb $d018.w                                                  ; $ea6a : $0c, $18, $d0
 	php                                                  ; $ea6d : $08
-	rol $4207.w                                                  ; $ea6e : $2e, $07, $42
+	rol HTIMEL.w                                                  ; $ea6e : $2e, $07, $42
 	asl $f0                                                  ; $ea71 : $06, $f0
 	ora #$03.b                                                  ; $ea73 : $09, $03
 

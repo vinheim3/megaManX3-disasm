@@ -9578,7 +9578,7 @@ br_0d_cc79:
 	sbc ($08), Y                                                  ; $cc89 : $f1, $08
 	jsr $fbf420.l                                                  ; $cc8b : $22, $20, $f4, $fb
 	tsb $00                                                  ; $cc8f : $04, $00
-	pea $2105.w                                                  ; $cc91 : $f4, $05, $21
+	pea BGMODE.w                                                  ; $cc91 : $f4, $05, $21
 	.db $00                                                  ; $cc94 : $00
 	pea $20fb.w                                                  ; $cc95 : $f4, $fb, $20
 
@@ -18160,7 +18160,7 @@ Call_0d_fe0d:
 	stp                                                  ; $fe36 : $db
 	jsr $f2eb.w                                                  ; $fe37 : $20, $eb, $f2
 	stp                                                  ; $fe3a : $db
-	jsr Call_0d_ffff.w                                                  ; $fe3b : $20, $ff, $ff
+	jsr $ffff.w                                                  ; $fe3b : $20, $ff, $ff
 	stp                                                  ; $fe3e : $db
 	jsr Call_0d_f126.w                                                  ; $fe3f : $20, $26, $f1
 	cmp $0d20.w, X                                                  ; $fe42 : $dd, $20, $0d
@@ -18399,10 +18399,3 @@ br_0d_ffa6:
 	sbc ($f0), Y                                                  ; $ffe8 : $f1, $f0
 	tsb $80                                                  ; $ffea : $04, $80
 	pea $0cef.w                                                  ; $ffec : $f4, $ef, $0c
-	sbc $ffffff.l, X                                                  ; $ffef : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff3 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff7 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fffb : $ff, $ff, $ff, $ff
-
-Call_0d_ffff:
-	.db $ff                                                  ; $ffff : $ff

@@ -15658,7 +15658,7 @@ Call_11_e220:
 	and ($ff, X)                                                  ; $e24e : $21, $ff
 	asl $2104.w                                                  ; $e250 : $0e, $04, $21
 	xce                                                  ; $e253 : $fb
-	inc $2106.w, X                                                  ; $e254 : $fe, $06, $21
+	inc MOSAIC.w, X                                                  ; $e254 : $fe, $06, $21
 	sbc $040e.w, Y                                                  ; $e257 : $f9, $0e, $04
 	and ($f5, X)                                                  ; $e25a : $21, $f5
 	inc $4006.w, X                                                  ; $e25c : $fe, $06, $40
@@ -16197,7 +16197,7 @@ Call_11_e5e8:
 	ora ($0e, X)                                                  ; $e5fd : $01, $0e
 	cpx #$0a.b                                                  ; $e5ff : $e0, $0a
 	ora ($fa, X)                                                  ; $e601 : $01, $fa
-	pea $2125.w                                                  ; $e603 : $f4, $25, $21
+	pea WOBJSEL.w                                                  ; $e603 : $f4, $25, $21
 	sbc ($f1, S), Y                                                  ; $e606 : $f3, $f1
 	tsb $0601.w                                                  ; $e608 : $0c, $01, $06
 	bpl br_11_e62f                                                  ; $e60b : $10, $22
@@ -20421,7 +20421,7 @@ br_11_fda4:
 	php                                                  ; $fdc1 : $08
 	pea BG2SC.w                                                  ; $fdc2 : $f4, $08, $21
 	sed                                                  ; $fdc5 : $f8
-	pea $2106.w                                                  ; $fdc6 : $f4, $06, $21
+	pea MOSAIC.w                                                  ; $fdc6 : $f4, $06, $21
 	inx                                                  ; $fdc9 : $e8
 	pea $0104.w                                                  ; $fdca : $f4, $04, $01
 	php                                                  ; $fdcd : $08
@@ -20797,8 +20797,3 @@ br_11_ffde:
 Call_11_ffed:
 	.db $00                                                  ; $ffed : $00
 	ror                                                  ; $ffee : $6a
-	sbc $ffffff.l, X                                                  ; $ffef : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff3 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff7 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fffb : $ff, $ff, $ff, $ff
-	.db $ff                                                  ; $ffff : $ff

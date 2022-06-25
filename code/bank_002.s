@@ -391,42 +391,40 @@ Cx4_ScaleTiles:
 	mov A, OP R3                                                             ; $8200 / 1:00 / $6063
 	mov OP EXT_DTA, A                                                             ; $8202 / 1:01 / $e003
 	_cmp A, OP _000000                                                             ; $8204 / 1:02 / $5050
-	jz Func_2_820a                                                             ; $8206 / 1:03 / $0c05
-
+	jz +                                                             ; $8206 / 1:03 / $0c05
 	call Func_2_834a                                                             ; $8208 / 1:04 / $28a5
-
-Func_2_820a:
-	mov A, OP _000000                                                             ; $820a / 1:05 / $6050
++	mov A, OP _000000                                                             ; $820a / 1:05 / $6050
 	mov OP RB, A                                                             ; $820c / 1:06 / $e06b
 	mov A, OP EXT_DTA                                                             ; $820e / 1:07 / $6003
 	add A, IMM $17                                                             ; $8210 / 1:08 / $8417
 	mov OP R6, A                                                             ; $8212 / 1:09 / $e066
 
-Func_2_8214:
+@loop_8214:
 	mov A, IMM $00                                                             ; $8214 / 1:0a / $6400
 	add _100hA, IMM $00                                                             ; $8216 / 1:0b / $8600
 	add _100hA, IMM $2f                                                             ; $8218 / 1:0c / $862f
 	mov OP R5, A                                                             ; $821a / 1:0d / $e065
 
-Func_2_821c:
+@loop_821c:
 	call Func_2_8238                                                             ; $821c / 1:0e / $281c
 	call Func_2_8266                                                             ; $821e / 1:0f / $2833
 	call Func_2_82d8                                                             ; $8220 / 1:10 / $286c
 	mov A, OP R5                                                             ; $8222 / 1:11 / $6065
 	sub A, IMM $01                                                             ; $8224 / 1:12 / $9401
 	mov OP R5, A                                                             ; $8226 / 1:13 / $e065
-	jc Func_2_821c                                                             ; $8228 / 1:14 / $100e
+	jc @loop_821c                                                             ; $8228 / 1:14 / $100e
 
 	mov A, OP R6                                                             ; $822a / 1:15 / $6066
 	sub A, IMM $01                                                             ; $822c / 1:16 / $9401
 	mov OP R6, A                                                             ; $822e / 1:17 / $e066
 	_cmp A, OP EXT_DTA                                                             ; $8230 / 1:18 / $5003
-	js Func_2_8236                                                             ; $8232 / 1:19 / $141b
+	js @done                                                             ; $8232 / 1:19 / $141b
 
-	jp Func_2_8214                                                             ; $8234 / 1:1a / $080a
+	jp @loop_8214                                                             ; $8234 / 1:1a / $080a
 
-Func_2_8236:
+@done:
 	halt                                                             ; $8236 / 1:1b / $fc00
+
 
 Func_2_8238:
 	mov A, OP R5                                                             ; $8238 / 1:1c / $6065
@@ -447,6 +445,7 @@ Func_2_8238:
 	mov OP R4, A                                                             ; $8256 / 1:2b / $e064
 	ret                                                             ; $8258 / 1:2c / $3c00
 
+
 Func_2_825a:
 	mov A, OP _000000                                                             ; $825a / 1:2d / $6050
 	mov OP R7, A                                                             ; $825c / 1:2e / $e067
@@ -454,6 +453,7 @@ Func_2_825a:
 	mov OP R9, A                                                             ; $8260 / 1:30 / $e069
 	mov OP RA, A                                                             ; $8262 / 1:31 / $e06a
 	ret                                                             ; $8264 / 1:32 / $3c00
+
 
 Func_2_8266:
 	mov A, OP R4                                                             ; $8266 / 1:33 / $6064
@@ -476,7 +476,7 @@ Func_2_8266:
 	shll A, IMM $01                                                             ; $8284 / 1:42 / $dc01
 	add A, OP R7                                                             ; $8286 / 1:43 / $8067
 	_cmp A, OP RB                                                             ; $8288 / 1:44 / $506b
-	jz Func_2_82a8                                                             ; $828a / 1:45 / $0c54
+	jz @cont_82a8                                                             ; $828a / 1:45 / $0c54
 
 	mov OP RB, A                                                             ; $828c / 1:46 / $e06b
 	mov OP RAM_PTR, A                                                             ; $828e / 1:47 / $e01c
@@ -493,7 +493,7 @@ Func_2_8266:
 	mov A, OP RAM_DTA                                                             ; $82a4 / 1:52 / $600c
 	mov OP RF, A                                                             ; $82a6 / 1:53 / $e06f
 
-Func_2_82a8:
+@cont_82a8:
 	mov A, OP R3                                                             ; $82a8 / 1:54 / $6063
 	_and A, IMM $07                                                             ; $82aa / 1:55 / $b407
 	mov OP R4, A                                                             ; $82ac / 1:56 / $e064
@@ -519,19 +519,20 @@ Func_2_82a8:
 	mov OP RA, A                                                             ; $82d4 / 1:6a / $e06a
 	ret                                                             ; $82d6 / 1:6b / $3c00
 
+
 Func_2_82d8:
 	mov A, OP _000000                                                             ; $82d8 / 1:6c / $6050
 	mov OP RAM_DTA, A                                                             ; $82da / 1:6d / $e00c
 	mov A, OP R5                                                             ; $82dc / 1:6e / $6065
 	_and A, IMM $07                                                             ; $82de / 1:6f / $b407
 	_cmp A, IMM $07                                                             ; $82e0 / 1:70 / $5407
-	jz Func_2_82ea                                                             ; $82e2 / 1:71 / $0c75
+	jz @br_82ea                                                             ; $82e2 / 1:71 / $0c75
 
 	mov A, OP EXT_PTR                                                             ; $82e4 / 1:72 / $6013
 	mov OP RAM_PTR, A                                                             ; $82e6 / 1:73 / $e01c
-	jp Func_2_8312                                                             ; $82e8 / 1:74 / $0889
+	jp @cont_8312                                                             ; $82e8 / 1:74 / $0889
 
-Func_2_82ea:
+@br_82ea:
 	mov A, IMM $00                                                             ; $82ea / 1:75 / $6400
 	add _100hA, IMM $06                                                             ; $82ec / 1:76 / $8606
 	add _100hA, IMM $00                                                             ; $82ee / 1:77 / $8600
@@ -553,7 +554,7 @@ Func_2_82ea:
 	mov OP RAM_PTR, A                                                             ; $830e / 1:87 / $e01c
 	mov OP EXT_PTR, A                                                             ; $8310 / 1:88 / $e013
 
-Func_2_8312:
+@cont_8312:
 	mov A, OP R5                                                             ; $8312 / 1:89 / $6065
 	_and A, IMM $07                                                             ; $8314 / 1:8a / $b407
 	mov OP R3, A                                                             ; $8316 / 1:8b / $e063
@@ -583,6 +584,7 @@ Func_2_8312:
 	wrram lsb, IMM $11                                                             ; $8346 / 1:a3 / $ec11
 	ret                                                             ; $8348 / 1:a4 / $3c00
 
+
 Func_2_834a:
 	mov A, OP _000000                                                             ; $834a / 1:a5 / $6050
 	mov OP RAM_DTA, A                                                             ; $834c / 1:a6 / $e00c
@@ -595,14 +597,14 @@ Func_2_834a:
 	add _100hA, IMM $fe                                                             ; $835a / 1:ad / $86fe
 	mov OP RAM_PTR, A                                                             ; $835c / 1:ae / $e01c
 
-Func_2_835e:
+@loop_835e:
 	wrram lsb, IMM $00                                                             ; $835e / 1:af / $ec00
 	wrram mid, IMM $01                                                             ; $8360 / 1:b0 / $ed01
 	mov A, OP RAM_PTR                                                             ; $8362 / 1:b1 / $601c
 	sub A, IMM $02                                                             ; $8364 / 1:b2 / $9402
 	mov OP RAM_PTR, A                                                             ; $8366 / 1:b3 / $e01c
 	_cmp A, OP R4                                                             ; $8368 / 1:b4 / $5064
-	jc Func_2_835e                                                             ; $836a / 1:b5 / $10af
+	jc @loop_835e                                                             ; $836a / 1:b5 / $10af
 
 	ret                                                             ; $836c / 1:b6 / $3c00
 
@@ -1015,16 +1017,17 @@ Func_2_85b2:
 	_and A, IMM $ff                                                             ; $85b2 / 2:d9 / $b4ff
 	mov OP R0, A                                                             ; $85b4 / 2:da / $e060
 	_cmp A, IMM $80                                                             ; $85b6 / 2:db / $5480
-	jc Func_2_85be                                                             ; $85b8 / 2:dc / $10df
+	jc @br_85be                                                             ; $85b8 / 2:dc / $10df
 
 	mov OP R0, A                                                             ; $85ba / 2:dd / $e060
 	jp Func_2_85c6                                                             ; $85bc / 2:de / $08e3
 
-Func_2_85be:
+@br_85be:
 	sub IMM $ff, A                                                             ; $85be / 2:df / $8cff
 	mov OP R0, A                                                             ; $85c0 / 2:e0 / $e060
 	call Func_2_85c6                                                             ; $85c2 / 2:e1 / $28e3
 	jp AequNegA                                                             ; $85c4 / 2:e2 / $08e8
+
 
 Func_2_85c6:
 	mov A, IMM $03                                                             ; $85c6 / 2:e3 / $6403
@@ -1032,6 +1035,7 @@ Func_2_85c6:
 	rdrom OP REG_A                                                             ; $85ca / 2:e5 / $7000
 	mov A, OP ROM_DTA                                                             ; $85cc / 2:e6 / $6008
 	ret                                                             ; $85ce / 2:e7 / $3c00
+
 
 AequNegA:
 	sub OP _000000, A                                                             ; $85d0 / 2:e8 / $8850
@@ -1063,11 +1067,11 @@ Cx4_ScaleRotate1:
 	mov OP RAM_DTA, A                                                             ; $8626 / 3:13 / $e00c
 	mov A, OP RC                                                             ; $8628 / 3:14 / $606c
 	_and A, IMM $80                                                             ; $862a / 3:15 / $b480
-	jz Func_2_8654                                                             ; $862c / 3:16 / $0c2a
+	jz @br_8654                                                             ; $862c / 3:16 / $0c2a
 
 	mov A, OP RAM_DTA                                                             ; $862e / 3:17 / $600c
 	_and A, IMM $7f                                                             ; $8630 / 3:18 / $b47f
-	jz Func_2_8648                                                             ; $8632 / 3:19 / $0c24
+	jz @br_8648                                                             ; $8632 / 3:19 / $0c24
 
 	mov A, IMM $03                                                             ; $8634 / 3:1a / $6403
 	add _100hA, IMM $80                                                             ; $8636 / 3:1b / $8680
@@ -1078,29 +1082,29 @@ Cx4_ScaleRotate1:
 	mov OP R9, A                                                             ; $8640 / 3:20 / $e069
 	mov A, IMM $02                                                             ; $8642 / 3:21 / $6402
 	add _100hA, IMM $00                                                             ; $8644 / 3:22 / $8600
-	jp Func_2_8678                                                             ; $8646 / 3:23 / $083c
+	jp @br_8678                                                             ; $8646 / 3:23 / $083c
 
-Func_2_8648:
+@br_8648:
 	mov A, IMM $01                                                             ; $8648 / 3:24 / $6401
 	shll A, IMM $0c                                                             ; $864a / 3:25 / $dc0c
 	mov OP R9, A                                                             ; $864c / 3:26 / $e069
 	mov A, IMM $00                                                             ; $864e / 3:27 / $6400
 	mov OP RA, A                                                             ; $8650 / 3:28 / $e06a
-	jp Func_2_8682                                                             ; $8652 / 3:29 / $0841
+	jp @cont_8682                                                             ; $8652 / 3:29 / $0841
 
-Func_2_8654:
+@br_8654:
 	mov A, OP RAM_DTA                                                             ; $8654 / 3:2a / $600c
 	_and A, IMM $7f                                                             ; $8656 / 3:2b / $b47f
 	skipz                                                             ; $8658 / 3:2c / $2601
-	jp Func_2_8666                                                             ; $865a / 3:2d / $0833
+	jp @br_8666                                                             ; $865a / 3:2d / $0833
 
 	mov OP R9, A                                                             ; $865c / 3:2e / $e069
 	mov A, IMM $01                                                             ; $865e / 3:2f / $6401
 	shll A, IMM $0c                                                             ; $8660 / 3:30 / $dc0c
 	mov OP RA, A                                                             ; $8662 / 3:31 / $e06a
-	jp Func_2_8682                                                             ; $8664 / 3:32 / $0841
+	jp @cont_8682                                                             ; $8664 / 3:32 / $0841
 
-Func_2_8666:
+@br_8666:
 	mov A, IMM $02                                                             ; $8666 / 3:33 / $6402
 	add _100hA, IMM $00                                                             ; $8668 / 3:34 / $8600
 	or A, OP RAM_DTA                                                             ; $866a / 3:35 / $b80c
@@ -1111,45 +1115,45 @@ Func_2_8666:
 	mov A, IMM $03                                                             ; $8674 / 3:3a / $6403
 	add _100hA, IMM $80                                                             ; $8676 / 3:3b / $8680
 
-Func_2_8678:
+@br_8678:
 	or A, OP RAM_DTA                                                             ; $8678 / 3:3c / $b80c
 	rdrom OP REG_A                                                             ; $867a / 3:3d / $7000
 	mov A, OP ROM_DTA                                                             ; $867c / 3:3e / $6008
 	shlr A, IMM $0c                                                             ; $867e / 3:3f / $c40c
 	mov OP RA, A                                                             ; $8680 / 3:40 / $e06a
 
-Func_2_8682:
+@cont_8682:
 	mov A, OP RC                                                             ; $8682 / 3:41 / $606c
 	shll A, IMM $0f                                                             ; $8684 / 3:42 / $dc0f
 	skips                                                             ; $8686 / 3:43 / $2701
-	jp Func_2_8692                                                             ; $8688 / 3:44 / $0849
+	jp @cont_8692                                                             ; $8688 / 3:44 / $0849
 
 	mov A, OP R9                                                             ; $868a / 3:45 / $6069
 	xor A, OP _FFFFFF                                                             ; $868c / 3:46 / $a851
 	add A, IMM $01                                                             ; $868e / 3:47 / $8401
 	mov OP R9, A                                                             ; $8690 / 3:48 / $e069
 
-Func_2_8692:
+@cont_8692:
 	mov A, OP RC                                                             ; $8692 / 3:49 / $606c
 	shlr A, IMM $07                                                             ; $8694 / 3:4a / $c407
 	add A, IMM $01                                                             ; $8696 / 3:4b / $8401
 	_and A, IMM $03                                                             ; $8698 / 3:4c / $b403
 	_cmp A, IMM $02                                                             ; $869a / 3:4d / $5402
 	skipc                                                             ; $869c / 3:4e / $2501
-	jp Func_2_86a8                                                             ; $869e / 3:4f / $0854
+	jp @contLoop_86a8                                                             ; $869e / 3:4f / $0854
 
 	mov A, OP RA                                                             ; $86a0 / 3:50 / $606a
 	xor A, OP _FFFFFF                                                             ; $86a2 / 3:51 / $a851
 	add A, IMM $01                                                             ; $86a4 / 3:52 / $8401
 	mov OP RA, A                                                             ; $86a6 / 3:53 / $e06a
 
-Func_2_86a8:
+@contLoop_86a8:
 	mov A, OP R7                                                             ; $86a8 / 3:54 / $6067
 	sub A, OP R2                                                             ; $86aa / 3:55 / $9062
 	mov OP RC, A                                                             ; $86ac / 3:56 / $e06c
 	mov A, OP R8                                                             ; $86ae / 3:57 / $6068
 
-Func_2_86b0:
+@loop_86b0:
 	sub A, OP R1                                                             ; $86b0 / 3:58 / $9061
 	mov OP RB, A                                                             ; $86b2 / 3:59 / $e06b
 	mul OP RA                                                             ; $86b4 / 3:5a / $986a
@@ -1186,7 +1190,7 @@ Func_2_86b0:
 	mov OP R8, A                                                             ; $86f2 / 3:79 / $e068
 	_cmp A, OP R3                                                             ; $86f4 / 3:7a / $5063
 	skipz                                                             ; $86f6 / 3:7b / $2601
-	jp Func_2_86b0                                                             ; $86f8 / 3:7c / $0858
+	jp @loop_86b0                                                             ; $86f8 / 3:7c / $0858
 
 	mov A, IMM $00                                                             ; $86fa / 3:7d / $6400
 	mov OP R8, A                                                             ; $86fc / 3:7e / $e068
@@ -1197,9 +1201,10 @@ Func_2_86b0:
 	mov A, OP EXT_PTR                                                             ; $8706 / 3:83 / $6013
 	add A, IMM $00                                                             ; $8708 / 3:84 / $8400
 	skipz                                                             ; $870a / 3:85 / $2601
-	jp Func_2_86a8                                                             ; $870c / 3:86 / $0854
+	jp @contLoop_86a8                                                             ; $870c / 3:86 / $0854
 
 	halt                                                             ; $870e / 3:87 / $fc00
+
 
 Func_2_8710:
 	mov A, OP R8                                                             ; $8710 / 3:88 / $6068
@@ -1221,18 +1226,18 @@ Func_2_8710:
 	mov OP RAM_PTR, A                                                             ; $8730 / 3:98 / $e01c
 	mov A, OP RD                                                             ; $8732 / 3:99 / $606d
 	_cmp A, OP R3                                                             ; $8734 / 3:9a / $5063
-	jc Func_2_8740                                                             ; $8736 / 3:9b / $10a0
+	jc @br_8740                                                             ; $8736 / 3:9b / $10a0
 
 	mov A, OP RF                                                             ; $8738 / 3:9c / $606f
 	_cmp A, OP R4                                                             ; $873a / 3:9d / $5064
 	skipc                                                             ; $873c / 3:9e / $2501
-	jp Func_2_8744                                                             ; $873e / 3:9f / $08a2
+	jp @br_8744                                                             ; $873e / 3:9f / $08a2
 
-Func_2_8740:
+@br_8740:
 	mov A, IMM $00                                                             ; $8740 / 3:a0 / $6400
-	jp Func_2_8762                                                             ; $8742 / 3:a1 / $08b1
+	jp @cont_8762                                                             ; $8742 / 3:a1 / $08b1
 
-Func_2_8744:
+@br_8744:
 	mul OP R3                                                             ; $8744 / 3:a2 / $9863
 	mov A, OP RD                                                             ; $8746 / 3:a3 / $606d
 	add A, OP ML                                                             ; $8748 / 3:a4 / $8002
@@ -1249,7 +1254,7 @@ Func_2_8744:
 	shlr A, IMM $04                                                             ; $875e / 3:af / $c404
 	_and A, IMM $0f                                                             ; $8760 / 3:b0 / $b40f
 
-Func_2_8762:
+@cont_8762:
 	mov OP RD, A                                                             ; $8762 / 3:b1 / $e06d
 	rdram lsb, IMM $11                                                             ; $8764 / 3:b2 / $6c11
 	mov A, OP RAM_DTA                                                             ; $8766 / 3:b3 / $600c
@@ -1351,12 +1356,12 @@ Trapezoid:
 	mov OP RD, A                                                             ; $8828 / 4:14 / $e06d
 	mov A, OP R3                                                             ; $882a / 4:15 / $6063
 	sub A, OP R1                                                             ; $882c / 4:16 / $9061
-	jc Func_2_8852                                                             ; $882e / 4:17 / $1029
+	jc @br_8852                                                             ; $882e / 4:17 / $1029
 
 	sub OP _000000, A                                                             ; $8830 / 4:18 / $8850
 	mov OP RF, A                                                             ; $8832 / 4:19 / $e06f
 
-Func_2_8834:
+@loop_8834:
 	mov A, OP RC                                                             ; $8834 / 4:1a / $606c
 	add A, OP R8                                                             ; $8836 / 4:1b / $8068
 	call Func_2_889a                                                             ; $8838 / 4:1c / $284d
@@ -1369,28 +1374,28 @@ Func_2_8834:
 	sub A, IMM $01                                                             ; $8846 / 4:23 / $9401
 	mov OP RF, A                                                             ; $8848 / 4:24 / $e06f
 	skips                                                             ; $884a / 4:25 / $2701
-	jp Func_2_8834                                                             ; $884c / 4:26 / $081a
+	jp @loop_8834                                                             ; $884c / 4:26 / $081a
 
 	mov A, IMM $df                                                             ; $884e / 4:27 / $64df
-	jp Func_2_8862                                                             ; $8850 / 4:28 / $0831
+	jp @br_8862                                                             ; $8850 / 4:28 / $0831
 
-Func_2_8852:
+@br_8852:
 	_cmp IMM $df, A                                                             ; $8852 / 4:29 / $4cdf
-	jc Func_2_885a                                                             ; $8854 / 4:2a / $102d
+	jc @br_885a                                                             ; $8854 / 4:2a / $102d
 
 	call Func_2_88fe                                                             ; $8856 / 4:2b / $287f
-	jp Func_2_8898                                                             ; $8858 / 4:2c / $084c
+	jp @cont_8898                                                             ; $8858 / 4:2c / $084c
 
-Func_2_885a:
+@br_885a:
 	call Func_2_88fe                                                             ; $885a / 4:2d / $287f
 	mov A, OP R3                                                             ; $885c / 4:2e / $6063
 	sub A, OP R1                                                             ; $885e / 4:2f / $9061
 	sub IMM $e0, A                                                             ; $8860 / 4:30 / $8ce0
 
-Func_2_8862:
+@br_8862:
 	mov OP RF, A                                                             ; $8862 / 4:31 / $e06f
 
-Func_2_8864:
+@loop_8864:
 	mov A, OP RC                                                             ; $8864 / 4:32 / $606c
 	add A, OP R8                                                             ; $8866 / 4:33 / $8068
 	call Func_2_889a                                                             ; $8868 / 4:34 / $284d
@@ -1416,43 +1421,46 @@ Func_2_8864:
 	sub A, IMM $01                                                             ; $8890 / 4:48 / $9401
 	mov OP RF, A                                                             ; $8892 / 4:49 / $e06f
 	skips                                                             ; $8894 / 4:4a / $2701
-	jp Func_2_8864                                                             ; $8896 / 4:4b / $0832
+	jp @loop_8864                                                             ; $8896 / 4:4b / $0832
 
-Func_2_8898:
+@cont_8898:
 	jp Func_2_88cc                                                             ; $8898 / 4:4c / $0866
+
 
 Func_2_889a:
 	_cmp A, OP _000000                                                             ; $889a / 4:4d / $5050
-	js Func_2_88a0                                                             ; $889c / 4:4e / $1450
+	js @br_88a0                                                             ; $889c / 4:4e / $1450
 
 	ret                                                             ; $889e / 4:4f / $3c00
 
-Func_2_88a0:
+@br_88a0:
 	mov A, OP _000000                                                             ; $88a0 / 4:50 / $6050
 	ret                                                             ; $88a2 / 4:51 / $3c00
+
 
 Func_2_88a4:
 	shar A, IMM $08                                                             ; $88a4 / 4:52 / $cc08
 	sub A, OP RE                                                             ; $88a6 / 4:53 / $906e
-	js Func_2_88b2                                                             ; $88a8 / 4:54 / $1459
+	js @br_88b2                                                             ; $88a8 / 4:54 / $1459
 
 	_cmp A, OP _000100                                                             ; $88aa / 4:55 / $505e
-	js Func_2_88b4                                                             ; $88ac / 4:56 / $145a
+	js @cont_88b4                                                             ; $88ac / 4:56 / $145a
 
 	mov A, IMM $ff                                                             ; $88ae / 4:57 / $64ff
-	jp Func_2_88b4                                                             ; $88b0 / 4:58 / $085a
+	jp @cont_88b4                                                             ; $88b0 / 4:58 / $085a
 
-Func_2_88b2:
+@br_88b2:
 	mov A, IMM $00                                                             ; $88b2 / 4:59 / $6400
 
-Func_2_88b4:
+@cont_88b4:
 	mov OP RAM_DTA, A                                                             ; $88b4 / 4:5a / $e00c
 	ret                                                             ; $88b6 / 4:5b / $3c00
+
 
 Func_2_88b8:
 	mov A, OP RE                                                             ; $88b8 / 4:5c / $606e
 	_cmp _100hA, OP RC                                                             ; $88ba / 4:5d / $526c
-	jc Func_2_88c6                                                             ; $88bc / 4:5e / $1063
+	jc @br_88c6                                                             ; $88bc / 4:5e / $1063
 
 	add A, OP _000100                                                             ; $88be / 4:5f / $805e
 	_cmp OP RC, _100hA                                                             ; $88c0 / 4:60 / $4a6c
@@ -1460,11 +1468,12 @@ Func_2_88b8:
 
 	ret                                                             ; $88c4 / 4:62 / $3c00
 
-Func_2_88c6:
+@br_88c6:
 	_cmp _100hA, OP RD                                                             ; $88c6 / 4:63 / $526d
 	jc Func_2_8928                                                             ; $88c8 / 4:64 / $1094
 
 	ret                                                             ; $88ca / 4:65 / $3c00
+
 
 Func_2_88cc:
 	mov A, IMM $21                                                             ; $88cc / 4:66 / $6421
@@ -1477,7 +1486,7 @@ Func_2_88cc:
 	mov A, OP _00FFFF                                                             ; $88da / 4:6d / $6054
 	mov OP RAM_DTA, A                                                             ; $88dc / 4:6e / $e00c
 
-Func_2_88de:
+@loop_88de:
 	mov A, OP RA                                                             ; $88de / 4:6f / $606a
 	wrram mid, OP REG_A                                                             ; $88e0 / 4:70 / $e900
 	mov A, OP RB                                                             ; $88e2 / 4:71 / $606b
@@ -1492,25 +1501,26 @@ Func_2_88de:
 	sub A, IMM $01                                                             ; $88f4 / 4:7a / $9401
 	mov OP RF, A                                                             ; $88f6 / 4:7b / $e06f
 	skipz                                                             ; $88f8 / 4:7c / $2601
-	jp Func_2_88de                                                             ; $88fa / 4:7d / $086f
+	jp @loop_88de                                                             ; $88fa / 4:7d / $086f
 
 	ret                                                             ; $88fc / 4:7e / $3c00
 
+
 Func_2_88fe:
 	_cmp A, OP _000000                                                             ; $88fe / 4:7f / $5050
-	jz Func_2_8926                                                             ; $8900 / 4:80 / $0c93
+	jz @done                                                             ; $8900 / 4:80 / $0c93
 
 	_cmp A, IMM $df                                                             ; $8902 / 4:81 / $54df
-	jc Func_2_890a                                                             ; $8904 / 4:82 / $1085
+	jc @br_890a                                                             ; $8904 / 4:82 / $1085
 
 	mov OP RF, A                                                             ; $8906 / 4:83 / $e06f
-	jp Func_2_890e                                                             ; $8908 / 4:84 / $0887
+	jp @brLoop_890e                                                             ; $8908 / 4:84 / $0887
 
-Func_2_890a:
+@br_890a:
 	mov A, IMM $df                                                             ; $890a / 4:85 / $64df
 	mov OP RF, A                                                             ; $890c / 4:86 / $e06f
 
-Func_2_890e:
+@brLoop_890e:
 	call Func_2_8928                                                             ; $890e / 4:87 / $2894
 	mov A, OP RA                                                             ; $8910 / 4:88 / $606a
 	add A, IMM $01                                                             ; $8912 / 4:89 / $8401
@@ -1522,10 +1532,11 @@ Func_2_890e:
 	sub A, IMM $01                                                             ; $891e / 4:8f / $9401
 	mov OP RF, A                                                             ; $8920 / 4:90 / $e06f
 	skips                                                             ; $8922 / 4:91 / $2701
-	jp Func_2_890e                                                             ; $8924 / 4:92 / $0887
+	jp @brLoop_890e                                                             ; $8924 / 4:92 / $0887
 
-Func_2_8926:
+@done:
 	ret                                                             ; $8926 / 4:93 / $3c00
+
 
 Func_2_8928:
 	mov A, OP _00FFFF                                                             ; $8928 / 4:94 / $6054
@@ -2298,19 +2309,18 @@ Cx4_ScaleRotate2:
 	mov OP RAM_DTA, A                                                             ; $8e20 / 7:10 / $e00c
 	mov A, OP RC                                                             ; $8e22 / 7:11 / $606c
 	_and A, IMM $80                                                             ; $8e24 / 7:12 / $b480
-	jz Func_2_8e30                                                             ; $8e26 / 7:13 / $0c18
+	jz @br_8e30                                                             ; $8e26 / 7:13 / $0c18
 
 	mov A, OP RAM_DTA                                                             ; $8e28 / 7:14 / $600c
 	sub IMM $80, A                                                             ; $8e2a / 7:15 / $8c80
 	mov OP RAM_DTA, A                                                             ; $8e2c / 7:16 / $e00c
-	jp Func_2_8e32                                                             ; $8e2e / 7:17 / $0819
+	jp +                                                             ; $8e2e / 7:17 / $0819
 
-Func_2_8e30:
+@br_8e30:
 	mov A, OP RAM_DTA                                                             ; $8e30 / 7:18 / $600c
 
-Func_2_8e32:
-	_cmp A, IMM $80                                                             ; $8e32 / 7:19 / $5480
-	jz Func_2_8e54                                                             ; $8e34 / 7:1a / $0c2a
++	_cmp A, IMM $80                                                             ; $8e32 / 7:19 / $5480
+	jz @br_8e54                                                             ; $8e34 / 7:1a / $0c2a
 
 	mov A, IMM $02                                                             ; $8e36 / 7:1b / $6402
 	add _100hA, IMM $00                                                             ; $8e38 / 7:1c / $8600
@@ -2326,47 +2336,47 @@ Func_2_8e32:
 	mov A, OP ROM_DTA                                                             ; $8e4c / 7:26 / $6008
 	shlr A, IMM $0c                                                             ; $8e4e / 7:27 / $c40c
 	mov OP RA, A                                                             ; $8e50 / 7:28 / $e06a
-	jp Func_2_8e5e                                                             ; $8e52 / 7:29 / $082f
+	jp @cont_8e5e                                                             ; $8e52 / 7:29 / $082f
 
-Func_2_8e54:
+@br_8e54:
 	mov A, OP _FFFFFF                                                             ; $8e54 / 7:2a / $6051
 	shlr A, IMM $0c                                                             ; $8e56 / 7:2b / $c40c
 	mov OP R9, A                                                             ; $8e58 / 7:2c / $e069
 	mov A, IMM $00                                                             ; $8e5a / 7:2d / $6400
 	mov OP RA, A                                                             ; $8e5c / 7:2e / $e06a
 
-Func_2_8e5e:
+@cont_8e5e:
 	mov A, OP RC                                                             ; $8e5e / 7:2f / $606c
 	shll A, IMM $0f                                                             ; $8e60 / 7:30 / $dc0f
 	skips                                                             ; $8e62 / 7:31 / $2701
-	jp Func_2_8e6e                                                             ; $8e64 / 7:32 / $0837
+	jp @cont_8e6e                                                             ; $8e64 / 7:32 / $0837
 
 	mov A, OP R9                                                             ; $8e66 / 7:33 / $6069
 	xor A, OP _FFFFFF                                                             ; $8e68 / 7:34 / $a851
 	add A, IMM $01                                                             ; $8e6a / 7:35 / $8401
 	mov OP R9, A                                                             ; $8e6c / 7:36 / $e069
 
-Func_2_8e6e:
+@cont_8e6e:
 	mov A, OP RC                                                             ; $8e6e / 7:37 / $606c
 	shlr A, IMM $07                                                             ; $8e70 / 7:38 / $c407
 	add A, IMM $01                                                             ; $8e72 / 7:39 / $8401
 	_and A, IMM $03                                                             ; $8e74 / 7:3a / $b403
 	_cmp A, IMM $02                                                             ; $8e76 / 7:3b / $5402
 	skipc                                                             ; $8e78 / 7:3c / $2501
-	jp Func_2_8e84                                                             ; $8e7a / 7:3d / $0842
+	jp @contLoop_8e84                                                             ; $8e7a / 7:3d / $0842
 
 	mov A, OP RA                                                             ; $8e7c / 7:3e / $606a
 	xor A, OP _FFFFFF                                                             ; $8e7e / 7:3f / $a851
 	add A, IMM $01                                                             ; $8e80 / 7:40 / $8401
 	mov OP RA, A                                                             ; $8e82 / 7:41 / $e06a
 
-Func_2_8e84:
+@contLoop_8e84:
 	mov A, OP R7                                                             ; $8e84 / 7:42 / $6067
 	sub A, OP R2                                                             ; $8e86 / 7:43 / $9062
 	mov OP RC, A                                                             ; $8e88 / 7:44 / $e06c
 	mov A, OP R8                                                             ; $8e8a / 7:45 / $6068
 
-Func_2_8e8c:
+@loop_8e8c:
 	sub A, OP R1                                                             ; $8e8c / 7:46 / $9061
 	mov OP RB, A                                                             ; $8e8e / 7:47 / $e06b
 	mul OP RA                                                             ; $8e90 / 7:48 / $986a
@@ -2408,18 +2418,18 @@ Func_2_8e8c:
 	mov OP RAM_PTR, A                                                             ; $8ed8 / 7:6c / $e01c
 	mov A, OP RD                                                             ; $8eda / 7:6d / $606d
 	_cmp A, OP R3                                                             ; $8edc / 7:6e / $5063
-	jc Func_2_8ee8                                                             ; $8ede / 7:6f / $1074
+	jc @br_8ee8                                                             ; $8ede / 7:6f / $1074
 
 	mov A, OP RF                                                             ; $8ee0 / 7:70 / $606f
 	_cmp A, OP R4                                                             ; $8ee2 / 7:71 / $5064
 	skipc                                                             ; $8ee4 / 7:72 / $2501
-	jp Func_2_8eec                                                             ; $8ee6 / 7:73 / $0876
+	jp @br_8eec                                                             ; $8ee6 / 7:73 / $0876
 
-Func_2_8ee8:
+@br_8ee8:
 	mov A, IMM $00                                                             ; $8ee8 / 7:74 / $6400
-	jp Func_2_8f0a                                                             ; $8eea / 7:75 / $0885
+	jp @cont_8f0a                                                             ; $8eea / 7:75 / $0885
 
-Func_2_8eec:
+@br_8eec:
 	mul OP R3                                                             ; $8eec / 7:76 / $9863
 	mov A, OP RD                                                             ; $8eee / 7:77 / $606d
 	add A, OP ML                                                             ; $8ef0 / 7:78 / $8002
@@ -2436,7 +2446,7 @@ Func_2_8eec:
 	shlr A, IMM $04                                                             ; $8f06 / 7:83 / $c404
 	_and A, IMM $0f                                                             ; $8f08 / 7:84 / $b40f
 
-Func_2_8f0a:
+@cont_8f0a:
 	mov OP RD, A                                                             ; $8f0a / 7:85 / $e06d
 	rdram lsb, IMM $11                                                             ; $8f0c / 7:86 / $6c11
 	mov A, OP RAM_DTA                                                             ; $8f0e / 7:87 / $600c
@@ -2483,7 +2493,7 @@ Func_2_8f0a:
 	mov OP R8, A                                                             ; $8f60 / 7:b0 / $e068
 	_cmp A, OP R3                                                             ; $8f62 / 7:b1 / $5063
 	skipz                                                             ; $8f64 / 7:b2 / $2601
-	jp Func_2_8e8c                                                             ; $8f66 / 7:b3 / $0846
+	jp @loop_8e8c                                                             ; $8f66 / 7:b3 / $0846
 
 	mov A, IMM $00                                                             ; $8f68 / 7:b4 / $6400
 	mov OP R8, A                                                             ; $8f6a / 7:b5 / $e068
@@ -2494,7 +2504,7 @@ Func_2_8f0a:
 	mov A, OP EXT_PTR                                                             ; $8f74 / 7:ba / $6013
 	add A, IMM $00                                                             ; $8f76 / 7:bb / $8400
 	skipz                                                             ; $8f78 / 7:bc / $2601
-	jp Func_2_8e84                                                             ; $8f7a / 7:bd / $0842
+	jp @contLoop_8e84                                                             ; $8f7a / 7:bd / $0842
 
 	halt                                                             ; $8f7c / 7:be / $fc00
 
@@ -2932,7 +2942,7 @@ SetVectorLength:
 	call Func_2_931c                                                             ; $9240 / 9:20 / $288e
 	mov OP RD, A                                                             ; $9242 / 9:21 / $e06d
 	_cmp A, OP _010000                                                             ; $9244 / 9:22 / $505c
-	jz Func_2_926e                                                             ; $9246 / 9:23 / $0c37
+	jz @br_926e                                                             ; $9246 / 9:23 / $0c37
 
 	mov A, OP RB                                                             ; $9248 / 9:24 / $606b
 	shll A, IMM $04                                                             ; $924a / 9:25 / $dc04
@@ -2952,15 +2962,15 @@ SetVectorLength:
 	mov OP R4, A                                                             ; $9266 / 9:33 / $e064
 	mov A, OP RB                                                             ; $9268 / 9:34 / $606b
 	mov OP R3, A                                                             ; $926a / 9:35 / $e063
-	jp Func_2_9276                                                             ; $926c / 9:36 / $083b
+	jp @done                                                             ; $926c / 9:36 / $083b
 
-Func_2_926e:
+@br_926e:
 	mov A, OP RB                                                             ; $926e / 9:37 / $606b
 	mov OP R3, A                                                             ; $9270 / 9:38 / $e063
 	mov A, OP RC                                                             ; $9272 / 9:39 / $606c
 	mov OP R4, A                                                             ; $9274 / 9:3a / $e064
 
-Func_2_9276:
+@done:
 	ret                                                             ; $9276 / 9:3b / $3c00
 
 
@@ -3052,35 +3062,35 @@ ArcTan:
 	mov OP R0, A                                                             ; $92ee / 9:77 / $e060
 	mov A, OP R9                                                             ; $92f0 / 9:78 / $6069
 	_cmp A, OP _000000                                                             ; $92f2 / 9:79 / $5050
-	js Func_2_9308                                                             ; $92f4 / 9:7a / $1484
+	js @br_9308                                                             ; $92f4 / 9:7a / $1484
 
 	mov A, OP R8                                                             ; $92f6 / 9:7b / $6068
 	_cmp A, OP _000000                                                             ; $92f8 / 9:7c / $5050
-	js Func_2_9302                                                             ; $92fa / 9:7d / $1481
+	js @br_9302                                                             ; $92fa / 9:7d / $1481
 
 	mov A, OP R0                                                             ; $92fc / 9:7e / $6060
 	mov OP R2, A                                                             ; $92fe / 9:7f / $e062
-	jp Func_2_9318                                                             ; $9300 / 9:80 / $088c
+	jp @retR2equA                                                             ; $9300 / 9:80 / $088c
 
-Func_2_9302:
+@br_9302:
 	mov A, OP _000100                                                             ; $9302 / 9:81 / $605e
 	sub A, OP R0                                                             ; $9304 / 9:82 / $9060
-	jp Func_2_9318                                                             ; $9306 / 9:83 / $088c
+	jp @retR2equA                                                             ; $9306 / 9:83 / $088c
 
-Func_2_9308:
+@br_9308:
 	mov A, OP R8                                                             ; $9308 / 9:84 / $6068
 	_cmp A, OP _000000                                                             ; $930a / 9:85 / $5050
-	js Func_2_9314                                                             ; $930c / 9:86 / $148a
+	js @br_9314                                                             ; $930c / 9:86 / $148a
 
 	mov A, OP _000100                                                             ; $930e / 9:87 / $605e
 	sub _2A, OP R0                                                             ; $9310 / 9:88 / $9160
-	jp Func_2_9318                                                             ; $9312 / 9:89 / $088c
+	jp @retR2equA                                                             ; $9312 / 9:89 / $088c
 
-Func_2_9314:
+@br_9314:
 	mov A, OP R0                                                             ; $9314 / 9:8a / $6060
 	add A, OP _000100                                                             ; $9316 / 9:8b / $805e
 
-Func_2_9318:
+@retR2equA:
 	mov OP R2, A                                                             ; $9318 / 9:8c / $e062
 	ret                                                             ; $931a / 9:8d / $3c00
 
@@ -3507,11 +3517,11 @@ Cx4_Disintegrate:
 	mov A, OP _000000                                                             ; $9602 / b:01 / $6050
 	mov OP RF, A                                                             ; $9604 / b:02 / $e06f
 
-Func_2_9606:
+@loop_9606:
 	mov A, OP _000000                                                             ; $9606 / b:03 / $6050
 	mov OP RC, A                                                             ; $9608 / b:04 / $e06c
 
-Func_2_960a:
+@loop_960a:
 	mov A, OP RC                                                             ; $960a / b:05 / $606c
 	sub A, OP R0                                                             ; $960c / b:06 / $9060
 	mul OP R2                                                             ; $960e / b:07 / $9862
@@ -3521,10 +3531,10 @@ Func_2_960a:
 	add A, OP R0                                                             ; $9616 / b:0b / $8060
 	mov OP R8, A                                                             ; $9618 / b:0c / $e068
 	_cmp A, OP _000000                                                             ; $961a / b:0d / $5050
-	js Func_2_9640                                                             ; $961c / b:0e / $1420
+	js @cont_9640                                                             ; $961c / b:0e / $1420
 
 	_cmp A, OP R3                                                             ; $961e / b:0f / $5063
-	jc Func_2_9640                                                             ; $9620 / b:10 / $1020
+	jc @cont_9640                                                             ; $9620 / b:10 / $1020
 
 	mov A, OP RF                                                             ; $9622 / b:11 / $606f
 	sub A, OP R1                                                             ; $9624 / b:12 / $9061
@@ -3535,31 +3545,32 @@ Func_2_960a:
 	add A, OP R1                                                             ; $962e / b:17 / $8061
 	mov OP R7, A                                                             ; $9630 / b:18 / $e067
 	_cmp A, OP _000000                                                             ; $9632 / b:19 / $5050
-	js Func_2_9640                                                             ; $9634 / b:1a / $1420
+	js @cont_9640                                                             ; $9634 / b:1a / $1420
 
 	_cmp A, OP R4                                                             ; $9636 / b:1b / $5064
-	jc Func_2_9640                                                             ; $9638 / b:1c / $1020
+	jc @cont_9640                                                             ; $9638 / b:1c / $1020
 
 	mov A, OP RC                                                             ; $963a / b:1d / $606c
 	mov OP RD, A                                                             ; $963c / b:1e / $e06d
 	call Func_2_965a                                                             ; $963e / b:1f / $282d
 
-Func_2_9640:
+@cont_9640:
 	mov A, OP RC                                                             ; $9640 / b:20 / $606c
 	add A, IMM $01                                                             ; $9642 / b:21 / $8401
 	mov OP RC, A                                                             ; $9644 / b:22 / $e06c
 	_cmp A, OP R3                                                             ; $9646 / b:23 / $5063
 	skipc                                                             ; $9648 / b:24 / $2501
-	jp Func_2_960a                                                             ; $964a / b:25 / $0805
+	jp @loop_960a                                                             ; $964a / b:25 / $0805
 
 	mov A, OP RF                                                             ; $964c / b:26 / $606f
 	add A, IMM $01                                                             ; $964e / b:27 / $8401
 	mov OP RF, A                                                             ; $9650 / b:28 / $e06f
 	_cmp A, OP R4                                                             ; $9652 / b:29 / $5064
 	skipc                                                             ; $9654 / b:2a / $2501
-	jp Func_2_9606                                                             ; $9656 / b:2b / $0803
+	jp @loop_9606                                                             ; $9656 / b:2b / $0803
 
 	halt                                                             ; $9658 / b:2c / $fc00
+
 
 Func_2_965a:
 	mov A, OP R8                                                             ; $965a / b:2d / $6068
@@ -3581,18 +3592,18 @@ Func_2_965a:
 	mov OP RAM_PTR, A                                                             ; $967a / b:3d / $e01c
 	mov A, OP RD                                                             ; $967c / b:3e / $606d
 	_cmp A, OP R3                                                             ; $967e / b:3f / $5063
-	jc Func_2_968a                                                             ; $9680 / b:40 / $1045
+	jc @br_968a                                                             ; $9680 / b:40 / $1045
 
 	mov A, OP RF                                                             ; $9682 / b:41 / $606f
 	_cmp A, OP R4                                                             ; $9684 / b:42 / $5064
 	skipc                                                             ; $9686 / b:43 / $2501
-	jp Func_2_968e                                                             ; $9688 / b:44 / $0847
+	jp @br_968e                                                             ; $9688 / b:44 / $0847
 
-Func_2_968a:
+@br_968a:
 	mov A, IMM $00                                                             ; $968a / b:45 / $6400
-	jp Func_2_96ac                                                             ; $968c / b:46 / $0856
+	jp @cont_96ac                                                             ; $968c / b:46 / $0856
 
-Func_2_968e:
+@br_968e:
 	mul OP R3                                                             ; $968e / b:47 / $9863
 	mov A, OP RD                                                             ; $9690 / b:48 / $606d
 	add A, OP ML                                                             ; $9692 / b:49 / $8002
@@ -3609,7 +3620,7 @@ Func_2_968e:
 	shlr A, IMM $04                                                             ; $96a8 / b:54 / $c404
 	_and A, IMM $0f                                                             ; $96aa / b:55 / $b40f
 
-Func_2_96ac:
+@cont_96ac:
 	mov OP RD, A                                                             ; $96ac / b:56 / $e06d
 	rdram lsb, IMM $11                                                             ; $96ae / b:57 / $6c11
 	mov A, OP RAM_DTA                                                             ; $96b0 / b:58 / $600c
@@ -3653,6 +3664,7 @@ Func_2_96ac:
 	wrram lsb, IMM $00                                                             ; $96fc / b:7e / $ec00
 	ret                                                             ; $96fe / b:7f / $3c00
 
+
 Func_2_9700:
 	mov A, OP _000000                                                             ; $9700 / b:80 / $6050
 	mov OP RAM_DTA, A                                                             ; $9702 / b:81 / $e00c
@@ -3661,13 +3673,13 @@ Func_2_9700:
 	add _100hA, IMM $fe                                                             ; $9708 / b:84 / $86fe
 	mov OP RAM_PTR, A                                                             ; $970a / b:85 / $e01c
 
-Func_2_970c:
+@loop_970c:
 	wrram lsb, IMM $00                                                             ; $970c / b:86 / $ec00
 	wrram mid, IMM $01                                                             ; $970e / b:87 / $ed01
 	mov A, OP RAM_PTR                                                             ; $9710 / b:88 / $601c
 	sub A, IMM $02                                                             ; $9712 / b:89 / $9402
 	mov OP RAM_PTR, A                                                             ; $9714 / b:8a / $e01c
-	jc Func_2_970c                                                             ; $9716 / b:8b / $1086
+	jc @loop_970c                                                             ; $9716 / b:8b / $1086
 
 	ret                                                             ; $9718 / b:8c / $3c00
 
@@ -4404,7 +4416,6 @@ Cx4_Test3kRomChecksum:
 	jp @next3bytes                                                             ; $9d44 / e:a2 / $088e
 
 	halt                                                             ; $9d46 / e:a3 / $fc00
-
 
 
 .org $2000
@@ -5903,7 +5914,7 @@ Jump_02_aacc:
 	tya                                                  ; $abc9 : $98
 	bit #$1239.w                                                  ; $abca : $89, $39, $12
 	and ($33, X)                                                  ; $abcd : $21, $33
-	sta $2123.w, Y                                                  ; $abcf : $99, $23, $21
+	sta W12SEL.w, Y                                                  ; $abcf : $99, $23, $21
 	adc ($97, S), Y                                                  ; $abd2 : $73, $97
 	and $12, S                                                  ; $abd4 : $23, $12
 	and ($33, X)                                                  ; $abd6 : $21, $33
@@ -17924,7 +17935,7 @@ br_02_fa49:
 
 br_02_fa59:
 	lda #$01.b                                                  ; $fa59 : $a9, $01
-	sta $2105.w                                                  ; $fa5b : $8d, $05, $21
+	sta BGMODE.w                                                  ; $fa5b : $8d, $05, $21
 	jsr $048c86.l                                                  ; $fa5e : $22, $86, $8c, $04
 	lda #$04.b                                                  ; $fa62 : $a9, $04
 	tsb wMainScreenDesignation.w                                                  ; $fa64 : $0c, $c1, $00
@@ -18075,18 +18086,18 @@ br_02_fb47:
 	lda #$80.b                                                  ; $fb50 : $a9, $80
 	trb $1f3f.w                                                  ; $fb52 : $1c, $3f, $1f
 	lda #$09.b                                                  ; $fb55 : $a9, $09
-	sta $2105.w                                                  ; $fb57 : $8d, $05, $21
+	sta BGMODE.w                                                  ; $fb57 : $8d, $05, $21
 	lda #$04.b                                                  ; $fb5a : $a9, $04
 	tsb $00a3.w                                                  ; $fb5c : $0c, $a3, $00
 	jsr Call_02_fd10.w                                                  ; $fb5f : $20, $10, $fd
 	beq br_02_fb92                                                  ; $fb62 : $f0, $2e
 
-	stz $2123.w                                                  ; $fb64 : $9c, $23, $21
+	stz W12SEL.w                                                  ; $fb64 : $9c, $23, $21
 	stz $00c5.w                                                  ; $fb67 : $9c, $c5, $00
 	stz wColourAdditionSelect.w                                                  ; $fb6a : $9c, $c9, $00
 	stz wColourMathDesignation.w                                                  ; $fb6d : $9c, $ca, $00
 	lda #$e0.b                                                  ; $fb70 : $a9, $e0
-	sta $2132.w                                                  ; $fb72 : $8d, $32, $21
+	sta COLDATA.w                                                  ; $fb72 : $8d, $32, $21
 	lda #$20.b                                                  ; $fb75 : $a9, $20
 	sta $00cb.w                                                  ; $fb77 : $8d, $cb, $00
 	lda #$40.b                                                  ; $fb7a : $a9, $40

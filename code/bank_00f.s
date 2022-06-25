@@ -19913,13 +19913,3 @@ br_0f_ff4a:
 	lda $00, S                                                  ; $ffd9 : $a3, $00
 	phd                                                  ; $ffdb : $0b
 	.db $f0, $a2                                                  ; $ffdc : $f0, $a2
-
-	sbc $ffffff.l, X                                                  ; $ffde : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffe2 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffe6 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffea : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffee : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff2 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff6 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fffa : $ff, $ff, $ff, $ff
-	.db $ff, $ff                                                  ; $fffe : $ff, $ff

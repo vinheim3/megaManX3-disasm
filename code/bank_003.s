@@ -1281,7 +1281,7 @@ br_03_8759:
 	sta wMainScreenDesignation.w                                                  ; $879a : $8d, $c1, $00
 	stz wSubScreenDesignation.w                                                  ; $879d : $9c, $c2, $00
 	lda #$09.b                                                  ; $87a0 : $a9, $09
-	sta $2105.w                                                  ; $87a2 : $8d, $05, $21
+	sta BGMODE.w                                                  ; $87a2 : $8d, $05, $21
 	jsr $00d75e.l                                                  ; $87a5 : $22, $5e, $d7, $00
 
 br_03_87a9:
@@ -10406,7 +10406,7 @@ br_03_c175:
 	stz wColourMathDesignation.w                                                  ; $c1e8 : $9c, $ca, $00
 	lda #$e0.b                                                  ; $c1eb : $a9, $e0
 	sta $00cb.w                                                  ; $c1ed : $8d, $cb, $00
-	sta $2132.w                                                  ; $c1f0 : $8d, $32, $21
+	sta COLDATA.w                                                  ; $c1f0 : $8d, $32, $21
 	stz $1f60.w                                                  ; $c1f3 : $9c, $60, $1f
 	lda $1f53.w                                                  ; $c1f6 : $ad, $53, $1f
 	bit #$01.b                                                  ; $c1f9 : $89, $01
@@ -10457,7 +10457,7 @@ br_03_c230:
 	cop $a9.b                                                  ; $c23e : $02, $a9
 	cpx #$cb8d.w                                                  ; $c240 : $e0, $8d, $cb
 	.db $00                                                  ; $c243 : $00
-	sta $2132.w                                                  ; $c244 : $8d, $32, $21
+	sta COLDATA.w                                                  ; $c244 : $8d, $32, $21
 
 br_03_c247:
 	lda #$8d00.w                                                  ; $c247 : $a9, $00, $8d

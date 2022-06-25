@@ -18663,19 +18663,3 @@ br_17_ff5c:
 	.db $00                                                  ; $ffbb : $00
 	adc $00, X                                                  ; $ffbc : $75, $00
 	adc $00, X                                                  ; $ffbe : $75, $00
-	sbc $ffffff.l, X                                                  ; $ffc0 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffc4 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffc8 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffcc : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffd0 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffd4 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffd8 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffdc : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffe0 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffe4 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffe8 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $ffec : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff0 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff4 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fff8 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $fffc : $ff, $ff, $ff, $ff
