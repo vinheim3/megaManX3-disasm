@@ -12594,6 +12594,9 @@ br_06_ceab:
 
 
 Data_6_ceed:
+; if 2nd byte is non-0, bit 2 is set on 1f5f
+; if 2nd byte == 44: "remember you can only have 1 chip"
+; if 2nd byte == 14: "the situation should now be improved"
 	.db $00, $00
 	.db $40, $44 ; head chip $10
 	.db $0b, $00 ; leg upgrade $08

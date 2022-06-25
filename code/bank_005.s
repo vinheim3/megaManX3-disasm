@@ -11222,7 +11222,7 @@ Func_5_c837:
 @states:
 	.dw $c842
 	.dw Func_5_c896
-	.dw $ca07
+	.dw Func_5_ca07
 	
 
 	jsr Func_2_e15c.l                                                  ; $c842 : $22, $5c, $e1, $02
@@ -11298,15 +11298,15 @@ Func_5_c896:
 
 Funcs_5_c8b8:
 	.dw Func_5_c8be
-	.dw $c8f8
-	.dw $c9ac
+	.dw Func_5_c8f8
+	.dw Func_5_c9ac
 
 
 Func_5_c8be:
-	ldx $03                                                  ; $c8be : $a6, $03
+	ldx StageEnemyEntity.subsubstate                                                  ; $c8be : $a6, $03
 	bne @cont_c8cb                                                  ; $c8c0 : $d0, $09
 
-	inc $03                                                  ; $c8c2 : $e6, $03
+	inc StageEnemyEntity.subsubstate                                                  ; $c8c2 : $e6, $03
 	lda #$00.b                                                  ; $c8c4 : $a9, $00
 	jsr Func_4_b967.l                                                  ; $c8c6 : $22, $67, $b9, $04
 	rts                                                  ; $c8ca : $60
@@ -11318,9 +11318,11 @@ Func_5_c8be:
 
 	lda #$02.b                                                  ; $c8d3 : $a9, $02
 	sta $02                                                  ; $c8d5 : $85, $02
-	stz $03                                                  ; $c8d7 : $64, $03
+	stz StageEnemyEntity.subsubstate                                                  ; $c8d7 : $64, $03
 	lda #$01.b                                                  ; $c8d9 : $a9, $01
 	jsr Func_4_b967.l                                                  ; $c8db : $22, $67, $b9, $04
+
+; this determines the initial upgrade text (left column of this table)
 	lda wStageIdx.w                                                  ; $c8df : $ad, $ae, $1f
 	asl                                                  ; $c8e2 : $0a
 	tax                                                  ; $c8e3 : $aa
@@ -11338,93 +11340,120 @@ Func_5_c8be:
 	rts                                                  ; $c8f7 : $60
 
 
-	ldx $03                                                  ; $c8f8 : $a6, $03
-	jmp ($c8fd.w, X)                                                  ; $c8fa : $7c, $fd, $c8
+Func_5_c8f8:
+	ldx StageEnemyEntity.subsubstate                                                  ; $c8f8 : $a6, $03
+	jmp (@subsubstates.w, X)                                                  ; $c8fa : $7c, $fd, $c8
+
+@subsubstates:
+	.dw Func_5_c90b
+	.dw Func_5_c92d
+	.dw Func_5_c95f
+	.dw Func_5_c92d
+	.dw Func_5_c985
+	.dw Func_5_c92d
+	.dw Jump_05_c9a5
 
 
-	phd                                                  ; $c8fd : $0b
-	cmp #$c92d.w                                                  ; $c8fe : $c9, $2d, $c9
-	eor $c92dc9.l, X                                                  ; $c901 : $5f, $c9, $2d, $c9
-	sta $c9                                                  ; $c905 : $85, $c9
-	and $a5c9.w                                                  ; $c907 : $2d, $c9, $a5
-	cmp #$50ad.w                                                  ; $c90a : $c9, $ad, $50
-	ora $ad1cf0.l, X                                                  ; $c90d : $1f, $f0, $1c, $ad
-	lda ($1f)                                                  ; $c911 : $b2, $1f
-	bit #$d003.w                                                  ; $c913 : $89, $03, $d0
-	asl $a9                                                  ; $c916 : $06, $a9
-	tcd                                                  ; $c918 : $5b
+Func_5_c90b:
+	lda $1f50.w                                                  ; $c90b : $ad, $50, $1f
+	beq @done                                                  ; $c90e : $f0, $1c
+
+	lda $1fb2.w                                                  ; $c910 : $ad, $b2, $1f
+	bit #$03.b                                                  ; $c913 : $89, $03
+	bne +                                                  ; $c915 : $d0, $06
+
+	lda #$5b.b                                                  ; $c917 : $a9, $5b
 	jsr $01802b.l                                                  ; $c919 : $22, $2b, $80, $01
-	inc $03                                                  ; $c91d : $e6, $03
-	inc $03                                                  ; $c91f : $e6, $03
-	lda #$2202.w                                                  ; $c921 : $a9, $02, $22
-	adc [$b9]                                                  ; $c924 : $67, $b9
-	tsb $ad                                                  ; $c926 : $04, $ad
-	eor ($1f), Y                                                  ; $c928 : $51, $1f
+
++	inc StageEnemyEntity.subsubstate                                                  ; $c91d : $e6, $03
+	inc StageEnemyEntity.subsubstate                                                  ; $c91f : $e6, $03
+	lda #$02.b                                                  ; $c921 : $a9, $02
+	jsr $04b967.l                                                  ; $c923 : $22, $67, $b9, $04
+	lda $1f51.w                                                  ; $c927 : $ad, $51, $1f
 	sta $37                                                  ; $c92a : $85, $37
+
+@done:
 	rts                                                  ; $c92c : $60
 
 
+Func_5_c92d:
 	lda $1f3f.w                                                  ; $c92d : $ad, $3f, $1f
-	bmi br_05_c937                                                  ; $c930 : $30, $05
+	bmi @br_c937                                                  ; $c930 : $30, $05
 
-	inc $03                                                  ; $c932 : $e6, $03
-	inc $03                                                  ; $c934 : $e6, $03
+	inc StageEnemyEntity.subsubstate                                                  ; $c932 : $e6, $03
+	inc StageEnemyEntity.subsubstate                                                  ; $c934 : $e6, $03
 	rts                                                  ; $c936 : $60
 
-
-br_05_c937:
+@br_c937:
 	lda $0060.w                                                  ; $c937 : $ad, $60, $00
-	.db $f0, $1d                                                  ; $c93a : $f0, $1d
+	beq @cont_c959                                                  ; $c93a : $f0, $1d
 
 	lda $1f51.w                                                  ; $c93c : $ad, $51, $1f
 	cmp $37                                                  ; $c93f : $c5, $37
-	.db $f0, $12                                                  ; $c941 : $f0, $12
+	beq @cont_c955                                                  ; $c941 : $f0, $12
 
 	lda $37                                                  ; $c943 : $a5, $37
-	.db $d0, $08                                                  ; $c945 : $d0, $08
+	bne @br_c94f                                                  ; $c945 : $d0, $08
 
-	lda #$2201.w                                                  ; $c947 : $a9, $01, $22
-	adc [$b9]                                                  ; $c94a : $67, $b9
-	tsb $80                                                  ; $c94c : $04, $80
-	asl $a9                                                  ; $c94e : $06, $a9
-	cop $22.b                                                  ; $c950 : $02, $22
-	adc [$b9]                                                  ; $c952 : $67, $b9
-	tsb $22                                                  ; $c954 : $04, $22
-	lsr                                                  ; $c956 : $4a
-	lda $ad04.w, Y                                                  ; $c957 : $b9, $04, $ad
-	eor ($1f), Y                                                  ; $c95a : $51, $1f
+	lda #$01.b                                                  ; $c947 : $a9, $01
+	jsr $04b967.l                                                  ; $c949 : $22, $67, $b9, $04
+	bra @cont_c955                                                  ; $c94d : $80, $06
+
+@br_c94f:
+	lda #$02.b                                                  ; $c94f : $a9, $02
+	jsr $04b967.l                                                  ; $c951 : $22, $67, $b9, $04
+
+@cont_c955:
+	jsr $04b94a.l                                                  ; $c955 : $22, $4a, $b9, $04
+
+@cont_c959:
+	lda $1f51.w                                                  ; $c959 : $ad, $51, $1f
 	sta $37                                                  ; $c95c : $85, $37
 	rts                                                  ; $c95e : $60
 
 
+Func_5_c95f:
 	lda $1f5f.w                                                  ; $c95f : $ad, $5f, $1f
-	bit #$d004.w                                                  ; $c962 : $89, $04, $d0
-	ora $4c, S                                                  ; $c965 : $03, $4c
-	lda $c9                                                  ; $c967 : $a5, $c9
-	inc $03                                                  ; $c969 : $e6, $03
-	inc $03                                                  ; $c96b : $e6, $03
+	bit #$04.b                                                  ; $c962 : $89, $04
+	bne @br_c969                                                  ; $c964 : $d0, $03
+
+	jmp Jump_05_c9a5.w                                                  ; $c966 : $4c, $a5, $c9
+
+@br_c969:
+	inc StageEnemyEntity.subsubstate                                                 ; $c969 : $e6, $03
+	inc StageEnemyEntity.subsubstate                                                  ; $c96b : $e6, $03
+
+; if 2nd col of this table was non-0, its the next text idx
 	lda wStageIdx.w                                                  ; $c96d : $ad, $ae, $1f
 	asl                                                  ; $c970 : $0a
 	tax                                                  ; $c971 : $aa
-	lda $ceee.w, X                                                  ; $c972 : $bd, $ee, $ce
+	lda Data_6_ceed.w+1, X                                                  ; $c972 : $bd, $ee, $ce
 	sta $0008.w                                                  ; $c975 : $8d, $08, $00
 	lda $0b                                                  ; $c978 : $a5, $0b
-	.db $d0, $05                                                  ; $c97a : $d0, $05
+	bne +                                                  ; $c97a : $d0, $05
 
-	lda #$1c04.w                                                  ; $c97c : $a9, $04, $1c
-	eor $0e201f.l, X                                                  ; $c97f : $5f, $1f, $20, $0e
-	dex                                                  ; $c983 : $ca
+	lda #$04.b                                                  ; $c97c : $a9, $04
+	trb $1f5f.w                                                  ; $c97e : $1c, $5f, $1f
+
++	jsr Jump_05_ca0e.w                                                  ; $c981 : $20, $0e, $ca
 	rts                                                  ; $c984 : $60
 
 
+Func_5_c985:
 	lda $1f5f.w                                                  ; $c985 : $ad, $5f, $1f
-	bit #$d004.w                                                  ; $c988 : $89, $04, $d0
-	ora $4c, S                                                  ; $c98b : $03, $4c
-	lda $c9                                                  ; $c98d : $a5, $c9
-	inc $03                                                  ; $c98f : $e6, $03
-	inc $03                                                  ; $c991 : $e6, $03
-	lda #$1c04.w                                                  ; $c993 : $a9, $04, $1c
-	eor $0ba51f.l, X                                                  ; $c996 : $5f, $1f, $a5, $0b
+	bit #$04.b                                                  ; $c988 : $89, $04
+	bne @br_c98f                                                  ; $c98a : $d0, $03
+
+	jmp Jump_05_c9a5.w                                                  ; $c98c : $4c, $a5, $c9
+
+@br_c98f:
+	inc StageEnemyEntity.subsubstate                                                  ; $c98f : $e6, $03
+	inc StageEnemyEntity.subsubstate                                                  ; $c991 : $e6, $03
+	lda #$04.b                                                  ; $c993 : $a9, $04
+	trb $1f5f.w                                                  ; $c995 : $1c, $5f, $1f
+
+; this text says you can't get the upgrade if you don't fit the reqs
+	lda $0b                                                  ; $c998 : $a5, $0b
 	dea                                                  ; $c99a : $3a
 	tax                                                  ; $c99b : $aa
 	lda $ceeb.w, X                                                  ; $c99c : $bd, $eb, $ce
@@ -11432,9 +11461,14 @@ br_05_c937:
 	jmp Jump_05_ca0e.w                                                  ; $c9a2 : $4c, $0e, $ca
 
 
-	lda #$8504.w                                                  ; $c9a5 : $a9, $04, $85
-	cop $64.b                                                  ; $c9a8 : $02, $64
-	ora $60, S                                                  ; $c9aa : $03, $60
+Jump_05_c9a5:
+	lda #$04.b                                                  ; $c9a5 : $a9, $04
+	sta $02                                                  ; $c9a7 : $85, $02
+	stz StageEnemyEntity.subsubstate                                                  ; $c9a9 : $64, $03
+	rts                                                  ; $c9ab : $60
+
+
+Func_5_c9ac:
 	ldx $03                                                  ; $c9ac : $a6, $03
 	bne br_05_c9c1                                                  ; $c9ae : $d0, $11
 
@@ -11486,10 +11520,12 @@ br_05_ca04:
 	rts                                                  ; $ca06 : $60
 
 
+Func_5_ca07:
 	dec $1f4f.w                                                  ; $ca07 : $ce, $4f, $1f
 	jmp todo_DisablesEntity_d928.l                                                  ; $ca0a : $5c, $28, $d9, $02
 
 
+; :0008 - text idx
 Jump_05_ca0e:
 	lda #$80.b                                                  ; $ca0e : $a9, $80
 	sta $0000.w                                                  ; $ca10 : $8d, $00, $00

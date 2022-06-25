@@ -7875,7 +7875,7 @@ Data_39_c1bc:
 	.dw $c2b0
 	.dw $c818
 	.dw $d069
-	.dw $d12e
+	.dw Text41h_BodyChip
 	.dw $d20b
 	.dw $d338
 	.dw $d779
@@ -10072,6 +10072,8 @@ br_39_d0ee:
 	sta [$1e]                                                  ; $d12b : $87, $1e
 	.db $82                                                  ; $d12d : $82
 
+
+Text41h_BodyChip:
 	txa                                                  ; $d12e : $8a
 
 br_39_d12f:

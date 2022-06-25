@@ -19742,7 +19742,7 @@ EnemyUpdateFuncs:
 	.dw $fbd9
 	.dw $fbde
 	.dw $fbe3
-	.dw $fbe8
+	.dw Func_0_fbe8 ; $2d (bridge falling enemy)
 	.dw $fbed
 	.dw $fbf2
 	.dw $fbf7
@@ -19988,7 +19988,8 @@ EnemyUpdateFuncs:
 	rts                                                  ; $fbe7 : $60
 
 
-	jsr $07f1ad.l                                                  ; $fbe8 : $22, $ad, $f1, $07
+Func_0_fbe8:
+	jsr Func_7_f1ad.l                                                  ; $fbe8 : $22, $ad, $f1, $07
 	rts                                                  ; $fbec : $60
 
 

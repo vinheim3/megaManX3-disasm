@@ -2449,12 +2449,12 @@ DynamicSpritesStage06Idx01:
 
 
 DynamicSpritesStage06Idx02:
-	.db $5d
+	.db DECOMP_IDX_OAM_TILEDATA_HAMMA_HAMMA
 	.dw $1800
 	.dw $0116
 	.db $50
 
-	.db $a7
+	.db DECOMP_IDX_OAM_TILEDATA_BRIDGE_RUBBLE
 	.dw $1d00
 	.dw $0134
 	.db $60
@@ -2514,7 +2514,7 @@ DynamicSpritesStage06Idx06:
 
 
 DynamicSpritesStage06Idx07:
-	.db $5d
+	.db DECOMP_IDX_OAM_TILEDATA_HAMMA_HAMMA
 	.dw $1000
 	.dw $0116
 	.db $40
@@ -2769,7 +2769,7 @@ DynamicSpritesStage07Idx0b:
 
 
 DynamicSpritesStage08Idx00:
-	.db $5d
+	.db DECOMP_IDX_OAM_TILEDATA_HAMMA_HAMMA
 	.dw $1000
 	.dw $0116
 	.db $40
@@ -2864,7 +2864,7 @@ DynamicSpritesStage08Idx04:
 
 
 DynamicSpritesStage08Idx05:
-	.db $5d
+	.db DECOMP_IDX_OAM_TILEDATA_HAMMA_HAMMA
 	.dw $1800
 	.dw $0116
 	.db $50
@@ -2929,7 +2929,7 @@ DynamicSpritesStage08Idx09:
 
 
 DynamicSpritesStage09Idx00:
-	.db $a7
+	.db DECOMP_IDX_OAM_TILEDATA_BRIDGE_RUBBLE
 	.dw $1000
 	.dw $0134
 	.db $40
@@ -2953,7 +2953,7 @@ DynamicSpritesStage09Idx00:
 
 
 DynamicSpritesStage09Idx01:
-	.db $5d
+	.db DECOMP_IDX_OAM_TILEDATA_HAMMA_HAMMA
 	.dw $1600
 	.dw $0116
 	.db $60
@@ -2996,7 +2996,7 @@ DynamicSpritesStage09Idx03:
 	.dw $00ee
 	.db $60
 
-	.db $5d
+	.db DECOMP_IDX_OAM_TILEDATA_HAMMA_HAMMA
 	.dw $1700
 	.dw $0116
 	.db $40
@@ -3015,7 +3015,7 @@ DynamicSpritesStage09Idx04:
 	.dw $00ee
 	.db $60
 
-	.db $a7
+	.db DECOMP_IDX_OAM_TILEDATA_BRIDGE_RUBBLE
 	.dw $1000
 	.dw $0134
 	.db $40
@@ -3090,7 +3090,7 @@ DynamicSpritesStage0aIdx01:
 
 
 DynamicSpritesStage0aIdx02:
-	.db $5d
+	.db DECOMP_IDX_OAM_TILEDATA_HAMMA_HAMMA
 	.dw $1000
 	.dw $0116
 	.db $40
@@ -3123,7 +3123,7 @@ DynamicSpritesStage0aIdx03:
 
 
 DynamicSpritesStage0aIdx04:
-	.db $5d
+	.db DECOMP_IDX_OAM_TILEDATA_HAMMA_HAMMA
 	.dw $1000
 	.dw $0116
 	.db $40
@@ -3203,7 +3203,7 @@ DynamicSpritesStage0aIdx08:
 
 
 DynamicSpritesStage0aIdx09:
-	.db $5d
+	.db DECOMP_IDX_OAM_TILEDATA_HAMMA_HAMMA
 	.dw $1800
 	.dw $0116
 	.db $50
@@ -3625,7 +3625,7 @@ DynamicSpritesStage0dIdx04:
 	.dw $01ce
 	.db $40
 
-	.db $a7
+	.db DECOMP_IDX_OAM_TILEDATA_BRIDGE_RUBBLE
 	.dw $1300
 	.dw $0134
 	.db $50
@@ -3639,7 +3639,7 @@ DynamicSpritesStage0dIdx04:
 
 
 DynamicSpritesStage0eIdx00:
-	.db $5d
+	.db DECOMP_IDX_OAM_TILEDATA_HAMMA_HAMMA
 	.dw $1000
 	.dw $0116
 	.db $50
@@ -3677,7 +3677,7 @@ DynamicSpritesStage0eIdx01:
 
 
 DynamicSpritesStage0eIdx02:
-	.db $5d
+	.db DECOMP_IDX_OAM_TILEDATA_HAMMA_HAMMA
 	.dw $1800
 	.dw $0116
 	.db $50
@@ -3695,7 +3695,7 @@ DynamicSpritesStage0eIdx03:
 
 
 DynamicSpritesStage0eIdx04:
-	.db $5d
+	.db DECOMP_IDX_OAM_TILEDATA_HAMMA_HAMMA
 	.dw $1000
 	.dw $0116
 	.db $40

@@ -18287,39 +18287,47 @@ br_07_f1a6:
 	rts                                                  ; $f1ac : $60
 
 
+; enenmy $2d (falls down bridge)
+Func_7_f1ad:
 	sep #ACCU_8|IDX_8                                                  ; $f1ad : $e2, $30
-	ldx $01                                                  ; $f1af : $a6, $01
-	jsr ($f1b5.w, X)                                                  ; $f1b1 : $fc, $b5, $f1
+	ldx StageEnemyEntity.state                                                  ; $f1af : $a6, $01
+	jsr (@states.w, X)                                                  ; $f1b1 : $fc, $b5, $f1
 	rtl                                                  ; $f1b4 : $6b
 
+@states:
+	.dw Func_7_f1c1
+	.dw Func_7_424f
+	.dw Func_7_f2dc
+	.dw $f22b
+	.dw $f238
+	.dw $f23e
 
-	cmp ($f1, X)                                                  ; $f1b5 : $c1, $f1
-	eor $f2dcf2.l                                                  ; $f1b7 : $4f, $f2, $dc, $f2
-	pld                                                  ; $f1bb : $2b
-	sbc ($38)                                                  ; $f1bc : $f2, $38
-	sbc ($3e)                                                  ; $f1be : $f2, $3e
-	sbc ($22)                                                  ; $f1c0 : $f2, $22
-	jmp $a902e1.l                                                  ; $f1c2 : $5c, $e1, $02, $a9
 
-
-	php                                                  ; $f1c6 : $08
+Func_7_f1c1:
+	jsr $02e15c.l                                                  ; $f1c1 : $22, $5c, $e1, $02
+	lda #$08.b                                                  ; $f1c5 : $a9, $08
 	sta $12                                                  ; $f1c7 : $85, $12
 	lda #$02.b                                                  ; $f1c9 : $a9, $02
-	sta $01                                                  ; $f1cb : $85, $01
-	stz $02                                                  ; $f1cd : $64, $02
+	sta StageEnemyEntity.state                                                  ; $f1cb : $85, $01
+	stz StageEnemyEntity.substate                                                 ; $f1cd : $64, $02
 	jsr $02e13f.l                                                  ; $f1cf : $22, $3f, $e1, $02
 	lda $11                                                  ; $f1d3 : $a5, $11
 	sta $10                                                  ; $f1d5 : $85, $10
+
+; param
 	lda $0b                                                  ; $f1d7 : $a5, $0b
 	and #$01.b                                                  ; $f1d9 : $29, $01
 	asl                                                  ; $f1db : $0a
 	tax                                                  ; $f1dc : $aa
-	jsr ($f1e1.w, X)                                                  ; $f1dd : $fc, $e1, $f1
+	jsr (@funcs.w, X)                                                  ; $f1dd : $fc, $e1, $f1
 	rts                                                  ; $f1e0 : $60
 
+@funcs:
+	.dw Func_7_f1e5
+	.dw Func_7_f207
+	
 
-	sbc $f1                                                  ; $f1e1 : $e5, $f1
-	ora [$f2]                                                  ; $f1e3 : $07, $f2
+Func_7_f1e5:
 	stz $36                                                  ; $f1e5 : $64, $36
 	stz $37                                                  ; $f1e7 : $64, $37
 	stz $30                                                  ; $f1e9 : $64, $30
@@ -18332,19 +18340,19 @@ br_07_f1a6:
 	jsr Func_4_b967.l                                                  ; $f1f8 : $22, $67, $b9, $04
 	lda $0b                                                  ; $f1fc : $a5, $0b
 	cmp #$02.b                                                  ; $f1fe : $c9, $02
-	bne br_07_f206                                                  ; $f200 : $d0, $04
+	bne +                                                  ; $f200 : $d0, $04
 
 	lda #$0f.b                                                  ; $f202 : $a9, $0f
 	sta $28                                                  ; $f204 : $85, $28
 
-br_07_f206:
-	rts                                                  ; $f206 : $60
++	rts                                                  ; $f206 : $60
 
 
+Func_7_f207:
 	lda #$0c.b                                                  ; $f207 : $a9, $0c
 	sta $12                                                  ; $f209 : $85, $12
 	lda #$06.b                                                  ; $f20b : $a9, $06
-	sta $02                                                  ; $f20d : $85, $02
+	sta StageEnemyEntity.substate                                                  ; $f20d : $85, $02
 	lda #$01.b                                                  ; $f20f : $a9, $01
 	sta $30                                                  ; $f211 : $85, $30
 	lda #$90.b                                                  ; $f213 : $a9, $90
@@ -18363,7 +18371,7 @@ br_07_f206:
 	bmi br_07_f233                                                  ; $f22d : $30, $04
 
 	dec $30                                                  ; $f22f : $c6, $30
-	bne br_07_f24f                                                  ; $f231 : $d0, $1c
+	bne Func_7_424f                                                  ; $f231 : $d0, $1c
 
 br_07_f233:
 	jsr Func_2_db3f.l                                                  ; $f233 : $22, $3f, $db, $02
@@ -18372,7 +18380,7 @@ br_07_f233:
 
 	lda #$02.b                                                  ; $f238 : $a9, $02
 	sta $01                                                  ; $f23a : $85, $01
-	bra br_07_f24f                                                  ; $f23c : $80, $11
+	bra Func_7_424f                                                  ; $f23c : $80, $11
 
 	jsr Func_2_ddf6.l                                                  ; $f23e : $22, $f6, $dd, $02
 	lda $01                                                  ; $f242 : $a5, $01
@@ -18387,7 +18395,7 @@ br_07_f233:
 	rts                                                  ; $f24e : $60
 
 
-br_07_f24f:
+Func_7_424f:
 	lda $10                                                  ; $f24f : $a5, $10
 	tsb $11                                                  ; $f251 : $04, $11
 	jsr Func_2_d636.l                                                  ; $f253 : $22, $36, $d6, $02
@@ -18408,8 +18416,9 @@ br_07_f268:
 	bne br_07_f2ad                                                  ; $f26b : $d0, $40
 
 br_07_f26d:
-	ldx $02                                                  ; $f26d : $a6, $02
-	jsr ($f2ce.w, X)                                                  ; $f26f : $fc, $ce, $f2
+; 6 if param == 1 (crushing bridge)
+	ldx StageEnemyEntity.substate                                                  ; $f26d : $a6, $02
+	jsr (Funcs_7_f2ce.w, X)                                                  ; $f26f : $fc, $ce, $f2
 	jsr Func_4_cb74.l                                                  ; $f272 : $22, $74, $cb, $04
 	beq br_07_f27e                                                  ; $f276 : $f0, $06
 
@@ -18473,13 +18482,17 @@ br_07_f2c1:
 	rts                                                  ; $f2cd : $60
 
 
-	and $f3, X                                                  ; $f2ce : $35, $f3
-	sei                                                  ; $f2d0 : $78
-	sbc ($a0, S), Y                                                  ; $f2d1 : $f3, $a0
-	sbc ($34, S), Y                                                  ; $f2d3 : $f3, $34
-	pea $f47b.w                                                  ; $f2d5 : $f4, $7b, $f4
-	ldx $f4, Y                                                  ; $f2d8 : $b6, $f4
-	cpy $f4                                                  ; $f2da : $c4, $f4
+Funcs_7_f2ce:
+	.dw $f335
+	.dw $f378
+	.dw $f3a0
+	.dw Func_7_f434
+	.dw Func_7_f47b
+	.dw $f4b6
+	.dw $f4c4
+
+
+Func_7_f2dc:
 	lda $02                                                  ; $f2dc : $a5, $02
 	bne br_07_f325                                                  ; $f2de : $d0, $45
 
@@ -18709,16 +18722,17 @@ br_07_f431:
 	rts                                                  ; $f433 : $60
 
 
+Func_7_f434:
 	rep #ACCU_8                                                  ; $f434 : $c2, $20
 	lda #$0520.w                                                  ; $f436 : $a9, $20, $05
 	sec                                                  ; $f439 : $38
 	sbc wPlayerEntity.x.w                                                  ; $f43a : $ed, $dd, $09
 	cmp #$0002.w                                                  ; $f43d : $c9, $02, $00
-	bpl br_07_f478                                                  ; $f440 : $10, $36
+	bpl @done                                                  ; $f440 : $10, $36
 
 	sep #ACCU_8                                                  ; $f442 : $e2, $20
 	dec $35                                                  ; $f444 : $c6, $35
-	bne br_07_f478                                                  ; $f446 : $d0, $30
+	bne @done                                                  ; $f446 : $d0, $30
 
 	jsr Func_2_e15c.l                                                  ; $f448 : $22, $5c, $e1, $02
 	lda $11                                                  ; $f44c : $a5, $11
@@ -18741,11 +18755,12 @@ br_07_f431:
 	lda #$fa80.w                                                  ; $f473 : $a9, $80, $fa
 	sta $1c                                                  ; $f476 : $85, $1c
 
-br_07_f478:
+@done:
 	sep #ACCU_8                                                  ; $f478 : $e2, $20
 	rts                                                  ; $f47a : $60
 
 
+Func_7_f47b:
 	jsr Call_07_f6ba.w                                                  ; $f47b : $20, $ba, $f6
 	jsr $02d78e.l                                                  ; $f47e : $22, $8e, $d7, $02
 	jsr $04c0f7.l                                                  ; $f482 : $22, $f7, $c0, $04

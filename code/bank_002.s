@@ -17855,22 +17855,22 @@ br_02_f9df:
 
 
 Func_2_f9e3:
-	ldx $01                                                  ; $f9e3 : $a6, $01
+	ldx _1818_Entity.state                                                  ; $f9e3 : $a6, $01
 	beq @br_f9ea                                                  ; $f9e5 : $f0, $03
 
 	jmp Jump_02_fae3.w                                                  ; $f9e7 : $4c, $e3, $fa
 
 @br_f9ea:
-	ldx $02                                                  ; $f9ea : $a6, $02
+	ldx _1818_Entity.substate                                                  ; $f9ea : $a6, $02
 	jmp (@substates.w, X)                                                  ; $f9ec : $7c, $ef, $f9
 
 @substates:
-	.dw $f9f5
-	.dw $fa0d
-	.dw $fa2e
+	.dw Func_2_f9f5
+	.dw Func_2_fa0d
+	.dw Func_2_fa2e
 
 
-;
+Func_2_f9f5:
 	lda $1f38.w                                                  ; $f9f5 : $ad, $38, $1f
 	bne br_02_fa0c                                                  ; $f9f8 : $d0, $12
 
@@ -17887,6 +17887,7 @@ br_02_fa0c:
 	rtl                                                  ; $fa0c : $6b
 
 
+Func_2_fa0d:
 	lda $1f38.w                                                  ; $fa0d : $ad, $38, $1f
 	bne br_02_fa2d                                                  ; $fa10 : $d0, $1b
 
@@ -17907,6 +17908,7 @@ br_02_fa2d:
 	rtl                                                  ; $fa2d : $6b
 
 
+Func_2_fa2e:
 	inc $01                                                  ; $fa2e : $e6, $01
 	stz $02                                                  ; $fa30 : $64, $02
 	lda $1f3f.w                                                  ; $fa32 : $ad, $3f, $1f
@@ -18002,84 +18004,79 @@ br_02_faca:
 
 
 Jump_02_fae3:
-	ldx $02                                                  ; $fae3 : $a6, $02
+	ldx _1818_Entity.substate                                                  ; $fae3 : $a6, $02
 	jmp (@substates.w, X)                                                  ; $fae5 : $7c, $e8, $fa
 
 @substates:
 	.dw Func_2_faf0
 	.dw Func_2_fb1c
 	.dw Func_2_fb26
-	.dw $fb9d
+	.dw Func_2_fb9d
 
 
 Func_2_faf0:
 	stz $0000.w                                                  ; $faf0 : $9c, $00, $00
 	lda $07                                                  ; $faf3 : $a5, $07
 	cmp $1a                                                  ; $faf5 : $c5, $1a
-	beq br_02_fafe                                                  ; $faf7 : $f0, $05
+	beq +                                                  ; $faf7 : $f0, $05
 
 	inc $0000.w                                                  ; $faf9 : $ee, $00, $00
 	inc $1a                                                  ; $fafc : $e6, $1a
 
-br_02_fafe:
-	lda $08                                                  ; $fafe : $a5, $08
++	lda $08                                                  ; $fafe : $a5, $08
 	cmp $1b                                                  ; $fb00 : $c5, $1b
-	beq br_02_fb09                                                  ; $fb02 : $f0, $05
+	beq +                                                  ; $fb02 : $f0, $05
 
 	inc $0000.w                                                  ; $fb04 : $ee, $00, $00
 	inc $1b                                                  ; $fb07 : $e6, $1b
 
-br_02_fb09:
-	lda $0000.w                                                  ; $fb09 : $ad, $00, $00
-	bne br_02_fb18                                                  ; $fb0c : $d0, $0a
++	lda $0000.w                                                  ; $fb09 : $ad, $00, $00
+	bne @cont_fb18                                                  ; $fb0c : $d0, $0a
 
 	lda $06                                                  ; $fb0e : $a5, $06
 	jsr AddTextThread.l                                                  ; $fb10 : $22, $7b, $e9, $00
 	lda #$02.b                                                  ; $fb14 : $a9, $02
 	sta $02                                                  ; $fb16 : $85, $02
 
-br_02_fb18:
+@cont_fb18:
 	jsr Call_02_fbdd.w                                                  ; $fb18 : $20, $dd, $fb
 	rtl                                                  ; $fb1b : $6b
 
 
 Func_2_fb1c:
 	lda $0060.w                                                  ; $fb1c : $ad, $60, $00
-	bne br_02_fb25                                                  ; $fb1f : $d0, $04
+	bne +                                                  ; $fb1f : $d0, $04
 
 	lda #$04.b                                                  ; $fb21 : $a9, $04
 	sta $02                                                  ; $fb23 : $85, $02
 
-br_02_fb25:
-	rtl                                                  ; $fb25 : $6b
++	rtl                                                  ; $fb25 : $6b
 
 
 Func_2_fb26:
 	jsr Call_02_fd10.w                                                  ; $fb26 : $20, $10, $fd
-	beq br_02_fb47                                                  ; $fb29 : $f0, $1c
+	beq @br_fb47                                                  ; $fb29 : $f0, $1c
 
 	stz $0000.w                                                  ; $fb2b : $9c, $00, $00
 	lda $1a                                                  ; $fb2e : $a5, $1a
-	beq br_02_fb37                                                  ; $fb30 : $f0, $05
+	beq +                                                  ; $fb30 : $f0, $05
 
 	inc $0000.w                                                  ; $fb32 : $ee, $00, $00
 	dec $1a                                                  ; $fb35 : $c6, $1a
 
-br_02_fb37:
-	lda $1b                                                  ; $fb37 : $a5, $1b
-	beq br_02_fb40                                                  ; $fb39 : $f0, $05
++	lda $1b                                                  ; $fb37 : $a5, $1b
+	beq +                                                  ; $fb39 : $f0, $05
 
 	inc $0000.w                                                  ; $fb3b : $ee, $00, $00
 	dec $1b                                                  ; $fb3e : $c6, $1b
 
-br_02_fb40:
-	lda $0000.w                                                  ; $fb40 : $ad, $00, $00
++	lda $0000.w                                                  ; $fb40 : $ad, $00, $00
 	cmp #$01.b                                                  ; $fb43 : $c9, $01
-	bne br_02_fb99                                                  ; $fb45 : $d0, $52
+	bne @br_fb99                                                  ; $fb45 : $d0, $52
 
-br_02_fb47:
+@br_fb47:
 	lda $1f38.w                                                  ; $fb47 : $ad, $38, $1f
-	bne br_02_fb9c                                                  ; $fb4a : $d0, $50
+	bne @done_1                                                  ; $fb4a : $d0, $50
 
 	lda #$06.b                                                  ; $fb4c : $a9, $06
 	sta $02                                                  ; $fb4e : $85, $02
@@ -18090,7 +18087,7 @@ br_02_fb47:
 	lda #$04.b                                                  ; $fb5a : $a9, $04
 	tsb $00a3.w                                                  ; $fb5c : $0c, $a3, $00
 	jsr Call_02_fd10.w                                                  ; $fb5f : $20, $10, $fd
-	beq br_02_fb92                                                  ; $fb62 : $f0, $2e
+	beq @br_fb92                                                  ; $fb62 : $f0, $2e
 
 	stz W12SEL.w                                                  ; $fb64 : $9c, $23, $21
 	stz $00c5.w                                                  ; $fb67 : $9c, $c5, $00
@@ -18108,25 +18105,25 @@ br_02_fb47:
 	stz $08d8.w                                                  ; $fb87 : $9c, $d8, $08
 	lda wStageIdx.w                                                  ; $fb8a : $ad, $ae, $1f
 	ora $1fb5.w                                                  ; $fb8d : $0d, $b5, $1f
-	beq br_02_fb98                                                  ; $fb90 : $f0, $06
+	beq @done_0                                                  ; $fb90 : $f0, $06
 
-br_02_fb92:
+@br_fb92:
 	dec $1f4f.w                                                  ; $fb92 : $ce, $4f, $1f
 	dec $1f45.w                                                  ; $fb95 : $ce, $45, $1f
 
-br_02_fb98:
+@done_0:
 	rtl                                                  ; $fb98 : $6b
 
-
-br_02_fb99:
+@br_fb99:
 	jsr Call_02_fbdd.w                                                  ; $fb99 : $20, $dd, $fb
 
-br_02_fb9c:
+@done_1:
 	rtl                                                  ; $fb9c : $6b
 
 
+Func_2_fb9d:
 	jsr Call_02_fd10.w                                                  ; $fb9d : $20, $10, $fd
-	beq br_02_fbc3                                                  ; $fba0 : $f0, $21
+	beq @cont_fbc3                                                  ; $fba0 : $f0, $21
 
 	lda #$04.b                                                  ; $fba2 : $a9, $04
 	trb wMainScreenDesignation.w                                                  ; $fba4 : $1c, $c1, $00
@@ -18142,21 +18139,21 @@ br_02_fb9c:
 	inc $00a1.w                                                  ; $fbbc : $ee, $a1, $00
 	jsr $048cd4.l                                                  ; $fbbf : $22, $d4, $8c, $04
 
-br_02_fbc3:
+@cont_fbc3:
 	jsr Call_02_fd10.w                                                  ; $fbc3 : $20, $10, $fd
-	beq br_02_fbd4                                                  ; $fbc6 : $f0, $0c
+	beq @br_fbd4                                                  ; $fbc6 : $f0, $0c
 
 	lda #$04.b                                                  ; $fbc8 : $a9, $04
 	trb wMainScreenDesignation.w                                                  ; $fbca : $1c, $c1, $00
 	lda #$0c.b                                                  ; $fbcd : $a9, $0c
 	trb $1f5f.w                                                  ; $fbcf : $1c, $5f, $1f
-	bra br_02_fbd9                                                  ; $fbd2 : $80, $05
+	bra @cont_fbd9                                                  ; $fbd2 : $80, $05
 
-br_02_fbd4:
+@br_fbd4:
 	lda #$08.b                                                  ; $fbd4 : $a9, $08
 	tsb $1f5f.w                                                  ; $fbd6 : $0c, $5f, $1f
 
-br_02_fbd9:
+@cont_fbd9:
 	jmp todo_DisablesEntity_d928.l                                                  ; $fbd9 : $5c, $28, $d9, $02
 
 

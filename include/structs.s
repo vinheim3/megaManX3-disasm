@@ -77,7 +77,8 @@ THREAD_STARTED = 3
 .struct _1818_Entity
     enabled db ; $00
     state db ; $01
-    b2 ds $a-2
+    substate db ; $02
+    b3 ds $a-3
     type db ; $0a
     bb ds $20-$b
     sizeof .db
