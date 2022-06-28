@@ -11229,7 +11229,7 @@ br_17_ca9a:
 	.db $00                                                  ; $cb73 : $00
 	dec $df00.w, X                                                  ; $cb74 : $de, $00, $df
 	.db $00                                                  ; $cb77 : $00
-	dec $0300.w, X                                                  ; $cb78 : $de, $00, $03
+	dec wColourRam.w, X                                                  ; $cb78 : $de, $00, $03
 	ora ($e0, X)                                                  ; $cb7b : $01, $e0
 	.db $00                                                  ; $cb7d : $00
 	lsr                                                  ; $cb7e : $4a
@@ -18380,7 +18380,7 @@ br_17_fe14:
 	bra br_17_fe18                                                  ; $fe16 : $80, $00
 
 br_17_fe18:
-	tsb $0300.w                                                  ; $fe18 : $0c, $00, $03
+	tsb wColourRam.w                                                  ; $fe18 : $0c, $00, $03
 	ora ($00, X)                                                  ; $fe1b : $01, $00
 	.db $00                                                  ; $fe1d : $00
 	tsb $01                                                  ; $fe1e : $04, $01

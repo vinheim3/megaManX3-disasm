@@ -1996,7 +1996,7 @@ br_3f_8dc1:
 	adc [$00], Y                                                  ; $8e10 : $77, $00
 	dey                                                  ; $8e12 : $88
 	.db $00                                                  ; $8e13 : $00
-	sta $0300.w                                                  ; $8e14 : $8d, $00, $03
+	sta wColourRam.w                                                  ; $8e14 : $8d, $00, $03
 	.db $00                                                  ; $8e17 : $00
 	.db $00                                                  ; $8e18 : $00
 	ora $00, S                                                  ; $8e19 : $03, $00
@@ -5348,7 +5348,7 @@ br_3f_a2b6:
 	tsb $0600.w                                                  ; $a2b9 : $0c, $00, $06
 	tsb $0500.w                                                  ; $a2bc : $0c, $00, $05
 	tsb $0400.w                                                  ; $a2bf : $0c, $00, $04
-	tsb $0300.w                                                  ; $a2c2 : $0c, $00, $03
+	tsb wColourRam.w                                                  ; $a2c2 : $0c, $00, $03
 	tsb $0280.w                                                  ; $a2c5 : $0c, $80, $02
 	inx                                                  ; $a2c8 : $e8
 	sbc $010008.l, X                                                  ; $a2c9 : $ff, $08, $00, $01
@@ -14434,7 +14434,7 @@ br_3f_dd20:
 	tsb $0000.w                                                  ; $dd78 : $0c, $00, $00
 	tsb $0100.w                                                  ; $dd7b : $0c, $00, $01
 	tsb $0200.w                                                  ; $dd7e : $0c, $00, $02
-	tsb $0300.w                                                  ; $dd81 : $0c, $00, $03
+	tsb wColourRam.w                                                  ; $dd81 : $0c, $00, $03
 	tsb $0400.w                                                  ; $dd84 : $0c, $00, $04
 	tsb $0500.w                                                  ; $dd87 : $0c, $00, $05
 	tsb $0600.w                                                  ; $dd8a : $0c, $00, $06
@@ -15269,7 +15269,7 @@ br_3f_e28d:
 	lda #$01.b                                                  ; $e2cf : $a9, $01
 	sta $00                                                  ; $e2d1 : $85, $00
 	ldy #$c8.b                                                  ; $e2d3 : $a0, $c8
-	jsr Func_1_805b.l                                                  ; $e2d5 : $22, $5b, $80, $01
+	jsr LoadPalettesFromGivenSpecToColour0.l                                                  ; $e2d5 : $22, $5b, $80, $01
 	lda wCurrHealth.w                                                  ; $e2d9 : $ad, $ff, $09
 	and #$7f.b                                                  ; $e2dc : $29, $7f
 	beq br_3f_e28d                                                  ; $e2de : $f0, $ad
@@ -15819,7 +15819,7 @@ br_3f_e664:
 
 	lda #$0a.b                                                  ; $e66b : $a9, $0a
 	sta wDynamicSpriteTileDatasIdx.w                                                  ; $e66d : $8d, $18, $1f
-	jsr todo_HookAddThreadToDynamicallyLoadSpriteTileData.l                                                  ; $e670 : $22, $dc, $b1, $00
+	jsr FarAddThreadToDynamicallyLoadSpriteData.l                                                  ; $e670 : $22, $dc, $b1, $00
 
 br_3f_e674:
 	rtl                                                  ; $e674 : $6b

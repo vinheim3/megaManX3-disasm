@@ -1556,6 +1556,10 @@ Func_2_8928:
 ; R3+0 - roll angle 
 ; R3+1 - eg 90
 ; R4 - distance from the far away ($90 at closest) / size
+; $6000 - $10 bytes per vertex
+;   - +0 - X component of vertex
+;   - +4 - Y component of vertex
+;   - +8 - Z component of vertex
 Cx4_TransformLines:
 ; R5 = sin R1 * $10000
 ; R6 = cos R1 * $10000
@@ -1612,11 +1616,11 @@ Cx4_TransformLines:
 	wrram lsb, IMM $09                                                             ; $8a3e / 5:1f / $ec09
 	wrram mid, IMM $0a                                                             ; $8a40 / 5:20 / $ed0a
 
-; RB = eg ffae00
+; RB = eg ffae00 (Y axis)
 	call AequLongInRamPtrPlus4                                                             ; $8a42 / 5:21 / $28e7
 	mov OP RB, A                                                             ; $8a44 / 5:22 / $e06b
 
-; RC = eg 009000 (val above adjusted)
+; RC = eg 009000 (val above adjusted) (Z axis)
 	call AequLongInRamPtrPlus8                                                             ; $8a46 / 5:23 / $28f1
 	mov OP RC, A                                                             ; $8a48 / 5:24 / $e06c
 
@@ -1647,7 +1651,11 @@ Cx4_TransformLines:
 	mov A, OP MH                                                             ; $8a68 / 5:34 / $6001
 	add _100hA, OP RE                                                             ; $8a6a / 5:35 / $826e
 
-; write RBcosR1 + RCsinR1 in ram_ptr+4 (where RB was)
+; write RBcosR1 + RCsinR1 in ram_ptr+4 (Y)
+; [ cosR1 -sinR1 ] [ Z ]
+; [ sinR1  cosR1 ] [ Y ]
+; ie Y = Y cos yaw + Z sin yaw
+; (vertical component of the counter-clockwise rotation on X axis)
 	add A, OP RD                                                             ; $8a6c / 5:36 / $806d
 	call WriteAtoRamPtrPlus4                                                             ; $8a6e / 5:37 / $28ec
 
@@ -1676,19 +1684,21 @@ Cx4_TransformLines:
 	mov A, OP MH                                                             ; $8a8e / 5:47 / $6001
 	add _100hA, OP RE                                                             ; $8a90 / 5:48 / $826e
 
-; write RCcosR1 - RBsinR1 in ram_ptr+8 (where RC was)
+; write RCcosR1 - RBsinR1 in ram_ptr+8 (Z)
+; ie Z cos yaw - Y sin yaw (see matrix above)
+; (horizontal component of the counter-clockwise rotation on X axis)
 	sub A, OP RD                                                             ; $8a92 / 5:49 / $906d
 	call WriteAtoRamPtrPlus8                                                             ; $8a94 / 5:4a / $28f6
 
-; RB = eg ffe600
+; RB = eg ffe600 (X value)
 	call AequLongInRamPtr                                                             ; $8a96 / 5:4b / $28dd
 	mov OP RB, A                                                             ; $8a98 / 5:4c / $e06b
 
-; RC = RCcosR1 - RBsinR1
+; RC = adjusted Z value
 	call AequLongInRamPtrPlus8                                                             ; $8a9a / 5:4d / $28f1
 	mov OP RC, A                                                             ; $8a9c / 5:4e / $e06c
 
-; Repeat 1) getting RD = RB * cos R2
+; Repeat 1) getting RD = RB * cos R2 (x cos pitch)
 	mov A, OP RB                                                             ; $8a9e / 5:4f / $606b
 	mul OP R8                                                             ; $8aa0 / 5:50 / $9868
 	noop                                                             ; $8aa2 / 5:51 / $0000
@@ -1701,7 +1711,7 @@ Cx4_TransformLines:
 	add _100hA, OP RD                                                             ; $8aac / 5:56 / $826d
 	mov OP RD, A                                                             ; $8aae / 5:57 / $e06d
 
-; Repeat 1) getting RC * sin R2
+; Repeat 1) getting RC * sin R2 (Z sin pitch)
 	mov A, OP RC                                                             ; $8ab0 / 5:58 / $606c
 	mul OP R7                                                             ; $8ab2 / 5:59 / $9867
 	noop                                                             ; $8ab4 / 5:5a / $0000
@@ -1713,11 +1723,15 @@ Cx4_TransformLines:
 	mov A, OP MH                                                             ; $8abc / 5:5e / $6001
 	add _100hA, OP RE                                                             ; $8abe / 5:5f / $826e
 
-; write RCsinR2 - RBcosR2 in ram_ptr
+; write RBcosR2 - RCsinR2 in ram_ptr (X)
+; [ cosR2 -sinR2 ] [ X ]
+; [ sinR2  cosR2 ] [ Z ]
+; ie X = X cos pitch - Z sin pitch
+; (horizontal component)
 	sub OP RD, A                                                             ; $8ac0 / 5:60 / $886d
 	call WriteAtoRamPtr                                                             ; $8ac2 / 5:61 / $28e2
 
-; Repeat 1) getting RD = RB * sin R2
+; Repeat 1) getting RD = RB * sin R2 (x sin pitch)
 	mov A, OP RB                                                             ; $8ac4 / 5:62 / $606b
 	mul OP R7                                                             ; $8ac6 / 5:63 / $9867
 	noop                                                             ; $8ac8 / 5:64 / $0000
@@ -1730,7 +1744,7 @@ Cx4_TransformLines:
 	add _100hA, OP RD                                                             ; $8ad2 / 5:69 / $826d
 	mov OP RD, A                                                             ; $8ad4 / 5:6a / $e06d
 
-; Repeat 1) getting RC * cos R2
+; Repeat 1) getting RC * cos R2 (z cos pitch)
 	mov A, OP RC                                                             ; $8ad6 / 5:6b / $606c
 	mul OP R8                                                             ; $8ad8 / 5:6c / $9868
 	noop                                                             ; $8ada / 5:6d / $0000
@@ -1742,15 +1756,16 @@ Cx4_TransformLines:
 	mov A, OP MH                                                             ; $8ae2 / 5:71 / $6001
 	add _100hA, OP RE                                                             ; $8ae4 / 5:72 / $826e
 
-; write RBsinR2 + RCcosR2 in ram_ptr+8
+; write RBsinR2 + RCcosR2 in ram_ptr+8 (Z)
+; ie vertical component
 	add A, OP RD                                                             ; $8ae6 / 5:73 / $806d
 	call WriteAtoRamPtrPlus8                                                             ; $8ae8 / 5:74 / $28f6
 
-; RB = RCsinR2 - RBcosR2
+; RB = RCsinR2 - RBcosR2 (X)
 	call AequLongInRamPtr                                                             ; $8aea / 5:75 / $28dd
 	mov OP RB, A                                                             ; $8aec / 5:76 / $e06b
 
-; RC = RBcosR1 + RCsinR1
+; RC = RBcosR1 + RCsinR1 (Y)
 	call AequLongInRamPtrPlus4                                                             ; $8aee / 5:77 / $28e7
 	mov OP RC, A                                                             ; $8af0 / 5:78 / $e06c
 
@@ -1779,7 +1794,10 @@ Cx4_TransformLines:
 	mov A, OP MH                                                             ; $8b10 / 5:88 / $6001
 	add _100hA, OP RE                                                             ; $8b12 / 5:89 / $826e
 
-; write RBcosR3 + RCsinR3 in ram_ptr
+; write RBcosR3 + RCsinR3 in ram_ptr (X)
+; [ cosR3 -sinR3 ] [ Y ]
+; [ sinR3  cosR3 ] [ X ]
+; ie vertical component of roll on Z axis
 	add A, OP RD                                                             ; $8b14 / 5:8a / $806d
 	call WriteAtoRamPtr                                                             ; $8b16 / 5:8b / $28e2
 
@@ -1808,7 +1826,8 @@ Cx4_TransformLines:
 	mov A, OP MH                                                             ; $8b36 / 5:9b / $6001
 	add _100hA, OP RE                                                             ; $8b38 / 5:9c / $826e
 
-; write RCcosR3 - RBsinR3 in ram_ptr+4
+; write RCcosR3 - RBsinR3 in ram_ptr+4 (Y)
+; ie horizontal component of roll
 	sub A, OP RD                                                             ; $8b3a / 5:9d / $906d
 	call WriteAtoRamPtrPlus4                                                             ; $8b3c / 5:9e / $28ec
 
@@ -1824,7 +1843,7 @@ Cx4_TransformLines:
 	wrram lsb, IMM $09                                                             ; $8b4a / 5:a5 / $ec09
 	wrram mid, IMM $0a                                                             ; $8b4c / 5:a6 / $ed0a
 
-; RF = long in ram_ptr+8
+; RF = long in ram_ptr+8 (new Z component)
 	call AequLongInRamPtrPlus8                                                             ; $8b4e / 5:a7 / $28f1
 	mov OP RF, A                                                             ; $8b50 / 5:a8 / $e06f
 
@@ -11820,7 +11839,7 @@ br_02_d490:
 	jsr ($0580.w, X)                                                  ; $d490 : $fc, $80, $05
 	php                                                  ; $d493 : $08
 	sbc $c02b00.l, X                                                  ; $d494 : $ff, $00, $2b, $c0
-	sbc $0300.w, X                                                  ; $d498 : $fd, $00, $03
+	sbc wColourRam.w, X                                                  ; $d498 : $fd, $00, $03
 	php                                                  ; $d49b : $08
 	sbc $002900.l, X                                                  ; $d49c : $ff, $00, $29, $00
 	.db $00                                                  ; $d4a0 : $00
@@ -13532,7 +13551,7 @@ br_02_deb8:
 	tax                                                  ; $dec6 : $aa
 	lda $e28f.w, X                                                  ; $dec7 : $bd, $8f, $e2
 	tax                                                  ; $deca : $aa
-	lda $7f8300.l, X                                                  ; $decb : $bf, $00, $83, $7f
+	lda wMapFromDecompDataIdxTo8plusColours.l, X                                                  ; $decb : $bf, $00, $83, $7f
 	and #$0e.b                                                  ; $decf : $29, $0e
 	tsb $11                                                  ; $ded1 : $04, $11
 
@@ -13739,7 +13758,7 @@ br_02_dff4:
 Jump_02_e01f:
 	stz $0000.w                                                  ; $e01f : $9c, $00, $00
 	lda $7fc940.l, X                                                  ; $e022 : $bf, $40, $c9, $7f
-	cmp $0300.w, X                                                  ; $e026 : $dd, $00, $03
+	cmp wColourRam.w, X                                                  ; $e026 : $dd, $00, $03
 	bne br_02_e031                                                  ; $e029 : $d0, $06
 
 	inc $000a.w                                                  ; $e02b : $ee, $0a, $00
@@ -13750,7 +13769,7 @@ br_02_e031:
 	sta $0002.w                                                  ; $e031 : $8d, $02, $00
 	and #$001f.w                                                  ; $e034 : $29, $1f, $00
 	sta $0004.w                                                  ; $e037 : $8d, $04, $00
-	lda $0300.w, X                                                  ; $e03a : $bd, $00, $03
+	lda wColourRam.w, X                                                  ; $e03a : $bd, $00, $03
 	sta $0006.w                                                  ; $e03d : $8d, $06, $00
 	and #$001f.w                                                  ; $e040 : $29, $1f, $00
 	cmp $0004.w                                                  ; $e043 : $cd, $04, $00
@@ -13807,7 +13826,7 @@ br_02_e093:
 
 br_02_e097:
 	ora $0000.w                                                  ; $e097 : $0d, $00, $00
-	sta $0300.w, X                                                  ; $e09a : $9d, $00, $03
+	sta wColourRam.w, X                                                  ; $e09a : $9d, $00, $03
 
 Jump_02_e09d:
 	inx                                                  ; $e09d : $e8
@@ -13998,7 +14017,7 @@ _Func_2_e162:
 	tax                                                  ; $e19a : $aa
 	lda wMapFromDecompDataIdxToBaseTileIdx.l, X                                                  ; $e19b : $bf, $00, $82, $7f
 	sta $18                                                  ; $e19f : $85, $18
-	lda $7f8300.l, X                                                  ; $e1a1 : $bf, $00, $83, $7f
+	lda wMapFromDecompDataIdxTo8plusColours.l, X                                                  ; $e1a1 : $bf, $00, $83, $7f
 	sta $11                                                  ; $e1a5 : $85, $11
 	stz $10                                                  ; $e1a7 : $64, $10
 	sep #ACCU_8|IDX_8                                                  ; $e1a9 : $e2, $30
@@ -16677,7 +16696,7 @@ br_02_f261:
 	bit #$d00e.w                                                  ; $f286 : $89, $0e, $d0
 	tsb $7029.w                                                  ; $f289 : $0c, $29, $70
 	sta $11                                                  ; $f28c : $85, $11
-	lda $7f8300.l, X                                                  ; $f28e : $bf, $00, $83, $7f
+	lda wMapFromDecompDataIdxTo8plusColours.l, X                                                  ; $f28e : $bf, $00, $83, $7f
 	and #$040f.w                                                  ; $f292 : $29, $0f, $04
 	ora ($b9), Y                                                  ; $f295 : $11, $b9
 	sbc ($d8, X)                                                  ; $f297 : $e1, $d8
@@ -17156,7 +17175,7 @@ Call_02_f54f:
 	lda #$09.b                                                  ; $f58f : $a9, $09
 	sta $00ce.w                                                  ; $f591 : $8d, $ce, $00
 	ldy #$b0.b                                                  ; $f594 : $a0, $b0
-	jsr Func_1_805b.l                                                  ; $f596 : $22, $5b, $80, $01
+	jsr LoadPalettesFromGivenSpecToColour0.l                                                  ; $f596 : $22, $5b, $80, $01
 
 br_02_f59a:
 	rep #ACCU_8                                                  ; $f59a : $c2, $20
@@ -17917,7 +17936,7 @@ Func_2_fa2e:
 
 	rep #IDX_8                                                  ; $fa38 : $c2, $10
 	ldy #$011c.w                                                  ; $fa3a : $a0, $1c, $01
-	jsr Func_1_805b.l                                                  ; $fa3d : $22, $5b, $80, $01
+	jsr LoadPalettesFromGivenSpecToColour0.l                                                  ; $fa3d : $22, $5b, $80, $01
 	sep #IDX_8                                                  ; $fa41 : $e2, $10
 	bra br_02_fa59                                                  ; $fa43 : $80, $14
 
@@ -17927,7 +17946,7 @@ br_02_fa45:
 
 br_02_fa49:
 	lda $0caca0.l, X                                                  ; $fa49 : $bf, $a0, $ac, $0c
-	sta $0300.w, X                                                  ; $fa4d : $9d, $00, $03
+	sta wColourRam.w, X                                                  ; $fa4d : $9d, $00, $03
 	dex                                                  ; $fa50 : $ca
 	dex                                                  ; $fa51 : $ca
 	bpl br_02_fa49                                                  ; $fa52 : $10, $f5
@@ -18398,7 +18417,7 @@ br_02_fd3e:
 
 	and #$71.b                                                  ; $fd51 : $29, $71
 	sta $11                                                  ; $fd53 : $85, $11
-	lda $7f8300.l, X                                                  ; $fd55 : $bf, $00, $83, $7f
+	lda wMapFromDecompDataIdxTo8plusColours.l, X                                                  ; $fd55 : $bf, $00, $83, $7f
 	and #$0f.b                                                  ; $fd59 : $29, $0f
 	tsb $11                                                  ; $fd5b : $04, $11
 

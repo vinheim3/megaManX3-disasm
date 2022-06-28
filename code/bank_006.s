@@ -228,7 +228,7 @@ br_06_817e:
 	.db $0e, $60
 
 
-Data_6_8180:
+PaletteSpecsData:
 	.dw $8380
 	.dw $838f
 	.dw $8394
@@ -1018,6 +1018,7 @@ Data_6_858d:
 	.db $10
 	.dw $ea48
 	.db $80
+
 	.db $00
 
 
@@ -6777,7 +6778,7 @@ br_06_aba9:
 br_06_abfd:
 	phd                                                  ; $abfd : $0b
 	.db $00                                                  ; $abfe : $00
-	tsb $0300.w                                                  ; $abff : $0c, $00, $03
+	tsb wColourRam.w                                                  ; $abff : $0c, $00, $03
 	.db $00                                                  ; $ac02 : $00
 	tsb $80                                                  ; $ac03 : $04, $80
 	tsb $00                                                  ; $ac05 : $04, $00
@@ -6994,7 +6995,7 @@ br_06_ad29:
 	.db $00                                                  ; $ad40 : $00
 	ora $00                                                  ; $ad41 : $05, $00
 	ora $00                                                  ; $ad43 : $05, $00
-	sbc $0300.w, X                                                  ; $ad45 : $fd, $00, $03
+	sbc wColourRam.w, X                                                  ; $ad45 : $fd, $00, $03
 	.db $00                                                  ; $ad48 : $00
 	ora ($40)                                                  ; $ad49 : $12, $40
 	cop $00.b                                                  ; $ad4b : $02, $00
@@ -12901,7 +12902,7 @@ br_06_d0cd:
 	.db $00                                                  ; $d129 : $00
 	.db $00                                                  ; $d12a : $00
 	.db $00                                                  ; $d12b : $00
-	sbc $0300.w, X                                                  ; $d12c : $fd, $00, $03
+	sbc wColourRam.w, X                                                  ; $d12c : $fd, $00, $03
 	.db $00                                                  ; $d12f : $00
 	.db $00                                                  ; $d130 : $00
 	.db $00                                                  ; $d131 : $00
@@ -12915,7 +12916,7 @@ br_06_d0cd:
 	ora $05                                                  ; $d13a : $05, $05
 	.db $00                                                  ; $d13c : $00
 	.db $00                                                  ; $d13d : $00
-	sbc $0300.w, X                                                  ; $d13e : $fd, $00, $03
+	sbc wColourRam.w, X                                                  ; $d13e : $fd, $00, $03
 	rts                                                  ; $d141 : $60
 
 
@@ -14680,7 +14681,7 @@ br_06_db39:
 	ora $00                                                  ; $dbc8 : $05, $00
 	jsr ($0400.w, X)                                                  ; $dbca : $fc, $00, $04
 	.db $00                                                  ; $dbcd : $00
-	sbc $0300.w, X                                                  ; $dbce : $fd, $00, $03
+	sbc wColourRam.w, X                                                  ; $dbce : $fd, $00, $03
 	rti                                                  ; $dbd1 : $40
 
 

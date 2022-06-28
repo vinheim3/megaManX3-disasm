@@ -62,8 +62,11 @@ w99:
 wCurrThread: ; $a0
     db
 
-wa1:
-    ds 4-1
+wShouldUpdateCGRAM: ; $a1
+    db
+
+wa2:
+    ds 4-2
 
 wBulkDmaStructOffsetToFill: ; $a4
     db
@@ -123,7 +126,19 @@ wIntsEnabled: ; $c3
     db
 
 wc4:
-    ds 9-4
+    ds 5-4
+
+wW12SEL: ; $c5
+    db
+
+wW34SEL ; $c6
+    db
+
+wBG34NBA: ; $c7
+    db
+
+wOBJSEL ; $c8
+    db
 
 wColourAdditionSelect: ; $c9
     db
@@ -131,8 +146,23 @@ wColourAdditionSelect: ; $c9
 wColourMathDesignation: ; $ca
     db
 
-wcb:
-    ds $e9-$cb
+wRedColourIntensity: ; $cb
+    db
+
+wGreenColourIntensity: ; $cc
+    db
+
+wBlueColourIntensity: ; $cd
+    db
+
+wBG3SC: ; $ce
+    db
+
+wBGMode: ; $cf
+    db
+
+wd0:
+    ds $e9-$d0
 
 wtodo_WordIdxInto_740_struct: ; $e9
     db
@@ -159,7 +189,13 @@ wDecompressionCtrlBitsLeft: ; $fe
     db
 
 wff:
-    ds $9cb-$ff
+    ds $300-$ff
+
+wColourRam ; $0300
+    ds $200
+
+w0500:
+    ds $9cb-$500
 
 wMainLoopCounter: ; $09cb
     db
@@ -263,7 +299,10 @@ wDynamicSpriteTileDatasIdx: ; $1f18
     db
 
 w1f19:
-    ds $ae-$19
+    ds $ad-$19
+
+wMosaic: ; $1fad
+    db
 
 ; $1-$8 - stages from left-right, up-down
 ; $9 - vile area
@@ -446,7 +485,11 @@ w7f2000:
 
 ; todo: unknown size
 wMapFromDecompDataIdxToBaseTileIdx: ; $8200
-    .db
+    ds $100
+
+; todo: unknown size
+wMapFromDecompDataIdxTo8plusColours: ; $8300
+    ds $100
 
 .ends
 

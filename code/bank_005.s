@@ -1531,7 +1531,7 @@ br_05_8b59:
 	stz $36                                                  ; $8b71 : $64, $36
 	stz $38                                                  ; $8b73 : $64, $38
 	lda #$7210.w                                                  ; $8b75 : $a9, $10, $72
-	sta $0300.w                                                  ; $8b78 : $8d, $00, $03
+	sta wColourRam.w                                                  ; $8b78 : $8d, $00, $03
 	stz $1e                                                  ; $8b7b : $64, $1e
 	sep #ACCU_8|IDX_8                                                  ; $8b7d : $e2, $30
 	lda #$02.b                                                  ; $8b7f : $a9, $02
@@ -1973,7 +1973,7 @@ br_05_8e44:
 	sta $02                                                  ; $8e54 : $85, $02
 	lda #$0c.b                                                  ; $8e56 : $a9, $0c
 	sta wDynamicSpriteTileDatasIdx.w                                                  ; $8e58 : $8d, $18, $1f
-	jmp todo_HookAddThreadToDynamicallyLoadSpriteTileData.l                                                  ; $8e5b : $5c, $dc, $b1, $00
+	jmp FarAddThreadToDynamicallyLoadSpriteData.l                                                  ; $8e5b : $5c, $dc, $b1, $00
 
 
 	lda $0040.w                                                  ; $8e5f : $ad, $40, $00
@@ -3503,7 +3503,7 @@ br_05_97b2:
 	rep #IDX_8                                                  ; $97dc : $c2, $10
 	ldx #$00a0.w                                                  ; $97de : $a2, $a0, $00
 	ldy #$001c.w                                                  ; $97e1 : $a0, $1c, $00
-	jsr Func_1_804a.l                                                  ; $97e4 : $22, $4a, $80, $01
+	jsr LoadPalettesFromGivenSpecToColourX.l                                                  ; $97e4 : $22, $4a, $80, $01
 	sep #IDX_8                                                  ; $97e8 : $e2, $10
 	lda #$0e.b                                                  ; $97ea : $a9, $0e
 	sta $3b                                                  ; $97ec : $85, $3b
@@ -3780,7 +3780,7 @@ br_05_9973:
 	stz $37                                                  ; $997b : $64, $37
 	lda #$03.b                                                  ; $997d : $a9, $03
 	sta wDynamicSpriteTileDatasIdx.w                                                  ; $997f : $8d, $18, $1f
-	jmp todo_HookAddThreadToDynamicallyLoadSpriteTileData.l                                                  ; $9982 : $5c, $dc, $b1, $00
+	jmp FarAddThreadToDynamicallyLoadSpriteData.l                                                  ; $9982 : $5c, $dc, $b1, $00
 
 
 	lda $0040.w                                                  ; $9986 : $ad, $40, $00
@@ -4485,7 +4485,7 @@ br_05_9e0f:
 	stx $1ea4.w                                                  ; $9e21 : $8e, $a4, $1e
 	ldx #$00a0.w                                                  ; $9e24 : $a2, $a0, $00
 	ldy #$001c.w                                                  ; $9e27 : $a0, $1c, $00
-	jsr Func_1_804a.l                                                  ; $9e2a : $22, $4a, $80, $01
+	jsr LoadPalettesFromGivenSpecToColourX.l                                                  ; $9e2a : $22, $4a, $80, $01
 	sep #IDX_8                                                  ; $9e2e : $e2, $10
 	lda #$1b.b                                                  ; $9e30 : $a9, $1b
 	jsr Func_0_84bc.l                                                  ; $9e32 : $22, $bc, $84, $00
@@ -5417,7 +5417,7 @@ br_05_a3ea:
 	sta $02                                                  ; $a42c : $85, $02
 	lda #$07.b                                                  ; $a42e : $a9, $07
 	sta wDynamicSpriteTileDatasIdx.w                                                  ; $a430 : $8d, $18, $1f
-	jsr todo_HookAddThreadToDynamicallyLoadSpriteTileData.l                                                  ; $a433 : $22, $dc, $b1, $00
+	jsr FarAddThreadToDynamicallyLoadSpriteData.l                                                  ; $a433 : $22, $dc, $b1, $00
 
 br_05_a437:
 	jmp Func_2_d636.l                                                  ; $a437 : $5c, $36, $d6, $02
@@ -6278,7 +6278,7 @@ br_05_a9a1:
 	rep #IDX_8                                                  ; $a9a1 : $c2, $10
 	ldx #$00a0.w                                                  ; $a9a3 : $a2, $a0, $00
 	ldy #$001c.w                                                  ; $a9a6 : $a0, $1c, $00
-	jsr Func_1_804a.l                                                  ; $a9a9 : $22, $4a, $80, $01
+	jsr LoadPalettesFromGivenSpecToColourX.l                                                  ; $a9a9 : $22, $4a, $80, $01
 	sep #IDX_8                                                  ; $a9ad : $e2, $10
 	jmp Jump_05_aa06.w                                                  ; $a9af : $4c, $06, $aa
 
@@ -6347,7 +6347,7 @@ Jump_05_aa06:
 	sta $3a                                                  ; $aa18 : $85, $3a
 	lda #$03.b                                                  ; $aa1a : $a9, $03
 	sta wDynamicSpriteTileDatasIdx.w                                                  ; $aa1c : $8d, $18, $1f
-	jmp todo_HookAddThreadToDynamicallyLoadSpriteTileData.l                                                  ; $aa1f : $5c, $dc, $b1, $00
+	jmp FarAddThreadToDynamicallyLoadSpriteData.l                                                  ; $aa1f : $5c, $dc, $b1, $00
 
 
 	lda $0040.w                                                  ; $aa23 : $ad, $40, $00
@@ -7150,7 +7150,7 @@ br_05_af61:
 	sta $3b                                                  ; $af6c : $85, $3b
 	lda #$08.b                                                  ; $af6e : $a9, $08
 	sta wDynamicSpriteTileDatasIdx.w                                                  ; $af70 : $8d, $18, $1f
-	jmp todo_HookAddThreadToDynamicallyLoadSpriteTileData.l                                                  ; $af73 : $5c, $dc, $b1, $00
+	jmp FarAddThreadToDynamicallyLoadSpriteData.l                                                  ; $af73 : $5c, $dc, $b1, $00
 
 
 br_05_af77:
@@ -7230,7 +7230,7 @@ br_05_afee:
 	rep #IDX_8                                                  ; $affa : $c2, $10
 	ldx #$00a0.w                                                  ; $affc : $a2, $a0, $00
 	ldy #$001c.w                                                  ; $afff : $a0, $1c, $00
-	jsr Func_1_804a.l                                                  ; $b002 : $22, $4a, $80, $01
+	jsr LoadPalettesFromGivenSpecToColourX.l                                                  ; $b002 : $22, $4a, $80, $01
 	sep #IDX_8                                                  ; $b006 : $e2, $10
 	lda #$22.b                                                  ; $b008 : $a9, $22
 	jsr Func_0_84bc.l                                                  ; $b00a : $22, $bc, $84, $00
@@ -11041,7 +11041,7 @@ Call_05_c700:
 	tax                                                  ; $c71a : $aa
 	lda $09e9.w                                                  ; $c71b : $ad, $e9, $09
 	and #$70.b                                                  ; $c71e : $29, $70
-	ora $7f8300.l, X                                                  ; $c720 : $1f, $00, $83, $7f
+	ora wMapFromDecompDataIdxTo8plusColours.l, X                                                  ; $c720 : $1f, $00, $83, $7f
 	ora #$30.b                                                  ; $c724 : $09, $30
 	and #$f1.b                                                  ; $c726 : $29, $f1
 	sta $11                                                  ; $c728 : $85, $11
@@ -11115,7 +11115,7 @@ Call_05_c74f:
 	bvc @done                                                  ; $c796 : $50, $09
 
 	ldy #$a0.b                                                  ; $c798 : $a0, $a0
-	jsr Func_1_805b.l                                                  ; $c79a : $22, $5b, $80, $01
+	jsr LoadPalettesFromGivenSpecToColour0.l                                                  ; $c79a : $22, $5b, $80, $01
 	jmp Jump_05_c7c0.w                                                  ; $c79e : $4c, $c0, $c7
 
 @done:
@@ -11123,7 +11123,7 @@ Call_05_c74f:
 
 
 	ldy #$a0.b                                                  ; $c7a2 : $a0, $a0
-	jsr Func_1_805b.l                                                  ; $c7a4 : $22, $5b, $80, $01
+	jsr LoadPalettesFromGivenSpecToColour0.l                                                  ; $c7a4 : $22, $5b, $80, $01
 	jmp todo_DisablesEntity_d928.l                                                  ; $c7a8 : $5c, $28, $d9, $02
 
 

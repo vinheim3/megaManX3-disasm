@@ -78,28 +78,32 @@ Func_8_8043:
 
 ;
 	stz A1B0.w                                                  ; $8076 : $9c, $04, $43
-	lda $a1                                                  ; $8079 : $a5, $a1
-	beq br_08_809a                                                  ; $807b : $f0, $1d
+
+;
+	lda wShouldUpdateCGRAM                                                  ; $8079 : $a5, $a1
+	beq @afterUpdatingAllOfCGRAM                                                  ; $807b : $f0, $1d
 
 	stz CGADD.w                                                  ; $807d : $9c, $21, $21
-	lda #$22.b                                                  ; $8080 : $a9, $22
+	lda #<CGDATA.b                                                  ; $8080 : $a9, $22
 	sta BBAD0.w                                                  ; $8082 : $8d, $01, $43
-	ldy #$0300.w                                                  ; $8085 : $a0, $00, $03
+	ldy #wColourRam.w                                                  ; $8085 : $a0, $00, $03
 	sty A1T0L.w                                                  ; $8088 : $8c, $02, $43
-	ldy #$0200.w                                                  ; $808b : $a0, $00, $02
+	ldy #_sizeof_wColourRam.w                                                  ; $808b : $a0, $00, $02
 	sty DAS0L.w                                                  ; $808e : $8c, $05, $43
 	lda #$01.b                                                  ; $8091 : $a9, $01
 	sta MDMAEN.w                                                  ; $8093 : $8d, $0b, $42
-	stz $a1                                                  ; $8096 : $64, $a1
+
+;
+	stz wShouldUpdateCGRAM                                                  ; $8096 : $64, $a1
 	stz $a2                                                  ; $8098 : $64, $a2
 
-br_08_809a:
+@afterUpdatingAllOfCGRAM:
 	lda $a2                                                  ; $809a : $a5, $a2
 	beq br_08_80bb                                                  ; $809c : $f0, $1d
 
 	lda #$90.b                                                  ; $809e : $a9, $90
 	sta CGADD.w                                                  ; $80a0 : $8d, $21, $21
-	lda #$22.b                                                  ; $80a3 : $a9, $22
+	lda #<CGDATA.b                                                  ; $80a3 : $a9, $22
 	sta BBAD0.w                                                  ; $80a5 : $8d, $01, $43
 	ldy #$0420.w                                                  ; $80a8 : $a0, $20, $04
 	sty A1T0L.w                                                  ; $80ab : $8c, $02, $43
@@ -112,7 +116,7 @@ br_08_809a:
 br_08_80bb:
 	stz HDMAEN.w                                                  ; $80bb : $9c, $0c, $42
 
-; Update scroll registers
+; Update scroll registers for BG 1 to 3
 	lda wBG1HorizScroll                                                  ; $80be : $a5, $b5
 	sta BG1HOFS.w                                                  ; $80c0 : $8d, $0d, $21
 	lda wBG1HorizScroll+1                                                  ; $80c3 : $a5, $b6
@@ -139,32 +143,32 @@ br_08_80bb:
 	sta BG3VOFS.w                                                  ; $80f7 : $8d, $12, $21
 
 ;
-	lda $cf                                                  ; $80fa : $a5, $cf
+	lda wBGMode                                                  ; $80fa : $a5, $cf
 	sta BGMODE.w                                                  ; $80fc : $8d, $05, $21
 	lda wColourAdditionSelect                                                  ; $80ff : $a5, $c9
 	sta CGWSEL.w                                                  ; $8101 : $8d, $30, $21
 	lda wColourMathDesignation                                                  ; $8104 : $a5, $ca
 	sta CGADSUB.w                                                  ; $8106 : $8d, $31, $21
-	lda $c5                                                  ; $8109 : $a5, $c5
+	lda wW12SEL                                                  ; $8109 : $a5, $c5
 	sta W12SEL.w                                                  ; $810b : $8d, $23, $21
-	lda $c6                                                  ; $810e : $a5, $c6
+	lda wW34SEL                                                 ; $810e : $a5, $c6
 	sta W34SEL.w                                                  ; $8110 : $8d, $24, $21
-	lda $c8                                                  ; $8113 : $a5, $c8
+	lda wOBJSEL                                                 ; $8113 : $a5, $c8
 	sta WOBJSEL.w                                                  ; $8115 : $8d, $25, $21
-	lda $cb                                                  ; $8118 : $a5, $cb
+	lda wRedColourIntensity                                                  ; $8118 : $a5, $cb
 	ora #$20.b                                                  ; $811a : $09, $20
 	sta COLDATA.w                                                  ; $811c : $8d, $32, $21
-	lda $cc                                                  ; $811f : $a5, $cc
+	lda wGreenColourIntensity                                                  ; $811f : $a5, $cc
 	ora #$40.b                                                  ; $8121 : $09, $40
 	sta COLDATA.w                                                  ; $8123 : $8d, $32, $21
-	lda $cd                                                  ; $8126 : $a5, $cd
+	lda wBlueColourIntensity                                                  ; $8126 : $a5, $cd
 	ora #$80.b                                                  ; $8128 : $09, $80
 	sta COLDATA.w                                                  ; $812a : $8d, $32, $21
-	lda $ce                                                  ; $812d : $a5, $ce
+	lda wBG3SC                                                  ; $812d : $a5, $ce
 	sta BG3SC.w                                                  ; $812f : $8d, $09, $21
-	lda $c7                                                  ; $8132 : $a5, $c7
+	lda wBG34NBA                                                  ; $8132 : $a5, $c7
 	sta BG34NBA.w                                                  ; $8134 : $8d, $0c, $21
-	lda $1fad.w                                                  ; $8137 : $ad, $ad, $1f
+	lda wMosaic.w                                                  ; $8137 : $ad, $ad, $1f
 	sta MOSAIC.w                                                  ; $813a : $8d, $06, $21
 	lda $1f75.w                                                  ; $813d : $ad, $75, $1f
 	beq br_08_8156                                                  ; $8140 : $f0, $14
@@ -4676,7 +4680,7 @@ br_08_963c:
 	rep #IDX_8                                                  ; $9641 : $c2, $10
 	ldx #$00a0.w                                                  ; $9643 : $a2, $a0, $00
 	ldy #$001c.w                                                  ; $9646 : $a0, $1c, $00
-	jsr Func_1_804a.l                                                  ; $9649 : $22, $4a, $80, $01
+	jsr LoadPalettesFromGivenSpecToColourX.l                                                  ; $9649 : $22, $4a, $80, $01
 	sep #IDX_8                                                  ; $964d : $e2, $10
 	lda #$06.b                                                  ; $964f : $a9, $06
 	sta $3b                                                  ; $9651 : $85, $3b
@@ -13171,7 +13175,7 @@ br_08_cb71:
 	sep #ACCU_8                                                  ; $cb9b : $e2, $20
 	lda wMapFromDecompDataIdxToBaseTileIdx.l, X                                                  ; $cb9d : $bf, $00, $82, $7f
 	sta $18                                                  ; $cba1 : $85, $18
-	lda $7f8300.l, X                                                  ; $cba3 : $bf, $00, $83, $7f
+	lda wMapFromDecompDataIdxTo8plusColours.l, X                                                  ; $cba3 : $bf, $00, $83, $7f
 	sta $11                                                  ; $cba7 : $85, $11
 	sep #IDX_8                                                  ; $cba9 : $e2, $10
 	rep #ACCU_8                                                  ; $cbab : $c2, $20

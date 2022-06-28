@@ -412,7 +412,7 @@ br_39_91f9:
 	sta wDynamicSpriteTileDatasIdx.w                                                  ; $925f : $8d, $18, $1f
 	lda #$04.b                                                  ; $9262 : $a9, $04
 	sta $02                                                  ; $9264 : $85, $02
-	jsr todo_HookAddThreadToDynamicallyLoadSpriteTileData.l                                                  ; $9266 : $22, $dc, $b1, $00
+	jsr FarAddThreadToDynamicallyLoadSpriteData.l                                                  ; $9266 : $22, $dc, $b1, $00
 
 br_39_926a:
 	rts                                                  ; $926a : $60
@@ -817,7 +817,7 @@ br_39_94fc:
 	rep #IDX_8                                                  ; $9512 : $c2, $10
 	ldx #$00a0.w                                                  ; $9514 : $a2, $a0, $00
 	ldy #$001c.w                                                  ; $9517 : $a0, $1c, $00
-	jsr Func_1_804a.l                                                  ; $951a : $22, $4a, $80, $01
+	jsr LoadPalettesFromGivenSpecToColourX.l                                                  ; $951a : $22, $4a, $80, $01
 	sep #IDX_8                                                  ; $951e : $e2, $10
 	stz $1f2c.w                                                  ; $9520 : $9c, $2c, $1f
 	lda #$81.b                                                  ; $9523 : $a9, $81
@@ -1952,7 +1952,7 @@ br_39_9cb7:
 
 	lda #$04.b                                                  ; $9cbd : $a9, $04
 	sta wDynamicSpriteTileDatasIdx.w                                                  ; $9cbf : $8d, $18, $1f
-	jsr todo_HookAddThreadToDynamicallyLoadSpriteTileData.l                                                  ; $9cc2 : $22, $dc, $b1, $00
+	jsr FarAddThreadToDynamicallyLoadSpriteData.l                                                  ; $9cc2 : $22, $dc, $b1, $00
 
 br_39_9cc6:
 	rtl                                                  ; $9cc6 : $6b
@@ -7067,7 +7067,7 @@ br_39_bd2c:
 	sta wDynamicSpriteTileDatasIdx.w                                                  ; $bd39 : $8d, $18, $1f
 	lda #$02.b                                                  ; $bd3c : $a9, $02
 	sta $1f19.w                                                  ; $bd3e : $8d, $19, $1f
-	jsr todo_HookAddThreadToDynamicallyLoadSpriteTileData.l                                                  ; $bd41 : $22, $dc, $b1, $00
+	jsr FarAddThreadToDynamicallyLoadSpriteData.l                                                  ; $bd41 : $22, $dc, $b1, $00
 	lda #$4c.b                                                  ; $bd45 : $a9, $4c
 	sta $1f60.w                                                  ; $bd47 : $8d, $60, $1f
 	lda #$7f.b                                                  ; $bd4a : $a9, $7f
@@ -7102,7 +7102,7 @@ br_39_bd63:
 	cmp #$05.b                                                  ; $bd75 : $c9, $05
 	bcs br_39_bd7f                                                  ; $bd77 : $b0, $06
 
-	jsr todo_HookAddThreadToDynamicallyLoadSpriteTileData.l                                                  ; $bd79 : $22, $dc, $b1, $00
+	jsr FarAddThreadToDynamicallyLoadSpriteData.l                                                  ; $bd79 : $22, $dc, $b1, $00
 	bra br_39_bd7f                                                  ; $bd7d : $80, $00
 
 br_39_bd7f:
@@ -7568,7 +7568,7 @@ Func_39_c02a:
 
 _ProcessDynamicSpriteTileDataIdxA:
 	sta wDynamicSpriteTileDatasIdx.w                                                  ; $c030 : $8d, $18, $1f
-	jsr todo_HookAddThreadToDynamicallyLoadSpriteTileData.l                                                  ; $c033 : $22, $dc, $b1, $00
+	jsr FarAddThreadToDynamicallyLoadSpriteData.l                                                  ; $c033 : $22, $dc, $b1, $00
 	rts                                                  ; $c037 : $60
 
 

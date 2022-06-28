@@ -15682,7 +15682,7 @@ br_38_dc64:
 	.db $00                                                  ; $def5 : $00
 	cop $00.b                                                  ; $def6 : $02, $00
 	ora $00, S                                                  ; $def8 : $03, $00
-	asl $0300.w                                                  ; $defa : $0e, $00, $03
+	asl wColourRam.w                                                  ; $defa : $0e, $00, $03
 	.db $00                                                  ; $defd : $00
 	ora ($00, X)                                                  ; $defe : $01, $00
 	ora ($00, X)                                                  ; $df00 : $01, $00
@@ -19118,7 +19118,7 @@ br_38_f5cc:
 	ora ($01, X)                                                  ; $f5d4 : $01, $01
 	cop $01.b                                                  ; $f5d6 : $02, $01
 	sbc ($00, S), Y                                                  ; $f5d8 : $f3, $00
-	pea $0300.w                                                  ; $f5da : $f4, $00, $03
+	pea wColourRam.w                                                  ; $f5da : $f4, $00, $03
 	ora ($04, X)                                                  ; $f5dd : $01, $04
 	ora ($f5, X)                                                  ; $f5df : $01, $f5
 	.db $00                                                  ; $f5e1 : $00

@@ -58,95 +58,113 @@ br_01_8032:
 	rtl                                                  ; $8049 : $6b
 
 
-Func_1_804a:
-	php                                                  ; $804a : $08
-	phd                                                  ; $804b : $0b
-	sep #ACCU_8                                                  ; $804c : $e2, $20
-	rep #IDX_8                                                  ; $804e : $c2, $10
+NUM_COLOURS_FROM_CURR_PAL_SPEC = $00 ; w
+BASE_CGRAM_LOAD_OFFSET = $02 ; w
+PALETTE_SPEC_PTR = $10 ; w
+COLOUR_DATA_PTR = $14 ; l
+
+; X - starting colour idx to set, eg palette * $10
+; Y - double palette spec idx
+LoadPalettesFromGivenSpecToColourX:
+	php                                                                       ; $804a : $08
+	phd                                                                       ; $804b : $0b
+	sep #ACCU_8                                                               ; $804c : $e2, $20
+	rep #IDX_8                                                                ; $804e : $c2, $10
 
 ; eg 40, shifted to 80
-	stx $0002.w                                                  ; $8050 : $8e, $02, $00
-	stz $0003.w                                                  ; $8053 : $9c, $03, $00
-	asl $0002.w                                                  ; $8056 : $0e, $02, $00
-	bra br_01_8067                                                  ; $8059 : $80, $0c
+	stx BASE_CGRAM_LOAD_OFFSET.w                                              ; $8050 : $8e, $02, $00
+	stz BASE_CGRAM_LOAD_OFFSET.w+1                                            ; $8053 : $9c, $03, $00
+	asl BASE_CGRAM_LOAD_OFFSET.w                                              ; $8056 : $0e, $02, $00
+	bra _LoadPalettesFromGivenSpec                                            ; $8059 : $80, $0c
 
 
-Func_1_805b:
-	php                                                  ; $805b : $08
-	phd                                                  ; $805c : $0b
-	sep #ACCU_8                                                  ; $805d : $e2, $20
-	rep #IDX_8                                                  ; $805f : $c2, $10
-	stz $0002.w                                                  ; $8061 : $9c, $02, $00
-	stz $0003.w                                                  ; $8064 : $9c, $03, $00
+; Y - double palette spec idx
+LoadPalettesFromGivenSpecToColour0:
+	php                                                                       ; $805b : $08
+	phd                                                                       ; $805c : $0b
+	sep #ACCU_8                                                               ; $805d : $e2, $20
+	rep #IDX_8                                                                ; $805f : $c2, $10
+	stz BASE_CGRAM_LOAD_OFFSET.w                                              ; $8061 : $9c, $02, $00
+	stz BASE_CGRAM_LOAD_OFFSET.w+1                                            ; $8064 : $9c, $03, $00
 
-br_01_8067:
-; direct page is 0, y = eg f4, 10 = eg 6:858d
-	pea $0000.w                                                  ; $8067 : $f4, $00, $00
-	pld                                                  ; $806a : $2b
-	lda Data_6_8180.w, Y                                                  ; $806b : $b9, $80, $81
-	sta $10                                                  ; $806e : $85, $10
-	lda Data_6_8180.w+1, Y                                                  ; $8070 : $b9, $81, $81
-	sta $11                                                  ; $8073 : $85, $11
+; Y - double palette spec idx
+; BASE_CGRAM_LOAD_OFFSET - eg palette * $10
+_LoadPalettesFromGivenSpec:
+; Direct page = 0
+	pea $0000.w                                                               ; $8067 : $f4, $00, $00
+	pld                                                                       ; $806a : $2b
 
-; rom bank is 0c
-	lda #$0c.b                                                  ; $8075 : $a9, $0c
-	sta $16                                                  ; $8077 : $85, $16
-	stz $01                                                  ; $8079 : $64, $01
+; Save the address of the palette spec details
+	lda PaletteSpecsData.w, Y                                                 ; $806b : $b9, $80, $81
+	sta PALETTE_SPEC_PTR                                                      ; $806e : $85, $10
+	lda PaletteSpecsData.w+1, Y                                               ; $8070 : $b9, $81, $81
+	sta PALETTE_SPEC_PTR+1                                                    ; $8073 : $85, $11
 
-@loop_807b:
-; end once 0 read
-	sep #ACCU_8|IDX_8                                                  ; $807b : $e2, $30
-	ldy #$00.b                                                  ; $807d : $a0, $00
-	lda ($10), Y                                                  ; $807f : $b1, $10
-	beq @end                                                  ; $8081 : $f0, $2e
+; Rom bank for all colour data is in $0c
+	lda #DATA_BANK_COLOURS.b                                                  ; $8075 : $a9, $0c
+	sta COLOUR_DATA_PTR+2                                                     ; $8077 : $85, $16
+	stz NUM_COLOURS_FROM_CURR_PAL_SPEC+1                                      ; $8079 : $64, $01
 
-; num loop_80a2
-	sta $00                                                  ; $8083 : $85, $00
-	iny                                                  ; $8085 : $c8
-	rep #ACCU_8|IDX_8|F_CARRY                                                  ; $8086 : $c2, $31
+@nextSpec:
+; End once 0 read
+	sep #ACCU_8|IDX_8                                                         ; $807b : $e2, $30
+	ldy #$00.b                                                                ; $807d : $a0, $00
+	lda (PALETTE_SPEC_PTR), Y                                                 ; $807f : $b1, $10
+	beq @end                                                                  ; $8081 : $f0, $2e
 
-; next word in 14, eg ea48
-	lda ($10), Y                                                  ; $8088 : $b1, $10
-	sta $14                                                  ; $808a : $85, $14
-	iny                                                  ; $808c : $c8
-	iny                                                  ; $808d : $c8
+; Otherwise it's the number of colours to copy for this spec
+	sta NUM_COLOURS_FROM_CURR_PAL_SPEC                                        ; $8083 : $85, $00
+	iny                                                                       ; $8085 : $c8
+	rep #ACCU_8|IDX_8|F_CARRY                                                 ; $8086 : $c2, $31
 
-; eg 80, to 100, then add to 0 to get X
-	lda ($10), Y                                                  ; $808e : $b1, $10
-	and #$00ff.w                                                  ; $8090 : $29, $ff, $00
-	asl                                                  ; $8093 : $0a
-	clc                                                  ; $8094 : $18
-	adc $02                                                  ; $8095 : $65, $02
-	tax                                                  ; $8097 : $aa
+; Next word is the palettes src address
+	lda (PALETTE_SPEC_PTR), Y                                                 ; $8088 : $b1, $10
+	sta COLOUR_DATA_PTR                                                       ; $808a : $85, $14
+	iny                                                                       ; $808c : $c8
+	iny                                                                       ; $808d : $c8
 
-; 10 to skip above 4 bytes
-	lda $10                                                  ; $8098 : $a5, $10
-	adc #$0004.w                                                  ; $809a : $69, $04, $00
-	sta $10                                                  ; $809d : $85, $10
+; Next byte is used to get the starting colour offset
+	lda (PALETTE_SPEC_PTR), Y                                                 ; $808e : $b1, $10
+	and #$00ff.w                                                              ; $8090 : $29, $ff, $00
+	asl                                                                       ; $8093 : $0a
+	clc                                                                       ; $8094 : $18
+	adc BASE_CGRAM_LOAD_OFFSET                                                ; $8095 : $65, $02
+	tax                                                                       ; $8097 : $aa
 
-; copy eg $10 words from eg c:ea48 to 300 idxed X
-	ldy #$0000.w                                                  ; $809f : $a0, $00, $00
+; Have palette spec pointer skip the above 4 bytes
+	lda PALETTE_SPEC_PTR                                                      ; $8098 : $a5, $10
+	adc #$0004.w                                                              ; $809a : $69, $04, $00
+	sta PALETTE_SPEC_PTR                                                      ; $809d : $85, $10
 
-@loop_80a2:
-	lda [$14], Y                                                  ; $80a2 : $b7, $14
-	sta $0300.w, X                                                  ; $80a4 : $9d, $00, $03
-	iny                                                  ; $80a7 : $c8
-	iny                                                  ; $80a8 : $c8
-	inx                                                  ; $80a9 : $e8
-	inx                                                  ; $80aa : $e8
-	dec $00                                                  ; $80ab : $c6, $00
-	bne @loop_80a2                                                  ; $80ad : $d0, $f3
+; Copy the specified number of colours to the specified dest address
+	ldy #$0000.w                                                              ; $809f : $a0, $00, $00
 
-	bra @loop_807b                                                  ; $80af : $80, $ca
+@nextColour:
+; Copy colour into colour ram
+	lda [COLOUR_DATA_PTR], Y                                                  ; $80a2 : $b7, $14
+	sta wColourRam.w, X                                                       ; $80a4 : $9d, $00, $03
+
+; To next word src and dest
+	iny                                                                       ; $80a7 : $c8
+	iny                                                                       ; $80a8 : $c8
+	inx                                                                       ; $80a9 : $e8
+	inx                                                                       ; $80aa : $e8
+
+	dec NUM_COLOURS_FROM_CURR_PAL_SPEC                                        ; $80ab : $c6, $00
+	bne @nextColour                                                           ; $80ad : $d0, $f3
+
+	bra @nextSpec                                                             ; $80af : $80, $ca
 
 @end:
-	lda #$01.b                                                  ; $80b1 : $a9, $01
-	sta $a1                                                  ; $80b3 : $85, $a1
-	pld                                                  ; $80b5 : $2b
-	plp                                                  ; $80b6 : $28
-	rtl                                                  ; $80b7 : $6b
+; Set that CGRAM should be updated during the NMI vector
+	lda #$01.b                                                                ; $80b1 : $a9, $01
+	sta wShouldUpdateCGRAM                                                    ; $80b3 : $85, $a1
+	pld                                                                       ; $80b5 : $2b
+	plp                                                                       ; $80b6 : $28
+	rtl                                                                       ; $80b7 : $6b
 
 
+;
 	ldx #$c600.w                                                  ; $80b8 : $a2, $00, $c6
 	and #$29a5.w                                                  ; $80bb : $29, $a5, $29
 	cmp #$9080.w                                                  ; $80be : $c9, $80, $90
@@ -12489,7 +12507,7 @@ br_01_d179:
 	dex                                                  ; $d186 : $ca
 	bpl br_01_d179                                                  ; $d187 : $10, $f0
 
-	stz $0300.w                                                  ; $d189 : $9c, $00, $03
+	stz wColourRam.w                                                  ; $d189 : $9c, $00, $03
 	sep #ACCU_8                                                  ; $d18c : $e2, $20
 	lda #$01.b                                                  ; $d18e : $a9, $01
 	sta $00a1.w                                                  ; $d190 : $8d, $a1, $00
@@ -14062,7 +14080,7 @@ SubtankState0:
 	sta $11                                                  ; $db0a : $85, $11
 
 ;
-	lda $7f8300.l+DECOMP_IDX_OAM_TILEDATA_SUBTANK                                                  ; $db0c : $af, $8c, $83, $7f
+	lda wMapFromDecompDataIdxTo8plusColours.l+DECOMP_IDX_OAM_TILEDATA_SUBTANK                                                  ; $db0c : $af, $8c, $83, $7f
 	and #$01.b                                                  ; $db10 : $29, $01
 	tsb $11                                                  ; $db12 : $04, $11
 	jsr Func_2_d636.l                                                  ; $db14 : $22, $36, $d6, $02
@@ -14832,7 +14850,7 @@ br_01_e077:
 	sty $16                                                  ; $e077 : $84, $16
 	lda wMapFromDecompDataIdxToBaseTileIdx.l, X                                                  ; $e079 : $bf, $00, $82, $7f
 	sta $18                                                  ; $e07d : $85, $18
-	lda $7f8300.l, X                                                  ; $e07f : $bf, $00, $83, $7f
+	lda wMapFromDecompDataIdxTo8plusColours.l, X                                                  ; $e07f : $bf, $00, $83, $7f
 	ora #$20.b                                                  ; $e083 : $09, $20
 	sta $11                                                  ; $e085 : $85, $11
 	lda #$04.b                                                  ; $e087 : $a9, $04
@@ -15395,7 +15413,7 @@ br_01_e4a0:
 	clc                                                  ; $e4b0 : $18
 	adc #$0100.w                                                  ; $e4b1 : $69, $00, $01
 	tay                                                  ; $e4b4 : $a8
-	jsr Func_1_805b.l                                                  ; $e4b5 : $22, $5b, $80, $01
+	jsr LoadPalettesFromGivenSpecToColour0.l                                                  ; $e4b5 : $22, $5b, $80, $01
 	sep #ACCU_8|IDX_8                                                  ; $e4b9 : $e2, $30
 	lda #$01.b                                                  ; $e4bb : $a9, $01
 	tsb $09e6.w                                                  ; $e4bd : $0c, $e6, $09
@@ -15596,7 +15614,7 @@ br_01_e603:
 	sbc $1ea0.w                                                  ; $e630 : $ed, $a0, $1e
 	sta $2d                                                  ; $e633 : $85, $2d
 	lda #$4fde.w                                                  ; $e635 : $a9, $de, $4f
-	sta $0300.w                                                  ; $e638 : $8d, $00, $03
+	sta wColourRam.w                                                  ; $e638 : $8d, $00, $03
 	sep #ACCU_8|IDX_8                                                  ; $e63b : $e2, $30
 	lda wDynamicSpriteTileDatasIdx.w                                                  ; $e63d : $ad, $18, $1f
 	sta $2c                                                  ; $e640 : $85, $2c
@@ -17323,7 +17341,7 @@ RideArmourItemState0_Init:
 	sta $0000.w                                                  ; $f121 : $8d, $00, $00
 
 ;
-	lda $7f8300.l+DECOMP_IDX_OAM_TILEDATA_RIDE_ARMOUR_ITEM                                                  ; $f124 : $af, $3b, $83, $7f
+	lda wMapFromDecompDataIdxTo8plusColours.l+DECOMP_IDX_OAM_TILEDATA_RIDE_ARMOUR_ITEM                                                  ; $f124 : $af, $3b, $83, $7f
 	ora $0000.w                                                  ; $f128 : $0d, $00, $00
 	sta $11                                                  ; $f12b : $85, $11
 	sta $2f                                                  ; $f12d : $85, $2f

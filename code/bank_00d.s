@@ -6875,7 +6875,7 @@ br_0d_b96f:
 br_0d_b994:
 	cop $05.b                                                  ; $b994 : $02, $05
 	.db $00                                                  ; $b996 : $00
-	inc $0300.w                                                  ; $b997 : $ee, $00, $03
+	inc wColourRam.w                                                  ; $b997 : $ee, $00, $03
 	.db $00                                                  ; $b99a : $00
 	inc $12f8.w, X                                                  ; $b99b : $fe, $f8, $12
 	.db $00                                                  ; $b99e : $00
@@ -7853,7 +7853,7 @@ br_0d_c01d:
 	asl $20                                                  ; $c088 : $06, $20
 	sbc ($00)                                                  ; $c08a : $f2, $00
 	tsb $00                                                  ; $c08c : $04, $00
-	sbc $0300.w                                                  ; $c08e : $ed, $00, $03
+	sbc wColourRam.w                                                  ; $c08e : $ed, $00, $03
 	.db $00                                                  ; $c091 : $00
 	asl $f8                                                  ; $c092 : $06, $f8
 	ora ($00, S), Y                                                  ; $c094 : $13, $00
@@ -18318,7 +18318,7 @@ br_0d_ff48:
 	cop $80.b                                                  ; $ff48 : $02, $80
 	sed                                                  ; $ff4a : $f8
 	sbc $000605.l                                                  ; $ff4b : $ef, $05, $06, $00
-	inc $0300.w                                                  ; $ff4f : $ee, $00, $03
+	inc wColourRam.w                                                  ; $ff4f : $ee, $00, $03
 	.db $00                                                  ; $ff52 : $00
 	inc $12f8.w, X                                                  ; $ff53 : $fe, $f8, $12
 	.db $00                                                  ; $ff56 : $00
@@ -18380,7 +18380,7 @@ br_0d_ffa6:
 	php                                                  ; $ffc4 : $08
 	ora $00                                                  ; $ffc5 : $05, $00
 	sbc $e8, X                                                  ; $ffc7 : $f5, $e8
-	asl $0300.w                                                  ; $ffc9 : $0e, $00, $03
+	asl wColourRam.w                                                  ; $ffc9 : $0e, $00, $03
 	.db $00                                                  ; $ffcc : $00
 	ora $20, X                                                  ; $ffcd : $15, $20
 	sbc ($00, S), Y                                                  ; $ffcf : $f3, $00

@@ -2919,7 +2919,7 @@ br_11_8eac:
 	sed                                                  ; $8f31 : $f8
 	pea $400d.w                                                  ; $8f32 : $f4, $0d, $40
 	cop $f3.b                                                  ; $8f35 : $02, $f3
-	ora $0300.w                                                  ; $8f37 : $0d, $00, $03
+	ora wColourRam.w                                                  ; $8f37 : $0d, $00, $03
 	plx                                                  ; $8f3a : $fa
 	phd                                                  ; $8f3b : $0b
 	.db $00                                                  ; $8f3c : $00
@@ -3099,7 +3099,7 @@ br_11_9057:
 	.db $00                                                  ; $906b : $00
 	ina                                                  ; $906c : $1a
 	jsr $0104.w                                                  ; $906d : $20, $04, $01
-	jsr $0300.w                                                  ; $9070 : $20, $00, $03
+	jsr wColourRam.w                                                  ; $9070 : $20, $00, $03
 	ora ($45), Y                                                  ; $9073 : $11, $45
 	.db $00                                                  ; $9075 : $00
 	php                                                  ; $9076 : $08
@@ -12168,7 +12168,7 @@ br_11_c985:
 	bpl br_11_c985                                                  ; $c9a7 : $10, $dc
 
 	jsr $04fc.w                                                  ; $c9a9 : $20, $fc, $04
-	stz $0300.w                                                  ; $c9ac : $9c, $00, $03
+	stz wColourRam.w                                                  ; $c9ac : $9c, $00, $03
 	ora ($d4, X)                                                  ; $c9af : $01, $d4
 	.db $00                                                  ; $c9b1 : $00
 
@@ -12266,7 +12266,7 @@ br_11_ca3e:
 	bpl br_11_ca3e                                                  ; $ca60 : $10, $dc
 
 	jsr $04fc.w                                                  ; $ca62 : $20, $fc, $04
-	stz $0300.w                                                  ; $ca65 : $9c, $00, $03
+	stz wColourRam.w                                                  ; $ca65 : $9c, $00, $03
 	ora ($d4, X)                                                  ; $ca68 : $01, $d4
 	.db $00                                                  ; $ca6a : $00
 
@@ -12363,7 +12363,7 @@ br_11_caf7:
 	bpl br_11_caf7                                                  ; $cb19 : $10, $dc
 
 	jsr $04fc.w                                                  ; $cb1b : $20, $fc, $04
-	stz $0300.w                                                  ; $cb1e : $9c, $00, $03
+	stz wColourRam.w                                                  ; $cb1e : $9c, $00, $03
 	ora ($d4, X)                                                  ; $cb21 : $01, $d4
 	.db $00                                                  ; $cb23 : $00
 
@@ -12459,7 +12459,7 @@ br_11_cbb0:
 	bpl br_11_cbb0                                                  ; $cbd2 : $10, $dc
 
 	jsr $04fc.w                                                  ; $cbd4 : $20, $fc, $04
-	stz $0300.w                                                  ; $cbd7 : $9c, $00, $03
+	stz wColourRam.w                                                  ; $cbd7 : $9c, $00, $03
 	ora ($d4, X)                                                  ; $cbda : $01, $d4
 	.db $00                                                  ; $cbdc : $00
 
@@ -12577,7 +12577,7 @@ br_11_cc8c:
 	.db $00                                                  ; $ccc1 : $00
 	.db $00                                                  ; $ccc2 : $00
 	inx                                                  ; $ccc3 : $e8
-	cpx $0300.w                                                  ; $ccc4 : $ec, $00, $03
+	cpx wColourRam.w                                                  ; $ccc4 : $ec, $00, $03
 	inx                                                  ; $ccc7 : $e8
 	cpx $0600.w                                                  ; $ccc8 : $ec, $00, $06
 	sbc #$ec.b                                                  ; $cccb : $e9, $ec
@@ -13115,12 +13115,12 @@ br_11_d06c:
 	.db $00                                                  ; $d0c7 : $00
 	sbc $00ecf6.l, X                                                  ; $d0c8 : $ff, $f6, $ec, $00
 	ora ($f4, X)                                                  ; $d0cc : $01, $f4
-	cpx $0300.w                                                  ; $d0ce : $ec, $00, $03
+	cpx wColourRam.w                                                  ; $d0ce : $ec, $00, $03
 	.db $f0, $ec                                                  ; $d0d1 : $f0, $ec
 
 	.db $00                                                  ; $d0d3 : $00
 	ora ($e6, X)                                                  ; $d0d4 : $01, $e6
-	cpx $0300.w                                                  ; $d0d6 : $ec, $00, $03
+	cpx wColourRam.w                                                  ; $d0d6 : $ec, $00, $03
 	xba                                                  ; $d0d9 : $eb
 	cpx $2300.w                                                  ; $d0da : $ec, $00, $23
 	sbc $29ed.w, X                                                  ; $d0dd : $fd, $ed, $29
@@ -13200,12 +13200,12 @@ br_11_d10d:
 	.db $00                                                  ; $d16c : $00
 	sbc $00ecf6.l, X                                                  ; $d16d : $ff, $f6, $ec, $00
 	ora ($f4, X)                                                  ; $d171 : $01, $f4
-	cpx $0300.w                                                  ; $d173 : $ec, $00, $03
+	cpx wColourRam.w                                                  ; $d173 : $ec, $00, $03
 	.db $f0, $ec                                                  ; $d176 : $f0, $ec
 
 	.db $00                                                  ; $d178 : $00
 	ora $e6, S                                                  ; $d179 : $03, $e6
-	cpx $0300.w                                                  ; $d17b : $ec, $00, $03
+	cpx wColourRam.w                                                  ; $d17b : $ec, $00, $03
 	xba                                                  ; $d17e : $eb
 	cpx INIDISP.w                                                  ; $d17f : $ec, $00, $21
 	plx                                                  ; $d182 : $fa
@@ -13282,7 +13282,7 @@ br_11_d1b2:
 	.db $00                                                  ; $d211 : $00
 	sbc $00ecf6.l, X                                                  ; $d212 : $ff, $f6, $ec, $00
 	ora ($f4, X)                                                  ; $d216 : $01, $f4
-	cpx $0300.w                                                  ; $d218 : $ec, $00, $03
+	cpx wColourRam.w                                                  ; $d218 : $ec, $00, $03
 	.db $f0, $ec                                                  ; $d21b : $f0, $ec
 
 	.db $00                                                  ; $d21d : $00
@@ -13364,7 +13364,7 @@ br_11_d257:
 	.db $00                                                  ; $d2ba : $00
 	sbc $00ecf5.l, X                                                  ; $d2bb : $ff, $f5, $ec, $00
 	ora ($f3, X)                                                  ; $d2bf : $01, $f3
-	cpx $0300.w                                                  ; $d2c1 : $ec, $00, $03
+	cpx wColourRam.w                                                  ; $d2c1 : $ec, $00, $03
 	sbc $0200ec.l                                                  ; $d2c4 : $ef, $ec, $00, $02
 	sbc $ec                                                  ; $d2c8 : $e5, $ec
 	.db $00                                                  ; $d2ca : $00
@@ -13454,12 +13454,12 @@ br_11_d314:
 	.db $00                                                  ; $d373 : $00
 	sbc $00ecf6.l, X                                                  ; $d374 : $ff, $f6, $ec, $00
 	ora ($f4, X)                                                  ; $d378 : $01, $f4
-	cpx $0300.w                                                  ; $d37a : $ec, $00, $03
+	cpx wColourRam.w                                                  ; $d37a : $ec, $00, $03
 	.db $f0, $ec                                                  ; $d37d : $f0, $ec
 
 	.db $00                                                  ; $d37f : $00
 	ora ($e6, X)                                                  ; $d380 : $01, $e6
-	cpx $0300.w                                                  ; $d382 : $ec, $00, $03
+	cpx wColourRam.w                                                  ; $d382 : $ec, $00, $03
 	xba                                                  ; $d385 : $eb
 	cpx $2800.w                                                  ; $d386 : $ec, $00, $28
 	xce                                                  ; $d389 : $fb
@@ -13630,7 +13630,7 @@ br_11_d456:
 	sbc $eaff00.l                                                  ; $d4a0 : $ef, $00, $ff, $ea
 
 br_11_d4a4:
-	cpx $0300.w                                                  ; $d4a4 : $ec, $00, $03
+	cpx wColourRam.w                                                  ; $d4a4 : $ec, $00, $03
 	inc $ec                                                  ; $d4a7 : $e6, $ec
 	.db $00                                                  ; $d4a9 : $00
 	ora [$e5]                                                  ; $d4aa : $07, $e5
@@ -14099,11 +14099,11 @@ br_11_d7b3:
 	xba                                                  ; $d81c : $eb
 	cpx $ff00.w                                                  ; $d81d : $ec, $00, $ff
 	sed                                                  ; $d820 : $f8
-	cpx $0300.w                                                  ; $d821 : $ec, $00, $03
+	cpx wColourRam.w                                                  ; $d821 : $ec, $00, $03
 	inc $ec, X                                                  ; $d824 : $f6, $ec
 	.db $00                                                  ; $d826 : $00
 	tsb $f2                                                  ; $d827 : $04, $f2
-	cpx $0300.w                                                  ; $d829 : $ec, $00, $03
+	cpx wColourRam.w                                                  ; $d829 : $ec, $00, $03
 	sbc $00ec.w                                                  ; $d82c : $ed, $ec, $00
 	and $03, S                                                  ; $d82f : $23, $03
 	sbc $002b.w                                                  ; $d831 : $ed, $2b, $00
@@ -14745,7 +14745,7 @@ br_11_dbe0:
 	bpl br_11_dbe0                                                  ; $dc02 : $10, $dc
 
 	jsr $04fc.w                                                  ; $dc04 : $20, $fc, $04
-	stz $0300.w                                                  ; $dc07 : $9c, $00, $03
+	stz wColourRam.w                                                  ; $dc07 : $9c, $00, $03
 	ora ($d4, X)                                                  ; $dc0a : $01, $d4
 	.db $00                                                  ; $dc0c : $00
 
@@ -14845,7 +14845,7 @@ br_11_dc99:
 	bpl br_11_dc99                                                  ; $dcbb : $10, $dc
 
 	jsr $04fc.w                                                  ; $dcbd : $20, $fc, $04
-	stz $0300.w                                                  ; $dcc0 : $9c, $00, $03
+	stz wColourRam.w                                                  ; $dcc0 : $9c, $00, $03
 	ora ($d4, X)                                                  ; $dcc3 : $01, $d4
 	.db $00                                                  ; $dcc5 : $00
 
@@ -14947,7 +14947,7 @@ br_11_dd5e:
 	bpl br_11_dd5e                                                  ; $dd80 : $10, $dc
 
 	jsr $04fc.w                                                  ; $dd82 : $20, $fc, $04
-	stz $0300.w                                                  ; $dd85 : $9c, $00, $03
+	stz wColourRam.w                                                  ; $dd85 : $9c, $00, $03
 	ora ($d4, X)                                                  ; $dd88 : $01, $d4
 	.db $00                                                  ; $dd8a : $00
 
@@ -15033,7 +15033,7 @@ br_11_de0b:
 	bpl br_11_de0b                                                  ; $de2d : $10, $dc
 
 	jsr $04fc.w                                                  ; $de2f : $20, $fc, $04
-	stz $0300.w                                                  ; $de32 : $9c, $00, $03
+	stz wColourRam.w                                                  ; $de32 : $9c, $00, $03
 	ora ($d4, X)                                                  ; $de35 : $01, $d4
 	.db $00                                                  ; $de37 : $00
 
@@ -15129,7 +15129,7 @@ br_11_dec4:
 	bpl br_11_dec4                                                  ; $dee6 : $10, $dc
 
 	jsr $04fc.w                                                  ; $dee8 : $20, $fc, $04
-	stz $0300.w                                                  ; $deeb : $9c, $00, $03
+	stz wColourRam.w                                                  ; $deeb : $9c, $00, $03
 	ora ($d4, X)                                                  ; $deee : $01, $d4
 	.db $00                                                  ; $def0 : $00
 
@@ -15225,7 +15225,7 @@ br_11_df7d:
 	bpl br_11_df7d                                                  ; $df9f : $10, $dc
 
 	jsr $04fc.w                                                  ; $dfa1 : $20, $fc, $04
-	stz $0300.w                                                  ; $dfa4 : $9c, $00, $03
+	stz wColourRam.w                                                  ; $dfa4 : $9c, $00, $03
 	ora ($d4, X)                                                  ; $dfa7 : $01, $d4
 	.db $00                                                  ; $dfa9 : $00
 

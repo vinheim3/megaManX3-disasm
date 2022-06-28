@@ -227,7 +227,7 @@ br_3d_8100:
 	and ($00)                                                  ; $8118 : $32, $00
 	bit $2e00.w, X                                                  ; $811a : $3c, $00, $2e
 	.db $00                                                  ; $811d : $00
-	and $0300.w, X                                                  ; $811e : $3d, $00, $03
+	and wColourRam.w, X                                                  ; $811e : $3d, $00, $03
 	.db $00                                                  ; $8121 : $00
 	rol $0400.w, X                                                  ; $8122 : $3e, $00, $04
 	.db $00                                                  ; $8125 : $00
@@ -11445,7 +11445,7 @@ br_3d_c5f4:
 	jsr ($b700.w, X)                                                  ; $c650 : $fc, $00, $b7
 	.db $00                                                  ; $c653 : $00
 	cop $01.b                                                  ; $c654 : $02, $01
-	cpx $0300.w                                                  ; $c656 : $ec, $00, $03
+	cpx wColourRam.w                                                  ; $c656 : $ec, $00, $03
 	ora ($04, X)                                                  ; $c659 : $01, $04
 	ora ($05, X)                                                  ; $c65b : $01, $05
 	ora ($06, X)                                                  ; $c65d : $01, $06
@@ -19076,7 +19076,7 @@ br_3d_f87b:
 	stz $3a                                                  ; $f8cb : $64, $3a
 	stz $34                                                  ; $f8cd : $64, $34
 	stz $3b                                                  ; $f8cf : $64, $3b
-	jmp todo_HookAddThreadToDynamicallyLoadSpriteTileData.l                                                  ; $f8d1 : $5c, $dc, $b1, $00
+	jmp FarAddThreadToDynamicallyLoadSpriteData.l                                                  ; $f8d1 : $5c, $dc, $b1, $00
 
 
 br_3d_f8d5:
@@ -19577,7 +19577,7 @@ br_3d_fba0:
 	rep #IDX_8                                                  ; $fbcd : $c2, $10
 	ldx #$00a0.w                                                  ; $fbcf : $a2, $a0, $00
 	ldy #$001c.w                                                  ; $fbd2 : $a0, $1c, $00
-	jsr Func_1_804a.l                                                  ; $fbd5 : $22, $4a, $80, $01
+	jsr LoadPalettesFromGivenSpecToColourX.l                                                  ; $fbd5 : $22, $4a, $80, $01
 	sep #IDX_8                                                  ; $fbd9 : $e2, $10
 	lda #$81.b                                                  ; $fbdb : $a9, $81
 	trb $1f5f.w                                                  ; $fbdd : $1c, $5f, $1f

@@ -5738,7 +5738,7 @@ br_14_a1d2:
 	ora $00, S                                                  ; $a2d4 : $03, $00
 	ora $0e00.w                                                  ; $a2d6 : $0d, $00, $0e
 	.db $00                                                  ; $a2d9 : $00
-	ora $0300.w                                                  ; $a2da : $0d, $00, $03
+	ora wColourRam.w                                                  ; $a2da : $0d, $00, $03
 	.db $00                                                  ; $a2dd : $00
 	tsb $00                                                  ; $a2de : $04, $00
 	ora $00                                                  ; $a2e0 : $05, $00

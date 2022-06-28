@@ -9063,7 +9063,7 @@ br_2f_bf7a:
 	tsb $f8                                                  ; $bf90 : $04, $f8
 	asl $f8                                                  ; $bf92 : $06, $f8
 	sbc ($0c)                                                  ; $bf94 : $f2, $0c
-	asl $0300.w, X                                                  ; $bf96 : $1e, $00, $03
+	asl wColourRam.w, X                                                  ; $bf96 : $1e, $00, $03
 	.db $00                                                  ; $bf99 : $00
 	ora ($00, X)                                                  ; $bf9a : $01, $00
 	.db $00                                                  ; $bf9c : $00
@@ -9919,7 +9919,7 @@ br_2f_c518:
 	tsb $f8                                                  ; $c530 : $04, $f8
 	asl $f8                                                  ; $c532 : $06, $f8
 	sbc ($0c)                                                  ; $c534 : $f2, $0c
-	asl $0300.w, X                                                  ; $c536 : $1e, $00, $03
+	asl wColourRam.w, X                                                  ; $c536 : $1e, $00, $03
 	.db $00                                                  ; $c539 : $00
 
 br_2f_c53a:
@@ -11104,7 +11104,7 @@ br_2f_cc1c:
 	sbc $7b03fd.l, X                                                  ; $cc69 : $ff, $fd, $03, $7b
 	sbc $fcffb7.l, X                                                  ; $cc6d : $ff, $b7, $ff, $fc
 	.db $00                                                  ; $cc71 : $00
-	inc $0300.w, X                                                  ; $cc72 : $fe, $00, $03
+	inc wColourRam.w, X                                                  ; $cc72 : $fe, $00, $03
 	jsr ($fc03.w, X)                                                  ; $cc75 : $fc, $03, $fc
 	ora $fd, S                                                  ; $cc78 : $03, $fd
 	sbc $7a8701.l, X                                                  ; $cc7a : $ff, $01, $87, $7a
@@ -11559,7 +11559,7 @@ br_2f_cf2e:
 	tsb $f8                                                  ; $cf30 : $04, $f8
 	asl $f8                                                  ; $cf32 : $06, $f8
 	sbc ($0c)                                                  ; $cf34 : $f2, $0c
-	asl $0300.w, X                                                  ; $cf36 : $1e, $00, $03
+	asl wColourRam.w, X                                                  ; $cf36 : $1e, $00, $03
 	.db $00                                                  ; $cf39 : $00
 	ora ($00, X)                                                  ; $cf3a : $01, $00
 	.db $00                                                  ; $cf3c : $00
@@ -12264,7 +12264,7 @@ br_2f_d358:
 	tsb $f8                                                  ; $d370 : $04, $f8
 	asl $f8                                                  ; $d372 : $06, $f8
 	sbc ($0c)                                                  ; $d374 : $f2, $0c
-	asl $0300.w, X                                                  ; $d376 : $1e, $00, $03
+	asl wColourRam.w, X                                                  ; $d376 : $1e, $00, $03
 	.db $00                                                  ; $d379 : $00
 	ora ($00, X)                                                  ; $d37a : $01, $00
 	.db $00                                                  ; $d37c : $00
@@ -15908,7 +15908,7 @@ br_2f_e993:
 	tdc                                                  ; $e9a7 : $7b
 	adc $3f307f.l, X                                                  ; $e9a8 : $7f, $7f, $30, $3f
 	and $513f.w                                                  ; $e9ac : $2d, $3f, $51
-	lsr $0300.w, X                                                  ; $e9af : $5e, $00, $03
+	lsr wColourRam.w, X                                                  ; $e9af : $5e, $00, $03
 	ora $04, S                                                  ; $e9b2 : $03, $04
 	ora $7c7b08.l                                                  ; $e9b4 : $0f, $08, $7b, $7c
 	adc $3f3e5f.l, X                                                  ; $e9b8 : $7f, $5f, $3e, $3f

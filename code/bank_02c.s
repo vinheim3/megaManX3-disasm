@@ -5471,7 +5471,7 @@ br_2c_9fb0:
 	tcs                                                  ; $9fc8 : $1b
 	and $0f, S                                                  ; $9fc9 : $23, $0f
 	ora ($03), Y                                                  ; $9fcb : $11, $03
-	tsb $0300.w                                                  ; $9fcd : $0c, $00, $03
+	tsb wColourRam.w                                                  ; $9fcd : $0c, $00, $03
 	phb                                                  ; $9fd0 : $8b
 	and ($8b), Y                                                  ; $9fd1 : $31, $8b
 	and ($46, S), Y                                                  ; $9fd3 : $33, $46
@@ -7307,7 +7307,7 @@ br_2c_a937:
 	tya                                                  ; $a93a : $98
 	.db $00                                                  ; $a93b : $00
 	jsr $4010.w                                                  ; $a93c : $20, $10, $40
-	jsr $0300.w                                                  ; $a93f : $20, $00, $03
+	jsr wColourRam.w                                                  ; $a93f : $20, $00, $03
 	phd                                                  ; $a942 : $0b
 	ora $0e0a.w                                                  ; $a943 : $0d, $0a, $0e
 	asl                                                  ; $a946 : $0a
@@ -10664,7 +10664,7 @@ br_2c_baa0:
 	.db $00                                                  ; $baa1 : $00
 	.db $00                                                  ; $baa2 : $00
 	.db $00                                                  ; $baa3 : $00
-	bit $0300.w, X                                                  ; $baa4 : $3c, $00, $03
+	bit wColourRam.w, X                                                  ; $baa4 : $3c, $00, $03
 	sec                                                  ; $baa7 : $38
 	.db $00                                                  ; $baa8 : $00
 	rol $033c.w, X                                                  ; $baa9 : $3e, $3c, $03
@@ -14692,7 +14692,7 @@ br_2c_cf14:
 	ora [$1f]                                                  ; $cf36 : $07, $1f
 	ora $3f0f3f.l                                                  ; $cf38 : $0f, $3f, $0f, $3f
 	ora $7f1f3f.l, X                                                  ; $cf3c : $1f, $3f, $1f, $7f
-	inc $0300.w, X                                                  ; $cf40 : $fe, $00, $03
+	inc wColourRam.w, X                                                  ; $cf40 : $fe, $00, $03
 	.db $00                                                  ; $cf43 : $00
 	ora ($00, X)                                                  ; $cf44 : $01, $00
 	ora ($00, X)                                                  ; $cf46 : $01, $00
@@ -22043,7 +22043,7 @@ br_2c_f538:
 	.db $00                                                  ; $f56d : $00
 	.db $00                                                  ; $f56e : $00
 	.db $00                                                  ; $f56f : $00
-	asl $0300.w, X                                                  ; $f570 : $1e, $00, $03
+	asl wColourRam.w, X                                                  ; $f570 : $1e, $00, $03
 	.db $00                                                  ; $f573 : $00
 	ora #$00.b                                                  ; $f574 : $09, $00
 	ora [$00]                                                  ; $f576 : $07, $00

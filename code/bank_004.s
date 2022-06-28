@@ -234,7 +234,7 @@ br_04_8164:
 	rep #IDX_8                                                  ; $819d : $c2, $10
 	ldx #$0030.w                                                  ; $819f : $a2, $30, $00
 	ldy #$00d2.w                                                  ; $81a2 : $a0, $d2, $00
-	jsr Func_1_804a.l                                                  ; $81a5 : $22, $4a, $80, $01
+	jsr LoadPalettesFromGivenSpecToColourX.l                                                  ; $81a5 : $22, $4a, $80, $01
 
 br_04_81a9:
 	jsr Call_04_a63c.w                                                  ; $81a9 : $20, $3c, $a6
@@ -2355,7 +2355,7 @@ Call_04_8e3a:
 	tax                                                  ; $8e3e : $aa
 	ldy $b270.w, X                                                  ; $8e3f : $bc, $70, $b2
 	ldx #$30.b                                                  ; $8e42 : $a2, $30
-	jsr Func_1_804a.l                                                  ; $8e44 : $22, $4a, $80, $01
+	jsr LoadPalettesFromGivenSpecToColourX.l                                                  ; $8e44 : $22, $4a, $80, $01
 	rts                                                  ; $8e48 : $60
 
 
@@ -2447,7 +2447,7 @@ PlayerMainSubstate3c_HelmetUpgradeShowcase:
 	sta $4e                                                  ; $8ee3 : $85, $4e
 	rep #IDX_8                                                  ; $8ee5 : $c2, $10
 	ldy #$0130.w                                                  ; $8ee7 : $a0, $30, $01
-	jsr Func_1_805b.l                                                  ; $8eea : $22, $5b, $80, $01
+	jsr LoadPalettesFromGivenSpecToColour0.l                                                  ; $8eea : $22, $5b, $80, $01
 	rep #ACCU_8                                                  ; $8eee : $c2, $20
 	stz $00bf.w                                                  ; $8ef0 : $9c, $bf, $00
 	lda #$0101.w                                                  ; $8ef3 : $a9, $01, $01
@@ -3536,7 +3536,7 @@ br_04_9567:
 	sep #ACCU_8                                                  ; $95d1 : $e2, $20
 	lda #$0a.b                                                  ; $95d3 : $a9, $0a
 	sta wDynamicSpriteTileDatasIdx.w                                                  ; $95d5 : $8d, $18, $1f
-	jsr todo_HookAddThreadToDynamicallyLoadSpriteTileData.l                                                  ; $95d8 : $22, $dc, $b1, $00
+	jsr FarAddThreadToDynamicallyLoadSpriteData.l                                                  ; $95d8 : $22, $dc, $b1, $00
 	lda #$3c.b                                                  ; $95dc : $a9, $3c
 	sta $4e                                                  ; $95de : $85, $4e
 	lda #$03.b                                                  ; $95e0 : $a9, $03
@@ -3582,7 +3582,7 @@ br_04_9606:
 	sta $4e                                                  ; $9622 : $85, $4e
 	lda #$0b.b                                                  ; $9624 : $a9, $0b
 	sta wDynamicSpriteTileDatasIdx.w                                                  ; $9626 : $8d, $18, $1f
-	jsr todo_HookAddThreadToDynamicallyLoadSpriteTileData.l                                                  ; $9629 : $22, $dc, $b1, $00
+	jsr FarAddThreadToDynamicallyLoadSpriteData.l                                                  ; $9629 : $22, $dc, $b1, $00
 
 br_04_962d:
 	sep #ACCU_8                                                  ; $962d : $e2, $20
@@ -3796,11 +3796,11 @@ br_04_9781:
 	sta $4e                                                  ; $9785 : $85, $4e
 	stz $1f22.w                                                  ; $9787 : $9c, $22, $1f
 	stz wDynamicSpriteTileDatasIdx.w                                                  ; $978a : $9c, $18, $1f
-	jsr todo_HookAddThreadToDynamicallyLoadSpriteTileData.l                                                  ; $978d : $22, $dc, $b1, $00
+	jsr FarAddThreadToDynamicallyLoadSpriteData.l                                                  ; $978d : $22, $dc, $b1, $00
 	inc $03                                                  ; $9791 : $e6, $03
 	inc $03                                                  ; $9793 : $e6, $03
 	ldy #$ae.b                                                  ; $9795 : $a0, $ae
-	jsr Func_1_805b.l                                                  ; $9797 : $22, $5b, $80, $01
+	jsr LoadPalettesFromGivenSpecToColour0.l                                                  ; $9797 : $22, $5b, $80, $01
 
 br_04_979b:
 	rts                                                  ; $979b : $60
@@ -5325,7 +5325,7 @@ br_04_a01a:
 	sta $67                                                  ; $a04d : $85, $67
 	ldx #$30.b                                                  ; $a04f : $a2, $30
 	ldy #$40.b                                                  ; $a051 : $a0, $40
-	jsr Func_1_804a.l                                                  ; $a053 : $22, $4a, $80, $01
+	jsr LoadPalettesFromGivenSpecToColourX.l                                                  ; $a053 : $22, $4a, $80, $01
 	rep #IDX_8                                                  ; $a057 : $c2, $10
 	jsr Call_04_b6d6.w                                                  ; $a059 : $20, $d6, $b6
 	sep #IDX_8                                                  ; $a05c : $e2, $10
@@ -8102,7 +8102,7 @@ Call_04_af13:
 	beq br_04_af37                                                  ; $af26 : $f0, $0f
 
 	ldx #$0010.w                                                  ; $af28 : $a2, $10, $00
-	jsr Func_1_804a.l                                                  ; $af2b : $22, $4a, $80, $01
+	jsr LoadPalettesFromGivenSpecToColourX.l                                                  ; $af2b : $22, $4a, $80, $01
 	stz $00a1.w                                                  ; $af2f : $9c, $a1, $00
 	inc $00a2.w                                                  ; $af32 : $ee, $a2, $00
 	bra br_04_af3a                                                  ; $af35 : $80, $03
@@ -8353,7 +8353,7 @@ todo_ChangeSubweapon:
 	clc                                                  ; $b07e : $18
 	adc #$40.b                                                  ; $b07f : $69, $40
 	tay                                                  ; $b081 : $a8
-	jsr Func_1_804a.l                                                  ; $b082 : $22, $4a, $80, $01
+	jsr LoadPalettesFromGivenSpecToColourX.l                                                  ; $b082 : $22, $4a, $80, $01
 	rep #ACCU_8|IDX_8|F_CARRY                                                  ; $b086 : $c2, $31
 	jsr Call_04_b6d6.w                                                  ; $b088 : $20, $d6, $b6
 	sep #ACCU_8|IDX_8                                                  ; $b08b : $e2, $30
@@ -9048,7 +9048,7 @@ Call_04_b4c0:
 	ldx #$01fe.w                                                  ; $b4c2 : $a2, $fe, $01
 
 br_04_b4c5:
-	lda $0300.w, X                                                  ; $b4c5 : $bd, $00, $03
+	lda wColourRam.w, X                                                  ; $b4c5 : $bd, $00, $03
 	sta $0000.w                                                  ; $b4c8 : $8d, $00, $00
 	stz $0002.w                                                  ; $b4cb : $9c, $02, $00
 	and #$001f.w                                                  ; $b4ce : $29, $1f, $00
@@ -9080,7 +9080,7 @@ br_04_b4e9:
 br_04_b4fb:
 	tsb $0002.w                                                  ; $b4fb : $0c, $02, $00
 	lda $0002.w                                                  ; $b4fe : $ad, $02, $00
-	sta $0300.w, X                                                  ; $b501 : $9d, $00, $03
+	sta wColourRam.w, X                                                  ; $b501 : $9d, $00, $03
 	dex                                                  ; $b504 : $ca
 	dex                                                  ; $b505 : $ca
 	bpl br_04_b4c5                                                  ; $b506 : $10, $bd
@@ -9433,7 +9433,7 @@ Call_04_b6e0:
 	beq br_04_b6ee                                                  ; $b6e3 : $f0, $09
 
 	ldy #$00d0.w                                                  ; $b6e5 : $a0, $d0, $00
-	jsr Func_1_805b.l                                                  ; $b6e8 : $22, $5b, $80, $01
+	jsr LoadPalettesFromGivenSpecToColour0.l                                                  ; $b6e8 : $22, $5b, $80, $01
 	bra br_04_b71a                                                  ; $b6ec : $80, $2c
 
 br_04_b6ee:
@@ -9443,7 +9443,7 @@ br_04_b6ee:
 	clc                                                  ; $b6f6 : $18
 	adc #$0100.w                                                  ; $b6f7 : $69, $00, $01
 	tay                                                  ; $b6fa : $a8
-	jsr Func_1_805b.l                                                  ; $b6fb : $22, $5b, $80, $01
+	jsr LoadPalettesFromGivenSpecToColour0.l                                                  ; $b6fb : $22, $5b, $80, $01
 	sep #ACCU_8                                                  ; $b6ff : $e2, $20
 	lda $0004.w                                                  ; $b701 : $ad, $04, $00
 	beq br_04_b70a                                                  ; $b704 : $f0, $04
@@ -9458,7 +9458,7 @@ br_04_b70a:
 	bne br_04_b71a                                                  ; $b711 : $d0, $07
 
 	ldy #$01b8.w                                                  ; $b713 : $a0, $b8, $01
-	jsr Func_1_805b.l                                                  ; $b716 : $22, $5b, $80, $01
+	jsr LoadPalettesFromGivenSpecToColour0.l                                                  ; $b716 : $22, $5b, $80, $01
 
 br_04_b71a:
 	sep #ACCU_8|IDX_8                                                  ; $b71a : $e2, $30
@@ -10366,7 +10366,7 @@ _Func_4_bc58:
 
 br_04_bc7e:
 	lda [$10], Y                                                  ; $bc7e : $b7, $10
-	sta $0300.w, X                                                  ; $bc80 : $9d, $00, $03
+	sta wColourRam.w, X                                                  ; $bc80 : $9d, $00, $03
 	inx                                                  ; $bc83 : $e8
 	inx                                                  ; $bc84 : $e8
 	iny                                                  ; $bc85 : $c8
@@ -15602,7 +15602,7 @@ br_04_dc85:
 br_04_dc88:
 	rep #IDX_8                                                  ; $dc88 : $c2, $10
 	ldy #$0156.w                                                  ; $dc8a : $a0, $56, $01
-	jsr Func_1_805b.l                                                  ; $dc8d : $22, $5b, $80, $01
+	jsr LoadPalettesFromGivenSpecToColour0.l                                                  ; $dc8d : $22, $5b, $80, $01
 	plp                                                  ; $dc91 : $28
 	clc                                                  ; $dc92 : $18
 	rtl                                                  ; $dc93 : $6b

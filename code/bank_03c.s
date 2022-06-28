@@ -3674,7 +3674,7 @@ br_3c_94b2:
 	.db $00                                                  ; $94b3 : $00
 	php                                                  ; $94b4 : $08
 	.db $00                                                  ; $94b5 : $00
-	asl $0300.w                                                  ; $94b6 : $0e, $00, $03
+	asl wColourRam.w                                                  ; $94b6 : $0e, $00, $03
 	.db $00                                                  ; $94b9 : $00
 
 br_3c_94ba:
@@ -5682,7 +5682,7 @@ br_3c_9fa9:
 	sta $7fcd90.l                                                  ; $a056 : $8f, $90, $cd, $7f
 	lda #$09.b                                                  ; $a05a : $a9, $09
 	sta wDynamicSpriteTileDatasIdx.w                                                  ; $a05c : $8d, $18, $1f
-	jsr todo_HookAddThreadToDynamicallyLoadSpriteTileData.l                                                  ; $a05f : $22, $dc, $b1, $00
+	jsr FarAddThreadToDynamicallyLoadSpriteData.l                                                  ; $a05f : $22, $dc, $b1, $00
 	rts                                                  ; $a063 : $60
 
 
@@ -6562,7 +6562,7 @@ br_3c_a629:
 	rep #IDX_8                                                  ; $a654 : $c2, $10
 	ldx #$00a0.w                                                  ; $a656 : $a2, $a0, $00
 	ldy #$001c.w                                                  ; $a659 : $a0, $1c, $00
-	jsr Func_1_804a.l                                                  ; $a65c : $22, $4a, $80, $01
+	jsr LoadPalettesFromGivenSpecToColourX.l                                                  ; $a65c : $22, $4a, $80, $01
 	sep #IDX_8                                                  ; $a660 : $e2, $10
 	lda #$81.b                                                  ; $a662 : $a9, $81
 	trb $1f5f.w                                                  ; $a664 : $1c, $5f, $1f
@@ -11399,7 +11399,7 @@ br_3c_c4fe:
 	ldx wStageIdx.w                                                  ; $c502 : $ae, $ae, $1f
 	lda $ea66.w, X                                                  ; $c505 : $bd, $66, $ea
 	sta wDynamicSpriteTileDatasIdx.w                                                  ; $c508 : $8d, $18, $1f
-	jmp todo_HookAddThreadToDynamicallyLoadSpriteTileData.l                                                  ; $c50b : $5c, $dc, $b1, $00
+	jmp FarAddThreadToDynamicallyLoadSpriteData.l                                                  ; $c50b : $5c, $dc, $b1, $00
 
 
 	lda $0040.w                                                  ; $c50f : $ad, $40, $00
@@ -12075,7 +12075,7 @@ br_3c_c943:
 	rep #IDX_8                                                  ; $c948 : $c2, $10
 	ldx #$00a0.w                                                  ; $c94a : $a2, $a0, $00
 	ldy #$001c.w                                                  ; $c94d : $a0, $1c, $00
-	jsr Func_1_804a.l                                                  ; $c950 : $22, $4a, $80, $01
+	jsr LoadPalettesFromGivenSpecToColourX.l                                                  ; $c950 : $22, $4a, $80, $01
 	sep #IDX_8                                                  ; $c954 : $e2, $10
 	ldx wStageIdx.w                                                  ; $c956 : $ae, $ae, $1f
 	lda $890b.w, X                                                  ; $c959 : $bd, $0b, $89
@@ -12679,7 +12679,7 @@ br_3c_cd36:
 	inc $3b                                                  ; $cd4d : $e6, $3b
 	lda #$0e.b                                                  ; $cd4f : $a9, $0e
 	sta wDynamicSpriteTileDatasIdx.w                                                  ; $cd51 : $8d, $18, $1f
-	jmp todo_HookAddThreadToDynamicallyLoadSpriteTileData.l                                                  ; $cd54 : $5c, $dc, $b1, $00
+	jmp FarAddThreadToDynamicallyLoadSpriteData.l                                                  ; $cd54 : $5c, $dc, $b1, $00
 
 
 	lda $0040.w                                                  ; $cd58 : $ad, $40, $00
@@ -13078,7 +13078,11 @@ EntityLocations1_BlastHornet:
 	.db $4e
 	.db $02, $90, $05, $15, $24, $d0, $89
 	.db $4f
+.ifdef ZERO_MOD
+	.db $00, $00, $00, $00, $00, $00, $00
+.else
 	.db $00, $80, $05, $0a, $00, $e0, $09
+.endif
 	.db $00, $97, $05, $11, $00, $f8, $89
 	.db $54
 	.db $02, $80, $05, $17, $01, $80, $0a
@@ -13155,7 +13159,11 @@ EntityLocations1_BlastHornet:
 	.db $02, $80, $05, $00, $13, $80, $96
 	.db $b7
 	.db $00, $48, $04, $0b, $01, $e0, $16
+.ifdef ZERO_MOD
+	.db $00, $00, $00, $00, $00, $00, $00
+.else
 	.db $00, $80, $05, $0a, $00, $e0, $16
+.endif
 	.db $00, $97, $05, $11, $01, $f8, $96
 	.db $bd
 	.db $03, $a0, $05, $47, $00, $a0, $17
@@ -13210,7 +13218,11 @@ EntityLocations1_BlastHornet:
 	.db $f6
 	.db $02, $98, $08, $15, $bc, $d0, $9e
 	.db $f7
+.ifdef ZERO_MOD
+	.db $00, $00, $00, $00, $00, $00, $00
+.else
 	.db $00, $80, $08, $0a, $00, $e0, $1e
+.endif
 	.db $00, $97, $08, $07, $82, $f8, $9e
 	.db $fd
 	.db $03, $a0, $08, $53, $00, $a0, $9f
@@ -13282,7 +13294,11 @@ EntityLocations2_BlizzardBuffalo:
 	.db $02, $90, $05, $00, $08, $80, $0a
 	.db $02, $90, $05, $00, $07, $80, $8a
 	.db $57
+.ifdef ZERO_MOD
+	.db $00, $00, $00, $00, $00, $00, $00
+.else
 	.db $00, $90, $05, $0a, $00, $e0, $0a
+.endif
 	.db $00, $a7, $05, $11, $02, $f8, $8a
 	.db $5d
 	.db $03, $a0, $05, $47, $00, $a0, $0b

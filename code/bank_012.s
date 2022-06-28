@@ -2875,7 +2875,7 @@ br_12_90fb:
 	cmp $9c, X                                                  ; $9159 : $d5, $9c
 	.db $00                                                  ; $915b : $00
 	cop $d1.b                                                  ; $915c : $02, $d1
-	stz $0300.w                                                  ; $915e : $9c, $00, $03
+	stz wColourRam.w                                                  ; $915e : $9c, $00, $03
 	dex                                                  ; $9161 : $ca
 	stz $ff00.w                                                  ; $9162 : $9c, $00, $ff
 	cpy $9c                                                  ; $9165 : $c4, $9c
@@ -10012,7 +10012,7 @@ br_12_c0d6:
 	jsr $f6d7.w                                                  ; $c151 : $20, $d7, $f6
 	rep #ACCU_8                                                  ; $c154 : $c2, $20
 	cmp $17a6f6.l, X                                                  ; $c156 : $df, $f6, $a6, $17
-	jsr $0300.w                                                  ; $c15a : $20, $00, $03
+	jsr wColourRam.w                                                  ; $c15a : $20, $00, $03
 	ldx $0020.w                                                  ; $c15d : $ae, $20, $00
 	sbc $008e.w, X                                                  ; $c160 : $fd, $8e, $00
 	.db $00                                                  ; $c163 : $00
@@ -11013,7 +11013,7 @@ br_12_c717:
 	rol $00                                                  ; $c7e6 : $26, $00
 	sbc $009fd2.l, X                                                  ; $c7e8 : $ff, $d2, $9f, $00
 	ora $e2, S                                                  ; $c7ec : $03, $e2
-	stz $0300.w, X                                                  ; $c7ee : $9e, $00, $03
+	stz wColourRam.w, X                                                  ; $c7ee : $9e, $00, $03
 	phx                                                  ; $c7f1 : $da
 	sta $ff00.w, X                                                  ; $c7f2 : $9d, $00, $ff
 	sbc ($9c)                                                  ; $c7f5 : $f2, $9c
@@ -11066,7 +11066,7 @@ br_12_c717:
 	sbc $00a0ea.l                                                  ; $c84d : $ef, $ea, $a0, $00
 	sbc $009fd2.l, X                                                  ; $c851 : $ff, $d2, $9f, $00
 	ora $e2, S                                                  ; $c855 : $03, $e2
-	stz $0300.w, X                                                  ; $c857 : $9e, $00, $03
+	stz wColourRam.w, X                                                  ; $c857 : $9e, $00, $03
 	phx                                                  ; $c85a : $da
 	sta $ff00.w, X                                                  ; $c85b : $9d, $00, $ff
 	sbc ($9c)                                                  ; $c85e : $f2, $9c
@@ -11224,7 +11224,7 @@ br_12_c902:
 	rol $00                                                  ; $c96e : $26, $00
 	sbc $009fd2.l, X                                                  ; $c970 : $ff, $d2, $9f, $00
 	ora $e2, S                                                  ; $c974 : $03, $e2
-	stz $0300.w, X                                                  ; $c976 : $9e, $00, $03
+	stz wColourRam.w, X                                                  ; $c976 : $9e, $00, $03
 	phx                                                  ; $c979 : $da
 	sta $ff00.w, X                                                  ; $c97a : $9d, $00, $ff
 	sbc ($9c)                                                  ; $c97d : $f2, $9c
@@ -11273,7 +11273,7 @@ br_12_c902:
 	rol $00                                                  ; $c9cb : $26, $00
 	sbc $009fd2.l, X                                                  ; $c9cd : $ff, $d2, $9f, $00
 	ora $e2, S                                                  ; $c9d1 : $03, $e2
-	stz $0300.w, X                                                  ; $c9d3 : $9e, $00, $03
+	stz wColourRam.w, X                                                  ; $c9d3 : $9e, $00, $03
 	phx                                                  ; $c9d6 : $da
 	sta $ff00.w, X                                                  ; $c9d7 : $9d, $00, $ff
 	sbc ($9c)                                                  ; $c9da : $f2, $9c
@@ -11324,7 +11324,7 @@ br_12_ca1d:
 	rol $00                                                  ; $ca28 : $26, $00
 	sbc $009fd1.l, X                                                  ; $ca2a : $ff, $d1, $9f, $00
 	ora $e1, S                                                  ; $ca2e : $03, $e1
-	stz $0300.w, X                                                  ; $ca30 : $9e, $00, $03
+	stz wColourRam.w, X                                                  ; $ca30 : $9e, $00, $03
 	cmp $009d.w, Y                                                  ; $ca33 : $d9, $9d, $00
 	sbc $009cf1.l, X                                                  ; $ca36 : $ff, $f1, $9c, $00
 	sbc $209be9.l, X                                                  ; $ca3a : $ff, $e9, $9b, $20
@@ -11373,7 +11373,7 @@ br_12_ca7a:
 	rol $00                                                  ; $ca85 : $26, $00
 	sbc $009fd1.l, X                                                  ; $ca87 : $ff, $d1, $9f, $00
 	ora $e1, S                                                  ; $ca8b : $03, $e1
-	stz $0300.w, X                                                  ; $ca8d : $9e, $00, $03
+	stz wColourRam.w, X                                                  ; $ca8d : $9e, $00, $03
 	cmp $009d.w, Y                                                  ; $ca90 : $d9, $9d, $00
 	sbc $009cf1.l, X                                                  ; $ca93 : $ff, $f1, $9c, $00
 	sbc $209be9.l, X                                                  ; $ca97 : $ff, $e9, $9b, $20
@@ -13542,7 +13542,7 @@ Call_12_d8f8:
 	cop $20.b                                                  ; $d952 : $02, $20
 	sed                                                  ; $d954 : $f8
 	sed                                                  ; $d955 : $f8
-	stx $0300.w                                                  ; $d956 : $8e, $00, $03
+	stx wColourRam.w                                                  ; $d956 : $8e, $00, $03
 	ora $e8, S                                                  ; $d959 : $03, $e8
 	cop $20.b                                                  ; $d95b : $02, $20
 	sed                                                  ; $d95d : $f8
