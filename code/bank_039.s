@@ -421,7 +421,7 @@ br_39_926a:
 	lda $0040.w                                                  ; $926b : $ad, $40, $00
 	bne br_39_926a                                                  ; $926e : $d0, $fa
 
-	jsr Func_2_e15c.l                                                  ; $9270 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $9270 : $22, $5c, $e1, $02
 	lda $27                                                  ; $9274 : $a5, $27
 	lsr                                                  ; $9276 : $4a
 	sta $7fcffc.l                                                  ; $9277 : $8f, $fc, $cf, $7f
@@ -482,7 +482,7 @@ br_39_92f7:
 	rts                                                  ; $92f7 : $60
 
 
-	jsr Func_2_e15c.l                                                  ; $92f8 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $92f8 : $22, $5c, $e1, $02
 	lda #$06.b                                                  ; $92fc : $a9, $06
 	sta $02                                                  ; $92fe : $85, $02
 	sta $12                                                  ; $9300 : $85, $12
@@ -1779,16 +1779,24 @@ br_39_9ab2:
 	cmp $c5, S                                                  ; $9ba2 : $c3, $c5
 	dec $c8                                                  ; $9ba4 : $c6, $c8
 	cmp #$cb.b                                                  ; $9ba6 : $c9, $cb
-	cpy $30e2.w                                                  ; $9ba8 : $cc, $e2, $30
+	.db $cc
+
+
+UpdateBlastHornet:
+	sep #ACCU_8|IDX_8                                                  ; $9ba9 : $e2, $30
 	ldx $01                                                  ; $9bab : $a6, $01
-	jmp ($9bb0.w, X)                                                  ; $9bad : $7c, $b0, $9b
+	jmp (@states.w, X)                                                  ; $9bad : $7c, $b0, $9b
+
+@states:
+	.dw BlastHornetState0
+	.dw $9df6
+	.dw $a0d7
+	.dw BlastHornetState3
+	.dw $9c0e
+	.dw $9c64
 
 
-	stz $9c, X                                                  ; $9bb0 : $74, $9c
-	inc $9d, X                                                  ; $9bb2 : $f6, $9d
-	cmp [$a0], Y                                                  ; $9bb4 : $d7, $a0
-	ldy $0e9b.w, X                                                  ; $9bb6 : $bc, $9b, $0e
-	stz $9c64.w                                                  ; $9bb9 : $9c, $64, $9c
+BlastHornetState3:
 	lda $35                                                  ; $9bbc : $a5, $35
 	bne br_39_9bca                                                  ; $9bbe : $d0, $0a
 
@@ -1830,7 +1838,7 @@ br_39_9bf1:
 
 	lda #$21.b                                                  ; $9bfd : $a9, $21
 	jsr Func_1_8000.l                                                  ; $9bff : $22, $00, $80, $01
-	dec $27                                                  ; $9c03 : $c6, $27
+	dec StageEnemyEntity.health                                                  ; $9c03 : $c6, $27
 	bne br_39_9c0a                                                  ; $9c05 : $d0, $03
 
 	jmp Jump_39_9e4d.w                                                  ; $9c07 : $4c, $4d, $9e
@@ -1860,11 +1868,11 @@ br_39_9c1e:
 	bit #$04.b                                                  ; $9c28 : $89, $04
 	beq br_39_9c56                                                  ; $9c2a : $f0, $2a
 
-	lda $27                                                  ; $9c2c : $a5, $27
+	lda StageEnemyEntity.health                                                  ; $9c2c : $a5, $27
 	cmp #$07.b                                                  ; $9c2e : $c9, $07
 	bpl br_39_9c37                                                  ; $9c30 : $10, $05
 
-	stz $27                                                  ; $9c32 : $64, $27
+	stz StageEnemyEntity.health                                                  ; $9c32 : $64, $27
 	jmp Jump_39_9e4d.w                                                  ; $9c34 : $4c, $4d, $9e
 
 
@@ -1910,13 +1918,17 @@ br_39_9c71:
 	jmp Jump_39_9df6.w                                                  ; $9c71 : $4c, $f6, $9d
 
 
+BlastHornetState0:
 	ldx $02                                                  ; $9c74 : $a6, $02
-	jmp ($9c79.w, X)                                                  ; $9c76 : $7c, $79, $9c
+	jmp (@substates.w, X)                                                  ; $9c76 : $7c, $79, $9c
+
+@substates:
+	.dw Func_39_9c7f
+	.dw $9cc7
+	.dw Func_39_9d30
 
 
-	adc $9cc79c.l, X                                                  ; $9c79 : $7f, $9c, $c7, $9c
-	bmi br_39_9c1c                                                  ; $9c7d : $30, $9d
-
+Func_39_9c7f:
 	jsr $04d8cf.l                                                  ; $9c7f : $22, $cf, $d8, $04
 	beq br_39_9c8d                                                  ; $9c83 : $f0, $08
 
@@ -1961,7 +1973,7 @@ br_39_9cc6:
 	lda $0040.w                                                  ; $9cc7 : $ad, $40, $00
 	bne br_39_9cc6                                                  ; $9cca : $d0, $fa
 
-	jsr Func_2_e15c.l                                                  ; $9ccc : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $9ccc : $22, $5c, $e1, $02
 	lda $28                                                  ; $9cd0 : $a5, $28
 	sta $1f57.w                                                  ; $9cd2 : $8d, $57, $1f
 	lda #$03.b                                                  ; $9cd5 : $a9, $03
@@ -2006,17 +2018,22 @@ br_39_9cc6:
 	jmp Func_4_b967.l                                                  ; $9d2c : $5c, $67, $b9, $04
 
 
+Func_39_9d30:
 	ldx $03                                                  ; $9d30 : $a6, $03
-	jsr ($9d3d.w, X)                                                  ; $9d32 : $fc, $3d, $9d
+	jsr (@subsubstates.w, X)                                                  ; $9d32 : $fc, $3d, $9d
 	jsr Func_2_d636.l                                                  ; $9d35 : $22, $36, $d6, $02
 	jmp Func_4_b94a.l                                                  ; $9d39 : $5c, $4a, $b9, $04
 
+@subsubstates:
+	.dw Func_39_9d49
+	.dw $9d5e
+	.dw $9d7b
+	.dw $9d8f
+	.dw Func_39_9da0
+	.dw Func_39_9db5
 
-	eor #$9d.b                                                  ; $9d3d : $49, $9d
-	lsr $7b9d.w, X                                                  ; $9d3f : $5e, $9d, $7b
-	sta $9d8f.w, X                                                  ; $9d42 : $9d, $8f, $9d
-	ldy #$9d.b                                                  ; $9d45 : $a0, $9d
-	lda $9d, X                                                  ; $9d47 : $b5, $9d
+
+Func_39_9d49:
 	dec $39                                                  ; $9d49 : $c6, $39
 	bne br_39_9d5d                                                  ; $9d4b : $d0, $10
 
@@ -2086,8 +2103,9 @@ br_39_9d9f:
 	rts                                                  ; $9d9f : $60
 
 
+Func_39_9da0:
 	lda $0f                                                  ; $9da0 : $a5, $0f
-	bpl br_39_9db4                                                  ; $9da2 : $10, $10
+	bpl @done                                                  ; $9da2 : $10, $10
 
 	lda #$0a.b                                                  ; $9da4 : $a9, $0a
 	sta $03                                                  ; $9da6 : $85, $03
@@ -2097,19 +2115,20 @@ br_39_9d9f:
 	sta $0b                                                  ; $9dae : $85, $0b
 	jsr Func_4_b967.l                                                  ; $9db0 : $22, $67, $b9, $04
 
-br_39_9db4:
+@done:
 	rts                                                  ; $9db4 : $60
 
 
+Func_39_9db5:
 	dec $39                                                  ; $9db5 : $c6, $39
-	bne br_39_9df5                                                  ; $9db7 : $d0, $3c
+	bne @done                                                  ; $9db7 : $d0, $3c
 
 	lda #$02.b                                                  ; $9db9 : $a9, $02
 	sta $39                                                  ; $9dbb : $85, $39
 	lda $27                                                  ; $9dbd : $a5, $27
 	and #$7f.b                                                  ; $9dbf : $29, $7f
 	cmp #$20.b                                                  ; $9dc1 : $c9, $20
-	beq br_39_9dd1                                                  ; $9dc3 : $f0, $0c
+	beq @br_9dd1                                                  ; $9dc3 : $f0, $0c
 
 	ina                                                  ; $9dc5 : $1a
 	ora #$80.b                                                  ; $9dc6 : $09, $80
@@ -2118,8 +2137,7 @@ br_39_9db4:
 	jsr $01802b.l                                                  ; $9dcc : $22, $2b, $80, $01
 	rts                                                  ; $9dd0 : $60
 
-
-br_39_9dd1:
+@br_9dd1:
 	lda #$02.b                                                  ; $9dd1 : $a9, $02
 	sta $01                                                  ; $9dd3 : $85, $01
 	stz $02                                                  ; $9dd5 : $64, $02
@@ -2132,12 +2150,12 @@ br_39_9dd1:
 	sta $39                                                  ; $9de3 : $85, $39
 	jsr $04d1ef.l                                                  ; $9de5 : $22, $ef, $d1, $04
 	lda $001f39.l                                                  ; $9de9 : $af, $39, $1f, $00
-	beq br_39_9df5                                                  ; $9ded : $f0, $06
+	beq @done                                                  ; $9ded : $f0, $06
 
 	lda #$1a.b                                                  ; $9def : $a9, $1a
 	jsr Func_0_84bc.l                                                  ; $9df1 : $22, $bc, $84, $00
 
-br_39_9df5:
+@done:
 	rts                                                  ; $9df5 : $60
 
 
@@ -7866,7 +7884,7 @@ Data_39_c1bc:
 	.dw $cb8c
 	.dw $d576
 	.dw $d5ee
-	.dw $cb2d
+	.dw $cb2d ; text $38
 	.dw $d682
 	.dw $d710
 	.dw $e460

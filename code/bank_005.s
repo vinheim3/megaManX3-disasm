@@ -2006,7 +2006,7 @@ Call_05_8e80:
 	sta $00a1.w                                                  ; $8e86 : $8d, $a1, $00
 	lda #$02.b                                                  ; $8e89 : $a9, $02
 	sta $1ea5.w                                                  ; $8e8b : $8d, $a5, $1e
-	jsr Func_2_e15c.l                                                  ; $8e8e : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $8e8e : $22, $5c, $e1, $02
 	lda #$02.b                                                  ; $8e92 : $a9, $02
 	sta $02                                                  ; $8e94 : $85, $02
 	stz $01                                                  ; $8e96 : $64, $01
@@ -2858,7 +2858,7 @@ br_05_939b:
 	ora ($a9, X)                                                  ; $93dd : $01, $a9
 	inc $22, X                                                  ; $93df : $f6, $22
 	adc $0085.w                                                  ; $93e1 : $6d, $85, $00
-	jsr Func_2_e15c.l                                                  ; $93e4 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $93e4 : $22, $5c, $e1, $02
 	lda $28                                                  ; $93e8 : $a5, $28
 	sta $1f57.w                                                  ; $93ea : $8d, $57, $1f
 	lda #$02.b                                                  ; $93ed : $a9, $02
@@ -5478,7 +5478,7 @@ br_05_a48a:
 	jsr $03bb84.l                                                  ; $a48a : $22, $84, $bb, $03
 	stz $1f45.w                                                  ; $a48e : $9c, $45, $1f
 	stz $1f4f.w                                                  ; $a491 : $9c, $4f, $1f
-	jsr Func_2_e15c.l                                                  ; $a494 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $a494 : $22, $5c, $e1, $02
 	lda $28                                                  ; $a498 : $a5, $28
 	sta $1f57.w                                                  ; $a49a : $8d, $57, $1f
 	lda #$00.b                                                  ; $a49d : $a9, $00
@@ -8462,7 +8462,7 @@ br_05_b7a9:
 	clv                                                  ; $b7bb : $b8
 	phd                                                  ; $b7bc : $0b
 	clv                                                  ; $b7bd : $b8
-	jsr Func_2_e15c.l                                                  ; $b7be : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $b7be : $22, $5c, $e1, $02
 	lda #$06.b                                                  ; $b7c2 : $a9, $06
 	sta $12                                                  ; $b7c4 : $85, $12
 	lda #$01.b                                                  ; $b7c6 : $a9, $01
@@ -8864,7 +8864,7 @@ br_05_b9c3:
 	jsr todo_CausePlayerToFreeze.l                                                  ; $b9d5 : $22, $ca, $d1, $04
 	lda #$01.b                                                  ; $b9d9 : $a9, $01
 	tsb $1f5f.w                                                  ; $b9db : $0c, $5f, $1f
-	jsr Func_2_e15c.l                                                  ; $b9de : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $b9de : $22, $5c, $e1, $02
 	lda #$04.b                                                  ; $b9e2 : $a9, $04
 	sta $12                                                  ; $b9e4 : $85, $12
 	rep #ACCU_8                                                  ; $b9e6 : $c2, $20
@@ -9060,7 +9060,7 @@ br_05_bb05:
 	trb wBG2VertScroll                                                  ; $bb0e : $14, $bb
 	lsr wBG2VertScroll                                                  ; $bb10 : $46, $bb
 	sbc ($bb, X)                                                  ; $bb12 : $e1, $bb
-	jsr Func_2_e15c.l                                                  ; $bb14 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $bb14 : $22, $5c, $e1, $02
 	lda #$04.b                                                  ; $bb18 : $a9, $04
 	sta $12                                                  ; $bb1a : $85, $12
 	rep #ACCU_8                                                  ; $bb1c : $c2, $20
@@ -9218,7 +9218,7 @@ br_05_bbde:
 
 
 br_05_bbfe:
-	jsr Func_2_e15c.l                                                  ; $bbfe : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $bbfe : $22, $5c, $e1, $02
 	lda #$06.b                                                  ; $bc02 : $a9, $06
 	sta $12                                                  ; $bc04 : $85, $12
 	lda #$01.b                                                  ; $bc06 : $a9, $01
@@ -10492,7 +10492,7 @@ br_05_c374:
 
 br_05_c397:
 	lda #$13.b                                                  ; $c397 : $a9, $13
-	jsr Func_2_e158.l                                                  ; $c399 : $22, $58, $e1, $02
+	jsr LoadEnemyBaseDataA.l                                                  ; $c399 : $22, $58, $e1, $02
 	lda #$06.b                                                  ; $c39d : $a9, $06
 	sta $12                                                  ; $c39f : $85, $12
 	lda #$0f.b                                                  ; $c3a1 : $a9, $0f
@@ -10849,7 +10849,7 @@ ArmourHolderState0:
 	jmp todo_DisablesEntity_d928.l                                                  ; $c5e7 : $5c, $28, $d9, $02
 
 @br_c5eb:
-	jsr Func_2_e15c.l                                                  ; $c5eb : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $c5eb : $22, $5c, $e1, $02
 	lda $11                                                  ; $c5ef : $a5, $11
 	sta $10                                                  ; $c5f1 : $85, $10
 	lda StageEnemyEntity.subType                                                  ; $c5f3 : $a5, $0b
@@ -11225,7 +11225,7 @@ Func_5_c837:
 	.dw Func_5_ca07
 	
 
-	jsr Func_2_e15c.l                                                  ; $c842 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $c842 : $22, $5c, $e1, $02
 	ldy #$22e4.w                                                  ; $c846 : $a0, $e4, $22
 	tcd                                                  ; $c849 : $5b
 	.db $80, $01                                                  ; $c84a : $80, $01

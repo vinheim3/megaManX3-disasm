@@ -5705,7 +5705,7 @@ br_3c_9fa9:
 	sta $7fcdc0.l                                                  ; $a087 : $8f, $c0, $cd, $7f
 	sta $7fcdc2.l                                                  ; $a08b : $8f, $c2, $cd, $7f
 	sep #ACCU_8                                                  ; $a08f : $e2, $20
-	jsr Func_2_e15c.l                                                  ; $a091 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $a091 : $22, $5c, $e1, $02
 	stz $01                                                  ; $a095 : $64, $01
 	lda #$04.b                                                  ; $a097 : $a9, $04
 	sta $02                                                  ; $a099 : $85, $02
@@ -5790,7 +5790,7 @@ br_3c_a128:
 	rts                                                  ; $a128 : $60
 
 
-	jsr Func_2_e15c.l                                                  ; $a129 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $a129 : $22, $5c, $e1, $02
 	lda #$01.b                                                  ; $a12d : $a9, $01
 	sta $30                                                  ; $a12f : $85, $30
 	lda #$39.b                                                  ; $a131 : $a9, $39
@@ -5823,7 +5823,7 @@ br_3c_a128:
 	rts                                                  ; $a16c : $60
 
 
-	jsr Func_2_e15c.l                                                  ; $a16d : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $a16d : $22, $5c, $e1, $02
 	lda #$0c.b                                                  ; $a171 : $a9, $0c
 	sta $12                                                  ; $a173 : $85, $12
 	lda #$0d.b                                                  ; $a175 : $a9, $0d
@@ -7184,7 +7184,7 @@ br_3c_aa15:
 	lsr $aa, X                                                  ; $aa24 : $56, $aa
 	lsr $64aa.w, X                                                  ; $aa26 : $5e, $aa, $64
 	tax                                                  ; $aa29 : $aa
-	jsr Func_2_e15c.l                                                  ; $aa2a : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $aa2a : $22, $5c, $e1, $02
 	lda #$0c.b                                                  ; $aa2e : $a9, $0c
 	sta $12                                                  ; $aa30 : $85, $12
 	lda #$02.b                                                  ; $aa32 : $a9, $02
@@ -9174,7 +9174,7 @@ br_3c_b641:
 
 
 br_3c_b666:
-	jsr Func_2_e15c.l                                                  ; $b666 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $b666 : $22, $5c, $e1, $02
 	stz $27                                                  ; $b66a : $64, $27
 	lda #$0c.b                                                  ; $b66c : $a9, $0c
 	sta $12                                                  ; $b66e : $85, $12
@@ -9340,7 +9340,7 @@ br_3c_b7b4:
 	rts                                                  ; $b7b4 : $60
 
 
-	jsr Func_2_e15c.l                                                  ; $b7b5 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $b7b5 : $22, $5c, $e1, $02
 	lda #$02.b                                                  ; $b7b9 : $a9, $02
 	sta $12                                                  ; $b7bb : $85, $12
 	lda #$01.b                                                  ; $b7bd : $a9, $01
@@ -9364,7 +9364,7 @@ br_3c_b7b4:
 	rts                                                  ; $b7e6 : $60
 
 
-	jsr Func_2_e15c.l                                                  ; $b7e7 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $b7e7 : $22, $5c, $e1, $02
 	lda #$02.b                                                  ; $b7eb : $a9, $02
 	sta $12                                                  ; $b7ed : $85, $12
 	lda #$01.b                                                  ; $b7ef : $a9, $01
@@ -9389,7 +9389,7 @@ br_3c_b7b4:
 	rts                                                  ; $b81a : $60
 
 
-	jsr Func_2_e15c.l                                                  ; $b81b : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $b81b : $22, $5c, $e1, $02
 	lda #$02.b                                                  ; $b81f : $a9, $02
 	sta $12                                                  ; $b821 : $85, $12
 	lda #$01.b                                                  ; $b823 : $a9, $01
@@ -11372,7 +11372,7 @@ br_3c_c4c2:
 	ldy #$01.b                                                  ; $c4d1 : $a0, $01
 	lda #$f6.b                                                  ; $c4d3 : $a9, $f6
 	jsr Func_0_856d.l                                                  ; $c4d5 : $22, $6d, $85, $00
-	jsr Func_2_e15c.l                                                  ; $c4d9 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $c4d9 : $22, $5c, $e1, $02
 	lda $28                                                  ; $c4dd : $a5, $28
 	sta $1f57.w                                                  ; $c4df : $8d, $57, $1f
 	lda #$02.b                                                  ; $c4e2 : $a9, $02
@@ -12222,7 +12222,7 @@ br_3c_ca0f:
 	lda #$ea83.w                                                  ; $ca63 : $a9, $83, $ea
 	sta $20                                                  ; $ca66 : $85, $20
 	sep #ACCU_8                                                  ; $ca68 : $e2, $20
-	jsr Func_2_e15c.l                                                  ; $ca6a : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $ca6a : $22, $5c, $e1, $02
 	lda $28                                                  ; $ca6e : $a5, $28
 	sta $1f57.w                                                  ; $ca70 : $8d, $57, $1f
 	lda #$06.b                                                  ; $ca73 : $a9, $06

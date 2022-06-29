@@ -105,7 +105,7 @@ CapsuleState0_Init:
 	jmp todo_DisablesEntity_d928.l                                                  ; $c06d : $5c, $28, $d9, $02
 
 @br_c071:
-	jsr Func_2_e15c.l                                                  ; $c071 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $c071 : $22, $5c, $e1, $02
 
 .ifdef SWAP_CAPSULE
 	jsr AdjustCapsuleBaseTileIdx.w
@@ -1057,7 +1057,7 @@ Call_13_c5bd:
 	ora ($a9, X)                                                  ; $c624 : $01, $a9
 	inc $22, X                                                  ; $c626 : $f6, $22
 	adc $0085.w                                                  ; $c628 : $6d, $85, $00
-	jsr Func_2_e15c.l                                                  ; $c62b : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $c62b : $22, $5c, $e1, $02
 	lda #$02.b                                                  ; $c62f : $a9, $02
 	sta $02                                                  ; $c631 : $85, $02
 	stz $01                                                  ; $c633 : $64, $01
@@ -1151,7 +1151,7 @@ br_13_c6e5:
 	rts                                                  ; $c6e5 : $60
 
 
-	jsr Func_2_e15c.l                                                  ; $c6e6 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $c6e6 : $22, $5c, $e1, $02
 	lda #$0d.b                                                  ; $c6ea : $a9, $0d
 	jsr Func_4_b967.l                                                  ; $c6ec : $22, $67, $b9, $04
 	stz $2f                                                  ; $c6f0 : $64, $2f
@@ -1172,7 +1172,7 @@ br_13_c6e5:
 	rts                                                  ; $c714 : $60
 
 
-	jsr Func_2_e15c.l                                                  ; $c715 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $c715 : $22, $5c, $e1, $02
 	lda #$15.b                                                  ; $c719 : $a9, $15
 	jsr Func_4_b967.l                                                  ; $c71b : $22, $67, $b9, $04
 	lda #$01.b                                                  ; $c71f : $a9, $01
@@ -1191,7 +1191,7 @@ br_13_c6e5:
 	rts                                                  ; $c73b : $60
 
 
-	jsr Func_2_e15c.l                                                  ; $c73c : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $c73c : $22, $5c, $e1, $02
 	lda #$01.b                                                  ; $c740 : $a9, $01
 	jsr Func_4_b967.l                                                  ; $c742 : $22, $67, $b9, $04
 	lda #$01.b                                                  ; $c746 : $a9, $01
@@ -1210,7 +1210,7 @@ br_13_c6e5:
 	rts                                                  ; $c762 : $60
 
 
-	jsr Func_2_e15c.l                                                  ; $c763 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $c763 : $22, $5c, $e1, $02
 	lda #$00.b                                                  ; $c767 : $a9, $00
 	jsr Func_4_b967.l                                                  ; $c769 : $22, $67, $b9, $04
 	lda #$01.b                                                  ; $c76d : $a9, $01
@@ -4619,6 +4619,7 @@ Call_13_dc72:
 	rts                                                  ; $dc9f : $60
 
 
+UpdateNeonTiger:
 	sep #ACCU_8|IDX_8                                                  ; $dca0 : $e2, $30
 	ldx $01                                                  ; $dca2 : $a6, $01
 	jmp ($dca7.w, X)                                                  ; $dca4 : $7c, $a7, $dc
@@ -4719,7 +4720,7 @@ br_13_dd30:
 	bit #$04.b                                                  ; $dd39 : $89, $04
 	beq br_13_dd30                                                  ; $dd3b : $f0, $f3
 
-	jsr Func_2_e15c.l                                                  ; $dd3d : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $dd3d : $22, $5c, $e1, $02
 	lda $28                                                  ; $dd41 : $a5, $28
 	sta $1f57.w                                                  ; $dd43 : $8d, $57, $1f
 	stz $27                                                  ; $dd46 : $64, $27
@@ -5913,6 +5914,7 @@ Call_13_e461:
 	rts                                                  ; $e492 : $60
 
 
+UpdateToxicSeahorse:
 	ldx $01                                                  ; $e493 : $a6, $01
 	jmp ($e498.w, X)                                                  ; $e495 : $7c, $98, $e4
 
@@ -6011,7 +6013,7 @@ br_13_e521:
 	bit #$04.b                                                  ; $e52a : $89, $04
 	beq br_13_e521                                                  ; $e52c : $f0, $f3
 
-	jsr Func_2_e15c.l                                                  ; $e52e : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $e52e : $22, $5c, $e1, $02
 	lda $28                                                  ; $e532 : $a5, $28
 	sta $1f57.w                                                  ; $e534 : $8d, $57, $1f
 	stz $27                                                  ; $e537 : $64, $27
@@ -6830,6 +6832,7 @@ br_13_ea51:
 	rts                                                  ; $ea66 : $60
 
 
+UpdateVoltCatfish:
 	ldx $01                                                  ; $ea67 : $a6, $01
 	jmp ($ea6c.w, X)                                                  ; $ea69 : $7c, $6c, $ea
 
@@ -6921,7 +6924,7 @@ br_13_eaeb:
 	lda $0040.w                                                  ; $eaeb : $ad, $40, $00
 	bne br_13_eaea                                                  ; $eaee : $d0, $fa
 
-	jsr Func_2_e15c.l                                                  ; $eaf0 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $eaf0 : $22, $5c, $e1, $02
 	lda $28                                                  ; $eaf4 : $a5, $28
 	sta $1f57.w                                                  ; $eaf6 : $8d, $57, $1f
 	stz $27                                                  ; $eaf9 : $64, $27
@@ -8096,6 +8099,7 @@ br_13_f223:
 	rts                                                  ; $f238 : $60
 
 
+UpdateGravityBeetle:
 	sep #ACCU_8|IDX_8                                                  ; $f239 : $e2, $30
 	ldx $01                                                  ; $f23b : $a6, $01
 	jmp ($f240.w, X)                                                  ; $f23d : $7c, $40, $f2
@@ -8188,7 +8192,7 @@ br_13_f2d4:
 	bit #$04.b                                                  ; $f2dd : $89, $04
 	beq br_13_f2d4                                                  ; $f2df : $f0, $f3
 
-	jsr Func_2_e15c.l                                                  ; $f2e1 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $f2e1 : $22, $5c, $e1, $02
 	lda $28                                                  ; $f2e5 : $a5, $28
 	sta $1f57.w                                                  ; $f2e7 : $8d, $57, $1f
 	stz $27                                                  ; $f2ea : $64, $27

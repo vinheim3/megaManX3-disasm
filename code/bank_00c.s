@@ -825,7 +825,7 @@ br_0c_86a7:
 	inc $11ef.w, X                                                  ; $86aa : $fe, $ef, $11
 	ora ($8a), Y                                                  ; $86ad : $11, $8a
 	asl                                                  ; $86af : $0a
-	rep #$50.b                                                  ; $86b0 : $c2, $50
+	rep #F_OVERFLOW|IDX_8                                                  ; $86b0 : $c2, $50
 	dec $ca45.w, X                                                  ; $86b2 : $de, $45, $ca
 	bit $1c, X                                                  ; $86b5 : $34, $1c
 	txa                                                  ; $86b7 : $8a
@@ -8157,7 +8157,7 @@ Call_0c_b335:
 	sty $45                                                  ; $b47e : $84, $45
 	bmi br_0c_b4b8                                                  ; $b480 : $30, $36
 
-	rep #$50.b                                                  ; $b482 : $c2, $50
+	rep #F_OVERFLOW|IDX_8                                                  ; $b482 : $c2, $50
 	and $4e, S                                                  ; $b484 : $23, $4e
 	and $2867.w                                                  ; $b486 : $2d, $67, $28
 	bit $ec, X                                                  ; $b489 : $34, $ec
@@ -8189,7 +8189,7 @@ br_0c_b4b8:
 	clc                                                  ; $b4bb : $18
 	ror $221c.w                                                  ; $b4bc : $6e, $1c, $22
 	tsb $3630.w                                                  ; $b4bf : $0c, $30, $36
-	rep #$50.b                                                  ; $b4c2 : $c2, $50
+	rep #F_OVERFLOW|IDX_8                                                  ; $b4c2 : $c2, $50
 	jsr $672d4a.l                                                  ; $b4c4 : $22, $4a, $2d, $67
 	pld                                                  ; $b4c8 : $2b
 

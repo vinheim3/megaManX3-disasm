@@ -47,7 +47,11 @@ THREAD_STARTED = 3
     y dw ; $08/$09
     type db ; $0a
     subType db ; $0b
-    bc ds $27-$c
+    bc ds $11-$c
+    colours8idx db ; $11
+    b12 ds 8-2
+    baseTileIdx db ; $18
+    b19 ds $27-$19
     health db ; $27
     b28 ds $40-$28
     sizeof .db

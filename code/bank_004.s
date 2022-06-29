@@ -7893,7 +7893,7 @@ br_04_ae19:
 
 
 br_04_ae1c:
-	sep #$40.b                                                  ; $ae1c : $e2, $40
+	sep #F_OVERFLOW                                                  ; $ae1c : $e2, $40
 	rts                                                  ; $ae1e : $60
 
 
@@ -12853,67 +12853,67 @@ br_04_cb6f:
 	rtl                                                  ; $cb73 : $6b
 
 
+; DP - enemy struct
 Func_4_cb74:
-	rep #$50.b                                                  ; $cb74 : $c2, $50
-	lda $27                                                  ; $cb76 : $a5, $27
+	rep #F_OVERFLOW|IDX_8                                                  ; $cb74 : $c2, $50
+	lda StageEnemyEntity.health                                                  ; $cb76 : $a5, $27
 	and #$7f.b                                                  ; $cb78 : $29, $7f
-	sta $27                                                  ; $cb7a : $85, $27
-	beq br_04_cbbf                                                  ; $cb7c : $f0, $41
+	sta StageEnemyEntity.health                                                  ; $cb7a : $85, $27
+	beq Jump_04_cbbf                                                  ; $cb7c : $f0, $41
 
 	lda $30                                                  ; $cb7e : $a5, $30
-	bne br_04_cbbf                                                  ; $cb80 : $d0, $3d
+	bne Jump_04_cbbf                                                  ; $cb80 : $d0, $3d
 
 	lda $0e                                                  ; $cb82 : $a5, $0e
-	beq br_04_cbbf                                                  ; $cb84 : $f0, $39
+	beq Jump_04_cbbf                                                  ; $cb84 : $f0, $39
 
 	ldx #$10d8.w                                                  ; $cb86 : $a2, $d8, $10
 
-br_04_cb89:
+@loop_cb89:
 	sep #ACCU_8                                                  ; $cb89 : $e2, $20
 	lda $0000.w, X                                                  ; $cb8b : $bd, $00, $00
-	beq br_04_cbb3                                                  ; $cb8e : $f0, $23
+	beq @br_cbb3                                                  ; $cb8e : $f0, $23
 
 	lda $0030.w, X                                                  ; $cb90 : $bd, $30, $00
-	bne br_04_cbb3                                                  ; $cb93 : $d0, $1e
+	bne @br_cbb3                                                  ; $cb93 : $d0, $1e
 
 	lda $000a.w, X                                                  ; $cb95 : $bd, $0a, $00
 	cmp #$12.b                                                  ; $cb98 : $c9, $12
-	bne br_04_cba2                                                  ; $cb9a : $d0, $06
+	bne @br_cba2                                                  ; $cb9a : $d0, $06
 
 	lda $2f                                                  ; $cb9c : $a5, $2f
-	bne br_04_cbb3                                                  ; $cb9e : $d0, $13
+	bne @br_cbb3                                                  ; $cb9e : $d0, $13
 
-	bra br_04_cbaa                                                  ; $cba0 : $80, $08
+	bra @br_cbaa                                                  ; $cba0 : $80, $08
 
-br_04_cba2:
+@br_cba2:
 	cmp #$0c.b                                                  ; $cba2 : $c9, $0c
-	beq br_04_cbbf                                                  ; $cba4 : $f0, $19
+	beq Jump_04_cbbf                                                  ; $cba4 : $f0, $19
 
 	cmp #$15.b                                                  ; $cba6 : $c9, $15
-	beq br_04_cbbf                                                  ; $cba8 : $f0, $15
+	beq Jump_04_cbbf                                                  ; $cba8 : $f0, $15
 
-br_04_cbaa:
+@br_cbaa:
 	jsr Func_4_cc5c.l                                                  ; $cbaa : $22, $5c, $cc, $04
-	bcc br_04_cbb3                                                  ; $cbae : $90, $03
+	bcc @br_cbb3                                                  ; $cbae : $90, $03
 
 	jmp Jump_04_cedc.w                                                  ; $cbb0 : $4c, $dc, $ce
 
-
-br_04_cbb3:
+@br_cbb3:
 	rep #ACCU_8|F_CARRY                                                  ; $cbb3 : $c2, $21
 	txa                                                  ; $cbb5 : $8a
 	adc #$0040.w                                                  ; $cbb6 : $69, $40, $00
 	tax                                                  ; $cbb9 : $aa
 	cmp #$1318.w                                                  ; $cbba : $c9, $18, $13
-	bcc br_04_cb89                                                  ; $cbbd : $90, $ca
+	bcc @loop_cb89                                                  ; $cbbd : $90, $ca
 
 Jump_04_cbbf:
-br_04_cbbf:
 	sep #ACCU_8|IDX_8                                                  ; $cbbf : $e2, $30
 	lda #$00.b                                                  ; $cbc1 : $a9, $00
 	rtl                                                  ; $cbc3 : $6b
 
 
+;
 	rep #IDX_8                                                  ; $cbc4 : $c2, $10
 	lda $27                                                  ; $cbc6 : $a5, $27
 	and #$7f.b                                                  ; $cbc8 : $29, $7f
@@ -13022,23 +13022,21 @@ br_04_cc57:
 Func_4_cc5c:
 	phy                                                  ; $cc5c : $5a
 	ldy $20                                                  ; $cc5d : $a4, $20
-	bne br_04_cc64                                                  ; $cc5f : $d0, $03
+	bne @br_cc64                                                  ; $cc5f : $d0, $03
 
 	ply                                                  ; $cc61 : $7a
 	clc                                                  ; $cc62 : $18
 	rtl                                                  ; $cc63 : $6b
 
-
-br_04_cc64:
+@br_cc64:
 	ldy $0020.w, X                                                  ; $cc64 : $bc, $20, $00
-	bne br_04_cc6c                                                  ; $cc67 : $d0, $03
+	bne @br_cc6c                                                  ; $cc67 : $d0, $03
 
 	ply                                                  ; $cc69 : $7a
 	clc                                                  ; $cc6a : $18
 	rtl                                                  ; $cc6b : $6b
 
-
-br_04_cc6c:
+@br_cc6c:
 	rep #ACCU_8                                                  ; $cc6c : $c2, $20
 	phx                                                  ; $cc6e : $da
 	lda $0005.w, X                                                  ; $cc6f : $bd, $05, $00
@@ -13073,47 +13071,39 @@ br_04_cc6c:
 	lda $0000.w, Y                                                  ; $ccb4 : $b9, $00, $00
 	and #$00ff.w                                                  ; $ccb7 : $29, $ff, $00
 	bit #$0080.w                                                  ; $ccba : $89, $80, $00
-	beq br_04_ccc2                                                  ; $ccbd : $f0, $03
-
+	beq +                                                  ; $ccbd : $f0, $03
 	ora #$ff00.w                                                  ; $ccbf : $09, $00, $ff
-
-br_04_ccc2:
-	bit $07                                                  ; $ccc2 : $24, $07
-	bvc br_04_ccca                                                  ; $ccc4 : $50, $04
++	bit $07                                                  ; $ccc2 : $24, $07
+	bvc +                                                  ; $ccc4 : $50, $04
 
 	eor #$ffff.w                                                  ; $ccc6 : $49, $ff, $ff
 	ina                                                  ; $ccc9 : $1a
 
-br_04_ccca:
-	sta $0a                                                  ; $ccca : $85, $0a
++	sta $0a                                                  ; $ccca : $85, $0a
 	stz $10                                                  ; $cccc : $64, $10
 	lda $0000.w, X                                                  ; $ccce : $bd, $00, $00
 	and #$00ff.w                                                  ; $ccd1 : $29, $ff, $00
 	bit #$0080.w                                                  ; $ccd4 : $89, $80, $00
-	beq br_04_ccdc                                                  ; $ccd7 : $f0, $03
-
+	beq +                                                  ; $ccd7 : $f0, $03
 	ora #$ff00.w                                                  ; $ccd9 : $09, $00, $ff
-
-br_04_ccdc:
-	bit $08                                                  ; $ccdc : $24, $08
-	bvc br_04_cce4                                                  ; $ccde : $50, $04
++	bit $08                                                  ; $ccdc : $24, $08
+	bvc +                                                  ; $ccde : $50, $04
 
 	eor #$ffff.w                                                  ; $cce0 : $49, $ff, $ff
 	ina                                                  ; $cce3 : $1a
 
-br_04_cce4:
-	adc $0c                                                  ; $cce4 : $65, $0c
++	adc $0c                                                  ; $cce4 : $65, $0c
 	sec                                                  ; $cce6 : $38
 	sbc $04                                                  ; $cce7 : $e5, $04
 	sec                                                  ; $cce9 : $38
 	sbc $0a                                                  ; $ccea : $e5, $0a
-	bpl br_04_ccf4                                                  ; $ccec : $10, $06
+	bpl @cont_ccf4                                                  ; $ccec : $10, $06
 
 	dec $10                                                  ; $ccee : $c6, $10
 	eor #$ffff.w                                                  ; $ccf0 : $49, $ff, $ff
 	ina                                                  ; $ccf3 : $1a
 
-br_04_ccf4:
+@cont_ccf4:
 	sta $04                                                  ; $ccf4 : $85, $04
 	lda $00                                                  ; $ccf6 : $a5, $00
 	sec                                                  ; $ccf8 : $38
@@ -13121,60 +13111,51 @@ br_04_ccf4:
 	ina                                                  ; $ccfb : $1a
 	sta $04                                                  ; $ccfc : $85, $04
 	bit $0f                                                  ; $ccfe : $24, $0f
-	bmi br_04_cd06                                                  ; $cd00 : $30, $04
+	bmi +                                                  ; $cd00 : $30, $04
 
 	eor #$ffff.w                                                  ; $cd02 : $49, $ff, $ff
 	ina                                                  ; $cd05 : $1a
 
-br_04_cd06:
-	sta $00                                                  ; $cd06 : $85, $00
-	bcc br_04_cd5f                                                  ; $cd08 : $90, $55
++	sta $00                                                  ; $cd06 : $85, $00
+	bcc @cont_cd5f                                                  ; $cd08 : $90, $55
 
 	lda $0001.w, Y                                                  ; $cd0a : $b9, $01, $00
 	and #$00ff.w                                                  ; $cd0d : $29, $ff, $00
 	bit #$0080.w                                                  ; $cd10 : $89, $80, $00
-	beq br_04_cd18                                                  ; $cd13 : $f0, $03
-
+	beq +                                                  ; $cd13 : $f0, $03
 	ora #$ff00.w                                                  ; $cd15 : $09, $00, $ff
-
-br_04_cd18:
-	bit $07                                                  ; $cd18 : $24, $07
-	bpl br_04_cd20                                                  ; $cd1a : $10, $04
++	bit $07                                                  ; $cd18 : $24, $07
+	bpl +                                                  ; $cd1a : $10, $04
 
 	eor #$ffff.w                                                  ; $cd1c : $49, $ff, $ff
 	ina                                                  ; $cd1f : $1a
 
-br_04_cd20:
-	sta $0a                                                  ; $cd20 : $85, $0a
++	sta $0a                                                  ; $cd20 : $85, $0a
 	stz $10                                                  ; $cd22 : $64, $10
 	lda $0001.w, X                                                  ; $cd24 : $bd, $01, $00
 	and #$00ff.w                                                  ; $cd27 : $29, $ff, $00
 	bit #$0080.w                                                  ; $cd2a : $89, $80, $00
-	beq br_04_cd32                                                  ; $cd2d : $f0, $03
-
+	beq +                                                  ; $cd2d : $f0, $03
 	ora #$ff00.w                                                  ; $cd2f : $09, $00, $ff
-
-br_04_cd32:
-	bit $08                                                  ; $cd32 : $24, $08
-	bpl br_04_cd3a                                                  ; $cd34 : $10, $04
++	bit $08                                                  ; $cd32 : $24, $08
+	bpl +                                                  ; $cd34 : $10, $04
 
 	eor #$ffff.w                                                  ; $cd36 : $49, $ff, $ff
 	ina                                                  ; $cd39 : $1a
 
-br_04_cd3a:
-	clc                                                  ; $cd3a : $18
++	clc                                                  ; $cd3a : $18
 	adc $0e                                                  ; $cd3b : $65, $0e
 	sec                                                  ; $cd3d : $38
 	sbc $06                                                  ; $cd3e : $e5, $06
 	sec                                                  ; $cd40 : $38
 	sbc $0a                                                  ; $cd41 : $e5, $0a
-	bpl br_04_cd4b                                                  ; $cd43 : $10, $06
+	bpl @cont_cd4b                                                  ; $cd43 : $10, $06
 
 	dec $10                                                  ; $cd45 : $c6, $10
 	eor #$ffff.w                                                  ; $cd47 : $49, $ff, $ff
 	ina                                                  ; $cd4a : $1a
 
-br_04_cd4b:
+@cont_cd4b:
 	sta $06                                                  ; $cd4b : $85, $06
 	lda $02                                                  ; $cd4d : $a5, $02
 	sec                                                  ; $cd4f : $38
@@ -13182,15 +13163,14 @@ br_04_cd4b:
 	ina                                                  ; $cd52 : $1a
 	sta $06                                                  ; $cd53 : $85, $06
 	bit $0f                                                  ; $cd55 : $24, $0f
-	bmi br_04_cd5d                                                  ; $cd57 : $30, $04
+	bmi +                                                  ; $cd57 : $30, $04
 
 	eor #$ffff.w                                                  ; $cd59 : $49, $ff, $ff
 	ina                                                  ; $cd5c : $1a
 
-br_04_cd5d:
-	sta $02                                                  ; $cd5d : $85, $02
++	sta $02                                                  ; $cd5d : $85, $02
 
-br_04_cd5f:
+@cont_cd5f:
 	sep #ACCU_8                                                  ; $cd5f : $e2, $20
 	pld                                                  ; $cd61 : $2b
 	plx                                                  ; $cd62 : $fa
@@ -13441,21 +13421,30 @@ br_04_ced9:
 	rtl                                                  ; $cedb : $6b
 
 
+; X - weapon used struct
 Jump_04_cedc:
 	stz $33                                                  ; $cedc : $64, $33
 	rep #ACCU_8                                                  ; $cede : $c2, $20
+
+; store struct offset
 	stx $1f30.w                                                  ; $cee0 : $8e, $30, $1f
+
+; this was $0a using spinning blades
 	lda $000a.w, X                                                  ; $cee3 : $bd, $0a, $00
 	and #$00ff.w                                                  ; $cee6 : $29, $ff, $00
 	sta $0000.w                                                  ; $cee9 : $8d, $00, $00
+
+; eg $12 for blast hornet
 	lda $28                                                  ; $ceec : $a5, $28
 	and #$00ff.w                                                  ; $ceee : $29, $ff, $00
 	asl                                                  ; $cef1 : $0a
 	tay                                                  ; $cef2 : $a8
-	lda $e4a5.w, Y                                                  ; $cef3 : $b9, $a5, $e4
+	lda WeaponEnemyCollisionTables.w, Y                                                  ; $cef3 : $b9, $a5, $e4
 	clc                                                  ; $cef6 : $18
 	adc $0000.w                                                  ; $cef7 : $6d, $00, $00
 	tay                                                  ; $cefa : $a8
+
+;
 	sep #ACCU_8                                                  ; $cefb : $e2, $20
 	stz $0005.w                                                  ; $cefd : $9c, $05, $00
 	lda $0000.w                                                  ; $cf00 : $ad, $00, $00
@@ -13464,44 +13453,40 @@ Jump_04_cedc:
 	sta $0004.w                                                  ; $cf08 : $8d, $04, $00
 	lda #$00.b                                                  ; $cf0b : $a9, $00
 	xba                                                  ; $cf0d : $eb
-	lda $e4a5.w, Y                                                  ; $cf0e : $b9, $a5, $e4
-	bpl br_04_cf22                                                  ; $cf11 : $10, $0f
+	lda WeaponEnemyCollisionTables.w, Y                                                  ; $cf0e : $b9, $a5, $e4
+	bpl @br_cf22                                                  ; $cf11 : $10, $0f
 
+; bit 7 value found in collision table, so call func here
 	stx $0000.w                                                  ; $cf13 : $8e, $00, $00
 	and #$7f.b                                                  ; $cf16 : $29, $7f
 	tax                                                  ; $cf18 : $aa
 	jsr ($cfe4.w, X)                                                  ; $cf19 : $fc, $e4, $cf
 	ldx $0000.w                                                  ; $cf1c : $ae, $00, $00
-	jmp Jump_04_cfa3.w                                                  ; $cf1f : $4c, $a3, $cf
+	jmp @cont_cfa3.w                                                  ; $cf1f : $4c, $a3, $cf
 
-
-br_04_cf22:
-	bne br_04_cf27                                                  ; $cf22 : $d0, $03
-
+@br_cf22:
+	bne +                                                  ; $cf22 : $d0, $03
 	stz $0004.w                                                  ; $cf24 : $9c, $04, $00
-
-br_04_cf27:
-	lda $1f2f.w                                                  ; $cf27 : $ad, $2f, $1f
++	lda $1f2f.w                                                  ; $cf27 : $ad, $2f, $1f
 	cmp #$19.b                                                  ; $cf2a : $c9, $19
-	beq br_04_cf32                                                  ; $cf2c : $f0, $04
+	beq @br_cf32                                                  ; $cf2c : $f0, $04
 
 	cmp #$1a.b                                                  ; $cf2e : $c9, $1a
-	bne br_04_cf38                                                  ; $cf30 : $d0, $06
+	bne +                                                  ; $cf30 : $d0, $06
 
-br_04_cf32:
+@br_cf32:
 	lda #$34.b                                                  ; $cf32 : $a9, $34
 	jsr Func_1_8000.l                                                  ; $cf34 : $22, $00, $80, $01
 
-br_04_cf38:
-	lda $27                                                  ; $cf38 : $a5, $27
++	lda StageEnemyEntity.health                                                  ; $cf38 : $a5, $27
 	and #$7f.b                                                  ; $cf3a : $29, $7f
 	sec                                                  ; $cf3c : $38
-	sbc $e4a5.w, Y                                                  ; $cf3d : $f9, $a5, $e4
-	bmi br_04_cf5c                                                  ; $cf40 : $30, $1a
+	sbc WeaponEnemyCollisionTables.w, Y                                                  ; $cf3d : $f9, $a5, $e4
+	bmi @br_cf5c                                                  ; $cf40 : $30, $1a
 
-	beq br_04_cf5c                                                  ; $cf42 : $f0, $18
+	beq @br_cf5c                                                  ; $cf42 : $f0, $18
 
-	sta $27                                                  ; $cf44 : $85, $27
+	sta StageEnemyEntity.health                                                  ; $cf44 : $85, $27
 	lda #$20.b                                                  ; $cf46 : $a9, $20
 	jsr Func_1_8000.l                                                  ; $cf48 : $22, $00, $80, $01
 	lda #$08.b                                                  ; $cf4c : $a9, $08
@@ -13509,47 +13494,47 @@ br_04_cf38:
 	stz $0002.w, X                                                  ; $cf51 : $9e, $02, $00
 	stz $0003.w, X                                                  ; $cf54 : $9e, $03, $00
 	inc $0030.w, X                                                  ; $cf57 : $fe, $30, $00
-	bra br_04_cf6a                                                  ; $cf5a : $80, $0e
+	bra @br_cf6a                                                  ; $cf5a : $80, $0e
 
-br_04_cf5c:
-	stz $27                                                  ; $cf5c : $64, $27
+@br_cf5c:
+	stz StageEnemyEntity.health                                                  ; $cf5c : $64, $27
 	lda #$06.b                                                  ; $cf5e : $a9, $06
 	sta $0001.w, X                                                  ; $cf60 : $9d, $01, $00
 	lda #$ff.b                                                  ; $cf63 : $a9, $ff
 	sta $0004.w                                                  ; $cf65 : $8d, $04, $00
-	bra br_04_cf9f                                                  ; $cf68 : $80, $35
+	bra @cont_cf9f                                                  ; $cf68 : $80, $35
 
-br_04_cf6a:
+@br_cf6a:
 	lda $000a.w, X                                                  ; $cf6a : $bd, $0a, $00
 	cmp #$04.b                                                  ; $cf6d : $c9, $04
-	beq br_04_cf7b                                                  ; $cf6f : $f0, $0a
+	beq @br_cf7b                                                  ; $cf6f : $f0, $0a
 
 	cmp #$17.b                                                  ; $cf71 : $c9, $17
-	beq br_04_cf89                                                  ; $cf73 : $f0, $14
+	beq @br_cf89                                                  ; $cf73 : $f0, $14
 
 	cmp #$0e.b                                                  ; $cf75 : $c9, $0e
-	bne br_04_cf9f                                                  ; $cf77 : $d0, $26
+	bne @cont_cf9f                                                  ; $cf77 : $d0, $26
 
-	bra br_04_cf89                                                  ; $cf79 : $80, $0e
+	bra @br_cf89                                                  ; $cf79 : $80, $0e
 
-br_04_cf7b:
+@br_cf7b:
 	sep #ACCU_8                                                  ; $cf7b : $e2, $20
 	iny                                                  ; $cf7d : $c8
-	lda $e4a5.w, Y                                                  ; $cf7e : $b9, $a5, $e4
+	lda WeaponEnemyCollisionTables.w, Y                                                  ; $cf7e : $b9, $a5, $e4
 	sta $33                                                  ; $cf81 : $85, $33
 	lda #$44.b                                                  ; $cf83 : $a9, $44
 	sta $30                                                  ; $cf85 : $85, $30
-	bra br_04_cf93                                                  ; $cf87 : $80, $0a
+	bra @cont_cf93                                                  ; $cf87 : $80, $0a
 
-br_04_cf89:
+@br_cf89:
 	sep #ACCU_8                                                  ; $cf89 : $e2, $20
 	lda $30                                                  ; $cf8b : $a5, $30
-	bne br_04_cf93                                                  ; $cf8d : $d0, $04
+	bne @cont_cf93                                                  ; $cf8d : $d0, $04
 
 	lda #$10.b                                                  ; $cf8f : $a9, $10
 	sta $30                                                  ; $cf91 : $85, $30
 
-br_04_cf93:
+@cont_cf93:
 	lda #$0a.b                                                  ; $cf93 : $a9, $0a
 	sta $01                                                  ; $cf95 : $85, $01
 	rep #ACCU_8                                                  ; $cf97 : $c2, $20
@@ -13557,31 +13542,31 @@ br_04_cf93:
 	sta $0038.w, X                                                  ; $cf9a : $9d, $38, $00
 	sep #ACCU_8                                                  ; $cf9d : $e2, $20
 
-br_04_cf9f:
+@cont_cf9f:
 	lda #$80.b                                                  ; $cf9f : $a9, $80
 	tsb $27                                                  ; $cfa1 : $04, $27
 
-Jump_04_cfa3:
+@cont_cfa3:
 	lda #$00.b                                                  ; $cfa3 : $a9, $00
 	sta $1f2d.w                                                  ; $cfa5 : $8d, $2d, $1f
 	ldy $001a.w, X                                                  ; $cfa8 : $bc, $1a, $00
-	beq br_04_cfb6                                                  ; $cfab : $f0, $09
+	beq @br_cfb6                                                  ; $cfab : $f0, $09
 
-	bpl br_04_cfbf                                                  ; $cfad : $10, $10
+	bpl @cont_cfbf                                                  ; $cfad : $10, $10
 
-br_04_cfaf:
+@loop_cfaf:
 	lda #$40.b                                                  ; $cfaf : $a9, $40
 	sta $1f2d.w                                                  ; $cfb1 : $8d, $2d, $1f
-	bra br_04_cfbf                                                  ; $cfb4 : $80, $09
+	bra @cont_cfbf                                                  ; $cfb4 : $80, $09
 
-br_04_cfb6:
+@br_cfb6:
 	ldy $0005.w, X                                                  ; $cfb6 : $bc, $05, $00
 	cpy $05                                                  ; $cfb9 : $c4, $05
-	bcc br_04_cfbf                                                  ; $cfbb : $90, $02
+	bcc @cont_cfbf                                                  ; $cfbb : $90, $02
 
-	bra br_04_cfaf                                                  ; $cfbd : $80, $f0
+	bra @loop_cfaf                                                  ; $cfbd : $80, $f0
 
-br_04_cfbf:
+@cont_cfbf:
 	lda $0004.w                                                  ; $cfbf : $ad, $04, $00
 	pha                                                  ; $cfc2 : $48
 	lda $0005.w                                                  ; $cfc3 : $ad, $05, $00
@@ -13596,12 +13581,9 @@ br_04_cfbf:
 	sta $0035.w, X                                                  ; $cfd8 : $9d, $35, $00
 	sep #ACCU_8|IDX_8                                                  ; $cfdb : $e2, $30
 	pla                                                  ; $cfdd : $68
-	beq br_04_cfe2                                                  ; $cfde : $f0, $02
-
-	sep #$40.b                                                  ; $cfe0 : $e2, $40
-
-br_04_cfe2:
-	pla                                                  ; $cfe2 : $68
+	beq +                                                  ; $cfde : $f0, $02
+	sep #F_OVERFLOW                                                  ; $cfe0 : $e2, $40
++	pla                                                  ; $cfe2 : $68
 	rtl                                                  ; $cfe3 : $6b
 
 

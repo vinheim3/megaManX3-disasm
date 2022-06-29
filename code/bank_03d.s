@@ -19086,7 +19086,7 @@ br_3d_f8d5:
 	lda $0040.w                                                  ; $f8d6 : $ad, $40, $00
 	bne br_3d_f925                                                  ; $f8d9 : $d0, $4a
 
-	jsr Func_2_e15c.l                                                  ; $f8db : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $f8db : $22, $5c, $e1, $02
 	rep #ACCU_8|F_CARRY                                                  ; $f8df : $c2, $21
 	lda #$0080.w                                                  ; $f8e1 : $a9, $80, $00
 	adc wNewStageScrollX.w                                                  ; $f8e4 : $6d, $5d, $1e

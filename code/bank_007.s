@@ -2483,7 +2483,7 @@ Func_2_8f85:
 	ldy #$01.b                                                  ; $8fce : $a0, $01
 	lda #$f6.b                                                  ; $8fd0 : $a9, $f6
 	jsr Func_0_856d.l                                                  ; $8fd2 : $22, $6d, $85, $00
-	jsr Func_2_e15c.l                                                  ; $8fd6 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $8fd6 : $22, $5c, $e1, $02
 	lda $28                                                  ; $8fda : $a5, $28
 	sta $1f57.w                                                  ; $8fdc : $8d, $57, $1f
 	lda #$02.b                                                  ; $8fdf : $a9, $02
@@ -3756,7 +3756,7 @@ br_07_97c3:
 	tya                                                  ; $97d8 : $98
 	trb $1c98.w                                                  ; $97d9 : $1c, $98, $1c
 	tya                                                  ; $97dc : $98
-	jsr Func_2_e15c.l                                                  ; $97dd : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $97dd : $22, $5c, $e1, $02
 	rep #ACCU_8                                                  ; $97e1 : $c2, $20
 	lda $05                                                  ; $97e3 : $a5, $05
 	clc                                                  ; $97e5 : $18
@@ -4035,7 +4035,7 @@ Jump_07_995c:
 	lda ($99, S), Y                                                  ; $996b : $b3, $99
 	cpy #$99.b                                                  ; $996d : $c0, $99
 	dec $99                                                  ; $996f : $c6, $99
-	jsr Func_2_e15c.l                                                  ; $9971 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $9971 : $22, $5c, $e1, $02
 	lda #$04.b                                                  ; $9975 : $a9, $04
 	sta $12                                                  ; $9977 : $85, $12
 	stz $35                                                  ; $9979 : $64, $35
@@ -4916,7 +4916,7 @@ Call_07_9ea3:
 	bne br_07_9e6c                                                  ; $9ecc : $d0, $9e
 
 	eor ($9f)                                                  ; $9ece : $52, $9f
-	jsr Func_2_e15c.l                                                  ; $9ed0 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $9ed0 : $22, $5c, $e1, $02
 	lda #$30.b                                                  ; $9ed4 : $a9, $30
 	tsb $11                                                  ; $9ed6 : $04, $11
 	lda $11                                                  ; $9ed8 : $a5, $11
@@ -7125,7 +7125,7 @@ br_07_acbf:
 	adc $ad11ad.l                                                  ; $accb : $6f, $ad, $11, $ad
 	plp                                                  ; $accf : $28
 	lda $ad2e.w                                                  ; $acd0 : $ad, $2e, $ad
-	jsr Func_2_e15c.l                                                  ; $acd3 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $acd3 : $22, $5c, $e1, $02
 	lda #$08.b                                                  ; $acd7 : $a9, $08
 	sta $12                                                  ; $acd9 : $85, $12
 	lda $0b                                                  ; $acdb : $a5, $0b
@@ -7722,7 +7722,7 @@ br_07_b027:
 
 
 br_07_b046:
-	jsr Func_2_e15c.l                                                  ; $b046 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $b046 : $22, $5c, $e1, $02
 	lda #$0c.b                                                  ; $b04a : $a9, $0c
 	sta $12                                                  ; $b04c : $85, $12
 	inc $30                                                  ; $b04e : $e6, $30
@@ -9260,7 +9260,7 @@ br_07_b9c2:
 	and $ba, S                                                  ; $b9d2 : $23, $ba
 	and $ba, S                                                  ; $b9d4 : $23, $ba
 	ora $30e2ba.l, X                                                  ; $b9d6 : $1f, $ba, $e2, $30
-	jsr Func_2_e15c.l                                                  ; $b9da : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $b9da : $22, $5c, $e1, $02
 	lda #$0c.b                                                  ; $b9de : $a9, $0c
 	sta $12                                                  ; $b9e0 : $85, $12
 	stz $02                                                  ; $b9e2 : $64, $02
@@ -9480,7 +9480,7 @@ br_07_bb29:
 
 
 	tyx                                                  ; $bb3a : $bb
-	jsr Func_2_e15c.l                                                  ; $bb3b : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $bb3b : $22, $5c, $e1, $02
 	stz $02                                                  ; $bb3f : $64, $02
 	lda $11                                                  ; $bb41 : $a5, $11
 	ora #$40.b                                                  ; $bb43 : $09, $40
@@ -9697,7 +9697,7 @@ br_07_bc9e:
 	lda $0040.w                                                  ; $bc9f : $ad, $40, $00
 	bne br_07_bc9e                                                  ; $bca2 : $d0, $fa
 
-	jsr Func_2_e15c.l                                                  ; $bca4 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $bca4 : $22, $5c, $e1, $02
 	stz $01                                                  ; $bca8 : $64, $01
 	lda #$04.b                                                  ; $bcaa : $a9, $04
 	sta $02                                                  ; $bcac : $85, $02
@@ -11411,7 +11411,7 @@ br_07_c775:
 	bit $c8, X                                                  ; $c785 : $34, $c8
 	dea                                                  ; $c787 : $3a
 	iny                                                  ; $c788 : $c8
-	jsr Func_2_e15c.l                                                  ; $c789 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $c789 : $22, $5c, $e1, $02
 	lda #$00.b                                                  ; $c78d : $a9, $00
 	sta $7fcd90.l                                                  ; $c78f : $8f, $90, $cd, $7f
 	lda #$06.b                                                  ; $c793 : $a9, $06
@@ -12058,7 +12058,7 @@ Call_07_cb3f:
 	wai                                                  ; $cb72 : $cb
 	lda $b3cb.w                                                  ; $cb73 : $ad, $cb, $b3
 	wai                                                  ; $cb76 : $cb
-	jsr Func_2_e15c.l                                                  ; $cb77 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $cb77 : $22, $5c, $e1, $02
 	lda $11                                                  ; $cb7b : $a5, $11
 	sta $10                                                  ; $cb7d : $85, $10
 	lda #$04.b                                                  ; $cb7f : $a9, $04
@@ -15701,7 +15701,7 @@ br_07_e1a2:
 	bpl br_07_e20b                                                  ; $e1cd : $10, $3c
 
 	sep #ACCU_8                                                  ; $e1cf : $e2, $20
-	jsr Func_2_e15c.l                                                  ; $e1d1 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $e1d1 : $22, $5c, $e1, $02
 	lda #$08.b                                                  ; $e1d5 : $a9, $08
 	sta $12                                                  ; $e1d7 : $85, $12
 	lda #$02.b                                                  ; $e1d9 : $a9, $02
@@ -17085,7 +17085,7 @@ br_07_e9ec:
 	sta $ea                                                  ; $e9fd : $85, $ea
 	phb                                                  ; $e9ff : $8b
 	nop                                                  ; $ea00 : $ea
-	jsr Func_2_e15c.l                                                  ; $ea01 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $ea01 : $22, $5c, $e1, $02
 	lda #$04.b                                                  ; $ea05 : $a9, $04
 	sta $12                                                  ; $ea07 : $85, $12
 	lda #$02.b                                                  ; $ea09 : $a9, $02
@@ -17800,7 +17800,7 @@ br_07_ee78:
 	cmp [$ee]                                                  ; $ee96 : $c7, $ee
 	cmp [$ee]                                                  ; $ee98 : $c7, $ee
 	rep #$ee.b                                                  ; $ee9a : $c2, $ee
-	jsr Func_2_e15c.l                                                  ; $ee9c : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $ee9c : $22, $5c, $e1, $02
 	lda #$850c.w                                                  ; $eea0 : $a9, $0c, $85
 	ora ($a9)                                                  ; $eea3 : $12, $a9
 	.db $10, $85                                                  ; $eea5 : $10, $85
@@ -18734,7 +18734,7 @@ Func_7_f434:
 	dec $35                                                  ; $f444 : $c6, $35
 	bne @done                                                  ; $f446 : $d0, $30
 
-	jsr Func_2_e15c.l                                                  ; $f448 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $f448 : $22, $5c, $e1, $02
 	lda $11                                                  ; $f44c : $a5, $11
 	sta $10                                                  ; $f44e : $85, $10
 	lda #$08.b                                                  ; $f450 : $a9, $08
@@ -19404,7 +19404,7 @@ br_07_f883:
 	cpy #$ccf8.w                                                  ; $f88d : $c0, $f8, $cc
 	sed                                                  ; $f890 : $f8
 	sep #ACCU_8                                                  ; $f891 : $e2, $20
-	jsr Func_2_e15c.l                                                  ; $f893 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $f893 : $22, $5c, $e1, $02
 	ldy $0b                                                  ; $f897 : $a4, $0b
 	lda $1f54.w                                                  ; $f899 : $ad, $54, $1f
 	and $c5c4.w, Y                                                  ; $f89c : $39, $c4, $c5
@@ -19570,7 +19570,7 @@ br_07_f964:
 	pei ($f9)                                                  ; $f995 : $d4, $f9
 	sbc ($f9, X)                                                  ; $f997 : $e1, $f9
 	sbc [$f9]                                                  ; $f999 : $e7, $f9
-	jsr Func_2_e15c.l                                                  ; $f99b : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $f99b : $22, $5c, $e1, $02
 	lda #$04.b                                                  ; $f99f : $a9, $04
 	sta $12                                                  ; $f9a1 : $85, $12
 	lda $11                                                  ; $f9a3 : $a5, $11

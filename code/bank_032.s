@@ -290,7 +290,7 @@ br_32_8152:
 
 	clv                                                  ; $816b : $b8
 	cpx $e6e4.w                                                  ; $816c : $ec, $e4, $e6
-	sep #$40.b                                                  ; $816f : $e2, $40
+	sep #F_OVERFLOW                                                  ; $816f : $e2, $40
 	rti                                                  ; $8171 : $40
 
 

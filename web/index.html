@@ -37,7 +37,8 @@
             // 11 - Doppler 2
             // 12 - Doppler 3 + his cutscenes
             // 13 - Doppler 4
-            const stageIdx = 7;
+            const urlParams = new URLSearchParams(window.location.search);
+            const stageIdx = urlParams.get('stage') || 1;
 
             let bankConv = function(bank, addr) {
                 return bank * 0x8000 + (addr % 0x8000)

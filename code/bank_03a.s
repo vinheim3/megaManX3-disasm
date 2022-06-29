@@ -11878,7 +11878,7 @@ br_3a_c5e8:
 	plp                                                  ; $c5e9 : $28
 	ldy $e6a4.w                                                  ; $c5ea : $ac, $a4, $e6
 	sep #$fe.b                                                  ; $c5ed : $e2, $fe
-	sep #$40.b                                                  ; $c5ef : $e2, $40
+	sep #F_OVERFLOW                                                  ; $c5ef : $e2, $40
 	rti                                                  ; $c5f1 : $40
 
 

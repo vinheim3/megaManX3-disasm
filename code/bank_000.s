@@ -19784,14 +19784,14 @@ EnemyUpdateFuncs:
 	.dw $fc92
 	.dw $fc97
 	.dw $fc9c
-	.dw $fca1
-	.dw $fca6
-	.dw $fcab
-	.dw $fcb0
-	.dw $fcb5
-	.dw $fcba
-	.dw $fcbf
-	.dw $fcc4
+	.dw FarUpdateBlizzardBuffalo
+	.dw FarUpdateBlastHornet ; $53
+	.dw FarUpdateCrushCrawfish
+	.dw FarUpdateTunnelRhino
+	.dw FarUpdateNeonTiger
+	.dw FarUpdateToxicSeahorse
+	.dw FarUpdateVoltCatfish
+	.dw FarUpdateGravityBeetle
 	.dw $fcc9
 	.dw $fcce
 	.dw Func_0_fcd3 ; $5c - spawns 1818 enntity 2a displaying capsule text
@@ -20148,38 +20148,47 @@ FarUpdateEnemyCapsule:
 	rts                                                  ; $fca0 : $60
 
 
-	jsr $03c861.l                                                  ; $fca1 : $22, $61, $c8, $03
+FarUpdateBlizzardBuffalo:
+	jsr UpdateBlizzardBuffalo.l                                                  ; $fca1 : $22, $61, $c8, $03
 	rts                                                  ; $fca5 : $60
 
 
-	jsr $399ba9.l                                                  ; $fca6 : $22, $a9, $9b, $39
+FarUpdateBlastHornet:
+	jsr UpdateBlastHornet.l                                                  ; $fca6 : $22, $a9, $9b, $39
 	rts                                                  ; $fcaa : $60
 
 
-	jsr $03d03d.l                                                  ; $fcab : $22, $3d, $d0, $03
+FarUpdateCrushCrawfish:
+	jsr UpdateCrushCrawfish.l                                                  ; $fcab : $22, $3d, $d0, $03
 	rts                                                  ; $fcaf : $60
 
 
-	jsr $3fe5e4.l                                                  ; $fcb0 : $22, $e4, $e5, $3f
+FarUpdateTunnelRhino:
+	jsr UpdateTunnelRhino.l                                                  ; $fcb0 : $22, $e4, $e5, $3f
 	rts                                                  ; $fcb4 : $60
 
 
-	jsr $13dca0.l                                                  ; $fcb5 : $22, $a0, $dc, $13
+FarUpdateNeonTiger:
+	jsr UpdateNeonTiger.l                                                  ; $fcb5 : $22, $a0, $dc, $13
 	rts                                                  ; $fcb9 : $60
 
 
-	jsr $13e493.l                                                  ; $fcba : $22, $93, $e4, $13
+FarUpdateToxicSeahorse:
+	jsr UpdateToxicSeahorse.l                                                  ; $fcba : $22, $93, $e4, $13
 	rts                                                  ; $fcbe : $60
 
 
-	jsr $13ea67.l                                                  ; $fcbf : $22, $67, $ea, $13
+FarUpdateVoltCatfish:
+	jsr UpdateVoltCatfish.l                                                  ; $fcbf : $22, $67, $ea, $13
 	rts                                                  ; $fcc3 : $60
 
 
-	jsr $13f239.l                                                  ; $fcc4 : $22, $39, $f2, $13
+FarUpdateGravityBeetle:
+	jsr UpdateGravityBeetle.l                                                  ; $fcc4 : $22, $39, $f2, $13
 	rts                                                  ; $fcc8 : $60
 
 
+;
 	jsr $13c5fd.l                                                  ; $fcc9 : $22, $fd, $c5, $13
 	rts                                                  ; $fccd : $60
 

@@ -163,6 +163,11 @@ num bytes=79a0
 src addr=0000
 src bank=7f
 
+Damaging bosses
+---------------
+damage check done during enemy states
+calls eg Jump_04_cedc (X being weapon used struct, eg in 10d8)
+
 
 
 TODO: ride armour health
@@ -182,3 +187,6 @@ a - stub
 Event type 1 (yellow)
 ---------------------
 1818 structs
+
+
+10d8 structs - weapons/projectiles?

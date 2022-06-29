@@ -13969,17 +13969,22 @@ br_02_e156:
 	rtl                                                  ; $e157 : $6b
 
 
-Func_2_e158:
+; A - enemy type
+; DP - enemy struct
+LoadEnemyBaseDataA:
 	rep #ACCU_8|IDX_8                                                  ; $e158 : $c2, $30
-	bra _Func_2_e162                                                  ; $e15a : $80, $06
+	bra _LoadEnemyBaseDataA                                                  ; $e15a : $80, $06
 
 
-Func_2_e15c:
+; DP - enemy struct
+LoadCurrEnemyBaseData:
 	rep #ACCU_8|IDX_8                                                  ; $e15c : $c2, $30
 	stz $30                                                  ; $e15e : $64, $30
-	lda $0a                                                  ; $e160 : $a5, $0a
+	lda StageEnemyEntity.type                                                  ; $e160 : $a5, $0a
 
-_Func_2_e162:
+; A - enemy type
+; DP - enemy struct
+_LoadEnemyBaseDataA:
 ; x = (type-1) * 5
 	and #$00ff.w                                                  ; $e162 : $29, $ff, $00
 	dea                                                  ; $e165 : $3a
@@ -13990,40 +13995,47 @@ _Func_2_e162:
 	adc $0000.w                                                  ; $e16c : $6d, $00, $00
 	sta $0000.w                                                  ; $e16f : $8d, $00, $00
 	tax                                                  ; $e172 : $aa
+
+;
 	stz $1a                                                  ; $e173 : $64, $1a
 	stz $1c                                                  ; $e175 : $64, $1c
 	stz $1e                                                  ; $e177 : $64, $1e
 	sep #ACCU_8                                                  ; $e179 : $e2, $20
 	lda #$02.b                                                  ; $e17b : $a9, $02
-	sta $01                                                  ; $e17d : $85, $01
-	lda $e290.w, X                                                  ; $e17f : $bd, $90, $e2
+	sta StageEnemyEntity.state                                                 ; $e17d : $85, $01
+	lda EnemyBaseData.w+2, X                                                  ; $e17f : $bd, $90, $e2
 	sta $26                                                  ; $e182 : $85, $26
 .ifdef HACK
 ; Enemies spawn with 1 health here (does not apply to eg the Cx4 vector spiky spinner)
 	lda #$01.b
 	nop
 .else
-	lda $e291.w, X                                                  ; $e184 : $bd, $91, $e2
+	lda EnemyBaseData.w+3, X                                                  ; $e184 : $bd, $91, $e2
 .endif
 	sta StageEnemyEntity.health                                                  ; $e187 : $85, $27
-	lda $e292.w, X                                                  ; $e189 : $bd, $92, $e2
+	lda EnemyBaseData.w+4, X                                                  ; $e189 : $bd, $92, $e2
 	sta $28                                                  ; $e18c : $85, $28
-	lda $e28e.w, X                                                  ; $e18e : $bd, $8e, $e2
+	lda EnemyBaseData.w, X                                                  ; $e18e : $bd, $8e, $e2
 	sta $16                                                  ; $e191 : $85, $16
-	lda $e28f.w, X                                                  ; $e193 : $bd, $8f, $e2
+
+; this is a decomp idx
+	lda EnemyBaseData.w+1, X                                                  ; $e193 : $bd, $8f, $e2
 	xba                                                  ; $e196 : $eb
 	lda #$00.b                                                  ; $e197 : $a9, $00
 	xba                                                  ; $e199 : $eb
 	tax                                                  ; $e19a : $aa
 	lda wMapFromDecompDataIdxToBaseTileIdx.l, X                                                  ; $e19b : $bf, $00, $82, $7f
-	sta $18                                                  ; $e19f : $85, $18
+	sta StageEnemyEntity.baseTileIdx                                                  ; $e19f : $85, $18
 	lda wMapFromDecompDataIdxTo8plusColours.l, X                                                  ; $e1a1 : $bf, $00, $83, $7f
-	sta $11                                                  ; $e1a5 : $85, $11
+	sta StageEnemyEntity.colours8idx                                                  ; $e1a5 : $85, $11
+
+;
 	stz $10                                                  ; $e1a7 : $64, $10
 	sep #ACCU_8|IDX_8                                                  ; $e1a9 : $e2, $30
 	rtl                                                  ; $e1ab : $6b
 
 
+;
 	rep #ACCU_8                                                  ; $e1ac : $c2, $20
 	stz $0000.w                                                  ; $e1ae : $9c, $00, $00
 	stz $0002.w                                                  ; $e1b1 : $9c, $02, $00
@@ -15084,7 +15096,7 @@ br_02_e814:
 
 
 br_02_e81b:
-	jsr Func_2_e15c.l                                                  ; $e81b : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $e81b : $22, $5c, $e1, $02
 	lda $28                                                  ; $e81f : $a5, $28
 	sta $1f57.w                                                  ; $e821 : $8d, $57, $1f
 	lda #$29.b                                                  ; $e824 : $a9, $29

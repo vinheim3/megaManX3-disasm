@@ -5999,7 +5999,7 @@ br_03_a413:
 
 
 br_03_a416:
-	sep #$40.b                                                  ; $a416 : $e2, $40
+	sep #F_OVERFLOW                                                  ; $a416 : $e2, $40
 	rts                                                  ; $a418 : $60
 
 
@@ -9522,7 +9522,7 @@ Func_3_bb98:
 	lda #$80.b                                                  ; $bba3 : $a9, $80
 	tsb $00                                                  ; $bba5 : $04, $00
 	lda #$4c.b                                                  ; $bba7 : $a9, $4c
-	jsr Func_2_e158.l                                                  ; $bba9 : $22, $58, $e1, $02
+	jsr LoadEnemyBaseDataA.l                                                  ; $bba9 : $22, $58, $e1, $02
 	rep #ACCU_8                                                  ; $bbad : $c2, $20
 	lda #$1880.w                                                  ; $bbaf : $a9, $80, $18
 	sta $05                                                  ; $bbb2 : $85, $05
@@ -11445,6 +11445,7 @@ br_03_c85e:
 	rts                                                  ; $c860 : $60
 
 
+UpdateBlizzardBuffalo:
 	ldx $01                                                  ; $c861 : $a6, $01
 	jmp ($c866.w, X)                                                  ; $c863 : $7c, $66, $c8
 
@@ -11537,7 +11538,7 @@ br_03_c8ef:
 	lda $0040.w                                                  ; $c8f0 : $ad, $40, $00
 	bne br_03_c8ef                                                  ; $c8f3 : $d0, $fa
 
-	jsr Func_2_e15c.l                                                  ; $c8f5 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $c8f5 : $22, $5c, $e1, $02
 	lda $28                                                  ; $c8f9 : $a5, $28
 	sta $1f57.w                                                  ; $c8fb : $8d, $57, $1f
 	stz $27                                                  ; $c8fe : $64, $27
@@ -12674,6 +12675,7 @@ br_03_d025:
 	rts                                                  ; $d03c : $60
 
 
+UpdateCrushCrawfish:
 	ldx $01                                                  ; $d03d : $a6, $01
 	jmp ($d042.w, X)                                                  ; $d03f : $7c, $42, $d0
 
@@ -12781,7 +12783,7 @@ br_03_d0d3:
 	bit #$04.b                                                  ; $d0dc : $89, $04
 	beq br_03_d0d3                                                  ; $d0de : $f0, $f3
 
-	jsr Func_2_e15c.l                                                  ; $d0e0 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $d0e0 : $22, $5c, $e1, $02
 	lda $28                                                  ; $d0e4 : $a5, $28
 	sta $1f57.w                                                  ; $d0e6 : $8d, $57, $1f
 	stz $27                                                  ; $d0e9 : $64, $27
@@ -13747,7 +13749,7 @@ br_03_d6b1:
 	.dw $dbaf
 
 
-	jsr Func_2_e15c.l                                                  ; $d6c4 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $d6c4 : $22, $5c, $e1, $02
 	stz $02                                                  ; $d6c8 : $64, $02
 	lda $0000.w                                                  ; $d6ca : $ad, $00, $00
 	sta $3b                                                  ; $d6cd : $85, $3b

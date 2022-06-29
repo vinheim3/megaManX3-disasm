@@ -2354,7 +2354,7 @@ br_10_8ea6:
 	sep #$80.b                                                  ; $8ef9 : $e2, $80
 	sed                                                  ; $8efb : $f8
 	.db $00                                                  ; $8efc : $00
-	sep #$40.b                                                  ; $8efd : $e2, $40
+	sep #F_OVERFLOW                                                  ; $8efd : $e2, $40
 	.db $00                                                  ; $8eff : $00
 	sed                                                  ; $8f00 : $f8
 	sep #$00.b                                                  ; $8f01 : $e2, $00

@@ -11594,7 +11594,7 @@ br_01_cb92:
 	sbc [$cb]                                                  ; $cbb5 : $e7, $cb
 	bit $cc                                                  ; $cbb7 : $24, $cc
 	eor $cc, X                                                  ; $cbb9 : $55, $cc
-	jsr Func_2_e15c.l                                                  ; $cbbb : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $cbbb : $22, $5c, $e1, $02
 	lda #$8506.w                                                  ; $cbbf : $a9, $06, $85
 	ora ($a9)                                                  ; $cbc2 : $12, $a9
 	cop $85.b                                                  ; $cbc4 : $02, $85
@@ -11767,7 +11767,7 @@ Call_01_ccbb:
 	cmp $cd18.w                                                  ; $cccd : $cd, $18, $cd
 	sbc ($cc)                                                  ; $ccd0 : $f2, $cc
 	sbc $cd05cc.l, X                                                  ; $ccd2 : $ff, $cc, $05, $cd
-	jsr Func_2_e15c.l                                                  ; $ccd6 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $ccd6 : $22, $5c, $e1, $02
 	lda #$0c.b                                                  ; $ccda : $a9, $0c
 	sta $12                                                  ; $ccdc : $85, $12
 	lda #$01.b                                                  ; $ccde : $a9, $01
@@ -11958,7 +11958,7 @@ Call_01_cddb:
 	dec $ce29.w                                                  ; $ce00 : $ce, $29, $ce
 	and ($ce), Y                                                  ; $ce03 : $31, $ce
 	and [$ce], Y                                                  ; $ce05 : $37, $ce
-	jsr Func_2_e15c.l                                                  ; $ce07 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $ce07 : $22, $5c, $e1, $02
 	lda #$0c.b                                                  ; $ce0b : $a9, $0c
 	sta $12                                                  ; $ce0d : $85, $12
 	lda #$02.b                                                  ; $ce0f : $a9, $02

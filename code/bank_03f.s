@@ -15733,6 +15733,7 @@ Call_3f_e5c8:
 	rts                                                  ; $e5e3 : $60
 
 
+UpdateTunnelRhino:
 	ldx $01                                                  ; $e5e4 : $a6, $01
 	jmp ($e5e9.w, X)                                                  ; $e5e6 : $7c, $e9, $e5
 
@@ -15846,7 +15847,7 @@ br_3f_e68c:
 	sep #ACCU_8                                                  ; $e68f : $e2, $20
 	lda #$01.b                                                  ; $e691 : $a9, $01
 	sta $00a1.w                                                  ; $e693 : $8d, $a1, $00
-	jsr Func_2_e15c.l                                                  ; $e696 : $22, $5c, $e1, $02
+	jsr LoadCurrEnemyBaseData.l                                                  ; $e696 : $22, $5c, $e1, $02
 	lda $28                                                  ; $e69a : $a5, $28
 	sta $1f57.w                                                  ; $e69c : $8d, $57, $1f
 	stz $27                                                  ; $e69f : $64, $27
