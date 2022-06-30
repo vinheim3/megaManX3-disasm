@@ -4775,7 +4775,7 @@ br_05_9fb2:
 	ldy #$a2.b                                                  ; $a02c : $a0, $a2
 	jsr Func_0_872f.l                                                  ; $a02e : $22, $2f, $87, $00
 	lda #$09.b                                                  ; $a032 : $a9, $09
-	sta $00cf.w                                                  ; $a034 : $8d, $cf, $00
+	sta wBGMode.w                                                  ; $a034 : $8d, $cf, $00
 	lda #$09.b                                                  ; $a037 : $a9, $09
 	sta $00ce.w                                                  ; $a039 : $8d, $ce, $00
 	lda #$13.b                                                  ; $a03c : $a9, $13

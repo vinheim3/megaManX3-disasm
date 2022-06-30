@@ -15252,6 +15252,7 @@ UpdateIntsEnabledWithOnlyAutoJoypadRead:
 	rtl                                                  ; $da7c : $6b
 
 
+;
 -	rtl                                                  ; $da7d : $6b
 
 Func_4_da7e:
@@ -15262,30 +15263,47 @@ Func_4_da7e:
 	ldy #$00.b                                                  ; $da86 : $a0, $00
 
 @loop_da88:
+; eg 10, R0 becomes $e757 (type of wireframe?)
 	rep #ACCU_8                                                  ; $da88 : $c2, $20
 	ldx $1e28.w, Y                                                  ; $da8a : $be, $28, $1e
-	lda $08e000.l, X                                                  ; $da8d : $bf, $00, $e0, $08
+	lda Data_8_e000.l, X                                                  ; $da8d : $bf, $00, $e0, $08
 	sta CX4_R0.w                                                  ; $da91 : $8d, $80, $7f
+
+; bank 8
 	lda #$0008.w                                                  ; $da94 : $a9, $08, $00
 	sta CX4_R0.w+2                                                  ; $da97 : $8d, $82, $7f
+
+; eg 4e (num lines)
 	lda $1e2f.w, Y                                                  ; $da9a : $b9, $2f, $1e
 	sta $6295.w                                                  ; $da9d : $8d, $95, $62
 	sep #ACCU_8                                                  ; $daa0 : $e2, $20
+
+; R2+0 = yaw
 	lda $1e29.w, Y                                                  ; $daa2 : $b9, $29, $1e
 	sta CX4_R2.w                                                  ; $daa5 : $8d, $86, $7f
+
+; R2+1 = pitch
 	lda $1e2a.w, Y                                                  ; $daa8 : $b9, $2a, $1e
 	sta CX4_R2.w+1                                                  ; $daab : $8d, $87, $7f
+
+; R2+2 = roll
 	lda $1e2b.w, Y                                                  ; $daae : $b9, $2b, $1e
 	sta CX4_R2.w+2                                                  ; $dab1 : $8d, $88, $7f
+
+; R5 seems to be how close thing is to you (eg $005000)
 	stz CX4_R5.w                                                  ; $dab4 : $9c, $8f, $7f
 	lda $1e2c.w, Y                                                  ; $dab7 : $b9, $2c, $1e
 	sta CX4_R5.w+1                                                  ; $daba : $8d, $90, $7f
 	lda $1e2d.w, Y                                                  ; $dabd : $b9, $2d, $1e
 	sta CX4_R5.w+2                                                  ; $dac0 : $8d, $91, $7f
+
+; RC = eg $001000
 	stz CX4_RC.w                                                  ; $dac3 : $9c, $a4, $7f
 	lda $1e2e.w, Y                                                  ; $dac6 : $b9, $2e, $1e
 	sta CX4_RC.w+1                                                  ; $dac9 : $8d, $a5, $7f
 	stz CX4_RC.w+2                                                  ; $dacc : $9c, $a6, $7f
+
+;
 	phy                                                  ; $dacf : $5a
 	tyx                                                  ; $dad0 : $bb
 
@@ -15299,7 +15317,7 @@ Func_4_da7e:
 	ldx #$01.b                                                  ; $dad9 : $a2, $01
 	jsr wSetCx4InsPagePtrAndToggle.l                                                  ; $dadb : $22, $a0, $26, $7e
 
-;
+; Y += 8
 	ply                                                  ; $dadf : $7a
 	clc                                                  ; $dae0 : $18
 	tya                                                  ; $dae1 : $98
@@ -15308,9 +15326,12 @@ Func_4_da7e:
 	cpy $1f69.w                                                  ; $dae5 : $cc, $69, $1f
 	bne @loop_da88                                                  ; $dae8 : $d0, $9e
 
+; hires sqrt
 	lda #$02.b                                                  ; $daea : $a9, $02
 	ldx #$00.b                                                  ; $daec : $a2, $00
 	jsr wSetCx4InsPageWithIntsDisabled.l                                                  ; $daee : $22, $a6, $26, $7e
+
+;
 	lda #$01.b                                                  ; $daf2 : $a9, $01
 	sta CX4_UNK_7F4C.w                                                  ; $daf4 : $8d, $4c, $7f
 	stz $1f69.w                                                  ; $daf7 : $9c, $69, $1f

@@ -712,7 +712,7 @@ br_0c_8588:
 	.db $00                                                  ; $85d8 : $00
 	.db $00                                                  ; $85d9 : $00
 	sbc ($22), Y                                                  ; $85da : $f1, $22
-	ora $00cf.w                                                  ; $85dc : $0d, $cf, $00
+	ora wBGMode.w                                                  ; $85dc : $0d, $cf, $00
 	tsx                                                  ; $85df : $ba
 	and $22, S                                                  ; $85e0 : $23, $22
 	xce                                                  ; $85e2 : $fb

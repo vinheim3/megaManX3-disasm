@@ -1077,7 +1077,7 @@ todo_UpdateBGTilemapAndCharAddrRegs:
 	stz wBG3VertScroll                                                  ; $859c : $64, $bf
 	sep #ACCU_8|IDX_8                                                  ; $859e : $e2, $30
 	lda #$09.b                                                  ; $85a0 : $a9, $09
-	sta $00cf.w                                                  ; $85a2 : $8d, $cf, $00
+	sta wBGMode.w                                                  ; $85a2 : $8d, $cf, $00
 	lda #$51.b                                                  ; $85a5 : $a9, $51
 	sta BG1SC.w                                                  ; $85a7 : $8d, $07, $21
 	lda #$59.b                                                  ; $85aa : $a9, $59
@@ -3508,7 +3508,7 @@ Call_00_9571:
 	lda #$02.b                                                  ; $9589 : $a9, $02
 	sta $00c6.w                                                  ; $958b : $8d, $c6, $00
 	lda #$08.b                                                  ; $958e : $a9, $08
-	trb $00cf.w                                                  ; $9590 : $1c, $cf, $00
+	trb wBGMode.w                                                  ; $9590 : $1c, $cf, $00
 	stz wColourAdditionSelect.w                                                  ; $9593 : $9c, $c9, $00
 	stz $00cb.w                                                  ; $9596 : $9c, $cb, $00
 	stz $00cc.w                                                  ; $9599 : $9c, $cc, $00
@@ -4203,7 +4203,7 @@ Func_0_9a75:
 
 Jump_00_9a85:
 	lda #$09.b                                                  ; $9a85 : $a9, $09
-	sta $00cf.w                                                  ; $9a87 : $8d, $cf, $00
+	sta wBGMode.w                                                  ; $9a87 : $8d, $cf, $00
 	lda #$01.b                                                  ; $9a8a : $a9, $01
 	sta $7effc6.l                                                  ; $9a8c : $8f, $c6, $ff, $7e
 	ldx #$00.b                                                  ; $9a90 : $a2, $00
@@ -5207,7 +5207,7 @@ Call_00_a1c9:
 Call_00_a1d0:
 	rep #IDX_8                                                  ; $a1d0 : $c2, $10
 	lda #$09.b                                                  ; $a1d2 : $a9, $09
-	sta $00cf.w                                                  ; $a1d4 : $8d, $cf, $00
+	sta wBGMode.w                                                  ; $a1d4 : $8d, $cf, $00
 	lda #$51.b                                                  ; $a1d7 : $a9, $51
 	sta BG1SC.w                                                  ; $a1d9 : $8d, $07, $21
 	lda #$59.b                                                  ; $a1dc : $a9, $59
@@ -5809,29 +5809,29 @@ br_00_a5c4:
 
 
 Call_00_a5c5:
-br_00_a5c5:
+@loop_a5c5:
 	inc $09cc.w                                                  ; $a5c5 : $ee, $cc, $09
 	pea $0d18.w                                                  ; $a5c8 : $f4, $18, $0d
 	pld                                                  ; $a5cb : $2b
 	ldx $01                                                  ; $a5cc : $a6, $01
-	beq br_00_a5df                                                  ; $a5ce : $f0, $0f
+	beq @cont_a5df                                                  ; $a5ce : $f0, $0f
 
 	cpx #$0e.b                                                  ; $a5d0 : $e0, $0e
-	beq br_00_a5df                                                  ; $a5d2 : $f0, $0b
+	beq @cont_a5df                                                  ; $a5d2 : $f0, $0b
 
 	lda wJoy1CurrButtonsHeld.w+1                                                  ; $a5d4 : $ad, $a9, $00
 	bit #$d0.b                                                  ; $a5d7 : $89, $d0
-	beq br_00_a5df                                                  ; $a5d9 : $f0, $04
+	beq @cont_a5df                                                  ; $a5d9 : $f0, $04
 
 	ldx #$10.b                                                  ; $a5db : $a2, $10
 	stx $01                                                  ; $a5dd : $86, $01
 
-br_00_a5df:
+@cont_a5df:
 	ldx $01                                                  ; $a5df : $a6, $01
-	jsr ($a60a.w, X)                                                  ; $a5e1 : $fc, $0a, $a6
+	jsr (@funcs.w, X)                                                  ; $a5e1 : $fc, $0a, $a6
 	sep #ACCU_8                                                  ; $a5e4 : $e2, $20
 	lda $34                                                  ; $a5e6 : $a5, $34
-	bne br_00_a605                                                  ; $a5e8 : $d0, $1b
+	bne @end                                                  ; $a5e8 : $d0, $1b
 
 	jsr Call_00_db9f.w                                                  ; $a5ea : $20, $9f, $db
 	jsr Call_00_db07.w                                                  ; $a5ed : $20, $07, $db
@@ -5842,28 +5842,28 @@ br_00_a5df:
 	pld                                                  ; $a5fc : $2b
 	jsr NearBuildOam.w                                                  ; $a5fd : $20, $59, $dd
 	jsr Call_00_aa6b.w                                                  ; $a600 : $20, $6b, $aa
-	bra br_00_a5c5                                                  ; $a603 : $80, $c0
+	bra @loop_a5c5                                                  ; $a603 : $80, $c0
 
-br_00_a605:
+@end:
 	pea $0000.w                                                  ; $a605 : $f4, $00, $00
 	pld                                                  ; $a608 : $2b
 	rts                                                  ; $a609 : $60
 
+@funcs:
+	.dw Func_0_a61c
+	.dw $a735
+	.dw $a7ae
+	.dw $a84a
+	.dw $a865
+	.dw $a86c
+	.dw $a8a0
+	.dw $aa17
+	.dw $aa42
 
-	trb $35a6.w                                                  ; $a60a : $1c, $a6, $35
-	lda [$ae]                                                  ; $a60d : $a7, $ae
-	lda [$4a]                                                  ; $a60f : $a7, $4a
-	tay                                                  ; $a611 : $a8
-	adc $a8                                                  ; $a612 : $65, $a8
-	jmp ($a0a8.w)                                                  ; $a614 : $6c, $a8, $a0
 
-
-	tay                                                  ; $a617 : $a8
-	ora [$aa], Y                                                  ; $a618 : $17, $aa
-	wdm                                                  ; $a61a : $42
-	tax                                                  ; $a61b : $aa
+Func_0_a61c:
 	lda #$09.b                                                  ; $a61c : $a9, $09
-	sta $00cf.w                                                  ; $a61e : $8d, $cf, $00
+	sta wBGMode.w                                                  ; $a61e : $8d, $cf, $00
 	pea $0000.w                                                  ; $a621 : $f4, $00, $00
 	pld                                                  ; $a624 : $2b
 	jsr Call_00_8841.w                                                  ; $a625 : $20, $41, $88
@@ -5895,12 +5895,15 @@ br_00_a605:
 	ldx #$0020.w                                                  ; $a66e : $a2, $20, $00
 	ldy #$001c.w                                                  ; $a671 : $a0, $1c, $00
 	jsr LoadPalettesFromGivenSpecToColourX.l                                                  ; $a674 : $22, $4a, $80, $01
+
+
+; copy in palette for BG megaman based on stage
 	phb                                                  ; $a678 : $8b
 	rep #ACCU_8                                                  ; $a679 : $c2, $20
 	lda wStageIdx.w                                                  ; $a67b : $ad, $ae, $1f
 	and #$00ff.w                                                  ; $a67e : $29, $ff, $00
 	tax                                                  ; $a681 : $aa
-	lda $9c6d.w, X                                                  ; $a682 : $bd, $6d, $9c
+	lda Data_6_9c6e.w-1, X                                                  ; $a682 : $bd, $6d, $9c
 	and #$00ff.w                                                  ; $a685 : $29, $ff, $00
 	ina                                                  ; $a688 : $1a
 	ina                                                  ; $a689 : $1a
@@ -5915,6 +5918,8 @@ br_00_a605:
 	lda #$001f.w                                                  ; $a696 : $a9, $1f, $00
 	mvn $0c, $00                                                  ; $a699 : $54, $00, $0c
 	plb                                                  ; $a69c : $ab
+
+;
 	sep #ACCU_8|IDX_8                                                  ; $a69d : $e2, $30
 	lda wStageIdx.w                                                  ; $a69f : $ad, $ae, $1f
 	sta $0d4f.w                                                  ; $a6a2 : $8d, $4f, $0d
@@ -5923,10 +5928,9 @@ br_00_a605:
 	stz wDynamicSpriteTileDatasIdx.w                                                  ; $a6aa : $9c, $18, $1f
 	jsr AddThreadToDynamicallyLoadSpriteData.w                                                  ; $a6ad : $20, $e0, $b1
 
-br_00_a6b0:
-	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $a6b0 : $20, $62, $81
+-	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $a6b0 : $20, $62, $81
 	lda $0040.w                                                  ; $a6b3 : $ad, $40, $00
-	bne br_00_a6b0                                                  ; $a6b6 : $d0, $f8
+	bne -                                                  ; $a6b6 : $d0, $f8
 
 ; hires sqrt
 	lda #$02.b                                                  ; $a6b8 : $a9, $02
@@ -5940,7 +5944,7 @@ br_00_a6b0:
 ;
 	lda #$28.b                                                  ; $a6c7 : $a9, $28
 	jsr Func_0_84bc.l                                                  ; $a6c9 : $22, $bc, $84, $00
-	pea $0d18.w                                                  ; $a6cd : $f4, $18, $0d
+	pea wEnemyEntities.w                                                  ; $a6cd : $f4, $18, $0d
 	pld                                                  ; $a6d0 : $2b
 	inc $00                                                  ; $a6d1 : $e6, $00
 	rep #ACCU_8                                                  ; $a6d3 : $c2, $20
@@ -5965,18 +5969,16 @@ br_00_a6b0:
 	sta $35                                                  ; $a702 : $85, $35
 	stz $36                                                  ; $a704 : $64, $36
 
-br_00_a706:
+@loop_a706:
 	lda wSubTanksAndUpgradesGottenBitfield.w                                                  ; $a706 : $ad, $d1, $1f
 	bit $35                                                  ; $a709 : $24, $35
-	beq br_00_a70d                                                  ; $a70b : $f0, $00
-
-br_00_a70d:
-	inc $36                                                  ; $a70d : $e6, $36
+	beq +                                                  ; $a70b : $f0, $00
++	inc $36                                                  ; $a70d : $e6, $36
 	lda $35                                                  ; $a70f : $a5, $35
 	asl                                                  ; $a711 : $0a
 	sta $35                                                  ; $a712 : $85, $35
 	cmp #$10.b                                                  ; $a714 : $c9, $10
-	bcc br_00_a706                                                  ; $a716 : $90, $ee
+	bcc @loop_a706                                                  ; $a716 : $90, $ee
 
 	stz $36                                                  ; $a718 : $64, $36
 	lda #$10.b                                                  ; $a71a : $a9, $10
@@ -5994,6 +5996,7 @@ br_00_a70d:
 	rts                                                  ; $a734 : $60
 
 
+;
 	lda $36                                                  ; $a735 : $a5, $36
 	cmp #$10.b                                                  ; $a737 : $c9, $10
 	bcs br_00_a743                                                  ; $a739 : $b0, $08
@@ -6526,7 +6529,7 @@ Call_00_aa7b:
 	lda #$10.b                                                  ; $aaa9 : $a9, $10
 	sta $27                                                  ; $aaab : $85, $27
 	ldx $0d58.w                                                  ; $aaad : $ae, $58, $0d
-	lda $9c6d.w, X                                                  ; $aab0 : $bd, $6d, $9c
+	lda Data_6_9c6e.w-1, X                                                  ; $aab0 : $bd, $6d, $9c
 	ina                                                  ; $aab3 : $1a
 	ina                                                  ; $aab4 : $1a
 	sta $33                                                  ; $aab5 : $85, $33
@@ -10464,7 +10467,7 @@ br_00_c268:
 	lda #$01.b                                                  ; $c2bd : $a9, $01
 	sta CX4_UNK_7F4C.w                                                  ; $c2bf : $8d, $4c, $7f
 	lda #$09.b                                                  ; $c2c2 : $a9, $09
-	sta $00cf.w                                                  ; $c2c4 : $8d, $cf, $00
+	sta wBGMode.w                                                  ; $c2c4 : $8d, $cf, $00
 	lda $1fd6.w                                                  ; $c2c7 : $ad, $d6, $1f
 	sta $29                                                  ; $c2ca : $85, $29
 	jsr $038063.l                                                  ; $c2cc : $22, $63, $80, $03
@@ -12550,7 +12553,7 @@ Call_00_cfea:
 	sta $1c                                                  ; $d010 : $85, $1c
 	lda wColourMathDesignation.w                                                  ; $d012 : $ad, $ca, $00
 	sta $1d                                                  ; $d015 : $85, $1d
-	lda $00cf.w                                                  ; $d017 : $ad, $cf, $00
+	lda wBGMode.w                                                  ; $d017 : $ad, $cf, $00
 	sta $1e                                                  ; $d01a : $85, $1e
 	lda $00cb.w                                                  ; $d01c : $ad, $cb, $00
 	sta $1f                                                  ; $d01f : $85, $1f
@@ -12633,7 +12636,7 @@ Call_00_d0a5:
 	lda $1d                                                  ; $d0e0 : $a5, $1d
 	sta wColourMathDesignation.w                                                  ; $d0e2 : $8d, $ca, $00
 	lda $1e                                                  ; $d0e5 : $a5, $1e
-	sta $00cf.w                                                  ; $d0e7 : $8d, $cf, $00
+	sta wBGMode.w                                                  ; $d0e7 : $8d, $cf, $00
 	lda $1f                                                  ; $d0ea : $a5, $1f
 	sta $00cb.w                                                  ; $d0ec : $8d, $cb, $00
 	lda $20                                                  ; $d0ef : $a5, $20
@@ -13715,10 +13718,13 @@ SetCx4InsPagePtrWithIntsEnabled:
 	and #CX4F_BUSY.b                                                          ; $d7fd : $29, $40
 	bne -                                                                     ; $d7ff : $d0, $f8
 
+; orig A is page
 	pla                                                  ; $d801 : $68
 	sta CX4_PRG_ROM_INS_PAGE.l                                                  ; $d802 : $8f, $4d, $7f, $00
 	lda #$00.b                                                  ; $d806 : $a9, $00
 	sta CX4_PRG_ROM_INS_PAGE.l+1                                                  ; $d808 : $8f, $4e, $7f, $00
+
+; orig Y is ptr
 	tya                                                  ; $d80c : $98
 	sta CX4_PRG_ROM_INS_POINTER.l                                                  ; $d80d : $8f, $4f, $7f, $00
 
@@ -13745,11 +13751,13 @@ SetCx4InsPageWithIntsDisabled:
 	and #AUTO_JOYPAD_READ_ENABLE.b                                            ; $d827 : $29, $01
 	sta NMITIMEN.l                                                            ; $d829 : $8f, $00, $42, $00
 
-;
+; orig A is page
 	pla                                                  ; $d82d : $68
 	sta CX4_PRG_ROM_INS_PAGE.l                                                  ; $d82e : $8f, $4d, $7f, $00
 	lda #$00.b                                                  ; $d832 : $a9, $00
 	sta CX4_PRG_ROM_INS_PAGE.l+1                                                  ; $d834 : $8f, $4e, $7f, $00
+
+;
 	txa                                                  ; $d838 : $8a
 	sta CX4_UNK_TOGGLE.l                                                  ; $d839 : $8f, $48, $7f, $00
 

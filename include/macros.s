@@ -6,6 +6,12 @@
     pea (\2<<8)|\1.w
 .endm
 
+.macro dwbe
+    .redefine _out (\1>>8)|((\1&$ff)<<8)
+.endm
+
+; Cx4
+
 .enum 0
     A db
     IMM db

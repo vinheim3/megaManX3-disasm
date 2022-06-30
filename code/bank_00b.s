@@ -7242,7 +7242,7 @@ br_0b_b7b8:
 	txa                                                  ; $b7d8 : $8a
 	tsx                                                  ; $b7d9 : $ba
 	sbc $55, S                                                  ; $b7da : $e3, $55
-	asl $00cf.w, X                                                  ; $b7dc : $1e, $cf, $00
+	asl wBGMode.w, X                                                  ; $b7dc : $1e, $cf, $00
 	.db $f0, $0f                                                  ; $b7df : $f0, $0f
 
 	txs                                                  ; $b7e1 : $9a

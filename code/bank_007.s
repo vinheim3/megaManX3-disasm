@@ -46,7 +46,7 @@
 	lda #$78.b                                                  ; $806a : $a9, $78
 	sta $00ce.w                                                  ; $806c : $8d, $ce, $00
 	lda #$09.b                                                  ; $806f : $a9, $09
-	sta $00cf.w                                                  ; $8071 : $8d, $cf, $00
+	sta wBGMode.w                                                  ; $8071 : $8d, $cf, $00
 	inc wXVectorTileDataUpdatePending.w                                                  ; $8074 : $ee, $dd, $1f
 	jsr Func_0_8b78.l                                                  ; $8077 : $22, $78, $8b, $00
 	rep #ACCU_8                                                  ; $807b : $c2, $20
@@ -8404,7 +8404,7 @@ br_07_b470:
 	lda #$09.b                                                  ; $b4e3 : $a9, $09
 
 br_07_b4e5:
-	sta $00cf.w                                                  ; $b4e5 : $8d, $cf, $00
+	sta wBGMode.w                                                  ; $b4e5 : $8d, $cf, $00
 	lda #$09.b                                                  ; $b4e8 : $a9, $09
 	sta $00ce.w                                                  ; $b4ea : $8d, $ce, $00
 	lda #$13.b                                                  ; $b4ed : $a9, $13

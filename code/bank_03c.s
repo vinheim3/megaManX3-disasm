@@ -10564,7 +10564,7 @@ br_3c_bf22:
 	ldy #$a2.b                                                  ; $bf86 : $a0, $a2
 	jsr Func_0_872f.l                                                  ; $bf88 : $22, $2f, $87, $00
 	lda #$09.b                                                  ; $bf8c : $a9, $09
-	sta $00cf.w                                                  ; $bf8e : $8d, $cf, $00
+	sta wBGMode.w                                                  ; $bf8e : $8d, $cf, $00
 	lda #$09.b                                                  ; $bf91 : $a9, $09
 	sta $00ce.w                                                  ; $bf93 : $8d, $ce, $00
 	lda #$13.b                                                  ; $bf96 : $a9, $13

@@ -611,6 +611,7 @@ Func_2_834a:
 
 .org $400
 
+; R0 - value to square root
 Cx4_HiresSqrt:
 	mov A, OP R0                                                              ; $8400 / 2:00 / $6060
 	call HiresSqrt                                                            ; $8402 / 2:01 / $2832
@@ -2530,11 +2531,19 @@ Cx4_ScaleRotate2:
 
 .org $1000
 
+; R0 - long src address of ???
+; R2.l - yaw
+; R2.m - pitch
+; R2.h - roll
 Cx4_DrawWireframeWithoutClearingBuffer:
 	jp _DrawWireframe                                                         ; $9000 / 8:00 / $0815
 
 
 ; Clears buffer from $300-$bff
+; R0.l - src address of ???
+; R2.l - yaw
+; R2.m - pitch
+; R2.h - roll
 Cx4_DrawWireframeWithClearingBuffer:
 ; ram_ptr = $300
 	mov A, IMM >$300                                                          ; $9002 / 8:01 / $6403
@@ -2570,37 +2579,40 @@ Cx4_DrawWireframeWithClearingBuffer:
 	jp @next4bytes                                                            ; $9028 / 8:14 / $0809
 
 _DrawWireframe:
-	mov P, IMM GetSinAndCosOfAngleA                                                             ; $902a / 8:15 / $670a
+	mov P, IMM GetSinCosAforDrawWireframe                                                             ; $902a / 8:15 / $670a
 
-; ram_ptr = $200
-	mov A, IMM $02                                                             ; $902c / 8:16 / $6402
-	add _100hA, IMM $80                                                             ; $902e / 8:17 / $8680
+; ram_ptr = $280
+	mov A, IMM >$0280                                                             ; $902c / 8:16 / $6402
+	add _100hA, IMM <$0280                                                             ; $902e / 8:17 / $8680
 	mov OP RAM_PTR, A                                                             ; $9030 / 8:18 / $e01c
 
 ; ext_ptr = R0
 	mov A, OP R0                                                             ; $9032 / 8:19 / $6060
 	mov OP EXT_PTR, A                                                             ; $9034 / 8:1a / $e013
-	mov PH, IMM GetSinAndCosOfAngleA                                                            ; $9036 / 8:1b / $7d00
+	mov PH, IMM GetSinCosAforDrawWireframe                                                            ; $9036 / 8:1b / $7d00
 
-; Store sin R2.l in R6, and cos R2.l in R7
+; R6 = sin yaw * $10000
+; R7 = cos yaw * $10000
 	mov A, OP R2                                                             ; $9038 / 8:1c / $6062
-	fcall GetSinAndCosOfAngleA                                                             ; $903a / 8:1d / $2a8c
+	fcall GetSinCosAforDrawWireframe                                                             ; $903a / 8:1d / $2a8c
 	mov OP R6, A                                                             ; $903c / 8:1e / $e066
 	mov A, OP RB                                                             ; $903e / 8:1f / $606b
 	mov OP R7, A                                                             ; $9040 / 8:20 / $e067
 
-; Store sin R2.m in R8, and cos R2.m in R9
+; R8 = sin pitch * $10000
+; R9 = cos pitch * $10000
 	mov A, OP R2                                                             ; $9042 / 8:21 / $6062
 	shlr A, IMM $08                                                             ; $9044 / 8:22 / $c408
-	fcall GetSinAndCosOfAngleA                                                             ; $9046 / 8:23 / $2a8c
+	fcall GetSinCosAforDrawWireframe                                                             ; $9046 / 8:23 / $2a8c
 	mov OP R8, A                                                             ; $9048 / 8:24 / $e068
 	mov A, OP RB                                                             ; $904a / 8:25 / $606b
 	mov OP R9, A                                                             ; $904c / 8:26 / $e069
 
-; Keep sin R2.l in RA and cos R2.m in RB
+; RA = sin roll * $10000
+; RB = cos roll * $10000
 	mov A, OP R2                                                             ; $904e / 8:27 / $6062
 	shlr A, IMM $10                                                             ; $9050 / 8:28 / $c410
-	fcall GetSinAndCosOfAngleA                                                             ; $9052 / 8:29 / $2a8c
+	fcall GetSinCosAforDrawWireframe                                                             ; $9052 / 8:29 / $2a8c
 
 @loop_9054:
 ; Get ext_dta using ext_ptr
@@ -2625,7 +2637,7 @@ _DrawWireframe:
 	skipz                                                             ; $9068 / 8:34 / $2601
 	jp @br_9076                                                             ; $906a / 8:35 / $083b
 
-; Else copy from ram+6->ram+0 and ram+9->ram+3
+; Else copy from ram+6->ram+0 and ram+9->ram+3 (prev point)
 	rdram lsb, IMM $06                                                             ; $906c / 8:36 / $6c06
 	wrram lsb, IMM $00                                                             ; $906e / 8:37 / $ec00
 	rdram lsb, IMM $09                                                             ; $9070 / 8:38 / $6c09
@@ -2638,19 +2650,23 @@ _DrawWireframe:
 	rotr A, IMM $08                                                             ; $9078 / 8:3c / $d408
 	fcall Get3wordsInSnesRomOffsetA                                                             ; $907a / 8:3d / $2acd
 
-;
-	call Func_2_90c2                                                             ; $907c / 8:3e / $2861
+; write a Y-related value in ram_ptr+3
+	call todo_ApplyYawPitchRollForDrawWireframe                                                             ; $907c / 8:3e / $2861
 	mov OP RAM_DTA, A                                                             ; $907e / 8:3f / $e00c
 	wrram lsb, IMM $03                                                             ; $9080 / 8:40 / $ec03
+
+; write an X-related value in ram_ptr+0
 	mov A, OP RF                                                             ; $9082 / 8:41 / $606f
 	mov OP RAM_DTA, A                                                             ; $9084 / 8:42 / $e00c
 	wrram lsb, IMM $00                                                             ; $9086 / 8:43 / $ec00
 
 @cont_9088:
+; repeat above (Y-related val in +9, X-related in +6)
 	fcall Get3wordsInSnesRomBank8                                                             ; $9088 / 8:44 / $2ac4
-	call Func_2_90c2                                                             ; $908a / 8:45 / $2861
+	call todo_ApplyYawPitchRollForDrawWireframe                                                             ; $908a / 8:45 / $2861
 	mov OP RAM_DTA, A                                                             ; $908c / 8:46 / $e00c
 	wrram lsb, IMM $09                                                             ; $908e / 8:47 / $ec09
+
 	mov A, OP RF                                                             ; $9090 / 8:48 / $606f
 	mov OP RAM_DTA, A                                                             ; $9092 / 8:49 / $e00c
 	wrram lsb, IMM $06                                                             ; $9094 / 8:4a / $ec06
@@ -2660,21 +2676,23 @@ _DrawWireframe:
 	inc_ext_ptr                                                             ; $9098 / 8:4c / $4000
 	finish_ext_dta                                                             ; $909a / 8:4d / $1c00
 
-; R1 is bit 0 of ext_dta shifted into bit 8
+; R1 is bit 0 of ext_dta shifted into bit 7
 	mov A, OP EXT_DTA                                                             ; $909c / 8:4e / $6003
 	_and A, IMM $01                                                             ; $909e / 8:4f / $b401
 	shll A, IMM $07                                                             ; $90a0 / 8:50 / $dc07
 	mov OP R1, A                                                             ; $90a2 / 8:51 / $e061
 
-; Get bit 1 shifted into bit 16, then combine with bit 8 above
+; Get bit 1 shifted into bit 15, then combine with bit 8 above
 	mov A, OP EXT_DTA                                                             ; $90a4 / 8:52 / $6003
 	_and A, IMM $02                                                             ; $90a6 / 8:53 / $b402
 	shll A, IMM $0e                                                             ; $90a8 / 8:54 / $dc0e
 
+; ie 0 = $0000, 1 = $0080, 2 = $8000, 3 = $8080
+; ie 2bpp type
 	or A, OP R1                                                             ; $90aa / 8:55 / $b861
 	mov OP R1, A                                                             ; $90ac / 8:56 / $e061
 
-;
+; draws a line, returns with ram_ptr pointing to $280
 	fcall Func_2_9400                                                             ; $90ae / 8:57 / $2a00
 
 ; ram_ptr+$15 -= 1
@@ -2692,7 +2710,19 @@ _DrawWireframe:
 	halt                                                             ; $90c0 / 8:60 / $fc00
 
 
-Func_2_90c2:
+; todo: for wireframe
+; R2 - x offset
+; R3 - y offset
+; R4 - z offset
+; R5 -
+; R6 - sin yaw * $10000
+; R7 - cos yaw * $10000
+; R8 - sin pitch * $10000
+; R9 - cos pitch * $10000
+; RA - sin roll * $10000
+; RB - cos roll * $10000
+; RC
+todo_ApplyYawPitchRollForDrawWireframe:
 ; R4 -= RC
 	mov A, OP R4                                                             ; $90c2 / 8:61 / $6064
 	sub A, OP RC                                                             ; $90c4 / 8:62 / $906c
@@ -2709,11 +2739,12 @@ Func_2_90c2:
 	mov OP RE, A                                                             ; $90d2 / 8:69 / $e06e
 
 ; Combine with high result's low byte in RE's mid byte, ie RE = R3*R7/$10000
+; or R3 cos yaw
 	mov A, OP MH                                                             ; $90d4 / 8:6a / $6001
 	add _100hA, OP RE                                                             ; $90d6 / 8:6b / $826e
 	mov OP RE, A                                                             ; $90d8 / 8:6c / $e06e
 
-; Repeat above so that A = R4*R6/$10000
+; Repeat above so that A = R4 sin yaw
 	mov A, OP R4                                                             ; $90da / 8:6d / $6064
 	mul OP R6                                                             ; $90dc / 8:6e / $9866
 	noop                                                             ; $90de / 8:6f / $0000
@@ -2721,14 +2752,17 @@ Func_2_90c2:
 	mov A, OP ML                                                             ; $90e0 / 8:70 / $6002
 	shlr A, IMM $10                                                             ; $90e2 / 8:71 / $c410
 	mov OP RF, A                                                             ; $90e4 / 8:72 / $e06f
+
 	mov A, OP MH                                                             ; $90e6 / 8:73 / $6001
 	add _100hA, OP RF                                                             ; $90e8 / 8:74 / $826f
 
-; RD = (R3*R7 + R4*R6)/$10000
+; RD = R3 cos yaw + R4 sin yaw (R3 applied yaw)
+; [ cosY -sinY ][ R4/z ]
+; [ sinY  cosY ][ R3/y ]
 	add A, OP RE                                                             ; $90ea / 8:75 / $806e
 	mov OP RD, A                                                             ; $90ec / 8:76 / $e06d
 
-; Repeat above so that RE = R3*R6/$10000
+; Repeat above so that RE = R3 sin yaw
 	mov A, OP R3                                                             ; $90ee / 8:77 / $6063
 	mul OP R6                                                             ; $90f0 / 8:78 / $9866
 	noop                                                             ; $90f2 / 8:79 / $0000
@@ -2736,11 +2770,12 @@ Func_2_90c2:
 	mov A, OP ML                                                             ; $90f4 / 8:7a / $6002
 	shlr A, IMM $10                                                             ; $90f6 / 8:7b / $c410
 	mov OP RE, A                                                             ; $90f8 / 8:7c / $e06e
+
 	mov A, OP MH                                                             ; $90fa / 8:7d / $6001
 	add _100hA, OP RE                                                             ; $90fc / 8:7e / $826e
 	mov OP RE, A                                                             ; $90fe / 8:7f / $e06e
 
-; Repeat above so that A = R4*R7/$10000
+; Repeat above so that A = R4 cos yaw
 	mov A, OP R4                                                             ; $9100 / 8:80 / $6064
 	mul OP R7                                                             ; $9102 / 8:81 / $9867
 	noop                                                             ; $9104 / 8:82 / $0000
@@ -2748,18 +2783,19 @@ Func_2_90c2:
 	mov A, OP ML                                                             ; $9106 / 8:83 / $6002
 	shlr A, IMM $10                                                             ; $9108 / 8:84 / $c410
 	mov OP RF, A                                                             ; $910a / 8:85 / $e06f
+
 	mov A, OP MH                                                             ; $910c / 8:86 / $6001
 	add _100hA, OP RF                                                             ; $910e / 8:87 / $826f
 
-; R4 = (R4*R7 - R3*R6)/$10000
+; R4 = R4 cos yaw - R3 sin yaw (R4 applied yaw)
 	sub A, OP RE                                                             ; $9110 / 8:88 / $906e
 	mov OP R4, A                                                             ; $9112 / 8:89 / $e064
 
-; R3 = (R3*R7 + R4*R6)/$10000
+; set from temp R3 applied yaw
 	mov A, OP RD                                                             ; $9114 / 8:8a / $606d
 	mov OP R3, A                                                             ; $9116 / 8:8b / $e063
 
-; Repeat above so that RE = R2*R9/$10000
+; Repeat above so that RE = R2 cos pitch
 	mov A, OP R2                                                             ; $9118 / 8:8c / $6062
 	mul OP R9                                                             ; $911a / 8:8d / $9869
 	noop                                                             ; $911c / 8:8e / $0000
@@ -2767,11 +2803,12 @@ Func_2_90c2:
 	mov A, OP ML                                                             ; $911e / 8:8f / $6002
 	shlr A, IMM $10                                                             ; $9120 / 8:90 / $c410
 	mov OP RE, A                                                             ; $9122 / 8:91 / $e06e
+
 	mov A, OP MH                                                             ; $9124 / 8:92 / $6001
 	add _100hA, OP RE                                                             ; $9126 / 8:93 / $826e
 	mov OP RE, A                                                             ; $9128 / 8:94 / $e06e
 
-; Repeat above so that A = R4*R8/$10000
+; Repeat above so that A = R4 sin pitch
 	mov A, OP R4                                                             ; $912a / 8:95 / $6064
 	mul OP R8                                                             ; $912c / 8:96 / $9868
 	noop                                                             ; $912e / 8:97 / $0000
@@ -2779,14 +2816,17 @@ Func_2_90c2:
 	mov A, OP ML                                                             ; $9130 / 8:98 / $6002
 	shlr A, IMM $10                                                             ; $9132 / 8:99 / $c410
 	mov OP RF, A                                                             ; $9134 / 8:9a / $e06f
+
 	mov A, OP MH                                                             ; $9136 / 8:9b / $6001
 	add _100hA, OP RF                                                             ; $9138 / 8:9c / $826f
 
-; RD = (R2*R9 - R4*R8)/$10000
+; RD = R2 cos pitch - R4 sin pitch (R2 applied pitch)
+; [ cosY -sinY ][ R2/x ]
+; [ sinY  cosY ][ R4/z ]
 	sub OP RE, A                                                             ; $913a / 8:9d / $886e
 	mov OP RD, A                                                             ; $913c / 8:9e / $e06d
 
-; Repeat above so that RE = R2*R8/$10000
+; Repeat above so that RE = R2 sin pitch
 	mov A, OP R2                                                             ; $913e / 8:9f / $6062
 	mul OP R8                                                             ; $9140 / 8:a0 / $9868
 	noop                                                             ; $9142 / 8:a1 / $0000
@@ -2794,11 +2834,12 @@ Func_2_90c2:
 	mov A, OP ML                                                             ; $9144 / 8:a2 / $6002
 	shlr A, IMM $10                                                             ; $9146 / 8:a3 / $c410
 	mov OP RE, A                                                             ; $9148 / 8:a4 / $e06e
+
 	mov A, OP MH                                                             ; $914a / 8:a5 / $6001
 	add _100hA, OP RE                                                             ; $914c / 8:a6 / $826e
 	mov OP RE, A                                                             ; $914e / 8:a7 / $e06e
 
-; Repeat above so that A = R4*R9/$10000
+; Repeat above so that A = R4 cos pitch
 	mov A, OP R4                                                             ; $9150 / 8:a8 / $6064
 	mul OP R9                                                             ; $9152 / 8:a9 / $9869
 	noop                                                             ; $9154 / 8:aa / $0000
@@ -2806,18 +2847,19 @@ Func_2_90c2:
 	mov A, OP ML                                                             ; $9156 / 8:ab / $6002
 	shlr A, IMM $10                                                             ; $9158 / 8:ac / $c410
 	mov OP RF, A                                                             ; $915a / 8:ad / $e06f
+
 	mov A, OP MH                                                             ; $915c / 8:ae / $6001
 	add _100hA, OP RF                                                             ; $915e / 8:af / $826f
 
-; R4 = (R2*R8 + R4*R9)/$10000
+; R4 = R2 sin pitch + R4 sin pitch (R4 applied pitch)
 	add A, OP RE                                                             ; $9160 / 8:b0 / $806e
 	mov OP R4, A                                                             ; $9162 / 8:b1 / $e064
 
-; R2 = (R2*R9 - R4*R8)/$10000
+; set from temp R2 applied pitch
 	mov A, OP RD                                                             ; $9164 / 8:b2 / $606d
 	mov OP R2, A                                                             ; $9166 / 8:b3 / $e062
 
-; Repeat above so that RE = R2*RB/$10000
+; Repeat above so that RE = R2 cos roll
 	mov A, OP R2                                                             ; $9168 / 8:b4 / $6062
 	mul OP RB                                                             ; $916a / 8:b5 / $986b
 	noop                                                             ; $916c / 8:b6 / $0000
@@ -2825,11 +2867,12 @@ Func_2_90c2:
 	mov A, OP ML                                                             ; $916e / 8:b7 / $6002
 	shlr A, IMM $10                                                             ; $9170 / 8:b8 / $c410
 	mov OP RE, A                                                             ; $9172 / 8:b9 / $e06e
+
 	mov A, OP MH                                                             ; $9174 / 8:ba / $6001
 	add _100hA, OP RE                                                             ; $9176 / 8:bb / $826e
 	mov OP RE, A                                                             ; $9178 / 8:bc / $e06e
 
-; Repeat above so that A = R3*RA/$10000
+; Repeat above so that A = R3 sin roll
 	mov A, OP R3                                                             ; $917a / 8:bd / $6063
 	mul OP RA                                                             ; $917c / 8:be / $986a
 	noop                                                             ; $917e / 8:bf / $0000
@@ -2837,14 +2880,17 @@ Func_2_90c2:
 	mov A, OP ML                                                             ; $9180 / 8:c0 / $6002
 	shlr A, IMM $10                                                             ; $9182 / 8:c1 / $c410
 	mov OP RF, A                                                             ; $9184 / 8:c2 / $e06f
+
 	mov A, OP MH                                                             ; $9186 / 8:c3 / $6001
 	add _100hA, OP RF                                                             ; $9188 / 8:c4 / $826f
 
-; RD = (R2*RB + R3*RA)/$10000
+; RD = R2 cos roll + R3 sin roll (R2 applied roll)
+; [ cosY -sinY ][ R3/y ]
+; [ sinY  cosY ][ R2/x ]
 	add A, OP RE                                                             ; $918a / 8:c5 / $806e
 	mov OP RD, A                                                             ; $918c / 8:c6 / $e06d
 
-; Repeat above so that RE = R2*RA/$10000
+; Repeat above so that RE = R2 sin roll
 	mov A, OP R2                                                             ; $918e / 8:c7 / $6062
 	mul OP RA                                                             ; $9190 / 8:c8 / $986a
 	noop                                                             ; $9192 / 8:c9 / $0000
@@ -2852,11 +2898,12 @@ Func_2_90c2:
 	mov A, OP ML                                                             ; $9194 / 8:ca / $6002
 	shlr A, IMM $10                                                             ; $9196 / 8:cb / $c410
 	mov OP RE, A                                                             ; $9198 / 8:cc / $e06e
+
 	mov A, OP MH                                                             ; $919a / 8:cd / $6001
 	add _100hA, OP RE                                                             ; $919c / 8:ce / $826e
 	mov OP RE, A                                                             ; $919e / 8:cf / $e06e
 
-; Repeat above so that A = R3*RB/$10000
+; Repeat above so that A = R3 cos roll
 	mov A, OP R3                                                             ; $91a0 / 8:d0 / $6063
 	mul OP RB                                                             ; $91a2 / 8:d1 / $986b
 	noop                                                             ; $91a4 / 8:d2 / $0000
@@ -2864,14 +2911,15 @@ Func_2_90c2:
 	mov A, OP ML                                                             ; $91a6 / 8:d3 / $6002
 	shlr A, IMM $10                                                             ; $91a8 / 8:d4 / $c410
 	mov OP RF, A                                                             ; $91aa / 8:d5 / $e06f
+
 	mov A, OP MH                                                             ; $91ac / 8:d6 / $6001
 	add _100hA, OP RF                                                             ; $91ae / 8:d7 / $826f
 
-; R3 = (R3*RB - R2*RA)/$10000
+; R3 = R3 cos roll - R2 sin roll (R3 applied roll)
 	sub A, OP RE                                                             ; $91b0 / 8:d8 / $906e
 	mov OP R3, A                                                             ; $91b2 / 8:d9 / $e063
 
-; R2 = (R2*RB + R3*RA)/$10000
+; set back temp R2 applied roll
 	mov A, OP RD                                                             ; $91b4 / 8:da / $606d
 	mov OP R2, A                                                             ; $91b6 / 8:db / $e062
 
@@ -2880,14 +2928,16 @@ Func_2_90c2:
 	add A, OP RC                                                             ; $91ba / 8:dd / $806c
 	mov OP R4, A                                                             ; $91bc / 8:de / $e064
 
-; RF = $30 + >(R2*R5) 
+; The $30s below are due to the wireframes being $60 pixels in width/height
+
+; RF = $30 + >(X*R5) 
 	mov A, OP R2                                                             ; $91be / 8:df / $6062
 	mul OP R5                                                             ; $91c0 / 8:e0 / $9865
 	mov A, IMM $30                                                             ; $91c2 / 8:e1 / $6430
 	add A, OP MH                                                             ; $91c4 / 8:e2 / $8001
 	mov OP RF, A                                                             ; $91c6 / 8:e3 / $e06f
 
-; A = $30 + >(R3*R5)
+; A = $30 + >(Y*R5)
 	mov A, OP R3                                                             ; $91c8 / 8:e4 / $6063
 	mul OP R5                                                             ; $91ca / 8:e5 / $9865
 	mov A, IMM $30                                                             ; $91cc / 8:e6 / $6430
@@ -3145,169 +3195,243 @@ Func_2_931c:
 
 .org $1400
 
+; todo: for wireframe
+; R1 -
+; R6 - sin yaw * $10000
+; R7 - cos yaw * $10000
+; R8 - sin pitch * $10000
+; ext_ptr -
 Func_2_9400:
+; put sin yaw * $10000 in ram_ptr+$0c
 	mov A, OP R6                                                             ; $9400 / a:00 / $6066
 	mov OP RAM_DTA, A                                                             ; $9402 / a:01 / $e00c
 	wrram lsb, IMM $0c                                                             ; $9404 / a:02 / $ec0c
 	wrram mid, IMM $0d                                                             ; $9406 / a:03 / $ed0d
 	wrram msb, IMM $0e                                                             ; $9408 / a:04 / $ee0e
+
+; put cos yaw * $10000 in ram_ptr+$0f
 	mov A, OP R7                                                             ; $940a / a:05 / $6067
 	mov OP RAM_DTA, A                                                             ; $940c / a:06 / $e00c
 	wrram lsb, IMM $0f                                                             ; $940e / a:07 / $ec0f
 	wrram mid, IMM $10                                                             ; $9410 / a:08 / $ed10
 	wrram msb, IMM $11                                                             ; $9412 / a:09 / $ee11
+
+; put sin pitch * $10000 in ram_ptr+$12
 	mov A, OP R8                                                             ; $9414 / a:0a / $6068
 	mov OP RAM_DTA, A                                                             ; $9416 / a:0b / $e00c
 	wrram lsb, IMM $12                                                             ; $9418 / a:0c / $ec12
 	wrram mid, IMM $13                                                             ; $941a / a:0d / $ed13
 	wrram msb, IMM $14                                                             ; $941c / a:0e / $ee14
+
+; save ext_ptr in R4, then set ext_ptr to 0 (used as a bitfield)
 	mov A, OP EXT_PTR                                                             ; $941e / a:0f / $6013
 	mov OP R4, A                                                             ; $9420 / a:10 / $e064
 	mov A, IMM $00                                                             ; $9422 / a:11 / $6400
 	mov OP EXT_PTR, A                                                             ; $9424 / a:12 / $e013
+
+; RF = byte in ram_ptr+6 (point B X)
 	rdram lsb, IMM $06                                                             ; $9426 / a:13 / $6c06
 	mov A, OP RAM_DTA                                                             ; $9428 / a:14 / $600c
 	_and A, IMM $ff                                                             ; $942a / a:15 / $b4ff
 	mov OP RF, A                                                             ; $942c / a:16 / $e06f
+
+; A = byte in ram_ptr+0 (point A X)
 	rdram lsb, IMM $00                                                             ; $942e / a:17 / $6c00
 	mov A, OP RAM_DTA                                                             ; $9430 / a:18 / $600c
 	_and A, IMM $ff                                                             ; $9432 / a:19 / $b4ff
+
+; jump if ram_ptr+0 >= ram_ptr+6
 	sub A, OP RF                                                             ; $9434 / a:1a / $906f
 	jc @cont_943e                                                             ; $9436 / a:1b / $101f
 
+; else neg value, and inc ext_ptr (set bit 0)
 	xor A, OP _FFFFFF                                                             ; $9438 / a:1c / $a851
 	add A, IMM $01                                                             ; $943a / a:1d / $8401
 	inc_ext_ptr                                                             ; $943c / a:1e / $4000
 
 @cont_943e:
+; store diff (x distance) in RE
 	mov OP RE, A                                                             ; $943e / a:1f / $e06e
+
+; RF = byte in ram_ptr+9
 	rdram lsb, IMM $09                                                             ; $9440 / a:20 / $6c09
 	mov A, OP RAM_DTA                                                             ; $9442 / a:21 / $600c
 	_and A, IMM $ff                                                             ; $9444 / a:22 / $b4ff
 	mov OP RF, A                                                             ; $9446 / a:23 / $e06f
+
+; A = byte in ram_ptr+3
 	rdram lsb, IMM $03                                                             ; $9448 / a:24 / $6c03
 	mov A, OP RAM_DTA                                                             ; $944a / a:25 / $600c
 	_and A, IMM $ff                                                             ; $944c / a:26 / $b4ff
+
+; jump if ram_ptr+3 >= ram_ptr+9
 	sub A, OP RF                                                             ; $944e / a:27 / $906f
 	jc @cont_945a                                                             ; $9450 / a:28 / $102d
 
+; neg value, then +2 to ext_ptr (set bit 1)
 	xor A, OP _FFFFFF                                                             ; $9452 / a:29 / $a851
 	add A, IMM $01                                                             ; $9454 / a:2a / $8401
 	inc_ext_ptr                                                             ; $9456 / a:2b / $4000
 	inc_ext_ptr                                                             ; $9458 / a:2c / $4000
 
 @cont_945a:
+; store diff (y distance) in RD. jump if y distance >= x distance
 	mov OP RD, A                                                             ; $945a / a:2d / $e06d
 	_cmp A, OP RE                                                             ; $945c / a:2e / $506e
-	jc @br_946e                                                             ; $945e / a:2f / $1037
+	jc @yDistIsLarger                                                             ; $945e / a:2f / $1037
 
+; x distance is larger, swap y distance and x distance
 	swap OP RE                                                             ; $9460 / a:30 / $f06e
 	mov OP RD, A                                                             ; $9462 / a:31 / $e06d
-	call AequREdivRD                                                             ; $9464 / a:32 / $28f2
+
+; R3 = fractional Y dist / X dist
+	call AequREdivRDtimes10000h                                                             ; $9464 / a:32 / $28f2
 	mov OP R3, A                                                             ; $9466 / a:33 / $e063
+
+; R2 = $100
 	mov A, OP _000100                                                             ; $9468 / a:34 / $605e
 	mov OP R2, A                                                             ; $946a / a:35 / $e062
 	jp @cont_9476                                                             ; $946c / a:36 / $083b
 
-@br_946e:
-	call AequREdivRD                                                             ; $946e / a:37 / $28f2
+@yDistIsLarger:
+; R2 = fractional smaller X dist / Y dist
+	call AequREdivRDtimes10000h                                                             ; $946e / a:37 / $28f2
 	mov OP R2, A                                                             ; $9470 / a:38 / $e062
+
+; R3 = $100
 	mov A, OP _000100                                                             ; $9472 / a:39 / $605e
 	mov OP R3, A                                                             ; $9474 / a:3a / $e063
 
 @cont_9476:
+; Jump if bit 0 set on ext_ptr (point A X < point B X)
 	mov A, OP EXT_PTR                                                             ; $9476 / a:3b / $6013
 	shll A, IMM $17                                                             ; $9478 / a:3c / $dc17
 	js @cont_9484                                                             ; $947a / a:3d / $1442
 
+; else neg R2, ie point B should be higher
 	mov A, OP R2                                                             ; $947c / a:3e / $6062
 	xor A, OP _FFFFFF                                                             ; $947e / a:3f / $a851
 	add A, IMM $01                                                             ; $9480 / a:40 / $8401
 	mov OP R2, A                                                             ; $9482 / a:41 / $e062
 
 @cont_9484:
+; Jump if bit 1 set on ext_ptr (point A Y < point B Y)
 	mov A, OP EXT_PTR                                                             ; $9484 / a:42 / $6013
 	shll A, IMM $16                                                             ; $9486 / a:43 / $dc16
 	js @cont_9492                                                             ; $9488 / a:44 / $1449
 
+; else neg R3, ie point B should be higher
 	mov A, OP R3                                                             ; $948a / a:45 / $6063
 	xor A, OP _FFFFFF                                                             ; $948c / a:46 / $a851
 	add A, IMM $01                                                             ; $948e / a:47 / $8401
 	mov OP R3, A                                                             ; $9490 / a:48 / $e063
 
 @cont_9492:
+; RE = ram_ptr+0 * $100
 	rdram lsb, IMM $00                                                             ; $9492 / a:49 / $6c00
 	mov A, OP RAM_DTA                                                             ; $9494 / a:4a / $600c
 	_and _100hA, OP _00FFFF                                                             ; $9496 / a:4b / $b254
 	mov OP RE, A                                                             ; $9498 / a:4c / $e06e
+
+; RF = ram_ptr+3 * $100
 	rdram lsb, IMM $03                                                             ; $949a / a:4d / $6c03
 	mov A, OP RAM_DTA                                                             ; $949c / a:4e / $600c
 	_and _100hA, OP _00FFFF                                                             ; $949e / a:4f / $b254
 	mov OP RF, A                                                             ; $94a0 / a:50 / $e06f
+
+; R0 = $ff
 	mov A, IMM $ff                                                             ; $94a2 / a:51 / $64ff
 	mov OP R0, A                                                             ; $94a4 / a:52 / $e060
 
 @loop_94a6:
+; R6 = point A X / 8 * $20 (without low 3 bits)
 	mov A, OP RE                                                             ; $94a6 / a:53 / $606e
 	shlr A, IMM $0b                                                             ; $94a8 / a:54 / $c40b
 	shll A, IMM $08                                                             ; $94aa / a:55 / $dc08
 	mov OP R6, A                                                             ; $94ac / a:56 / $e066
+
+; A = point A Y / 8
 	mov A, OP RF                                                             ; $94ae / a:57 / $606f
 	shlr A, IMM $0b                                                             ; $94b0 / a:58 / $c40b
 	add A, OP R6                                                             ; $94b2 / a:59 / $8066
+
+; Jump if sum == $ff
 	_cmp A, OP R0                                                             ; $94b4 / a:5a / $5060
 	jz @cont_94d0                                                             ; $94b6 / a:5b / $0c68
 
+; else store sum in R0
 	mov OP R0, A                                                             ; $94b8 / a:5c / $e060
+
+; point A Y / 8 * $c0 (wireframe pixels wide)
 	mov A, OP RF                                                             ; $94ba / a:5d / $606f
 	shlr A, IMM $0b                                                             ; $94bc / a:5e / $c40b
 	mul IMM $c0                                                             ; $94be / a:5f / $9cc0
+
+; point A X with low 3 bits removed, * 2 and add to above
+; *2 as for a 2bpp image, every 8 pixels = 16 bytes
 	mov A, OP RE                                                             ; $94c0 / a:60 / $606e
 	shlr A, IMM $08                                                             ; $94c2 / a:61 / $c408
 	_and A, IMM $f8                                                             ; $94c4 / a:62 / $b4f8
 	add _2A, OP ML                                                             ; $94c6 / a:63 / $8102
+
+; offset into buffer ram
 	mov OP R7, A                                                             ; $94c8 / a:64 / $e067
-	mov A, IMM $03                                                             ; $94ca / a:65 / $6403
+	mov A, IMM >$0300                                                             ; $94ca / a:65 / $6403
 	add _100hA, OP R7                                                             ; $94cc / a:66 / $8267
 	mov OP R7, A                                                             ; $94ce / a:67 / $e067
 
 @cont_94d0:
+; get point A Y pixel in 8, *2 (2bpp row) and offset into buffer ram
 	mov A, OP RF                                                             ; $94d0 / a:68 / $606f
 	shlr A, IMM $07                                                             ; $94d2 / a:69 / $c407
 	_and A, IMM $0e                                                             ; $94d4 / a:6a / $b40e
 	add A, OP R7                                                             ; $94d6 / a:6b / $8067
 	mov OP RAM_PTR, A                                                             ; $94d8 / a:6c / $e01c
+
+; get point A X pixel in 8 and put in R8
 	mov A, OP RE                                                             ; $94da / a:6d / $606e
 	shlr A, IMM $08                                                             ; $94dc / a:6e / $c408
 	_and A, IMM $07                                                             ; $94de / a:6f / $b407
 	mov OP R8, A                                                             ; $94e0 / a:70 / $e068
+
+; adjust pixel in R1, put in R8
 	mov A, OP R1                                                             ; $94e2 / a:71 / $6061
 	shlr A, OP R8                                                             ; $94e4 / a:72 / $c068
 	mov OP R8, A                                                             ; $94e6 / a:73 / $e068
+
+; ram_dta = adjusted pixel | val in buffer ram
 	rdram lsb, IMM $00                                                             ; $94e8 / a:74 / $6c00
 	rdram mid, IMM $01                                                             ; $94ea / a:75 / $6d01
 	mov A, OP RAM_DTA                                                             ; $94ec / a:76 / $600c
 	or A, OP R8                                                             ; $94ee / a:77 / $b868
 	mov OP RAM_DTA, A                                                             ; $94f0 / a:78 / $e00c
+
+; write back to buffer ram
 	wrram lsb, IMM $00                                                             ; $94f2 / a:79 / $ec00
 	wrram mid, IMM $01                                                             ; $94f4 / a:7a / $ed01
+
+; get point A X, and offset with fractional X
 	mov A, OP RE                                                             ; $94f6 / a:7b / $606e
 	add A, OP R2                                                             ; $94f8 / a:7c / $8062
 	mov OP RE, A                                                             ; $94fa / a:7d / $e06e
+
+; get point A Y, and offset with fractional Y
 	mov A, OP RF                                                             ; $94fc / a:7e / $606f
 	add A, OP R3                                                             ; $94fe / a:7f / $8063
 	mov OP RF, A                                                             ; $9500 / a:80 / $e06f
+
+; RD -= 1, until it becomes negative
 	mov A, OP RD                                                             ; $9502 / a:81 / $606d
 	sub A, IMM $01                                                             ; $9504 / a:82 / $9401
 	mov OP RD, A                                                             ; $9506 / a:83 / $e06d
 	jc @loop_94a6                                                             ; $9508 / a:84 / $1053
 
 ; ram_ptr points to $280
-	mov A, IMM $02                                                             ; $950a / a:85 / $6402
-	add _100hA, IMM $80                                                             ; $950c / a:86 / $8680
+	mov A, IMM >$0280                                                             ; $950a / a:85 / $6402
+	add _100hA, IMM <$0280                                                             ; $950c / a:86 / $8680
 	mov OP RAM_PTR, A                                                             ; $950e / a:87 / $e01c
 
-;
+; this preserves the R6,R7,R8 and ext_ptr above
 	mov P, IMM Get3longsUsingRamOffset0Ch                                                             ; $9510 / a:88 / $6708
 	fcall Get3longsUsingRamOffset0Ch                                                             ; $9512 / a:89 / $2ae9
 	mov P, IMM Get3wordsInSnesRomOffsetA                                                             ; $9514 / a:8a / $670a
@@ -3318,7 +3442,7 @@ Func_2_9400:
 ;   - ie 0 - 0 degrees, $40 - 180 degrees, $80 - 360 degrees
 ; Returns signed sin value in A & RA
 ; Returns signed cos value in RB
-GetSinAndCosOfAngleA:
+GetSinCosAforDrawWireframe:
 ; RF = (A & $ff) << 2 (to get angle in a 180 degree slice)
 	_and A, IMM $ff                                                           ; $9518 / a:8c / $b4ff
 	shll A, IMM $02                                                           ; $951a / a:8d / $dc02
@@ -3505,7 +3629,7 @@ Get3wordsInSnesRomOffsetA:
 	ret                                                                       ; $95e2 / a:f1 / $3c00
 
 
-AequREdivRD:
+AequREdivRDtimes10000h:
 ; If RE != 0...
 	mov A, OP RE                                                              ; $95e4 / a:f2 / $606e
 	_cmp A, IMM $00                                                           ; $95e6 / a:f3 / $5400
