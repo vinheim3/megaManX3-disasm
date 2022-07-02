@@ -8374,7 +8374,9 @@ br_07_b470:
 	sta wMainScreenDesignation.w                                                  ; $b48e : $8d, $c1, $00
 	lda #$01.b                                                  ; $b491 : $a9, $01
 	sta $0e                                                  ; $b493 : $85, $0e
-	ldx $0d4f.w                                                  ; $b495 : $ae, $4f, $0d
+
+;
+	ldx wBeatenStageIdx.w                                                  ; $b495 : $ae, $4f, $0d
 	lda $bd8a.w, X                                                  ; $b498 : $bd, $8a, $bd
 	tax                                                  ; $b49b : $aa
 	rep #ACCU_8                                                  ; $b49c : $c2, $20
@@ -8393,7 +8395,7 @@ br_07_b470:
 	sep #ACCU_8                                                  ; $b4c5 : $e2, $20
 	lda #$01.b                                                  ; $b4c7 : $a9, $01
 	sta $00a1.w                                                  ; $b4c9 : $8d, $a1, $00
-	ldx $0d4f.w                                                  ; $b4cc : $ae, $4f, $0d
+	ldx wBeatenStageIdx.w                                                  ; $b4cc : $ae, $4f, $0d
 	lda $bd82.w, X                                                  ; $b4cf : $bd, $82, $bd
 	tax                                                  ; $b4d2 : $aa
 	lda $08e002.l, X                                                  ; $b4d3 : $bf, $02, $e0, $08
@@ -8649,7 +8651,7 @@ br_07_b640:
 
 
 Call_07_b641:
-	ldx $0d4f.w                                                  ; $b641 : $ae, $4f, $0d
+	ldx wBeatenStageIdx.w                                                  ; $b641 : $ae, $4f, $0d
 	lda $bd82.w, X                                                  ; $b644 : $bd, $82, $bd
 	sta $1e28.w                                                  ; $b647 : $8d, $28, $1e
 	lda $3d                                                  ; $b64a : $a5, $3d

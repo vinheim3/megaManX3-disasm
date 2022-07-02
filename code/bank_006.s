@@ -4554,31 +4554,30 @@ br_06_9c52:
 	cli                                                  ; $9c5b : $58
 	.db $00                                                  ; $9c5c : $00
 	php                                                  ; $9c5d : $08
-	tsb $01                                                  ; $9c5e : $04, $01
-	ora $06                                                  ; $9c60 : $05, $06
-	php                                                  ; $9c62 : $08
-	ora $02, S                                                  ; $9c63 : $03, $02
-	ora [$00]                                                  ; $9c65 : $07, $00
+
+
+SubweaponsStatusToAssociatedStage:
+	.db $04, $01, $05, $06, $08, $03, $02, $07
+
+
+
+	.db $00                                                  ; $9c66 : $00
 	ora ($02, X)                                                  ; $9c67 : $01, $02
 	ora $04, S                                                  ; $9c69 : $03, $04
 	ora $06                                                  ; $9c6b : $05, $06
 	.db $07
 
 
-Data_6_9c6e:
+StageToDoubleSubweaponGiven:
 	.db $02, $0c, $0a, $00, $04, $06, $0e, $08
 
 
+SubweaponsStatusBitfield:
+	.db $01, $02, $04, $08, $10, $20, $40, $80
+
+
 ;
-	.db $01                                                  ; $9c76 : $01
-	cop $04.b                                                  ; $9c77 : $02, $04
-	php                                                  ; $9c79 : $08
-	.db $10, $20                                                  ; $9c7a : $10, $20
-
-	rti                                                  ; $9c7c : $40
-
-
-	.db $80, $24                                                  ; $9c7d : $80, $24
+	.db $24                                                  ; $9c7e : $24
 
 	plp                                                  ; $9c7f : $28
 	eor $2a26.w, X                                                  ; $9c80 : $5d, $26, $2a
@@ -4609,13 +4608,21 @@ Jump_06_9ca4:
 	.db $00                                                  ; $9cad : $00
 	ora ($00, X)                                                  ; $9cae : $01, $00
 	ora ($00, X)                                                  ; $9cb0 : $01, $00
-	cpy $9c                                                  ; $9cb2 : $c4, $9c
-	sbc $459c.w, Y                                                  ; $9cb4 : $f9, $9c, $45
-	sta $9d91.w, X                                                  ; $9cb7 : $9d, $91, $9d
-	cmp $299d.w, X                                                  ; $9cba : $dd, $9d, $29
-	stz $9e75.w, X                                                  ; $9cbd : $9e, $75, $9e
-	cmp ($9e, X)                                                  ; $9cc0 : $c1, $9e
-	ora $0a9f.w                                                  ; $9cc2 : $0d, $9f, $0a
+
+
+Data_6_9cb2:
+	.dw $9cc4
+	.dw $9cf9
+	.dw $9d45
+	.dw $9d91
+	.dw Data_6_9ddd
+	.dw $9e29
+	.dw $9e75
+	.dw $9ec1
+	.dw $9f0d
+
+
+	.db $0a                                                  ; $9cc4 : $0a
 	sta $e359.w                                                  ; $9cc5 : $8d, $59, $e3
 	asl $0ee4.w                                                  ; $9cc8 : $0e, $e4, $0e
 	sbc $0e                                                  ; $9ccb : $e5, $0e
@@ -4748,14 +4755,20 @@ Jump_06_9ca4:
 	jsr $052305.l                                                  ; $9dd2 : $22, $05, $23, $05
 	bit $05                                                  ; $9dd6 : $24, $05
 	and $05                                                  ; $9dd8 : $25, $05
-	ora $0c0004.l                                                  ; $9dda : $0f, $04, $00, $0c
-	eor $ee58.w, Y                                                  ; $9dde : $59, $58, $ee
-	tsb $ef                                                  ; $9de1 : $04, $ef
-	tsb $f0                                                  ; $9de3 : $04, $f0
-	tsb $f1                                                  ; $9de5 : $04, $f1
-	tsb $f2                                                  ; $9de7 : $04, $f2
-	tsb $f3                                                  ; $9de9 : $04, $f3
-	tsb $0c                                                  ; $9deb : $04, $0c
+	.db $0f, $04, $00
+	
+	
+Data_6_9ddd:
+	.db $0c
+	.dw $5859
+	.dw $04ee
+	.dw $04ef
+	.dw $04f0
+	.dw $04f1
+	.dw $04f2
+	.dw $04f3
+
+	.db $0c
 	adc $fc58.w, Y                                                  ; $9ded : $79, $58, $fc
 	tsb $fd                                                  ; $9df0 : $04, $fd
 	tsb $fe                                                  ; $9df2 : $04, $fe
@@ -18890,3 +18903,4 @@ DecompressedDataTable:
 	.row CompressedData_da, $0520
 	.row CompressedData_db, $0800
 	.row CompressedData_dc, $0980
+Thing:

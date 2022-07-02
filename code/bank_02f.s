@@ -5246,7 +5246,7 @@ br_2f_a58c:
 	ina                                                  ; $a5a2 : $1a
 	asl $17, X                                                  ; $a5a3 : $16, $17
 	tcs                                                  ; $a5a5 : $1b
-	ora $0a0b.w                                                  ; $a5a6 : $0d, $0b, $0a
+	ora wSelectedSubweapon.w                                                  ; $a5a6 : $0d, $0b, $0a
 	ora $030706.l                                                  ; $a5a9 : $0f, $06, $07, $03
 	cop $03.b                                                  ; $a5ad : $02, $03
 	cop $1c.b                                                  ; $a5af : $02, $1c

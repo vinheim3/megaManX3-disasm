@@ -808,7 +808,7 @@ br_01_84b8:
 	stz $18                                                  ; $84c7 : $64, $18
 	lda #$02.b                                                  ; $84c9 : $a9, $02
 	sta $12                                                  ; $84cb : $85, $12
-	lda $0a0b.w                                                  ; $84cd : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $84cd : $ad, $0b, $0a
 	sta $33                                                  ; $84d0 : $85, $33
 	lda #$6f.b                                                  ; $84d2 : $a9, $6f
 	sta $16                                                  ; $84d4 : $85, $16
@@ -824,7 +824,7 @@ br_01_84e0:
 	and #$7f.b                                                  ; $84e8 : $29, $7f
 	beq br_01_8514                                                  ; $84ea : $f0, $28
 
-	lda $0a0b.w                                                  ; $84ec : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $84ec : $ad, $0b, $0a
 	cmp #$12.b                                                  ; $84ef : $c9, $12
 	beq br_01_8514                                                  ; $84f1 : $f0, $21
 
@@ -905,7 +905,7 @@ br_01_8554:
 	lda $09e0.w                                                  ; $855b : $ad, $e0, $09
 	sta $08                                                  ; $855e : $85, $08
 	sep #ACCU_8                                                  ; $8560 : $e2, $20
-	lda $0a0b.w                                                  ; $8562 : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $8562 : $ad, $0b, $0a
 	sta $1f                                                  ; $8565 : $85, $1f
 	lda $09e9.w                                                  ; $8567 : $ad, $e9, $09
 	and #$70.b                                                  ; $856a : $29, $70
@@ -1400,7 +1400,7 @@ br_01_8892:
 	bit #$04.b                                                  ; $88b0 : $89, $04
 	beq br_01_88ce                                                  ; $88b2 : $f0, $1a
 
-	lda $0a0b.w                                                  ; $88b4 : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $88b4 : $ad, $0b, $0a
 	cmp #$12.b                                                  ; $88b7 : $c9, $12
 	beq br_01_88c6                                                  ; $88b9 : $f0, $0b
 
@@ -7275,7 +7275,7 @@ br_01_af59:
 
 
 Call_01_af5d:
-	ldx $0a0b.w                                                  ; $af5d : $ae, $0b, $0a
+	ldx wSelectedSubweapon.w                                                  ; $af5d : $ae, $0b, $0a
 	lda $1fba.w, X                                                  ; $af60 : $bd, $ba, $1f
 	and #$3f.b                                                  ; $af63 : $29, $3f
 	ora $1fb9.w, X                                                  ; $af65 : $1d, $b9, $1f
@@ -13179,7 +13179,7 @@ br_01_d55f:
 
 	lda #$04.b                                                  ; $d5a8 : $a9, $04
 	sta $26                                                  ; $d5aa : $85, $26
-	ldy $0a0b.w                                                  ; $d5ac : $ac, $0b, $0a
+	ldy wSelectedSubweapon.w                                                  ; $d5ac : $ac, $0b, $0a
 	rep #ACCU_8|F_CARRY                                                  ; $d5af : $c2, $21
 	lda $1fb9.w, Y                                                  ; $d5b1 : $b9, $b9, $1f
 	and #$3fff.w                                                  ; $d5b4 : $29, $ff, $3f
@@ -15409,7 +15409,7 @@ br_01_e4a0:
 	lda $09f2.w                                                  ; $e4a6 : $ad, $f2, $09
 	sta $1c                                                  ; $e4a9 : $85, $1c
 	rep #ACCU_8|IDX_8                                                  ; $e4ab : $c2, $30
-	lda $0a0b.w                                                  ; $e4ad : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $e4ad : $ad, $0b, $0a
 	clc                                                  ; $e4b0 : $18
 	adc #$0100.w                                                  ; $e4b1 : $69, $00, $01
 	tay                                                  ; $e4b4 : $a8
@@ -15426,7 +15426,7 @@ br_01_e4a0:
 	jsr $04d394.l                                                  ; $e4d2 : $22, $94, $d3, $04
 	jsr $04d4a3.l                                                  ; $e4d6 : $22, $a3, $d4, $04
 	jsr $04d4c9.l                                                  ; $e4da : $22, $c9, $d4, $04
-	lda $0a0b.w                                                  ; $e4de : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $e4de : $ad, $0b, $0a
 	cmp #$06.b                                                  ; $e4e1 : $c9, $06
 	bne br_01_e4eb                                                  ; $e4e3 : $d0, $06
 
@@ -16786,7 +16786,7 @@ br_01_edb2:
 	bra br_01_edf8                                                  ; $edde : $80, $18
 
 br_01_ede0:
-	jsr $00a493.l                                                  ; $ede0 : $22, $93, $a4, $00
+	jsr Func_0_a493.l                                                  ; $ede0 : $22, $93, $a4, $00
 	lda $0000.w                                                  ; $ede4 : $ad, $00, $00
 	cmp #$ff.b                                                  ; $ede7 : $c9, $ff
 	bne br_01_edf6                                                  ; $ede9 : $d0, $0b

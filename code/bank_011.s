@@ -13959,7 +13959,7 @@ br_11_d702:
 	xba                                                  ; $d706 : $eb
 	.db $10, $e8                                                  ; $d707 : $10, $e8
 
-	jsr $0a0b.w                                                  ; $d709 : $20, $0b, $0a
+	jsr wSelectedSubweapon.w                                                  ; $d709 : $20, $0b, $0a
 	lda ($00)                                                  ; $d70c : $b2, $00
 	ora $de10.w, Y                                                  ; $d70e : $19, $10, $de
 	.db $00                                                  ; $d711 : $00

@@ -2993,7 +2993,7 @@ br_2e_9396:
 	asl $0b                                                  ; $93a3 : $06, $0b
 	ora $0c0b.w                                                  ; $93a5 : $0d, $0b, $0c
 	phd                                                  ; $93a8 : $0b
-	tsb $0a0b.w                                                  ; $93a9 : $0c, $0b, $0a
+	tsb wSelectedSubweapon.w                                                  ; $93a9 : $0c, $0b, $0a
 	ora $1d, X                                                  ; $93ac : $15, $1d
 	xce                                                  ; $93ae : $fb
 	xba                                                  ; $93af : $eb

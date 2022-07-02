@@ -6231,7 +6231,7 @@ Call_04_a55a:
 	sep #IDX_8                                                  ; $a55e : $e2, $10
 	and #$00ff.w                                                  ; $a560 : $29, $ff, $00
 	sta $0006.w                                                  ; $a563 : $8d, $06, $00
-	ldx $0a0b.w                                                  ; $a566 : $ae, $0b, $0a
+	ldx wSelectedSubweapon.w                                                  ; $a566 : $ae, $0b, $0a
 	beq br_04_a5d0                                                  ; $a569 : $f0, $65
 
 	lda $b352.w, X                                                  ; $a56b : $bd, $52, $b3
@@ -9425,7 +9425,7 @@ Call_04_b6d6:
 Jump_04_b6d6:
 	sep #ACCU_8                                                  ; $b6d6 : $e2, $20
 	rep #IDX_8                                                  ; $b6d8 : $c2, $10
-	lda $0a0b.w                                                  ; $b6da : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $b6da : $ad, $0b, $0a
 	sta $0004.w                                                  ; $b6dd : $8d, $04, $00
 
 Call_04_b6e0:
@@ -15645,7 +15645,7 @@ br_04_dcc3:
 	rtl                                                  ; $dcc4 : $6b
 
 
-	lda $0a0b.w                                                  ; $dcc5 : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $dcc5 : $ad, $0b, $0a
 	beq br_04_dce1                                                  ; $dcc8 : $f0, $17
 
 	clc                                                  ; $dcca : $18
@@ -15654,7 +15654,7 @@ br_04_dcc3:
 	jsr Func_0_872f.l                                                  ; $dcce : $22, $2f, $87, $00
 	bra br_04_dce1                                                  ; $dcd2 : $80, $0d
 
-	lda $0a0b.w                                                  ; $dcd4 : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $dcd4 : $ad, $0b, $0a
 	beq br_04_dce1                                                  ; $dcd7 : $f0, $08
 
 	clc                                                  ; $dcd9 : $18

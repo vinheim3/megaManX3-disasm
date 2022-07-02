@@ -4879,7 +4879,7 @@ br_00_9f1a:
 	jsr Call_00_87d7.w                                                  ; $9f3e : $20, $d7, $87
 	lda wCurrHealth.w                                                  ; $9f41 : $ad, $ff, $09
 	sta $7fbe00.l                                                  ; $9f44 : $8f, $00, $be, $7f
-	lda $0a0b.w                                                  ; $9f48 : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $9f48 : $ad, $0b, $0a
 	sta $7fbe01.l                                                  ; $9f4b : $8f, $01, $be, $7f
 	lda $0a66.w                                                  ; $9f4f : $ad, $66, $0a
 	sta $7fbe02.l                                                  ; $9f52 : $8f, $02, $be, $7f
@@ -4907,8 +4907,8 @@ br_00_9f1a:
 	lda $7fbe00.l                                                  ; $9f96 : $af, $00, $be, $7f
 	sta wCurrHealth.w                                                  ; $9f9a : $8d, $ff, $09
 	lda $7fbe01.l                                                  ; $9f9d : $af, $01, $be, $7f
-	sta $0a0b.w                                                  ; $9fa1 : $8d, $0b, $0a
-	lda $0a0b.w                                                  ; $9fa4 : $ad, $0b, $0a
+	sta wSelectedSubweapon.w                                                  ; $9fa1 : $8d, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $9fa4 : $ad, $0b, $0a
 	cmp #$12.b                                                  ; $9fa7 : $c9, $12
 	bne br_00_9fcb                                                  ; $9fa9 : $d0, $20
 
@@ -4926,7 +4926,7 @@ br_00_9f1a:
 
 br_00_9fcb:
 	sep #ACCU_8|IDX_8                                                  ; $9fcb : $e2, $30
-	lda $0a0b.w                                                  ; $9fcd : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $9fcd : $ad, $0b, $0a
 	beq br_00_9fe5                                                  ; $9fd0 : $f0, $13
 
 	ldx #$30.b                                                  ; $9fd2 : $a2, $30
@@ -5624,6 +5624,7 @@ br_00_a48c:
 	rts                                                  ; $a492 : $60
 
 
+Func_0_a493:
 	phd                                                  ; $a493 : $0b
 	pea $0000.w                                                  ; $a494 : $f4, $00, $00
 	pld                                                  ; $a497 : $2b
@@ -5637,19 +5638,19 @@ Call_00_a49d:
 	stz $01                                                  ; $a49f : $64, $01
 	ldx #$0e.b                                                  ; $a4a1 : $a2, $0e
 
-br_00_a4a3:
+@nextSubweapon:
 	asl $00                                                  ; $a4a3 : $06, $00
 	bit wtodo_SubweaponsStatus.w, X                                                  ; $a4a5 : $3c, $bc, $1f
-	bvc br_00_a4b0                                                  ; $a4a8 : $50, $06
+	bvc @toNextSubweapon                                                  ; $a4a8 : $50, $06
 
 	lda #$01.b                                                  ; $a4aa : $a9, $01
 	tsb $00                                                  ; $a4ac : $04, $00
 	inc $01                                                  ; $a4ae : $e6, $01
 
-br_00_a4b0:
+@toNextSubweapon:
 	dex                                                  ; $a4b0 : $ca
 	dex                                                  ; $a4b1 : $ca
-	bpl br_00_a4a3                                                  ; $a4b2 : $10, $ef
+	bpl @nextSubweapon                                                  ; $a4b2 : $10, $ef
 
 	lda $00                                                  ; $a4b4 : $a5, $00
 	cmp #$ff.b                                                  ; $a4b6 : $c9, $ff
@@ -5903,7 +5904,7 @@ Func_0_a61c:
 	lda wStageIdx.w                                                  ; $a67b : $ad, $ae, $1f
 	and #$00ff.w                                                  ; $a67e : $29, $ff, $00
 	tax                                                  ; $a681 : $aa
-	lda Data_6_9c6e.w-1, X                                                  ; $a682 : $bd, $6d, $9c
+	lda StageToDoubleSubweaponGiven.w-1, X                                                  ; $a682 : $bd, $6d, $9c
 	and #$00ff.w                                                  ; $a685 : $29, $ff, $00
 	ina                                                  ; $a688 : $1a
 	ina                                                  ; $a689 : $1a
@@ -5922,7 +5923,7 @@ Func_0_a61c:
 ;
 	sep #ACCU_8|IDX_8                                                  ; $a69d : $e2, $30
 	lda wStageIdx.w                                                  ; $a69f : $ad, $ae, $1f
-	sta $0d4f.w                                                  ; $a6a2 : $8d, $4f, $0d
+	sta wBeatenStageIdx.w                                                  ; $a6a2 : $8d, $4f, $0d
 	lda #$10.b                                                  ; $a6a5 : $a9, $10
 	sta wStageIdx.w                                                  ; $a6a7 : $8d, $ae, $1f
 	stz wDynamicSpriteTileDatasIdx.w                                                  ; $a6aa : $9c, $18, $1f
@@ -6529,7 +6530,7 @@ Call_00_aa7b:
 	lda #$10.b                                                  ; $aaa9 : $a9, $10
 	sta $27                                                  ; $aaab : $85, $27
 	ldx $0d58.w                                                  ; $aaad : $ae, $58, $0d
-	lda Data_6_9c6e.w-1, X                                                  ; $aab0 : $bd, $6d, $9c
+	lda StageToDoubleSubweaponGiven.w-1, X                                                  ; $aab0 : $bd, $6d, $9c
 	ina                                                  ; $aab3 : $1a
 	ina                                                  ; $aab4 : $1a
 	sta $33                                                  ; $aab5 : $85, $33
@@ -10385,7 +10386,7 @@ Jump_00_c203:
 	pea wCameraEntity.w                                                  ; $c204 : $f4, $58, $1e
 	pld                                                  ; $c207 : $2b
 	ldx $01                                                  ; $c208 : $a6, $01
-	jsr ($c228.w, X)                                                  ; $c20a : $fc, $28, $c2
+	jsr (@funcs.w, X)                                                  ; $c20a : $fc, $28, $c2
 	pld                                                  ; $c20d : $2b
 	lda #$08.b                                                  ; $c20e : $a9, $08
 	sta $1f22.w                                                  ; $c210 : $8d, $22, $1f
@@ -10399,16 +10400,17 @@ Jump_00_c203:
 	pld                                                  ; $c224 : $2b
 	jmp NearBuildOam.w                                                  ; $c225 : $4c, $59, $dd
 
+@funcs:
+	.dw $c236
+	.dw Func_0_c2fb
+	.dw $c343
+	.dw $c38f
+	.dw $c433
+	.dw $c434
+	.dw $c510
 
-	rol $c2, X                                                  ; $c228 : $36, $c2
-	xce                                                  ; $c22a : $fb
-	rep #$43.b                                                  ; $c22b : $c2, $43
-	cmp $8f, S                                                  ; $c22d : $c3, $8f
-	cmp $33, S                                                  ; $c22f : $c3, $33
-	cpy $34                                                  ; $c231 : $c4, $34
-	cpy $10                                                  ; $c233 : $c4, $10
-	cmp $20                                                  ; $c235 : $c5, $20
-	eor ($88, X)                                                  ; $c237 : $41, $88
+
+	jsr Call_00_8841.w                                                  ; $c236 : $20, $41, $88
 	phd                                                  ; $c239 : $0b
 	pea $0000.w                                                  ; $c23a : $f4, $00, $00
 	pld                                                  ; $c23d : $2b
@@ -10497,51 +10499,59 @@ br_00_c2e4:
 	rts                                                  ; $c2fa : $60
 
 
+Func_0_c2fb:
 	ldx $02                                                  ; $c2fb : $a6, $02
-	jmp ($c300.w, X)                                                  ; $c2fd : $7c, $00, $c3
+	jmp (@funcs.w, X)                                                  ; $c2fd : $7c, $00, $c3
+
+@funcs:
+	.dw Func_0_c304
+	.dw Func_0_c31a
 
 
-	tsb $c3                                                  ; $c300 : $04, $c3
-	ina                                                  ; $c302 : $1a
-	cmp $a5, S                                                  ; $c303 : $c3, $a5
-	bit $08c9.w                                                  ; $c305 : $2c, $c9, $08
-	bcc br_00_c315                                                  ; $c308 : $90, $0b
+Func_0_c304:
+	lda $2c                                                  ; $c304 : $a5, $2c
+	cmp #$08.b                                                  ; $c306 : $c9, $08
+	bcc @nextSubstate                                                  ; $c308 : $90, $0b
 
 	jsr Call_00_c41d.w                                                  ; $c30a : $20, $1d, $c4
-	bcs br_00_c315                                                  ; $c30d : $b0, $06
+	bcs @nextSubstate                                                  ; $c30d : $b0, $06
 
+; Show Doppler area
 	lda #$00.b                                                  ; $c30f : $a9, $00
-	jsr $03807d.l                                                  ; $c311 : $22, $7d, $80, $03
+	jsr DmaEnqueueStageSelectDopplerOrGreyedBoss.l                                                  ; $c311 : $22, $7d, $80, $03
 
-br_00_c315:
+@nextSubstate:
 	lda #$02.b                                                  ; $c315 : $a9, $02
 	sta $02                                                  ; $c317 : $85, $02
 	rts                                                  ; $c319 : $60
 
 
-	jsr $00a493.l                                                  ; $c31a : $22, $93, $a4, $00
+Func_0_c31a:
+; gets subweapons gotten (1fbc order), with later weapon having highest bit in $00
+; gets num subweapons gotten in $01
+	jsr Func_0_a493.l                                                  ; $c31a : $22, $93, $a4, $00
 	ldx #$00.b                                                  ; $c31e : $a2, $00
 
-br_00_c320:
-	bit $9c76.w, X                                                  ; $c320 : $3c, $76, $9c
-	beq br_00_c333                                                  ; $c323 : $f0, $0e
+@loop_c320:
+	bit SubweaponsStatusBitfield.w, X                                                  ; $c320 : $3c, $76, $9c
+	beq @cont_c333                                                  ; $c323 : $f0, $0e
 
 	pha                                                  ; $c325 : $48
 	phx                                                  ; $c326 : $da
-	lda $9c5e.w, X                                                  ; $c327 : $bd, $5e, $9c
-	jsr $03807d.l                                                  ; $c32a : $22, $7d, $80, $03
+	lda SubweaponsStatusToAssociatedStage.w, X                                                  ; $c327 : $bd, $5e, $9c
+	jsr DmaEnqueueStageSelectDopplerOrGreyedBoss.l                                                  ; $c32a : $22, $7d, $80, $03
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $c32e : $20, $62, $81
 	plx                                                  ; $c331 : $fa
 	pla                                                  ; $c332 : $68
 
-br_00_c333:
+@cont_c333:
 	cpx #$07.b                                                  ; $c333 : $e0, $07
-	beq br_00_c33a                                                  ; $c335 : $f0, $03
+	beq @nextState                                                  ; $c335 : $f0, $03
 
 	inx                                                  ; $c337 : $e8
-	bra br_00_c320                                                  ; $c338 : $80, $e6
+	bra @loop_c320                                                  ; $c338 : $80, $e6
 
-br_00_c33a:
+@nextState:
 	lda #$04.b                                                  ; $c33a : $a9, $04
 	sta $01                                                  ; $c33c : $85, $01
 	stz $02                                                  ; $c33e : $64, $02
@@ -10549,6 +10559,7 @@ br_00_c33a:
 	rts                                                  ; $c342 : $60
 
 
+;
 	ldx $02                                                  ; $c343 : $a6, $02
 	jmp ($c348.w, X)                                                  ; $c345 : $7c, $48, $c3
 
@@ -10686,7 +10697,7 @@ br_00_c3f6:
 	bne br_00_c403                                                  ; $c3fb : $d0, $06
 
 	lda #$00.b                                                  ; $c3fd : $a9, $00
-	jsr $03807d.l                                                  ; $c3ff : $22, $7d, $80, $03
+	jsr DmaEnqueueStageSelectDopplerOrGreyedBoss.l                                                  ; $c3ff : $22, $7d, $80, $03
 
 br_00_c403:
 	dec $26                                                  ; $c403 : $c6, $26
@@ -11053,7 +11064,7 @@ Jump_00_c5ce:
 	lda #$06.b                                                  ; $c646 : $a9, $06
 	sta $1f21.w                                                  ; $c648 : $8d, $21, $1f
 	jsr Call_00_cb7b.w                                                  ; $c64b : $20, $7b, $cb
-	lda $0a0b.w                                                  ; $c64e : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $c64e : $ad, $0b, $0a
 	sta $0a                                                  ; $c651 : $85, $0a
 	sta $35                                                  ; $c653 : $85, $35
 	stz $34                                                  ; $c655 : $64, $34
@@ -11992,7 +12003,7 @@ br_00_cc13:
 	jsr UpdateIntsEnabledWithOnlyAutoJoypadRead.l                                                  ; $cc54 : $22, $74, $da, $04
 	stz HDMAEN.w                                                  ; $cc58 : $9c, $0c, $42
 	jsr Call_00_d113.w                                                  ; $cc5b : $20, $13, $d1
-	jsr Call_00_d1eb.w                                                  ; $cc5e : $20, $eb, $d1
+	jsr DisplayMenuSubweapons.w                                                  ; $cc5e : $20, $eb, $d1
 	jsr todo_UpdateInvNumLivesTilemap.w                                                  ; $cc61 : $20, $51, $d4
 	jsr Call_00_d23c.w                                                  ; $cc64 : $20, $3c, $d2
 	jsr Call_00_d160.w                                                  ; $cc67 : $20, $60, $d1
@@ -12128,7 +12139,7 @@ br_00_cd3d:
 	plb                                                  ; $cd4c : $ab
 	sep #ACCU_8|IDX_8                                                  ; $cd4d : $e2, $30
 	ldx #$10.b                                                  ; $cd4f : $a2, $10
-	lda $0a0b.w                                                  ; $cd51 : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $cd51 : $ad, $0b, $0a
 	clc                                                  ; $cd54 : $18
 	adc #$40.b                                                  ; $cd55 : $69, $40
 	tay                                                  ; $cd57 : $a8
@@ -12663,7 +12674,7 @@ Call_00_d113:
 	sta $0004.w                                                  ; $d11a : $8d, $04, $00
 	ldy #$1c.b                                                  ; $d11d : $a0, $1c
 	ldx #$14.b                                                  ; $d11f : $a2, $14
-	lda $0a0b.w                                                  ; $d121 : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $d121 : $ad, $0b, $0a
 	bne @br_d12a                                                  ; $d124 : $d0, $04
 
 	lda #$30.b                                                  ; $d126 : $a9, $30
@@ -12675,7 +12686,7 @@ Call_00_d113:
 
 ;
 	ldx #$12.b                                                  ; $d12f : $a2, $12
-	lda $0a0b.w                                                  ; $d130 : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $d130 : $ad, $0b, $0a
 	dea                                                  ; $d134 : $3a
 	dea                                                  ; $d135 : $3a
 	sta $0006.w                                                  ; $d136 : $8d, $06, $00
@@ -12799,57 +12810,59 @@ br_00_d1df:
 	rts                                                  ; $d1ea : $60
 
 
-Call_00_d1eb:
+; bg high byte $34 is an unselected weapon, $28 is selected
+DisplayMenuSubweapons:
 	lda #$80.b                                                  ; $d1eb : $a9, $80
 	sta VMAIN.w                                                  ; $d1ed : $8d, $15, $21
-	ldx #$ad14.w                                                  ; $d1f0 : $a2, $14, $ad
-	phd                                                  ; $d1f3 : $0b
-	asl                                                  ; $d1f4 : $0a
-	bne br_00_d203                                                  ; $d1f5 : $d0, $0c
+
+; z buster for these 2
+	ldx #$14.b                                                  ; $d1f0 : $a2, $14
+	lda wSelectedSubweapon.w                                                  ; $d1f2 : $ad, $0b, $0a
+	bne @br_d203                                                  ; $d1f5 : $d0, $0c
 
 	lda #$30.b                                                  ; $d1f7 : $a9, $30
 	jsr Call_00_d250.w                                                  ; $d1f9 : $20, $50, $d2
 	lda #$28.b                                                  ; $d1fc : $a9, $28
-	jsr Call_00_d275.w                                                  ; $d1fe : $20, $75, $d2
-	bra br_00_d20d                                                  ; $d201 : $80, $0a
+	jsr DisplayMenuSubweapon.w                                                  ; $d1fe : $20, $75, $d2
+	bra @displayBossSubweapons                                                  ; $d201 : $80, $0a
 
-br_00_d203:
+@br_d203:
 	lda #$3c.b                                                  ; $d203 : $a9, $3c
 	jsr Call_00_d250.w                                                  ; $d205 : $20, $50, $d2
 	lda #$34.b                                                  ; $d208 : $a9, $34
-	jsr Call_00_d275.w                                                  ; $d20a : $20, $75, $d2
+	jsr DisplayMenuSubweapon.w                                                  ; $d20a : $20, $75, $d2
 
-br_00_d20d:
-	ldx #$ad12.w                                                  ; $d20d : $a2, $12, $ad
-	phd                                                  ; $d210 : $0b
-	asl                                                  ; $d211 : $0a
+@displayBossSubweapons:
+; start from the last
+	ldx #$12.b                                                  ; $d20d : $a2, $12
+	lda wSelectedSubweapon.w                                                  ; $d20f : $ad, $0b, $0a
 	dea                                                  ; $d212 : $3a
 	dea                                                  ; $d213 : $3a
 	sta $0006.w                                                  ; $d214 : $8d, $06, $00
 
-br_00_d217:
+@loop_d217:
 	bit wtodo_SubweaponsStatus.w, X                                                  ; $d217 : $3c, $bc, $1f
-	bvc br_00_d237                                                  ; $d21a : $50, $1b
+	bvc @cont_d237                                                  ; $d21a : $50, $1b
 
 	cpx $0006.w                                                  ; $d21c : $ec, $06, $00
-	bne br_00_d22d                                                  ; $d21f : $d0, $0c
+	bne @br_d22d                                                  ; $d21f : $d0, $0c
 
 	lda #$30.b                                                  ; $d221 : $a9, $30
 	jsr Call_00_d250.w                                                  ; $d223 : $20, $50, $d2
 	lda #$28.b                                                  ; $d226 : $a9, $28
-	jsr Call_00_d275.w                                                  ; $d228 : $20, $75, $d2
-	bra br_00_d237                                                  ; $d22b : $80, $0a
+	jsr DisplayMenuSubweapon.w                                                  ; $d228 : $20, $75, $d2
+	bra @cont_d237                                                  ; $d22b : $80, $0a
 
-br_00_d22d:
+@br_d22d:
 	lda #$3c.b                                                  ; $d22d : $a9, $3c
 	jsr Call_00_d250.w                                                  ; $d22f : $20, $50, $d2
 	lda #$34.b                                                  ; $d232 : $a9, $34
-	jsr Call_00_d275.w                                                  ; $d234 : $20, $75, $d2
+	jsr DisplayMenuSubweapon.w                                                  ; $d234 : $20, $75, $d2
 
-br_00_d237:
+@cont_d237:
 	dex                                                  ; $d237 : $ca
 	dex                                                  ; $d238 : $ca
-	bpl br_00_d217                                                  ; $d239 : $10, $dc
+	bpl @loop_d217                                                  ; $d239 : $10, $dc
 
 	rts                                                  ; $d23b : $60
 
@@ -12888,23 +12901,33 @@ Call_00_d250:
 	rts                                                  ; $d274 : $60
 
 
-Call_00_d275:
+; A -
+; X - subweapon ID * 2 ($14 for z buster)
+DisplayMenuSubweapon:
 	sta $0003.w                                                  ; $d275 : $8d, $03, $00
 	stz $0002.w                                                  ; $d278 : $9c, $02, $00
 	rep #ACCU_8                                                  ; $d27b : $c2, $20
+
+; word here is the top vram addr
 	lda $9fc0.w, X                                                  ; $d27d : $bd, $c0, $9f
 	sta VMADDL.w                                                  ; $d280 : $8d, $16, $21
 	sta $10                                                  ; $d283 : $85, $10
+
+; 2 words here for the top 2 tiles
 	lda $9ff0.w, X                                                  ; $d285 : $bd, $f0, $9f
 	ora $0002.w                                                  ; $d288 : $0d, $02, $00
 	sta VMDATAL.w                                                  ; $d28b : $8d, $18, $21
 	ina                                                  ; $d28e : $1a
 	sta VMDATAL.w                                                  ; $d28f : $8d, $18, $21
 	sta $00                                                  ; $d292 : $85, $00
+
+; word here is the bottom vram addr
 	lda $10                                                  ; $d294 : $a5, $10
 	clc                                                  ; $d296 : $18
 	adc #$0020.w                                                  ; $d297 : $69, $20, $00
 	sta VMADDL.w                                                  ; $d29a : $8d, $16, $21
+
+; 2 words here for the bottom 2 tiles
 	lda $00                                                  ; $d29d : $a5, $00
 	clc                                                  ; $d29f : $18
 	adc #$000f.w                                                  ; $d2a0 : $69, $0f, $00
@@ -13406,7 +13429,7 @@ Call_00_d632:
 	stz $0a                                                  ; $d63c : $64, $0a
 
 br_00_d63e:
-	lda $0a0b.w                                                  ; $d63e : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $d63e : $ad, $0b, $0a
 	cmp $0a                                                  ; $d641 : $c5, $0a
 	beq br_00_d64b                                                  ; $d643 : $f0, $06
 
@@ -13425,7 +13448,7 @@ br_00_d651:
 
 	jsr $04b097.l                                                  ; $d657 : $22, $97, $b0, $04
 	lda $0a                                                  ; $d65b : $a5, $0a
-	sta $0a0b.w                                                  ; $d65d : $8d, $0b, $0a
+	sta wSelectedSubweapon.w                                                  ; $d65d : $8d, $0b, $0a
 	cmp #$00.b                                                  ; $d660 : $c9, $00
 	bne br_00_d66a                                                  ; $d662 : $d0, $06
 
@@ -18220,7 +18243,7 @@ br_00_f225:
 	dex                                                  ; $f22f : $ca
 	bpl br_00_f225                                                  ; $f230 : $10, $f3
 
-	jsr $00a493.l                                                  ; $f232 : $22, $93, $a4, $00
+	jsr Func_0_a493.l                                                  ; $f232 : $22, $93, $a4, $00
 	cmp #$ff.b                                                  ; $f236 : $c9, $ff
 	beq br_00_f248                                                  ; $f238 : $f0, $0e
 

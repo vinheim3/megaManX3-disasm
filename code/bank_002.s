@@ -13535,7 +13535,7 @@ Func_2_ddfe:
 
 br_02_de04:
 	jsr Call_02_dea7.w                                                  ; $de04 : $20, $a7, $de
-	lda $0a0b.w                                                  ; $de07 : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $de07 : $ad, $0b, $0a
 	cmp #$10.b                                                  ; $de0a : $c9, $10
 	beq br_02_de3b                                                  ; $de0c : $f0, $2d
 

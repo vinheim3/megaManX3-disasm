@@ -86,57 +86,77 @@ br_03_806f:
 	rts                                                  ; $807c : $60
 
 
+; A - 0 if Doppler building, else 1+ for corresponding stage
+DmaEnqueueStageSelectDopplerOrGreyedBoss:
+; preserve and set direct page to 0
 	sep #ACCU_8|IDX_8                                                  ; $807d : $e2, $30
 	phd                                                  ; $807f : $0b
 	pea $0000.w                                                  ; $8080 : $f4, $00, $00
 	pld                                                  ; $8083 : $2b
+
+;
 	sta $02                                                  ; $8084 : $85, $02
 	and #$7f.b                                                  ; $8086 : $29, $7f
 	asl                                                  ; $8088 : $0a
 	tay                                                  ; $8089 : $a8
-	lda $9cb2.w, Y                                                  ; $808a : $b9, $b2, $9c
+
+;
+	lda Data_6_9cb2.w, Y                                                  ; $808a : $b9, $b2, $9c
 	sta $10                                                  ; $808d : $85, $10
-	lda $9cb3.w, Y                                                  ; $808f : $b9, $b3, $9c
+	lda Data_6_9cb2.w+1, Y                                                  ; $808f : $b9, $b3, $9c
 	sta $11                                                  ; $8092 : $85, $11
-	ldx $a5                                                  ; $8094 : $a6, $a5
+
+; Start filling mini dma struct
+	ldx wMiniDmaStructOffsetToFill                                                  ; $8094 : $a6, $a5
 	ldy #$00.b                                                  ; $8096 : $a0, $00
 
-br_03_8098:
+@nextRow:
+; End once 0 read
 	lda ($10), Y                                                  ; $8098 : $b1, $10
-	beq br_03_80c4                                                  ; $809a : $f0, $28
+	beq @end                                                  ; $809a : $f0, $28
 
+; Else it's the number of bytes in this mini struct
 	sta $00                                                  ; $809c : $85, $00
-	sta $0603.w, X                                                  ; $809e : $9d, $03, $06
+	sta wMiniDmaStructs.w+3, X                                                  ; $809e : $9d, $03, $06
 	iny                                                  ; $80a1 : $c8
-	lda #$80.b                                                  ; $80a2 : $a9, $80
-	sta $0600.w, X                                                  ; $80a4 : $9d, $00, $06
+
+;
+	lda #VMAIN_INC_AFTER_2ND_BYTE.b                                                  ; $80a2 : $a9, $80
+	sta wMiniDmaStructs.w, X                                                  ; $80a4 : $9d, $00, $06
 	inx                                                  ; $80a7 : $e8
+
+; Next word is the vram dest address
 	lda ($10), Y                                                  ; $80a8 : $b1, $10
-	sta $0600.w, X                                                  ; $80aa : $9d, $00, $06
+	sta wMiniDmaStructs.w, X                                                  ; $80aa : $9d, $00, $06
 	iny                                                  ; $80ad : $c8
 	inx                                                  ; $80ae : $e8
+
 	lda ($10), Y                                                  ; $80af : $b1, $10
-	sta $0600.w, X                                                  ; $80b1 : $9d, $00, $06
+	sta wMiniDmaStructs.w, X                                                  ; $80b1 : $9d, $00, $06
 	iny                                                  ; $80b4 : $c8
 	inx                                                  ; $80b5 : $e8
+
+; Skip past num bytes already populated above
 	inx                                                  ; $80b6 : $e8
 
-br_03_80b7:
+@nextCol:
+; Copy in required bytes for this mini struct
 	lda ($10), Y                                                  ; $80b7 : $b1, $10
-	sta $0600.w, X                                                  ; $80b9 : $9d, $00, $06
+	sta wMiniDmaStructs.w, X                                                  ; $80b9 : $9d, $00, $06
 	iny                                                  ; $80bc : $c8
 	inx                                                  ; $80bd : $e8
 	dec $00                                                  ; $80be : $c6, $00
-	bne br_03_80b7                                                  ; $80c0 : $d0, $f5
+	bne @nextCol                                                  ; $80c0 : $d0, $f5
 
-	bra br_03_8098                                                  ; $80c2 : $80, $d4
+	bra @nextRow                                                  ; $80c2 : $80, $d4
 
-br_03_80c4:
-	stx $a5                                                  ; $80c4 : $86, $a5
+@end:
+	stx wMiniDmaStructOffsetToFill                                                  ; $80c4 : $86, $a5
 	pld                                                  ; $80c6 : $2b
 	rtl                                                  ; $80c7 : $6b
 
 
+;
 	sep #ACCU_8|IDX_8                                                  ; $80c8 : $e2, $30
 
 br_03_80ca:
@@ -2801,7 +2821,7 @@ Call_03_919f:
 	.dw Func_3_92ab
 	.dw Jump_03_92aa
 
-	lda $0a0b.w                                                  ; $91b1 : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $91b1 : $ad, $0b, $0a
 	tay                                                  ; $91b4 : $a8
 	bne br_03_91bd                                                  ; $91b5 : $d0, $06
 
@@ -2848,7 +2868,7 @@ br_03_91d4:
 	sta $601d.w                                                  ; $91f3 : $8d, $1d, $60
 	lda #$ac.b                                                  ; $91f6 : $a9, $ac
 	sta $601e.w                                                  ; $91f8 : $8d, $1e, $60
-	lda $0a0b.w                                                  ; $91fb : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $91fb : $ad, $0b, $0a
 	tay                                                  ; $91fe : $a8
 	lda $1fba.w, Y                                                  ; $91ff : $b9, $ba, $1f
 	bmi br_03_9207                                                  ; $9202 : $30, $03
@@ -9497,7 +9517,7 @@ Call_03_bb75:
 
 Call_03_bb88:
 	sep #ACCU_8|IDX_8                                                  ; $bb88 : $e2, $30
-	lda $0a0b.w                                                  ; $bb8a : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $bb8a : $ad, $0b, $0a
 	beq br_03_bb97                                                  ; $bb8d : $f0, $08
 
 	clc                                                  ; $bb8f : $18
@@ -13881,7 +13901,7 @@ br_03_d78a:
 	jsr $04d24b.l                                                  ; $d79d : $22, $4b, $d2, $04
 	jsr $04d4c9.l                                                  ; $d7a1 : $22, $c9, $d4, $04
 	sep #ACCU_8                                                  ; $d7a5 : $e2, $20
-	lda $0a0b.w                                                  ; $d7a7 : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $d7a7 : $ad, $0b, $0a
 	cmp #$12.b                                                  ; $d7aa : $c9, $12
 	beq br_03_d7b9                                                  ; $d7ac : $f0, $0b
 

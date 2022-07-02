@@ -479,7 +479,7 @@ Func_13_c278:
 	sta $34                                                  ; $c296 : $85, $34
 	inc $1f63.w                                                  ; $c298 : $ee, $63, $1f
 	inc $1f45.w                                                  ; $c29b : $ee, $45, $1f
-	stz $0a0b.w                                                  ; $c29e : $9c, $0b, $0a
+	stz wSelectedSubweapon.w                                                  ; $c29e : $9c, $0b, $0a
 	stz $0a30.w                                                  ; $c2a1 : $9c, $30, $0a
 	stz $0a31.w                                                  ; $c2a4 : $9c, $31, $0a
 	stz $0a32.w                                                  ; $c2a7 : $9c, $32, $0a
@@ -4961,7 +4961,7 @@ br_13_dea5:
 	dec $39                                                  ; $deee : $c6, $39
 	beq br_13_df12                                                  ; $def0 : $f0, $20
 
-	lda $0a0b.w                                                  ; $def2 : $ad, $0b, $0a
+	lda wSelectedSubweapon.w                                                  ; $def2 : $ad, $0b, $0a
 	bne br_13_df11                                                  ; $def5 : $d0, $1a
 
 	lda $0a55.w                                                  ; $def7 : $ad, $55, $0a

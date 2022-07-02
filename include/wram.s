@@ -68,11 +68,13 @@ wShouldUpdateCGRAM: ; $a1
 wa2:
     ds 4-2
 
+; todo: detail 500+ struct
 wBulkDmaStructOffsetToFill: ; $a4
     db
 
-wa5:
-    ds 6-5
+; todo: detail 600+ struct
+wMiniDmaStructOffsetToFill: ; $a5
+    db
 
 wTilemapDmaStructAddrAfterEnd: ; $a6
     dw
@@ -194,8 +196,14 @@ wff:
 wColourRam ; $0300
     ds $200
 
-w0500:
-    ds $9cb-$500
+wBulkDmaStructs: ; $500
+    ds $100
+
+wMiniDmaStructs: ; $600
+    ds $100
+
+w0700:
+    ds $9cb-$700
 
 wMainLoopCounter: ; $09cb
     db
@@ -220,7 +228,13 @@ wCurrHealth: ; $09ff
     db
 
 w0a00:
-    ds $e-0
+    ds $b-0
+
+wSelectedSubweapon: ; $0a0b
+    db
+
+w0a0c:
+    ds $e-$c
 
 wDashAndSelCurrBtnsHeld: ; $0a0e
     db
@@ -250,8 +264,20 @@ wRiderArmourEntity: ; $0cc8
 w0ce8:
     ds $d18-$ce8
 
-wEnemyEntities: ; $0d18
-    ds StageEnemyEntity.sizeof * NUM_ENEMY_ENTITIES
+.union
+
+    wEnemyEntities: ; $0d18
+        ds StageEnemyEntity.sizeof * NUM_ENEMY_ENTITIES
+
+.nextu
+
+    w0d18:
+        ds $4f-$18
+
+    wBeatenStageIdx: ; $0d4f
+        db
+
+.endu
 
 w10d8:
     ds $518-$d8
