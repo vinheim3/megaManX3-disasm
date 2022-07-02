@@ -2263,7 +2263,7 @@ br_0f_8cfd:
 	inc $040a.w                                                  ; $8d41 : $ee, $0a, $04
 	jsr Call_0f_faee.w                                                  ; $8d44 : $20, $ee, $fa
 	cop $20.b                                                  ; $8d47 : $02, $20
-	inc $00ea.w                                                  ; $8d49 : $ee, $ea, $00
+	inc wtodo_WordIdxInto_780_struct.w                                                  ; $8d49 : $ee, $ea, $00
 	ora #$e400.w                                                  ; $8d4c : $09, $00, $e4
 	ora [$07]                                                  ; $8d4f : $07, $07
 	.db $00                                                  ; $8d51 : $00

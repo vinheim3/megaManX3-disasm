@@ -12238,7 +12238,7 @@ Func_2_d65b:
 
 @funcs:
 	.dw Func_2_d68f
-	.dw $d6a4
+	.dw Func_2_d6a4
 	.dw Func_2_d6b9
 	.dw $d6ce
 	.dw $d6e3
@@ -12280,9 +12280,10 @@ Func_2_d68f:
 	rtl                                                  ; $d6a3 : $6b
 
 
-	lda $00ea.w                                                  ; $d6a4 : $ad, $ea, $00
+Func_2_d6a4:
+	lda wtodo_WordIdxInto_780_struct.w                                                  ; $d6a4 : $ad, $ea, $00
 	cmp #$20.b                                                  ; $d6a7 : $c9, $20
-	bcs br_02_d6b8                                                  ; $d6a9 : $b0, $0d
+	bcs @done                                                  ; $d6a9 : $b0, $0d
 
 	asl                                                  ; $d6ab : $0a
 	tax                                                  ; $d6ac : $aa
@@ -12290,9 +12291,9 @@ Func_2_d68f:
 	tdc                                                  ; $d6af : $7b
 	sta $0780.w, X                                                  ; $d6b0 : $9d, $80, $07
 	sep #ACCU_8                                                  ; $d6b3 : $e2, $20
-	inc $00ea.w                                                  ; $d6b5 : $ee, $ea, $00
+	inc wtodo_WordIdxInto_780_struct.w                                                  ; $d6b5 : $ee, $ea, $00
 
-br_02_d6b8:
+@done:
 	rtl                                                  ; $d6b8 : $6b
 
 
@@ -12466,6 +12467,7 @@ br_02_d7b9:
 	rtl                                                  ; $d7c1 : $6b
 
 
+Func_2_d7c2:
 	php                                                  ; $d7c2 : $08
 	rep #ACCU_8                                                  ; $d7c3 : $c2, $20
 	sec                                                  ; $d7c5 : $38
@@ -13400,7 +13402,7 @@ br_02_dd03:
 
 
 br_02_dd49:
-	jsr $02d7c2.l                                                  ; $dd49 : $22, $c2, $d7, $02
+	jsr Func_2_d7c2.l                                                  ; $dd49 : $22, $c2, $d7, $02
 	sec                                                  ; $dd4d : $38
 	rts                                                  ; $dd4e : $60
 
@@ -13850,7 +13852,7 @@ br_02_dfcd:
 	tcd                                                  ; $dfea : $5b
 	sep #ACCU_8|IDX_8                                                  ; $dfeb : $e2, $30
 	lda #$00.b                                                  ; $dfed : $a9, $00
-	jsr Func_4_b967.l                                                  ; $dfef : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $dfef : $22, $67, $b9, $04
 	pld                                                  ; $dff3 : $2b
 
 br_02_dff4:
@@ -14138,7 +14140,7 @@ _LoadEnemyBaseDataA:
 .endif
 	sta StageEnemyEntity.health                                                  ; $e187 : $85, $27
 	lda EnemyBaseData.w+4, X                                                  ; $e189 : $bd, $92, $e2
-	sta $28                                                  ; $e18c : $85, $28
+	sta StageEnemyEntity.weaknessesIdx                                                  ; $e18c : $85, $28
 	lda EnemyBaseData.w, X                                                  ; $e18e : $bd, $8e, $e2
 	sta $16                                                  ; $e191 : $85, $16
 
@@ -14192,7 +14194,7 @@ _LoadEnemyBaseDataA:
 	tcd                                                  ; $e1f0 : $5b
 	sep #ACCU_8                                                  ; $e1f1 : $e2, $20
 	lda #$00.b                                                  ; $e1f3 : $a9, $00
-	jsr Func_4_b967.l                                                  ; $e1f5 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e1f5 : $22, $67, $b9, $04
 	pld                                                  ; $e1f9 : $2b
 
 br_02_e1fa:
@@ -14278,7 +14280,7 @@ br_02_e270:
 	lda $0001.w                                                  ; $e273 : $ad, $01, $00
 
 br_02_e276:
-	jmp Func_4_b967.l                                                  ; $e276 : $5c, $67, $b9, $04
+	jmp SetupEntitysAnimation.l                                                  ; $e276 : $5c, $67, $b9, $04
 
 
 br_02_e27a:
@@ -14348,7 +14350,7 @@ br_02_e2c7:
 	sta $20                                                  ; $e2dc : $85, $20
 	sep #ACCU_8                                                  ; $e2de : $e2, $20
 	lda #$01.b                                                  ; $e2e0 : $a9, $01
-	jsr Func_4_b967.l                                                  ; $e2e2 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e2e2 : $22, $67, $b9, $04
 	rts                                                  ; $e2e6 : $60
 
 
@@ -14408,7 +14410,7 @@ br_02_e320:
 	trb $11                                                  ; $e335 : $14, $11
 
 br_02_e337:
-	jsr Func_4_b94a.l                                                  ; $e337 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $e337 : $22, $4a, $b9, $04
 	jsr Func_4_cb31.l                                                  ; $e33b : $22, $31, $cb, $04
 
 br_02_e33f:
@@ -14442,7 +14444,7 @@ br_02_e348:
 	pea $22e6.w                                                  ; $e360 : $f4, $e6, $22
 	plp                                                  ; $e363 : $28
 	cmp $6002.w, Y                                                  ; $e364 : $d9, $02, $60
-	jsr $02d7c2.l                                                  ; $e367 : $22, $c2, $d7, $02
+	jsr Func_2_d7c2.l                                                  ; $e367 : $22, $c2, $d7, $02
 	jsr $04c0f7.l                                                  ; $e36b : $22, $f7, $c0, $04
 	lda $2b                                                  ; $e36f : $a5, $2b
 	bit #$04.b                                                  ; $e371 : $89, $04
@@ -14541,7 +14543,7 @@ br_02_e3fb:
 	rts                                                  ; $e407 : $60
 
 
-	jsr $02d7c2.l                                                  ; $e408 : $22, $c2, $d7, $02
+	jsr Func_2_d7c2.l                                                  ; $e408 : $22, $c2, $d7, $02
 	jsr $04c0f7.l                                                  ; $e40c : $22, $f7, $c0, $04
 	lda $2b                                                  ; $e410 : $a5, $2b
 	bit #$03.b                                                  ; $e412 : $89, $03
@@ -14617,7 +14619,7 @@ br_02_e46e:
 	rts                                                  ; $e481 : $60
 
 
-	jsr $02d7c2.l                                                  ; $e482 : $22, $c2, $d7, $02
+	jsr Func_2_d7c2.l                                                  ; $e482 : $22, $c2, $d7, $02
 	jsr $04c0f7.l                                                  ; $e486 : $22, $f7, $c0, $04
 	lda $2b                                                  ; $e48a : $a5, $2b
 	bit #$04.b                                                  ; $e48c : $89, $04
@@ -14829,7 +14831,7 @@ Call_02_e572:
 	tcd                                                  ; $e5c5 : $5b
 	sep #ACCU_8                                                  ; $e5c6 : $e2, $20
 	lda #$00.b                                                  ; $e5c8 : $a9, $00
-	jsr Func_4_b967.l                                                  ; $e5ca : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e5ca : $22, $67, $b9, $04
 	pld                                                  ; $e5ce : $2b
 
 br_02_e5cf:
@@ -14983,7 +14985,7 @@ br_02_e6a3:
 	lda #$02.b                                                  ; $e6a3 : $a9, $02
 
 br_02_e6a5:
-	jsr Func_4_b967.l                                                  ; $e6a5 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e6a5 : $22, $67, $b9, $04
 	lda #$02.b                                                  ; $e6a9 : $a9, $02
 	sta $02                                                  ; $e6ab : $85, $02
 	rts                                                  ; $e6ad : $60
@@ -14993,7 +14995,7 @@ br_02_e6ae:
 	lda #$04.b                                                  ; $e6ae : $a9, $04
 	sta $02                                                  ; $e6b0 : $85, $02
 	lda #$01.b                                                  ; $e6b2 : $a9, $01
-	jsr Func_4_b967.l                                                  ; $e6b4 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e6b4 : $22, $67, $b9, $04
 	rts                                                  ; $e6b8 : $60
 
 
@@ -15008,7 +15010,7 @@ br_02_e6c1:
 	lda #$05.b                                                  ; $e6c1 : $a9, $05
 
 br_02_e6c3:
-	jsr Func_4_b967.l                                                  ; $e6c3 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e6c3 : $22, $67, $b9, $04
 	rts                                                  ; $e6c7 : $60
 
 
@@ -15122,7 +15124,7 @@ br_02_e76c:
 	sta $16                                                  ; $e780 : $85, $16
 	lda #$02.b                                                  ; $e782 : $a9, $02
 	sta $01                                                  ; $e784 : $85, $01
-	jmp Func_4_b967.l                                                  ; $e786 : $5c, $67, $b9, $04
+	jmp SetupEntitysAnimation.l                                                  ; $e786 : $5c, $67, $b9, $04
 
 
 	rep #IDX_8                                                  ; $e78a : $c2, $10
@@ -15138,7 +15140,7 @@ br_02_e76c:
 
 	sta $01                                                  ; $e7a1 : $85, $01
 	lda #$03.b                                                  ; $e7a3 : $a9, $03
-	jsr Func_4_b967.l                                                  ; $e7a5 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e7a5 : $22, $67, $b9, $04
 
 br_02_e7a9:
 	jmp Func_2_d636.l                                                  ; $e7a9 : $5c, $36, $d6, $02
@@ -15146,7 +15148,7 @@ br_02_e7a9:
 
 br_02_e7ad:
 	jsr Func_2_d636.l                                                  ; $e7ad : $22, $36, $d6, $02
-	jmp Func_4_b94a.l                                                  ; $e7b1 : $5c, $4a, $b9, $04
+	jmp AnimateEntity.l                                                  ; $e7b1 : $5c, $4a, $b9, $04
 
 
 	rep #IDX_8                                                  ; $e7b5 : $c2, $10
@@ -15257,7 +15259,7 @@ br_02_e81b:
 	stz $02                                                  ; $e86b : $64, $02
 	stz $3b                                                  ; $e86d : $64, $3b
 	lda #$02.b                                                  ; $e86f : $a9, $02
-	jsr Func_4_b967.l                                                  ; $e871 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e871 : $22, $67, $b9, $04
 	rtl                                                  ; $e875 : $6b
 
 
@@ -15286,7 +15288,7 @@ br_02_e81b:
 	bne br_02_e8ff                                                  ; $e8af : $d0, $4e
 
 	jsr Func_2_d636.l                                                  ; $e8b1 : $22, $36, $d6, $02
-	jsr Func_4_b94a.l                                                  ; $e8b5 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $e8b5 : $22, $4a, $b9, $04
 	lda $02                                                  ; $e8b9 : $a5, $02
 	cmp #$08.b                                                  ; $e8bb : $c9, $08
 	bmi br_02_e8ff                                                  ; $e8bd : $30, $40
@@ -15410,7 +15412,7 @@ br_02_e969:
 	lda #$04.b                                                  ; $e96f : $a9, $04
 	sta $02                                                  ; $e971 : $85, $02
 	lda #$03.b                                                  ; $e973 : $a9, $03
-	jsr Func_4_b967.l                                                  ; $e975 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e975 : $22, $67, $b9, $04
 	rts                                                  ; $e979 : $60
 
 
@@ -15434,7 +15436,7 @@ br_02_e992:
 	lda #$1a.b                                                  ; $e992 : $a9, $1a
 	jsr Func_0_84bc.l                                                  ; $e994 : $22, $bc, $84, $00
 	lda #$00.b                                                  ; $e998 : $a9, $00
-	jsr Func_4_b967.l                                                  ; $e99a : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e99a : $22, $67, $b9, $04
 	lda #$06.b                                                  ; $e99e : $a9, $06
 	sta $02                                                  ; $e9a0 : $85, $02
 	lda $1f57.w                                                  ; $e9a2 : $ad, $57, $1f
@@ -15443,7 +15445,7 @@ br_02_e992:
 	lda #$04.b                                                  ; $e9ab : $a9, $04
 
 br_02_e9ad:
-	jsr Func_4_b967.l                                                  ; $e9ad : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e9ad : $22, $67, $b9, $04
 
 br_02_e9b1:
 	rts                                                  ; $e9b1 : $60
@@ -15741,7 +15743,7 @@ br_02_eb43:
 	lda $ce45.w, X                                                  ; $eb79 : $bd, $45, $ce
 	sta $3a                                                  ; $eb7c : $85, $3a
 	lda $ce46.w, X                                                  ; $eb7e : $bd, $46, $ce
-	jmp Func_4_b967.l                                                  ; $eb81 : $5c, $67, $b9, $04
+	jmp SetupEntitysAnimation.l                                                  ; $eb81 : $5c, $67, $b9, $04
 
 
 	lda $3a                                                  ; $eb85 : $a5, $3a
@@ -15759,7 +15761,7 @@ br_02_eb8c:
 	beq br_02_ebb3                                                  ; $eb96 : $f0, $1b
 
 	jsr Func_2_d636.l                                                  ; $eb98 : $22, $36, $d6, $02
-	jsr Func_4_b94a.l                                                  ; $eb9c : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $eb9c : $22, $4a, $b9, $04
 	rep #ACCU_8                                                  ; $eba0 : $c2, $20
 	lda wNewStageScrollY.w                                                  ; $eba2 : $ad, $60, $1e
 	clc                                                  ; $eba5 : $18
@@ -15820,7 +15822,7 @@ br_02_ebca:
 	sta $11                                                  ; $ebfb : $85, $11
 	sta $38                                                  ; $ebfd : $85, $38
 	lda #$00.b                                                  ; $ebff : $a9, $00
-	jsr Func_4_b967.l                                                  ; $ec01 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $ec01 : $22, $67, $b9, $04
 	lda #$02.b                                                  ; $ec05 : $a9, $02
 	sta $03                                                  ; $ec07 : $85, $03
 
@@ -16025,7 +16027,7 @@ br_02_ed3c:
 	lda #$01.b                                                  ; $ed5f : $a9, $01
 	sta $30                                                  ; $ed61 : $85, $30
 	lda #$01.b                                                  ; $ed63 : $a9, $01
-	jsr Func_4_b967.l                                                  ; $ed65 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $ed65 : $22, $67, $b9, $04
 	lda #$02.b                                                  ; $ed69 : $a9, $02
 	sta $03                                                  ; $ed6b : $85, $03
 	jmp Jump_02_ec09.w                                                  ; $ed6d : $4c, $09, $ec
@@ -16541,7 +16543,7 @@ br_02_f04d:
 
 br_02_f0bb:
 	sep #IDX_8                                                  ; $f0bb : $e2, $10
-	jsr Func_4_b94a.l                                                  ; $f0bd : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f0bd : $22, $4a, $b9, $04
 	jmp Func_2_d636.l                                                  ; $f0c1 : $5c, $36, $d6, $02
 
 
@@ -16712,7 +16714,7 @@ br_02_f1b9:
 	lda #$01.b                                                  ; $f1bd : $a9, $01
 
 br_02_f1bf:
-	jsr Func_4_b967.l                                                  ; $f1bf : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $f1bf : $22, $67, $b9, $04
 	rep #ACCU_8                                                  ; $f1c3 : $c2, $20
 	stz $1c                                                  ; $f1c5 : $64, $1c
 	stz $1a                                                  ; $f1c7 : $64, $1a
@@ -16748,7 +16750,7 @@ br_02_f1bf:
 
 br_02_f1fa:
 	sep #IDX_8                                                  ; $f1fa : $e2, $10
-	jsr Func_4_b94a.l                                                  ; $f1fc : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f1fc : $22, $4a, $b9, $04
 	jmp Func_2_d636.l                                                  ; $f200 : $5c, $36, $d6, $02
 
 
@@ -16764,7 +16766,7 @@ br_02_f1fa:
 	sta $1f                                                  ; $f215 : $85, $1f
 	pla                                                  ; $f217 : $68
 	sta $1e                                                  ; $f218 : $85, $1e
-	jsr Func_4_b94a.l                                                  ; $f21a : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f21a : $22, $4a, $b9, $04
 	lda $09cc.w                                                  ; $f21e : $ad, $cc, $09
 	and #$01.b                                                  ; $f221 : $29, $01
 	bne br_02_f231                                                  ; $f223 : $d0, $0c
@@ -16840,7 +16842,7 @@ br_02_f261:
 	lda $d8df.w, Y                                                  ; $f29b : $b9, $df, $d8
 	sta $16                                                  ; $f29e : $85, $16
 	lda $d8e0.w, Y                                                  ; $f2a0 : $b9, $e0, $d8
-	jmp Func_4_b967.l                                                  ; $f2a3 : $5c, $67, $b9, $04
+	jmp SetupEntitysAnimation.l                                                  ; $f2a3 : $5c, $67, $b9, $04
 
 
 br_02_f2a7:
@@ -16871,27 +16873,27 @@ br_02_f2a7:
 
 
 br_02_f2d6:
-	jsr Func_4_b94a.l                                                  ; $f2d6 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f2d6 : $22, $4a, $b9, $04
 	jmp Func_2_d636.l                                                  ; $f2da : $5c, $36, $d6, $02
 
 
 	lda $0f                                                  ; $f2de : $a5, $0f
 	bmi br_02_f2e6                                                  ; $f2e0 : $30, $04
 
-	jsr Func_4_b94a.l                                                  ; $f2e2 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f2e2 : $22, $4a, $b9, $04
 
 br_02_f2e6:
 	jmp Func_2_d636.l                                                  ; $f2e6 : $5c, $36, $d6, $02
 
 
-	jsr Func_4_b94a.l                                                  ; $f2ea : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f2ea : $22, $4a, $b9, $04
 	jmp Func_2_d636.l                                                  ; $f2ee : $5c, $36, $d6, $02
 
 
 	lda $0f                                                  ; $f2f2 : $a5, $0f
 	bmi br_02_f2fa                                                  ; $f2f4 : $30, $04
 
-	jsr Func_4_b94a.l                                                  ; $f2f6 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f2f6 : $22, $4a, $b9, $04
 
 br_02_f2fa:
 	jmp Func_2_d611.l                                                  ; $f2fa : $5c, $11, $d6, $02
@@ -16909,8 +16911,8 @@ br_02_f308:
 
 br_02_f30c:
 	dec $03                                                  ; $f30c : $c6, $03
-	jsr Func_4_b94a.l                                                  ; $f30e : $22, $4a, $b9, $04
-	jsr $02d7c2.l                                                  ; $f312 : $22, $c2, $d7, $02
+	jsr AnimateEntity.l                                                  ; $f30e : $22, $4a, $b9, $04
+	jsr Func_2_d7c2.l                                                  ; $f312 : $22, $c2, $d7, $02
 	jmp Func_2_d636.l                                                  ; $f316 : $5c, $36, $d6, $02
 
 
@@ -16921,7 +16923,7 @@ br_02_f30c:
 
 
 br_02_f324:
-	jsr Func_4_b94a.l                                                  ; $f324 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f324 : $22, $4a, $b9, $04
 	jsr $02d6f8.l                                                  ; $f328 : $22, $f8, $d6, $02
 	jmp Func_2_d636.l                                                  ; $f32c : $5c, $36, $d6, $02
 
@@ -16936,7 +16938,7 @@ br_02_f324:
 	bra br_02_f342                                                  ; $f33c : $80, $04
 
 br_02_f33e:
-	jsr Func_4_b94a.l                                                  ; $f33e : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f33e : $22, $4a, $b9, $04
 
 br_02_f342:
 	lda $03                                                  ; $f342 : $a5, $03
@@ -16956,7 +16958,7 @@ br_02_f347:
 
 
 br_02_f353:
-	jsr Func_4_b94a.l                                                  ; $f353 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f353 : $22, $4a, $b9, $04
 	jmp Func_2_d636.l                                                  ; $f357 : $5c, $36, $d6, $02
 
 
@@ -16967,7 +16969,7 @@ br_02_f353:
 
 
 br_02_f363:
-	jsr Func_4_b94a.l                                                  ; $f363 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f363 : $22, $4a, $b9, $04
 	jsr $02d78e.l                                                  ; $f367 : $22, $8e, $d7, $02
 	jmp Func_2_d636.l                                                  ; $f36b : $5c, $36, $d6, $02
 
@@ -16987,7 +16989,7 @@ br_02_f363:
 
 br_02_f387:
 	jsr Func_2_d636.l                                                  ; $f387 : $22, $36, $d6, $02
-	jmp Func_4_b94a.l                                                  ; $f38b : $5c, $4a, $b9, $04
+	jmp AnimateEntity.l                                                  ; $f38b : $5c, $4a, $b9, $04
 
 
 	rep #ACCU_8|IDX_8                                                  ; $f38f : $c2, $30
@@ -17013,7 +17015,7 @@ br_02_f387:
 
 br_02_f3b5:
 	jsr Func_2_d636.l                                                  ; $f3b5 : $22, $36, $d6, $02
-	jmp Func_4_b94a.l                                                  ; $f3b9 : $5c, $4a, $b9, $04
+	jmp AnimateEntity.l                                                  ; $f3b9 : $5c, $4a, $b9, $04
 
 
 	lda $03                                                  ; $f3bd : $a5, $03
@@ -17026,7 +17028,7 @@ br_02_f3b5:
 	lda $0008.w, X                                                  ; $f3ca : $bd, $08, $00
 	sta $08                                                  ; $f3cd : $85, $08
 	sep #ACCU_8|IDX_8                                                  ; $f3cf : $e2, $30
-	jsr Func_4_b94a.l                                                  ; $f3d1 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f3d1 : $22, $4a, $b9, $04
 	jmp Func_2_d636.l                                                  ; $f3d5 : $5c, $36, $d6, $02
 
 
@@ -17045,7 +17047,7 @@ br_02_f3d9:
 
 
 br_02_f3ee:
-	jsr Func_4_b94a.l                                                  ; $f3ee : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f3ee : $22, $4a, $b9, $04
 	jmp Func_2_d636.l                                                  ; $f3f2 : $5c, $36, $d6, $02
 
 
@@ -17062,7 +17064,7 @@ br_02_f3fe:
 	lda $09e0.w                                                  ; $f405 : $ad, $e0, $09
 	sta $08                                                  ; $f408 : $85, $08
 	sep #ACCU_8                                                  ; $f40a : $e2, $20
-	jsr Func_4_b94a.l                                                  ; $f40c : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f40c : $22, $4a, $b9, $04
 	jmp Func_2_d636.l                                                  ; $f410 : $5c, $36, $d6, $02
 
 
@@ -17073,7 +17075,7 @@ br_02_f3fe:
 
 
 br_02_f41e:
-	jsr Func_4_b94a.l                                                  ; $f41e : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f41e : $22, $4a, $b9, $04
 	jsr $02d78e.l                                                  ; $f422 : $22, $8e, $d7, $02
 	jmp Func_2_d636.l                                                  ; $f426 : $5c, $36, $d6, $02
 
@@ -17093,12 +17095,12 @@ br_02_f439:
 	beq br_02_f449                                                  ; $f43d : $f0, $0a
 
 	and #$7f.b                                                  ; $f43f : $29, $7f
-	jsr Func_4_b967.l                                                  ; $f441 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $f441 : $22, $67, $b9, $04
 	stz $0b                                                  ; $f445 : $64, $0b
 	bra br_02_f44d                                                  ; $f447 : $80, $04
 
 br_02_f449:
-	jsr Func_4_b94a.l                                                  ; $f449 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f449 : $22, $4a, $b9, $04
 
 br_02_f44d:
 	lda $03                                                  ; $f44d : $a5, $03
@@ -17189,7 +17191,7 @@ Func_2_f4ab:
 	asl                                                  ; $f4c0 : $0a
 	sta $02                                                  ; $f4c1 : $85, $02
 	lda $d9e4.w, X                                                  ; $f4c3 : $bd, $e4, $d9
-	jsr Func_4_b967.l                                                  ; $f4c6 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $f4c6 : $22, $67, $b9, $04
 	rep #ACCU_8|IDX_8                                                  ; $f4ca : $c2, $30
 	ldy $0c                                                  ; $f4cc : $a4, $0c
 	lda $0b                                                  ; $f4ce : $a5, $0b
@@ -17255,7 +17257,7 @@ Func_2_f514:
 	xba                                                  ; $f522 : $eb
 	tax                                                  ; $f523 : $aa
 	lda $d9ec.w, X                                                  ; $f524 : $bd, $ec, $d9
-	jsr Func_4_b967.l                                                  ; $f527 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $f527 : $22, $67, $b9, $04
 
 br_02_f52b:
 	rep #ACCU_8|IDX_8                                                  ; $f52b : $c2, $30
@@ -17272,7 +17274,7 @@ br_02_f52b:
 	lda $0034.w, Y                                                  ; $f542 : $b9, $34, $00
 	sta $03                                                  ; $f545 : $85, $03
 	sep #IDX_8                                                  ; $f547 : $e2, $10
-	jsr Func_4_b94a.l                                                  ; $f549 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f549 : $22, $4a, $b9, $04
 	sec                                                  ; $f54d : $38
 	rts                                                  ; $f54e : $60
 
@@ -17358,7 +17360,7 @@ br_02_f5d7:
 	lda #$04.b                                                  ; $f5ef : $a9, $04
 	sta $12                                                  ; $f5f1 : $85, $12
 	lda #$00.b                                                  ; $f5f3 : $a9, $00
-	jsr Func_4_b967.l                                                  ; $f5f5 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $f5f5 : $22, $67, $b9, $04
 	lda #$02.b                                                  ; $f5f9 : $a9, $02
 	sta $01                                                  ; $f5fb : $85, $01
 	rtl                                                  ; $f5fd : $6b
@@ -17388,7 +17390,7 @@ br_02_f5d7:
 br_02_f627:
 	lda $0011.w, X                                                  ; $f627 : $bd, $11, $00
 	sta $11                                                  ; $f62a : $85, $11
-	jsr Func_4_b94a.l                                                  ; $f62c : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f62c : $22, $4a, $b9, $04
 	jmp Func_2_d636.l                                                  ; $f630 : $5c, $36, $d6, $02
 
 
@@ -17398,7 +17400,7 @@ br_02_f634:
 	lda $0011.w, X                                                  ; $f638 : $bd, $11, $00
 	sta $11                                                  ; $f63b : $85, $11
 	jsr Func_2_d812.l                                                  ; $f63d : $22, $12, $d8, $02
-	jsr Func_4_b94a.l                                                  ; $f641 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f641 : $22, $4a, $b9, $04
 	lda $0e                                                  ; $f645 : $a5, $0e
 	beq br_02_f64d                                                  ; $f647 : $f0, $04
 
@@ -17519,7 +17521,7 @@ br_02_f6e2:
 	jsr Func_2_d636.l                                                  ; $f6e8 : $22, $36, $d6, $02
 
 br_02_f6ec:
-	jsr $02d7c2.l                                                  ; $f6ec : $22, $c2, $d7, $02
+	jsr Func_2_d7c2.l                                                  ; $f6ec : $22, $c2, $d7, $02
 	rts                                                  ; $f6f0 : $60
 
 
@@ -17544,7 +17546,7 @@ br_02_f6ec:
 	ora ($29), Y                                                  ; $f70b : $11, $29
 	cmp $a51185.l                                                  ; $f70d : $cf, $85, $11, $a5
 	phd                                                  ; $f711 : $0b
-	jsr Func_4_b967.l                                                  ; $f712 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $f712 : $22, $67, $b9, $04
 	rts                                                  ; $f716 : $60
 
 
@@ -17588,7 +17590,7 @@ br_02_f735:
 	sta $01                                                  ; $f750 : $85, $01
 	stz $02                                                  ; $f752 : $64, $02
 	lda $1e                                                  ; $f754 : $a5, $1e
-	jsr Func_4_b967.l                                                  ; $f756 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $f756 : $22, $67, $b9, $04
 	rep #ACCU_8                                                  ; $f75a : $c2, $20
 	lda $1b                                                  ; $f75c : $a5, $1b
 	sta $1e                                                  ; $f75e : $85, $1e
@@ -17606,7 +17608,7 @@ br_02_f735:
 	beq br_02_f781                                                  ; $f771 : $f0, $0e
 
 	jsr Func_2_d636.l                                                  ; $f773 : $22, $36, $d6, $02
-	jsr Func_4_b94a.l                                                  ; $f777 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f777 : $22, $4a, $b9, $04
 	ldx $02                                                  ; $f77b : $a6, $02
 	jsr ($f788.w, X)                                                  ; $f77d : $fc, $88, $f7
 	rts                                                  ; $f780 : $60
@@ -17675,7 +17677,7 @@ br_02_f7af:
 
 br_02_f7dd:
 	lda #$01.b                                                  ; $f7dd : $a9, $01
-	jsr Func_4_b967.l                                                  ; $f7df : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $f7df : $22, $67, $b9, $04
 	rep #ACCU_8                                                  ; $f7e3 : $c2, $20
 	lda #$1000.w                                                  ; $f7e5 : $a9, $00, $10
 	sta $1c                                                  ; $f7e8 : $85, $1c
@@ -17685,7 +17687,7 @@ br_02_f7dd:
 
 
 	jsr Func_2_d636.l                                                  ; $f7ef : $22, $36, $d6, $02
-	jsr Func_4_b94a.l                                                  ; $f7f3 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f7f3 : $22, $4a, $b9, $04
 	jsr $02d78e.l                                                  ; $f7f7 : $22, $8e, $d7, $02
 	rep #ACCU_8                                                  ; $f7fb : $c2, $20
 	lda $08                                                  ; $f7fd : $a5, $08
@@ -17740,11 +17742,11 @@ br_02_f819:
 	lda #$02.b                                                  ; $f84a : $a9, $02
 	sta $01                                                  ; $f84c : $85, $01
 	lda $19                                                  ; $f84e : $a5, $19
-	jsr Func_4_b967.l                                                  ; $f850 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $f850 : $22, $67, $b9, $04
 	rts                                                  ; $f854 : $60
 
 
-	jsr $02d7c2.l                                                  ; $f855 : $22, $c2, $d7, $02
+	jsr Func_2_d7c2.l                                                  ; $f855 : $22, $c2, $d7, $02
 	lda wMainLoopCounter.w                                                  ; $f859 : $ad, $cb, $09
 	bit #$01.b                                                  ; $f85c : $89, $01
 	bne br_02_f868                                                  ; $f85e : $d0, $08
@@ -17780,7 +17782,7 @@ br_02_f869:
 	lda #$02.b                                                  ; $f885 : $a9, $02
 	sta $01                                                  ; $f887 : $85, $01
 	lda $1e                                                  ; $f889 : $a5, $1e
-	jsr Func_4_b967.l                                                  ; $f88b : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $f88b : $22, $67, $b9, $04
 	rep #ACCU_8                                                  ; $f88f : $c2, $20
 	stz $1a                                                  ; $f891 : $64, $1a
 	sep #ACCU_8                                                  ; $f893 : $e2, $20
@@ -17789,12 +17791,12 @@ br_02_f869:
 	rts                                                  ; $f899 : $60
 
 
-	jsr $02d7c2.l                                                  ; $f89a : $22, $c2, $d7, $02
+	jsr Func_2_d7c2.l                                                  ; $f89a : $22, $c2, $d7, $02
 	jsr Func_2_d636.l                                                  ; $f89e : $22, $36, $d6, $02
 	lda $0e                                                  ; $f8a2 : $a5, $0e
 	beq br_02_f8af                                                  ; $f8a4 : $f0, $09
 
-	jsr Func_4_b94a.l                                                  ; $f8a6 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f8a6 : $22, $4a, $b9, $04
 	lda $0f                                                  ; $f8aa : $a5, $0f
 	bmi br_02_f8af                                                  ; $f8ac : $30, $01
 
@@ -17826,7 +17828,7 @@ br_02_f8af:
 	sta $16                                                  ; $f8ce : $85, $16
 	lda $0b                                                  ; $f8d0 : $a5, $0b
 	ina                                                  ; $f8d2 : $1a
-	jsr Func_4_b967.l                                                  ; $f8d3 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $f8d3 : $22, $67, $b9, $04
 	lda #$02.b                                                  ; $f8d7 : $a9, $02
 	sta $12                                                  ; $f8d9 : $85, $12
 	lda $0b                                                  ; $f8db : $a5, $0b
@@ -17878,7 +17880,7 @@ br_02_f91c:
 	bvs br_02_f921                                                  ; $f91f : $70, $00
 
 br_02_f921:
-	jsr Func_4_b94a.l                                                  ; $f921 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f921 : $22, $4a, $b9, $04
 	jmp Func_2_d636.l                                                  ; $f925 : $5c, $36, $d6, $02
 
 
@@ -17906,7 +17908,7 @@ Call_02_f92a:
 	cmp $06a9f9.l, X                                                  ; $f943 : $df, $f9, $a9, $06
 	sta $12                                                  ; $f947 : $85, $12
 	lda #$01.b                                                  ; $f949 : $a9, $01
-	jsr Func_4_b967.l                                                  ; $f94b : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $f94b : $22, $67, $b9, $04
 	lda #$02.b                                                  ; $f94f : $a9, $02
 	sta $01                                                  ; $f951 : $85, $01
 	jmp Func_2_d636.l                                                  ; $f953 : $5c, $36, $d6, $02
@@ -17937,7 +17939,7 @@ br_02_f97c:
 	cmp #$04.b                                                  ; $f980 : $c9, $04
 	beq br_02_f988                                                  ; $f982 : $f0, $04
 
-	jsr Func_4_b94a.l                                                  ; $f984 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f984 : $22, $4a, $b9, $04
 
 br_02_f988:
 	jmp Func_2_d636.l                                                  ; $f988 : $5c, $36, $d6, $02
@@ -17985,7 +17987,7 @@ br_02_f988:
 
 br_02_f9c4:
 	lda #$01.b                                                  ; $f9c4 : $a9, $01
-	jsr Func_4_b967.l                                                  ; $f9c6 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $f9c6 : $22, $67, $b9, $04
 	lda #$00.b                                                  ; $f9ca : $a9, $00
 	sta $02                                                  ; $f9cc : $85, $02
 	rts                                                  ; $f9ce : $60
@@ -17993,7 +17995,7 @@ br_02_f9c4:
 
 br_02_f9cf:
 	lda #$00.b                                                  ; $f9cf : $a9, $00
-	jsr Func_4_b967.l                                                  ; $f9d1 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $f9d1 : $22, $67, $b9, $04
 	lda #$02.b                                                  ; $f9d5 : $a9, $02
 	sta $02                                                  ; $f9d7 : $85, $02
 	rts                                                  ; $f9d9 : $60
@@ -18559,7 +18561,7 @@ br_02_fd3e:
 
 br_02_fd5d:
 	tya                                                  ; $fd5d : $98
-	jsr Func_4_b967.l                                                  ; $fd5e : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $fd5e : $22, $67, $b9, $04
 	stz $10                                                  ; $fd62 : $64, $10
 	rep #ACCU_8                                                  ; $fd64 : $c2, $20
 	bit $0a                                                  ; $fd66 : $24, $0a
@@ -18641,7 +18643,7 @@ br_02_fdd5:
 
 br_02_fdd9:
 	jsr $02d6f8.l                                                  ; $fdd9 : $22, $f8, $d6, $02
-	jsr Func_4_b94a.l                                                  ; $fddd : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $fddd : $22, $4a, $b9, $04
 	lda $10                                                  ; $fde1 : $a5, $10
 	lsr                                                  ; $fde3 : $4a
 	ldx $0b                                                  ; $fde4 : $a6, $0b
@@ -18672,7 +18674,7 @@ br_02_fdf2:
 	lda #$02.b                                                  ; $fdff : $a9, $02
 	sta $12                                                  ; $fe01 : $85, $12
 	lda $1f                                                  ; $fe03 : $a5, $1f
-	jsr Func_4_b967.l                                                  ; $fe05 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $fe05 : $22, $67, $b9, $04
 	lda #$02.b                                                  ; $fe09 : $a9, $02
 	sta $01                                                  ; $fe0b : $85, $01
 	lda $0b                                                  ; $fe0d : $a5, $0b
@@ -18693,7 +18695,7 @@ br_02_fdf2:
 	sep #IDX_8                                                  ; $fe23 : $e2, $10
 	ldx $02                                                  ; $fe25 : $a6, $02
 	jsr ($fe33.w, X)                                                  ; $fe27 : $fc, $33, $fe
-	jsr Func_4_b94a.l                                                  ; $fe2a : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $fe2a : $22, $4a, $b9, $04
 	jsr Func_2_d636.l                                                  ; $fe2e : $22, $36, $d6, $02
 	rts                                                  ; $fe32 : $60
 

@@ -23,8 +23,8 @@ Data_d_8000:
 	.db $97, $88, $0d
 	.db $54, $89, $0d
 	.db $69, $89, $0d
-	.db $87, $89, $0d
-	.db $05, $8a, $0d
+	.dl Data_d_8987
+	.dl Data_d_8a05
 	.db $50, $8a, $0d
 	.db $98, $8a, $0d
 	.db $bf, $8a, $0d
@@ -822,49 +822,56 @@ br_0d_87af:
 	ora $f1fd.w                                                  ; $897d : $0d, $fd, $f1
 	ora $f206.w                                                  ; $8980 : $0d, $06, $f2
 	ora $f20f.w                                                  ; $8983 : $0d, $0f, $f2
-	ora $f218.w                                                  ; $8986 : $0d, $18, $f2
-	ora $f239.w                                                  ; $8989 : $0d, $39, $f2
-	ora $f256.w                                                  ; $898c : $0d, $56, $f2
-	ora $f277.w                                                  ; $898f : $0d, $77, $f2
-	ora $f294.w                                                  ; $8992 : $0d, $94, $f2
-	ora $f2b5.w                                                  ; $8995 : $0d, $b5, $f2
-	ora $f2d2.w                                                  ; $8998 : $0d, $d2, $f2
-	ora $f2f3.w                                                  ; $899b : $0d, $f3, $f2
-	ora $f314.w                                                  ; $899e : $0d, $14, $f3
-	ora $f325.w                                                  ; $89a1 : $0d, $25, $f3
-	ora $f336.w                                                  ; $89a4 : $0d, $36, $f3
-	ora $f347.w                                                  ; $89a7 : $0d, $47, $f3
-	ora $f358.w                                                  ; $89aa : $0d, $58, $f3
-	ora $f371.w                                                  ; $89ad : $0d, $71, $f3
-	ora $f37e.w                                                  ; $89b0 : $0d, $7e, $f3
-	ora $f393.w                                                  ; $89b3 : $0d, $93, $f3
-	ora $f39c.w                                                  ; $89b6 : $0d, $9c, $f3
-	ora $f3b5.w                                                  ; $89b9 : $0d, $b5, $f3
-	ora $f3ce.w                                                  ; $89bc : $0d, $ce, $f3
-	ora $f3d7.w                                                  ; $89bf : $0d, $d7, $f3
-	ora $f3e0.w                                                  ; $89c2 : $0d, $e0, $f3
-	ora $f3e5.w                                                  ; $89c5 : $0d, $e5, $f3
-	ora $f3f6.w                                                  ; $89c8 : $0d, $f6, $f3
-	ora $f407.w                                                  ; $89cb : $0d, $07, $f4
-	ora $f424.w                                                  ; $89ce : $0d, $24, $f4
-	ora $f43d.w                                                  ; $89d1 : $0d, $3d, $f4
-	ora $f456.w                                                  ; $89d4 : $0d, $56, $f4
-	ora $f46b.w                                                  ; $89d7 : $0d, $6b, $f4
-	ora $f47c.w                                                  ; $89da : $0d, $7c, $f4
-	ora $f48d.w                                                  ; $89dd : $0d, $8d, $f4
-	ora $f49e.w                                                  ; $89e0 : $0d, $9e, $f4
-	ora $f4af.w                                                  ; $89e3 : $0d, $af, $f4
-	ora $f218.w                                                  ; $89e6 : $0d, $18, $f2
-	ora $f4c0.w                                                  ; $89e9 : $0d, $c0, $f4
-	ora $f218.w                                                  ; $89ec : $0d, $18, $f2
-	ora $f4c0.w                                                  ; $89ef : $0d, $c0, $f4
-	ora $f4dd.w                                                  ; $89f2 : $0d, $dd, $f4
-	ora $f4f2.w                                                  ; $89f5 : $0d, $f2, $f4
-	ora $f507.w                                                  ; $89f8 : $0d, $07, $f5
-	ora $f51c.w                                                  ; $89fb : $0d, $1c, $f5
-	ora $f531.w                                                  ; $89fe : $0d, $31, $f5
-	ora $f54a.w                                                  ; $8a01 : $0d, $4a, $f5
-	ora $f557.w                                                  ; $8a04 : $0d, $57, $f5
+	.db $0d
+
+
+Data_d_8987:
+	.db $18, $f2, $0d
+	.db $39, $f2, $0d
+	.db $56, $f2, $0d
+	.db $77, $f2, $0d
+	.db $94, $f2, $0d
+	.db $b5, $f2, $0d
+	.db $d2, $f2, $0d
+	.db $f3, $f2, $0d
+	.db $14, $f3, $0d
+	.db $25, $f3, $0d
+	.db $36, $f3, $0d
+	.db $47, $f3, $0d
+	.db $58, $f3, $0d
+	.db $71, $f3, $0d
+	.db $7e, $f3, $0d
+	.db $93, $f3, $0d
+	.db $9c, $f3, $0d
+	.db $b5, $f3, $0d
+	.db $ce, $f3, $0d
+	.db $d7, $f3, $0d
+	.db $e0, $f3, $0d
+	.db $e5, $f3, $0d
+	.db $f6, $f3, $0d
+	.db $07, $f4, $0d
+	.db $24, $f4, $0d
+	.db $3d, $f4, $0d
+	.db $56, $f4, $0d
+	.db $6b, $f4, $0d
+	.db $7c, $f4, $0d
+	.db $8d, $f4, $0d
+	.db $9e, $f4, $0d
+	.db $af, $f4, $0d
+	.db $18, $f2, $0d
+	.db $c0, $f4, $0d
+	.db $18, $f2, $0d
+	.db $c0, $f4, $0d
+	.db $dd, $f4, $0d
+	.db $f2, $f4, $0d
+	.db $07, $f5, $0d
+	.db $1c, $f5, $0d
+	.db $31, $f5, $0d
+	.db $4a, $f5, $0d
+
+
+Data_d_8a05:
+	.db $57, $f5
 	ora $f560.w                                                  ; $8a07 : $0d, $60, $f5
 	ora $f56d.w                                                  ; $8a0a : $0d, $6d, $f5
 	ora $f57e.w                                                  ; $8a0d : $0d, $7e, $f5

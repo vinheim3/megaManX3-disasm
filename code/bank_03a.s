@@ -20968,7 +20968,7 @@ br_3a_f9c2:
 	sta $20                                                  ; $f9c9 : $85, $20
 	sep #ACCU_8                                                  ; $f9cb : $e2, $20
 	lda #$06.b                                                  ; $f9cd : $a9, $06
-	jsr Func_4_b967.l                                                  ; $f9cf : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $f9cf : $22, $67, $b9, $04
 	rts                                                  ; $f9d3 : $60
 
 
@@ -20998,7 +20998,7 @@ br_3a_f9ec:
 	beq br_3a_fa05                                                  ; $f9f6 : $f0, $0d
 
 	jsr Func_4_cb31.l                                                  ; $f9f8 : $22, $31, $cb, $04
-	jsr Func_4_b94a.l                                                  ; $f9fc : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f9fc : $22, $4a, $b9, $04
 	dec $34                                                  ; $fa00 : $c6, $34
 	beq br_3a_fa0b                                                  ; $fa02 : $f0, $07
 
@@ -21025,7 +21025,7 @@ br_3a_fa11:
 	bne br_3a_fa43                                                  ; $fa18 : $d0, $29
 
 	jsr $02d78e.l                                                  ; $fa1a : $22, $8e, $d7, $02
-	jsr Func_4_b94a.l                                                  ; $fa1e : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $fa1e : $22, $4a, $b9, $04
 	dec $34                                                  ; $fa22 : $c6, $34
 	beq br_3a_fa43                                                  ; $fa24 : $f0, $1d
 

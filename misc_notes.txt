@@ -180,6 +180,14 @@ Turning grey:
 604+ - the bytes
 processed DmaEnqueueStageSelectDopplerOrGreyedBoss
 
+Subweapon entities
+------------------
+sprite added in 3:8ef4 (780)
+is a 10d8 entity
+when tornado fang breaks, its cel idx (+$17) becomes 0b at 4:b9a9
+tornado fang set to state 2 via 4:cfef (broke state)
+broke during Jump_04_cedc (when collision table val has bit 7 set)
+
 
 TODO: ride armour health
 TODO: somewhere, earth spikes deal damage

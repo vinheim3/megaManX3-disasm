@@ -6660,7 +6660,7 @@ br_11_a4e6:
 	sty $fa20.w                                                  ; $a548 : $8c, $20, $fa
 	.db $00                                                  ; $a54b : $00
 	rol                                                  ; $a54c : $2a
-	jsr $00ea.w                                                  ; $a54d : $20, $ea, $00
+	jsr wtodo_WordIdxInto_780_struct.w                                                  ; $a54d : $20, $ea, $00
 	plp                                                  ; $a550 : $28
 	.db $00                                                  ; $a551 : $00
 	cop $f8.b                                                  ; $a552 : $02, $f8
@@ -13748,7 +13748,7 @@ br_11_d507:
 	phd                                                  ; $d588 : $0b
 	jsr ($40c8.w, X)                                                  ; $d589 : $fc, $c8, $40
 	phd                                                  ; $d58c : $0b
-	pea $00ea.w                                                  ; $d58d : $f4, $ea, $00
+	pea wtodo_WordIdxInto_780_struct.w                                                  ; $d58d : $f4, $ea, $00
 	sbc $00eaf4.l                                                  ; $d590 : $ef, $f4, $ea, $00
 	.db $f0, $f0                                                  ; $d594 : $f0, $f0
 

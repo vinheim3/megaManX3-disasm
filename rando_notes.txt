@@ -8,4 +8,3 @@ To swap items
 * move capsules themselves
 
 TODO: skip cutscenes (convos with bit/byte)
-TODO: work with patch blobs for eg Zero mod

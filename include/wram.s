@@ -169,8 +169,11 @@ wd0:
 wtodo_WordIdxInto_740_struct: ; $e9
     db
 
-wea:
-    ds $f5-$ea
+wtodo_WordIdxInto_780_struct: ; $ea
+    db
+
+web:
+    ds $f5-$eb
 
 wDecompressionInProgress: ; $f5
     db
@@ -279,8 +282,11 @@ w0ce8:
 
 .endu
 
-w10d8:
-    ds $518-$d8
+w10d8_Entities: ; $10d8
+    ds _10d8_Entity.sizeof * NUM_10D8_ENTITIES
+
+w1318:
+    ds $518-$318
 
 wItemEntities: ; $1518
     ds StageItemEntity.sizeof * NUM_ITEM_ENTITIES

@@ -3,35 +3,29 @@
 .bank $03f slot 3
 .org $0
 
-	stz $cb                                                  ; $8000 : $64, $cb
+Data_3f_8000:
+	.db $64, $cb, $3f
+	.db $88, $a5, $3f
+	.db $d2, $9a, $3f
+	.db $85, $82, $3f
+	.db $8c, $82, $3f
+	.db $6b, $83, $3f
+	.db $59, $84, $3f
+	.db $49, $85, $3f
+	.db $70, $85, $3f
+	.db $b8, $85, $3f
+	.db $55, $86, $3f
+	.db $1b, $87, $3f
+	.db $f2, $87, $3f
+	.db $82, $89, $3f
+	.db $df, $d2, $3f
+	.db $38, $8a, $3f
+	.db $07, $8b, $3f
+	.db $74, $9a, $3f
+	.db $9a, $9a, $3f
+	.dl Data_3f_8d34
+	.dl Data_3f_8e00
 
-Call_3f_8002:
-	and $3fa588.l, X                                                  ; $8002 : $3f, $88, $a5, $3f
-	cmp ($9a)                                                  ; $8006 : $d2, $9a
-	and $3f8285.l, X                                                  ; $8008 : $3f, $85, $82, $3f
-	sty $3f82.w                                                  ; $800c : $8c, $82, $3f
-	rtl                                                  ; $800f : $6b
-
-
-	sta $3f, S                                                  ; $8010 : $83, $3f
-	eor $3f84.w, Y                                                  ; $8012 : $59, $84, $3f
-	eor #$3f85.w                                                  ; $8015 : $49, $85, $3f
-	.db $70                                                  ; $8018 : $70
-
-	sta $3f                                                  ; $8019 : $85, $3f
-	clv                                                  ; $801b : $b8
-	sta $3f                                                  ; $801c : $85, $3f
-	eor $86, X                                                  ; $801e : $55, $86
-	and $3f871b.l, X                                                  ; $8020 : $3f, $1b, $87, $3f
-	sbc ($87)                                                  ; $8024 : $f2, $87
-	and $3f8982.l, X                                                  ; $8026 : $3f, $82, $89, $3f
-	cmp $383fd2.l, X                                                  ; $802a : $df, $d2, $3f, $38
-	txa                                                  ; $802e : $8a
-	and $3f8b07.l, X                                                  ; $802f : $3f, $07, $8b, $3f
-	stz $9a, X                                                  ; $8033 : $74, $9a
-	and $3f9a9a.l, X                                                  ; $8035 : $3f, $9a, $9a, $3f
-	bit $8d, X                                                  ; $8039 : $34, $8d
-	and $3f8e00.l, X                                                  ; $803b : $3f, $00, $8e, $3f
 	sta ($8e)                                                  ; $803f : $92, $8e
 	and $3f8f2f.l, X                                                  ; $8041 : $3f, $2f, $8f, $3f
 	ror $3fa9.w, X                                                  ; $8045 : $7e, $a9, $3f
@@ -1854,38 +1848,37 @@ br_3f_8d01:
 	cop $80.b                                                  ; $8d2a : $02, $80
 	ora ($fa, X)                                                  ; $8d2c : $01, $fa
 	sbc $0680ff.l, X                                                  ; $8d2e : $ff, $ff, $80, $06
-	sbc $1eff.w, X                                                  ; $8d32 : $fd, $ff, $1e
-	.db $00                                                  ; $8d35 : $00
-	bit $3a00.w                                                  ; $8d36 : $2c, $00, $3a
-	.db $00                                                  ; $8d39 : $00
-	pha                                                  ; $8d3a : $48
-	.db $00                                                  ; $8d3b : $00
-	lsr $00, X                                                  ; $8d3c : $56, $00
-	tcd                                                  ; $8d3e : $5b
-	.db $00                                                  ; $8d3f : $00
-	rts                                                  ; $8d40 : $60
+	.db $fd, $ff
 
 
-	.db $00                                                  ; $8d41 : $00
-	adc $00                                                  ; $8d42 : $65, $00
-	ror                                                  ; $8d44 : $6a
-	.db $00                                                  ; $8d45 : $00
-	adc $007400.l                                                  ; $8d46 : $6f, $00, $74, $00
-	jmp ($9600.w, X)                                                  ; $8d4a : $7c, $00, $96
+Data_3f_8d34:
+	.dw Data_3f_8d52-Data_3f_8d34
+	.dw Data_3f_8d60-Data_3f_8d34
+	.dw Data_3f_8d6e-Data_3f_8d34
+	.dw Data_3f_8d7c-Data_3f_8d34
+	.dw $0056
+	.dw $005b
+	.dw $0060
+	.dw $0065
+	.dw $006a
+	.dw $006f
+	.dw $0074
+	.dw $007c
+	.dw $0096
+	.dw $00a4
+	.dw $00b2
 
 
-	.db $00                                                  ; $8d4d : $00
-	ldy $00                                                  ; $8d4e : $a4, $00
-	lda ($00)                                                  ; $8d50 : $b2, $00
-	cop $00.b                                                  ; $8d52 : $02, $00
-	.db $00                                                  ; $8d54 : $00
-	cop $00.b                                                  ; $8d55 : $02, $00
-	ora ($02, X)                                                  ; $8d57 : $01, $02
-	.db $00                                                  ; $8d59 : $00
-	cop $02.b                                                  ; $8d5a : $02, $02
-	bra br_3f_8d61                                                  ; $8d5c : $80, $03
+Data_3f_8d52:
+	.db $02, $00, $00
+	.db $02, $00, $01
+	.db $02, $00, $02
+	.db $02, $80, $03
+	.dw $10000-(CADDR-Data_3f_8d52)
 
-	pea $02ff.w                                                  ; $8d5e : $f4, $ff, $02
+
+Data_3f_8d60:
+	.db $02
 
 br_3f_8d61:
 	.db $00                                                  ; $8d61 : $00
@@ -1895,8 +1888,11 @@ br_3f_8d61:
 	.db $00                                                  ; $8d67 : $00
 	tsb $02                                                  ; $8d68 : $04, $02
 	.db $80, $05                                                  ; $8d6a : $80, $05
+	.db $f4, $ff
 
-	pea $02ff.w                                                  ; $8d6c : $f4, $ff, $02
+
+Data_3f_8d6e:
+	.db $02
 	.db $00                                                  ; $8d6f : $00
 	ora [$02]                                                  ; $8d70 : $07, $02
 	.db $00                                                  ; $8d72 : $00
@@ -1904,8 +1900,11 @@ br_3f_8d61:
 	.db $00                                                  ; $8d75 : $00
 	asl $02                                                  ; $8d76 : $06, $02
 	bra br_3f_8d7f                                                  ; $8d78 : $80, $05
+	.db $f4, $ff
 
-	pea $02ff.w                                                  ; $8d7a : $f4, $ff, $02
+
+Data_3f_8d7c:
+	.db $02
 	.db $00                                                  ; $8d7d : $00
 	php                                                  ; $8d7e : $08
 
@@ -1984,7 +1983,11 @@ br_3f_8dc1:
 	.db $00                                                  ; $8df9 : $00
 	and #$8002.w                                                  ; $8dfa : $29, $02, $80
 	rol $e8                                                  ; $8dfd : $26, $e8
-	sbc $300016.l, X                                                  ; $8dff : $ff, $16, $00, $30
+	.db $ff
+
+
+Data_3f_8e00:
+	.db $16, $00, $30
 	.db $00                                                  ; $8e03 : $00
 	mvp $5e, $00                                                  ; $8e04 : $44, $00, $5e
 	.db $00                                                  ; $8e07 : $00
@@ -11669,7 +11672,7 @@ br_3f_caf8:
 	asl $8002.w, X                                                  ; $cb05 : $1e, $02, $80
 	ora $02fffa.l, X                                                  ; $cb08 : $1f, $fa, $ff, $02
 	.db $00                                                  ; $cb0c : $00
-	jsr Call_3f_8002.w                                                  ; $cb0d : $20, $02, $80
+	jsr $8002.w                                                  ; $cb0d : $20, $02, $80
 	and ($fa, X)                                                  ; $cb10 : $21, $fa
 	sbc $220002.l, X                                                  ; $cb12 : $ff, $02, $00, $22
 	cop $80.b                                                  ; $cb16 : $02, $80
@@ -15436,7 +15439,7 @@ br_3f_e3a5:
 
 
 	lda #$00.b                                                  ; $e3e6 : $a9, $00
-	jsr Func_4_b967.l                                                  ; $e3e8 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e3e8 : $22, $67, $b9, $04
 	lda #$0c.b                                                  ; $e3ec : $a9, $0c
 	sta $12                                                  ; $e3ee : $85, $12
 	lda #$06.b                                                  ; $e3f0 : $a9, $06
@@ -15525,7 +15528,7 @@ br_3f_e46c:
 	jsr Call_3f_e519.w                                                  ; $e477 : $20, $19, $e5
 	stz $36                                                  ; $e47a : $64, $36
 	lda #$00.b                                                  ; $e47c : $a9, $00
-	jsr Func_4_b967.l                                                  ; $e47e : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e47e : $22, $67, $b9, $04
 	lda #$02.b                                                  ; $e482 : $a9, $02
 	sta $02                                                  ; $e484 : $85, $02
 	rts                                                  ; $e486 : $60
@@ -15593,7 +15596,7 @@ br_3f_e4d5:
 
 
 br_3f_e4f2:
-	jsr $02d7c2.l                                                  ; $e4f2 : $22, $c2, $d7, $02
+	jsr Func_2_d7c2.l                                                  ; $e4f2 : $22, $c2, $d7, $02
 	dec $34                                                  ; $e4f6 : $c6, $34
 	rts                                                  ; $e4f8 : $60
 
@@ -15660,7 +15663,7 @@ br_3f_e555:
 	tcd                                                  ; $e559 : $5b
 	sep #ACCU_8|IDX_8                                                  ; $e55a : $e2, $30
 	lda #$00.b                                                  ; $e55c : $a9, $00
-	jsr Func_4_b967.l                                                  ; $e55e : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e55e : $22, $67, $b9, $04
 	pld                                                  ; $e562 : $2b
 
 br_3f_e563:
@@ -15885,7 +15888,7 @@ br_3f_e68c:
 	ldx $03                                                  ; $e6e6 : $a6, $03
 	jsr ($e6f3.w, X)                                                  ; $e6e8 : $fc, $f3, $e6
 	jsr Func_2_d636.l                                                  ; $e6eb : $22, $36, $d6, $02
-	jmp Func_4_b94a.l                                                  ; $e6ef : $5c, $4a, $b9, $04
+	jmp AnimateEntity.l                                                  ; $e6ef : $5c, $4a, $b9, $04
 
 
 	sbc $14e6.w, X                                                  ; $e6f3 : $fd, $e6, $14
@@ -15894,7 +15897,7 @@ br_3f_e68c:
 	sbc [$58]                                                  ; $e6fa : $e7, $58
 	sbc [$a9]                                                  ; $e6fc : $e7, $a9
 	php                                                  ; $e6fe : $08
-	jsr Func_4_b967.l                                                  ; $e6ff : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e6ff : $22, $67, $b9, $04
 	lda #$02.b                                                  ; $e703 : $a9, $02
 	sta $03                                                  ; $e705 : $85, $03
 	ldx #$bd1f.w                                                  ; $e707 : $a2, $1f, $bd
@@ -15940,7 +15943,7 @@ br_3f_e738:
 
 br_3f_e740:
 	lda #$0b.b                                                  ; $e740 : $a9, $0b
-	jsr Func_4_b967.l                                                  ; $e742 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e742 : $22, $67, $b9, $04
 	lda #$06.b                                                  ; $e746 : $a9, $06
 	sta $03                                                  ; $e748 : $85, $03
 	rts                                                  ; $e74a : $60
@@ -16035,7 +16038,7 @@ br_3f_e7c8:
 	stz $03                                                  ; $e7ce : $64, $03
 	stz $3a                                                  ; $e7d0 : $64, $3a
 	lda #$0a.b                                                  ; $e7d2 : $a9, $0a
-	jsr Func_4_b967.l                                                  ; $e7d4 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e7d4 : $22, $67, $b9, $04
 
 br_3f_e7d8:
 	lda $01                                                  ; $e7d8 : $a5, $01
@@ -16045,7 +16048,7 @@ br_3f_e7d8:
 	lda $03                                                  ; $e7e2 : $a5, $03
 	sta $1f56.w                                                  ; $e7e4 : $8d, $56, $1f
 	jsr Func_2_d636.l                                                  ; $e7e7 : $22, $36, $d6, $02
-	jmp Func_4_b94a.l                                                  ; $e7eb : $5c, $4a, $b9, $04
+	jmp AnimateEntity.l                                                  ; $e7eb : $5c, $4a, $b9, $04
 
 
 Call_3f_e7ef:
@@ -16082,14 +16085,14 @@ br_3f_e812:
 	lda #$0a.b                                                  ; $e812 : $a9, $0a
 	sta $02                                                  ; $e814 : $85, $02
 	lda #$0a.b                                                  ; $e816 : $a9, $0a
-	jsr Func_4_b967.l                                                  ; $e818 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e818 : $22, $67, $b9, $04
 	sec                                                  ; $e81c : $38
 	rts                                                  ; $e81d : $60
 
 
 br_3f_e81e:
 	lda #$0a.b                                                  ; $e81e : $a9, $0a
-	jsr Func_4_b967.l                                                  ; $e820 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e820 : $22, $67, $b9, $04
 
 br_3f_e824:
 	lda #$21.b                                                  ; $e824 : $a9, $21
@@ -16153,7 +16156,7 @@ br_3f_e84d:
 	lda #$02.b                                                  ; $e86f : $a9, $02
 	sta $03                                                  ; $e871 : $85, $03
 	lda #$01.b                                                  ; $e873 : $a9, $01
-	jsr Func_4_b967.l                                                  ; $e875 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e875 : $22, $67, $b9, $04
 	rts                                                  ; $e879 : $60
 
 
@@ -16165,7 +16168,7 @@ br_3f_e84d:
 	lda #$02.b                                                  ; $e882 : $a9, $02
 
 br_3f_e884:
-	jsr Func_4_b967.l                                                  ; $e884 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e884 : $22, $67, $b9, $04
 
 br_3f_e888:
 	rts                                                  ; $e888 : $60
@@ -16218,7 +16221,7 @@ br_3f_e8c7:
 
 br_3f_e8cb:
 	lda #$05.b                                                  ; $e8cb : $a9, $05
-	jsr Func_4_b967.l                                                  ; $e8cd : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e8cd : $22, $67, $b9, $04
 	lda #$72.b                                                  ; $e8d1 : $a9, $72
 	jsr Func_1_8000.l                                                  ; $e8d3 : $22, $00, $80, $01
 	lda #$06.b                                                  ; $e8d7 : $a9, $06
@@ -16326,7 +16329,7 @@ br_3f_e949:
 	sta $28                                                  ; $e95d : $85, $28
 	sta $1f57.w                                                  ; $e95f : $8d, $57, $1f
 	lda #$01.b                                                  ; $e962 : $a9, $01
-	jsr Func_4_b967.l                                                  ; $e964 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e964 : $22, $67, $b9, $04
 	rts                                                  ; $e968 : $60
 
 
@@ -16337,7 +16340,7 @@ br_3f_e949:
 	lda #$04.b                                                  ; $e971 : $a9, $04
 	sta $03                                                  ; $e973 : $85, $03
 	lda #$03.b                                                  ; $e975 : $a9, $03
-	jsr Func_4_b967.l                                                  ; $e977 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e977 : $22, $67, $b9, $04
 
 br_3f_e97b:
 	rts                                                  ; $e97b : $60
@@ -16390,7 +16393,7 @@ br_3f_e9cc:
 	lda #$08.b                                                  ; $e9ce : $a9, $08
 	sta $03                                                  ; $e9d0 : $85, $03
 	lda #$04.b                                                  ; $e9d2 : $a9, $04
-	jsr Func_4_b967.l                                                  ; $e9d4 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $e9d4 : $22, $67, $b9, $04
 	rts                                                  ; $e9d8 : $60
 
 
@@ -16430,7 +16433,7 @@ br_3f_e9d9:
 	lda #$02.b                                                  ; $ea0f : $a9, $02
 	sta $03                                                  ; $ea11 : $85, $03
 	lda #$06.b                                                  ; $ea13 : $a9, $06
-	jsr Func_4_b967.l                                                  ; $ea15 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $ea15 : $22, $67, $b9, $04
 	rts                                                  ; $ea19 : $60
 
 
@@ -16440,7 +16443,7 @@ br_3f_e9d9:
 	lda #$04.b                                                  ; $ea1e : $a9, $04
 	sta $03                                                  ; $ea20 : $85, $03
 	lda #$07.b                                                  ; $ea22 : $a9, $07
-	jsr Func_4_b967.l                                                  ; $ea24 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $ea24 : $22, $67, $b9, $04
 
 br_3f_ea28:
 	rts                                                  ; $ea28 : $60
@@ -16721,7 +16724,7 @@ Jump_3f_eb94:
 	sta $02                                                  ; $eb96 : $85, $02
 	stz $03                                                  ; $eb98 : $64, $03
 	lda #$00.b                                                  ; $eb9a : $a9, $00
-	jsr Func_4_b967.l                                                  ; $eb9c : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $eb9c : $22, $67, $b9, $04
 	rts                                                  ; $eba0 : $60
 
 
@@ -16906,7 +16909,7 @@ br_3f_eca1:
 	lda #$b8.b                                                  ; $ecc6 : $a9, $b8
 	sta $16                                                  ; $ecc8 : $85, $16
 	lda #$02.b                                                  ; $ecca : $a9, $02
-	jsr Func_4_b967.l                                                  ; $eccc : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $eccc : $22, $67, $b9, $04
 	ldy #$22c8.w                                                  ; $ecd0 : $a0, $c8, $22
 	tcd                                                  ; $ecd3 : $5b
 	.db $80, $01                                                  ; $ecd4 : $80, $01
@@ -16937,7 +16940,7 @@ br_3f_ece5:
 	lda #$4f.b                                                  ; $ed00 : $a9, $4f
 	sta $16                                                  ; $ed02 : $85, $16
 	lda #$10.b                                                  ; $ed04 : $a9, $10
-	jsr Func_4_b967.l                                                  ; $ed06 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $ed06 : $22, $67, $b9, $04
 	jsr $04bc95.l                                                  ; $ed0a : $22, $95, $bc, $04
 	jmp Func_2_d636.l                                                  ; $ed0e : $5c, $36, $d6, $02
 
@@ -17155,10 +17158,10 @@ br_3f_ee23:
 	lda #$b4.b                                                  ; $ee7b : $a9, $b4
 	sta $34                                                  ; $ee7d : $85, $34
 	lda #$00.b                                                  ; $ee7f : $a9, $00
-	jsr Func_4_b967.l                                                  ; $ee81 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $ee81 : $22, $67, $b9, $04
 
 br_3f_ee85:
-	jsr Func_4_b94a.l                                                  ; $ee85 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $ee85 : $22, $4a, $b9, $04
 	jmp Func_2_d636.l                                                  ; $ee89 : $5c, $36, $d6, $02
 
 
@@ -17183,7 +17186,7 @@ br_3f_ee9d:
 	sta $0008.w                                                  ; $eeb4 : $8d, $08, $00
 	jsr $04d6fb.l                                                  ; $eeb7 : $22, $fb, $d6, $04
 	sep #ACCU_8                                                  ; $eebb : $e2, $20
-	jsr Func_4_b94a.l                                                  ; $eebd : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $eebd : $22, $4a, $b9, $04
 	jmp Func_2_d636.l                                                  ; $eec1 : $5c, $36, $d6, $02
 
 
@@ -17212,11 +17215,11 @@ br_3f_eed2:
 	sta $0008.w                                                  ; $eef1 : $8d, $08, $00
 	jsr $04d6fb.l                                                  ; $eef4 : $22, $fb, $d6, $04
 	sep #ACCU_8                                                  ; $eef8 : $e2, $20
-	jsr Func_4_b94a.l                                                  ; $eefa : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $eefa : $22, $4a, $b9, $04
 	jmp Func_2_d636.l                                                  ; $eefe : $5c, $36, $d6, $02
 
 
-	jsr Func_4_b94a.l                                                  ; $ef02 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $ef02 : $22, $4a, $b9, $04
 	jsr $04bc95.l                                                  ; $ef06 : $22, $95, $bc, $04
 	lda $0f                                                  ; $ef0a : $a5, $0f
 	bpl br_3f_ef2e                                                  ; $ef0c : $10, $20
@@ -17592,7 +17595,7 @@ Call_3f_f11c:
 	and #$07.b                                                  ; $f123 : $29, $07
 	tax                                                  ; $f125 : $aa
 	lda $d3c9.w, X                                                  ; $f126 : $bd, $c9, $d3
-	jsr Func_4_b967.l                                                  ; $f129 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $f129 : $22, $67, $b9, $04
 	rts                                                  ; $f12d : $60
 
 

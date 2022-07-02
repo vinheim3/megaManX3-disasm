@@ -14705,7 +14705,7 @@ Call_12_e0ee:
 	beq br_12_e109                                                  ; $e101 : $f0, $06
 
 	asl                                                  ; $e103 : $0a
-	jsr $00ea.w                                                  ; $e104 : $20, $ea, $00
+	jsr wtodo_WordIdxInto_780_struct.w                                                  ; $e104 : $20, $ea, $00
 	cop $20.b                                                  ; $e107 : $02, $20
 
 br_12_e109:

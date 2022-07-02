@@ -30,7 +30,12 @@ THREAD_STARTED = 3
     subY db ; $07
     y dw ; $08/$09
     type db ; $0a
-    bb ds $1a-$b
+    bb ds $13-$b
+    framesTilNextCel db ; $13
+    animAddr dw ; $14/$15 - bank $3f
+    animSpecIdx db ; $16
+    celIdx db ; $17 - for lookup in bank $0d ($0e is lookup in bank $3f)
+    b18 ds $a-8
     xSpeed dw ; $1a
     b1c ds $20-$1c
     sizeof .db
@@ -53,7 +58,8 @@ THREAD_STARTED = 3
     baseTileIdx db ; $18
     b19 ds $27-$19
     health db ; $27
-    b28 ds $40-$28
+    weaknessesIdx db ; $28
+    b29 ds $40-$29
     sizeof .db
 .endst
 
@@ -75,6 +81,16 @@ THREAD_STARTED = 3
     celIdx db ; $17
     tileIdxBase db ; $18
     b19 ds $30-$19
+    sizeof .db
+.endst
+
+.struct _10d8_Entity
+    enabled db ; $00
+    state db ; $01
+    substate db ; $02
+    b3 ds $a-3
+    type db ; $0a
+    bb ds $40-$b
     sizeof .db
 .endst
 

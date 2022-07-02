@@ -6599,7 +6599,7 @@ Jump_00_ab12:
 
 Call_00_ab34:
 	rep #ACCU_8|IDX_8                                                  ; $ab34 : $c2, $30
-	ldx #$10d8.w                                                  ; $ab36 : $a2, $d8, $10
+	ldx #w10d8_Entities.w                                                  ; $ab36 : $a2, $d8, $10
 
 br_00_ab39:
 	sep #ACCU_8                                                  ; $ab39 : $e2, $20
@@ -7051,7 +7051,7 @@ br_00_adf8:
 	pea $1098.w                                                  ; $aea1 : $f4, $98, $10
 	pld                                                  ; $aea4 : $2b
 	jsr AddEntityXSpeedOntoSubX.l                                                  ; $aea5 : $22, $f3, $d7, $02
-	pea $10d8.w                                                  ; $aea9 : $f4, $d8, $10
+	pea w10d8_Entities.w                                                  ; $aea9 : $f4, $d8, $10
 	pld                                                  ; $aeac : $2b
 	jsr AddEntityXSpeedOntoSubX.l                                                  ; $aead : $22, $f3, $d7, $02
 	pld                                                  ; $aeb1 : $2b
@@ -10229,7 +10229,7 @@ br_00_c0b3:
 	sep #ACCU_8                                                  ; $c0f5 : $e2, $20
 	lda ($0c)                                                  ; $c0f7 : $b2, $0c
 	and #$3f.b                                                  ; $c0f9 : $29, $3f
-	jsr Func_4_b967.l                                                  ; $c0fb : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $c0fb : $22, $67, $b9, $04
 	lda $31                                                  ; $c0ff : $a5, $31
 	ora $32                                                  ; $c101 : $05, $32
 	beq br_00_c109                                                  ; $c103 : $f0, $04
@@ -10287,11 +10287,11 @@ br_00_c147:
 
 	lda ($0c)                                                  ; $c15a : $b2, $0c
 	and #$3f.b                                                  ; $c15c : $29, $3f
-	jsr Func_4_b967.l                                                  ; $c15e : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $c15e : $22, $67, $b9, $04
 
 br_00_c162:
 	jsr Func_2_d636.l                                                  ; $c162 : $22, $36, $d6, $02
-	jsr Func_4_b94a.l                                                  ; $c166 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $c166 : $22, $4a, $b9, $04
 	lda $31                                                  ; $c16a : $a5, $31
 	ora $32                                                  ; $c16c : $05, $32
 	beq br_00_c174                                                  ; $c16e : $f0, $04
@@ -11735,7 +11735,7 @@ br_00_ca2b:
 	clc                                                  ; $ca51 : $18
 	pld                                                  ; $ca52 : $2b
 	lda $0b                                                  ; $ca53 : $a5, $0b
-	jsr Func_4_b967.l                                                  ; $ca55 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $ca55 : $22, $67, $b9, $04
 	pld                                                  ; $ca59 : $2b
 	inc $02                                                  ; $ca5a : $e6, $02
 	inc $02                                                  ; $ca5c : $e6, $02
@@ -12272,7 +12272,7 @@ br_00_cdff:
 	lda #$11.b                                                  ; $ce14 : $a9, $11
 	sta $16                                                  ; $ce16 : $85, $16
 	lda #$00.b                                                  ; $ce18 : $a9, $00
-	jsr Func_4_b967.l                                                  ; $ce1a : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $ce1a : $22, $67, $b9, $04
 	rep #ACCU_8                                                  ; $ce1e : $c2, $20
 	lda #$009c.w                                                  ; $ce20 : $a9, $9c, $00
 	sta $05                                                  ; $ce23 : $85, $05
@@ -12309,7 +12309,7 @@ br_00_ce4e:
 	sta $18                                                  ; $ce52 : $85, $18
 	inc $01                                                  ; $ce54 : $e6, $01
 	lda #$50.b                                                  ; $ce56 : $a9, $50
-	jsr Func_4_b967.l                                                  ; $ce58 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $ce58 : $22, $67, $b9, $04
 
 br_00_ce5c:
 	jsr Func_2_d636.l                                                  ; $ce5c : $22, $36, $d6, $02
@@ -12347,10 +12347,10 @@ Call_00_ce61:
 	sta $08                                                  ; $ce99 : $85, $08
 	inc $01                                                  ; $ce9b : $e6, $01
 	lda $0b                                                  ; $ce9d : $a5, $0b
-	jsr Func_4_b967.l                                                  ; $ce9f : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $ce9f : $22, $67, $b9, $04
 
 br_00_cea3:
-	jsr Func_4_b94a.l                                                  ; $cea3 : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $cea3 : $22, $4a, $b9, $04
 	jsr Func_2_d636.l                                                  ; $cea7 : $22, $36, $d6, $02
 	rts                                                  ; $ceab : $60
 
@@ -13526,7 +13526,7 @@ Call_00_d6d6:
 	bne br_00_d711                                                  ; $d6da : $d0, $35
 
 	rep #ACCU_8|IDX_8                                                  ; $d6dc : $c2, $30
-	ldx #$10d8.w                                                  ; $d6de : $a2, $d8, $10
+	ldx #w10d8_Entities.w                                                  ; $d6de : $a2, $d8, $10
 
 br_00_d6e1:
 	lda $0000.w, X                                                  ; $d6e1 : $bd, $00, $00
@@ -13569,7 +13569,7 @@ Call_00_d712:
 
 br_00_d71a:
 	rep #IDX_8                                                  ; $d71a : $c2, $10
-	ldx #$10d8.w                                                  ; $d71c : $a2, $d8, $10
+	ldx #w10d8_Entities.w                                                  ; $d71c : $a2, $d8, $10
 
 br_00_d71f:
 	sep #ACCU_8                                                  ; $d71f : $e2, $20
@@ -14409,25 +14409,25 @@ Call_00_db7e:
 
 Call_00_db9f:
 	rep #ACCU_8                                                  ; $db9f : $c2, $20
-	lda #$10d8.w                                                  ; $dba1 : $a9, $d8, $10
+	lda #w10d8_Entities.w                                                  ; $dba1 : $a9, $d8, $10
 
-br_00_dba4:
+@loop_dba4:
 	tcd                                                  ; $dba4 : $5b
 	sep #ACCU_8|IDX_8                                                  ; $dba5 : $e2, $30
 	lda $00                                                  ; $dba7 : $a5, $00
-	beq br_00_dbae                                                  ; $dba9 : $f0, $03
+	beq @cont_dbae                                                  ; $dba9 : $f0, $03
 
 	jsr Call_00_dbef.w                                                  ; $dbab : $20, $ef, $db
 
-br_00_dbae:
+@cont_dbae:
 	lda $1f25.w                                                  ; $dbae : $ad, $25, $1f
-	bne br_00_dbdc                                                  ; $dbb1 : $d0, $29
+	bne Call_00_dbc1@cont_dbdc                                                  ; $dbb1 : $d0, $29
 
 	rep #ACCU_8|F_CARRY                                                  ; $dbb3 : $c2, $21
 	tdc                                                  ; $dbb5 : $7b
 	adc #$0040.w                                                  ; $dbb6 : $69, $40, $00
 	cmp #$1318.w                                                  ; $dbb9 : $c9, $18, $13
-	bcc br_00_dba4                                                  ; $dbbc : $90, $e6
+	bcc @loop_dba4                                                  ; $dbbc : $90, $e6
 
 	sep #ACCU_8|IDX_8                                                  ; $dbbe : $e2, $30
 	rts                                                  ; $dbc0 : $60
@@ -14435,34 +14435,34 @@ br_00_dbae:
 
 Call_00_dbc1:
 	rep #ACCU_8                                                  ; $dbc1 : $c2, $20
-	lda #$10d8.w                                                  ; $dbc3 : $a9, $d8, $10
+	lda #w10d8_Entities.w                                                  ; $dbc3 : $a9, $d8, $10
 
-br_00_dbc6:
+@nextEntity:
 	tcd                                                  ; $dbc6 : $5b
 	sep #ACCU_8|IDX_8                                                  ; $dbc7 : $e2, $30
 	lda $00                                                  ; $dbc9 : $a5, $00
-	beq br_00_dbdc                                                  ; $dbcb : $f0, $0f
+	beq @cont_dbdc                                                  ; $dbcb : $f0, $0f
 
-	bpl br_00_dbd4                                                  ; $dbcd : $10, $05
+	bpl @br_dbd4                                                  ; $dbcd : $10, $05
 
 	jsr Call_00_dbf9.w                                                  ; $dbcf : $20, $f9, $db
-	bra br_00_dbdc                                                  ; $dbd2 : $80, $08
+	bra @cont_dbdc                                                  ; $dbd2 : $80, $08
 
-br_00_dbd4:
+@br_dbd4:
 	lda $0e                                                  ; $dbd4 : $a5, $0e
-	bpl br_00_dbdc                                                  ; $dbd6 : $10, $04
+	bpl @cont_dbdc                                                  ; $dbd6 : $10, $04
 
 	jsr Func_2_d636.l                                                  ; $dbd8 : $22, $36, $d6, $02
 
-br_00_dbdc:
+@cont_dbdc:
 	lda $1f25.w                                                  ; $dbdc : $ad, $25, $1f
-	beq br_00_dbae                                                  ; $dbdf : $f0, $cd
+	beq Call_00_db9f@cont_dbae                                                  ; $dbdf : $f0, $cd
 
 	rep #ACCU_8|F_CARRY                                                  ; $dbe1 : $c2, $21
 	tdc                                                  ; $dbe3 : $7b
 	adc #$0040.w                                                  ; $dbe4 : $69, $40, $00
 	cmp #$1318.w                                                  ; $dbe7 : $c9, $18, $13
-	bcc br_00_dbc6                                                  ; $dbea : $90, $da
+	bcc @nextEntity                                                  ; $dbea : $90, $da
 
 	sep #ACCU_8|IDX_8                                                  ; $dbec : $e2, $30
 	rts                                                  ; $dbee : $60
@@ -14482,7 +14482,7 @@ Call_00_dbf9:
 	lda $0a                                                  ; $dbff : $a5, $0a
 	asl                                                  ; $dc01 : $0a
 	tax                                                  ; $dc02 : $aa
-	jmp ($f7a8.w, X)                                                  ; $dc03 : $7c, $a8, $f7
+	jmp (ProjectileUpdateFuncs.w, X)                                                  ; $dc03 : $7c, $a8, $f7
 
 
 Call_00_dc06:
@@ -18523,7 +18523,7 @@ br_00_f387:
 	txa                                                  ; $f3a4 : $8a
 
 br_00_f3a5:
-	jsr Func_4_b967.l                                                  ; $f3a5 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $f3a5 : $22, $67, $b9, $04
 	jsr Func_2_d636.l                                                  ; $f3a9 : $22, $36, $d6, $02
 	rts                                                  ; $f3ad : $60
 
@@ -18618,7 +18618,7 @@ br_00_f423:
 	lda #$0c.b                                                  ; $f43d : $a9, $0c
 
 br_00_f43f:
-	jsr Func_4_b967.l                                                  ; $f43f : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $f43f : $22, $67, $b9, $04
 	lda #$3e.b                                                  ; $f443 : $a9, $3e
 	sta $11                                                  ; $f445 : $85, $11
 	jsr Func_2_d636.l                                                  ; $f447 : $22, $36, $d6, $02
@@ -19259,53 +19259,47 @@ Func_0_f775:
 	rts                                                  ; $f7a7 : $60
 
 
-	pea $f9f7.w                                                  ; $f7a8 : $f4, $f7, $f9
-	sbc [$fe], Y                                                  ; $f7ab : $f7, $fe
-	sbc [$03], Y                                                  ; $f7ad : $f7, $03
-	sed                                                  ; $f7af : $f8
-	php                                                  ; $f7b0 : $08
-	sed                                                  ; $f7b1 : $f8
-	ora $12f8.w                                                  ; $f7b2 : $0d, $f8, $12
-	sed                                                  ; $f7b5 : $f8
-	ora [$f8], Y                                                  ; $f7b6 : $17, $f8
-	trb $21f8.w                                                  ; $f7b8 : $1c, $f8, $21
-	sed                                                  ; $f7bb : $f8
-	rol $f8                                                  ; $f7bc : $26, $f8
-	pld                                                  ; $f7be : $2b
-	sed                                                  ; $f7bf : $f8
-	.db $30, $f8                                                  ; $f7c0 : $30, $f8
+ProjectileUpdateFuncs:
+	.dw $f7f4
+	.dw $f7f9
+	.dw $f7fe
+	.dw $f803
+	.dw $f808
+	.dw $f80d
+	.dw $f812
+	.dw $f817
+	.dw $f81c
+	.dw $f821
+	.dw $f826
+	.dw $f82b
+	.dw $f830
+	.dw $f835
+	.dw FarUpdateTornadoFang
+	.dw $f83f
+	.dw $f844
+	.dw $f849
+	.dw $f84e
+	.dw $f853
+	.dw $f858
+	.dw $f85d
+	.dw $f862
+	.dw $f867
+	.dw $f86c
+	.dw $f871
+	.dw $f876
+	.dw $f87b
+	.dw $f880
+	.dw $f885
+	.dw $f88a
+	.dw $f88f
+	.dw $f88f
+	.dw $f862
+	.dw $f894
+	.dw $f899
+	.dw $f89e
+	.dw $f8a3
 
-	and $f8, X                                                  ; $f7c2 : $35, $f8
-	dea                                                  ; $f7c4 : $3a
-	sed                                                  ; $f7c5 : $f8
-	and $f844f8.l, X                                                  ; $f7c6 : $3f, $f8, $44, $f8
-	eor #$f8.b                                                  ; $f7ca : $49, $f8
-	lsr $53f8.w                                                  ; $f7cc : $4e, $f8, $53
-	sed                                                  ; $f7cf : $f8
-	cli                                                  ; $f7d0 : $58
-	sed                                                  ; $f7d1 : $f8
-	eor $62f8.w, X                                                  ; $f7d2 : $5d, $f8, $62
-	sed                                                  ; $f7d5 : $f8
-	adc [$f8]                                                  ; $f7d6 : $67, $f8
-	jmp ($71f8.w)                                                  ; $f7d8 : $6c, $f8, $71
 
-
-	sed                                                  ; $f7db : $f8
-	ror $f8, X                                                  ; $f7dc : $76, $f8
-	tdc                                                  ; $f7de : $7b
-	sed                                                  ; $f7df : $f8
-	.db $80, $f8                                                  ; $f7e0 : $80, $f8
-
-	sta $f8                                                  ; $f7e2 : $85, $f8
-	txa                                                  ; $f7e4 : $8a
-	sed                                                  ; $f7e5 : $f8
-	sta $f88ff8.l                                                  ; $f7e6 : $8f, $f8, $8f, $f8
-	.db $62, $f8, $94                                                  ; $f7ea : $62, $f8, $94
-
-	sed                                                  ; $f7ed : $f8
-	sta $9ef8.w, Y                                                  ; $f7ee : $99, $f8, $9e
-	sed                                                  ; $f7f1 : $f8
-	lda $f8, S                                                  ; $f7f2 : $a3, $f8
 	jsr $0188d2.l                                                  ; $f7f4 : $22, $d2, $88, $01
 	rts                                                  ; $f7f8 : $60
 
@@ -19362,7 +19356,8 @@ Func_0_f775:
 	rts                                                  ; $f839 : $60
 
 
-	jsr $01a9f6.l                                                  ; $f83a : $22, $f6, $a9, $01
+FarUpdateTornadoFang:
+	jsr UpdateTornadoFang.l                                                  ; $f83a : $22, $f6, $a9, $01
 	rts                                                  ; $f83e : $60
 
 

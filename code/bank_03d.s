@@ -19116,7 +19116,7 @@ br_3d_f8d5:
 	sta $1f57.w                                                  ; $f919 : $8d, $57, $1f
 	jsr Call_3d_fcb2.w                                                  ; $f91c : $20, $b2, $fc
 	lda #$00.b                                                  ; $f91f : $a9, $00
-	jmp Func_4_b967.l                                                  ; $f921 : $5c, $67, $b9, $04
+	jmp SetupEntitysAnimation.l                                                  ; $f921 : $5c, $67, $b9, $04
 
 
 br_3d_f925:
@@ -19175,7 +19175,7 @@ br_3d_f956:
 	lda #$c8.b                                                  ; $f98a : $a9, $c8
 	sta $21                                                  ; $f98c : $85, $21
 	lda #$02.b                                                  ; $f98e : $a9, $02
-	jsr Func_4_b967.l                                                  ; $f990 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $f990 : $22, $67, $b9, $04
 
 br_3d_f994:
 	jmp Func_2_d636.l                                                  ; $f994 : $5c, $36, $d6, $02
@@ -19229,7 +19229,7 @@ br_3d_f9d5:
 	jsr Call_3d_fc33.w                                                  ; $f9d9 : $20, $33, $fc
 
 br_3d_f9dc:
-	jsr Func_4_b94a.l                                                  ; $f9dc : $22, $4a, $b9, $04
+	jsr AnimateEntity.l                                                  ; $f9dc : $22, $4a, $b9, $04
 	jmp Func_4_cb31.l                                                  ; $f9e0 : $5c, $31, $cb, $04
 
 
@@ -19606,7 +19606,7 @@ br_3d_fc05:
 	lda #$02.b                                                  ; $fc05 : $a9, $02
 
 br_3d_fc07:
-	jsr Func_4_b967.l                                                  ; $fc07 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $fc07 : $22, $67, $b9, $04
 	stz $3c                                                  ; $fc0b : $64, $3c
 
 br_3d_fc0d:
@@ -19638,7 +19638,7 @@ br_3d_fc2c:
 	lda #$06.b                                                  ; $fc2c : $a9, $06
 
 br_3d_fc2e:
-	jsr Func_4_b967.l                                                  ; $fc2e : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $fc2e : $22, $67, $b9, $04
 	rts                                                  ; $fc32 : $60
 
 
@@ -19684,7 +19684,7 @@ br_3d_fc6d:
 	lda $c8f3.w, Y                                                  ; $fc6d : $b9, $f3, $c8
 
 br_3d_fc70:
-	jsr Func_4_b967.l                                                  ; $fc70 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $fc70 : $22, $67, $b9, $04
 
 br_3d_fc74:
 	rts                                                  ; $fc74 : $60
@@ -19817,7 +19817,7 @@ br_3d_fce9:
 	lda #$0002.w                                                  ; $fd65 : $a9, $02, $00
 	sta $27                                                  ; $fd68 : $85, $27
 	lda #$000d.w                                                  ; $fd6a : $a9, $0d, $00
-	jmp Func_4_b967.l                                                  ; $fd6d : $5c, $67, $b9, $04
+	jmp SetupEntitysAnimation.l                                                  ; $fd6d : $5c, $67, $b9, $04
 
 
 	lda #$8500.w                                                  ; $fd71 : $a9, $00, $85
@@ -19853,7 +19853,7 @@ br_3d_fce9:
 	lda #$01.b                                                  ; $fdad : $a9, $01
 	sta $27                                                  ; $fdaf : $85, $27
 	lda #$0b.b                                                  ; $fdb1 : $a9, $0b
-	jmp Func_4_b967.l                                                  ; $fdb3 : $5c, $67, $b9, $04
+	jmp SetupEntitysAnimation.l                                                  ; $fdb3 : $5c, $67, $b9, $04
 
 
 	ldx $0b                                                  ; $fdb7 : $a6, $0b
@@ -19892,7 +19892,7 @@ br_3d_fdd0:
 	jsr Func_4_cb31.l                                                  ; $fded : $22, $31, $cb, $04
 	bne br_3d_fdc7                                                  ; $fdf1 : $d0, $d4
 
-	jmp Func_4_b94a.l                                                  ; $fdf3 : $5c, $4a, $b9, $04
+	jmp AnimateEntity.l                                                  ; $fdf3 : $5c, $4a, $b9, $04
 
 
 	lda $1f54.w                                                  ; $fdf7 : $ad, $54, $1f
@@ -19916,7 +19916,7 @@ br_3d_fe07:
 	jsr Func_4_cb31.l                                                  ; $fe16 : $22, $31, $cb, $04
 	bne br_3d_fdfe                                                  ; $fe1a : $d0, $e2
 
-	jmp Func_4_b94a.l                                                  ; $fe1c : $5c, $4a, $b9, $04
+	jmp AnimateEntity.l                                                  ; $fe1c : $5c, $4a, $b9, $04
 
 
 	bit $fe                                                  ; $fe20 : $24, $fe
@@ -20056,7 +20056,7 @@ br_3d_fee8:
 	lsr                                                  ; $feee : $4a
 	tax                                                  ; $feef : $aa
 	lda $f3af.w, X                                                  ; $fef0 : $bd, $af, $f3
-	jsr Func_4_b967.l                                                  ; $fef3 : $22, $67, $b9, $04
+	jsr SetupEntitysAnimation.l                                                  ; $fef3 : $22, $67, $b9, $04
 	rts                                                  ; $fef7 : $60
 
 

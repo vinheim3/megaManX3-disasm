@@ -257,7 +257,7 @@ PaletteSpecsData:
 	.dw $83ff
 	.dw $8404
 	.dw $8409
-	.dw $840e
+	.dw PaletteSpec1ch
 	.dw $840f
 	.dw $8414
 	.dw $8419
@@ -634,6 +634,9 @@ br_06_8401:
 
 br_06_840d:
 	.db $00                                                  ; $840d : $00
+
+
+PaletteSpec1ch:
 	.db $00                                                  ; $840e : $00
 
 br_06_840f:
@@ -15499,7 +15502,7 @@ Call_06_e200:
 
 
 EnemyBaseData:
-; .16, decomp id, .26, health, .28
+; anim spec idx, decomp id, .26, health, weaknessess idx
 	.db $13, $11, $01, $05, $03 ; 1-idexed
 	.db $67, $61, $01, $05, $03
 	.db $1c, $1a, $02, $09, $06
@@ -18903,4 +18906,3 @@ DecompressedDataTable:
 	.row CompressedData_da, $0520
 	.row CompressedData_db, $0800
 	.row CompressedData_dc, $0980
-Thing:
