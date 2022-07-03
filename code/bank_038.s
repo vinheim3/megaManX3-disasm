@@ -8446,7 +8446,7 @@ br_38_b0f0:
 	.db $00                                                  ; $b1bd : $00
 	.db $00                                                  ; $b1be : $00
 	.db $00                                                  ; $b1bf : $00
-	sep #$02.b                                                  ; $b1c0 : $e2, $02
+	sep #F_ZERO                                                  ; $b1c0 : $e2, $02
 	plx                                                  ; $b1c2 : $fa
 	cop $f6.b                                                  ; $b1c3 : $02, $f6
 	cop $fb.b                                                  ; $b1c5 : $02, $fb

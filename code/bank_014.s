@@ -7204,7 +7204,7 @@ br_14_abea:
 	.db $00                                                  ; $ac32 : $00
 	.db $00                                                  ; $ac33 : $00
 	cmp ($02, X)                                                  ; $ac34 : $c1, $02
-	rep #$02.b                                                  ; $ac36 : $c2, $02
+	rep #F_ZERO                                                  ; $ac36 : $c2, $02
 	cmp $02, S                                                  ; $ac38 : $c3, $02
 	cpy $02                                                  ; $ac3a : $c4, $02
 	cmp $02                                                  ; $ac3c : $c5, $02
@@ -7292,7 +7292,7 @@ br_14_abea:
 	.db $00                                                  ; $acd9 : $00
 	.db $00                                                  ; $acda : $00
 	.db $00                                                  ; $acdb : $00
-	sep #$02.b                                                  ; $acdc : $e2, $02
+	sep #F_ZERO                                                  ; $acdc : $e2, $02
 	and #$e300.w                                                  ; $acde : $29, $00, $e3
 	cop $e4.b                                                  ; $ace1 : $02, $e4
 	cop $e5.b                                                  ; $ace3 : $02, $e5

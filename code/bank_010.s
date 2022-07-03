@@ -15,7 +15,7 @@
 	ora #$00b3.w                                                  ; $8017 : $09, $b3, $00
 	trb $f9                                                  ; $801a : $14, $f9
 	ldx $0c00.w                                                  ; $801c : $ae, $00, $0c
-	sbc $00ad.w, Y                                                  ; $801f : $f9, $ad, $00
+	sbc wJoy1CurrBtnsPressed.w+1, Y                                                  ; $801f : $f9, $ad, $00
 	tsb $acf1.w                                                  ; $8022 : $0c, $f1, $ac
 	jsr $f20c.w                                                  ; $8025 : $20, $0c, $f2
 	asl                                                  ; $8028 : $0a
@@ -437,7 +437,7 @@ br_10_81f6:
 	.db $00                                                  ; $828f : $00
 	ora ($f9, S), Y                                                  ; $8290 : $13, $f9
 	ldx $0b00.w                                                  ; $8292 : $ae, $00, $0b
-	sbc $00ad.w, Y                                                  ; $8295 : $f9, $ad, $00
+	sbc wJoy1CurrBtnsPressed.w+1, Y                                                  ; $8295 : $f9, $ad, $00
 	phd                                                  ; $8298 : $0b
 	sbc ($ac), Y                                                  ; $8299 : $f1, $ac
 	jsr $f20c.w                                                  ; $829b : $20, $0c, $f2
@@ -495,7 +495,7 @@ br_10_82ac:
 	.db $00                                                  ; $82f0 : $00
 	ora ($f9, S), Y                                                  ; $82f1 : $13, $f9
 	ldx $0b00.w                                                  ; $82f3 : $ae, $00, $0b
-	sbc $00ad.w, Y                                                  ; $82f6 : $f9, $ad, $00
+	sbc wJoy1CurrBtnsPressed.w+1, Y                                                  ; $82f6 : $f9, $ad, $00
 	phd                                                  ; $82f9 : $0b
 	sbc ($ac), Y                                                  ; $82fa : $f1, $ac
 	jsr $f10d.w                                                  ; $82fc : $20, $0d, $f1
@@ -1366,7 +1366,7 @@ br_10_8826:
 	bpl br_10_8826                                                  ; $8826 : $10, $fe
 
 	ldx $0800.w                                                  ; $8828 : $ae, $00, $08
-	inc $00ad.w, X                                                  ; $882b : $fe, $ad, $00
+	inc wJoy1CurrBtnsPressed.w+1, X                                                  ; $882b : $fe, $ad, $00
 	php                                                  ; $882e : $08
 	inc $ac, X                                                  ; $882f : $f6, $ac
 	jsr $f60a.w                                                  ; $8831 : $20, $0a, $f6
@@ -1590,7 +1590,7 @@ br_10_8979:
 	bpl br_10_8979                                                  ; $897a : $10, $fd
 
 	ldx $0800.w                                                  ; $897c : $ae, $00, $08
-	sbc $00ad.w, X                                                  ; $897f : $fd, $ad, $00
+	sbc wJoy1CurrBtnsPressed.w+1, X                                                  ; $897f : $fd, $ad, $00
 	php                                                  ; $8982 : $08
 	sbc $ac, X                                                  ; $8983 : $f5, $ac
 	jsr $f808.w                                                  ; $8985 : $20, $08, $f8
@@ -1659,7 +1659,7 @@ br_10_8979:
 	.db $00                                                  ; $89f2 : $00
 	ora ($f9, S), Y                                                  ; $89f3 : $13, $f9
 	ldx $0b00.w                                                  ; $89f5 : $ae, $00, $0b
-	sbc $00ad.w, Y                                                  ; $89f8 : $f9, $ad, $00
+	sbc wJoy1CurrBtnsPressed.w+1, Y                                                  ; $89f8 : $f9, $ad, $00
 	phd                                                  ; $89fb : $0b
 	sbc ($ac), Y                                                  ; $89fc : $f1, $ac
 	jsr $f20c.w                                                  ; $89fe : $20, $0c, $f2
@@ -1760,7 +1760,7 @@ br_10_8a0f:
 	.db $00                                                  ; $8ab4 : $00
 	ora ($f9, S), Y                                                  ; $8ab5 : $13, $f9
 	ldx $0b00.w                                                  ; $8ab7 : $ae, $00, $0b
-	sbc $00ad.w, Y                                                  ; $8aba : $f9, $ad, $00
+	sbc wJoy1CurrBtnsPressed.w+1, Y                                                  ; $8aba : $f9, $ad, $00
 	phd                                                  ; $8abd : $0b
 	sbc ($ac), Y                                                  ; $8abe : $f1, $ac
 	jsr $f20c.w                                                  ; $8ac0 : $20, $0c, $f2
@@ -1877,7 +1877,7 @@ br_10_8ad1:
 	.db $00                                                  ; $8b8e : $00
 	ora ($f9, S), Y                                                  ; $8b8f : $13, $f9
 	ldx $0b00.w                                                  ; $8b91 : $ae, $00, $0b
-	sbc $00ad.w, Y                                                  ; $8b94 : $f9, $ad, $00
+	sbc wJoy1CurrBtnsPressed.w+1, Y                                                  ; $8b94 : $f9, $ad, $00
 	phd                                                  ; $8b97 : $0b
 	sbc ($ac), Y                                                  ; $8b98 : $f1, $ac
 	jsr $f20c.w                                                  ; $8b9a : $20, $0c, $f2
@@ -1993,7 +1993,7 @@ br_10_8c15:
 	.db $00                                                  ; $8c68 : $00
 	ora ($f9, S), Y                                                  ; $8c69 : $13, $f9
 	ldx $0b00.w                                                  ; $8c6b : $ae, $00, $0b
-	sbc $00ad.w, Y                                                  ; $8c6e : $f9, $ad, $00
+	sbc wJoy1CurrBtnsPressed.w+1, Y                                                  ; $8c6e : $f9, $ad, $00
 	phd                                                  ; $8c71 : $0b
 	sbc ($ac), Y                                                  ; $8c72 : $f1, $ac
 	jsr $f20c.w                                                  ; $8c74 : $20, $0c, $f2
@@ -2110,7 +2110,7 @@ br_10_8c85:
 	.db $00                                                  ; $8d3e : $00
 	ora ($f9, S), Y                                                  ; $8d3f : $13, $f9
 	ldx $0b00.w                                                  ; $8d41 : $ae, $00, $0b
-	sbc $00ad.w, Y                                                  ; $8d44 : $f9, $ad, $00
+	sbc wJoy1CurrBtnsPressed.w+1, Y                                                  ; $8d44 : $f9, $ad, $00
 	phd                                                  ; $8d47 : $0b
 	sbc ($ac), Y                                                  ; $8d48 : $f1, $ac
 	jsr $f20c.w                                                  ; $8d4a : $20, $0c, $f2
@@ -2277,7 +2277,7 @@ br_10_8e7a:
 	bpl br_10_8e7a                                                  ; $8e7a : $10, $fe
 
 	ldx $0800.w                                                  ; $8e7c : $ae, $00, $08
-	inc $00ad.w, X                                                  ; $8e7f : $fe, $ad, $00
+	inc wJoy1CurrBtnsPressed.w+1, X                                                  ; $8e7f : $fe, $ad, $00
 	php                                                  ; $8e82 : $08
 	inc $ac, X                                                  ; $8e83 : $f6, $ac
 	jsr $f60a.w                                                  ; $8e85 : $20, $0a, $f6

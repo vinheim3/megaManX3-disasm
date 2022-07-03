@@ -2349,7 +2349,7 @@ br_00_8d7f:
 	cmp #$04.b                                                  ; $8d83 : $c9, $04
 	beq br_00_8d97                                                  ; $8d85 : $f0, $10
 
-	lda $1f36.w                                                  ; $8d87 : $ad, $36, $1f
+	lda wStartTeleingPlayerOutOfStage.w                                                  ; $8d87 : $ad, $36, $1f
 	bpl br_00_8d8f                                                  ; $8d8a : $10, $03
 
 	jmp Jump_00_8dfa.w                                                  ; $8d8c : $4c, $fa, $8d
@@ -2593,7 +2593,7 @@ br_00_8f52:
 	lda #$f0.b                                                  ; $8f63 : $a9, $f0
 	sta $3b                                                  ; $8f65 : $85, $3b
 	lda #$1c.b                                                  ; $8f67 : $a9, $1c
-	jsr $01802b.l                                                  ; $8f69 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $8f69 : $22, $2b, $80, $01
 
 br_00_8f6d:
 	lda $ad                                                  ; $8f6d : $a5, $ad
@@ -2649,7 +2649,7 @@ br_00_8f92:
 	beq br_00_8fcd                                                  ; $8fbf : $f0, $0c
 
 	dec $3b                                                  ; $8fc1 : $c6, $3b
-	lda $00ad.w                                                  ; $8fc3 : $ad, $ad, $00
+	lda wJoy1CurrBtnsPressed.w+1                                                  ; $8fc3 : $ad, $ad, $00
 	bit #$10.b                                                  ; $8fc6 : $89, $10
 	beq br_00_8fcc                                                  ; $8fc8 : $f0, $02
 
@@ -2975,7 +2975,7 @@ br_00_91be:
 	lda #$60.b                                                  ; $91c2 : $a9, $60
 	sta $d9                                                  ; $91c4 : $85, $d9
 	lda #$80.b                                                  ; $91c6 : $a9, $80
-	sta $1f36.w                                                  ; $91c8 : $8d, $36, $1f
+	sta wStartTeleingPlayerOutOfStage.w                                                  ; $91c8 : $8d, $36, $1f
 	lda #$04.b                                                  ; $91cb : $a9, $04
 	sta $3a                                                  ; $91cd : $85, $3a
 	stz $3b                                                  ; $91cf : $64, $3b
@@ -3160,7 +3160,7 @@ br_00_92ef:
 	lda #$60.b                                                  ; $92f3 : $a9, $60
 	sta $d9                                                  ; $92f5 : $85, $d9
 	lda #$80.b                                                  ; $92f7 : $a9, $80
-	sta $1f36.w                                                  ; $92f9 : $8d, $36, $1f
+	sta wStartTeleingPlayerOutOfStage.w                                                  ; $92f9 : $8d, $36, $1f
 	inc $3a                                                  ; $92fc : $e6, $3a
 	inc $3a                                                  ; $92fe : $e6, $3a
 	stz $3b                                                  ; $9300 : $64, $3b
@@ -3902,7 +3902,7 @@ br_00_9886:
 	plb                                                  ; $9886 : $ab
 	sep #ACCU_8|IDX_8                                                  ; $9887 : $e2, $30
 	lda #$01.b                                                  ; $9889 : $a9, $01
-	sta $00a1.w                                                  ; $988b : $8d, $a1, $00
+	sta wShouldUpdateCGRAM.w                                                  ; $988b : $8d, $a1, $00
 	rts                                                  ; $988e : $60
 
 
@@ -3935,7 +3935,7 @@ br_00_989d:
 	sep #ACCU_8                                                  ; $98bf : $e2, $20
 	pld                                                  ; $98c1 : $2b
 	lda #$01.b                                                  ; $98c2 : $a9, $01
-	sta $00a1.w                                                  ; $98c4 : $8d, $a1, $00
+	sta wShouldUpdateCGRAM.w                                                  ; $98c4 : $8d, $a1, $00
 	rts                                                  ; $98c7 : $60
 
 
@@ -3988,7 +3988,7 @@ br_00_98fb:
 	sep #ACCU_8                                                  ; $991d : $e2, $20
 	pld                                                  ; $991f : $2b
 	lda #$01.b                                                  ; $9920 : $a9, $01
-	sta $00a1.w                                                  ; $9922 : $8d, $a1, $00
+	sta wShouldUpdateCGRAM.w                                                  ; $9922 : $8d, $a1, $00
 	rts                                                  ; $9925 : $60
 
 
@@ -4062,7 +4062,7 @@ todo_InitGlobalVars:
 	stz $1fb1.w                                                 ; $999e : $9c, $b1, $1f
 	stz $1fb2.w                                                  ; $99a1 : $9c, $b2, $1f
 	stz $1fb3.w                                                  ; $99a4 : $9c, $b3, $1f
-	stz $1fd6.w                                                  ; $99a7 : $9c, $d6, $1f
+	stz wStageTimes9.w                                                  ; $99a7 : $9c, $d6, $1f
 	stz wChipsAndRideArmoursGottenBitfield.w                                                  ; $99aa : $9c, $d7, $1f
 	stz $1fda.w                                                  ; $99ad : $9c, $da, $1f
 	lda #$02.b                                                  ; $99b0 : $a9, $02
@@ -4455,7 +4455,7 @@ Func_0_9c28:
 	rts                                                  ; $9c7a : $60
 
 @br_9c7b:
-	lda $1f36.w                                                  ; $9c7b : $ad, $36, $1f
+	lda wStartTeleingPlayerOutOfStage.w                                                  ; $9c7b : $ad, $36, $1f
 	beq @done                                                  ; $9c7e : $f0, $19
 
 	bpl @br_9c8a                                                  ; $9c80 : $10, $08
@@ -4597,7 +4597,7 @@ br_00_9d5e:
 
 	jsr Call_00_d957.w                                                  ; $9d67 : $20, $57, $d9
 	jsr NearBuildOam.w                                                  ; $9d6a : $20, $59, $dd
-	lda $1f36.w                                                  ; $9d6d : $ad, $36, $1f
+	lda wStartTeleingPlayerOutOfStage.w                                                  ; $9d6d : $ad, $36, $1f
 	bpl br_00_9d78                                                  ; $9d70 : $10, $06
 
 br_00_9d72:
@@ -4826,7 +4826,7 @@ br_00_9ebc:
 	sta $1f4f.w                                                  ; $9ed5 : $8d, $4f, $1f
 	jsr Call_00_d957.w                                                  ; $9ed8 : $20, $57, $d9
 	jsr NearBuildOam.w                                                  ; $9edb : $20, $59, $dd
-	lda $1f36.w                                                  ; $9ede : $ad, $36, $1f
+	lda wStartTeleingPlayerOutOfStage.w                                                  ; $9ede : $ad, $36, $1f
 	bpl br_00_9f1a                                                  ; $9ee1 : $10, $37
 
 	ldy #$02.b                                                  ; $9ee3 : $a0, $02
@@ -5144,7 +5144,7 @@ br_00_a136:
 	sta $1f4f.w                                                  ; $a14f : $8d, $4f, $1f
 	jsr Call_00_d957.w                                                  ; $a152 : $20, $57, $d9
 	jsr NearBuildOam.w                                                  ; $a155 : $20, $59, $dd
-	lda $1f36.w                                                  ; $a158 : $ad, $36, $1f
+	lda wStartTeleingPlayerOutOfStage.w                                                  ; $a158 : $ad, $36, $1f
 	bmi br_00_a15e                                                  ; $a15b : $30, $01
 
 	rts                                                  ; $a15d : $60
@@ -6132,7 +6132,7 @@ br_00_a807:
 	bcc br_00_a807                                                  ; $a815 : $90, $f0
 
 	sep #ACCU_8|IDX_8                                                  ; $a817 : $e2, $30
-	inc $00a1.w                                                  ; $a819 : $ee, $a1, $00
+	inc wShouldUpdateCGRAM.w                                                  ; $a819 : $ee, $a1, $00
 	lda #$1f.b                                                  ; $a81c : $a9, $1f
 	sta $00cb.w                                                  ; $a81e : $8d, $cb, $00
 	sta $00cc.w                                                  ; $a821 : $8d, $cc, $00
@@ -7064,7 +7064,7 @@ br_00_adf8:
 	ldx $d4                                                  ; $aec1 : $a6, $d4
 	jsr ($aede.w, X)                                                  ; $aec3 : $fc, $de, $ae
 	plp                                                  ; $aec6 : $28
-	lda $1f36.w                                                  ; $aec7 : $ad, $36, $1f
+	lda wStartTeleingPlayerOutOfStage.w                                                  ; $aec7 : $ad, $36, $1f
 	bpl br_00_aed8                                                  ; $aeca : $10, $0c
 
 	stz wScreenDisplay.w                                                  ; $aecc : $9c, $b4, $00
@@ -7324,7 +7324,7 @@ br_00_b050:
 br_00_b069:
 	sep #ACCU_8                                                  ; $b069 : $e2, $20
 	lda #$ff.b                                                  ; $b06b : $a9, $ff
-	sta $1f36.w                                                  ; $b06d : $8d, $36, $1f
+	sta wStartTeleingPlayerOutOfStage.w                                                  ; $b06d : $8d, $36, $1f
 	rts                                                  ; $b070 : $60
 
 
@@ -8499,7 +8499,7 @@ Call_00_b684:
 	bra @loop_b6d0                                                  ; $b706 : $80, $c8
 
 @end:
-	inc $00a1.w                                                  ; $b708 : $ee, $a1, $00
+	inc wShouldUpdateCGRAM.w                                                  ; $b708 : $ee, $a1, $00
 	plp                                                  ; $b70b : $28
 	rts                                                  ; $b70c : $60
 
@@ -10162,7 +10162,7 @@ br_00_c05d:
 	sta $0001.w                                                  ; $c07c : $8d, $01, $00
 	jsr $018129.l                                                  ; $c07f : $22, $29, $81, $01
 	lda #$2b.b                                                  ; $c083 : $a9, $2b
-	jsr $01802b.l                                                  ; $c085 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $c085 : $22, $2b, $80, $01
 	bra br_00_c0a7                                                  ; $c089 : $80, $1c
 
 br_00_c08b:
@@ -10331,7 +10331,7 @@ br_00_c175:
 	pea $0d18.w                                                  ; $c1a8 : $f4, $18, $0d
 	pld                                                  ; $c1ab : $2b
 	lda #$60.b                                                  ; $c1ac : $a9, $60
-	jsr $01802b.l                                                  ; $c1ae : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $c1ae : $22, $2b, $80, $01
 	lda #$10.b                                                  ; $c1b2 : $a9, $10
 	sta $00d3.w                                                  ; $c1b4 : $8d, $d3, $00
 
@@ -10406,7 +10406,7 @@ Jump_00_c203:
 	.dw $c343
 	.dw $c38f
 	.dw $c433
-	.dw $c434
+	.dw Func_0_c434
 	.dw $c510
 
 
@@ -10470,7 +10470,7 @@ br_00_c268:
 	sta CX4_UNK_7F4C.w                                                  ; $c2bf : $8d, $4c, $7f
 	lda #$09.b                                                  ; $c2c2 : $a9, $09
 	sta wBGMode.w                                                  ; $c2c4 : $8d, $cf, $00
-	lda $1fd6.w                                                  ; $c2c7 : $ad, $d6, $1f
+	lda wStageTimes9.w                                                  ; $c2c7 : $ad, $d6, $1f
 	sta $29                                                  ; $c2ca : $85, $29
 	jsr $038063.l                                                  ; $c2cc : $22, $63, $80, $03
 	beq br_00_c2da                                                  ; $c2d0 : $f0, $08
@@ -10645,7 +10645,7 @@ br_00_c388:
 	bne br_00_c3be                                                  ; $c3ae : $d0, $0e
 
 	lda #$48.b                                                  ; $c3b0 : $a9, $48
-	jsr $01802b.l                                                  ; $c3b2 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $c3b2 : $22, $2b, $80, $01
 	lda #$3c.b                                                  ; $c3b6 : $a9, $3c
 	sta $26                                                  ; $c3b8 : $85, $26
 	lda #$04.b                                                  ; $c3ba : $a9, $04
@@ -10676,7 +10676,7 @@ br_00_c3d8:
 	bne br_00_c3ea                                                  ; $c3de : $d0, $0a
 
 	lda #$23.b                                                  ; $c3e0 : $a9, $23
-	jsr $01802b.l                                                  ; $c3e2 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $c3e2 : $22, $2b, $80, $01
 	jsr $0386e9.l                                                  ; $c3e6 : $22, $e9, $86, $03
 
 br_00_c3ea:
@@ -10748,154 +10748,151 @@ br_00_c431:
 	rts                                                  ; $c433 : $60
 
 
+Func_0_c434:
 	sep #ACCU_8                                                  ; $c434 : $e2, $20
 	jsr $0380c8.l                                                  ; $c436 : $22, $c8, $80, $03
 	jsr $03810b.l                                                  ; $c43a : $22, $0b, $81, $03
 	jsr $03815a.l                                                  ; $c43e : $22, $5a, $81, $03
 	jsr $03822d.l                                                  ; $c442 : $22, $2d, $82, $03
-	jsr $0384b1.l                                                  ; $c446 : $22, $b1, $84, $03
-	jsr $038000.l                                                  ; $c44a : $22, $00, $80, $03
-	bne br_00_c48e                                                  ; $c44e : $d0, $3e
+	jsr DisplayStageSelectHelmetTexts.l                                                  ; $c446 : $22, $b1, $84, $03
+
+; x = 1e58
+	jsr Func_3_8000.l                                                  ; $c44a : $22, $00, $80, $03
+	bne @stageSelected                                                  ; $c44e : $d0, $3e
 
 	lda $29                                                  ; $c450 : $a5, $29
 	cmp $2a                                                  ; $c452 : $c5, $2a
-	beq br_00_c487                                                  ; $c454 : $f0, $31
+	beq @br_c487                                                  ; $c454 : $f0, $31
 
 	lda $2c                                                  ; $c456 : $a5, $2c
 	cmp #$08.b                                                  ; $c458 : $c9, $08
-	bcs br_00_c472                                                  ; $c45a : $b0, $16
+	bcs @br_c472                                                  ; $c45a : $b0, $16
 
 	lda $29                                                  ; $c45c : $a5, $29
 	cmp #$3f.b                                                  ; $c45e : $c9, $3f
-	bne br_00_c481                                                  ; $c460 : $d0, $1f
+	bne @contLoop_c481                                                  ; $c460 : $d0, $1f
 
 	cmp $2a                                                  ; $c462 : $c5, $2a
-	bcs br_00_c46b                                                  ; $c464 : $b0, $05
+	bcs @br_c46b                                                  ; $c464 : $b0, $05
 
 	sec                                                  ; $c466 : $38
 	sbc #$09.b                                                  ; $c467 : $e9, $09
-	bra br_00_c46e                                                  ; $c469 : $80, $03
+	bra @cont_c46e                                                  ; $c469 : $80, $03
 
-br_00_c46b:
+@br_c46b:
 	clc                                                  ; $c46b : $18
 	adc #$09.b                                                  ; $c46c : $69, $09
 
-br_00_c46e:
+@cont_c46e:
 	sta $29                                                  ; $c46e : $85, $29
-	bra br_00_c481                                                  ; $c470 : $80, $0f
+	bra @contLoop_c481                                                  ; $c470 : $80, $0f
 
-br_00_c472:
+@br_c472:
 	lda $29                                                  ; $c472 : $a5, $29
 	cmp #$3f.b                                                  ; $c474 : $c9, $3f
-	bne br_00_c47c                                                  ; $c476 : $d0, $04
+	bne @br_c47c                                                  ; $c476 : $d0, $04
 
 	lda #$02.b                                                  ; $c478 : $a9, $02
-	bra br_00_c47e                                                  ; $c47a : $80, $02
+	bra +                                                  ; $c47a : $80, $02
 
-br_00_c47c:
+@br_c47c:
 	lda #$04.b                                                  ; $c47c : $a9, $04
 
-br_00_c47e:
-	sta $1e99.w                                                  ; $c47e : $8d, $99, $1e
++	sta $1e99.w                                                  ; $c47e : $8d, $99, $1e
 
-br_00_c481:
+@contLoop_c481:
 	stz $26                                                  ; $c481 : $64, $26
 	lda $29                                                  ; $c483 : $a5, $29
 	sta $2a                                                  ; $c485 : $85, $2a
 
-br_00_c487:
+@br_c487:
 	sta $0dcc.w                                                  ; $c487 : $8d, $cc, $0d
 	sta $0e0e.w                                                  ; $c48a : $8d, $0e, $0e
 	rts                                                  ; $c48d : $60
 
-
-br_00_c48e:
+@stageSelected:
 	lda $2c                                                  ; $c48e : $a5, $2c
 	cmp #$08.b                                                  ; $c490 : $c9, $08
-	bne br_00_c4ad                                                  ; $c492 : $d0, $19
+	bne @br_c4ad                                                  ; $c492 : $d0, $19
 
 	lda $1ebf.w                                                  ; $c494 : $ad, $bf, $1e
-	bne br_00_c4ad                                                  ; $c497 : $d0, $14
+	bne @br_c4ad                                                  ; $c497 : $d0, $14
 
 	lda $29                                                  ; $c499 : $a5, $29
 	cmp #$3f.b                                                  ; $c49b : $c9, $3f
-	beq br_00_c4a3                                                  ; $c49d : $f0, $04
+	beq @br_c4a3                                                  ; $c49d : $f0, $04
 
 	lda #$01.b                                                  ; $c49f : $a9, $01
-	bra br_00_c4a5                                                  ; $c4a1 : $80, $02
+	bra +                                                  ; $c4a1 : $80, $02
 
-br_00_c4a3:
+@br_c4a3:
 	lda #$ff.b                                                  ; $c4a3 : $a9, $ff
 
-br_00_c4a5:
-	sta $1ebf.w                                                  ; $c4a5 : $8d, $bf, $1e
++	sta $1ebf.w                                                  ; $c4a5 : $8d, $bf, $1e
 	stz $1ec1.w                                                  ; $c4a8 : $9c, $c1, $1e
-	bra br_00_c481                                                  ; $c4ab : $80, $d4
+	bra @contLoop_c481                                                  ; $c4ab : $80, $d4
 
-br_00_c4ad:
+@br_c4ad:
 	ldx $29                                                  ; $c4ad : $a6, $29
 	lda $9c0c.w, X                                                  ; $c4af : $bd, $0c, $9c
-	bmi br_00_c4be                                                  ; $c4b2 : $30, $0a
+	bmi @br_c4be                                                  ; $c4b2 : $30, $0a
 
 	sta wStageIdx.w                                                  ; $c4b4 : $8d, $ae, $1f
 	lda #$01.b                                                  ; $c4b7 : $a9, $01
 	sta $1ebf.w                                                  ; $c4b9 : $8d, $bf, $1e
-	bra br_00_c4f5                                                  ; $c4bc : $80, $37
+	bra @cont_c4f5                                                  ; $c4bc : $80, $37
 
-br_00_c4be:
+@br_c4be:
 	cmp #$ff.b                                                  ; $c4be : $c9, $ff
-	beq br_00_c4cf                                                  ; $c4c0 : $f0, $0d
+	beq @br_c4cf                                                  ; $c4c0 : $f0, $0d
 
 	lda $2b                                                  ; $c4c2 : $a5, $2b
 	eor #$ff.b                                                  ; $c4c4 : $49, $ff
 	sta $2b                                                  ; $c4c6 : $85, $2b
 	lda #$1f.b                                                  ; $c4c8 : $a9, $1f
-	jsr $01802b.l                                                  ; $c4ca : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $c4ca : $22, $2b, $80, $01
 	rts                                                  ; $c4ce : $60
 
-
-br_00_c4cf:
+@br_c4cf:
 	lda #$ff.b                                                  ; $c4cf : $a9, $ff
 	sta $1ebf.w                                                  ; $c4d1 : $8d, $bf, $1e
 	lda $1faf.w                                                  ; $c4d4 : $ad, $af, $1f
 	cmp #$04.b                                                  ; $c4d7 : $c9, $04
-
-br_00_c4d9:
-	bcc br_00_c4df                                                  ; $c4d9 : $90, $04
+	bcc @br_c4df                                                  ; $c4d9 : $90, $04
 
 	lda #$05.b                                                  ; $c4db : $a9, $05
-	bra br_00_c4e2                                                  ; $c4dd : $80, $03
+	bra +                                                  ; $c4dd : $80, $03
 
-br_00_c4df:
+@br_c4df:
 	clc                                                  ; $c4df : $18
 	adc #$0a.b                                                  ; $c4e0 : $69, $0a
 
-br_00_c4e2:
-	sta wStageIdx.w                                                  ; $c4e2 : $8d, $ae, $1f
++	sta wStageIdx.w                                                  ; $c4e2 : $8d, $ae, $1f
 	cmp #$0b.b                                                  ; $c4e5 : $c9, $0b
-	bne br_00_c4f5                                                  ; $c4e7 : $d0, $0c
+	bne @cont_c4f5                                                  ; $c4e7 : $d0, $0c
 
 	lda $1fd8.w                                                  ; $c4e9 : $ad, $d8, $1f
 	bit #$10.b                                                  ; $c4ec : $89, $10
-	bne br_00_c4f5                                                  ; $c4ee : $d0, $05
+	bne @cont_c4f5                                                  ; $c4ee : $d0, $05
 
 	lda #$0e.b                                                  ; $c4f0 : $a9, $0e
 	sta wStageIdx.w                                                  ; $c4f2 : $8d, $ae, $1f
 
-br_00_c4f5:
+@cont_c4f5:
 	lda #$0c.b                                                  ; $c4f5 : $a9, $0c
 	sta $01                                                  ; $c4f7 : $85, $01
 	stz $02                                                  ; $c4f9 : $64, $02
 	stz $03                                                  ; $c4fb : $64, $03
 	lda $29                                                  ; $c4fd : $a5, $29
-	sta $1fd6.w                                                  ; $c4ff : $8d, $d6, $1f
+	sta wStageTimes9.w                                                  ; $c4ff : $8d, $d6, $1f
 	lda #$1d.b                                                  ; $c502 : $a9, $1d
-	jsr $01802b.l                                                  ; $c504 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $c504 : $22, $2b, $80, $01
 	rts                                                  ; $c508 : $60
 
 
+;
 	lda #$01.b                                                  ; $c509 : $a9, $01
-	jsr $01802b.l                                                  ; $c50b : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $c50b : $22, $2b, $80, $01
 	rts                                                  ; $c50f : $60
 
 
@@ -10911,7 +10908,7 @@ br_00_c4f5:
 	cmp $5f                                                  ; $c528 : $c5, $5f
 	cmp $8e                                                  ; $c52a : $c5, $8e
 	cmp $e2                                                  ; $c52c : $c5, $e2
-	bmi br_00_c4d9                                                  ; $c52e : $30, $a9
+	.db $30, $a9                                                  ; $c52e : $30, $a9
 
 	cop $85.b                                                  ; $c530 : $02, $85
 	rol $a9                                                  ; $c532 : $26, $a9
@@ -11152,7 +11149,7 @@ br_00_c6c5:
 
 	inc $27                                                  ; $c6f8 : $e6, $27
 	lda #$1d.b                                                  ; $c6fa : $a9, $1d
-	jsr $01802b.l                                                  ; $c6fc : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $c6fc : $22, $2b, $80, $01
 	phd                                                  ; $c700 : $0b
 	pea $0000.w                                                  ; $c701 : $f4, $00, $00
 	pld                                                  ; $c704 : $2b
@@ -11317,7 +11314,7 @@ br_00_c7d8:
 
 br_00_c7df:
 	lda #$1c.b                                                  ; $c7df : $a9, $1c
-	jsr $01802b.l                                                  ; $c7e1 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $c7e1 : $22, $2b, $80, $01
 
 Jump_00_c7e5:
 br_00_c7e5:
@@ -11450,7 +11447,7 @@ br_00_c886:
 
 br_00_c898:
 	lda #$1c.b                                                  ; $c898 : $a9, $1c
-	jsr $01802b.l                                                  ; $c89a : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $c89a : $22, $2b, $80, $01
 	rts                                                  ; $c89e : $60
 
 
@@ -11534,7 +11531,7 @@ br_00_c8fc:
 	lda #$02.b                                                  ; $c905 : $a9, $02
 	sta $2a                                                  ; $c907 : $85, $2a
 	lda #$15.b                                                  ; $c909 : $a9, $15
-	jsr $01802b.l                                                  ; $c90b : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $c90b : $22, $2b, $80, $01
 	lda wCurrHealth.w                                                  ; $c90f : $ad, $ff, $09
 	cmp wMaxHealth.w                                                  ; $c912 : $cd, $d2, $1f
 	beq br_00_c91b                                                  ; $c915 : $f0, $04
@@ -11600,7 +11597,7 @@ br_00_c968:
 	stz $03                                                  ; $c96a : $64, $03
 	jsr Call_00_c978.w                                                  ; $c96c : $20, $78, $c9
 	lda #$1c.b                                                  ; $c96f : $a9, $1c
-	jsr $01802b.l                                                  ; $c971 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $c971 : $22, $2b, $80, $01
 
 br_00_c975:
 	jmp Jump_00_cf2e.w                                                  ; $c975 : $4c, $2e, $cf
@@ -11878,7 +11875,7 @@ br_00_caf5:
 	sep #ACCU_8|IDX_8                                                  ; $cb62 : $e2, $30
 	jsr Call_00_d632.w                                                  ; $cb64 : $20, $32, $d6
 	lda #$01.b                                                  ; $cb67 : $a9, $01
-	tsb $00a1.w                                                  ; $cb69 : $0c, $a1, $00
+	tsb wShouldUpdateCGRAM.w                                                  ; $cb69 : $0c, $a1, $00
 	lda #$40.b                                                  ; $cb6c : $a9, $40
 	trb $1f5d.w                                                  ; $cb6e : $1c, $5d, $1f
 	phd                                                  ; $cb71 : $0b
@@ -12422,7 +12419,7 @@ Call_00_cef4:
 
 br_00_cf14:
 	lda #$5a.b                                                  ; $cf14 : $a9, $5a
-	jsr $01802b.l                                                  ; $cf16 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $cf16 : $22, $2b, $80, $01
 	lda #$00.b                                                  ; $cf1a : $a9, $00
 	rts                                                  ; $cf1c : $60
 
@@ -16361,7 +16358,7 @@ Call_00_e601:
 todo_HandleTextThread:
 	sep #ACCU_8|IDX_8                                                  ; $e624 : $e2, $30
 	jsr Call_00_e965.w                                                  ; $e626 : $20, $65, $e9
-	lda $1f46.w                                                  ; $e629 : $ad, $46, $1f
+	lda wCurrTextIdx.w                                                  ; $e629 : $ad, $46, $1f
 	bmi +                                                  ; $e62c : $30, $05
 
 	ldy #$0e.b                                                  ; $e62e : $a0, $0e
@@ -16374,7 +16371,7 @@ todo_HandleTextThread:
 	sta $ce                                                  ; $e63c : $85, $ce
 
 ; text idx
-	lda $1f46.w                                                  ; $e63e : $ad, $46, $1f
+	lda wCurrTextIdx.w                                                  ; $e63e : $ad, $46, $1f
 	and #$7f.b                                                  ; $e641 : $29, $7f
 	asl                                                  ; $e643 : $0a
 	tax                                                  ; $e644 : $aa
@@ -16499,7 +16496,7 @@ Func_0_e679:
 
 @cont_e718:
 	ldx $6f                                                  ; $e718 : $a6, $6f
-	jsr Call_00_e972.w                                                  ; $e71a : $20, $72, $e9
+	jsr CheckIfNonDirButtonHeld.w                                                  ; $e71a : $20, $72, $e9
 	beq +                                                  ; $e71d : $f0, $02
 	ldx #$01.b                                                  ; $e71f : $a2, $01
 +	txa                                                  ; $e721 : $8a
@@ -16575,7 +16572,7 @@ HandleTextByte81h:
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e78f : $20, $62, $81
 
 br_00_e792:
-	jsr Call_00_e972.w                                                  ; $e792 : $20, $72, $e9
+	jsr CheckIfNonDirButtonHeld.w                                                  ; $e792 : $20, $72, $e9
 	bne br_00_e7ab                                                  ; $e795 : $d0, $14
 
 	lda $09cc.w                                                  ; $e797 : $ad, $cc, $09
@@ -16744,7 +16741,7 @@ HandleTextByte86h:
 HandleTextByte87h:
 	inc $1f51.w                                                  ; $e8bd : $ee, $51, $1f
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e8c0 : $20, $62, $81
-	jsr Call_00_e972.w                                                  ; $e8c3 : $20, $72, $e9
+	jsr CheckIfNonDirButtonHeld.w                                                  ; $e8c3 : $20, $72, $e9
 	beq br_00_e8cd                                                  ; $e8c6 : $f0, $05
 
 	jsr todo_GetTextByte.w                                                  ; $e8c8 : $20, $21, $e9
@@ -16860,7 +16857,7 @@ br_00_e971:
 	rts                                                  ; $e971 : $60
 
 
-Call_00_e972:
+CheckIfNonDirButtonHeld:
 	lda wDashAndSelCurrBtnsHeld.w                                                  ; $e972 : $ad, $0e, $0a
 	ora wJumpShotMenuDirCurrBtnsHeld.w                                                  ; $e975 : $0d, $0f, $0a
 	and #$f0.b                                                  ; $e978 : $29, $f0
@@ -16874,7 +16871,7 @@ AddTextThread:
 	php                                                  ; $e97d : $08
 	phd                                                  ; $e97e : $0b
 	sep #ACCU_8|IDX_8                                                  ; $e97f : $e2, $30
-	sta $1f46.w                                                  ; $e981 : $8d, $46, $1f
+	sta wCurrTextIdx.w                                                  ; $e981 : $8d, $46, $1f
 	stz $1f49.w                                                  ; $e984 : $9c, $49, $1f
 	stz $1f4b.w                                                  ; $e987 : $9c, $4b, $1f
 	lda #$01.b                                                  ; $e98a : $a9, $01
@@ -17557,7 +17554,7 @@ br_00_ee21:
 
 br_00_ee27:
 	sta $07                                                  ; $ee27 : $85, $07
-	lda $00ad.w                                                  ; $ee29 : $ad, $ad, $00
+	lda wJoy1CurrBtnsPressed.w+1                                                  ; $ee29 : $ad, $ad, $00
 	and #$80.b                                                  ; $ee2c : $29, $80
 	beq br_00_ee35                                                  ; $ee2e : $f0, $05
 
@@ -17567,7 +17564,7 @@ br_00_ee27:
 
 
 br_00_ee35:
-	lda $00ad.w                                                  ; $ee35 : $ad, $ad, $00
+	lda wJoy1CurrBtnsPressed.w+1                                                  ; $ee35 : $ad, $ad, $00
 	and #$40.b                                                  ; $ee38 : $29, $40
 	beq br_00_ee51                                                  ; $ee3a : $f0, $15
 
@@ -17587,7 +17584,7 @@ br_00_ee35:
 	sta $1c, X                                                  ; $ee4f : $95, $1c
 
 br_00_ee51:
-	lda $00ad.w                                                  ; $ee51 : $ad, $ad, $00
+	lda wJoy1CurrBtnsPressed.w+1                                                  ; $ee51 : $ad, $ad, $00
 	and #$10.b                                                  ; $ee54 : $29, $10
 	beq br_00_ee90                                                  ; $ee56 : $f0, $38
 
@@ -17620,7 +17617,7 @@ br_00_ee74:
 	bpl br_00_ee74                                                  ; $ee7b : $10, $f7
 
 	lda #$1d.b                                                  ; $ee7d : $a9, $1d
-	jsr $01802b.l                                                  ; $ee7f : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $ee7f : $22, $2b, $80, $01
 	lda #$08.b                                                  ; $ee83 : $a9, $08
 	sta $40                                                  ; $ee85 : $85, $40
 	lda #$3c.b                                                  ; $ee87 : $a9, $3c
@@ -18115,8 +18112,8 @@ Jump_00_f16e:
 br_00_f16e:
 	jsr Call_00_f471.w                                                  ; $f16e : $20, $71, $f4
 	lda #$5a.b                                                  ; $f171 : $a9, $5a
-	jsr $01802b.l                                                  ; $f173 : $22, $2b, $80, $01
-	rep #$02.b                                                  ; $f177 : $c2, $02
+	jsr Func_1_802b.l                                                  ; $f173 : $22, $2b, $80, $01
+	rep #F_ZERO                                                  ; $f177 : $c2, $02
 	rts                                                  ; $f179 : $60
 
 
@@ -18340,7 +18337,7 @@ br_00_f2c2:
 	lda #$02.b                                                  ; $f2c2 : $a9, $02
 	sta wNumLives.w                                                  ; $f2c4 : $8d, $b4, $1f
 	stz wStageIdx.w                                                  ; $f2c7 : $9c, $ae, $1f
-	sep #$02.b                                                  ; $f2ca : $e2, $02
+	sep #F_ZERO                                                  ; $f2ca : $e2, $02
 	rts                                                  ; $f2cc : $60
 
 
@@ -18626,7 +18623,7 @@ br_00_f43f:
 
 
 Call_00_f44c:
-	lda $00ad.w                                                  ; $f44c : $ad, $ad, $00
+	lda wJoy1CurrBtnsPressed.w+1                                                  ; $f44c : $ad, $ad, $00
 	bit #$08.b                                                  ; $f44f : $89, $08
 	beq br_00_f455                                                  ; $f451 : $f0, $02
 
@@ -18643,7 +18640,7 @@ br_00_f45b:
 	cmp #$04.b                                                  ; $f45d : $c9, $04
 	bcs br_00_f470                                                  ; $f45f : $b0, $0f
 
-	lda $00ad.w                                                  ; $f461 : $ad, $ad, $00
+	lda wJoy1CurrBtnsPressed.w+1                                                  ; $f461 : $ad, $ad, $00
 	bit #$02.b                                                  ; $f464 : $89, $02
 	beq br_00_f46a                                                  ; $f466 : $f0, $02
 
@@ -18802,7 +18799,7 @@ todo_Update_1818_Entities:
 	.dw $f5f0
 	.dw $f5f5
 	.dw $f5fa
-	.dw $f5ff
+	.dw todo_FarUpdate_1818_Entity10h ; helmet line lights / minimap marker
 	.dw Func_0_f604
 	.dw $f609
 	.dw $f60e
@@ -18920,7 +18917,8 @@ todo_Update_1818_Entities:
 	rts                                                  ; $f5fe : $60
 
 
-	jsr $02f263.l                                                  ; $f5ff : $22, $63, $f2, $02
+todo_FarUpdate_1818_Entity10h:
+	jsr Func_2_f263.l                                                  ; $f5ff : $22, $63, $f2, $02
 	rts                                                  ; $f603 : $60
 
 
@@ -19475,7 +19473,7 @@ FarUpdateTornadoFang:
 	rts                                                  ; $f8d2 : $60
 
 
-	jsr $02f263.l                                                  ; $f8d3 : $22, $63, $f2, $02
+	jsr Func_2_f263.l                                                  ; $f8d3 : $22, $63, $f2, $02
 	rts                                                  ; $f8d7 : $60
 
 
@@ -19552,7 +19550,7 @@ br_00_f92a:
 	rts                                                  ; $f956 : $60
 
 
-	jsr $13d2ac.l                                                  ; $f957 : $22, $ac, $d2, $13
+	jsr Func_13_d2ac.l                                                  ; $f957 : $22, $ac, $d2, $13
 	rts                                                  ; $f95b : $60
 
 
@@ -19616,7 +19614,7 @@ br_00_f92a:
 	rts                                                  ; $f9a6 : $60
 
 
-	jsr $3fefbb.l                                                  ; $f9a7 : $22, $bb, $ef, $3f
+	jsr Func_3f_efbb.l                                                  ; $f9a7 : $22, $bb, $ef, $3f
 	rts                                                  ; $f9ab : $60
 
 
@@ -19967,7 +19965,7 @@ EnemyUpdateFuncs:
 	rts                                                  ; $fba6 : $60
 
 
-	jsr $3fe3a6.l                                                  ; $fba7 : $22, $a6, $e3, $3f
+	jsr Func_3f_e3a6.l                                                  ; $fba7 : $22, $a6, $e3, $3f
 	rts                                                  ; $fbab : $60
 
 
@@ -20132,7 +20130,7 @@ Func_0_fc6a:
 	rts                                                  ; $fc6e : $60
 
 
-	jsr $13d58a.l                                                  ; $fc6f : $22, $8a, $d5, $13
+	jsr Func_13_d58a.l                                                  ; $fc6f : $22, $8a, $d5, $13
 	rts                                                  ; $fc73 : $60
 
 
@@ -20215,7 +20213,7 @@ FarUpdateGravityBeetle:
 
 
 ;
-	jsr $13c5fd.l                                                  ; $fcc9 : $22, $fd, $c5, $13
+	jsr Func_13_c5fd.l                                                  ; $fcc9 : $22, $fd, $c5, $13
 	rts                                                  ; $fccd : $60
 
 
@@ -20256,7 +20254,7 @@ Func_0_fcd3:
 	rts                                                  ; $fcfa : $60
 
 
-	jsr $3feca2.l                                                  ; $fcfb : $22, $a2, $ec, $3f
+	jsr Func_3f_eca2.l                                                  ; $fcfb : $22, $a2, $ec, $3f
 	rts                                                  ; $fcff : $60
 
 
@@ -20264,7 +20262,7 @@ Func_0_fcd3:
 	rts                                                  ; $fd04 : $60
 
 
-	jsr $02f263.l                                                  ; $fd05 : $22, $63, $f2, $02
+	jsr Func_2_f263.l                                                  ; $fd05 : $22, $63, $f2, $02
 	rts                                                  ; $fd09 : $60
 
 

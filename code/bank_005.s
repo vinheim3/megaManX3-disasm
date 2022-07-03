@@ -1857,7 +1857,7 @@ br_05_8d85:
 
 	sta wCurrHealth.w                                                  ; $8da4 : $8d, $ff, $09
 	lda #$0d.b                                                  ; $8da7 : $a9, $0d
-	jsr $01802b.l                                                  ; $8da9 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $8da9 : $22, $2b, $80, $01
 	rts                                                  ; $8dad : $60
 
 
@@ -2003,7 +2003,7 @@ Call_05_8e80:
 
 	sep #ACCU_8|IDX_8                                                  ; $8e82 : $e2, $30
 	lda #$01.b                                                  ; $8e84 : $a9, $01
-	sta $00a1.w                                                  ; $8e86 : $8d, $a1, $00
+	sta wShouldUpdateCGRAM.w                                                  ; $8e86 : $8d, $a1, $00
 	lda #$02.b                                                  ; $8e89 : $a9, $02
 	sta $1ea5.w                                                  ; $8e8b : $8d, $a5, $1e
 	jsr LoadCurrEnemyBaseData.l                                                  ; $8e8e : $22, $5c, $e1, $02
@@ -2141,7 +2141,7 @@ br_05_8f49:
 	ora #$80.b                                                  ; $8f64 : $09, $80
 	sta $27                                                  ; $8f66 : $85, $27
 	lda #$15.b                                                  ; $8f68 : $a9, $15
-	jsr $01802b.l                                                  ; $8f6a : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $8f6a : $22, $2b, $80, $01
 	rts                                                  ; $8f6e : $60
 
 
@@ -2309,7 +2309,7 @@ br_05_905a:
 	lda #$04.b                                                  ; $906a : $a9, $04
 	jsr SetupEntitysAnimation.l                                                  ; $906c : $22, $67, $b9, $04
 	lda #$46.b                                                  ; $9070 : $a9, $46
-	jsr $01802b.l                                                  ; $9072 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $9072 : $22, $2b, $80, $01
 	rts                                                  ; $9076 : $60
 
 
@@ -2338,7 +2338,7 @@ br_05_9077:
 	lda #$04.b                                                  ; $909e : $a9, $04
 	jsr SetupEntitysAnimation.l                                                  ; $90a0 : $22, $67, $b9, $04
 	lda #$46.b                                                  ; $90a4 : $a9, $46
-	jsr $01802b.l                                                  ; $90a6 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $90a6 : $22, $2b, $80, $01
 	rts                                                  ; $90aa : $60
 
 
@@ -2419,7 +2419,7 @@ Call_05_9100:
 	lda #$0c.b                                                  ; $911b : $a9, $0c
 	sta $03                                                  ; $911d : $85, $03
 	lda #$48.b                                                  ; $911f : $a9, $48
-	jsr $01802b.l                                                  ; $9121 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $9121 : $22, $2b, $80, $01
 
 br_05_9125:
 	rts                                                  ; $9125 : $60
@@ -2655,7 +2655,7 @@ br_05_926e:
 
 	lda #$01.b                                                  ; $9273 : $a9, $01
 	sta $1faf.w                                                  ; $9275 : $8d, $af, $1f
-	inc $1f36.w                                                  ; $9278 : $ee, $36, $1f
+	inc wStartTeleingPlayerOutOfStage.w                                                  ; $9278 : $ee, $36, $1f
 	jmp todo_DisablesEntity_d928.l                                                  ; $927b : $5c, $28, $d9, $02
 
 
@@ -3020,7 +3020,7 @@ br_05_94d3:
 	ora #$80.b                                                  ; $94f6 : $09, $80
 	sta $27                                                  ; $94f8 : $85, $27
 	lda #$15.b                                                  ; $94fa : $a9, $15
-	jsr $01802b.l                                                  ; $94fc : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $94fc : $22, $2b, $80, $01
 	rts                                                  ; $9500 : $60
 
 
@@ -3694,7 +3694,7 @@ br_05_98e7:
 
 br_05_98ff:
 	sep #ACCU_8                                                  ; $98ff : $e2, $20
-	rep #$02.b                                                  ; $9901 : $c2, $02
+	rep #F_ZERO                                                  ; $9901 : $c2, $02
 	rtl                                                  ; $9903 : $6b
 
 
@@ -3814,7 +3814,7 @@ br_05_99b0:
 
 	sep #ACCU_8|IDX_8                                                  ; $99ba : $e2, $30
 	lda #$01.b                                                  ; $99bc : $a9, $01
-	sta $00a1.w                                                  ; $99be : $8d, $a1, $00
+	sta wShouldUpdateCGRAM.w                                                  ; $99be : $8d, $a1, $00
 	lda #$04.b                                                  ; $99c1 : $a9, $04
 	sta $02                                                  ; $99c3 : $85, $02
 	rtl                                                  ; $99c5 : $6b
@@ -3906,7 +3906,7 @@ br_05_9a5b:
 	lda #$00.b                                                  ; $9a76 : $a9, $00
 	sta $1ea4.w                                                  ; $9a78 : $8d, $a4, $1e
 	lda #$41.b                                                  ; $9a7b : $a9, $41
-	jsr $01802b.l                                                  ; $9a7d : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $9a7d : $22, $2b, $80, $01
 	lda #$10.b                                                  ; $9a81 : $a9, $10
 	jsr SetupEntitysAnimation.l                                                  ; $9a83 : $22, $67, $b9, $04
 	rtl                                                  ; $9a87 : $6b
@@ -3939,7 +3939,7 @@ br_05_9aac:
 
 	sep #ACCU_8                                                  ; $9ab3 : $e2, $20
 	lda #$01.b                                                  ; $9ab5 : $a9, $01
-	sta $00a1.w                                                  ; $9ab7 : $8d, $a1, $00
+	sta wShouldUpdateCGRAM.w                                                  ; $9ab7 : $8d, $a1, $00
 	lda #$0c.b                                                  ; $9aba : $a9, $0c
 	sta $12                                                  ; $9abc : $85, $12
 	lda #$02.b                                                  ; $9abe : $a9, $02
@@ -4017,7 +4017,7 @@ br_05_9b04:
 	ora #$80.b                                                  ; $9b23 : $09, $80
 	sta $27                                                  ; $9b25 : $85, $27
 	lda #$15.b                                                  ; $9b27 : $a9, $15
-	jsr $01802b.l                                                  ; $9b29 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $9b29 : $22, $2b, $80, $01
 	rts                                                  ; $9b2d : $60
 
 
@@ -4229,7 +4229,7 @@ Call_05_9c80:
 	ldy #$01.b                                                  ; $9c97 : $a0, $01
 	jsr $04d599.l                                                  ; $9c99 : $22, $99, $d5, $04
 	lda #$49.b                                                  ; $9c9d : $a9, $49
-	jsr $01802b.l                                                  ; $9c9f : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $9c9f : $22, $2b, $80, $01
 	lda #$01.b                                                  ; $9ca3 : $a9, $01
 	sta $0d0a.w                                                  ; $9ca5 : $8d, $0a, $0d
 	lda #$08.b                                                  ; $9ca8 : $a9, $08
@@ -4371,7 +4371,7 @@ br_05_9d64:
 	sta $39                                                  ; $9d69 : $85, $39
 	stz $1f58.w                                                  ; $9d6b : $9c, $58, $1f
 	lda #$73.b                                                  ; $9d6e : $a9, $73
-	jsr $01802b.l                                                  ; $9d70 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $9d70 : $22, $2b, $80, $01
 	lda #$02.b                                                  ; $9d74 : $a9, $02
 	sta $03                                                  ; $9d76 : $85, $03
 	rts                                                  ; $9d78 : $60
@@ -4395,7 +4395,7 @@ br_05_9d88:
 	lda #$01.b                                                  ; $9d8b : $a9, $01
 	sta $1f58.w                                                  ; $9d8d : $8d, $58, $1f
 	lda #$72.b                                                  ; $9d90 : $a9, $72
-	jsr $01802b.l                                                  ; $9d92 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $9d92 : $22, $2b, $80, $01
 	lda #$78.b                                                  ; $9d96 : $a9, $78
 	sta $39                                                  ; $9d98 : $85, $39
 	lda #$04.b                                                  ; $9d9a : $a9, $04
@@ -4954,7 +4954,7 @@ br_05_a128:
 
 	jsr todo_CausePlayerToFreeze.l                                                  ; $a13b : $22, $ca, $d1, $04
 	lda #$0d.b                                                  ; $a13f : $a9, $0d
-	jsr $01802b.l                                                  ; $a141 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $a141 : $22, $2b, $80, $01
 	lda #$04.b                                                  ; $a145 : $a9, $04
 	sta $03                                                  ; $a147 : $85, $03
 
@@ -5188,7 +5188,7 @@ Call_05_a28b:
 	lda $edb3.w, X                                                  ; $a29d : $bd, $b3, $ed
 	sta $0306.w                                                  ; $a2a0 : $8d, $06, $03
 	sep #ACCU_8                                                  ; $a2a3 : $e2, $20
-	inc $00a1.w                                                  ; $a2a5 : $ee, $a1, $00
+	inc wShouldUpdateCGRAM.w                                                  ; $a2a5 : $ee, $a1, $00
 	rts                                                  ; $a2a8 : $60
 
 
@@ -5526,7 +5526,7 @@ br_05_a4c0:
 	ora #$80.b                                                  ; $a4ee : $09, $80
 	sta $27                                                  ; $a4f0 : $85, $27
 	lda #$15.b                                                  ; $a4f2 : $a9, $15
-	jsr $01802b.l                                                  ; $a4f4 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $a4f4 : $22, $2b, $80, $01
 	bra br_05_a506                                                  ; $a4f8 : $80, $0c
 
 br_05_a4fa:
@@ -5712,7 +5712,7 @@ br_05_a61a:
 	lda #$04.b                                                  ; $a625 : $a9, $04
 	jsr SetupEntitysAnimation.l                                                  ; $a627 : $22, $67, $b9, $04
 	lda #$58.b                                                  ; $a62b : $a9, $58
-	jsr $01802b.l                                                  ; $a62d : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $a62d : $22, $2b, $80, $01
 
 br_05_a631:
 	rts                                                  ; $a631 : $60
@@ -5805,7 +5805,7 @@ br_05_a684:
 	jsr Call_05_aa89.w                                                  ; $a6b3 : $20, $89, $aa
 	jsr Call_05_aa37.w                                                  ; $a6b6 : $20, $37, $aa
 	lda #$70.b                                                  ; $a6b9 : $a9, $70
-	jsr $01802b.l                                                  ; $a6bb : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $a6bb : $22, $2b, $80, $01
 
 br_05_a6bf:
 	lda $0f                                                  ; $a6bf : $a5, $0f
@@ -5944,7 +5944,7 @@ br_05_a764:
 	inc $3b                                                  ; $a78d : $e6, $3b
 	jsr Call_05_aa9b.w                                                  ; $a78f : $20, $9b, $aa
 	lda #$5a.b                                                  ; $a792 : $a9, $5a
-	jsr $01802b.l                                                  ; $a794 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $a794 : $22, $2b, $80, $01
 
 br_05_a798:
 	lda $0f                                                  ; $a798 : $a5, $0f
@@ -6270,7 +6270,7 @@ br_05_a989:
 
 	lda #$02.b                                                  ; $a995 : $a9, $02
 	sta $1faf.w                                                  ; $a997 : $8d, $af, $1f
-	inc $1f36.w                                                  ; $a99a : $ee, $36, $1f
+	inc wStartTeleingPlayerOutOfStage.w                                                  ; $a99a : $ee, $36, $1f
 	jmp todo_DisablesEntity_d928.l                                                  ; $a99d : $5c, $28, $d9, $02
 
 
@@ -6452,7 +6452,7 @@ Call_05_aaae:
 
 Call_05_aad1:
 	lda #$23.b                                                  ; $aad1 : $a9, $23
-	jsr $01802b.l                                                  ; $aad3 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $aad3 : $22, $2b, $80, $01
 	rep #ACCU_8                                                  ; $aad7 : $c2, $20
 	lda #$08f8.w                                                  ; $aad9 : $a9, $f8, $08
 	sta $0000.w                                                  ; $aadc : $8d, $00, $00
@@ -6660,7 +6660,7 @@ br_05_ac30:
 	ora #$80.b                                                  ; $ac42 : $09, $80
 	sta $27                                                  ; $ac44 : $85, $27
 	lda #$15.b                                                  ; $ac46 : $a9, $15
-	jsr $01802b.l                                                  ; $ac48 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $ac48 : $22, $2b, $80, $01
 	rts                                                  ; $ac4c : $60
 
 
@@ -6854,7 +6854,7 @@ br_05_ad7b:
 	sta $1f58.w                                                  ; $ad85 : $8d, $58, $1f
 	jsr SetupEntitysAnimation.l                                                  ; $ad88 : $22, $67, $b9, $04
 	lda #$31.b                                                  ; $ad8c : $a9, $31
-	jsr $01802b.l                                                  ; $ad8e : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $ad8e : $22, $2b, $80, $01
 	jsr Call_05_b087.w                                                  ; $ad92 : $20, $87, $b0
 	jsr Call_05_b02b.w                                                  ; $ad95 : $20, $2b, $b0
 	lda $0f                                                  ; $ad98 : $a5, $0f
@@ -6995,7 +6995,7 @@ br_05_ae72:
 	lda #$06.b                                                  ; $ae7c : $a9, $06
 	sta $03                                                  ; $ae7e : $85, $03
 	lda #$04.b                                                  ; $ae80 : $a9, $04
-	jsr $01802b.l                                                  ; $ae82 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $ae82 : $22, $2b, $80, $01
 
 br_05_ae86:
 	rts                                                  ; $ae86 : $60
@@ -7189,7 +7189,7 @@ br_05_afaf:
 
 	sep #ACCU_8                                                  ; $afb6 : $e2, $20
 	lda #$01.b                                                  ; $afb8 : $a9, $01
-	sta $00a1.w                                                  ; $afba : $8d, $a1, $00
+	sta wShouldUpdateCGRAM.w                                                  ; $afba : $8d, $a1, $00
 	lda $08                                                  ; $afbd : $a5, $08
 	clc                                                  ; $afbf : $18
 	adc #$10.b                                                  ; $afc0 : $69, $10
@@ -9651,7 +9651,7 @@ br_05_be6f:
 br_05_be74:
 	jsr Call_05_c036.w                                                  ; $be74 : $20, $36, $c0
 	lda #$2e.b                                                  ; $be77 : $a9, $2e
-	jsr $01802b.l                                                  ; $be79 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $be79 : $22, $2b, $80, $01
 	stz $36                                                  ; $be7d : $64, $36
 	lda #$10.b                                                  ; $be7f : $a9, $10
 	sta $02                                                  ; $be81 : $85, $02
@@ -10410,7 +10410,7 @@ Call_05_c30d:
 
 	sep #ACCU_8|IDX_8                                                  ; $c31e : $e2, $30
 	lda #$55.b                                                  ; $c320 : $a9, $55
-	jsr $01802b.l                                                  ; $c322 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $c322 : $22, $2b, $80, $01
 	inc $39                                                  ; $c326 : $e6, $39
 	inc $39                                                  ; $c328 : $e6, $39
 
@@ -10656,7 +10656,7 @@ br_05_c48e:
 	sta $35                                                  ; $c4ab : $85, $35
 	stz $36                                                  ; $c4ad : $64, $36
 	lda #$31.b                                                  ; $c4af : $a9, $31
-	jsr $01802b.l                                                  ; $c4b1 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $c4b1 : $22, $2b, $80, $01
 	lda #$20.b                                                  ; $c4b5 : $a9, $20
 	ldx #$02.b                                                  ; $c4b7 : $a2, $02
 	ldy #$01.b                                                  ; $c4b9 : $a0, $01
@@ -11363,7 +11363,7 @@ Func_5_c90b:
 	bne +                                                  ; $c915 : $d0, $06
 
 	lda #$5b.b                                                  ; $c917 : $a9, $5b
-	jsr $01802b.l                                                  ; $c919 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $c919 : $22, $2b, $80, $01
 
 +	inc StageEnemyEntity.subsubstate                                                  ; $c91d : $e6, $03
 	inc StageEnemyEntity.subsubstate                                                  ; $c91f : $e6, $03

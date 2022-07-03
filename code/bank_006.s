@@ -2513,7 +2513,7 @@ Data_6_8d9a:
 	.dw $95f9
 	.dw $9606
 	.dw $9613
-	.dw $9620
+	.dw $9620 ; 44
 	.dw $9643
 	.dw $9666
 	.dw $9689
@@ -4492,12 +4492,15 @@ br_06_9c0a:
 	bvs br_06_9c0c                                                  ; $9c0a : $70, $00
 
 br_06_9c0c:
-	ora ($50, X)                                                  ; $9c0c : $01, $50
-	.db $00                                                  ; $9c0e : $00
-	bit $00                                                  ; $9c0f : $24, $00
-	cpy #$00.b                                                  ; $9c11 : $c0, $00
-	dey                                                  ; $9c13 : $88
-	.db $00                                                  ; $9c14 : $00
+
+
+Data_6_9c0c:
+	.db $01
+	.dw $0050
+	.dw $0024
+	.dw $00c0
+	.dw $0088
+;
 	cop $80.b                                                  ; $9c15 : $02, $80
 	.db $00                                                  ; $9c17 : $00
 	bit $00                                                  ; $9c18 : $24, $00
@@ -4515,6 +4518,8 @@ br_06_9c1c:
 br_06_9c25:
 	sei                                                  ; $9c25 : $78
 	.db $00                                                  ; $9c26 : $00
+
+; eg here
 	ora $e0, S                                                  ; $9c27 : $03, $e0
 	.db $00                                                  ; $9c29 : $00
 	bit $00                                                  ; $9c2a : $24, $00
@@ -4557,7 +4562,7 @@ br_06_9c52:
 	cli                                                  ; $9c5b : $58
 	.db $00                                                  ; $9c5c : $00
 	php                                                  ; $9c5d : $08
-
+; above is idx $51
 
 SubweaponsStatusToAssociatedStage:
 	.db $04, $01, $05, $06, $08, $03, $02, $07
@@ -4579,19 +4584,20 @@ SubweaponsStatusBitfield:
 	.db $01, $02, $04, $08, $10, $20, $40, $80
 
 
-;
-	.db $24                                                  ; $9c7e : $24
+; 1 row per stage, 1 byte per item
+; Each text idx can also be +1 if the item had not been gotten
+StageSelectItemTextIdxes:
+	.db $24, $28, $5d
+	.db $26, $2a, $61
+	.db $24, $57, $5d
+	.db $26, $59, $5f
+	.db $26, $2a, $63
+	.db $24, $5b, $5d
+	.db $26, $2a, $65
+	.db $24, $55, $67
 
-	plp                                                  ; $9c7f : $28
-	eor $2a26.w, X                                                  ; $9c80 : $5d, $26, $2a
-	adc ($24, X)                                                  ; $9c83 : $61, $24
-	eor [$5d], Y                                                  ; $9c85 : $57, $5d
-	rol $59                                                  ; $9c87 : $26, $59
-	eor $632a26.l, X                                                  ; $9c89 : $5f, $26, $2a, $63
-	bit $5b                                                  ; $9c8d : $24, $5b
-	eor $2a26.w, X                                                  ; $9c8f : $5d, $26, $2a
-	adc $24                                                  ; $9c92 : $65, $24
-	eor $67, X                                                  ; $9c94 : $55, $67
+
+;
 	.db $00                                                  ; $9c96 : $00
 	.db $10, $20                                                  ; $9c97 : $10, $20
 
@@ -7453,118 +7459,71 @@ br_06_b001:
 	.db $00                                                  ; $b007 : $00
 	.db $00                                                  ; $b008 : $00
 	tsb $0240.w                                                  ; $b009 : $0c, $40, $02
-	bpl br_06_b00e                                                  ; $b00c : $10, $00
-
-br_06_b00e:
-	and $00, S                                                  ; $b00e : $23, $00
-	rol $00, X                                                  ; $b010 : $36, $00
-
-br_06_b012:
-	eor #$00.b                                                  ; $b012 : $49, $00
-	jmp $006f00.l                                                  ; $b014 : $5c, $00, $6f, $00
 
 
-	.db $82                                                  ; $b018 : $82
+StageMinimapMarkersData:
+	.dw @stage1-StageMinimapMarkersData
+	.dw @stage2-StageMinimapMarkersData
+	.dw @stage3-StageMinimapMarkersData
+	.dw @stage4-StageMinimapMarkersData
+	.dw @stage5-StageMinimapMarkersData
+	.dw @stage6-StageMinimapMarkersData
+	.dw @stage7-StageMinimapMarkersData
+	.dw @stage8-StageMinimapMarkersData
 
-	.db $00                                                  ; $b019 : $00
-	sta $00, X                                                  ; $b01a : $95, $00
-	eor $0a2b.w                                                  ; $b01c : $4d, $2b, $0a
-	cmp [$1f], Y                                                  ; $b01f : $d7, $1f
-	bpl br_06_afd8                                                  ; $b021 : $10, $b5
+.table byte, byte, byte, word, byte
 
-	tsc                                                  ; $b023 : $3b
-	asl                                                  ; $b024 : $0a
-	pei ($1f)                                                  ; $b025 : $d4, $1f
-	ora ($75, X)                                                  ; $b027 : $01, $75
-	eor ($0a, S), Y                                                  ; $b029 : $53, $0a
-	cmp [$1f], Y                                                  ; $b02b : $d7, $1f
-	ora ($ff, X)                                                  ; $b02d : $01, $ff
-	eor $2b, X                                                  ; $b02f : $55, $2b
-	asl                                                  ; $b031 : $0a
-	pei ($1f)                                                  ; $b032 : $d4, $1f
-	cop $95.b                                                  ; $b034 : $02, $95
-	pld                                                  ; $b036 : $2b
-	asl                                                  ; $b037 : $0a
-	cmp ($1f), Y                                                  ; $b038 : $d1, $1f
-	bpl br_06_b001                                                  ; $b03a : $10, $c5
+@stage1:
+; screen X - screen Y - subtype - ramvar.w - bit to check on ramvar
+	.row $4d, $2b, $0a, wChipsAndRideArmoursGottenBitfield, $10
+	.row $b5, $3b, $0a, wHealthTanksGottenBitfield, $01
+	.row $75, $53, $0a, wChipsAndRideArmoursGottenBitfield, $01
+	.db $ff
 
-	and $0a, S                                                  ; $b03c : $23, $0a
-	cmp ($1f), Y                                                  ; $b03e : $d1, $1f
-	php                                                  ; $b040 : $08
-	sbc $0a7b3d.l, X                                                  ; $b041 : $ff, $3d, $7b, $0a
-	pei ($1f)                                                  ; $b045 : $d4, $1f
-	tsb $65                                                  ; $b047 : $04, $65
-	adc $0a, S                                                  ; $b049 : $63, $0a
-	cmp [$1f], Y                                                  ; $b04b : $d7, $1f
-	php                                                  ; $b04d : $08
-	sbc $3b                                                  ; $b04e : $e5, $3b
-	asl                                                  ; $b050 : $0a
-	cmp [$1f], Y                                                  ; $b051 : $d7, $1f
-	jsr $4dff.w                                                  ; $b053 : $20, $ff, $4d
-	and $0a, S                                                  ; $b056 : $23, $0a
-	pei ($1f)                                                  ; $b058 : $d4, $1f
-	php                                                  ; $b05a : $08
-	adc $33, X                                                  ; $b05b : $75, $33
-	asl                                                  ; $b05d : $0a
-	cmp [$1f], Y                                                  ; $b05e : $d7, $1f
-	cop $a5.b                                                  ; $b060 : $02, $a5
-	pld                                                  ; $b062 : $2b
-	asl                                                  ; $b063 : $0a
-	cmp [$1f], Y                                                  ; $b064 : $d7, $1f
-	.db $80, $ff                                                  ; $b066 : $80, $ff
+@stage2:
+	.row $55, $2b, $0a, wHealthTanksGottenBitfield, $02
+	.row $95, $2b, $0a, wSubTanksAndUpgradesGottenBitfield, $10
+	.row $c5, $23, $0a, wSubTanksAndUpgradesGottenBitfield, $08
+	.db $ff
 
-	adc $23                                                  ; $b068 : $65, $23
-	asl                                                  ; $b06a : $0a
-	cmp ($1f), Y                                                  ; $b06b : $d1, $1f
-	tsb $75                                                  ; $b06d : $04, $75
-	tsc                                                  ; $b06f : $3b
-	asl                                                  ; $b070 : $0a
-	pei ($1f)                                                  ; $b071 : $d4, $1f
-	bpl br_06_b012                                                  ; $b073 : $10, $9d
+@stage3:
+	.row $3d, $7b, $0a, wHealthTanksGottenBitfield, $04
+	.row $65, $63, $0a, wChipsAndRideArmoursGottenBitfield, $08
+	.row $e5, $3b, $0a, wChipsAndRideArmoursGottenBitfield, $20
+	.db $ff
 
-	phk                                                  ; $b075 : $4b
-	asl                                                  ; $b076 : $0a
-	cmp ($1f), Y                                                  ; $b077 : $d1, $1f
-	jsr $35ff.w                                                  ; $b079 : $20, $ff, $35
-	and ($0a, S), Y                                                  ; $b07c : $33, $0a
-	cmp [$1f], Y                                                  ; $b07e : $d7, $1f
-	tsb $45                                                  ; $b080 : $04, $45
-	phk                                                  ; $b082 : $4b
-	asl                                                  ; $b083 : $0a
-	cmp [$1f], Y                                                  ; $b084 : $d7, $1f
-	rti                                                  ; $b086 : $40
+@stage4:
+	.row $4d, $23, $0a, wHealthTanksGottenBitfield, $08
+	.row $75, $33, $0a, wChipsAndRideArmoursGottenBitfield, $02
+	.row $a5, $2b, $0a, wChipsAndRideArmoursGottenBitfield, $80
+	.db $ff
+	
+@stage5:
+	.row $65, $23, $0a, wSubTanksAndUpgradesGottenBitfield, $04
+	.row $75, $3b, $0a, wHealthTanksGottenBitfield, $10
+	.row $9d, $4b, $0a, wSubTanksAndUpgradesGottenBitfield, $20
+	.db $ff
+
+@stage6:
+	.row $35, $33, $0a, wChipsAndRideArmoursGottenBitfield, $04
+	.row $45, $4b, $0a, wChipsAndRideArmoursGottenBitfield, $40
+	.row $4d, $3b, $0a, wHealthTanksGottenBitfield, $20
+	.db $ff
+
+@stage7:
+	.row $5d, $53, $0a, wHealthTanksGottenBitfield, $40
+	.row $65, $3b, $0a, wSubTanksAndUpgradesGottenBitfield, $40
+	.row $8d, $2b, $0a, wSubTanksAndUpgradesGottenBitfield, $01
+	.db $ff
+
+@stage8:
+	.row $45, $2b, $0a, wSubTanksAndUpgradesGottenBitfield, $80
+	.row $5d, $23, $0a, wSubTanksAndUpgradesGottenBitfield, $02
+	.row $dd, $3b, $0a, wHealthTanksGottenBitfield, $80
+	.db $ff
 
 
-	eor $0a3b.w                                                  ; $b087 : $4d, $3b, $0a
-	pei ($1f)                                                  ; $b08a : $d4, $1f
-	jsr $5dff.w                                                  ; $b08c : $20, $ff, $5d
-	eor ($0a, S), Y                                                  ; $b08f : $53, $0a
-	pei ($1f)                                                  ; $b091 : $d4, $1f
-	rti                                                  ; $b093 : $40
-
-
-	adc $3b                                                  ; $b094 : $65, $3b
-	asl                                                  ; $b096 : $0a
-	cmp ($1f), Y                                                  ; $b097 : $d1, $1f
-	rti                                                  ; $b099 : $40
-
-
-	sta $0a2b.w                                                  ; $b09a : $8d, $2b, $0a
-	cmp ($1f), Y                                                  ; $b09d : $d1, $1f
-	ora ($ff, X)                                                  ; $b09f : $01, $ff
-	eor $2b                                                  ; $b0a1 : $45, $2b
-	asl                                                  ; $b0a3 : $0a
-	cmp ($1f), Y                                                  ; $b0a4 : $d1, $1f
-	.db $80, $5d                                                  ; $b0a6 : $80, $5d
-
-	and $0a, S                                                  ; $b0a8 : $23, $0a
-	cmp ($1f), Y                                                  ; $b0aa : $d1, $1f
-	cop $dd.b                                                  ; $b0ac : $02, $dd
-	tsc                                                  ; $b0ae : $3b
-	asl                                                  ; $b0af : $0a
-	pei ($1f)                                                  ; $b0b0 : $d4, $1f
-	.db $80, $ff                                                  ; $b0b2 : $80, $ff
-
+;
 	ora ($16)                                                  ; $b0b4 : $12, $16
 	clc                                                  ; $b0b6 : $18
 	ora $1a1215.l                                                  ; $b0b7 : $0f, $15, $12, $1a

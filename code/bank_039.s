@@ -2134,7 +2134,7 @@ Func_39_9db5:
 	ora #$80.b                                                  ; $9dc6 : $09, $80
 	sta $27                                                  ; $9dc8 : $85, $27
 	lda #$15.b                                                  ; $9dca : $a9, $15
-	jsr $01802b.l                                                  ; $9dcc : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $9dcc : $22, $2b, $80, $01
 	rts                                                  ; $9dd0 : $60
 
 @br_9dd1:
@@ -2691,7 +2691,7 @@ Jump_39_a143:
 
 	lda #$ff.b                                                  ; $a149 : $a9, $ff
 	sta $1fbe.w                                                  ; $a14b : $8d, $be, $1f
-	inc $1f36.w                                                  ; $a14e : $ee, $36, $1f
+	inc wStartTeleingPlayerOutOfStage.w                                                  ; $a14e : $ee, $36, $1f
 	bra br_39_a15c                                                  ; $a151 : $80, $09
 
 br_39_a153:
@@ -4427,7 +4427,7 @@ br_39_ac2c:
 
 Call_39_ac3c:
 	lda wJoy1CurrBtnsPressed.w                                                  ; $ac3c : $ad, $ac, $00
-	ora $00ad.w                                                  ; $ac3f : $0d, $ad, $00
+	ora wJoy1CurrBtnsPressed.w+1                                                  ; $ac3f : $0d, $ad, $00
 	beq br_39_ac46                                                  ; $ac42 : $f0, $02
 
 	inc $3d                                                  ; $ac44 : $e6, $3d
@@ -5523,7 +5523,7 @@ br_39_b334:
 
 Call_39_b335:
 	lda wJoy1CurrBtnsPressed.w                                                  ; $b335 : $ad, $ac, $00
-	ora $00ad.w                                                  ; $b338 : $0d, $ad, $00
+	ora wJoy1CurrBtnsPressed.w+1                                                  ; $b338 : $0d, $ad, $00
 	beq br_39_b33f                                                  ; $b33b : $f0, $02
 
 	inc $38                                                  ; $b33d : $e6, $38
@@ -7438,7 +7438,7 @@ br_39_bf5c:
 	sta $1e7e.w                                                  ; $bf71 : $8d, $7e, $1e
 	sta $1e78.w                                                  ; $bf74 : $8d, $78, $1e
 	sep #ACCU_8                                                  ; $bf77 : $e2, $20
-	inc $1f36.w                                                  ; $bf79 : $ee, $36, $1f
+	inc wStartTeleingPlayerOutOfStage.w                                                  ; $bf79 : $ee, $36, $1f
 	jmp todo_DisablesEntity_d928.l                                                  ; $bf7c : $5c, $28, $d9, $02
 
 

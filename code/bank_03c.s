@@ -6054,7 +6054,7 @@ br_3c_a2d9:
 	ora $c91bf0.l                                                  ; $a2ef : $0f, $f0, $1b, $c9
 	ora ($d0, X)                                                  ; $a2f3 : $01, $d0
 	ora $34a9.w                                                  ; $a2f5 : $0d, $a9, $34
-	jsr $01802b.l                                                  ; $a2f8 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $a2f8 : $22, $2b, $80, $01
 	ldy #$01.b                                                  ; $a2fc : $a0, $01
 	jsr Call_3c_a8e1.w                                                  ; $a2fe : $20, $e1, $a8
 	bra br_3c_a30d                                                  ; $a301 : $80, $0a
@@ -6141,7 +6141,7 @@ br_3c_a36d:
 	sta $08                                                  ; $a386 : $85, $08
 	sep #ACCU_8                                                  ; $a388 : $e2, $20
 	lda #$32.b                                                  ; $a38a : $a9, $32
-	jsr $01802b.l                                                  ; $a38c : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $a38c : $22, $2b, $80, $01
 	lda #$0a.b                                                  ; $a390 : $a9, $0a
 	sta $35                                                  ; $a392 : $85, $35
 	rts                                                  ; $a394 : $60
@@ -6158,7 +6158,7 @@ br_3c_a395:
 	bne br_3c_a3b3                                                  ; $a3a1 : $d0, $10
 
 	lda #$32.b                                                  ; $a3a3 : $a9, $32
-	jsr $01802b.l                                                  ; $a3a5 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $a3a5 : $22, $2b, $80, $01
 	lda #$03.b                                                  ; $a3a9 : $a9, $03
 	jsr SetupEntitysAnimation.l                                                  ; $a3ab : $22, $67, $b9, $04
 	lda #$0c.b                                                  ; $a3af : $a9, $0c
@@ -6193,7 +6193,7 @@ br_3c_a3c6:
 	lda #$01.b                                                  ; $a3da : $a9, $01
 	jsr SetupEntitysAnimation.l                                                  ; $a3dc : $22, $67, $b9, $04
 	lda #$30.b                                                  ; $a3e0 : $a9, $30
-	jsr $01802b.l                                                  ; $a3e2 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $a3e2 : $22, $2b, $80, $01
 	lda #$08.b                                                  ; $a3e6 : $a9, $08
 	sta $03                                                  ; $a3e8 : $85, $03
 	stz $35                                                  ; $a3ea : $64, $35
@@ -6250,7 +6250,7 @@ br_3c_a40b:
 	lda #$06.b                                                  ; $a43c : $a9, $06
 	jsr SetupEntitysAnimation.l                                                  ; $a43e : $22, $67, $b9, $04
 	lda #$30.b                                                  ; $a442 : $a9, $30
-	jsr $01802b.l                                                  ; $a444 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $a444 : $22, $2b, $80, $01
 	lda #$02.b                                                  ; $a448 : $a9, $02
 	sta $03                                                  ; $a44a : $85, $03
 	rts                                                  ; $a44c : $60
@@ -6269,7 +6269,7 @@ br_3c_a40b:
 	tsb $00a0.w                                                  ; $a462 : $0c, $a0, $00
 	jsr Call_3c_a8e1.w                                                  ; $a465 : $20, $e1, $a8
 	lda #$34.b                                                  ; $a468 : $a9, $34
-	jsr $01802b.l                                                  ; $a46a : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $a46a : $22, $2b, $80, $01
 	rts                                                  ; $a46e : $60
 
 
@@ -6285,7 +6285,7 @@ br_3c_a40b:
 	bne br_3c_a492                                                  ; $a480 : $d0, $10
 
 	lda #$32.b                                                  ; $a482 : $a9, $32
-	jsr $01802b.l                                                  ; $a484 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $a484 : $22, $2b, $80, $01
 	lda #$04.b                                                  ; $a488 : $a9, $04
 	sta $35                                                  ; $a48a : $85, $35
 	lda #$08.b                                                  ; $a48c : $a9, $08
@@ -6798,7 +6798,7 @@ br_3c_a7ca:
 	lda #$01.b                                                  ; $a7d0 : $a9, $01
 	jsr SetupEntitysAnimation.l                                                  ; $a7d2 : $22, $67, $b9, $04
 	lda #$30.b                                                  ; $a7d6 : $a9, $30
-	jsr $01802b.l                                                  ; $a7d8 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $a7d8 : $22, $2b, $80, $01
 	lda #$08.b                                                  ; $a7dc : $a9, $08
 	sta $03                                                  ; $a7de : $85, $03
 	stz $35                                                  ; $a7e0 : $64, $35
@@ -8099,7 +8099,7 @@ Call_3c_afa6:
 	lda #$0000.w                                                  ; $afd8 : $a9, $00, $00
 	sep #ACCU_8|IDX_8                                                  ; $afdb : $e2, $30
 	lda #$13.b                                                  ; $afdd : $a9, $13
-	jsr $01802b.l                                                  ; $afdf : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $afdf : $22, $2b, $80, $01
 
 br_3c_afe3:
 	sep #IDX_8                                                  ; $afe3 : $e2, $10
@@ -8685,7 +8685,7 @@ Call_3c_b33f:
 	plb                                                  ; $b34e : $ab
 	sep #ACCU_8|IDX_8                                                  ; $b34f : $e2, $30
 	lda #$01.b                                                  ; $b351 : $a9, $01
-	sta $00a1.w                                                  ; $b353 : $8d, $a1, $00
+	sta wShouldUpdateCGRAM.w                                                  ; $b353 : $8d, $a1, $00
 	rts                                                  ; $b356 : $60
 
 
@@ -8885,7 +8885,7 @@ br_3c_b481:
 	jsr Call_3c_b4f1.w                                                  ; $b4a1 : $20, $f1, $b4
 	inc $09fa.w                                                  ; $b4a4 : $ee, $fa, $09
 	lda #$49.b                                                  ; $b4a7 : $a9, $49
-	jsr $01802b.l                                                  ; $b4a9 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $b4a9 : $22, $2b, $80, $01
 	lda #$10.b                                                  ; $b4ad : $a9, $10
 	jsr $04d599.l                                                  ; $b4af : $22, $99, $d5, $04
 	dec $36                                                  ; $b4b3 : $c6, $36
@@ -9321,7 +9321,7 @@ br_3c_b763:
 	sta $1e78.w                                                  ; $b792 : $8d, $78, $1e
 	sep #ACCU_8                                                  ; $b795 : $e2, $20
 	lda #$15.b                                                  ; $b797 : $a9, $15
-	jsr $01802b.l                                                  ; $b799 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $b799 : $22, $2b, $80, $01
 	rts                                                  ; $b79d : $60
 
 
@@ -9575,7 +9575,7 @@ br_3c_b916:
 
 br_3c_b953:
 	lda #$21.b                                                  ; $b953 : $a9, $21
-	jsr $01802b.l                                                  ; $b955 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $b955 : $22, $2b, $80, $01
 	lda #$3c.b                                                  ; $b959 : $a9, $3c
 	sta $37                                                  ; $b95b : $85, $37
 	lda #$01.b                                                  ; $b95d : $a9, $01
@@ -9707,7 +9707,7 @@ br_3c_ba1a:
 
 	jsr Call_3c_bcb8.w                                                  ; $ba27 : $20, $b8, $bc
 	lda #$50.b                                                  ; $ba2a : $a9, $50
-	jsr $01802b.l                                                  ; $ba2c : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $ba2c : $22, $2b, $80, $01
 	lda #$20.b                                                  ; $ba30 : $a9, $20
 	sta $39                                                  ; $ba32 : $85, $39
 	dec $3a                                                  ; $ba34 : $c6, $3a
@@ -9809,7 +9809,7 @@ br_3c_bab5:
 	lda #$30.b                                                  ; $bad5 : $a9, $30
 	sta $39                                                  ; $bad7 : $85, $39
 	lda #$38.b                                                  ; $bad9 : $a9, $38
-	jsr $01802b.l                                                  ; $badb : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $badb : $22, $2b, $80, $01
 	lda #$02.b                                                  ; $badf : $a9, $02
 	jsr SetupEntitysAnimation.l                                                  ; $bae1 : $22, $67, $b9, $04
 	lda #$04.b                                                  ; $bae5 : $a9, $04
@@ -10023,7 +10023,7 @@ br_3c_bc11:
 	lda $0b                                                  ; $bc20 : $a5, $0b
 	bne br_3c_bc2c                                                  ; $bc22 : $d0, $08
 
-	inc $1f36.w                                                  ; $bc24 : $ee, $36, $1f
+	inc wStartTeleingPlayerOutOfStage.w                                                  ; $bc24 : $ee, $36, $1f
 	lda #$02.b                                                  ; $bc27 : $a9, $02
 	sta $1faf.w                                                  ; $bc29 : $8d, $af, $1f
 
@@ -11244,7 +11244,7 @@ Call_3c_c404:
 	sta $0306.w                                                  ; $c425 : $8d, $06, $03
 	sep #ACCU_8                                                  ; $c428 : $e2, $20
 	lda #$01.b                                                  ; $c42a : $a9, $01
-	sta $00a1.w                                                  ; $c42c : $8d, $a1, $00
+	sta wShouldUpdateCGRAM.w                                                  ; $c42c : $8d, $a1, $00
 	rts                                                  ; $c42f : $60
 
 
@@ -11563,7 +11563,7 @@ br_3c_c5f5:
 	ora #$80.b                                                  ; $c618 : $09, $80
 	sta $27                                                  ; $c61a : $85, $27
 	lda #$15.b                                                  ; $c61c : $a9, $15
-	jsr $01802b.l                                                  ; $c61e : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $c61e : $22, $2b, $80, $01
 	rts                                                  ; $c622 : $60
 
 
@@ -12473,7 +12473,7 @@ br_3c_cc05:
 	beq br_3c_cc58                                                  ; $cc21 : $f0, $35
 
 	lda #$51.b                                                  ; $cc23 : $a9, $51
-	jsr $01802b.l                                                  ; $cc25 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $cc25 : $22, $2b, $80, $01
 	jsr Call_3c_ce01.w                                                  ; $cc29 : $20, $01, $ce
 	inc $3c                                                  ; $cc2c : $e6, $3c
 
@@ -12533,7 +12533,7 @@ br_3c_cc69:
 
 	inc $3c                                                  ; $cc78 : $e6, $3c
 	lda #$70.b                                                  ; $cc7a : $a9, $70
-	jsr $01802b.l                                                  ; $cc7c : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $cc7c : $22, $2b, $80, $01
 	jmp Jump_3c_cde4.w                                                  ; $cc80 : $4c, $e4, $cd
 
 
@@ -12577,7 +12577,7 @@ br_3c_cca7:
 	beq br_3c_ccc7                                                  ; $ccb0 : $f0, $15
 
 	lda #$51.b                                                  ; $ccb2 : $a9, $51
-	jsr $01802b.l                                                  ; $ccb4 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $ccb4 : $22, $2b, $80, $01
 	jsr Call_3c_ce01.w                                                  ; $ccb8 : $20, $01, $ce
 	inc $3c                                                  ; $ccbb : $e6, $3c
 
@@ -12601,7 +12601,7 @@ br_3c_ccc7:
 	beq br_3c_cceb                                                  ; $ccd0 : $f0, $19
 
 	lda #$51.b                                                  ; $ccd2 : $a9, $51
-	jsr $01802b.l                                                  ; $ccd4 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $ccd4 : $22, $2b, $80, $01
 	jsr Call_3c_ce01.w                                                  ; $ccd8 : $20, $01, $ce
 	inc $3c                                                  ; $ccdb : $e6, $3c
 
@@ -12718,7 +12718,7 @@ br_3c_cd89:
 	lda #$33.b                                                  ; $cd89 : $a9, $33
 
 br_3c_cd8b:
-	jsr $01802b.l                                                  ; $cd8b : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $cd8b : $22, $2b, $80, $01
 	lda $0f                                                  ; $cd8f : $a5, $0f
 	and #$30.b                                                  ; $cd91 : $29, $30
 

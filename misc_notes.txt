@@ -188,6 +188,14 @@ when tornado fang breaks, its cel idx (+$17) becomes 0b at 4:b9a9
 tornado fang set to state 2 via 4:cfef (broke state)
 broke during Jump_04_cedc (when collision table val has bit 7 set)
 
+Helmet minimap indicator
+------------------------
+sprites part of 740+ struct, points to eg 18d8, 18f8, 1918
+
+Player teleing out
+------------------
+0:81e1, when 9d8+27 != 0, we go to player state 1a
+
 
 TODO: ride armour health
 TODO: somewhere, earth spikes deal damage

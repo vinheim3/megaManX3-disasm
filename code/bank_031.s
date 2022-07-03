@@ -17825,7 +17825,7 @@ br_31_edfc:
 	bpl br_31_eef3                                                  ; $eea9 : $10, $48
 
 	sty $14                                                  ; $eeab : $84, $14
-	sep #$02.b                                                  ; $eead : $e2, $02
+	sep #F_ZERO                                                  ; $eead : $e2, $02
 	sbc $0000.w, Y                                                  ; $eeaf : $f9, $00, $00
 	sed                                                  ; $eeb2 : $f8
 	sec                                                  ; $eeb3 : $38

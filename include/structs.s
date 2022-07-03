@@ -30,7 +30,8 @@ THREAD_STARTED = 3
     subY db ; $07
     y dw ; $08/$09
     type db ; $0a
-    bb ds $13-$b
+    subType db ; $0b
+    bc ds $13-$c
     framesTilNextCel db ; $13
     animAddr dw ; $14/$15 - bank $3f
     animSpecIdx db ; $16
@@ -38,6 +39,28 @@ THREAD_STARTED = 3
     b18 ds $a-8
     xSpeed dw ; $1a
     b1c ds $20-$1c
+    sizeof .db
+.endst
+
+.struct PlayerEntity
+    enabled db ; $00
+    state db ; $01
+    substate db ; $02
+    subsubstate db ; $03
+    subX db ; $04
+    x dw ; $05/$06
+    subY db ; $07
+    y dw ; $08/$09
+    type db ; $0a
+    subType db ; $0b
+    bc ds $11-$c
+    colours8idx db ; $11
+    b12 ds 8-2
+    baseTileIdx db ; $18
+    b19 ds $27-$19
+    health db ; $27
+    weaknessesIdx db ; $28
+    b29 ds $40-$29
     sizeof .db
 .endst
 
@@ -98,9 +121,14 @@ THREAD_STARTED = 3
     enabled db ; $00
     state db ; $01
     substate db ; $02
-    b3 ds $a-3
+    subsubstate db ; $03
+    b4 ds 5-4
+    x dw ; $05/$06
+    b7 ds 8-7
+    y dw ; $08/$09
     type db ; $0a
-    bb ds $20-$b
+    subType db ; $0b
+    bc ds $20-$c
     sizeof .db
 .endst
 

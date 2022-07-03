@@ -19794,7 +19794,7 @@ br_0f_ff1e:
 	bpl br_0f_ff1e                                                  ; $ff1e : $10, $fe
 
 	ldx $0800.w                                                  ; $ff20 : $ae, $00, $08
-	inc $00ad.w, X                                                  ; $ff23 : $fe, $ad, $00
+	inc wJoy1CurrBtnsPressed.w+1, X                                                  ; $ff23 : $fe, $ad, $00
 	php                                                  ; $ff26 : $08
 	inc $ac, X                                                  ; $ff27 : $f6, $ac
 	jsr Call_0f_f60a.w                                                  ; $ff29 : $20, $0a, $f6

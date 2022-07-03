@@ -4014,7 +4014,7 @@ br_0a_9ee0:
 	plb                                                  ; $9ef9 : $ab
 
 br_0a_9efa:
-	ldy $00ad.w                                                  ; $9efa : $ac, $ad, $00
+	ldy wJoy1CurrBtnsPressed.w+1                                                  ; $9efa : $ac, $ad, $00
 	ora $000f01.l                                                  ; $9efd : $0f, $01, $0f, $00
 	bcc br_0a_9e93                                                  ; $9f01 : $90, $90
 
@@ -4550,7 +4550,7 @@ br_0a_a223:
 	plb                                                  ; $a27e : $ab
 	.db $00                                                  ; $a27f : $00
 	plb                                                  ; $a280 : $ab
-	ldy $00ad.w                                                  ; $a281 : $ac, $ad, $00
+	ldy wJoy1CurrBtnsPressed.w+1                                                  ; $a281 : $ac, $ad, $00
 	ora $871201.l                                                  ; $a284 : $0f, $01, $12, $87
 	php                                                  ; $a288 : $08
 	pld                                                  ; $a289 : $2b
@@ -5808,7 +5808,7 @@ br_0a_aba5:
 	ldy #$2608.w                                                  ; $ac15 : $a0, $08, $26
 	ora [$6e]                                                  ; $ac18 : $07, $6e
 	ora #$cd04.w                                                  ; $ac1a : $09, $04, $cd
-	cmp $00ad.w                                                  ; $ac1d : $cd, $ad, $00
+	cmp wJoy1CurrBtnsPressed.w+1                                                  ; $ac1d : $cd, $ad, $00
 	sta $8d8d.w                                                  ; $ac20 : $8d, $8d, $8d
 	.db $00                                                  ; $ac23 : $00
 	ora $080d.w, X                                                  ; $ac24 : $1d, $0d, $08
@@ -17748,7 +17748,7 @@ br_0a_f791:
 	.db $90, $95                                                  ; $f794 : $90, $95
 
 	ora #$04.b                                                  ; $f796 : $09, $04
-	sep #$02.b                                                  ; $f798 : $e2, $02
+	sep #F_ZERO                                                  ; $f798 : $e2, $02
 	cpy #$0780.w                                                  ; $f79a : $c0, $80, $07
 	trb $60                                                  ; $f79d : $14, $60
 	asl $0d, X                                                  ; $f79f : $16, $0d

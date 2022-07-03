@@ -6144,7 +6144,7 @@ br_11_a15e:
 	rol $e520.w                                                  ; $a16c : $2e, $20, $e5
 	inc $2c, X                                                  ; $a16f : $f6, $2c
 	.db $00                                                  ; $a171 : $00
-	sep #$02.b                                                  ; $a172 : $e2, $02
+	sep #F_ZERO                                                  ; $a172 : $e2, $02
 	sty $fa20.w                                                  ; $a174 : $8c, $20, $fa
 	sbc $ea202a.l, X                                                  ; $a177 : $ff, $2a, $20, $ea
 	sbc $020028.l, X                                                  ; $a17b : $ff, $28, $00, $02
@@ -7215,7 +7215,7 @@ br_11_a8f1:
 	plx                                                  ; $a8fe : $fa
 	cmp [$85], Y                                                  ; $a8ff : $d7, $85
 	.db $00                                                  ; $a901 : $00
-	sep #$02.b                                                  ; $a902 : $e2, $02
+	sep #F_ZERO                                                  ; $a902 : $e2, $02
 	sty $fa20.w                                                  ; $a904 : $8c, $20, $fa
 	sbc $ea202a.l, X                                                  ; $a907 : $ff, $2a, $20, $ea
 	sbc $020028.l, X                                                  ; $a90b : $ff, $28, $00, $02
@@ -7837,7 +7837,7 @@ br_11_ad56:
 	plx                                                  ; $ad5f : $fa
 	cmp [$85], Y                                                  ; $ad60 : $d7, $85
 	.db $00                                                  ; $ad62 : $00
-	sep #$02.b                                                  ; $ad63 : $e2, $02
+	sep #F_ZERO                                                  ; $ad63 : $e2, $02
 	sty $fa20.w                                                  ; $ad65 : $8c, $20, $fa
 	sbc $ea202a.l, X                                                  ; $ad68 : $ff, $2a, $20, $ea
 	sbc $020028.l, X                                                  ; $ad6c : $ff, $28, $00, $02
@@ -18516,7 +18516,7 @@ Call_11_f1ff:
 	sbc ($ea)                                                  ; $f201 : $f2, $ea
 	and $21                                                  ; $f203 : $25, $21
 	asl                                                  ; $f205 : $0a
-	sep #$02.b                                                  ; $f206 : $e2, $02
+	sep #F_ZERO                                                  ; $f206 : $e2, $02
 	and ($fa, X)                                                  ; $f208 : $21, $fa
 	sep #$00.b                                                  ; $f20a : $e2, $00
 	and ($1a, X)                                                  ; $f20c : $21, $1a
@@ -18638,7 +18638,7 @@ br_11_f2ad:
 	sbc ($ea)                                                  ; $f2c2 : $f2, $ea
 	and $21                                                  ; $f2c4 : $25, $21
 	asl                                                  ; $f2c6 : $0a
-	sep #$02.b                                                  ; $f2c7 : $e2, $02
+	sep #F_ZERO                                                  ; $f2c7 : $e2, $02
 	and ($fa, X)                                                  ; $f2c9 : $21, $fa
 	sep #$00.b                                                  ; $f2cb : $e2, $00
 	and ($1a, X)                                                  ; $f2cd : $21, $1a
@@ -18761,7 +18761,7 @@ br_11_f36e:
 	sbc ($ea)                                                  ; $f383 : $f2, $ea
 	and $21                                                  ; $f385 : $25, $21
 	asl                                                  ; $f387 : $0a
-	sep #$02.b                                                  ; $f388 : $e2, $02
+	sep #F_ZERO                                                  ; $f388 : $e2, $02
 	and ($fa, X)                                                  ; $f38a : $21, $fa
 	sep #$00.b                                                  ; $f38c : $e2, $00
 	and ($1a, X)                                                  ; $f38e : $21, $1a
@@ -18885,7 +18885,7 @@ br_11_f42f:
 	sbc ($ea)                                                  ; $f444 : $f2, $ea
 	and $21                                                  ; $f446 : $25, $21
 	asl                                                  ; $f448 : $0a
-	sep #$02.b                                                  ; $f449 : $e2, $02
+	sep #F_ZERO                                                  ; $f449 : $e2, $02
 	and ($fa, X)                                                  ; $f44b : $21, $fa
 	sep #$00.b                                                  ; $f44d : $e2, $00
 	and ($1a, X)                                                  ; $f44f : $21, $1a
@@ -19007,7 +19007,7 @@ Call_11_f4fe:
 	sbc ($ea)                                                  ; $f505 : $f2, $ea
 	and $21                                                  ; $f507 : $25, $21
 	asl                                                  ; $f509 : $0a
-	sep #$02.b                                                  ; $f50a : $e2, $02
+	sep #F_ZERO                                                  ; $f50a : $e2, $02
 	and ($fa, X)                                                  ; $f50c : $21, $fa
 	sep #$00.b                                                  ; $f50e : $e2, $00
 	and ($1a, X)                                                  ; $f510 : $21, $1a
@@ -19127,7 +19127,7 @@ br_11_f5b1:
 	sbc ($ea)                                                  ; $f5c6 : $f2, $ea
 	and $21                                                  ; $f5c8 : $25, $21
 	asl                                                  ; $f5ca : $0a
-	sep #$02.b                                                  ; $f5cb : $e2, $02
+	sep #F_ZERO                                                  ; $f5cb : $e2, $02
 	and ($fa, X)                                                  ; $f5cd : $21, $fa
 	sep #$00.b                                                  ; $f5cf : $e2, $00
 	and ($1a, X)                                                  ; $f5d1 : $21, $1a
@@ -19249,7 +19249,7 @@ br_11_f672:
 	sbc ($ea)                                                  ; $f687 : $f2, $ea
 	and $21                                                  ; $f689 : $25, $21
 	asl                                                  ; $f68b : $0a
-	sep #$02.b                                                  ; $f68c : $e2, $02
+	sep #F_ZERO                                                  ; $f68c : $e2, $02
 	and ($fa, X)                                                  ; $f68e : $21, $fa
 	sep #$00.b                                                  ; $f690 : $e2, $00
 	and ($1a, X)                                                  ; $f692 : $21, $1a
@@ -19579,7 +19579,7 @@ br_11_f877:
 	sbc ($ea)                                                  ; $f8b6 : $f2, $ea
 	and $21                                                  ; $f8b8 : $25, $21
 	asl                                                  ; $f8ba : $0a
-	sep #$02.b                                                  ; $f8bb : $e2, $02
+	sep #F_ZERO                                                  ; $f8bb : $e2, $02
 	and ($fa, X)                                                  ; $f8bd : $21, $fa
 	sep #$00.b                                                  ; $f8bf : $e2, $00
 	and ($1a, X)                                                  ; $f8c1 : $21, $1a
@@ -19709,7 +19709,7 @@ br_11_f948:
 	sbc ($ea)                                                  ; $f967 : $f2, $ea
 	and $21                                                  ; $f969 : $25, $21
 	asl                                                  ; $f96b : $0a
-	sep #$02.b                                                  ; $f96c : $e2, $02
+	sep #F_ZERO                                                  ; $f96c : $e2, $02
 	and ($fa, X)                                                  ; $f96e : $21, $fa
 	sep #$00.b                                                  ; $f970 : $e2, $00
 	and ($1a, X)                                                  ; $f972 : $21, $1a
@@ -19831,7 +19831,7 @@ Call_11_fa0a:
 	sbc ($ea)                                                  ; $fa18 : $f2, $ea
 	and $21                                                  ; $fa1a : $25, $21
 	asl                                                  ; $fa1c : $0a
-	sep #$02.b                                                  ; $fa1d : $e2, $02
+	sep #F_ZERO                                                  ; $fa1d : $e2, $02
 	and ($fa, X)                                                  ; $fa1f : $21, $fa
 	sep #$00.b                                                  ; $fa21 : $e2, $00
 	and ($1a, X)                                                  ; $fa23 : $21, $1a
@@ -19947,7 +19947,7 @@ br_11_faaa:
 	sbc ($ea)                                                  ; $fac9 : $f2, $ea
 	and $21                                                  ; $facb : $25, $21
 	asl                                                  ; $facd : $0a
-	sep #$02.b                                                  ; $face : $e2, $02
+	sep #F_ZERO                                                  ; $face : $e2, $02
 	and ($fa, X)                                                  ; $fad0 : $21, $fa
 	sep #$00.b                                                  ; $fad2 : $e2, $00
 	and ($1a, X)                                                  ; $fad4 : $21, $1a
@@ -20066,7 +20066,7 @@ br_11_fb43:
 	sbc ($ea)                                                  ; $fb7a : $f2, $ea
 	and $21                                                  ; $fb7c : $25, $21
 	asl                                                  ; $fb7e : $0a
-	sep #$02.b                                                  ; $fb7f : $e2, $02
+	sep #F_ZERO                                                  ; $fb7f : $e2, $02
 	and ($fa, X)                                                  ; $fb81 : $21, $fa
 	sep #$00.b                                                  ; $fb83 : $e2, $00
 	and ($1a, X)                                                  ; $fb85 : $21, $1a
@@ -20182,7 +20182,7 @@ Jump_11_fc00:
 	sbc ($ea)                                                  ; $fc33 : $f2, $ea
 	and $21                                                  ; $fc35 : $25, $21
 	asl                                                  ; $fc37 : $0a
-	sep #$02.b                                                  ; $fc38 : $e2, $02
+	sep #F_ZERO                                                  ; $fc38 : $e2, $02
 	and ($fa, X)                                                  ; $fc3a : $21, $fa
 	sep #$00.b                                                  ; $fc3c : $e2, $00
 	and ($1a, X)                                                  ; $fc3e : $21, $1a
@@ -20527,7 +20527,7 @@ br_11_fe2b:
 	sbc ($ea)                                                  ; $fe6a : $f2, $ea
 	and $21                                                  ; $fe6c : $25, $21
 	asl                                                  ; $fe6e : $0a
-	sep #$02.b                                                  ; $fe6f : $e2, $02
+	sep #F_ZERO                                                  ; $fe6f : $e2, $02
 	and ($fa, X)                                                  ; $fe71 : $21, $fa
 	sep #$00.b                                                  ; $fe73 : $e2, $00
 	and ($1a, X)                                                  ; $fe75 : $21, $1a
@@ -20711,7 +20711,7 @@ br_11_ff30:
 	sbc ($ea)                                                  ; $ff64 : $f2, $ea
 	and $21                                                  ; $ff66 : $25, $21
 	asl                                                  ; $ff68 : $0a
-	sep #$02.b                                                  ; $ff69 : $e2, $02
+	sep #F_ZERO                                                  ; $ff69 : $e2, $02
 	and ($fa, X)                                                  ; $ff6b : $21, $fa
 	sep #$00.b                                                  ; $ff6d : $e2, $00
 	and ($1a, X)                                                  ; $ff6f : $21, $1a

@@ -9514,7 +9514,7 @@ br_0c_bd96:
 	nop                                                  ; $be02 : $ea
 	ora $66, X                                                  ; $be03 : $15, $66
 	ora $1a                                                  ; $be05 : $05, $1a
-	ora $00ad.w                                                  ; $be07 : $0d, $ad, $00
+	ora wJoy1CurrBtnsPressed.w+1                                                  ; $be07 : $0d, $ad, $00
 	ldx #$4115.w                                                  ; $be0a : $a2, $15, $41
 	ora $1a0b.w                                                  ; $be0d : $0d, $0b, $1a
 	sta [$09]                                                  ; $be10 : $87, $09

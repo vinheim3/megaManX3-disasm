@@ -15604,7 +15604,7 @@ Call_0e_e300:
 
 	cpy $40ac.w                                                  ; $e308 : $cc, $ac, $40
 	sec                                                  ; $e30b : $38
-	cpy $00ad.w                                                  ; $e30c : $cc, $ad, $00
+	cpy wJoy1CurrBtnsPressed.w+1                                                  ; $e30c : $cc, $ad, $00
 	bmi br_0e_e2dd                                                  ; $e30f : $30, $cc
 
 	ldx $2800.w                                                  ; $e311 : $ae, $00, $28
@@ -15640,7 +15640,7 @@ br_0e_e336:
 	.db $d0, $cc                                                  ; $e33b : $d0, $cc
 
 	ldx $c800.w                                                  ; $e33d : $ae, $00, $c8
-	cpy $00ad.w                                                  ; $e340 : $cc, $ad, $00
+	cpy wJoy1CurrBtnsPressed.w+1                                                  ; $e340 : $cc, $ad, $00
 	cpy #$accc.w                                                  ; $e343 : $c0, $cc, $ac
 	.db $00                                                  ; $e346 : $00
 	clv                                                  ; $e347 : $b8

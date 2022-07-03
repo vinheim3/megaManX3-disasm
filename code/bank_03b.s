@@ -1562,7 +1562,7 @@ br_3b_8a98:
 	ora #$09.b                                                  ; $8ada : $09, $09
 	ora $05                                                  ; $8adc : $05, $05
 	ora $03, S                                                  ; $8ade : $03, $03
-	rol $1f36.w                                                  ; $8ae0 : $2e, $36, $1f
+	rol wStartTeleingPlayerOutOfStage.w                                                  ; $8ae0 : $2e, $36, $1f
 	ora $17, X                                                  ; $8ae3 : $15, $17
 	ora $0d0b.w, Y                                                  ; $8ae5 : $19, $0b, $0d
 	ora $07                                                  ; $8ae8 : $05, $07

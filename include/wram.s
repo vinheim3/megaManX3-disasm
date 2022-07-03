@@ -239,9 +239,11 @@ wSelectedSubweapon: ; $0a0b
 w0a0c:
     ds $e-$c
 
+; Bit 7 to 0: dash-0-selL-selR-0-0-0-0
 wDashAndSelCurrBtnsHeld: ; $0a0e
     db
 
+; Bit 7 to 0: jump-shot-0-menu-U-D-L-R
 wJumpShotMenuDirCurrBtnsHeld: ; $0a0f
     db
 
@@ -331,7 +333,19 @@ wDynamicSpriteTileDatasIdx: ; $1f18
     db
 
 w1f19:
-    ds $ad-$19
+    ds $36-$19
+
+wStartTeleingPlayerOutOfStage: ; $1f36
+    db
+
+w1f37:
+    ds $46-$37
+
+wCurrTextIdx: ; $1f46
+    db
+
+w1f47:
+    ds $ad-$47
 
 wMosaic: ; $1fad
     db
@@ -404,7 +418,11 @@ wHealthTanksGottenBitfield: ; $1fd4
     db
 
 w1fd5:
-    ds 7-5
+    ds 6-5
+
+; Used due to StageSelectItemTextIdxes having 9 bytes per stage
+wStageTimes9: ; $1fd6
+    db
 
 ; Bit 7 set: leg chip
 ; Bit 6 set: body chip

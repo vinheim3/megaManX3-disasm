@@ -15398,6 +15398,7 @@ br_3f_e3a5:
 	rtl                                                  ; $e3a5 : $6b
 
 
+Func_3f_e3a6:
 	ldx $01                                                  ; $e3a6 : $a6, $01
 	jsr ($e3ac.w, X)                                                  ; $e3a8 : $fc, $ac, $e3
 	rtl                                                  ; $e3ab : $6b
@@ -15503,7 +15504,7 @@ br_3f_e41d:
 	lda #$03.b                                                  ; $e44b : $a9, $03
 	jsr $02d96d.l                                                  ; $e44d : $22, $6d, $d9, $02
 	lda #$23.b                                                  ; $e451 : $a9, $23
-	jsr $01802b.l                                                  ; $e453 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $e453 : $22, $2b, $80, $01
 	jsr todo_DisablesEntity_d928.l                                                  ; $e457 : $22, $28, $d9, $02
 	rts                                                  ; $e45b : $60
 
@@ -15544,7 +15545,7 @@ br_3f_e46c:
 	jsr Func_2_d636.l                                                  ; $e494 : $22, $36, $d6, $02
 	sep #ACCU_8                                                  ; $e498 : $e2, $20
 	lda #$23.b                                                  ; $e49a : $a9, $23
-	jsr $01802b.l                                                  ; $e49c : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $e49c : $22, $2b, $80, $01
 	rts                                                  ; $e4a0 : $60
 
 
@@ -15849,7 +15850,7 @@ br_3f_e68c:
 
 	sep #ACCU_8                                                  ; $e68f : $e2, $20
 	lda #$01.b                                                  ; $e691 : $a9, $01
-	sta $00a1.w                                                  ; $e693 : $8d, $a1, $00
+	sta wShouldUpdateCGRAM.w                                                  ; $e693 : $8d, $a1, $00
 	jsr LoadCurrEnemyBaseData.l                                                  ; $e696 : $22, $5c, $e1, $02
 	lda $28                                                  ; $e69a : $a5, $28
 	sta $1f57.w                                                  ; $e69c : $8d, $57, $1f
@@ -15975,7 +15976,7 @@ br_3f_e757:
 	ora #$80.b                                                  ; $e769 : $09, $80
 	sta $27                                                  ; $e76b : $85, $27
 	lda #$15.b                                                  ; $e76d : $a9, $15
-	jsr $01802b.l                                                  ; $e76f : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $e76f : $22, $2b, $80, $01
 	rts                                                  ; $e773 : $60
 
 
@@ -16370,7 +16371,7 @@ br_3f_e997:
 	ldy #$01.b                                                  ; $e9a9 : $a0, $01
 	jsr $04d580.l                                                  ; $e9ab : $22, $80, $d5, $04
 	lda #$49.b                                                  ; $e9af : $a9, $49
-	jsr $01802b.l                                                  ; $e9b1 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $e9b1 : $22, $2b, $80, $01
 	lda #$06.b                                                  ; $e9b5 : $a9, $06
 	sta $03                                                  ; $e9b7 : $85, $03
 
@@ -16519,7 +16520,7 @@ br_3f_ea54:
 	lda #$03.b                                                  ; $ea83 : $a9, $03
 	sta $3d                                                  ; $ea85 : $85, $3d
 	lda #$70.b                                                  ; $ea87 : $a9, $70
-	jsr $01802b.l                                                  ; $ea89 : $22, $2b, $80, $01
+	jsr Func_1_802b.l                                                  ; $ea89 : $22, $2b, $80, $01
 	lda #$04.b                                                  ; $ea8d : $a9, $04
 	sta $03                                                  ; $ea8f : $85, $03
 
@@ -16607,7 +16608,7 @@ br_3f_eaf1:
 	bpl br_3f_eaf1                                                  ; $eaf9 : $10, $f6
 
 	lda #$01.b                                                  ; $eafb : $a9, $01
-	sta $00a1.w                                                  ; $eafd : $8d, $a1, $00
+	sta wShouldUpdateCGRAM.w                                                  ; $eafd : $8d, $a1, $00
 	stz $0b                                                  ; $eb00 : $64, $0b
 	jmp $02e0ba.l                                                  ; $eb02 : $5c, $ba, $e0, $02
 
@@ -16621,7 +16622,7 @@ Jump_3f_eb0a:
 
 	lda #$ff.b                                                  ; $eb10 : $a9, $ff
 	sta wtodo_SubweaponsStatus.w+7*2                                                  ; $eb12 : $8d, $ca, $1f
-	inc $1f36.w                                                  ; $eb15 : $ee, $36, $1f
+	inc wStartTeleingPlayerOutOfStage.w                                                  ; $eb15 : $ee, $36, $1f
 	bra br_3f_eb23                                                  ; $eb18 : $80, $09
 
 br_3f_eb1a:
@@ -16888,6 +16889,7 @@ br_3f_eca1:
 	rts                                                  ; $eca1 : $60
 
 
+Func_3f_eca2:
 	lda $01                                                  ; $eca2 : $a5, $01
 	bne br_3f_ed12                                                  ; $eca4 : $d0, $6c
 
@@ -17349,6 +17351,7 @@ br_3f_efb3:
 	rts                                                  ; $efba : $60
 
 
+Func_3f_efbb:
 	ldx $01                                                  ; $efbb : $a6, $01
 	jsr ($efc1.w, X)                                                  ; $efbd : $fc, $c1, $ef
 	rtl                                                  ; $efc0 : $6b
