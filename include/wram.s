@@ -35,8 +35,17 @@ wThread3: ; $60
 wTextByteSrcAddr: ; $68
     dw
 
-w6a:
-    ds $10-$a
+wTextRowVramAddr: ; $6a
+    dw
+
+wTextColOffset: ; $6c
+    dw
+
+wTextCurrTileAttr: ; $6e
+    db
+
+wTextFramesWaitPerChar: ; $6f
+    db
 
 wThread4: ; $70
     instanceof Thread
@@ -199,11 +208,14 @@ wff:
 wColourRam ; $0300
     ds $200
 
+; Fills up the $100 bytes below
 wBulkDmaStructs: ; $500
-    ds $100
+    instanceof BulkDmaStruct
+w0508:
+    ds $100-8
 
 wMiniDmaStructs: ; $600
-    ds $100
+    instanceof MiniDmaStruct
 
 w0700:
     ds $9cb-$700
@@ -276,6 +288,8 @@ w0ce8:
 
 .nextu
 
+; todo: this is part of a d18 entity
+
     w0d18:
         ds $4f-$18
 
@@ -345,7 +359,13 @@ wCurrTextIdx: ; $1f46
     db
 
 w1f47:
-    ds $ad-$47
+    ds $5e-$47
+
+wTextTilesPriorityIf40h: ; $1f5e
+    db
+
+w1f5f:
+    ds $ad-$5f
 
 wMosaic: ; $1fad
     db

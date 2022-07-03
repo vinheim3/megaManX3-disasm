@@ -222,9 +222,9 @@ br_03_80ca:
 
 	ldx $1e81.w                                                  ; $80f1 : $ae, $81, $1e
 	rep #ACCU_8                                                  ; $80f4 : $c2, $20
-	lda $9c04.w, X                                                  ; $80f6 : $bd, $04, $9c
+	lda StageSelectLocationsData.w, X                                                  ; $80f6 : $bd, $04, $9c
 	sta $05                                                  ; $80f9 : $85, $05
-	lda $9c06.w, X                                                  ; $80fb : $bd, $06, $9c
+	lda StageSelectLocationsData.w+2, X                                                  ; $80fb : $bd, $06, $9c
 	sta $08                                                  ; $80fe : $85, $08
 	sep #ACCU_8                                                  ; $8100 : $e2, $20
 	jsr AnimateEntity.l                                                  ; $8102 : $22, $4a, $b9, $04
@@ -262,16 +262,16 @@ br_03_811c:
 
 
 	ldx $1e81.w                                                  ; $8139 : $ae, $81, $1e
-	lda Data_6_9c0c.w, X                                                  ; $813c : $bd, $0c, $9c
+	lda StageSelectLocationsData.w+8, X                                                  ; $813c : $bd, $0c, $9c
 
 br_03_813f:
 	cmp #$80.b                                                  ; $813f : $c9, $80
 	beq br_03_8159                                                  ; $8141 : $f0, $16
 
 	rep #ACCU_8                                                  ; $8143 : $c2, $20
-	lda $9c08.w, X                                                  ; $8145 : $bd, $08, $9c
+	lda StageSelectLocationsData.w+4, X                                                  ; $8145 : $bd, $08, $9c
 	sta $05                                                  ; $8148 : $85, $05
-	lda $9c0a.w, X                                                  ; $814a : $bd, $0a, $9c
+	lda StageSelectLocationsData.w+6, X                                                  ; $814a : $bd, $0a, $9c
 	sta $08                                                  ; $814d : $85, $08
 	sep #ACCU_8                                                  ; $814f : $e2, $20
 	jsr AnimateEntity.l                                                  ; $8151 : $22, $4a, $b9, $04
@@ -506,7 +506,7 @@ br_03_8291:
 	sep #ACCU_8|IDX_8                                                  ; $8291 : $e2, $30
 	stz $3e                                                  ; $8293 : $64, $3e
 	ldx $34                                                  ; $8295 : $a6, $34
-	lda Data_6_9c0c.w, X                                                  ; $8297 : $bd, $0c, $9c
+	lda StageSelectLocationsData.w+8, X                                                  ; $8297 : $bd, $0c, $9c
 	bpl br_03_829d                                                  ; $829a : $10, $01
 
 	rts                                                  ; $829c : $60
@@ -892,6 +892,7 @@ StageSelectHelmetTextState1:
 	dec $39                                                  ; $8500 : $c6, $39
 	bne @done                                                  ; $8502 : $d0, $04
 
+; Set state to 3
 	lda #$06.b                                                  ; $8504 : $a9, $06
 	sta $01                                                  ; $8506 : $85, $01
 
@@ -904,6 +905,8 @@ StageSelectHelmetTextState1:
 	stz $39                                                  ; $850d : $64, $39
 	lda #$03.b                                                  ; $850f : $a9, $03
 	sta $27                                                  ; $8511 : $85, $27
+
+; Set state to 2
 	lda #$04.b                                                  ; $8513 : $a9, $04
 	sta $01                                                  ; $8515 : $85, $01
 	rts                                                  ; $8517 : $60
@@ -911,7 +914,7 @@ StageSelectHelmetTextState1:
 
 StageSelectHelmetTextState2:
 	lda #$40.b                                                  ; $8518 : $a9, $40
-	tsb $1f5e.w                                                  ; $851a : $0c, $5e, $1f
+	tsb wTextTilesPriorityIf40h.w                                                  ; $851a : $0c, $5e, $1f
 	ldx #$30.b                                                  ; $851d : $a2, $30
 	stz $0030.w, X                                                  ; $851f : $9e, $30, $00
 	lda $27                                                  ; $8522 : $a5, $27
@@ -922,7 +925,7 @@ StageSelectHelmetTextState2:
 	pld                                                  ; $8528 : $2b
 	clc                                                  ; $8529 : $18
 	adc #$44.b                                                  ; $852a : $69, $44
-	jsr todo_PrintTextFromTable.l                                                  ; $852c : $22, $8d, $86, $00
+	jsr FarCopySimpleSetsOfTiles.l                                                  ; $852c : $22, $8d, $86, $00
 	pld                                                  ; $8530 : $2b
 
 ;
@@ -939,56 +942,63 @@ StageSelectHelmetTextState3_AddThread:
 	lda $1ec1.w                                                  ; $853a : $ad, $c1, $1e
 	beq @br_8542                                                  ; $853d : $f0, $03
 
-	jmp @commonn_85c7.w                                                  ; $853f : $4c, $c7, $85
+	jmp @setTextPriority.w                                                  ; $853f : $4c, $c7, $85
 
 @br_8542:
 	lda $1e83.w                                                  ; $8542 : $ad, $83, $1e
 	beq +                                                  ; $8545 : $f0, $00
 +	ldx $36                                                  ; $8547 : $a6, $36
 	cpx $37                                                  ; $8549 : $e4, $37
-	beq @br_855d                                                  ; $854b : $f0, $10
+	beq @checkStageSelected                                                  ; $854b : $f0, $10
 
 	stx $37                                                  ; $854d : $86, $37
 	stz $38                                                  ; $854f : $64, $38
 	stz $39                                                  ; $8551 : $64, $39
 	lda #$03.b                                                  ; $8553 : $a9, $03
 	sta $27                                                  ; $8555 : $85, $27
+
+; To state 2
 	lda #$04.b                                                  ; $8557 : $a9, $04
 	sta $01                                                  ; $8559 : $85, $01
-	bra @commonn_85c7                                                  ; $855b : $80, $6a
+	bra @setTextPriority                                                  ; $855b : $80, $6a
 
-@br_855d:
-	lda Data_6_9c0c.w, X                                                  ; $855d : $bd, $0c, $9c
-	bpl @br_8568                                                  ; $8560 : $10, $06
+@checkStageSelected:
+; Jump if selected stage is not the special middle ones
+	lda StageSelectLocationsData.w+8, X                                       ; $855d : $bd, $0c, $9c
+	bpl @regularStage                                                         ; $8560 : $10, $06
 
-	cmp #$ff.b                                                  ; $8562 : $c9, $ff
-	bne @commonn_85c7                                                  ; $8564 : $d0, $61
+; Jump if top X, and stay on this state
+	cmp #$ff.b                                                                ; $8562 : $c9, $ff
+	bne @setTextPriority                                                      ; $8564 : $d0, $61
 
-	bra @br_85c3                                                  ; $8566 : $80, $5b
+; Else go to state 1 and set text priority
+	bra @toState1andSetTextPriority                                           ; $8566 : $80, $5b
 
-@br_8568:
-	lda #$40.b                                                  ; $8568 : $a9, $40
-	tsb $1f5e.w                                                  ; $856a : $0c, $5e, $1f
+@regularStage:
+; Text to be displayed will have priority
+	lda #BG_PRIORIY.b*2                                                       ; $8568 : $a9, $40
+	tsb wTextTilesPriorityIf40h.w                                             ; $856a : $0c, $5e, $1f
 
-; Y = (thing-1) * 3
-	lda Data_6_9c0c.w, X                                                  ; $856d : $bd, $0c, $9c
-	asl                                                  ; $8570 : $0a
-	clc                                                  ; $8571 : $18
-	adc Data_6_9c0c.w, X                                                  ; $8572 : $7d, $0c, $9c
-	sec                                                  ; $8575 : $38
-	sbc #$03.b                                                  ; $8576 : $e9, $03
-	tay                                                  ; $8578 : $a8
+; Y = stage idx * 3
+	lda StageSelectLocationsData.w+8, X                                       ; $856d : $bd, $0c, $9c
+	asl                                                                       ; $8570 : $0a
+	clc                                                                       ; $8571 : $18
+	adc StageSelectLocationsData.w+8, X                                       ; $8572 : $7d, $0c, $9c
+	sec                                                                       ; $8575 : $38
+	sbc #$03.b                                                                ; $8576 : $e9, $03
+	tay                                                                       ; $8578 : $a8
 
 ;
 	lda $38                                                  ; $8579 : $a5, $38
 	cmp #$02.b                                                  ; $857b : $c9, $02
-	beq @br_85ae                                                  ; $857d : $f0, $2f
+	beq @thirdLine                                                  ; $857d : $f0, $2f
 
 	cmp #$01.b                                                  ; $857f : $c9, $01
-	beq @br_859a                                                  ; $8581 : $f0, $17
+	beq @secondLine                                                  ; $8581 : $f0, $17
 
+; 1st line
 	lda StageSelectItemTextIdxes.w, Y                                                  ; $8583 : $b9, $7e, $9c
-	jsr todo_OverworldHealthTankTextRelated.w                                                  ; $8586 : $20, $d2, $85
+	jsr AequCurrStageSelectedHealthTankTextIdx.w                                                  ; $8586 : $20, $d2, $85
 	ora #$80.b                                                  ; $8589 : $09, $80
 	jsr AddTextThread.l                                                  ; $858b : $22, $7b, $e9, $00
 	jsr Stub_3_85d0.w                                                  ; $858f : $20, $d0, $85
@@ -997,9 +1007,9 @@ StageSelectHelmetTextState3_AddThread:
 	sta $39                                                  ; $8596 : $85, $39
 	bra @toState1                                                  ; $8598 : $80, $24
 
-@br_859a:
+@secondLine:
 	lda StageSelectItemTextIdxes.w+1, Y                                                  ; $859a : $b9, $7f, $9c
-	jsr todo_OverworldSubTankRideArmoursTextRelated.w                                                  ; $859d : $20, $2f, $86
+	jsr AequCurrStageSelectedSubTankOrRideArmourTextIdx.w                                                  ; $859d : $20, $2f, $86
 	ora #$80.b                                                  ; $85a0 : $09, $80
 	jsr AddTextThread.l                                                  ; $85a2 : $22, $7b, $e9, $00
 	inc $38                                                  ; $85a6 : $e6, $38
@@ -1007,9 +1017,9 @@ StageSelectHelmetTextState3_AddThread:
 	sta $39                                                  ; $85aa : $85, $39
 	bra @toState1                                                  ; $85ac : $80, $10
 
-@br_85ae:
+@thirdLine:
 	lda StageSelectItemTextIdxes.w+2, Y                                                  ; $85ae : $b9, $80, $9c
-	jsr todo_OverworldChipsUpgradesTextRelated.w                                                  ; $85b1 : $20, $8c, $86
+	jsr AequCurrStageSelectedChipOrUpgradeTextIdx.w                                                  ; $85b1 : $20, $8c, $86
 	ora #$80.b                                                  ; $85b4 : $09, $80
 	jsr AddTextThread.l                                                  ; $85b6 : $22, $7b, $e9, $00
 	stz $38                                                  ; $85ba : $64, $38
@@ -1020,13 +1030,13 @@ StageSelectHelmetTextState3_AddThread:
 	sta $01                                                  ; $85c0 : $85, $01
 	rts                                                  ; $85c2 : $60
 
-@br_85c3:
+@toState1andSetTextPriority:
 	lda #$02.b                                                  ; $85c3 : $a9, $02
 	sta $01                                                  ; $85c5 : $85, $01
 
-@commonn_85c7:
+@setTextPriority:
 	lda #$40.b                                                  ; $85c7 : $a9, $40
-	trb $1f5e.w                                                  ; $85c9 : $1c, $5e, $1f
+	trb wTextTilesPriorityIf40h.w                                                  ; $85c9 : $1c, $5e, $1f
 	jsr Stub_3_85d1.w                                                  ; $85cc : $20, $d1, $85
 	rts                                                  ; $85cf : $60
 
@@ -1039,9 +1049,9 @@ Stub_3_85d1:
 	rts                                                  ; $85d1 : $60
 
 
-todo_OverworldHealthTankTextRelated:
+AequCurrStageSelectedHealthTankTextIdx:
 	pha                                                  ; $85d2 : $48
-	lda Data_6_9c0c.w, X                                                  ; $85d3 : $bd, $0c, $9c
+	lda StageSelectLocationsData.w+8, X                                                  ; $85d3 : $bd, $0c, $9c
 	cmp #$08.b                                                  ; $85d6 : $c9, $08
 	beq br_03_8623                                                  ; $85d8 : $f0, $49
 
@@ -1116,9 +1126,9 @@ br_03_862d:
 	rts                                                  ; $862e : $60
 
 
-todo_OverworldSubTankRideArmoursTextRelated:
+AequCurrStageSelectedSubTankOrRideArmourTextIdx:
 	pha                                                  ; $862f : $48
-	lda Data_6_9c0c.w, X                                                  ; $8630 : $bd, $0c, $9c
+	lda StageSelectLocationsData.w+8, X                                                  ; $8630 : $bd, $0c, $9c
 	cmp #$08.b                                                  ; $8633 : $c9, $08
 	beq br_03_8680                                                  ; $8635 : $f0, $49
 
@@ -1191,9 +1201,9 @@ br_03_868a:
 	rts                                                  ; $868b : $60
 
 
-todo_OverworldChipsUpgradesTextRelated:
+AequCurrStageSelectedChipOrUpgradeTextIdx:
 	pha                                                  ; $868c : $48
-	lda Data_6_9c0c.w, X                                                  ; $868d : $bd, $0c, $9c
+	lda StageSelectLocationsData.w+8, X                                                  ; $868d : $bd, $0c, $9c
 	cmp #$08.b                                                  ; $8690 : $c9, $08
 	beq br_03_86dd                                                  ; $8692 : $f0, $49
 
@@ -2278,7 +2288,7 @@ todo_BuildOam:
 
 ;
 	ldy #$a0.b                                                  ; $8e36 : $a0, $a0
-	jsr Func_0_872f.l                                                  ; $8e38 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $8e38 : $22, $2f, $87, $00
 
 @cont_8e3c:
 	rep #ACCU_8|IDX_8                                                  ; $8e3c : $c2, $30
@@ -5616,7 +5626,7 @@ br_03_a18b:
 	lda #$0a.b                                                  ; $a1ba : $a9, $0a
 	sta $1f22.w                                                  ; $a1bc : $8d, $22, $1f
 	ldy #$5e.b                                                  ; $a1bf : $a0, $5e
-	jsr Func_0_872f.l                                                  ; $a1c1 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $a1c1 : $22, $2f, $87, $00
 	sep #ACCU_8|IDX_8                                                  ; $a1c5 : $e2, $30
 	jmp Jump_03_a39e.w                                                  ; $a1c7 : $4c, $9e, $a3
 
@@ -5685,7 +5695,7 @@ br_03_a243:
 	trb $0b                                                  ; $a24e : $14, $0b
 	stz $1f22.w                                                  ; $a250 : $9c, $22, $1f
 	ldy #$5a.b                                                  ; $a253 : $a0, $5a
-	jsr Func_0_872f.l                                                  ; $a255 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $a255 : $22, $2f, $87, $00
 	sep #ACCU_8|IDX_8                                                  ; $a259 : $e2, $30
 	rts                                                  ; $a25b : $60
 
@@ -7677,7 +7687,7 @@ br_03_aec2:
 	lda wMaxHealth.w                                                  ; $aec6 : $ad, $d2, $1f
 	sta wCurrHealth.w                                                  ; $aec9 : $8d, $ff, $09
 	ldy #$5a.b                                                  ; $aecc : $a0, $5a
-	jsr Func_0_872f.l                                                  ; $aece : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $aece : $22, $2f, $87, $00
 	dec $0a54.w                                                  ; $aed2 : $ce, $54, $0a
 	jsr $048e49.l                                                  ; $aed5 : $22, $49, $8e, $04
 	stz $00                                                  ; $aed9 : $64, $00
@@ -8334,7 +8344,7 @@ br_03_b339:
 	lda $0a95.w                                                  ; $b341 : $ad, $95, $0a
 	sta wCurrHealth.w                                                  ; $b344 : $8d, $ff, $09
 	ldy #$5a.b                                                  ; $b347 : $a0, $5a
-	jsr Func_0_872f.l                                                  ; $b349 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $b349 : $22, $2f, $87, $00
 	lda #$c0.b                                                  ; $b34d : $a9, $c0
 	tsb $1fb2.w                                                  ; $b34f : $0c, $b2, $1f
 	stz $1f27.w                                                  ; $b352 : $9c, $27, $1f
@@ -9575,7 +9585,7 @@ Call_03_bb88:
 	clc                                                  ; $bb8f : $18
 	adc #$3e.b                                                  ; $bb90 : $69, $3e
 	tay                                                  ; $bb92 : $a8
-	jsr Func_0_872f.l                                                  ; $bb93 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $bb93 : $22, $2f, $87, $00
 
 br_03_bb97:
 	rts                                                  ; $bb97 : $60

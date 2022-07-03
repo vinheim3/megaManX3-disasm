@@ -18045,7 +18045,7 @@ Func_2_f9f5:
 	lda #$02.b                                                  ; $f9fa : $a9, $02
 	sta $02                                                  ; $f9fc : $85, $02
 	ldy #$0e.b                                                  ; $f9fe : $a0, $0e
-	jsr Func_0_872f.l                                                  ; $fa00 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $fa00 : $22, $2f, $87, $00
 	jsr Call_02_fd18.w                                                  ; $fa04 : $20, $18, $fd
 	bne br_02_fa0c                                                  ; $fa07 : $d0, $03
 

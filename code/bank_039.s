@@ -7827,7 +7827,7 @@ br_39_c1ba:
 	rts                                                  ; $c1bb : $60
 
 
-Data_39_c1bc:
+TextsData:
 	.dw $fdad
 	.dw $e5c0
 	.dw $f27d
@@ -7860,14 +7860,14 @@ Data_39_c1bc:
 	.dw $f632
 	.dw $f8ae
 	.dw $f4db
-	.dw $f336
+	.dw Text20h_LeftLifeUpGotten
 	.dw $ff6e
 	.dw $c66d
 	.dw $c6a3
-	.dw $f336
-	.dw $f344
-	.dw $f352
-	.dw $f360
+	.dw Text24h_LeftLifeUpGotten
+	.dw Text25h_LeftLifeUpNotGotten
+	.dw Text26h_RightLifeUpGotten
+	.dw Text27h_RightLifeUpNotGotten
 	.dw $f36e
 	.dw $f37c
 	.dw $f38a
@@ -15288,6 +15288,9 @@ br_39_f2a7:
 	sta [$1e]                                                  ; $f333 : $87, $1e
 	.db $82                                                  ; $f335 : $82
 
+
+Text20h_LeftLifeUpGotten:
+Text24h_LeftLifeUpGotten:
 	bit #$42.b                                                  ; $f336 : $89, $42
 	ora #$c0.b                                                  ; $f338 : $09, $c0
 	dey                                                  ; $f33a : $88
@@ -15297,6 +15300,8 @@ br_39_f2a7:
 	eor $50, X                                                  ; $f341 : $55, $50
 	.db $82                                                  ; $f343 : $82
 
+
+Text25h_LeftLifeUpNotGotten:
 	bit #$42.b                                                  ; $f344 : $89, $42
 	ora #$c1.b                                                  ; $f346 : $09, $c1
 	dey                                                  ; $f348 : $88
@@ -15306,6 +15311,8 @@ br_39_f2a7:
 	eor $50, X                                                  ; $f34f : $55, $50
 	.db $82                                                  ; $f351 : $82
 
+
+Text26h_RightLifeUpGotten:
 	bit #$56.b                                                  ; $f352 : $89, $56
 	ora #$c0.b                                                  ; $f354 : $09, $c0
 	dey                                                  ; $f356 : $88
@@ -15315,6 +15322,8 @@ br_39_f2a7:
 	eor $50, X                                                  ; $f35d : $55, $50
 	.db $82                                                  ; $f35f : $82
 
+
+Text27h_RightLifeUpNotGotten:
 	bit #$56.b                                                  ; $f360 : $89, $56
 	ora #$c1.b                                                  ; $f362 : $09, $c1
 

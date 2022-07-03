@@ -264,6 +264,27 @@
                     }
                 }
 
+                BulkDmaSet(offset) {
+                    // offset is already a double-idx into a table
+                    let src = this.wordIn(bankConv(6, 0x97ad+offset));
+                    src = bankConv(6, src);
+
+                    let end = 0;
+
+                    let numBytes = this.wordIn(src);
+                    while ((numBytes&1)!==1) {
+                        let destAddr = this.wordIn(src+2)*2;
+                        let srcAddr = this.longIn(src+4);
+                        while (numBytes-- !== 0) {
+                            this.mem7eh[destAddr++] = this.rom[srcAddr++];
+                        }
+                        src += 7
+                        numBytes = this.wordIn(src);
+                        end = Math.max(end, destAddr);
+                    }
+                    this.numBytes = end;
+                }
+
                 createCanvas(suffix, width, height) {
                     const canvas = document.createElement("canvas");
                     canvas.setAttribute('id', this.screenSpec.name + ' ' + suffix);
@@ -452,6 +473,13 @@
                                 ["DrawRooms"],
                             ],
                         },
+                        {
+                            name: "Test",
+                            sources: [
+                                ["BulkDmaSet", 0x0e],
+                                ["TileData", 0],
+                            ]
+                        }
                     ],
                 },
                 methods: {

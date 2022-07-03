@@ -2867,7 +2867,7 @@ br_05_939b:
 	stz $03                                                  ; $93f3 : $64, $03
 	stz $37                                                  ; $93f5 : $64, $37
 	ldy #$60.b                                                  ; $93f7 : $a0, $60
-	jsr Func_0_872f.l                                                  ; $93f9 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $93f9 : $22, $2f, $87, $00
 	lda #$08.b                                                  ; $93fd : $a9, $08
 	tsb $1f5d.w                                                  ; $93ff : $0c, $5d, $1f
 	rtl                                                  ; $9402 : $6b
@@ -4773,7 +4773,7 @@ br_05_9fb2:
 	sta $0896.w                                                  ; $a026 : $8d, $96, $08
 	sta $0897.w                                                  ; $a029 : $8d, $97, $08
 	ldy #$a2.b                                                  ; $a02c : $a0, $a2
-	jsr Func_0_872f.l                                                  ; $a02e : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $a02e : $22, $2f, $87, $00
 	lda #$09.b                                                  ; $a032 : $a9, $09
 	sta wBGMode.w                                                  ; $a034 : $8d, $cf, $00
 	lda #$09.b                                                  ; $a037 : $a9, $09
@@ -4797,7 +4797,7 @@ br_05_9fb2:
 	bne br_05_a065                                                  ; $a059 : $d0, $0a
 
 	ldy #$a4.b                                                  ; $a05b : $a0, $a4
-	jsr Func_0_872f.l                                                  ; $a05d : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $a05d : $22, $2f, $87, $00
 	lda #$06.b                                                  ; $a061 : $a9, $06
 	sta $02                                                  ; $a063 : $85, $02
 
@@ -19593,7 +19593,7 @@ br_05_f80c:
 	bpl br_05_f835                                                  ; $f81b : $10, $18
 
 	lda #$54.b                                                  ; $f81d : $a9, $54
-	jsr todo_PrintTextFromTable.l                                                  ; $f81f : $22, $8d, $86, $00
+	jsr FarCopySimpleSetsOfTiles.l                                                  ; $f81f : $22, $8d, $86, $00
 
 br_05_f823:
 	lda wJoy1CurrBtnsPressed                                                  ; $f823 : $a5, $ac
@@ -19639,7 +19639,7 @@ br_05_f850:
 
 	inc $da                                                  ; $f85d : $e6, $da
 	lda #$4b.b                                                  ; $f85f : $a9, $4b
-	jsr todo_PrintTextFromTable.l                                                  ; $f861 : $22, $8d, $86, $00
+	jsr FarCopySimpleSetsOfTiles.l                                                  ; $f861 : $22, $8d, $86, $00
 	lda #$02.b                                                  ; $f865 : $a9, $02
 	bra br_05_f86b                                                  ; $f867 : $80, $02
 
@@ -19994,7 +19994,7 @@ todo_PrintCx4RelatedLabel:
 	lda $d8                                                  ; $fa68 : $a5, $d8
 	clc                                                  ; $fa6a : $18
 	adc #$4c.b                                                  ; $fa6b : $69, $4c
-	jsr todo_PrintTextFromTable.l                                                  ; $fa6d : $22, $8d, $86, $00
+	jsr FarCopySimpleSetsOfTiles.l                                                  ; $fa6d : $22, $8d, $86, $00
 	lda #$01.b                                                  ; $fa71 : $a9, $01
 	jsr FarPauseCurrThreadWithADelayCounterOfA.l                                                  ; $fa73 : $22, $83, $81, $00
 	lda $d8                                                  ; $fa77 : $a5, $d8
@@ -20025,7 +20025,7 @@ Jump_05_fa7a:
 	lda $d8                                                  ; $fa8c : $a5, $d8
 	clc                                                  ; $fa8e : $18
 	adc #$4c.b                                                  ; $fa8f : $69, $4c
-	jsr todo_PrintTextFromTable.l                                                  ; $fa91 : $22, $8d, $86, $00
+	jsr FarCopySimpleSetsOfTiles.l                                                  ; $fa91 : $22, $8d, $86, $00
 	lda #$0c.b                                                  ; $fa95 : $a9, $0c
 	jmp todo_PrintCx4OkOrError.w                                                  ; $fa97 : $4c, $9a, $fa
 

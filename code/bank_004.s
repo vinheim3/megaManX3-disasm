@@ -2286,7 +2286,7 @@ br_04_8d65:
 	clc                                                  ; $8dd0 : $18
 	adc #$5a.b                                                  ; $8dd1 : $69, $5a
 	tay                                                  ; $8dd3 : $a8
-	jsr Func_0_872f.l                                                  ; $8dd4 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $8dd4 : $22, $2f, $87, $00
 	sep #ACCU_8|IDX_8                                                  ; $8dd8 : $e2, $30
 	lda wBG1HorizScroll+1                                                  ; $8dda : $a5, $b6
 	bne br_04_8de8                                                  ; $8ddc : $d0, $0a
@@ -3044,7 +3044,7 @@ br_04_92a3:
 	bne br_04_92c2                                                  ; $92ad : $d0, $13
 
 	ldy #$04.b                                                  ; $92af : $a0, $04
-	jsr Func_0_872f.l                                                  ; $92b1 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $92b1 : $22, $2f, $87, $00
 	stz $19                                                  ; $92b5 : $64, $19
 	stz $0e                                                  ; $92b7 : $64, $0e
 	stz $0ae8.w                                                  ; $92b9 : $9c, $e8, $0a
@@ -8362,7 +8362,7 @@ todo_ChangeSubweapon:
 ; eg 10 from a0b
 	adc #$3e.b                                                  ; $b05e : $69, $3e
 	tay                                                  ; $b060 : $a8
-	jsr Func_0_872f.l                                                  ; $b061 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $b061 : $22, $2f, $87, $00
 	lda $1f38.w                                                  ; $b065 : $ad, $38, $1f
 	clc                                                  ; $b068 : $18
 	adc #$20.b                                                  ; $b069 : $69, $20
@@ -8508,7 +8508,7 @@ br_04_b126:
 
 Call_04_b127:
 	ldy #$16.b                                                  ; $b127 : $a0, $16
-	jsr Func_0_872f.l                                                  ; $b129 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $b129 : $22, $2f, $87, $00
 	jsr todo_XequFree_1818_EntitySlot.l                                                  ; $b12d : $22, $59, $d8, $02
 	bne br_04_b15f                                                  ; $b131 : $d0, $2c
 
@@ -15698,7 +15698,7 @@ br_04_dcc3:
 	clc                                                  ; $dcca : $18
 	adc #$7e.b                                                  ; $dccb : $69, $7e
 	tay                                                  ; $dccd : $a8
-	jsr Func_0_872f.l                                                  ; $dcce : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $dcce : $22, $2f, $87, $00
 	bra br_04_dce1                                                  ; $dcd2 : $80, $0d
 
 	lda wSelectedSubweapon.w                                                  ; $dcd4 : $ad, $0b, $0a
@@ -15707,14 +15707,14 @@ br_04_dcc3:
 	clc                                                  ; $dcd9 : $18
 	adc #$3e.b                                                  ; $dcda : $69, $3e
 	tay                                                  ; $dcdc : $a8
-	jsr Func_0_872f.l                                                  ; $dcdd : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $dcdd : $22, $2f, $87, $00
 
 br_04_dce1:
 	lda $0a8e.w                                                  ; $dce1 : $ad, $8e, $0a
 	beq br_04_dcee                                                  ; $dce4 : $f0, $08
 
 	ldy #$5c.b                                                  ; $dce6 : $a0, $5c
-	jsr Func_0_872f.l                                                  ; $dce8 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $dce8 : $22, $2f, $87, $00
 	bra br_04_dcfb                                                  ; $dcec : $80, $0d
 
 br_04_dcee:
@@ -15723,7 +15723,7 @@ br_04_dcee:
 	bne br_04_dcfb                                                  ; $dcf3 : $d0, $06
 
 	ldy #$5e.b                                                  ; $dcf5 : $a0, $5e
-	jsr Func_0_872f.l                                                  ; $dcf7 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $dcf7 : $22, $2f, $87, $00
 
 br_04_dcfb:
 	lda $1f5d.w                                                  ; $dcfb : $ad, $5d, $1f
@@ -15731,7 +15731,7 @@ br_04_dcfb:
 	beq br_04_dd08                                                  ; $dd00 : $f0, $06
 
 	ldy #$60.b                                                  ; $dd02 : $a0, $60
-	jsr Func_0_872f.l                                                  ; $dd04 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $dd04 : $22, $2f, $87, $00
 
 br_04_dd08:
 	rtl                                                  ; $dd08 : $6b

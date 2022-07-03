@@ -2444,7 +2444,7 @@ br_06_8d74:
 	ldy #$18.b                                                  ; $8d98 : $a0, $18
 
 
-Data_6_8d9a:
+SimpleSetsOfTileCopies:
 	.dw $8e84
 	.dw $8e84
 	.dw $8ea9
@@ -2513,8 +2513,8 @@ Data_6_8d9a:
 	.dw $95f9
 	.dw $9606
 	.dw $9613
-	.dw $9620 ; 44
-	.dw $9643
+	.dw Data_6_9620 ; 44
+	.dw Data_6_9643
 	.dw $9666
 	.dw $9689
 	.dw $96ac
@@ -3556,11 +3556,13 @@ Call_06_9600:
 	sty $4d0a.w                                                  ; $9615 : $8c, $0a, $4d
 	eor $55414e.l                                                  ; $9618 : $4f, $4e, $41, $55
 	eor ($41)                                                  ; $961c : $52, $41
-	jmp $1e00.w                                                  ; $961e : $4c, $00, $1e
+	.db $4c, $00
 
 
-	sec                                                  ; $9621 : $38
-	adc ($09, X)                                                  ; $9622 : $61, $09
+Data_6_9620:
+	.db $1e ; num tiles
+	.db $38 ; tile attr
+	.dw $0961 ; vram word-idxed dest
 	lda $bfbfbf.l, X                                                  ; $9624 : $bf, $bf, $bf, $bf
 	lda $bfbfbf.l, X                                                  ; $9628 : $bf, $bf, $bf, $bf
 	lda $bfbfbf.l, X                                                  ; $962c : $bf, $bf, $bf, $bf
@@ -3568,7 +3570,11 @@ Call_06_9600:
 	lda $bfbfbf.l, X                                                  ; $9634 : $bf, $bf, $bf, $bf
 	lda $bfbfbf.l, X                                                  ; $9638 : $bf, $bf, $bf, $bf
 	lda $bfbfbf.l, X                                                  ; $963c : $bf, $bf, $bf, $bf
-	lda $1e00bf.l, X                                                  ; $9640 : $bf, $bf, $00, $1e
+	.db $bf, $bf, $00
+
+
+Data_6_9643:
+	.db $1e
 	sec                                                  ; $9644 : $38
 	lda ($09, X)                                                  ; $9645 : $a1, $09
 	lda $bfbfbf.l, X                                                  ; $9647 : $bf, $bf, $bf, $bf
@@ -3722,7 +3728,8 @@ br_06_975f:
 	eor #$0054.w                                                  ; $97aa : $49, $54, $00
 
 
-Data_6_97ad:
+.table word, word, long
+BulkDMASetsData:
 	.dw $9857
 	.dw $985f
 	.dw $9860
@@ -4143,7 +4150,7 @@ br_06_99d9:
 
 
 Data_6_9a2e:
-	.db $00, $04, $00, $63, $40, $f7, $2c
+	.row $0400, $6300, $2cf740
 	.db $80, $01, $00, $65, $40, $fb, $2c
 	.db $00, $01, $00, $66, $c0, $fc, $2c
 	.db $40, $00, $c0, $6a, $60, $89, $2c
@@ -4483,86 +4490,76 @@ br_06_9bd0:
 	ora ($ff, X)                                                  ; $9bfc : $01, $ff
 	tsb $ff                                                  ; $9bfe : $04, $ff
 	phd                                                  ; $9c00 : $0b
-	sbc $20ff01.l, X                                                  ; $9c01 : $ff, $01, $ff, $20
-	.db $00                                                  ; $9c05 : $00
-	bit $00                                                  ; $9c06 : $24, $00
-	bpl br_06_9c0a                                                  ; $9c08 : $10, $00
-
-br_06_9c0a:
-	bvs br_06_9c0c                                                  ; $9c0a : $70, $00
-
-br_06_9c0c:
+	.db $ff, $01, $ff,
 
 
-Data_6_9c0c:
+; ???
+; cursor X
+; cursor Y
+; location red dot x
+; location red dot y
+; stage idx
+StageSelectLocationsData:
+	.dw $0020
+	.dw $0024
+	.dw $0010
+	.dw $0070
 	.db $01
+
 	.dw $0050
 	.dw $0024
 	.dw $00c0
 	.dw $0088
-;
-	cop $80.b                                                  ; $9c15 : $02, $80
-	.db $00                                                  ; $9c17 : $00
-	bit $00                                                  ; $9c18 : $24, $00
-	bra br_06_9c1c                                                  ; $9c1a : $80, $00
+	.db $02
 
-br_06_9c1c:
-	sei                                                  ; $9c1c : $78
-	.db $00                                                  ; $9c1d : $00
-	bra br_06_9bd0                                                  ; $9c1e : $80, $b0
+	.dw $0080
+	.dw $0024
+	.dw $0080
+	.dw $0078
+	.db $80
 
-	.db $00                                                  ; $9c20 : $00
-	bit $00                                                  ; $9c21 : $24, $00
-	bvc br_06_9c25                                                  ; $9c23 : $50, $00
+	.dw $00b0
+	.dw $0024
+	.dw $0050
+	.dw $0078
+	.db $03
 
-br_06_9c25:
-	sei                                                  ; $9c25 : $78
-	.db $00                                                  ; $9c26 : $00
+	.dw $00e0
+	.dw $0024
+	.dw $00b0
+	.dw $0060
+	.db $04
 
-; eg here
-	ora $e0, S                                                  ; $9c27 : $03, $e0
-	.db $00                                                  ; $9c29 : $00
-	bit $00                                                  ; $9c2a : $24, $00
-	bcs br_06_9c2e                                                  ; $9c2c : $b0, $00
+	.dw $0020
+	.dw $00bc
+	.dw $00e0
+	.dw $0078
+	.db $05
 
-br_06_9c2e:
-	rts                                                  ; $9c2e : $60
+	.dw $0050
+	.dw $00bc
+	.dw $0028
+	.dw $0088
+	.db $06
 
+	.dw $0080
+	.dw $00bc
+	.dw $0080
+	.dw $0078
+	.db $ff
 
-	.db $00                                                  ; $9c2f : $00
-	tsb $20                                                  ; $9c30 : $04, $20
-	.db $00                                                  ; $9c32 : $00
-	ldy $e000.w, X                                                  ; $9c33 : $bc, $00, $e0
-	.db $00                                                  ; $9c36 : $00
-	sei                                                  ; $9c37 : $78
-	.db $00                                                  ; $9c38 : $00
-	ora $50                                                  ; $9c39 : $05, $50
-	.db $00                                                  ; $9c3b : $00
-	ldy $2800.w, X                                                  ; $9c3c : $bc, $00, $28
-	.db $00                                                  ; $9c3f : $00
-	dey                                                  ; $9c40 : $88
-	.db $00                                                  ; $9c41 : $00
-	asl $80                                                  ; $9c42 : $06, $80
-	.db $00                                                  ; $9c44 : $00
-	ldy $8000.w, X                                                  ; $9c45 : $bc, $00, $80
-	.db $00                                                  ; $9c48 : $00
-	sei                                                  ; $9c49 : $78
-	.db $00                                                  ; $9c4a : $00
-	sbc $bc00b0.l, X                                                  ; $9c4b : $ff, $b0, $00, $bc
-	.db $00                                                  ; $9c4f : $00
-	beq br_06_9c52                                                  ; $9c50 : $f0, $00
+	.dw $00b0
+	.dw $00bc
+	.dw $00f0
+	.dw $0058
+	.db $07
 
-br_06_9c52:
-	cli                                                  ; $9c52 : $58
-	.db $00                                                  ; $9c53 : $00
-	ora [$e0]                                                  ; $9c54 : $07, $e0
-	.db $00                                                  ; $9c56 : $00
-	ldy $3000.w, X                                                  ; $9c57 : $bc, $00, $30
-	.db $00                                                  ; $9c5a : $00
-	cli                                                  ; $9c5b : $58
-	.db $00                                                  ; $9c5c : $00
-	php                                                  ; $9c5d : $08
-; above is idx $51
+	.dw $00e0
+	.dw $00bc
+	.dw $0030
+	.dw $0058
+	.db $08
+
 
 SubweaponsStatusToAssociatedStage:
 	.db $04, $01, $05, $06, $08, $03, $02, $07

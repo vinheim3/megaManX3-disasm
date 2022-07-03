@@ -19,6 +19,22 @@ THREAD_STARTED = 3
     sizeof .db
 .endst
 
+.struct BulkDmaStruct
+    vmain db ; $0
+    vramAddr dw ; $1/$2 - word-idxed
+    numBytes dw ; $3/$4
+    srcAddr dw ; $5/$6
+    srcBank db ; $7
+    sizeof .db
+.endst
+
+.struct MiniDmaStruct
+    vmain db ; $0
+    vramAddr dw ; $1/$2 - word-idxed
+    numBytes db ; $3
+    data ds $100-4 ; $4+
+.endst
+
 ; todo: fill-in for entities with unknown shape
 .struct GenericEntity
     enabled db ; $00

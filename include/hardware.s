@@ -20,6 +20,7 @@ BG3VOFS = $2112 ; BG Scroll Registers (BG3)
 ;       - clear: inc after writing $2118, or reading $2139
 VMAIN = $2115 ; Video Port Control Register
 VMAIN_INC_AFTER_2ND_BYTE = $80
+VMAIN_INC_32 = $01
 
 VMADDL = $2116 ; VRAM Address Registers (Low)
 VMADDH = $2117 ; VRAM Address Registers (High)
@@ -157,3 +158,5 @@ F_ZERO = $02
 F_CARRY = $01
 BANK_START = $8000
 ROM_CHECKSUM = $00ffde
+
+BG_PRIORIY = $20

@@ -132,7 +132,7 @@ ResetVector:
 
 ;
 	lda #$80.b                                                  ; $80b3 : $a9, $80
-	sta $b4                                                  ; $80b5 : $85, $b4
+	sta wScreenDisplay                                                  ; $80b5 : $85, $b4
 
 ;
 	lda #NMI_ENABLE|IRQ_ENABLE_3|AUTO_JOYPAD_READ_ENABLE.b                                                  ; $80b7 : $a9, $b1
@@ -1214,93 +1214,117 @@ Call_00_867b:
 Jump_00_867b:
 	sep #ACCU_8|IDX_8                                                  ; $867b : $e2, $30
 	ldx #$40.b                                                  ; $867d : $a2, $40
-	lda #$86.b                                                  ; $867f : $a9, $86
+	lda #>Func_0_8687.b                                                  ; $867f : $a9, $86
 	xba                                                  ; $8681 : $eb
-	lda #$87.b                                                  ; $8682 : $a9, $87
+	lda #<Func_0_8687.b                                                  ; $8682 : $a9, $87
 	jmp SetThreadXsPCandStatusPending.w                                                  ; $8684 : $4c, $a3, $81
 
 
+Func_0_8687:
 	jsr Call_00_8641.w                                                  ; $8687 : $20, $41, $86
 	jmp StopCurrThreadProcessNexts.w                                                  ; $868a : $4c, $5a, $81
 
 
-todo_PrintTextFromTable:
-	jsr Call_00_8691.w                                                  ; $868d : $20, $91, $86
-	rtl                                                  ; $8690 : $6b
+; A - copy spec idx. If bit 7 is set, the data is cleared
+FarCopySimpleSetsOfTiles:
+	jsr CopySimpleSetsOfTiles.w                                               ; $868d : $20, $91, $86
+	rtl                                                                       ; $8690 : $6b
 
 
-; A - eg 4c
-Call_00_8691:
-; store 4c in 2
-	sep #ACCU_8|IDX_8                                                  ; $8691 : $e2, $30
-	sta $02                                                  ; $8693 : $85, $02
+SIMPLE_TILE_COPIES_NUM_TILES = $00 ; b
+SIMPLE_TILE_COPIES_TILE_ATTR = $01 ; b
+SIMPLE_TILE_COPIES_SPEC_IDX = $02 ; b
+SIMPLE_TILE_COPIES_SET_SRC = $10 ; w
+; A - copy spec idx. If bit 7 is set, the data is cleared
+CopySimpleSetsOfTiles:
+; Save copy spec idx
+	sep #ACCU_8|IDX_8                                                         ; $8691 : $e2, $30
+	sta SIMPLE_TILE_COPIES_SPEC_IDX                                           ; $8693 : $85, $02
 
-; use as double idx in table, store in 10.w
-	and #$7f.b                                                  ; $8695 : $29, $7f
-	asl                                                  ; $8697 : $0a
-	tay                                                  ; $8698 : $a8
-	lda Data_6_8d9a.w, Y                                                  ; $8699 : $b9, $9a, $8d
-	sta $10                                                  ; $869c : $85, $10
-	lda Data_6_8d9a.w+1, Y                                                  ; $869e : $b9, $9b, $8d
-	sta $11                                                  ; $86a1 : $85, $11
+; Use as double idx in table to get src addr of data
+	and #$7f.b                                                                ; $8695 : $29, $7f
+	asl                                                                       ; $8697 : $0a
+	tay                                                                       ; $8698 : $a8
+	lda SimpleSetsOfTileCopies.w, Y                                           ; $8699 : $b9, $9a, $8d
+	sta SIMPLE_TILE_COPIES_SET_SRC                                            ; $869c : $85, $10
+	lda SimpleSetsOfTileCopies.w+1, Y                                         ; $869e : $b9, $9b, $8d
+	sta SIMPLE_TILE_COPIES_SET_SRC+1                                          ; $86a1 : $85, $11
 
-;
-	ldx $a5                                                  ; $86a3 : $a6, $a5
-	ldy #$00.b                                                  ; $86a5 : $a0, $00
+; Clear src offset, and load DMA struct dest offset
+	ldx wMiniDmaStructOffsetToFill                                            ; $86a3 : $a6, $a5
+	ldy #$00.b                                                                ; $86a5 : $a0, $00
 
-@loop_86a7:
-	lda ($10), Y                                                  ; $86a7 : $b1, $10
-	beq @done                                                  ; $86a9 : $f0, $47
+@nextSet:
+; End once source byte == 0
+	lda (SIMPLE_TILE_COPIES_SET_SRC), Y                                       ; $86a7 : $b1, $10
+	beq @done                                                                 ; $86a9 : $f0, $47
 
-	sta $00                                                  ; $86ab : $85, $00
-	asl                                                  ; $86ad : $0a
-	sta $0603.w, X                                                  ; $86ae : $9d, $03, $06
-	iny                                                  ; $86b1 : $c8
-	lda ($10), Y                                                  ; $86b2 : $b1, $10
-	sta $01                                                  ; $86b4 : $85, $01
-	iny                                                  ; $86b6 : $c8
-	lda #$80.b                                                  ; $86b7 : $a9, $80
-	sta $0600.w, X                                                  ; $86b9 : $9d, $00, $06
-	inx                                                  ; $86bc : $e8
-	lda ($10), Y                                                  ; $86bd : $b1, $10
-	sta $0600.w, X                                                  ; $86bf : $9d, $00, $06
-	iny                                                  ; $86c2 : $c8
-	inx                                                  ; $86c3 : $e8
-	lda ($10), Y                                                  ; $86c4 : $b1, $10
-	sta $0600.w, X                                                  ; $86c6 : $9d, $00, $06
-	iny                                                  ; $86c9 : $c8
-	inx                                                  ; $86ca : $e8
-	inx                                                  ; $86cb : $e8
-	lda $02                                                  ; $86cc : $a5, $02
-	bmi @brLoop_86e3                                                  ; $86ce : $30, $13
+; Else save as num tiles, and set num bytes to it doubled (tile+attr each)
+	sta SIMPLE_TILE_COPIES_NUM_TILES                                          ; $86ab : $85, $00
+	asl                                                                       ; $86ad : $0a
+	sta wMiniDmaStructs.numBytes.w, X                                         ; $86ae : $9d, $03, $06
+	iny                                                                       ; $86b1 : $c8
 
-@loop_86d0:
-	lda ($10), Y                                                  ; $86d0 : $b1, $10
-	sta $0600.w, X                                                  ; $86d2 : $9d, $00, $06
-	iny                                                  ; $86d5 : $c8
-	inx                                                  ; $86d6 : $e8
-	lda $01                                                  ; $86d7 : $a5, $01
-	sta $0600.w, X                                                  ; $86d9 : $9d, $00, $06
-	inx                                                  ; $86dc : $e8
-	dec $00                                                  ; $86dd : $c6, $00
-	bne @loop_86d0                                                  ; $86df : $d0, $ef
+; Next source byte is the tile attr to use for all the tiles
+	lda (SIMPLE_TILE_COPIES_SET_SRC), Y                                       ; $86b2 : $b1, $10
+	sta SIMPLE_TILE_COPIES_TILE_ATTR                                          ; $86b4 : $85, $01
+	iny                                                                       ; $86b6 : $c8
 
-	bra @loop_86a7                                                  ; $86e1 : $80, $c4
+; Set standard vmain to copy across
+	lda #VMAIN_INC_AFTER_2ND_BYTE.b                                           ; $86b7 : $a9, $80
+	sta wMiniDmaStructs.vmain.w, X                                            ; $86b9 : $9d, $00, $06
+	inx                                                                       ; $86bc : $e8
 
-@brLoop_86e3:
-	stz $0600.w, X                                                  ; $86e3 : $9e, $00, $06
-	iny                                                  ; $86e6 : $c8
-	inx                                                  ; $86e7 : $e8
-	stz $0600.w, X                                                  ; $86e8 : $9e, $00, $06
-	inx                                                  ; $86eb : $e8
-	dec $00                                                  ; $86ec : $c6, $00
-	bne @brLoop_86e3                                                  ; $86ee : $d0, $f3
+; Next source word is the vram address
+	lda (SIMPLE_TILE_COPIES_SET_SRC), Y                                       ; $86bd : $b1, $10
+	sta wMiniDmaStructs.vramAddr.w-1, X                                       ; $86bf : $9d, $00, $06
+	iny                                                                       ; $86c2 : $c8
+	inx                                                                       ; $86c3 : $e8
 
-	bra @loop_86a7                                                  ; $86f0 : $80, $b5
+	lda (SIMPLE_TILE_COPIES_SET_SRC), Y                                       ; $86c4 : $b1, $10
+	sta wMiniDmaStructs.vramAddr.w+1-2, X                                     ; $86c6 : $9d, $00, $06
+	iny                                                                       ; $86c9 : $c8
+	inx                                                                       ; $86ca : $e8
+
+; Skip past num bytes
+	inx                                                                       ; $86cb : $e8
+
+; Jump if param had bit 7 set to clear the specified data
+	lda SIMPLE_TILE_COPIES_SPEC_IDX                                           ; $86cc : $a5, $02
+	bmi @clearLoop                                                            ; $86ce : $30, $13
+
+@nextTileInSet:
+; Loop, copying in specified tiles, and pre-specified attr
+	lda (SIMPLE_TILE_COPIES_SET_SRC), Y                                       ; $86d0 : $b1, $10
+	sta wMiniDmaStructs.data.w-4, X                                           ; $86d2 : $9d, $00, $06
+	iny                                                                       ; $86d5 : $c8
+	inx                                                                       ; $86d6 : $e8
+
+	lda SIMPLE_TILE_COPIES_TILE_ATTR                                          ; $86d7 : $a5, $01
+	sta wMiniDmaStructs.data.w+1-5, X                                         ; $86d9 : $9d, $00, $06
+	inx                                                                       ; $86dc : $e8
+
+	dec SIMPLE_TILE_COPIES_NUM_TILES                                          ; $86dd : $c6, $00
+	bne @nextTileInSet                                                        ; $86df : $d0, $ef
+
+	bra @nextSet                                                              ; $86e1 : $80, $c4
+
+@clearLoop:
+; Clear tile + attr at given dest
+	stz wMiniDmaStructs.data.w-4, X                                           ; $86e3 : $9e, $00, $06
+	iny                                                                       ; $86e6 : $c8
+	inx                                                                       ; $86e7 : $e8
+	stz wMiniDmaStructs.data.w+1-5, X                                         ; $86e8 : $9e, $00, $06
+	inx                                                                       ; $86eb : $e8
+
+	dec SIMPLE_TILE_COPIES_NUM_TILES                                          ; $86ec : $c6, $00
+	bne @clearLoop                                                            ; $86ee : $d0, $f3
+
+	bra @nextSet                                                              ; $86f0 : $80, $b5
 
 @done:
-	stx $a5                                                  ; $86f2 : $86, $a5
-	rts                                                  ; $86f4 : $60
+	stx wMiniDmaStructOffsetToFill                                            ; $86f2 : $86, $a5
+	rts                                                                       ; $86f4 : $60
 
 
 Call_00_86f5:
@@ -1355,138 +1379,160 @@ br_00_8715:
 	rts                                                  ; $872e : $60
 
 
-; eg Y=$4e
-Func_0_872f:
-	rep #ACCU_8                                                  ; $872f : $c2, $20
-	phd                                                  ; $8731 : $0b
-	lda #$0000.w                                                  ; $8732 : $a9, $00, $00
-	tcd                                                  ; $8735 : $5b
-	jsr Call_00_873b.w                                                  ; $8736 : $20, $3b, $87
-	pld                                                  ; $8739 : $2b
-	rtl                                                  ; $873a : $6b
+; Y - double bulk DMA set idx
+FarSafeLoadFromBulkDMASet:
+; Call below func, preserving direct page
+	rep #ACCU_8                                                               ; $872f : $c2, $20
+	phd                                                                       ; $8731 : $0b
+	lda #$0000.w                                                              ; $8732 : $a9, $00, $00
+	tcd                                                                       ; $8735 : $5b
+	jsr LoadFromBulkDMASet.w                                                  ; $8736 : $20, $3b, $87
+	pld                                                                       ; $8739 : $2b
+	rtl                                                                       ; $873a : $6b
 
 
-Call_00_873b:
-	rep #ACCU_8                                                  ; $873b : $c2, $20
-	lda Data_6_97ad.w, Y                                                  ; $873d : $b9, $ad, $97
-	sta $10                                                  ; $8740 : $85, $10
-	ldy #$00.b                                                  ; $8742 : $a0, $00
-	ldx $a4                                                  ; $8744 : $a6, $a4
+BULK_DMA_NUM_BYTES = $00 ; w
+BULK_DMA_NUM_BYTES_OVERFLOW = $02 ; w
+BULK_DMA_DETAILS_SRC = $10 ; w
+BULK_DMA_VRAM_DEST = $14 ; w
+BULK_DMA_SRC_ADDR = $18 ; l
+BULK_DMA_VRAM_DEST_OVERFLOW = $1c ; w
+; Y - double bulk DMA set idx
+LoadFromBulkDMASet:
+; Set src address
+	rep #ACCU_8                                                               ; $873b : $c2, $20
+	lda BulkDMASetsData.w, Y                                                  ; $873d : $b9, $ad, $97
+	sta BULK_DMA_DETAILS_SRC                                                  ; $8740 : $85, $10
 
-@loop_8746:
-	rep #ACCU_8|F_CARRY                                                  ; $8746 : $c2, $21
-	lda ($10), Y                                                  ; $8748 : $b1, $10
-	bit #$0001.w                                                  ; $874a : $89, $01, $00
-	bne @done                                                  ; $874d : $d0, $4a
+; Clear Y for src offset, and load DMA struct dest offset
+	ldy #$00.b                                                                ; $8742 : $a0, $00
+	ldx wBulkDmaStructOffsetToFill                                            ; $8744 : $a6, $a4
 
-	jsr Call_00_879e.w                                                  ; $874f : $20, $9e, $87
+@nextDMAStruct:
+; End once bit 0 set on the 1st byte (eg $ff)
+	rep #ACCU_8|F_CARRY                                                       ; $8746 : $c2, $21
+	lda (BULK_DMA_DETAILS_SRC), Y                                             ; $8748 : $b1, $10
+	bit #$0001.w                                                              ; $874a : $89, $01, $00
+	bne @done                                                                 ; $874d : $d0, $4a
 
-; num bytes
-	lda $00                                                  ; $8752 : $a5, $00
-	sta $0503.w, X                                                  ; $8754 : $9d, $03, $05
+; Populate low ram with DMA details, including a 2nd struct's,
+; if there is a bank overflow
+	jsr GetBulkDMAInSetsDetails.w                                             ; $874f : $20, $9e, $87
 
-; vram addr
-	lda $14                                                  ; $8757 : $a5, $14
-	sta $0501.w, X                                                  ; $8759 : $9d, $01, $05
+; Set num bytes, vram dest and src addr from the populated details
+	lda BULK_DMA_NUM_BYTES                                                    ; $8752 : $a5, $00
+	sta wBulkDmaStructs.numBytes.w, X                                         ; $8754 : $9d, $03, $05
 
-; src addr
-	lda $18                                                  ; $875c : $a5, $18
-	sta $0505.w, X                                                  ; $875e : $9d, $05, $05
+	lda BULK_DMA_VRAM_DEST                                                    ; $8757 : $a5, $14
+	sta wBulkDmaStructs.vramAddr.w, X                                         ; $8759 : $9d, $01, $05
 
-; src bank
-	sep #ACCU_8                                                  ; $8761 : $e2, $20
-	lda $1a                                                  ; $8763 : $a5, $1a
-	sta $0507.w, X                                                  ; $8765 : $9d, $07, $05
+	lda BULK_DMA_SRC_ADDR                                                     ; $875c : $a5, $18
+	sta wBulkDmaStructs.srcAddr.w, X                                          ; $875e : $9d, $05, $05
 
-; vmain
-	lda #$80.b                                                  ; $8768 : $a9, $80
-	sta $0500.w, X                                                  ; $876a : $9d, $00, $05
-	bcc @cont_8793                                                  ; $876d : $90, $24
+	sep #ACCU_8                                                               ; $8761 : $e2, $20
+	lda BULK_DMA_SRC_ADDR+2                                                   ; $8763 : $a5, $1a
+	sta wBulkDmaStructs.srcBank.w, X                                          ; $8765 : $9d, $07, $05
 
-; X += 8
-	clc                                                  ; $876f : $18
-	txa                                                  ; $8770 : $8a
-	adc #$08.b                                                  ; $8771 : $69, $08
-	tax                                                  ; $8773 : $aa
+; Set standard vmain to copy across
+	lda #VMAIN_INC_AFTER_2ND_BYTE.b                                           ; $8768 : $a9, $80
+	sta wBulkDmaStructs.vmain.w, X                                            ; $876a : $9d, $00, $05
 
-; num bytes
-	rep #ACCU_8|F_CARRY                                                  ; $8774 : $c2, $21
-	lda $02                                                  ; $8776 : $a5, $02
-	sta $0503.w, X                                                  ; $8778 : $9d, $03, $05
+; If carry set, another DMA will happen, sourced from the next bank
+	bcc @toNextDMAStruct                                                      ; $876d : $90, $24
 
-; vram addr
-	lda $1c                                                  ; $877b : $a5, $1c
-	sta $0501.w, X                                                  ; $877d : $9d, $01, $05
+; Go to next bulk DMA struct
+	clc                                                                       ; $876f : $18
+	txa                                                                       ; $8770 : $8a
+	adc #BulkDmaStruct.sizeof.b                                               ; $8771 : $69, $08
+	tax                                                                       ; $8773 : $aa
 
-; src addr
-	lda #$8000.w                                                  ; $8780 : $a9, $00, $80
-	sta $0505.w, X                                                  ; $8783 : $9d, $05, $05
-	sep #ACCU_8                                                  ; $8786 : $e2, $20
+; Set num bytes, and dest addr for overflow
+	rep #ACCU_8|F_CARRY                                                       ; $8774 : $c2, $21
+	lda BULK_DMA_NUM_BYTES_OVERFLOW                                           ; $8776 : $a5, $02
+	sta wBulkDmaStructs.numBytes.w, X                                         ; $8778 : $9d, $03, $05
 
-; +1 to src bank
-	lda $1a                                                  ; $8788 : $a5, $1a
-	ina                                                  ; $878a : $1a
-	sta $0507.w, X                                                  ; $878b : $9d, $07, $05
+	lda BULK_DMA_VRAM_DEST_OVERFLOW                                           ; $877b : $a5, $1c
+	sta wBulkDmaStructs.vramAddr.w, X                                         ; $877d : $9d, $01, $05
 
-; vmain = 80
-	lda #$80.b                                                  ; $878e : $a9, $80
-	sta $0500.w, X                                                  ; $8790 : $9d, $00, $05
+; Set src address from the beginning of the next bank
+	lda #BANK_START.w                                                         ; $8780 : $a9, $00, $80
+	sta wBulkDmaStructs.srcAddr.w, X                                          ; $8783 : $9d, $05, $05
+	sep #ACCU_8                                                               ; $8786 : $e2, $20
 
-@cont_8793:
-	txa                                                  ; $8793 : $8a
-	adc #$08.b                                                  ; $8794 : $69, $08
-	tax                                                  ; $8796 : $aa
-	bcc @loop_8746                                                  ; $8797 : $90, $ad
+; Src bank is +1 from the 1st
+	lda BULK_DMA_SRC_ADDR+2                                                   ; $8788 : $a5, $1a
+	ina                                                                       ; $878a : $1a
+	sta wBulkDmaStructs.srcBank.w, X                                          ; $878b : $9d, $07, $05
+
+; Set standard vmain to copy across
+	lda #VMAIN_INC_AFTER_2ND_BYTE.b                                           ; $878e : $a9, $80
+	sta wBulkDmaStructs.vmain.w, X                                            ; $8790 : $9d, $00, $05
+
+@toNextDMAStruct:
+	txa                                                                       ; $8793 : $8a
+	adc #BulkDmaStruct.sizeof.b                                               ; $8794 : $69, $08
+	tax                                                                       ; $8796 : $aa
+	bcc @nextDMAStruct                                                        ; $8797 : $90, $ad
 
 @done:
-	sep #ACCU_8|IDX_8                                                  ; $8799 : $e2, $30
-	stx $a4                                                  ; $879b : $86, $a4
-	rts                                                  ; $879d : $60
+; Save offset into bulk DMA structs
+	sep #ACCU_8|IDX_8                                                         ; $8799 : $e2, $30
+	stx wBulkDmaStructOffsetToFill                                            ; $879b : $86, $a4
+	rts                                                                       ; $879d : $60
 
 
-; this should store src addr in 18.19.1a
-Call_00_879e:
-; put A in 0
-	sta $00                                                  ; $879e : $85, $00
+; A.w - num bytes total to copy
+; Returns carry set if the DMA will copy past the bank end
+GetBulkDMAInSetsDetails:
+; 1st word is the number of bytes to copy
+	sta BULK_DMA_NUM_BYTES                                                    ; $879e : $85, $00
 
-; get word from y+2 into 14 (dest addr)
-	iny                                                  ; $87a0 : $c8
-	iny                                                  ; $87a1 : $c8
-	lda ($10), Y                                                  ; $87a2 : $b1, $10
-	sta $14                                                  ; $87a4 : $85, $14
+; Next word is the vram dest addr
+	iny                                                                       ; $87a0 : $c8
+	iny                                                                       ; $87a1 : $c8
+	lda (BULK_DMA_DETAILS_SRC), Y                                             ; $87a2 : $b1, $10
+	sta BULK_DMA_VRAM_DEST                                                    ; $87a4 : $85, $14
 
-; get word from y+4 into 18
-	iny                                                  ; $87a6 : $c8
-	iny                                                  ; $87a7 : $c8
-	lda ($10), Y                                                  ; $87a8 : $b1, $10
-	sta $18                                                  ; $87aa : $85, $18
+; Next word is the src address
+	iny                                                                       ; $87a6 : $c8
+	iny                                                                       ; $87a7 : $c8
+	lda (BULK_DMA_DETAILS_SRC), Y                                             ; $87a8 : $b1, $10
+	sta BULK_DMA_SRC_ADDR                                                     ; $87aa : $85, $18
 
-; get word from y+6 into 1a
-	iny                                                  ; $87ac : $c8
-	iny                                                  ; $87ad : $c8
-	lda ($10), Y                                                  ; $87ae : $b1, $10
-	sta $1a                                                  ; $87b0 : $85, $1a
+; Next byte is the src bank
+	iny                                                                       ; $87ac : $c8
+	iny                                                                       ; $87ad : $c8
+	lda (BULK_DMA_DETAILS_SRC), Y                                             ; $87ae : $b1, $10
+	sta BULK_DMA_SRC_ADDR+2                                                   ; $87b0 : $85, $1a
 
-;
-	iny                                                  ; $87b2 : $c8
-	lda $18                                                  ; $87b3 : $a5, $18
-	adc $00                                                  ; $87b5 : $65, $00
-	bcc @clearCarry                                                  ; $87b7 : $90, $12
-	beq @clearCarry                                                  ; $87b9 : $f0, $10
+; Point to next 7 bytes
+	iny                                                                       ; $87b2 : $c8
 
-	sta $02                                                  ; $87bb : $85, $02
-	eor #$ffff.w                                                  ; $87bd : $49, $ff, $ff
-	adc $00                                                  ; $87c0 : $65, $00
-	sta $00                                                  ; $87c2 : $85. $00
-	lsr                                                  ; $87c4 : $4a
-	adc $14                                                  ; $87c5 : $65, $14
-	sta $1c                                                  ; $87c7 : $85, $1c
-	sec                                                  ; $87c9 : $38
-	rts                                                  ; $87ca : $60
+; Do src bank + num bytes, clearing carry if within the same bank
+	lda BULK_DMA_SRC_ADDR                                                     ; $87b3 : $a5, $18
+	adc BULK_DMA_NUM_BYTES                                                    ; $87b5 : $65, $00
+	bcc @clearCarry                                                           ; $87b7 : $90, $12
+	beq @clearCarry                                                           ; $87b9 : $f0, $10
+
+; Store the overflow (num bytes for next DMA struct)
+	sta BULK_DMA_NUM_BYTES_OVERFLOW                                           ; $87bb : $85, $02
+
+; Do $ffff-num bytes, then add onto prev num bytes, with carry
+; ie num bytes for 1st DMA struct is prev num bytes-overflow
+	eor #$ffff.w                                                              ; $87bd : $49, $ff, $ff
+	adc BULK_DMA_NUM_BYTES                                                    ; $87c0 : $65, $00
+	sta BULK_DMA_NUM_BYTES                                                    ; $87c2 : $85. $00
+
+; Dest addr is the word-idxed num bytes from 1st struct + prev dest address
+	lsr                                                                       ; $87c4 : $4a
+	adc BULK_DMA_VRAM_DEST                                                    ; $87c5 : $65, $14
+	sta BULK_DMA_VRAM_DEST_OVERFLOW                                           ; $87c7 : $85, $1c
+	sec                                                                       ; $87c9 : $38
+	rts                                                                       ; $87ca : $60
 
 @clearCarry:
-	clc                                                  ; $87cb : $18
-	rts                                                  ; $87cc : $60
+	clc                                                                       ; $87cb : $18
+	rts                                                                       ; $87cc : $60
 
 
 ;
@@ -1619,7 +1665,7 @@ Func_2_8874:
 Func_0_8879:
 	lda #$01.b                                                  ; $8879 : $a9, $01
 	jsr PauseCurrThreadWithADelayCounterOfA.w                                                  ; $887b : $20, $6e, $81
-	lda $ad                                                  ; $887e : $a5, $ad
+	lda wJoy1CurrBtnsPressed+1                                                  ; $887e : $a5, $ad
 	bit #$10.b                                                  ; $8880 : $89, $10
 	beq @done                                                  ; $8882 : $f0, $1d
 
@@ -2528,9 +2574,9 @@ br_00_8e86:
 	lda #$08.b                                                  ; $8ef3 : $a9, $08
 	sta $1f22.w                                                  ; $8ef5 : $8d, $22, $1f
 	lda #$04.b                                                  ; $8ef8 : $a9, $04
-	jsr Call_00_8691.w                                                  ; $8efa : $20, $91, $86
+	jsr CopySimpleSetsOfTiles.w                                                  ; $8efa : $20, $91, $86
 	lda #$10.b                                                  ; $8efd : $a9, $10
-	jsr Call_00_8691.w                                                  ; $8eff : $20, $91, $86
+	jsr CopySimpleSetsOfTiles.w                                                  ; $8eff : $20, $91, $86
 	jsr todo_ForceBlankOn.l                                                  ; $8f02 : $22, $51, $da, $04
 	jsr Call_00_9043.w                                                  ; $8f06 : $20, $43, $90
 	jsr Call_00_9050.w                                                  ; $8f09 : $20, $50, $90
@@ -2589,7 +2635,7 @@ br_00_8f52:
 	lda $3c                                                  ; $8f5b : $a5, $3c
 	clc                                                  ; $8f5d : $18
 	adc #$10.b                                                  ; $8f5e : $69, $10
-	jsr Call_00_8691.w                                                  ; $8f60 : $20, $91, $86
+	jsr CopySimpleSetsOfTiles.w                                                  ; $8f60 : $20, $91, $86
 	lda #$f0.b                                                  ; $8f63 : $a9, $f0
 	sta $3b                                                  ; $8f65 : $85, $3b
 	lda #$1c.b                                                  ; $8f67 : $a9, $1c
@@ -2756,7 +2802,7 @@ Call_00_9061:
 	ldy #$2e.b                                                  ; $9061 : $a0, $2e
 	jsr LoadPalettesFromGivenSpecToColour0.l                                                  ; $9063 : $22, $5b, $80, $01
 	ldy #$12.b                                                  ; $9067 : $a0, $12
-	jsr Call_00_873b.w                                                  ; $9069 : $20, $3b, $87
+	jsr LoadFromBulkDMASet.w                                                  ; $9069 : $20, $3b, $87
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $906c : $20, $62, $81
 	rts                                                  ; $906f : $60
 
@@ -3660,7 +3706,7 @@ br_00_9684:
 	bne br_00_9684                                                  ; $9695 : $d0, $ed
 
 	lda #$01.b                                                  ; $9697 : $a9, $01
-	jsr todo_PrintTextFromTable.l                                                  ; $9699 : $22, $8d, $86, $00
+	jsr FarCopySimpleSetsOfTiles.l                                                  ; $9699 : $22, $8d, $86, $00
 	jsr $00904c.l                                                  ; $969d : $22, $4c, $90, $00
 	lda #$13.b                                                  ; $96a1 : $a9, $13
 	sta wMainScreenDesignation.w                                                  ; $96a3 : $8d, $c1, $00
@@ -4752,7 +4798,7 @@ Jump_00_9e36:
 	lda #$b4.b                                                  ; $9e55 : $a9, $b4
 	sta $d6                                                  ; $9e57 : $85, $d6
 	lda #$03.b                                                  ; $9e59 : $a9, $03
-	jsr Call_00_8691.w                                                  ; $9e5b : $20, $91, $86
+	jsr CopySimpleSetsOfTiles.w                                                  ; $9e5b : $20, $91, $86
 	jmp Jump_00_861f.w                                                  ; $9e5e : $4c, $1f, $86
 
 
@@ -6541,7 +6587,7 @@ Call_00_aa7b:
 	clc                                                  ; $aabf : $18
 	adc #$3e.b                                                  ; $aac0 : $69, $3e
 	tay                                                  ; $aac2 : $a8
-	jsr Func_0_872f.l                                                  ; $aac3 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $aac3 : $22, $2f, $87, $00
 	pea wPlayerEntity.w                                                  ; $aac7 : $f4, $d8, $09
 	pld                                                  ; $aaca : $2b
 	lda #$01.b                                                  ; $aacb : $a9, $01
@@ -6889,7 +6935,7 @@ br_00_ad59:
 	bne br_00_ad72                                                  ; $ad59 : $d0, $17
 
 	lda #$40.b                                                  ; $ad5b : $a9, $40
-	sta $1f5e.w                                                  ; $ad5d : $8d, $5e, $1f
+	sta wTextTilesPriorityIf40h.w                                                  ; $ad5d : $8d, $5e, $1f
 	lda #$52.b                                                  ; $ad60 : $a9, $52
 	jsr AddTextThread.l                                                  ; $ad62 : $22, $7b, $e9, $00
 	lda #$01.b                                                  ; $ad66 : $a9, $01
@@ -7105,7 +7151,7 @@ br_00_aed8:
 	inc $d4                                                  ; $af0c : $e6, $d4
 	inc $d4                                                  ; $af0e : $e6, $d4
 	lda #$40.b                                                  ; $af10 : $a9, $40
-	sta $1f5e.w                                                  ; $af12 : $8d, $5e, $1f
+	sta wTextTilesPriorityIf40h.w                                                  ; $af12 : $8d, $5e, $1f
 	stz $de                                                  ; $af15 : $64, $de
 	lda #$92.b                                                  ; $af17 : $a9, $92
 	jsr AddTextThread.l                                                  ; $af19 : $22, $7b, $e9, $00
@@ -7207,7 +7253,7 @@ br_00_afa8:
 	inc $d4                                                  ; $afb4 : $e6, $d4
 	jsr Call_00_b1a9.w                                                  ; $afb6 : $20, $a9, $b1
 	lda #$40.b                                                  ; $afb9 : $a9, $40
-	sta $1f5e.w                                                  ; $afbb : $8d, $5e, $1f
+	sta wTextTilesPriorityIf40h.w                                                  ; $afbb : $8d, $5e, $1f
 	lda $df                                                  ; $afbe : $a5, $df
 	ora #$80.b                                                  ; $afc0 : $09, $80
 	jsr AddTextThread.l                                                  ; $afc2 : $22, $7b, $e9, $00
@@ -7406,21 +7452,21 @@ br_00_b0e7:
 	lda ($1c), Y                                                  ; $b0e9 : $b1, $1c
 	lda ($a9), Y                                                  ; $b0eb : $b1, $a9
 	pha                                                  ; $b0ed : $48
-	jsr Call_00_8691.w                                                  ; $b0ee : $20, $91, $86
+	jsr CopySimpleSetsOfTiles.w                                                  ; $b0ee : $20, $91, $86
 	lda #$02.b                                                  ; $b0f1 : $a9, $02
 	sta $d5                                                  ; $b0f3 : $85, $d5
 	rts                                                  ; $b0f5 : $60
 
 
 	lda #$49.b                                                  ; $b0f6 : $a9, $49
-	jsr Call_00_8691.w                                                  ; $b0f8 : $20, $91, $86
+	jsr CopySimpleSetsOfTiles.w                                                  ; $b0f8 : $20, $91, $86
 	lda #$04.b                                                  ; $b0fb : $a9, $04
 	sta $d5                                                  ; $b0fd : $85, $d5
 	rts                                                  ; $b0ff : $60
 
 
 	lda #$4a.b                                                  ; $b100 : $a9, $4a
-	jsr Call_00_8691.w                                                  ; $b102 : $20, $91, $86
+	jsr CopySimpleSetsOfTiles.w                                                  ; $b102 : $20, $91, $86
 	stz $1f55.w                                                  ; $b105 : $9c, $55, $1f
 	lda #$4b.b                                                  ; $b108 : $a9, $4b
 	sta $1f56.w                                                  ; $b10a : $8d, $56, $1f
@@ -8076,7 +8122,7 @@ todo_DecompressAndDmaData:
 
 ;
 	ldy #$00.b                                                  ; $b483 : $a0, $00
-	ldx $a4                                                  ; $b485 : $a6, $a4
+	ldx wBulkDmaStructOffsetToFill                                                  ; $b485 : $a6, $a4
 
 @loop_b487:
 ; stop when ff read
@@ -8169,7 +8215,7 @@ todo_DecompressAndDmaData:
 
 @done:
 	sep #ACCU_8                                                  ; $b4fa : $e2, $20
-	stx $a4                                                  ; $b4fc : $86, $a4
+	stx wBulkDmaStructOffsetToFill                                                  ; $b4fc : $86, $a4
 	rts                                                  ; $b4fe : $60
 
 
@@ -8204,7 +8250,7 @@ Call_00_b503:
 	lda Data_6_f3c3.w, Y                                                  ; $b524 : $b9, $c3, $f3
 	sta $f3                                                  ; $b527 : $85, $f3
 	ldy #$00.b                                                  ; $b529 : $a0, $00
-	ldx $a4                                                  ; $b52b : $a6, $a4
+	ldx wBulkDmaStructOffsetToFill                                                  ; $b52b : $a6, $a4
 
 br_00_b52d:
 	lda ($f3), Y                                                  ; $b52d : $b1, $f3
@@ -8274,7 +8320,7 @@ br_00_b55d:
 
 br_00_b59e:
 	sep #ACCU_8                                                  ; $b59e : $e2, $20
-	stx $a4                                                  ; $b5a0 : $86, $a4
+	stx wBulkDmaStructOffsetToFill                                                  ; $b5a0 : $86, $a4
 	jmp StopCurrThreadProcessNexts.w                                                  ; $b5a2 : $4c, $5a, $81
 
 
@@ -8341,7 +8387,7 @@ br_00_b5f7:
 	bra br_00_b5f7                                                  ; $b605 : $80, $f0
 
 br_00_b607:
-	ldy $a4                                                  ; $b607 : $a4, $a4
+	ldy wBulkDmaStructOffsetToFill                                                  ; $b607 : $a4, $a4
 	lda #$0080.w                                                  ; $b609 : $a9, $80, $00
 	sta $0500.w, Y                                                  ; $b60c : $99, $00, $05
 	lda $58                                                  ; $b60f : $a5, $58
@@ -8380,7 +8426,7 @@ br_00_b626:
 	tya                                                  ; $b64d : $98
 	clc                                                  ; $b64e : $18
 	adc #$08.b                                                  ; $b64f : $69, $08
-	sta $a4                                                  ; $b651 : $85, $a4
+	sta wBulkDmaStructOffsetToFill                                                  ; $b651 : $85, $a4
 	rep #ACCU_8                                                  ; $b653 : $c2, $20
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $b655 : $20, $62, $81
 	lda $58                                                  ; $b658 : $a5, $58
@@ -10324,7 +10370,7 @@ br_00_c175:
 	adc #$37.b                                                  ; $c197 : $69, $37
 	pea $0000.w                                                  ; $c199 : $f4, $00, $00
 	pld                                                  ; $c19c : $2b
-	jsr Call_00_8691.w                                                  ; $c19d : $20, $91, $86
+	jsr CopySimpleSetsOfTiles.w                                                  ; $c19d : $20, $91, $86
 	ldy #$36.b                                                  ; $c1a0 : $a0, $36
 	jsr todo_DecompressAndDmaData.w                                                  ; $c1a2 : $20, $7a, $b4
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $c1a5 : $20, $62, $81
@@ -11086,7 +11132,7 @@ Jump_00_c5ce:
 	tay                                                  ; $c683 : $a8
 	lda $9f8f.w, Y                                                  ; $c684 : $b9, $8f, $9f
 	tay                                                  ; $c687 : $a8
-	jsr Func_0_872f.l                                                  ; $c688 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $c688 : $22, $2f, $87, $00
 	stz $1819.w                                                  ; $c68c : $9c, $19, $18
 	stz $1839.w                                                  ; $c68f : $9c, $39, $18
 	stz $1859.w                                                  ; $c692 : $9c, $59, $18
@@ -11993,7 +12039,7 @@ br_00_cc13:
 	jsr LoadPalettesFromGivenSpecToColour0.l                                                  ; $cc41 : $22, $5b, $80, $01
 	sep #ACCU_8|IDX_8                                                  ; $cc45 : $e2, $30
 	ldy #$92.b                                                  ; $cc47 : $a0, $92
-	jsr Call_00_873b.w                                                  ; $cc49 : $20, $3b, $87
+	jsr LoadFromBulkDMASet.w                                                  ; $cc49 : $20, $3b, $87
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $cc4c : $20, $62, $81
 	lda #$80.b                                                  ; $cc4f : $a9, $80
 	sta INIDISP.w                                                  ; $cc51 : $8d, $00, $21
@@ -12040,7 +12086,7 @@ br_00_cca4:
 	bne br_00_cca4                                                  ; $cca9 : $d0, $f9
 
 	ldy #$00.b                                                  ; $ccab : $a0, $00
-	jsr Call_00_873b.w                                                  ; $ccad : $20, $3b, $87
+	jsr LoadFromBulkDMASet.w                                                  ; $ccad : $20, $3b, $87
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $ccb0 : $20, $62, $81
 	lda wStageIdx.w                                                  ; $ccb3 : $ad, $ae, $1f
 	asl                                                  ; $ccb6 : $0a
@@ -12078,9 +12124,9 @@ br_00_cccd:
 
 br_00_ccf0:
 	ldy #$a2.b                                                  ; $ccf0 : $a0, $a2
-	jsr Call_00_873b.w                                                  ; $ccf2 : $20, $3b, $87
+	jsr LoadFromBulkDMASet.w                                                  ; $ccf2 : $20, $3b, $87
 	ldy #$a4.b                                                  ; $ccf5 : $a0, $a4
-	jsr Call_00_873b.w                                                  ; $ccf7 : $20, $3b, $87
+	jsr LoadFromBulkDMASet.w                                                  ; $ccf7 : $20, $3b, $87
 	bra br_00_cd13                                                  ; $ccfa : $80, $17
 
 br_00_ccfc:
@@ -16355,33 +16401,38 @@ Call_00_e601:
 	rts                                                  ; $e623 : $60
 
 
-todo_HandleTextThread:
+HandleTextThread:
+;
 	sep #ACCU_8|IDX_8                                                  ; $e624 : $e2, $30
 	jsr Call_00_e965.w                                                  ; $e626 : $20, $65, $e9
+
+;
 	lda wCurrTextIdx.w                                                  ; $e629 : $ad, $46, $1f
 	bmi +                                                  ; $e62c : $30, $05
 
 	ldy #$0e.b                                                  ; $e62e : $a0, $0e
-	jsr Call_00_873b.w                                                  ; $e630 : $20, $3b, $87
+	jsr LoadFromBulkDMASet.w                                                  ; $e630 : $20, $3b, $87
 
 +	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e633 : $20, $62, $81
 	lda #$04.b                                                  ; $e636 : $a9, $04
-	tsb $c1                                                  ; $e638 : $04, $c1
+	tsb wMainScreenDesignation                                                  ; $e638 : $04, $c1
 	lda #$0a.b                                                  ; $e63a : $a9, $0a
-	sta $ce                                                  ; $e63c : $85, $ce
+	sta wBG3SC                                                  ; $e63c : $85, $ce
 
-; text idx
-	lda wCurrTextIdx.w                                                  ; $e63e : $ad, $46, $1f
-	and #$7f.b                                                  ; $e641 : $29, $7f
-	asl                                                  ; $e643 : $0a
-	tax                                                  ; $e644 : $aa
-	rep #ACCU_8                                                  ; $e645 : $c2, $20
-	lda Data_39_c1bc.l, X                                                  ; $e647 : $bf, $bc, $c1, $39
-	sta wTextByteSrcAddr                                                 ; $e64b : $85, $68
+; Set text src addr based on text double-idxed into table
+	lda wCurrTextIdx.w                                                        ; $e63e : $ad, $46, $1f
+	and #$7f.b                                                                ; $e641 : $29, $7f
+	asl                                                                       ; $e643 : $0a
+	tax                                                                       ; $e644 : $aa
+	rep #ACCU_8                                                               ; $e645 : $c2, $20
+	lda TextsData.l, X                                                        ; $e647 : $bf, $bc, $c1, $39
+	sta wTextByteSrcAddr                                                      ; $e64b : $85, $68
+
+; Clear column offset, and attr (palette)
+	stz wTextColOffset                                                        ; $e64d : $64, $6c
+	stz wTextCurrTileAttr                                                     ; $e64f : $64, $6e
 
 ;
-	stz $6c                                                  ; $e64d : $64, $6c
-	stz $6e                                                  ; $e64f : $64, $6e
 	lda $1f75.w                                                  ; $e651 : $ad, $75, $1f
 	bne @cont_e65d                                                  ; $e654 : $d0, $07
 
@@ -16393,71 +16444,89 @@ todo_HandleTextThread:
 	sep #ACCU_8                                                  ; $e65d : $e2, $20
 	stz $1f50.w                                                  ; $e65f : $9c, $50, $1f
 	stz $1f51.w                                                  ; $e662 : $9c, $51, $1f
-	inc $6f                                                  ; $e665 : $e6, $6f
+	inc wTextFramesWaitPerChar                                                  ; $e665 : $e6, $6f
 	ldy #$00.b                                                  ; $e667 : $a0, $00
 	lda $1f47.w                                                  ; $e669 : $ad, $47, $1f
 	sta $1f4a.w                                                  ; $e66c : $8d, $4a, $1f
 
-Func_0_e66f:
-; jump if bit 7 clear on text byte
-	jsr todo_GetTextByte.w                                                  ; $e66f : $20, $21, $e9
-	bit #$80.b                                                  ; $e672 : $89, $80
-	beq Func_0_e679                                                  ; $e674 : $f0, $03
+HandleNextTextByte:
+; If bit 7 set, it's a special text byte
+	jsr GetTextByte.w                                                         ; $e66f : $20, $21, $e9
+	bit #$80.b                                                                ; $e672 : $89, $80
+	beq HandleNoSpecialTextByte                                               ; $e674 : $f0, $03
 
-	jmp Func_0_e737.w                                                  ; $e676 : $4c, $37, $e7
+	jmp HandleSpecialTextByte.w                                               ; $e676 : $4c, $37, $e7
 
-Func_0_e679:
-+	ldx $a5                                                  ; $e679 : $a6, $a5
-	sta $0604.w, X                                                  ; $e67b : $9d, $04, $06
-	lda $6e                                                  ; $e67e : $a5, $6e
-	sta $0605.w, X                                                  ; $e680 : $9d, $05, $06
-	lda #$80.b                                                  ; $e683 : $a9, $80
-	sta $0600.w, X                                                  ; $e685 : $9d, $00, $06
-	rep #ACCU_8|F_CARRY                                                  ; $e688 : $c2, $21
-	lda $6a                                                  ; $e68a : $a5, $6a
-	adc $6c                                                  ; $e68c : $65, $6c
-	clc                                                  ; $e68e : $18
-	adc #$0020.w                                                  ; $e68f : $69, $20, $00
-	and #$07ff.w                                                  ; $e692 : $29, $ff, $07
-	ora #$0800.w                                                  ; $e695 : $09, $00, $08
-	sta $0601.w, X                                                  ; $e698 : $9d, $01, $06
-	inc $6c                                                  ; $e69b : $e6, $6c
-	sep #ACCU_8                                                  ; $e69d : $e2, $20
-	lda #$02.b                                                  ; $e69f : $a9, $02
-	sta $0603.w, X                                                  ; $e6a1 : $9d, $03, $06
-	txa                                                  ; $e6a4 : $8a
-	clc                                                  ; $e6a5 : $18
-	adc #$06.b                                                  ; $e6a6 : $69, $06
-	sta $a5                                                  ; $e6a8 : $85, $a5
+; A - text byte to print
+HandleNoSpecialTextByte:
+; Popular text byte tile+attr in mini DMA struct
++	ldx wMiniDmaStructOffsetToFill                                            ; $e679 : $a6, $a5
+	sta wMiniDmaStructs.data.w, X                                             ; $e67b : $9d, $04, $06
+	lda wTextCurrTileAttr                                                     ; $e67e : $a5, $6e
+	sta wMiniDmaStructs.data.w+1, X                                           ; $e680 : $9d, $05, $06
+
+; Set standard vmain, copying across
+	lda #VMAIN_INC_AFTER_2ND_BYTE.b                                           ; $e683 : $a9, $80
+	sta wMiniDmaStructs.vmain.w, X                                            ; $e685 : $9d, $00, $06
+
+; Vram addr is based on row start, col offset, and +2 rows from top
+	rep #ACCU_8|F_CARRY                                                       ; $e688 : $c2, $21
+	lda wTextRowVramAddr                                                      ; $e68a : $a5, $6a
+	adc wTextColOffset                                                        ; $e68c : $65, $6c
+	clc                                                                       ; $e68e : $18
+	adc #NUM_TILES_PER_ROW.w                                                  ; $e68f : $69, $20, $00
+	and #BG3_VRAM_SIZE.w-1                                                    ; $e692 : $29, $ff, $07
+	ora #BG3_VRAM_START.w                                                     ; $e695 : $09, $00, $08
+	sta wMiniDmaStructs.vramAddr.w, X                                         ; $e698 : $9d, $01, $06
+
+; Go to next col
+	inc wTextColOffset                                                        ; $e69b : $e6, $6c
+	sep #ACCU_8                                                               ; $e69d : $e2, $20
+
+; Set to DMA the tile+attr bytes
+	lda #$02.b                                                                ; $e69f : $a9, $02
+	sta wMiniDmaStructs.numBytes.w, X                                         ; $e6a1 : $9d, $03, $06
+
+; Skip past the vmain, addr, numbytes, and tile+attr above
+	txa                                                                       ; $e6a4 : $8a
+	clc                                                                       ; $e6a5 : $18
+	adc #$06.b                                                                ; $e6a6 : $69, $06
+	sta wMiniDmaStructOffsetToFill                                            ; $e6a8 : $85, $a5
+
+; if this thing set...
 	lda $1f49.w                                                  ; $e6aa : $ad, $49, $1f
 	beq @cont_e6e7                                                  ; $e6ad : $f0, $38
 
-	ldx $a5                                                  ; $e6af : $a6, $a5
-	lda $05fe.w, X                                                  ; $e6b1 : $bd, $fe, $05
+; and prev tile was not a space
+	ldx wMiniDmaStructOffsetToFill                                                 ; $e6af : $a6, $a5
+	lda wMiniDmaStructs.data.w-6, X                                                  ; $e6b1 : $bd, $fe, $05
 	cmp #$20.b                                                  ; $e6b4 : $c9, $20
 	beq @cont_e6e7                                                  ; $e6b6 : $f0, $2f
 
+;
 	lda #$2b.b                                                  ; $e6b8 : $a9, $2b
-	sta $0604.w, X                                                  ; $e6ba : $9d, $04, $06
-	lda $6e                                                  ; $e6bd : $a5, $6e
-	sta $0605.w, X                                                  ; $e6bf : $9d, $05, $06
-	lda #$80.b                                                  ; $e6c2 : $a9, $80
-	sta $0600.w, X                                                  ; $e6c4 : $9d, $00, $06
+	sta wMiniDmaStructs.data.w, X                                                  ; $e6ba : $9d, $04, $06
+	lda wTextCurrTileAttr                                                  ; $e6bd : $a5, $6e
+	sta wMiniDmaStructs.data.w+1, X                                                  ; $e6bf : $9d, $05, $06
+
+;
+	lda #VMAIN_INC_AFTER_2ND_BYTE.b                                                  ; $e6c2 : $a9, $80
+	sta wMiniDmaStructs.vmain.w, X                                                  ; $e6c4 : $9d, $00, $06
 	rep #ACCU_8|F_CARRY                                                  ; $e6c7 : $c2, $21
-	lda $6a                                                  ; $e6c9 : $a5, $6a
-	adc $6c                                                  ; $e6cb : $65, $6c
+	lda wTextRowVramAddr                                                   ; $e6c9 : $a5, $6a
+	adc wTextColOffset                                                   ; $e6cb : $65, $6c
 	clc                                                  ; $e6cd : $18
-	adc #$0020.w                                                  ; $e6ce : $69, $20, $00
-	and #$07ff.w                                                  ; $e6d1 : $29, $ff, $07
-	ora #$0800.w                                                  ; $e6d4 : $09, $00, $08
-	sta $0601.w, X                                                  ; $e6d7 : $9d, $01, $06
+	adc #NUM_TILES_PER_ROW.w                                                  ; $e6ce : $69, $20, $00
+	and #BG3_VRAM_SIZE.w-1                                                  ; $e6d1 : $29, $ff, $07
+	ora #BG3_VRAM_START.w                                                  ; $e6d4 : $09, $00, $08
+	sta wMiniDmaStructs.vramAddr.w, X                                                  ; $e6d7 : $9d, $01, $06
 	sep #ACCU_8                                                  ; $e6da : $e2, $20
 	lda #$02.b                                                  ; $e6dc : $a9, $02
-	sta $0603.w, X                                                  ; $e6de : $9d, $03, $06
+	sta wMiniDmaStructs.numBytes.w, X                                                  ; $e6de : $9d, $03, $06
 	txa                                                  ; $e6e1 : $8a
 	clc                                                  ; $e6e2 : $18
 	adc #$06.b                                                  ; $e6e3 : $69, $06
-	sta $a5                                                  ; $e6e5 : $85, $a5
+	sta wMiniDmaStructOffsetToFill                                                  ; $e6e5 : $85, $a5
 
 @cont_e6e7:
 	lda $1f4a.w                                                  ; $e6e7 : $ad, $4a, $1f
@@ -16466,10 +16535,10 @@ Func_0_e679:
 	dec $1f4a.w                                                  ; $e6ec : $ce, $4a, $1f
 	beq @br_e6f4                                                  ; $e6ef : $f0, $03
 
-	jmp Func_0_e66f.w                                                  ; $e6f1 : $4c, $6f, $e6
+	jmp HandleNextTextByte.w                                                  ; $e6f1 : $4c, $6f, $e6
 
 @br_e6f4:
-	ldx $6f                                                  ; $e6f4 : $a6, $6f
+	ldx wTextFramesWaitPerChar                                                  ; $e6f4 : $a6, $6f
 	beq @cont_e725                                                  ; $e6f6 : $f0, $2d
 
 	cpx #$01.b                                                  ; $e6f8 : $e0, $01
@@ -16495,7 +16564,7 @@ Func_0_e679:
 	ply                                                  ; $e717 : $7a
 
 @cont_e718:
-	ldx $6f                                                  ; $e718 : $a6, $6f
+	ldx wTextFramesWaitPerChar                                                  ; $e718 : $a6, $6f
 	jsr CheckIfNonDirButtonHeld.w                                                  ; $e71a : $20, $72, $e9
 	beq +                                                  ; $e71d : $f0, $02
 	ldx #$01.b                                                  ; $e71f : $a2, $01
@@ -16509,90 +16578,102 @@ Func_0_e679:
 	beq +                                                  ; $e72d : $f0, $02
 	ldx #$08.b                                                  ; $e72f : $a2, $08
 +	stx $1f4a.w                                                  ; $e731 : $8e, $4a, $1f
-	jmp Func_0_e66f.w                                                  ; $e734 : $4c, $6f, $e6
+	jmp HandleNextTextByte.w                                                  ; $e734 : $4c, $6f, $e6
 
 
-Func_0_e737:
-; jump if bit 6 set on text byte
-	bit #$40.b                                                  ; $e737 : $89, $40
-	bne @br_e75c                                                  ; $e739 : $d0, $21
+HandleSpecialTextByte:
+; Jump if bit 6 also set on text byte ($cx)
+	bit #$40.b                                                                ; $e737 : $89, $40
+	bne @textByteCxh_SetPalette                                               ; $e739 : $d0, $21
 
-; else process special code
-	and #$0f.b                                                  ; $e73b : $29, $0f
-	asl                                                  ; $e73d : $0a
-	tax                                                  ; $e73e : $aa
-	jmp (@funcs.w, X)                                                  ; $e73f : $7c, $42, $e7
+; Else process special code
+	and #$0f.b                                                                ; $e73b : $29, $0f
+	asl                                                                       ; $e73d : $0a
+	tax                                                                       ; $e73e : $aa
+	jmp (@specialByteHandlers.w, X)                                           ; $e73f : $7c, $42, $e7
 
-@funcs:
-	.dw HandleTextByte80h
-	.dw HandleTextByte81h
+@specialByteHandlers:
+	.dw HandleTextByte80h_NextRow
+	.dw HandleTextByte81h_BtnPrompt
 	.dw HandleTextByte82h
-	.dw HandleTextByte83h
+	.dw HandleTextByte83h_AddToColOffset
 	.dw HandleTextByte84h
 	.dw HandleTextByte85h
 	.dw HandleTextByte86h
 	.dw HandleTextByte87h
-	.dw HandleTextByte88h
-	.dw HandleTextByte89h
+	.dw HandleTextByte88h_SetCharByteDelay
+	.dw HandleTextByte89h_SetVramAddr
 	.dw HandleTextByte8ah
 	.dw HandleTextByte8bh
-	.dw HandleTextByte8ch
+	.dw HandleTextByte8ch_DoNormalTextByte
 
-@br_e75c:
-	and #$0f.b                                                  ; $e75c : $29, $0f
-	asl                                                  ; $e75e : $0a
-	asl                                                  ; $e75f : $0a
-	and #$1c.b                                                  ; $e760 : $29, $1c
-	sta $6e                                                  ; $e762 : $85, $6e
-	lda $1f5e.w                                                  ; $e764 : $ad, $5e, $1f
-	and #$40.b                                                  ; $e767 : $29, $40
-	lsr                                                  ; $e769 : $4a
-	tsb $6e                                                  ; $e76a : $04, $6e
-	jmp Func_0_e66f.w                                                  ; $e76c : $4c, $6f, $e6
+@textByteCxh_SetPalette:
+; Low nybble is the 4-byte palette idx
+	and #$0f.b                                                                ; $e75c : $29, $0f
+	asl                                                                       ; $e75e : $0a
+	asl                                                                       ; $e75f : $0a
 
+; Up to 8 usable palettes, store the curr
+	and #$1c.b                                                                ; $e760 : $29, $1c
+	sta wTextCurrTileAttr                                                     ; $e762 : $85, $6e
 
-HandleTextByte80h:
-	rep #ACCU_8|F_CARRY                                                  ; $e76f : $c2, $21
-	lda $6a                                                  ; $e771 : $a5, $6a
-	adc #$0020.w                                                  ; $e773 : $69, $20, $00
-	and #$07ff.w                                                  ; $e776 : $29, $ff, $07
-	ora #$0800.w                                                  ; $e779 : $09, $00, $08
-	sta $6a                                                  ; $e77c : $85, $6a
-	stz $6c                                                  ; $e77e : $64, $6c
-	tya                                                  ; $e780 : $98
-	adc wTextByteSrcAddr                                                  ; $e781 : $65, $68
-	sta wTextByteSrcAddr                                                  ; $e783 : $85, $68
-	sep #ACCU_8                                                  ; $e785 : $e2, $20
-	ldy #$00.b                                                  ; $e787 : $a0, $00
-	jmp Func_0_e66f.w                                                  ; $e789 : $4c, $6f, $e6
+; Apply priority bit 5, then handle next text byte
+	lda wTextTilesPriorityIf40h.w                                             ; $e764 : $ad, $5e, $1f
+	and #$40.b                                                                ; $e767 : $29, $40
+	lsr                                                                       ; $e769 : $4a
+	tsb wTextCurrTileAttr                                                     ; $e76a : $04, $6e
+
+	jmp HandleNextTextByte.w                                                  ; $e76c : $4c, $6f, $e6
 
 
-HandleTextByte81h:
+HandleTextByte80h_NextRow:
+; Go to next row
+	rep #ACCU_8|F_CARRY                                                       ; $e76f : $c2, $21
+	lda wTextRowVramAddr                                                      ; $e771 : $a5, $6a
+	adc #NUM_TILES_PER_ROW.w                                                  ; $e773 : $69, $20, $00
+	and #BG3_VRAM_SIZE.w-1                                                    ; $e776 : $29, $ff, $07
+	ora #BG3_VRAM_START.w                                                     ; $e779 : $09, $00, $08
+	sta wTextRowVramAddr                                                      ; $e77c : $85, $6a
+
+; Reset col offset to start from beginning of next row
+	stz wTextColOffset                                                        ; $e77e : $64, $6c
+
+; Save text bytes src addr...
+	tya                                                                       ; $e780 : $98
+	adc wTextByteSrcAddr                                                      ; $e781 : $65, $68
+	sta wTextByteSrcAddr                                                      ; $e783 : $85, $68
+
+; So we can reset Y to 0, then handle next text byte
+	sep #ACCU_8                                                               ; $e785 : $e2, $20
+	ldy #$00.b                                                                ; $e787 : $a0, $00
+	jmp HandleNextTextByte.w                                                  ; $e789 : $4c, $6f, $e6
+
+
+HandleTextByte81h_BtnPrompt:
 	inc $1f51.w                                                  ; $e78c : $ee, $51, $1f
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e78f : $20, $62, $81
 
-br_00_e792:
+@inputCheckLoop:
 	jsr CheckIfNonDirButtonHeld.w                                                  ; $e792 : $20, $72, $e9
-	bne br_00_e7ab                                                  ; $e795 : $d0, $14
+	bne @cont_e7ab                                                  ; $e795 : $d0, $14
 
 	lda $09cc.w                                                  ; $e797 : $ad, $cc, $09
 	and #$10.b                                                  ; $e79a : $29, $10
-	beq br_00_e7a3                                                  ; $e79c : $f0, $05
+	beq @br_e7a3                                                  ; $e79c : $f0, $05
 
-	jsr Call_00_e930.w                                                  ; $e79e : $20, $30, $e9
-	bra br_00_e7a6                                                  ; $e7a1 : $80, $03
+	jsr DisplayArrowPromptTextChar.w                                                  ; $e79e : $20, $30, $e9
+	bra +                                                  ; $e7a1 : $80, $03
 
-br_00_e7a3:
-	jsr Call_00_e92a.w                                                  ; $e7a3 : $20, $2a, $e9
+@br_e7a3:
+	jsr DisplayEmptyTextChar.w                                                  ; $e7a3 : $20, $2a, $e9
 
-br_00_e7a6:
-	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e7a6 : $20, $62, $81
-	bra br_00_e792                                                  ; $e7a9 : $80, $e7
++	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e7a6 : $20, $62, $81
+	bra @inputCheckLoop                                                  ; $e7a9 : $80, $e7
 
-br_00_e7ab:
+@cont_e7ab:
 	stz $1f51.w                                                  ; $e7ab : $9c, $51, $1f
-	jsr Call_00_e92a.w                                                  ; $e7ae : $20, $2a, $e9
-	jmp Func_0_e66f.w                                                  ; $e7b1 : $4c, $6f, $e6
+	jsr DisplayEmptyTextChar.w                                                  ; $e7ae : $20, $2a, $e9
+	jmp HandleNextTextByte.w                                                  ; $e7b1 : $4c, $6f, $e6
 
 
 HandleTextByte82h:
@@ -16600,72 +16681,89 @@ HandleTextByte82h:
 	stz $1f50.w                                                  ; $e7b7 : $9c, $50, $1f
 	lda #$01.b                                                  ; $e7ba : $a9, $01
 	sta $1f51.w                                                  ; $e7bc : $8d, $51, $1f
-	stz $1f5e.w                                                  ; $e7bf : $9c, $5e, $1f
+	stz wTextTilesPriorityIf40h.w                                                  ; $e7bf : $9c, $5e, $1f
 	jmp StopCurrThreadProcessNexts.w                                                  ; $e7c2 : $4c, $5a, $81
 
 
-HandleTextByte83h:
-	lda #$00.b                                                  ; $e7c5 : $a9, $00
-	xba                                                  ; $e7c7 : $eb
-	jsr todo_GetTextByte.w                                                  ; $e7c8 : $20, $21, $e9
-	rep #ACCU_8|F_CARRY                                                  ; $e7cb : $c2, $21
-	adc $6c                                                  ; $e7cd : $65, $6c
-	sta $6c                                                  ; $e7cf : $85, $6c
-	sep #ACCU_8                                                  ; $e7d1 : $e2, $20
-	jmp Func_0_e66f.w                                                  ; $e7d3 : $4c, $6f, $e6
+HandleTextByte83h_AddToColOffset:
+; A = next text byte
+	lda #$00.b                                                                ; $e7c5 : $a9, $00
+	xba                                                                       ; $e7c7 : $eb
+	jsr GetTextByte.w                                                         ; $e7c8 : $20, $21, $e9
+
+; Add it to the curr col offset, then check next text byte
+	rep #ACCU_8|F_CARRY                                                       ; $e7cb : $c2, $21
+	adc wTextColOffset                                                        ; $e7cd : $65, $6c
+	sta wTextColOffset                                                        ; $e7cf : $85, $6c
+	sep #ACCU_8                                                               ; $e7d1 : $e2, $20
+
+	jmp HandleNextTextByte.w                                                  ; $e7d3 : $4c, $6f, $e6
 
 
 HandleTextByte84h:
 	lda #$49.b                                                  ; $e7d6 : $a9, $49
 	sta $00                                                  ; $e7d8 : $85, $00
-	bra br_00_e7e0                                                  ; $e7da : $80, $04
+	bra +                                                  ; $e7da : $80, $04
 
 
 HandleTextByte85h:
 	lda #$47.b                                                  ; $e7dc : $a9, $47
 	sta $00                                                  ; $e7de : $85, $00
 
-br_00_e7e0:
-	ldx $a5                                                  ; $e7e0 : $a6, $a5
-	lda #$81.b                                                  ; $e7e2 : $a9, $81
-	sta $0600.w, X                                                  ; $e7e4 : $9d, $00, $06
-	sta $0606.w, X                                                  ; $e7e7 : $9d, $06, $06
-	rep #ACCU_8|F_CARRY                                                  ; $e7ea : $c2, $21
-	lda $6a                                                  ; $e7ec : $a5, $6a
-	adc $6c                                                  ; $e7ee : $65, $6c
-	and #$07ff.w                                                  ; $e7f0 : $29, $ff, $07
-	ora #$0800.w                                                  ; $e7f3 : $09, $00, $08
-	sta $0601.w, X                                                  ; $e7f6 : $9d, $01, $06
-	clc                                                  ; $e7f9 : $18
-	adc #$0020.w                                                  ; $e7fa : $69, $20, $00
-	and #$07ff.w                                                  ; $e7fd : $29, $ff, $07
-	ora #$0800.w                                                  ; $e800 : $09, $00, $08
-	sta $0607.w, X                                                  ; $e803 : $9d, $07, $06
-	inc $6c                                                  ; $e806 : $e6, $6c
-	sep #ACCU_8                                                  ; $e808 : $e2, $20
-	lda #$02.b                                                  ; $e80a : $a9, $02
-	sta $0603.w, X                                                  ; $e80c : $9d, $03, $06
-	sta $0609.w, X                                                  ; $e80f : $9d, $09, $06
-	lda $00                                                  ; $e812 : $a5, $00
-	sta $0604.w, X                                                  ; $e814 : $9d, $04, $06
-	lda $6e                                                  ; $e817 : $a5, $6e
-	sta $0605.w, X                                                  ; $e819 : $9d, $05, $06
-	jsr todo_GetTextByte.w                                                  ; $e81c : $20, $21, $e9
-	sta $060a.w, X                                                  ; $e81f : $9d, $0a, $06
-	lda $6e                                                  ; $e822 : $a5, $6e
-	sta $060b.w, X                                                  ; $e824 : $9d, $0b, $06
-	txa                                                  ; $e827 : $8a
-	clc                                                  ; $e828 : $18
-	adc #$0c.b                                                  ; $e829 : $69, $0c
+; Copy downwards for 2 mini DMA structs (unnecessary, as it's 1 word copy each)
++	ldx wMiniDmaStructOffsetToFill                                            ; $e7e0 : $a6, $a5
+	lda #VMAIN_INC_AFTER_2ND_BYTE|VMAIN_INC_32.b                              ; $e7e2 : $a9, $81
+	sta wMiniDmaStructs.vmain.w, X                                            ; $e7e4 : $9d, $00, $06
+	sta wMiniDmaStructs.vmain.w+6, X                                          ; $e7e7 : $9d, $06, $06
 
-br_00_e82b:
-	sta $a5                                                  ; $e82b : $85, $a5
-	jmp Func_0_e66f.w                                                  ; $e82d : $4c, $6f, $e6
+; Set vram addr from row start and col
+	rep #ACCU_8|F_CARRY                                                       ; $e7ea : $c2, $21
+	lda wTextRowVramAddr                                                      ; $e7ec : $a5, $6a
+	adc wTextColOffset                                                        ; $e7ee : $65, $6c
+	and #BG3_VRAM_SIZE.w-1                                                    ; $e7f0 : $29, $ff, $07
+	ora #BG3_VRAM_START.w                                                     ; $e7f3 : $09, $00, $08
+	sta wMiniDmaStructs.vramAddr.w, X                                         ; $e7f6 : $9d, $01, $06
+
+; Set vram addr for 2nd DMA structs to be 2 rows below the 1st
+; (as num tiles is word-idxed)
+	clc                                                                       ; $e7f9 : $18
+	adc #NUM_TILES_PER_ROW.w                                                  ; $e7fa : $69, $20, $00
+	and #BG3_VRAM_SIZE.w-1                                                    ; $e7fd : $29, $ff, $07
+	ora #BG3_VRAM_START.w                                                     ; $e800 : $09, $00, $08
+	sta wMiniDmaStructs.vramAddr.w+6, X                                       ; $e803 : $9d, $07, $06
+
+; Next text byte will be displayed to the right
+	inc wTextColOffset                                                        ; $e806 : $e6, $6c
+	sep #ACCU_8                                                               ; $e808 : $e2, $20
+
+; 2 bytes (tile + attr) copied for each struct
+	lda #$02.b                                                                ; $e80a : $a9, $02
+	sta wMiniDmaStructs.numBytes.w, X                                         ; $e80c : $9d, $03, $06
+	sta wMiniDmaStructs.numBytes.w+6, X                                       ; $e80f : $9d, $09, $06
+
+; 1st row has tile idx from param
+	lda $00                                                  ; $e812 : $a5, $00
+	sta wMiniDmaStructs.data.w, X                                                  ; $e814 : $9d, $04, $06
+	lda wTextCurrTileAttr                                                  ; $e817 : $a5, $6e
+	sta wMiniDmaStructs.data.w+1, X                                                  ; $e819 : $9d, $05, $06
+
+; 2nd row has the next text byte
+	jsr GetTextByte.w                                                         ; $e81c : $20, $21, $e9
+	sta wMiniDmaStructs.data.w+6, X                                           ; $e81f : $9d, $0a, $06
+	lda wTextCurrTileAttr                                                     ; $e822 : $a5, $6e
+	sta wMiniDmaStructs.data.w+7, X                                           ; $e824 : $9d, $0b, $06
+
+; Skip past above 2 structs of 6 bytes each
+	txa                                                                       ; $e827 : $8a
+	clc                                                                       ; $e828 : $18
+	adc #$0c.b                                                                ; $e829 : $69, $0c
+	sta wMiniDmaStructOffsetToFill                                            ; $e82b : $85, $a5
+	jmp HandleNextTextByte.w                                                  ; $e82d : $4c, $6f, $e6
 
 
 HandleTextByte86h:
 	inc $1f51.w                                                  ; $e830 : $ee, $51, $1f
-	jsr todo_GetTextByte.w                                                  ; $e833 : $20, $21, $e9
+	jsr GetTextByte.w                                                  ; $e833 : $20, $21, $e9
 	sta $1f4e.w                                                  ; $e836 : $8d, $4e, $1f
 
 @loop_e839:
@@ -16696,7 +16794,7 @@ HandleTextByte86h:
 @br_e866:
 	lda wBG3VertScroll                                                  ; $e866 : $a5, $bf
 	sta $1f4c.w                                                  ; $e868 : $8d, $4c, $1f
-	ldx $a5                                                  ; $e86b : $a6, $a5
+	ldx wMiniDmaStructOffsetToFill                                                  ; $e86b : $a6, $a5
 	clc                                                  ; $e86d : $18
 	adc #$00e0.w                                                  ; $e86e : $69, $e0, $00
 	and #$fff8.w                                                  ; $e871 : $29, $f8, $ff
@@ -16726,7 +16824,7 @@ HandleTextByte86h:
 	pla                                                  ; $e8a1 : $68
 	clc                                                  ; $e8a2 : $18
 	adc #$44.b                                                  ; $e8a3 : $69, $44
-	sta $a5                                                  ; $e8a5 : $85, $a5
+	sta wMiniDmaStructOffsetToFill                                                  ; $e8a5 : $85, $a5
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e8a7 : $20, $62, $81
 	dec $1f4e.w                                                  ; $e8aa : $ce, $4e, $1f
 	bne @loop_e839                                                  ; $e8ad : $d0, $8a
@@ -16735,7 +16833,7 @@ HandleTextByte86h:
 	lda $1fb3.w                                                  ; $e8b2 : $ad, $b3, $1f
 	bne +                                                  ; $e8b5 : $d0, $03
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e8b7 : $20, $62, $81
-+	jmp Func_0_e66f.w                                                  ; $e8ba : $4c, $6f, $e6
++	jmp HandleNextTextByte.w                                                  ; $e8ba : $4c, $6f, $e6
 
 
 HandleTextByte87h:
@@ -16744,127 +16842,153 @@ HandleTextByte87h:
 	jsr CheckIfNonDirButtonHeld.w                                                  ; $e8c3 : $20, $72, $e9
 	beq br_00_e8cd                                                  ; $e8c6 : $f0, $05
 
-	jsr todo_GetTextByte.w                                                  ; $e8c8 : $20, $21, $e9
+	jsr GetTextByte.w                                                  ; $e8c8 : $20, $21, $e9
 	bra br_00_e8d3                                                  ; $e8cb : $80, $06
 
 br_00_e8cd:
-	jsr todo_GetTextByte.w                                                  ; $e8cd : $20, $21, $e9
+	jsr GetTextByte.w                                                  ; $e8cd : $20, $21, $e9
 	jsr PauseCurrThreadWithADelayCounterOfA.w                                                  ; $e8d0 : $20, $6e, $81
 
 br_00_e8d3:
 	stz $1f51.w                                                  ; $e8d3 : $9c, $51, $1f
 	lda $1f47.w                                                  ; $e8d6 : $ad, $47, $1f
 	sta $1f4a.w                                                  ; $e8d9 : $8d, $4a, $1f
-	jmp Func_0_e66f.w                                                  ; $e8dc : $4c, $6f, $e6
+	jmp HandleNextTextByte.w                                                  ; $e8dc : $4c, $6f, $e6
 
 
-HandleTextByte88h:
-	jsr todo_GetTextByte.w                                                  ; $e8df : $20, $21, $e9
-	sta $6f                                                  ; $e8e2 : $85, $6f
-	jmp Func_0_e66f.w                                                  ; $e8e4 : $4c, $6f, $e6
+HandleTextByte88h_SetCharByteDelay:
+; Next byte is the number of frames to wait after each char
+	jsr GetTextByte.w                                                         ; $e8df : $20, $21, $e9
+	sta wTextFramesWaitPerChar                                                ; $e8e2 : $85, $6f
+	jmp HandleNextTextByte.w                                                  ; $e8e4 : $4c, $6f, $e6
 
 
-HandleTextByte89h:
-	jsr todo_GetTextByte.w                                                  ; $e8e7 : $20, $21, $e9
-	sta $6a                                                  ; $e8ea : $85, $6a
-	jsr todo_GetTextByte.w                                                  ; $e8ec : $20, $21, $e9
-	sta $6b                                                  ; $e8ef : $85, $6b
-	rep #ACCU_8                                                  ; $e8f1 : $c2, $20
-	lda wBG3VertScroll                                                  ; $e8f3 : $a5, $bf
-	and #$01f8.w                                                  ; $e8f5 : $29, $f8, $01
-	asl                                                  ; $e8f8 : $0a
-	asl                                                  ; $e8f9 : $0a
-	clc                                                  ; $e8fa : $18
-	adc $6a                                                  ; $e8fb : $65, $6a
-	sta $6a                                                  ; $e8fd : $85, $6a
-	stz $6c                                                  ; $e8ff : $64, $6c
-	sep #ACCU_8                                                  ; $e901 : $e2, $20
-	jmp Func_0_e66f.w                                                  ; $e903 : $4c, $6f, $e6
+HandleTextByte89h_SetVramAddr:
+; Next word is the base vram addr
+	jsr GetTextByte.w                                                         ; $e8e7 : $20, $21, $e9
+	sta wTextRowVramAddr                                                      ; $e8ea : $85, $6a
+	jsr GetTextByte.w                                                         ; $e8ec : $20, $21, $e9
+	sta wTextRowVramAddr+1                                                    ; $e8ef : $85, $6b
+
+; Offset using BG3's vertical scroll, tile-snapped, (to make sure it's on-screen)
+	rep #ACCU_8                                                               ; $e8f1 : $c2, $20
+	lda wBG3VertScroll                                                        ; $e8f3 : $a5, $bf
+	and #$01f8.w                                                              ; $e8f5 : $29, $f8, $01
+	asl                                                                       ; $e8f8 : $0a
+	asl                                                                       ; $e8f9 : $0a
+	clc                                                                       ; $e8fa : $18
+	adc wTextRowVramAddr                                                      ; $e8fb : $65, $6a
+	sta wTextRowVramAddr                                                      ; $e8fd : $85, $6a
+
+; Start col off on 0, then handle next text byte
+	stz wTextColOffset                                                        ; $e8ff : $64, $6c
+	sep #ACCU_8                                                               ; $e901 : $e2, $20
+	jmp HandleNextTextByte.w                                                  ; $e903 : $4c, $6f, $e6
 
 
 HandleTextByte8ah:
 	inc $1f50.w                                                  ; $e906 : $ee, $50, $1f
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e909 : $20, $62, $81
-	jmp Func_0_e66f.w                                                  ; $e90c : $4c, $6f, $e6
+	jmp HandleNextTextByte.w                                                  ; $e90c : $4c, $6f, $e6
 
 
 HandleTextByte8bh:
-	jsr todo_GetTextByte.w                                                  ; $e90f : $20, $21, $e9
+	jsr GetTextByte.w                                                  ; $e90f : $20, $21, $e9
 	sta $1f50.w                                                  ; $e912 : $8d, $50, $1f
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e915 : $20, $62, $81
-	jmp Func_0_e66f.w                                                  ; $e918 : $4c, $6f, $e6
+	jmp HandleNextTextByte.w                                                  ; $e918 : $4c, $6f, $e6
 
 
-HandleTextByte8ch:
-	jsr todo_GetTextByte.w                                                  ; $e91b : $20, $21, $e9
-	jmp Func_0_e679.w                                                  ; $e91e : $4c, $79, $e6
+HandleTextByte8ch_DoNormalTextByte:
+; Next byte is handled like a non-special bit7-clear byte (eg if $80+)
+	jsr GetTextByte.w                                                         ; $e91b : $20, $21, $e9
+	jmp HandleNoSpecialTextByte.w                                             ; $e91e : $4c, $79, $e6
 
 
-todo_GetTextByte:
-	peaw DATA_BANK_TEXT, DATA_BANK_NORMAL                                                  ; $e921 : $f4, $39, $06
-	plb                                                  ; $e924 : $ab
-	lda (wTextByteSrcAddr), Y                                                  ; $e925 : $b1, $68
-	iny                                                  ; $e927 : $c8
-	plb                                                  ; $e928 : $ab
-	rts                                                  ; $e929 : $60
+; Y - offset in text bytes src
+; wTextByteSrcAddr - starting src addr for current text
+GetTextByte:
+; Get text byte in text data bank...
+	peaw DATA_BANK_TEXT, DATA_BANK_NORMAL                                     ; $e921 : $f4, $39, $06
+	plb                                                                       ; $e924 : $ab
+	lda (wTextByteSrcAddr), Y                                                 ; $e925 : $b1, $68
+	iny                                                                       ; $e927 : $c8
+
+; Then restore the normal data bank
+	plb                                                                       ; $e928 : $ab
+	rts                                                                       ; $e929 : $60
 
 
-Call_00_e92a:
-	lda #$00.b                                                  ; $e92a : $a9, $00
-	sta $00                                                  ; $e92c : $85, $00
-	bra br_00_e934                                                  ; $e92e : $80, $04
+TEXT_PROMPT_TILE_ATTR = $00 ; w
+DisplayEmptyTextChar:
+	lda #TEXT_TILE_EMPTY.b                                                    ; $e92a : $a9, $00
+	sta TEXT_PROMPT_TILE_ATTR                                                 ; $e92c : $85, $00
+	bra +                                                                     ; $e92e : $80, $04
 
-Call_00_e930:
-	lda #$25.b                                                  ; $e930 : $a9, $25
-	sta $00                                                  ; $e932 : $85, $00
+DisplayArrowPromptTextChar:
+	lda #TEXT_TILE_PROMPT.b                                                   ; $e930 : $a9, $25
+	sta TEXT_PROMPT_TILE_ATTR                                                 ; $e932 : $85, $00
 
-br_00_e934:
-	lda #$20.b                                                  ; $e934 : $a9, $20
-	sta $01                                                  ; $e936 : $85, $01
-	ldx $a5                                                  ; $e938 : $a6, $a5
-	lda #$80.b                                                  ; $e93a : $a9, $80
-	sta $0600.w, X                                                  ; $e93c : $9d, $00, $06
-	lda #$02.b                                                  ; $e93f : $a9, $02
-	sta $0603.w, X                                                  ; $e941 : $9d, $03, $06
-	rep #ACCU_8|F_CARRY                                                  ; $e944 : $c2, $21
-	lda $6a                                                  ; $e946 : $a5, $6a
-	adc $6c                                                  ; $e948 : $65, $6c
-	clc                                                  ; $e94a : $18
-	adc #$0020.w                                                  ; $e94b : $69, $20, $00
-	and #$07ff.w                                                  ; $e94e : $29, $ff, $07
-	ora #$0800.w                                                  ; $e951 : $09, $00, $08
-	sta $0601.w, X                                                  ; $e954 : $9d, $01, $06
-	lda $00                                                  ; $e957 : $a5, $00
-	sta $0604.w, X                                                  ; $e959 : $9d, $04, $06
-	sep #ACCU_8                                                  ; $e95c : $e2, $20
-	txa                                                  ; $e95e : $8a
-	clc                                                  ; $e95f : $18
-	adc #$06.b                                                  ; $e960 : $69, $06
-	sta $a5                                                  ; $e962 : $85, $a5
-	rts                                                  ; $e964 : $60
+; Use palette 0, with priority bit set
++	lda #BG_PRIORIY.b                                                         ; $e934 : $a9, $20
+	sta TEXT_PROMPT_TILE_ATTR+1                                               ; $e936 : $85, $01
+
+; Set standard vmain, and that we are copying 2 bytes (tile+attr)
+	ldx wMiniDmaStructOffsetToFill                                            ; $e938 : $a6, $a5
+
+	lda #VMAIN_INC_AFTER_2ND_BYTE.b                                           ; $e93a : $a9, $80
+	sta wMiniDmaStructs.vmain.w, X                                            ; $e93c : $9d, $00, $06
+	lda #$02.b                                                                ; $e93f : $a9, $02
+	sta wMiniDmaStructs.numBytes.w, X                                         ; $e941 : $9d, $03, $06
+
+; Set vram address based on row start, col offset,
+; and +2 rows from top of screen (as num tiles is word-idxed)
+	rep #ACCU_8|F_CARRY                                                       ; $e944 : $c2, $21
+	lda wTextRowVramAddr                                                      ; $e946 : $a5, $6a
+	adc wTextColOffset                                                        ; $e948 : $65, $6c
+	clc                                                                       ; $e94a : $18
+	adc #NUM_TILES_PER_ROW.w                                                  ; $e94b : $69, $20, $00
+	and #BG3_VRAM_SIZE.w-1                                                    ; $e94e : $29, $ff, $07
+	ora #BG3_VRAM_START.w                                                     ; $e951 : $09, $00, $08
+	sta wMiniDmaStructs.vramAddr.w, X                                         ; $e954 : $9d, $01, $06
+
+; Set word param as the byte
+	lda $00                                                                   ; $e957 : $a5, $00
+	sta wMiniDmaStructs.data.w, X                                             ; $e959 : $9d, $04, $06
+	sep #ACCU_8                                                               ; $e95c : $e2, $20
+
+; Skip past above vmain, vram address, num bytes, and tile+attr bytes
+	txa                                                                       ; $e95e : $8a
+	clc                                                                       ; $e95f : $18
+	adc #$06.b                                                                ; $e960 : $69, $06
+	sta wMiniDmaStructOffsetToFill                                            ; $e962 : $85, $a5
+	rts                                                                       ; $e964 : $60
 
 
 Call_00_e965:
-br_00_e965:
+@loop_e965:
 	lda $1f38.w                                                  ; $e965 : $ad, $38, $1f
 	cmp #$40.b                                                  ; $e968 : $c9, $40
-	bcc br_00_e971                                                  ; $e96a : $90, $05
+	bcc @done                                                  ; $e96a : $90, $05
 
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e96c : $20, $62, $81
-	bra br_00_e965                                                  ; $e96f : $80, $f4
+	bra @loop_e965                                                  ; $e96f : $80, $f4
 
-br_00_e971:
+@done:
 	rts                                                  ; $e971 : $60
 
 
+; Return zflag set if not holding:
+; dash-0-selL-selR or jump-shot-0-menu
 CheckIfNonDirButtonHeld:
-	lda wDashAndSelCurrBtnsHeld.w                                                  ; $e972 : $ad, $0e, $0a
-	ora wJumpShotMenuDirCurrBtnsHeld.w                                                  ; $e975 : $0d, $0f, $0a
-	and #$f0.b                                                  ; $e978 : $29, $f0
-	rts                                                  ; $e97a : $60
+	lda wDashAndSelCurrBtnsHeld.w                                             ; $e972 : $ad, $0e, $0a
+	ora wJumpShotMenuDirCurrBtnsHeld.w                                        ; $e975 : $0d, $0f, $0a
+	and #$f0.b                                                                ; $e978 : $29, $f0
+	rts                                                                       ; $e97a : $60
 
 
 ; A - text idx
+; todo: explain if above bit 7 set
 AddTextThread:
 	phx                                                  ; $e97b : $da
 	phy                                                  ; $e97c : $5a
@@ -16882,8 +17006,8 @@ AddTextThread:
 	lda #$0000.w                                                  ; $e996 : $a9, $00, $00
 	tcd                                                  ; $e999 : $5b
 	ldx #$30.b                                                  ; $e99a : $a2, $30
-	stx $0060.w                                                  ; $e99c : $8e, $60, $00
-	lda #todo_HandleTextThread.w                                                  ; $e99f : $a9, $24, $e6
+	stx wThread3.status.w                                                  ; $e99c : $8e, $60, $00
+	lda #HandleTextThread.w                                                  ; $e99f : $a9, $24, $e6
 	jsr SetThreadXsPCandStatusPending.w                                                  ; $e9a2 : $20, $a3, $81
 	pld                                                  ; $e9a5 : $2b
 	plp                                                  ; $e9a6 : $28
@@ -16914,7 +17038,7 @@ Call_00_e9aa:
 br_00_e9d9:
 	phx                                                  ; $e9d9 : $da
 	lda $b662.w, X                                                  ; $e9da : $bd, $62, $b6
-	jsr Call_00_8691.w                                                  ; $e9dd : $20, $91, $86
+	jsr CopySimpleSetsOfTiles.w                                                  ; $e9dd : $20, $91, $86
 	plx                                                  ; $e9e0 : $fa
 	dex                                                  ; $e9e1 : $ca
 	bpl br_00_e9d9                                                  ; $e9e2 : $10, $f5
@@ -16926,7 +17050,7 @@ br_00_e9d9:
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e9ef : $20, $62, $81
 	jsr Call_00_ecfc.w                                                  ; $e9f2 : $20, $fc, $ec
 	lda #$24.b                                                  ; $e9f5 : $a9, $24
-	jsr Call_00_8691.w                                                  ; $e9f7 : $20, $91, $86
+	jsr CopySimpleSetsOfTiles.w                                                  ; $e9f7 : $20, $91, $86
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e9fa : $20, $62, $81
 	ldy #$4e.b                                                  ; $e9fd : $a0, $4e
 	jsr todo_DecompressAndDmaData.w                                                  ; $e9ff : $20, $7a, $b4
@@ -16950,7 +17074,7 @@ br_00_ea27:
 	lda #$31.b                                                  ; $ea27 : $a9, $31
 
 br_00_ea29:
-	jsr Call_00_8691.w                                                  ; $ea29 : $20, $91, $86
+	jsr CopySimpleSetsOfTiles.w                                                  ; $ea29 : $20, $91, $86
 	jsr Call_00_861f.w                                                  ; $ea2c : $20, $1f, $86
 
 Jump_00_ea2f:
@@ -17022,7 +17146,7 @@ br_00_eaa2:
 	lda #$31.b                                                  ; $eaa2 : $a9, $31
 
 br_00_eaa4:
-	jsr Call_00_8691.w                                                  ; $eaa4 : $20, $91, $86
+	jsr CopySimpleSetsOfTiles.w                                                  ; $eaa4 : $20, $91, $86
 	lda $7eff80.l                                                  ; $eaa7 : $af, $80, $ff, $7e
 	tax                                                  ; $eaab : $aa
 	lda $b662.w, X                                                  ; $eaac : $bd, $62, $b6
@@ -17041,7 +17165,7 @@ br_00_eac0:
 	lda #$32.b                                                  ; $eac0 : $a9, $32
 
 br_00_eac2:
-	jsr Call_00_8691.w                                                  ; $eac2 : $20, $91, $86
+	jsr CopySimpleSetsOfTiles.w                                                  ; $eac2 : $20, $91, $86
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $eac5 : $20, $62, $81
 	jmp Jump_00_ea2f.w                                                  ; $eac8 : $4c, $2f, $ea
 
@@ -17180,7 +17304,7 @@ br_00_eb83:
 	beq br_00_eba5                                                  ; $eb89 : $f0, $1a
 
 	lda #$32.b                                                  ; $eb8b : $a9, $32
-	jsr Call_00_8691.w                                                  ; $eb8d : $20, $91, $86
+	jsr CopySimpleSetsOfTiles.w                                                  ; $eb8d : $20, $91, $86
 	jsr Call_00_8567.w                                                  ; $eb90 : $20, $67, $85
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $eb93 : $20, $62, $81
 	lda #$f7.b                                                  ; $eb96 : $a9, $f7
@@ -17192,7 +17316,7 @@ br_00_eb83:
 
 br_00_eba5:
 	lda #$34.b                                                  ; $eba5 : $a9, $34
-	jsr Call_00_8691.w                                                  ; $eba7 : $20, $91, $86
+	jsr CopySimpleSetsOfTiles.w                                                  ; $eba7 : $20, $91, $86
 	jsr Call_00_8567.w                                                  ; $ebaa : $20, $67, $85
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $ebad : $20, $62, $81
 	lda #$f8.b                                                  ; $ebb0 : $a9, $f8
@@ -17284,7 +17408,7 @@ br_00_ec4b:
 	adc $00                                                  ; $ec50 : $65, $00
 	asl                                                  ; $ec52 : $0a
 	tay                                                  ; $ec53 : $a8
-	ldx $a5                                                  ; $ec54 : $a6, $a5
+	ldx wMiniDmaStructOffsetToFill                                                  ; $ec54 : $a6, $a5
 	lda #$90.b                                                  ; $ec56 : $a9, $90
 	sta $0600.w, X                                                  ; $ec58 : $9d, $00, $06
 	lda $10                                                  ; $ec5b : $a5, $10
@@ -17312,10 +17436,10 @@ br_00_ec4b:
 	sta $060b.w, X                                                  ; $ec99 : $9d, $0b, $06
 	sta $060d.w, X                                                  ; $ec9c : $9d, $0d, $06
 	sta $060f.w, X                                                  ; $ec9f : $9d, $0f, $06
-	lda $a5                                                  ; $eca2 : $a5, $a5
+	lda wMiniDmaStructOffsetToFill                                                  ; $eca2 : $a5, $a5
 	clc                                                  ; $eca4 : $18
 	adc #$10.b                                                  ; $eca5 : $69, $10
-	sta $a5                                                  ; $eca7 : $85, $a5
+	sta wMiniDmaStructOffsetToFill                                                  ; $eca7 : $85, $a5
 	rts                                                  ; $eca9 : $60
 
 
@@ -17422,7 +17546,7 @@ Jump_00_ed2f:
 br_00_ed33:
 	pha                                                  ; $ed33 : $48
 	phx                                                  ; $ed34 : $da
-	jsr Call_00_8691.w                                                  ; $ed35 : $20, $91, $86
+	jsr CopySimpleSetsOfTiles.w                                                  ; $ed35 : $20, $91, $86
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $ed38 : $20, $62, $81
 	plx                                                  ; $ed3b : $fa
 	pla                                                  ; $ed3c : $68

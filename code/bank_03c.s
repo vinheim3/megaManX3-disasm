@@ -10562,7 +10562,7 @@ br_3c_bf22:
 	sta $0882.w                                                  ; $bf80 : $8d, $82, $08
 	sta $0883.w                                                  ; $bf83 : $8d, $83, $08
 	ldy #$a2.b                                                  ; $bf86 : $a0, $a2
-	jsr Func_0_872f.l                                                  ; $bf88 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $bf88 : $22, $2f, $87, $00
 	lda #$09.b                                                  ; $bf8c : $a9, $09
 	sta wBGMode.w                                                  ; $bf8e : $8d, $cf, $00
 	lda #$09.b                                                  ; $bf91 : $a9, $09
@@ -10586,7 +10586,7 @@ br_3c_bf22:
 	bne br_3c_bfbe                                                  ; $bfb2 : $d0, $0a
 
 	ldy #$a4.b                                                  ; $bfb4 : $a0, $a4
-	jsr Func_0_872f.l                                                  ; $bfb6 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $bfb6 : $22, $2f, $87, $00
 	lda #$06.b                                                  ; $bfba : $a9, $06
 	sta $02                                                  ; $bfbc : $85, $02
 

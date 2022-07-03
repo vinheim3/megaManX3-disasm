@@ -1198,7 +1198,7 @@ Call_01_872c:
 	adc #$13.b                                                  ; $874d : $69, $13
 	asl                                                  ; $874f : $0a
 	tay                                                  ; $8750 : $a8
-	jsr Func_0_872f.l                                                  ; $8751 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $8751 : $22, $2f, $87, $00
 
 br_01_8755:
 	rts                                                  ; $8755 : $60
@@ -2484,7 +2484,7 @@ br_01_8f64:
 	sta $0008.w, X                                                  ; $8f8a : $9d, $08, $00
 	sep #IDX_8                                                  ; $8f8d : $e2, $10
 	ldy #$24.b                                                  ; $8f8f : $a0, $24
-	jsr Func_0_872f.l                                                  ; $8f91 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $8f91 : $22, $2f, $87, $00
 
 br_01_8f95:
 	sep #ACCU_8                                                  ; $8f95 : $e2, $20
@@ -5993,7 +5993,7 @@ br_01_a6c6:
 	lda #$01.b                                                  ; $a6f5 : $a9, $01
 	sta $38                                                  ; $a6f7 : $85, $38
 	ldy #$66.b                                                  ; $a6f9 : $a0, $66
-	jsr Func_0_872f.l                                                  ; $a6fb : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $a6fb : $22, $2f, $87, $00
 
 br_01_a6ff:
 	jmp Jump_01_a9cb.w                                                  ; $a6ff : $4c, $cb, $a9
@@ -6006,7 +6006,7 @@ br_01_a6ff:
 	clc                                                  ; $a707 : $18
 	adc #$62.b                                                  ; $a708 : $69, $62
 	tay                                                  ; $a70a : $a8
-	jsr Func_0_872f.l                                                  ; $a70b : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $a70b : $22, $2f, $87, $00
 	dec $38                                                  ; $a70f : $c6, $38
 	bpl br_01_a715                                                  ; $a711 : $10, $02
 
@@ -7626,7 +7626,7 @@ Call_01_b150:
 	lda #$48.b                                                  ; $b187 : $a9, $48
 	jsr Func_1_802b.l                                                  ; $b189 : $22, $2b, $80, $01
 	ldy #$3a.b                                                  ; $b18d : $a0, $3a
-	jsr Func_0_872f.l                                                  ; $b18f : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $b18f : $22, $2f, $87, $00
 	lda #$00.b                                                  ; $b193 : $a9, $00
 	jsr Call_01_b201.w                                                  ; $b195 : $20, $01, $b2
 	lda #$01.b                                                  ; $b198 : $a9, $01
@@ -9653,7 +9653,7 @@ br_01_bef3:
 	adc #$29.b                                                  ; $bf0d : $69, $29
 	asl                                                  ; $bf0f : $0a
 	tay                                                  ; $bf10 : $a8
-	jsr Func_0_872f.l                                                  ; $bf11 : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $bf11 : $22, $2f, $87, $00
 
 br_01_bf15:
 	sep #ACCU_8                                                  ; $bf15 : $e2, $20

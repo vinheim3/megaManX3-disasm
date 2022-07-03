@@ -8402,7 +8402,7 @@ br_07_b470:
 	sta $0882.w                                                  ; $b4d7 : $8d, $82, $08
 	sta $0883.w                                                  ; $b4da : $8d, $83, $08
 	ldy #$a2.b                                                  ; $b4dd : $a0, $a2
-	jsr Func_0_872f.l                                                  ; $b4df : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $b4df : $22, $2f, $87, $00
 	lda #$09.b                                                  ; $b4e3 : $a9, $09
 
 br_07_b4e5:
@@ -8425,7 +8425,7 @@ br_07_b4e5:
 
 
 	ldy #$a4.b                                                  ; $b508 : $a0, $a4
-	jsr Func_0_872f.l                                                  ; $b50a : $22, $2f, $87, $00
+	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $b50a : $22, $2f, $87, $00
 	lda #$06.b                                                  ; $b50e : $a9, $06
 	sta $02                                                  ; $b510 : $85, $02
 	rts                                                  ; $b512 : $60
