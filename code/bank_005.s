@@ -19503,7 +19503,7 @@ br_05_f6a7:
 br_05_f6ce:
 	tsc                                                  ; $f6ce : $3b
 	.db $00                                                  ; $f6cf : $00
-	bvs br_05_f6f2                                                  ; $f6d0 : $70, $20
+	bvs $20                                                  ; $f6d0 : $70, $20
 
 	cpx #$d3.b                                                  ; $f6d2 : $e0, $d3
 	tsc                                                  ; $f6d4 : $3b
@@ -19520,27 +19520,28 @@ br_05_f6ce:
 	jsr $3bd8.w                                                  ; $f6e4 : $20, $d8, $3b
 	.db $00                                                  ; $f6e7 : $00
 	sbc ($00), Y                                                  ; $f6e8 : $f1, $00
-	bpl br_05_f6ec                                                  ; $f6ea : $10, $00
-
-br_05_f6ec:
-	asl $00, X                                                  ; $f6ec : $16, $00
-	trb $2200.w                                                  ; $f6ee : $1c, $00, $22
-	.db $00                                                  ; $f6f1 : $00
-
-br_05_f6f2:
-	plp                                                  ; $f6f2 : $28
-	.db $00                                                  ; $f6f3 : $00
-	rol $3400.w                                                  ; $f6f4 : $2e, $00, $34
-	.db $00                                                  ; $f6f7 : $00
-	dea                                                  ; $f6f8 : $3a
-	.db $00                                                  ; $f6f9 : $00
-	rts                                                  ; $f6fa : $60
 
 
-	.db $00                                                  ; $f6fb : $00
-	ldy #$02.b                                                  ; $f6fc : $a0, $02
-	.db $00                                                  ; $f6fe : $00
-	inc $60                                                  ; $f6ff : $e6, $60
+Data_5_f6ea:
+	.dw Data_5_f6fa-Data_5_f6ea
+	.dw Data_5_f700-Data_5_f6ea
+	.dw $001c
+	.dw $0022
+	.dw $0028
+	.dw $002e
+	.dw $0034
+	.dw $003a
+
+
+Data_5_f6fa:
+	.db $60 ; this * $10 is dma len
+	.dl $02a000 ; dma src
+; bit 7 set so this is last dma (this without high bit is dest, ie 6600)
+	.dw $e600
+
+
+Data_5_f700:
+	.db $60
 	.db $00                                                  ; $f701 : $00
 
 br_05_f702:

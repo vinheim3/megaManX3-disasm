@@ -1338,7 +1338,7 @@ DynamicSpritesStage00Idx01:
 	.dw $0008
 	.db $40
 
-	.db $08
+	.db DECOMP_IDX_OAM_TILEDATA_CATERKILLER
 	.dw $1600
 	.dw $000a
 	.db $50
@@ -1393,17 +1393,17 @@ DynamicSpritesStage0eIdx0b:
 
 
 DynamicSpritesStage00Idx02:
-	.db $72
+	.db DECOMP_IDX_OAM_TILEDATA_MAC
 	.dw $1000
 	.dw $016c
 	.db $40
 
-	.db $49
+	.db DECOMP_IDX_OAM_TILEDATA_HANGERTER
 	.dw $1b00
 	.dw $00c2
 	.db $70
 
-	.db $45
+	.db DECOMP_IDX_OAM_TILEDATA_INTRO_STAGE_SCAFFOLD
 	.dw $1d00
 	.dw $009e
 	.db $60
@@ -1412,17 +1412,17 @@ DynamicSpritesStage00Idx02:
 
 
 DynamicSpritesStage00Idx03:
-	.db $28
+	.db DECOMP_IDX_OAM_TILEDATA_HEAD_GUNNER
 	.dw $1000
 	.dw $0086
 	.db $40
 
-	.db $05
+	.db DECOMP_IDX_OAM_TILEDATA_EARTH_COMMANDER
 	.dw $1600
 	.dw $0020
 	.db $50
 
-	.db $45
+	.db DECOMP_IDX_OAM_TILEDATA_INTRO_STAGE_SCAFFOLD
 	.dw $1d00
 	.dw $009e
 	.db $60
@@ -1431,27 +1431,27 @@ DynamicSpritesStage00Idx03:
 
 
 DynamicSpritesStage00Idx04:
-	.db $31
+	.db DECOMP_IDX_OAM_TILEDATA_SPIKY_BALL
 	.dw $1500
 	.dw $0092
 	.db $50
 
-	.db $47
+	.db DECOMP_IDX_OAM_TILEDATA_GLASS_SHARDS
 	.dw $1800
 	.dw $0092
 	.db $50
 
-	.db $8a
+	.db DECOMP_IDX_OAM_TILEDATA_GANSEKI_CARRIER
 	.dw $1a00
 	.dw $016e
 	.db $60
 
-	.db $49
+	.db DECOMP_IDX_OAM_TILEDATA_HANGERTER
 	.dw $1000
 	.dw $00c2
 	.db $40
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -1460,7 +1460,7 @@ DynamicSpritesStage00Idx04:
 
 
 DynamicSpritesStage00Idx05:
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -1477,7 +1477,7 @@ DynamicSpritesStage00Idx09:
 	.dw $00c0
 	.db $40
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -1486,7 +1486,7 @@ DynamicSpritesStage00Idx09:
 
 
 DynamicSpritesStage00Idx0d:
-	.db $72
+	.db DECOMP_IDX_OAM_TILEDATA_MAC
 	.dw $1500
 	.dw $016c
 	.db $60
@@ -1509,7 +1509,7 @@ DynamicSpritesStage01Idx00:
 	.dw $0008
 	.db $40
 
-	.db $28
+	.db DECOMP_IDX_OAM_TILEDATA_HEAD_GUNNER
 	.dw $1400
 	.dw $0086
 	.db $50
@@ -1552,7 +1552,7 @@ DynamicSpritesStage01Idx02:
 	.dw $0008
 	.db $60
 
-	.db DECOMP_IDX_OAM_TILEDATA_DOOR
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR2
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -1580,7 +1580,7 @@ DynamicSpritesStage01Idx04:
 	.dw $0118
 	.db $60
 
-	.db DECOMP_IDX_OAM_TILEDATA_DOOR
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR2
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -1623,7 +1623,7 @@ DynamicSpritesStage01Idx06:
 	.dw $009c
 	.db $60
 
-	.db $49
+	.db DECOMP_IDX_OAM_TILEDATA_HANGERTER
 	.dw $1d00
 	.dw $00c2
 	.db $70
@@ -1661,7 +1661,7 @@ DynamicSpritesStage01Idx08:
 	.dw $001c
 	.db $20
 
-	.db DECOMP_IDX_OAM_TILEDATA_DOOR
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR2
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -1683,7 +1683,7 @@ DynamicSpritesStage01Idx0a:
 
 
 DynamicSpritesStage01Idx0b:
-	.db $28
+	.db DECOMP_IDX_OAM_TILEDATA_HEAD_GUNNER
 	.dw $1000
 	.dw $0086
 	.db $40
@@ -1698,7 +1698,7 @@ DynamicSpritesStage01Idx0b:
 	.dw $0008
 	.db $50
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -1712,7 +1712,7 @@ DynamicSpritesStage01Idx0c:
 	.dw $00ec
 	.db $40
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -1759,7 +1759,7 @@ DynamicSpritesStage02Idx02:
 	.dw $0008
 	.db $50
 
-	.db DECOMP_IDX_OAM_TILEDATA_DOOR
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR2
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -1829,7 +1829,7 @@ DynamicSpritesStage02Idx06:
 
 
 DynamicSpritesStage02Idx07:
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -1843,7 +1843,7 @@ DynamicSpritesStage02Idx08:
 	.dw $00fc
 	.db $40
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -1861,7 +1861,7 @@ DynamicSpritesStage03Idx13:
 
 
 DynamicSpritesStage03Idx00:
-	.db $28
+	.db DECOMP_IDX_OAM_TILEDATA_HEAD_GUNNER
 	.dw $1000
 	.dw $0086
 	.db $40
@@ -1889,7 +1889,7 @@ DynamicSpritesStage03Idx01:
 
 
 DynamicSpritesStage03Idx02:
-	.db DECOMP_IDX_OAM_TILEDATA_DOOR
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR2
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -1902,7 +1902,7 @@ DynamicSpritesStage03Idx03:
 
 
 DynamicSpritesStage03Idx04:
-	.db DECOMP_IDX_OAM_TILEDATA_DOOR
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR2
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -1916,7 +1916,7 @@ DynamicSpritesStage03Idx05:
 	.dw $0008
 	.db $40
 
-	.db $05
+	.db DECOMP_IDX_OAM_TILEDATA_EARTH_COMMANDER
 	.dw $1400
 	.dw $0020
 	.db $50
@@ -1940,12 +1940,12 @@ DynamicSpritesStage03Idx06:
 	.dw $01c8
 	.db $40
 
-	.db $28
+	.db DECOMP_IDX_OAM_TILEDATA_HEAD_GUNNER
 	.dw $1200
 	.dw $0086
 	.db $50
 
-	.db DECOMP_IDX_OAM_TILEDATA_DOOR
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR2
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -1974,7 +1974,7 @@ DynamicSpritesStage03Idx07:
 	.dw $009a
 	.db $60
 
-	.db DECOMP_IDX_OAM_TILEDATA_DOOR
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR2
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -1997,7 +1997,7 @@ DynamicSpritesStage03Idx08:
 
 
 DynamicSpritesStage03Idx09:
-	.db $28
+	.db DECOMP_IDX_OAM_TILEDATA_HEAD_GUNNER
 	.dw $1800
 	.dw $0086
 	.db $60
@@ -2030,7 +2030,7 @@ DynamicSpritesStage03Idx0b:
 	.dw $0080
 	.db $60
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2044,7 +2044,7 @@ DynamicSpritesStage03Idx0c:
 	.dw $00fa
 	.db $40
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2072,7 +2072,7 @@ DynamicSpritesStage04Idx01:
 	.dw $0008
 	.db $50
 
-	.db $05
+	.db DECOMP_IDX_OAM_TILEDATA_EARTH_COMMANDER
 	.dw $1700
 	.dw $0020
 	.db $60
@@ -2086,7 +2086,7 @@ DynamicSpritesStage04Idx01:
 
 
 DynamicSpritesStage04Idx02:
-	.db DECOMP_IDX_OAM_TILEDATA_DOOR
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR2
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2175,7 +2175,7 @@ DynamicSpritesStage04Idx07:
 
 
 DynamicSpritesStage04Idx08:
-	.db DECOMP_IDX_OAM_TILEDATA_DOOR
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR2
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2184,17 +2184,17 @@ DynamicSpritesStage04Idx08:
 
 
 DynamicSpritesStage04Idx09:
-	.db $28
+	.db DECOMP_IDX_OAM_TILEDATA_HEAD_GUNNER
 	.dw $1000
 	.dw $0086
 	.db $40
 
-	.db $08
+	.db DECOMP_IDX_OAM_TILEDATA_CATERKILLER
 	.dw $1600
 	.dw $000a
 	.db $50
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2221,7 +2221,7 @@ DynamicSpritesStage04Idx0b:
 	.dw $0182
 	.db $40
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2235,7 +2235,7 @@ DynamicSpritesStage05Idx00:
 	.dw $009c
 	.db $40
 
-	.db $28
+	.db DECOMP_IDX_OAM_TILEDATA_HEAD_GUNNER
 	.dw $1200
 	.dw $0086
 	.db $50
@@ -2263,7 +2263,7 @@ DynamicSpritesStage05Idx01:
 
 
 DynamicSpritesStage05Idx02:
-	.db $28
+	.db DECOMP_IDX_OAM_TILEDATA_HEAD_GUNNER
 	.dw $1300
 	.dw $0086
 	.db $50
@@ -2273,7 +2273,7 @@ DynamicSpritesStage05Idx02:
 	.dw $0088
 	.db $60
 
-	.db $08
+	.db DECOMP_IDX_OAM_TILEDATA_CATERKILLER
 	.dw $1b00
 	.dw $000a
 	.db $70
@@ -2310,7 +2310,7 @@ DynamicSpritesStage05Idx04:
 
 
 DynamicSpritesStage05Idx05:
-	.db $05
+	.db DECOMP_IDX_OAM_TILEDATA_EARTH_COMMANDER
 	.dw $1300
 	.dw $0020
 	.db $50
@@ -2320,7 +2320,7 @@ DynamicSpritesStage05Idx05:
 	.dw $0058
 	.db $60
 
-	.db DECOMP_IDX_OAM_TILEDATA_DOOR
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR2
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2386,7 +2386,7 @@ DynamicSpritesStage05Idx09:
 	.dw $0058
 	.db $50
 
-	.db $08
+	.db DECOMP_IDX_OAM_TILEDATA_CATERKILLER
 	.dw $1500
 	.dw $000a
 	.db $40
@@ -2395,12 +2395,12 @@ DynamicSpritesStage05Idx09:
 
 
 DynamicSpritesStage05Idx0a:
-	.db $28
+	.db DECOMP_IDX_OAM_TILEDATA_HEAD_GUNNER
 	.dw $1800
 	.dw $0086
 	.db $50
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2414,7 +2414,7 @@ DynamicSpritesStage05Idx0b:
 	.dw $01fe
 	.db $40
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2486,7 +2486,7 @@ DynamicSpritesStage06Idx03:
 
 
 DynamicSpritesStage06Idx04:
-	.db DECOMP_IDX_OAM_TILEDATA_DOOR
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR2
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2528,7 +2528,7 @@ DynamicSpritesStage06Idx07:
 	.dw $00c4
 	.db $50
 
-	.db DECOMP_IDX_OAM_TILEDATA_DOOR
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR2
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2537,7 +2537,7 @@ DynamicSpritesStage06Idx07:
 
 
 DynamicSpritesStage06Idx08:
-	.db DECOMP_IDX_OAM_TILEDATA_DOOR
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR2
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2556,7 +2556,7 @@ DynamicSpritesStage06Idx09:
 	.dw $00f0
 	.db $50
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2570,7 +2570,7 @@ DynamicSpritesStage06Idx0a:
 	.dw $00fe
 	.db $40
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2579,7 +2579,7 @@ DynamicSpritesStage06Idx0a:
 
 
 DynamicSpritesStage07Idx00:
-	.db $8a
+	.db DECOMP_IDX_OAM_TILEDATA_GANSEKI_CARRIER
 	.dw $1000
 	.dw $016e
 	.db $40
@@ -2661,7 +2661,7 @@ DynamicSpritesStage07Idx04:
 	.dw $0080
 	.db $50
 
-	.db DECOMP_IDX_OAM_TILEDATA_DOOR
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR2
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2689,7 +2689,7 @@ DynamicSpritesStage07Idx06:
 	.dw $00ee
 	.db $60
 
-	.db DECOMP_IDX_OAM_TILEDATA_DOOR
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR2
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2717,7 +2717,7 @@ DynamicSpritesStage07Idx07:
 
 
 DynamicSpritesStage07Idx08:
-	.db DECOMP_IDX_OAM_TILEDATA_DOOR
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR2
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2750,7 +2750,7 @@ DynamicSpritesStage07Idx0a:
 	.dw $001e
 	.db $60
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2764,7 +2764,7 @@ DynamicSpritesStage07Idx0b:
 	.dw $003e
 	.db $40
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2802,7 +2802,7 @@ DynamicSpritesStage08Idx01:
 	.dw $00ee
 	.db $40
 
-	.db $08
+	.db DECOMP_IDX_OAM_TILEDATA_CATERKILLER
 	.dw $1800
 	.dw $000a
 	.db $50
@@ -2812,7 +2812,7 @@ DynamicSpritesStage08Idx01:
 	.dw $0008
 	.db $60
 
-	.db DECOMP_IDX_OAM_TILEDATA_DOOR
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR2
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2873,7 +2873,7 @@ DynamicSpritesStage08Idx05:
 	.dw $0116
 	.db $50
 
-	.db DECOMP_IDX_OAM_TILEDATA_DOOR
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR2
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2910,7 +2910,7 @@ DynamicSpritesStage08Idx08:
 	.dw $0098
 	.db $40
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2924,7 +2924,7 @@ DynamicSpritesStage08Idx09:
 	.dw $0122
 	.db $40
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2962,7 +2962,7 @@ DynamicSpritesStage09Idx01:
 	.dw $0116
 	.db $60
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -2986,7 +2986,7 @@ DynamicSpritesStage09Idx02:
 	.dw $0120
 	.db $40
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -3056,7 +3056,7 @@ DynamicSpritesStage09Idx06:
 
 
 DynamicSpritesStage0aIdx00:
-	.db $28
+	.db DECOMP_IDX_OAM_TILEDATA_HEAD_GUNNER
 	.dw $1000
 	.dw $01d2
 	.db $40
@@ -3066,7 +3066,7 @@ DynamicSpritesStage0aIdx00:
 	.dw $0088
 	.db $50
 
-	.db $08
+	.db DECOMP_IDX_OAM_TILEDATA_CATERKILLER
 	.dw $1800
 	.dw $000a
 	.db $60
@@ -3080,7 +3080,7 @@ DynamicSpritesStage0aIdx00:
 
 
 DynamicSpritesStage0aIdx01:
-	.db $28
+	.db DECOMP_IDX_OAM_TILEDATA_HEAD_GUNNER
 	.dw $1000
 	.dw $01d2
 	.db $40
@@ -3099,12 +3099,12 @@ DynamicSpritesStage0aIdx02:
 	.dw $0116
 	.db $40
 
-	.db $08
+	.db DECOMP_IDX_OAM_TILEDATA_CATERKILLER
 	.dw $1500
 	.dw $000a
 	.db $50
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -3118,7 +3118,7 @@ DynamicSpritesStage0aIdx03:
 	.dw $0158
 	.db $40
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -3132,12 +3132,12 @@ DynamicSpritesStage0aIdx04:
 	.dw $0116
 	.db $40
 
-	.db $08
+	.db DECOMP_IDX_OAM_TILEDATA_CATERKILLER
 	.dw $1c00
 	.dw $000a
 	.db $60
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -3170,7 +3170,7 @@ DynamicSpritesStage0aIdx06:
 	.dw $00f0
 	.db $50
 
-	.db $08
+	.db DECOMP_IDX_OAM_TILEDATA_CATERKILLER
 	.dw $1c00
 	.dw $000a
 	.db $60
@@ -3179,7 +3179,7 @@ DynamicSpritesStage0aIdx06:
 
 
 DynamicSpritesStage0aIdx07:
-	.db $31
+	.db DECOMP_IDX_OAM_TILEDATA_SPIKY_BALL
 	.dw $1800
 	.dw $0092
 	.db $50
@@ -3212,12 +3212,12 @@ DynamicSpritesStage0aIdx09:
 	.dw $0116
 	.db $50
 
-	.db $08
+	.db DECOMP_IDX_OAM_TILEDATA_CATERKILLER
 	.dw $1d00
 	.dw $000a
 	.db $60
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -3231,7 +3231,7 @@ DynamicSpritesStage0aIdx0e:
 	.dw $01cc
 	.db $40
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -3247,7 +3247,7 @@ DynamicSpritesStage0aIdx0a:
 
 
 DynamicSpritesStage0aIdx0b:
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -3275,7 +3275,7 @@ DynamicSpritesStage0bIdx00:
 	.dw $0088
 	.db $60
 
-	.db $08
+	.db DECOMP_IDX_OAM_TILEDATA_CATERKILLER
 	.dw $1e00
 	.dw $000a
 	.db $70
@@ -3313,7 +3313,7 @@ DynamicSpritesStage0bIdx02:
 	.dw $001c
 	.db $20
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -3332,7 +3332,7 @@ DynamicSpritesStage0bIdx03:
 	.dw $014a
 	.db $50
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -3356,7 +3356,7 @@ DynamicSpritesStage0bIdx04:
 	.dw $00f0
 	.db $60
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -3384,7 +3384,7 @@ DynamicSpritesStage0bIdx06:
 	.dw $001c
 	.db $20
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -3397,7 +3397,7 @@ DynamicSpritesStage0bIdx07:
 
 
 DynamicSpritesStage0cIdx00:
-	.db $08
+	.db DECOMP_IDX_OAM_TILEDATA_CATERKILLER
 	.dw $1000
 	.dw $000a
 	.db $40
@@ -3407,7 +3407,7 @@ DynamicSpritesStage0cIdx00:
 	.dw $0080
 	.db $50
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -3421,7 +3421,7 @@ DynamicSpritesStage0cIdx01:
 	.dw $008e
 	.db $60
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -3440,7 +3440,7 @@ DynamicSpritesStage0cIdx02:
 	.dw $00f0
 	.db $60
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -3550,7 +3550,7 @@ DynamicSpritesStage0cIdx03:
 	.dw $01e0
 	.db $40
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -3577,7 +3577,7 @@ DynamicSpritesStage0cIdx10:
 
 
 DynamicSpritesStage0dIdx00:
-	.db $8a
+	.db DECOMP_IDX_OAM_TILEDATA_GANSEKI_CARRIER
 	.dw $1000
 	.dw $016e
 	.db $40
@@ -3686,7 +3686,7 @@ DynamicSpritesStage0eIdx02:
 	.dw $0116
 	.db $50
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -3714,7 +3714,7 @@ DynamicSpritesStage0eIdx04:
 	.dw $00c4
 	.db $60
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -3737,7 +3737,7 @@ DynamicSpritesStage0eIdx06:
 	.dw $01f0
 	.db $40
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70
@@ -3751,7 +3751,7 @@ DynamicSpritesStage0eIdx07:
 	.dw $01f0
 	.db $40
 
-	.db $19
+	.db DECOMP_IDX_OAM_TILEDATA_DOOR1
 	.dw $1f00
 	.dw $0034
 	.db $70

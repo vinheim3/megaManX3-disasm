@@ -1045,6 +1045,9 @@ AequNegA:
 
 .org $600
 
+; eg R1 = $20, R2 = $18, R3 = $40, R4 = $30, R7 = $10x0 (x being 0-2)
+; eg R5 = $1002, R6 = $1002
+; bitmap src is at :6600-6bff, scaled result to be in :6000-65ff
 Cx4_ScaleRotate1:
 	mov A, IMM $00                                                             ; $8600 / 3:00 / $6400
 	mov OP R8, A                                                             ; $8602 / 3:01 / $e068

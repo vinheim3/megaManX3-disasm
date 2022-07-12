@@ -16406,13 +16406,14 @@ HandleTextThread:
 	sep #ACCU_8|IDX_8                                                  ; $e624 : $e2, $30
 	jsr Call_00_e965.w                                                  ; $e626 : $20, $65, $e9
 
-;
+; If bit 7 set, don't load in ascii tiles
 	lda wCurrTextIdx.w                                                  ; $e629 : $ad, $46, $1f
 	bmi +                                                  ; $e62c : $30, $05
 
-	ldy #$0e.b                                                  ; $e62e : $a0, $0e
+	ldy #BULK_DMA_SET_ASCII.b                                                  ; $e62e : $a0, $0e
 	jsr LoadFromBulkDMASet.w                                                  ; $e630 : $20, $3b, $87
 
+;
 +	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $e633 : $20, $62, $81
 	lda #$04.b                                                  ; $e636 : $a9, $04
 	tsb wMainScreenDesignation                                                  ; $e638 : $04, $c1
@@ -16987,8 +16988,7 @@ CheckIfNonDirButtonHeld:
 	rts                                                                       ; $e97a : $60
 
 
-; A - text idx
-; todo: explain if above bit 7 set
+; A - text idx. If bit 7 set, don't load ascii tileset
 AddTextThread:
 	phx                                                  ; $e97b : $da
 	phy                                                  ; $e97c : $5a

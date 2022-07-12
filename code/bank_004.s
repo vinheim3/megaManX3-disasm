@@ -10529,12 +10529,13 @@ br_04_bd4c:
 	rtl                                                  ; $bd4e : $6b
 
 
+LoadStagePreviewBitmap:
 	php                                                  ; $bd4f : $08
 	sep #ACCU_8|IDX_8                                                  ; $bd50 : $e2, $30
 	lda $17                                                  ; $bd52 : $a5, $17
 	and #$7f.b                                                  ; $bd54 : $29, $7f
 	sta $17                                                  ; $bd56 : $85, $17
-	pea $0605.w                                                  ; $bd58 : $f4, $05, $06
+	peaw 5, DATA_BANK_NORMAL                                                  ; $bd58 : $f4, $05, $06
 	plb                                                  ; $bd5b : $ab
 	rep #ACCU_8|IDX_8                                                  ; $bd5c : $c2, $30
 	lda $17                                                  ; $bd5e : $a5, $17
@@ -10542,17 +10543,21 @@ br_04_bd4c:
 	asl                                                  ; $bd63 : $0a
 	tay                                                  ; $bd64 : $a8
 	clc                                                  ; $bd65 : $18
+
+; eg 5:f6ea
 	lda ($31), Y                                                  ; $bd66 : $b1, $31
 	adc $31                                                  ; $bd68 : $65, $31
 	tax                                                  ; $bd6a : $aa
 	sep #ACCU_8                                                  ; $bd6b : $e2, $20
 	lda $0000.w, X                                                  ; $bd6d : $bd, $00, $00
-	beq br_04_bdb6                                                  ; $bd70 : $f0, $44
+	beq @done                                                  ; $bd70 : $f0, $44
 
-br_04_bd72:
+@nextDMA:
 	sep #ACCU_8                                                  ; $bd72 : $e2, $20
 	lda $0003.w, X                                                  ; $bd74 : $bd, $03, $00
 	sta CX4_DMA_SOURCE.w+2                                                  ; $bd77 : $8d, $42, $7f
+
+;
 	lda $0000.w, X                                                  ; $bd7a : $bd, $00, $00
 	rep #ACCU_8|F_CARRY                                                  ; $bd7d : $c2, $21
 	and #$00ff.w                                                  ; $bd7f : $29, $ff, $00
@@ -10561,10 +10566,14 @@ br_04_bd72:
 	asl                                                  ; $bd84 : $0a
 	asl                                                  ; $bd85 : $0a
 	sta CX4_DMA_LEN.w                                                  ; $bd86 : $8d, $43, $7f
+
+;
 	lda $0001.w, X                                                  ; $bd89 : $bd, $01, $00
 	sta CX4_DMA_SOURCE.w                                                  ; $bd8c : $8d, $40, $7f
+
+;
 	lda $0004.w, X                                                  ; $bd8f : $bd, $04, $00
-	bmi br_04_bda8                                                  ; $bd92 : $30, $14
+	bmi @lastDMA                                                  ; $bd92 : $30, $14
 
 	sta CX4_DMA_DEST.w                                                  ; $bd94 : $8d, $45, $7f
 	sep #ACCU_8                                                  ; $bd97 : $e2, $20
@@ -10574,16 +10583,16 @@ br_04_bd72:
 	txa                                                  ; $bda1 : $8a
 	adc #$0006.w                                                  ; $bda2 : $69, $06, $00
 	tax                                                  ; $bda5 : $aa
-	bra br_04_bd72                                                  ; $bda6 : $80, $ca
+	bra @nextDMA                                                  ; $bda6 : $80, $ca
 
-br_04_bda8:
+@lastDMA:
 	and #$7fff.w                                                  ; $bda8 : $29, $ff, $7f
 	sta CX4_DMA_DEST.w                                                  ; $bdab : $8d, $45, $7f
 	sep #ACCU_8|IDX_8                                                  ; $bdae : $e2, $30
 	lda #$00.b                                                  ; $bdb0 : $a9, $00
 	jsr wStartCx4Dma.l                                                  ; $bdb2 : $22, $a9, $26, $7e
 
-br_04_bdb6:
+@done:
 	plb                                                  ; $bdb6 : $ab
 	plp                                                  ; $bdb7 : $28
 	rtl                                                  ; $bdb8 : $6b
@@ -15079,27 +15088,41 @@ br_04_d8e0:
 	rtl                                                  ; $d8f2 : $6b
 
 
-	lda $b4d1.w, X                                                  ; $d8f3 : $bd, $d1, $b4
+BulkDmaEnqueueStageSelectPreviewBitmap:
+; eg 0006 = 0100
+	lda Data_6_b4cb.w+6, X                                                  ; $d8f3 : $bd, $d1, $b4
 	sta $0006.w                                                  ; $d8f6 : $8d, $06, $00
-	lda $b4d2.w, X                                                  ; $d8f9 : $bd, $d2, $b4
+	lda Data_6_b4cb.w+7, X                                                  ; $d8f9 : $bd, $d2, $b4
 	sta $0007.w                                                  ; $d8fc : $8d, $07, $00
+
+;
 	ldy $00a4.w                                                  ; $d8ff : $ac, $a4, $00
+
+; eg 0000 = 7000
 	lda #$00.b                                                  ; $d902 : $a9, $00
 	sta $0000.w                                                  ; $d904 : $8d, $00, $00
 	lda #$70.b                                                  ; $d907 : $a9, $70
 	sta $0001.w                                                  ; $d909 : $8d, $01, $00
-	lda $b4cb.w, X                                                  ; $d90c : $bd, $cb, $b4
+
+; eg 02 = 6 (num loops below)
+	lda Data_6_b4cb.w, X                                                  ; $d90c : $bd, $cb, $b4
 	sta $0002.w                                                  ; $d90f : $8d, $02, $00
-	lda $b4cc.w, X                                                  ; $d912 : $bd, $cc, $b4
+
+; eg 0010 = 7f:c040 (src address)
+	lda Data_6_b4cb.w+1, X                                                  ; $d912 : $bd, $cc, $b4
 	sta $0010.w                                                  ; $d915 : $8d, $10, $00
-	lda $b4cd.w, X                                                  ; $d918 : $bd, $cd, $b4
+	lda Data_6_b4cb.w+2, X                                                  ; $d918 : $bd, $cd, $b4
 	sta $0011.w                                                  ; $d91b : $8d, $11, $00
-	lda $b4ce.w, X                                                  ; $d91e : $bd, $ce, $b4
+	lda Data_6_b4cb.w+3, X                                                  ; $d91e : $bd, $ce, $b4
 	sta $0012.w                                                  ; $d921 : $8d, $12, $00
-	lda $b4cf.w, X                                                  ; $d924 : $bd, $cf, $b4
+
+; eg 04 = 00, 05 = 01
+	lda Data_6_b4cb.w+4, X                                                  ; $d924 : $bd, $cf, $b4
 	sta $0004.w                                                  ; $d927 : $8d, $04, $00
-	lda $b4d0.w, X                                                  ; $d92a : $bd, $d0, $b4
+	lda Data_6_b4cb.w+5, X                                                  ; $d92a : $bd, $d0, $b4
 	sta $0005.w                                                  ; $d92d : $8d, $05, $00
+
+; eg 8 = 0
 	rep #ACCU_8                                                  ; $d930 : $c2, $20
 	lda $0004.w                                                  ; $d932 : $ad, $04, $00
 	lsr                                                  ; $d935 : $4a
@@ -15110,24 +15133,28 @@ br_04_d8e0:
 	sta $0008.w                                                  ; $d93a : $8d, $08, $00
 	sep #ACCU_8                                                  ; $d93d : $e2, $20
 
-br_04_d93f:
+@loop_d93f:
 	lda #$80.b                                                  ; $d93f : $a9, $80
-	sta $0500.w, Y                                                  ; $d941 : $99, $00, $05
+	sta wBulkDmaStructs.vmain.w, Y                                                  ; $d941 : $99, $00, $05
 	lda $0010.w                                                  ; $d944 : $ad, $10, $00
-	sta $0505.w, Y                                                  ; $d947 : $99, $05, $05
+	sta wBulkDmaStructs.srcAddr.w, Y                                                  ; $d947 : $99, $05, $05
 	lda $0011.w                                                  ; $d94a : $ad, $11, $00
-	sta $0506.w, Y                                                  ; $d94d : $99, $06, $05
+	sta wBulkDmaStructs.srcAddr.w+1, Y                                                  ; $d94d : $99, $06, $05
 	lda $0012.w                                                  ; $d950 : $ad, $12, $00
-	sta $0507.w, Y                                                  ; $d953 : $99, $07, $05
+	sta wBulkDmaStructs.srcBank.w, Y                                                  ; $d953 : $99, $07, $05
+
+;
 	lda $1f38.w                                                  ; $d956 : $ad, $38, $1f
 	clc                                                  ; $d959 : $18
 	adc $0008.w                                                  ; $d95a : $6d, $08, $00
 	sta $1f38.w                                                  ; $d95d : $8d, $38, $1f
 	rep #ACCU_8                                                  ; $d960 : $c2, $20
+
+;
 	lda $0000.w                                                  ; $d962 : $ad, $00, $00
-	sta $0501.w, Y                                                  ; $d965 : $99, $01, $05
+	sta wBulkDmaStructs.vramAddr.w, Y                                                  ; $d965 : $99, $01, $05
 	lda $0004.w                                                  ; $d968 : $ad, $04, $00
-	sta $0503.w, Y                                                  ; $d96b : $99, $03, $05
+	sta wBulkDmaStructs.numBytes.w, Y                                                  ; $d96b : $99, $03, $05
 	clc                                                  ; $d96e : $18
 	lda $0010.w                                                  ; $d96f : $ad, $10, $00
 	adc $0006.w                                                  ; $d972 : $6d, $06, $00
@@ -15139,12 +15166,13 @@ br_04_d93f:
 	adc #$08.b                                                  ; $d97f : $69, $08
 	tay                                                  ; $d981 : $a8
 	dec $0002.w                                                  ; $d982 : $ce, $02, $00
-	bne br_04_d93f                                                  ; $d985 : $d0, $b8
+	bne @loop_d93f                                                  ; $d985 : $d0, $b8
 
 	sty $00a4.w                                                  ; $d987 : $8c, $a4, $00
 	rtl                                                  ; $d98a : $6b
 
 
+CopyBlockOfStageSelectPreviewScaledBitmap:
 	phb                                                  ; $d98b : $8b
 	rep #ACCU_8|IDX_8                                                  ; $d98c : $c2, $30
 	and #$00ff.w                                                  ; $d98e : $29, $ff, $00
@@ -15152,10 +15180,16 @@ br_04_d93f:
 	asl                                                  ; $d992 : $0a
 	asl                                                  ; $d993 : $0a
 	tax                                                  ; $d994 : $aa
-	lda $b4d3.w, X                                                  ; $d995 : $bd, $d3, $b4
+
+; eg later X = 6200
+	lda StageSelectPreviewCopyBlocks.w, X                                                  ; $d995 : $bd, $d3, $b4
 	pha                                                  ; $d998 : $48
-	ldy $b4d5.w, X                                                  ; $d999 : $bc, $d5, $b4
-	lda $b4d7.w, X                                                  ; $d99c : $bd, $d7, $b4
+
+; eg y = c240, A = 01ff
+	ldy StageSelectPreviewCopyBlocks.w+2, X                                                  ; $d999 : $bc, $d5, $b4
+	lda StageSelectPreviewCopyBlocks.w+4, X                                                  ; $d99c : $bd, $d7, $b4
+
+; copy from 00:6200 to 7f:c240 ($200 bytes)
 	plx                                                  ; $d99f : $fa
 	mvn $00, $7f                                                  ; $d9a0 : $54, $7f, $00
 	sep #ACCU_8|IDX_8                                                  ; $d9a3 : $e2, $30
@@ -15163,6 +15197,7 @@ br_04_d93f:
 	rtl                                                  ; $d9a6 : $6b
 
 
+;
 	rep #ACCU_8|IDX_8                                                  ; $d9a7 : $c2, $30
 	and #$00ff.w                                                  ; $d9a9 : $29, $ff, $00
 	asl                                                  ; $d9ac : $0a

@@ -7868,7 +7868,7 @@ TextsData:
 	.dw Text25h_LeftLifeUpNotGotten
 	.dw Text26h_RightLifeUpGotten
 	.dw Text27h_RightLifeUpNotGotten
-	.dw $f36e
+	.dw Text28h_LeftChimeraRideArmourGotten
 	.dw $f37c
 	.dw $f38a
 	.dw $f397
@@ -7913,7 +7913,7 @@ TextsData:
 	.dw $e7c4
 	.dw $ea61
 	.dw $eb06
-	.dw $f3a4
+	.dw Text55h_LeftSubTankGotten
 	.dw $f3b1
 	.dw $f3be
 	.dw $f3cd
@@ -15335,6 +15335,8 @@ br_39_f364:
 	eor $50, X                                                  ; $f36b : $55, $50
 	.db $82                                                  ; $f36d : $82
 
+
+Text28h_LeftChimeraRideArmourGotten:
 	bit #$82.b                                                  ; $f36e : $89, $82
 	ora #$c0.b                                                  ; $f370 : $09, $c0
 	dey                                                  ; $f372 : $88
@@ -15364,6 +15366,9 @@ br_39_f386:
 	cop $53.b                                                  ; $f39c : $02, $53
 	and $4154.w                                                  ; $f39e : $2d, $54, $41
 	lsr $824b.w                                                  ; $f3a1 : $4e, $4b, $82
+
+
+Text55h_LeftSubTankGotten:
 	bit #$82.b                                                  ; $f3a4 : $89, $82
 	ora #$c0.b                                                  ; $f3a6 : $09, $c0
 	dey                                                  ; $f3a8 : $88

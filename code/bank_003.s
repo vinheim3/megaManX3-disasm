@@ -449,7 +449,7 @@ br_03_8229:
 br_03_823f:
 	ldx $01                                                  ; $823f : $a6, $01
 	jsr ($8249.w, X)                                                  ; $8241 : $fc, $49, $82
-	jsr Call_03_843a.w                                                  ; $8244 : $20, $3a, $84
+	jsr todo_ProcessScaledStageSelectPreview.w                                                  ; $8244 : $20, $3a, $84
 
 br_03_8247:
 	pld                                                  ; $8247 : $2b
@@ -771,8 +771,10 @@ br_03_8434:
 	rts                                                  ; $8439 : $60
 
 
-Call_03_843a:
-	jsr $04bd4f.l                                                  ; $843a : $22, $4f, $bd, $04
+todo_ProcessScaledStageSelectPreview:
+; this will load $600 bytes into $7e:6600
+; pixels are plotted low nybble, then high nybble
+	jsr LoadStagePreviewBitmap.l                                                  ; $843a : $22, $4f, $bd, $04
 	rep #ACCU_8                                                  ; $843e : $c2, $20
 	stz CX4_R0.w+1                                                  ; $8440 : $9c, $81, $7f
 	stz CX4_R1.w+1                                                  ; $8443 : $9c, $84, $7f
@@ -784,6 +786,8 @@ Call_03_843a:
 	stz CX4_R6.w+2                                                  ; $8454 : $9c, $94, $7f
 	stz CX4_R7.w+2                                                  ; $8457 : $9c, $97, $7f
 	stz CX4_R0.w                                                  ; $845a : $9c, $80, $7f
+
+;
 	lda #$20.b                                                  ; $845d : $a9, $20
 	sta CX4_R1.w                                                  ; $845f : $8d, $83, $7f
 	lda #$18.b                                                  ; $8462 : $a9, $18
@@ -792,16 +796,22 @@ Call_03_843a:
 	sta CX4_R3.w                                                  ; $8469 : $8d, $89, $7f
 	lda #$30.b                                                  ; $846c : $a9, $30
 	sta CX4_R4.w                                                  ; $846e : $8d, $8c, $7f
+
+; eg 2
 	lda $3a                                                  ; $8471 : $a5, $3a
 	sta CX4_R5.w                                                  ; $8473 : $8d, $8f, $7f
 	sta CX4_R6.w                                                  ; $8476 : $8d, $92, $7f
+
+; eg 10
 	lda $3b                                                  ; $8479 : $a5, $3b
 	sta CX4_R5.w+1                                                  ; $847b : $8d, $90, $7f
 	sta CX4_R6.w+1                                                  ; $847e : $8d, $93, $7f
 	lda #$10.b                                                  ; $8481 : $a9, $10
 	sta CX4_R7.w+1                                                  ; $8483 : $8d, $96, $7f
+
+; eg 0-2 -> $00, $10, $20
 	ldx $3f                                                  ; $8486 : $a6, $3f
-	lda $9c96.w, X                                                  ; $8488 : $bd, $96, $9c
+	lda Data_6_9c96.w, X                                                  ; $8488 : $bd, $96, $9c
 	sta CX4_R7.w                                                  ; $848b : $8d, $95, $7f
 
 ; scale_rotate1
@@ -810,21 +820,22 @@ Call_03_843a:
 	ldy #$00.b                                                  ; $8492 : $a0, $00
 	jsr wSetCx4InsPagePtrAndToggle.l                                                  ; $8494 : $22, $a0, $26, $7e
 
-;
+; eg copies from 0:6200 to 7f:c240 (3 possible times)
 	lda $3f                                                  ; $8498 : $a5, $3f
-	jsr $04d98b.l                                                  ; $849a : $22, $8b, $d9, $04
+	jsr CopyBlockOfStageSelectPreviewScaledBitmap.l                                                  ; $849a : $22, $8b, $d9, $04
+
+;
 	lda $3f                                                  ; $849e : $a5, $3f
 	ina                                                  ; $84a0 : $1a
 	cmp #$03.b                                                  ; $84a1 : $c9, $03
-	bne br_03_84ae                                                  ; $84a3 : $d0, $09
+	bne @end                                                  ; $84a3 : $d0, $09
 
 	stz $3f                                                  ; $84a5 : $64, $3f
 	ldx #$00.b                                                  ; $84a7 : $a2, $00
-	jsr $04d8f3.l                                                  ; $84a9 : $22, $f3, $d8, $04
+	jsr BulkDmaEnqueueStageSelectPreviewBitmap.l                                                  ; $84a9 : $22, $f3, $d8, $04
 	rts                                                  ; $84ad : $60
 
-
-br_03_84ae:
+@end:
 	sta $3f                                                  ; $84ae : $85, $3f
 	rts                                                  ; $84b0 : $60
 

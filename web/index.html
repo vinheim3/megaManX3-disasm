@@ -430,6 +430,36 @@
                     this.TileData(0xc000);
                 }
 
+                MemCopy(src, dest, numBytes) {
+                    this.numBytes = dest + numBytes;
+                    while (numBytes-- !== 0) {
+                        this.mem7eh[dest++] = this.rom[src++];
+                    }
+                }
+
+                Bitmap(src) {
+                    this.createCanvas('bitmap', 8*8, 6*8);
+
+                    // todo : the number of meta-metatiles
+                    let [ctx, imgData, width, height] = this.getCanvas(' bitmap');
+                    let data = imgData.data;
+
+                    for (let y = 0; y < 6*8; y++) {
+                        for (let x = 0; x < 8*8; x += 2) {
+                            let byte = this.rom[src++];
+
+                            let hn = byte>>4;
+                            let greyH = greyCols[hn];
+                            plotPx(data, x+1, y, width, ...greyH);
+
+                            let ln = byte&0xf;
+                            let greyL = greyCols[ln];
+                            plotPx(data, x, y, width, ...greyL);
+                        }
+                    }
+                    ctx.putImageData(imgData, 0, 0);
+                }
+
                 drawScreen() {
                     let screen = this.screenSpec;
 
@@ -476,10 +506,9 @@
                         {
                             name: "Test",
                             sources: [
-                                ["BulkDmaSet", 0x0e],
-                                ["TileData", 0],
+                                ["Bitmap", bankConv(2, 0xa000)],
                             ]
-                        }
+                        },
                     ],
                 },
                 methods: {

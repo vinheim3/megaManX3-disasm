@@ -229,1412 +229,1898 @@ br_06_817e:
 
 
 PaletteSpecsData:
-	.dw $8380
-	.dw $838f
-	.dw $8394
-	.dw $8399
-	.dw $839e
-	.dw $83a3
-	.dw $83a8
-	.dw $83a9
-	.dw $83ae
-	.dw $83bb
-	.dw $83c0
-	.dw $83c5
-	.dw $83c6
-	.dw $83cb
-	.dw $8385
-	.dw $83cc
-	.dw $83d1
-	.dw $83d6
-	.dw $83db
-	.dw $83dc
-	.dw $83e1
-	.dw $83e6
-	.dw $83eb
-	.dw $83f0
-	.dw $83fa
-	.dw $83ff
-	.dw $8404
-	.dw $8409
-	.dw PaletteSpec1ch
-	.dw $840f
-	.dw $8414
-	.dw $8419
-	.dw $841e
-	.dw $8423
-	.dw $8428
-	.dw $842d
-	.dw $8432
-	.dw $8437
-	.dw $843c
-	.dw $8441
-	.dw $8446
-	.dw $841e
-	.dw $844b
-	.dw $8450
-	.dw $8455
-	.dw $845a
-	.dw $845f
-	.dw $8464
-	.dw $846d
-	.dw $8472
-	.dw $8477
-	.dw $847c
-	.dw $8481
-	.dw $8486
-	.dw $848b
-	.dw $8490
-	.dw $8495
-	.dw $849a
-	.dw $849f
-	.dw $84a4
-	.dw $84a9
-	.dw $84ae
-	.dw $84b3
-	.dw $84b8
-	.dw $84bd
-	.dw $84c2
-	.dw $84c7
-	.dw $84cc
-	.dw $84d1
-	.dw $84d5
-	.dw $84d6
-	.dw $84db
-	.dw $84e0
-	.dw $84e5
-	.dw $84ea
-	.dw $84ef
-	.dw $84f4
-	.dw $84f9
-	.dw $84fe
-	.dw $8503
-	.dw $838a
-	.dw $8508
-	.dw $850d
-	.dw $8512
-	.dw $8517
-	.dw $851c
-	.dw $8521
-	.dw $8526
-	.dw $852b
-	.dw $8530
-	.dw $8530
-	.dw $8530
-	.dw $8531
-	.dw $8531
-	.dw $8531
-	.dw $8531
-	.dw $8532
-	.dw $8537
-	.dw $83f5
-	.dw $853c
-	.dw $8541
-	.dw $8546
-	.dw $8547
-	.dw $854c
-	.dw $8551
-	.dw $8556
-	.dw $86ae
-	.dw $86b3
-	.dw $86bc
-	.dw $86c5
-	.dw $86bc
-	.dw $855b
-	.dw $855b
-	.dw $8560
-	.dw $8565
-	.dw $856a
-	.dw $856f
-	.dw $8574
-	.dw $8579
-	.dw $857e
-	.dw $8583
-	.dw $8588
-	.dw Data_6_858d
-	.dw Data_6_8592
-	.dw $8597
-	.dw $85a0
-	.dw $85a5
-	.dw $85aa
-	.dw $85af
-	.dw $85b4
-	.dw $85b9
-	.dw $85be
-	.dw $85c3
-	.dw $85c8
-	.dw $85cd
-	.dw $85d2
-	.dw $85d7
-	.dw $85dc
-	.dw $85dc
-	.dw $85e1
-	.dw $85e6
-	.dw $85eb
-	.dw $85f0
-	.dw $85f5
-	.dw $85fa
-	.dw $85ff
-	.dw $8604
-	.dw $8609
-	.dw $860e
-	.dw $8613
-	.dw $8618
-	.dw $861d
-	.dw $8622
-	.dw $8627
-	.dw $862c
-	.dw $8631
-	.dw $8636
-	.dw $863b
-	.dw $8640
-	.dw $8645
-	.dw $864a
-	.dw $864f
-	.dw $8654
-	.dw $8659
-	.dw $865a
-	.dw $865f
-	.dw $8664
-	.dw $8669
-	.dw $866e
-	.dw $866f
-	.dw $8674
-	.dw $8679
-	.dw $867e
-	.dw $8683
-	.dw $8688
-	.dw $868d
-	.dw $868e
-	.dw $8693
-	.dw $869c
-	.dw $86a5
-	.dw $869c
-	.dw $86ce
-	.dw $86cf
-	.dw $86d4
-	.dw $86d9
-	.dw $86de
-	.dw $86e3
-	.dw $86e8
-	.dw $86e9
-	.dw $86ea
-	.dw $86eb
-	.dw $86ec
-	.dw $86f1
-	.dw $86f6
-	.dw $86fb
-	.dw $8700
-	.dw $8705
-	.dw $870a
-	.dw $870b
-	.dw $870c
-	.dw $870d
-	.dw $8712
-	.dw $8713
-	.dw $8718
-	.dw $871d
-	.dw $8722
-	.dw $8727
-	.dw $8727
-	.dw $8728
-	.dw $872d
-	.dw $8732
-	.dw $8737
-	.dw $873c
-	.dw $8741
-	.dw $8746
-	.dw $874b
-	.dw $8750
-	.dw $8750
-	.dw $8750
-	.dw $8750
-	.dw $8750
-	.dw $8755
-	.dw $8755
-	.dw $8755
-	.dw $8756
-	.dw $8756
-	.dw $8756
-	.dw $8763
-	.dw $8768
-	.dw $876d
-	.dw $8772
-	.dw $8777
-	.dw $877c
-	.dw $8781
-	.dw $8786
-	.dw $878b
-	.dw $8790
-	.dw $8795
-	.dw $879a
-	.dw $879f
-	.dw $87a4
-	.dw $87a9
-	.dw $87ae
-	.dw $87b3
-	.dw $87b8
-	.dw $87bd
-	.dw $87c2
-	.dw $87c7
-	.dw $87cc
-	.dw $87d1
-	.dw $87d6
-	.dw $87db
-	.dw $87e0
-	.dw $87e5
-	.dw $87ea
-	.dw $87ef
-
-
-
-	.db $10                                                  ; $8380 : $10
-	.db $00                                                  ; $8381 : $00
-	ldy $80                                                  ; $8382 : $a4, $80
-	.db $00                                                  ; $8384 : $00
-	.db $10, $e0
-
-	.db $b0, $80
-
-	.db $00                                                  ; $8389 : $00
-	bpl br_06_838c                                                  ; $838a : $10, $00
-
-br_06_838c:
-	lda ($80), Y                                                  ; $838c : $b1, $80
-	.db $00                                                  ; $838e : $00
-	bpl br_06_8391                                                  ; $838f : $10, $00
-
-br_06_8391:
-	tsx                                                  ; $8391 : $ba
-	bra br_06_8394                                                  ; $8392 : $80, $00
-
-br_06_8394:
-	bpl br_06_83b6                                                  ; $8394 : $10, $20
-
-	tsx                                                  ; $8396 : $ba
-	bra br_06_8399                                                  ; $8397 : $80, $00
-
-br_06_8399:
-	bpl br_06_83bb                                                  ; $8399 : $10, $20
-
-	lda $100090.l                                                  ; $839b : $af, $90, $00, $10
-	.db $80, $ba
-
-	bra br_06_83a3                                                  ; $83a1 : $80, $00
-
-br_06_83a3:
-	bpl br_06_840d                                                  ; $83a3 : $10, $68
-
-	sbc $80                                                  ; $83a5 : $e5, $80
-	.db $00                                                  ; $83a7 : $00
-
-br_06_83a8:
-	.db $00                                                  ; $83a8 : $00
-	.db $10, $a0
-
-	ldy $0000.w                                                  ; $83ab : $ac, $00, $00
-	bpl br_06_83b0                                                  ; $83ae : $10, $00
-
-br_06_83b0:
-	.db $b0, $80                                                  ; $83b0 : $b0, $80
-
-	bpl br_06_83b4                                                  ; $83b2 : $10, $00
-
-br_06_83b4:
-	lda ($30), Y                                                  ; $83b4 : $b1, $30
-
-br_06_83b6:
-	jsr Call_06_b120.w                                                  ; $83b6 : $20, $20, $b1
-
-br_06_83b9:
-	bpl br_06_83bb                                                  ; $83b9 : $10, $00
-
-br_06_83bb:
-	jsr Call_06_b2c0.w                                                  ; $83bb : $20, $c0, $b2
-	.db $00                                                  ; $83be : $00
-	.db $00                                                  ; $83bf : $00
-
-br_06_83c0:
-	bpl br_06_83c2                                                  ; $83c0 : $10, $00
-
-br_06_83c2:
-	lda ($80), Y                                                  ; $83c2 : $b1, $80
-	.db $00                                                  ; $83c4 : $00
-
-br_06_83c5:
-	.db $00                                                  ; $83c5 : $00
-	bra br_06_83a8                                                  ; $83c6 : $80, $e0
-
-br_06_83c8:
-	lda ($00, S), Y                                                  ; $83c8 : $b3, $00
-
-br_06_83ca:
-	.db $00                                                  ; $83ca : $00
-	.db $00                                                  ; $83cb : $00
-	bpl br_06_83d6                                                  ; $83cc : $10, $08
-
-	sbc $80                                                  ; $83ce : $e5, $80
-	.db $00                                                  ; $83d0 : $00
-	.db $10, $a0
-
-	tsx                                                  ; $83d3 : $ba
-
-br_06_83d4:
-	bra br_06_83d6                                                  ; $83d4 : $80, $00
-
-br_06_83d6:
-	jsr $e5c8.w                                                  ; $83d6 : $20, $c8, $e5
-	bra br_06_83db                                                  ; $83d9 : $80, $00
-
-br_06_83db:
-	.db $00                                                  ; $83db : $00
-	.db $10, $48                                                  ; $83dc : $10, $48
-
-	sbc [$80]                                                  ; $83de : $e7, $80
-	.db $00                                                  ; $83e0 : $00
-	.db $10, $20                                                  ; $83e1 : $10, $20
-
-	ldy $80                                                  ; $83e3 : $a4, $80
-	.db $00                                                  ; $83e5 : $00
-	.db $10, $40                                                  ; $83e6 : $10, $40
-
-	ldy $80                                                  ; $83e8 : $a4, $80
-	.db $00                                                  ; $83ea : $00
-	bpl br_06_8455                                                  ; $83eb : $10, $68
-
-	sbc [$80]                                                  ; $83ed : $e7, $80
-	.db $00                                                  ; $83ef : $00
-	bmi br_06_83f2                                                  ; $83f0 : $30, $00
-
-br_06_83f2:
-	lda ($10, S), Y                                                  ; $83f2 : $b3, $10
-	.db $00                                                  ; $83f4 : $00
-	.db $10, $28                                                  ; $83f5 : $10, $28
-
-	sbc $80                                                  ; $83f7 : $e5, $80
-	.db $00                                                  ; $83f9 : $00
-	.db $10, $48                                                  ; $83fa : $10, $48
-
-	sbc $80                                                  ; $83fc : $e5, $80
-
-br_06_83fe:
-	.db $00                                                  ; $83fe : $00
-	bpl br_06_8401                                                  ; $83ff : $10, $00
-
-br_06_8401:
-	lda $100080.l                                                  ; $8401 : $af, $80, $00, $10
-	rti                                                  ; $8405 : $40
-
-
-	lda [$80]                                                  ; $8406 : $a7, $80
-	.db $00                                                  ; $8408 : $00
-	.db $10, $88                                                  ; $8409 : $10, $88
-
-	sbc [$80]                                                  ; $840b : $e7, $80
-
-br_06_840d:
-	.db $00                                                  ; $840d : $00
-
-
-PaletteSpec1ch:
-	.db $00                                                  ; $840e : $00
-
-br_06_840f:
-	bpl br_06_83b9                                                  ; $840f : $10, $a8
-
-	sbc $80                                                  ; $8411 : $e5, $80
-	.db $00                                                  ; $8413 : $00
-	bpl br_06_83d6                                                  ; $8414 : $10, $c0
-
-	tsx                                                  ; $8416 : $ba
-	bra br_06_8419                                                  ; $8417 : $80, $00
-
-br_06_8419:
-	bpl br_06_8443                                                  ; $8419 : $10, $28
-
-	inc $80                                                  ; $841b : $e6, $80
-	.db $00                                                  ; $841d : $00
-
-br_06_841e:
-	bpl br_06_8480                                                  ; $841e : $10, $60
-
-	ldy $80                                                  ; $8420 : $a4, $80
-	.db $00                                                  ; $8422 : $00
-	bpl br_06_83c5                                                  ; $8423 : $10, $a0
-
-	lda $100080.l                                                  ; $8425 : $af, $80, $00, $10
-	cpy #$80af.w                                                  ; $8429 : $c0, $af, $80
-	.db $00                                                  ; $842c : $00
-	bpl br_06_840f                                                  ; $842d : $10, $e0
-
-	lda $100080.l                                                  ; $842f : $af, $80, $00, $10
-	.db $00                                                  ; $8433 : $00
-	bcs br_06_83b6                                                  ; $8434 : $b0, $80
-
-	.db $00                                                  ; $8436 : $00
-	bpl br_06_8459                                                  ; $8437 : $10, $20
-
-	bcs br_06_83bb                                                  ; $8439 : $b0, $80
-
-	.db $00                                                  ; $843b : $00
-	bpl br_06_847e                                                  ; $843c : $10, $40
-
-	bcs br_06_83c0                                                  ; $843e : $b0, $80
-
-	.db $00                                                  ; $8440 : $00
-	bpl br_06_84a3                                                  ; $8441 : $10, $60
-
-br_06_8443:
-	bcs br_06_83c5                                                  ; $8443 : $b0, $80
-
-	.db $00                                                  ; $8445 : $00
-	bpl br_06_83c8                                                  ; $8446 : $10, $80
-
-	bcs br_06_83ca                                                  ; $8448 : $b0, $80
-
-	.db $00                                                  ; $844a : $00
-	.db $10, $ba                                                  ; $844b : $10, $ba
-
-	stp                                                  ; $844d : $db
-	.db $00                                                  ; $844e : $00
-	.db $00                                                  ; $844f : $00
-	bpl br_06_8492                                                  ; $8450 : $10, $40
-
-	bcs br_06_83d4                                                  ; $8452 : $b0, $80
-
-	.db $00                                                  ; $8454 : $00
-
-br_06_8455:
-	.db $10, $88                                                  ; $8455 : $10, $88
-
-	sbc $80                                                  ; $8457 : $e5, $80
-
-br_06_8459:
-	.db $00                                                  ; $8459 : $00
-	bpl br_06_84a4                                                  ; $845a : $10, $48
-
-	inc $80                                                  ; $845c : $e6, $80
-	.db $00                                                  ; $845e : $00
-	bpl br_06_84c9                                                  ; $845f : $10, $68
-
-	inc $80                                                  ; $8461 : $e6, $80
-	.db $00                                                  ; $8463 : $00
-	bpl br_06_84c6                                                  ; $8464 : $10, $60
-
-	lda ($20, S), Y                                                  ; $8466 : $b3, $20
-	rti                                                  ; $8468 : $40
-
-
-	rts                                                  ; $8469 : $60
-
-
-	lda ($30, S), Y                                                  ; $846a : $b3, $30
-	.db $00                                                  ; $846c : $00
-	bra br_06_846f                                                  ; $846d : $80, $00
-
-br_06_846f:
-	tyx                                                  ; $846f : $bb
-	.db $00                                                  ; $8470 : $00
-	.db $00                                                  ; $8471 : $00
-	bra br_06_84b2                                                  ; $8472 : $80, $3e
-
-	lda $800000.l, X                                                  ; $8474 : $bf, $00, $00, $80
-	ldx $c4                                                  ; $8478 : $a6, $c4
-	.db $00                                                  ; $847a : $00
-	.db $00                                                  ; $847b : $00
-	bra br_06_83fe                                                  ; $847c : $80, $80
-
-br_06_847e:
-	dec $00                                                  ; $847e : $c6, $00
-
-br_06_8480:
-	.db $00                                                  ; $8480 : $00
-
-br_06_8481:
-	bra br_06_84ed                                                  ; $8481 : $80, $6a
-
-	cmp #$0000.w                                                  ; $8483 : $c9, $00, $00
-	.db $80, $7c                                                  ; $8486 : $80, $7c
-
-br_06_8488:
-	cmp $800000.l                                                  ; $8488 : $cf, $00, $00, $80
-	rol $d2                                                  ; $848c : $26, $d2
-	.db $00                                                  ; $848e : $00
-	.db $00                                                  ; $848f : $00
-	bra br_06_84f8                                                  ; $8490 : $80, $66
-
-br_06_8492:
-	cmp $00, X                                                  ; $8492 : $d5, $00
-	.db $00                                                  ; $8494 : $00
-	bra br_06_846f                                                  ; $8495 : $80, $d8
-
-	cmp [$00], Y                                                  ; $8497 : $d7, $00
-	.db $00                                                  ; $8499 : $00
-	bra br_06_841e                                                  ; $849a : $80, $82
-
-	phx                                                  ; $849c : $da
-	.db $00                                                  ; $849d : $00
-	.db $00                                                  ; $849e : $00
-	.db $80, $ba                                                  ; $849f : $80, $ba
-
-	stp                                                  ; $84a1 : $db
-	.db $00                                                  ; $84a2 : $00
-
-br_06_84a3:
-	.db $00                                                  ; $84a3 : $00
-
-br_06_84a4:
-	.db $80, $92                                                  ; $84a4 : $80, $92
-
-	cmp $0000.w, X                                                  ; $84a6 : $dd, $00, $00
-	bra br_06_8481                                                  ; $84a9 : $80, $d6
-
-	cpx #$0000.w                                                  ; $84ab : $e0, $00, $00
-	.db $80, $6e                                                  ; $84ae : $80, $6e
-
-	sbc $00, S                                                  ; $84b0 : $e3, $00
-
-br_06_84b2:
-	.db $00                                                  ; $84b2 : $00
-	.db $10, $40                                                  ; $84b3 : $10, $40
-
-	lda $5000b0.l                                                  ; $84b5 : $af, $b0, $00, $50
-	jsr $00b1.w                                                  ; $84b9 : $20, $b1, $00
-	.db $00                                                  ; $84bc : $00
-	bpl br_06_84c7                                                  ; $84bd : $10, $08
-
-	inc $80                                                  ; $84bf : $e6, $80
-	.db $00                                                  ; $84c1 : $00
-	.db $10, $88                                                  ; $84c2 : $10, $88
-
-	inc $80                                                  ; $84c4 : $e6, $80
-
-br_06_84c6:
-	.db $00                                                  ; $84c6 : $00
-
-br_06_84c7:
-	.db $10, $c8                                                  ; $84c7 : $10, $c8
-
-br_06_84c9:
-	inc $80                                                  ; $84c9 : $e6, $80
-	.db $00                                                  ; $84cb : $00
-	.db $10, $e8                                                  ; $84cc : $10, $e8
-
-	inc $80                                                  ; $84ce : $e6, $80
-	.db $00                                                  ; $84d0 : $00
-	bpl br_06_84fb                                                  ; $84d1 : $10, $28
-
-br_06_84d3:
-	sbc [$80]                                                  ; $84d3 : $e7, $80
-	.db $00                                                  ; $84d5 : $00
-	bpl br_06_8480                                                  ; $84d6 : $10, $a8
-
-	sbc [$80]                                                  ; $84d8 : $e7, $80
-	.db $00                                                  ; $84da : $00
-	.db $10, $c8                                                  ; $84db : $10, $c8
-
-	sbc [$80]                                                  ; $84dd : $e7, $80
-	.db $00                                                  ; $84df : $00
-	.db $10, $e8                                                  ; $84e0 : $10, $e8
-
-	sbc [$80]                                                  ; $84e2 : $e7, $80
-	.db $00                                                  ; $84e4 : $00
-	bpl br_06_84ef                                                  ; $84e5 : $10, $08
-
-br_06_84e7:
-	inx                                                  ; $84e7 : $e8
-	bra br_06_84ea                                                  ; $84e8 : $80, $00
-
-br_06_84ea:
-	bpl br_06_8514                                                  ; $84ea : $10, $28
-
-	inx                                                  ; $84ec : $e8
-
-br_06_84ed:
-	bra br_06_84ef                                                  ; $84ed : $80, $00
-
-br_06_84ef:
-	bpl br_06_8539                                                  ; $84ef : $10, $48
-
-	inx                                                  ; $84f1 : $e8
-	bra br_06_84f4                                                  ; $84f2 : $80, $00
-
-br_06_84f4:
-	.db $10, $80                                                  ; $84f4 : $10, $80
-
-	lda [$80], Y                                                  ; $84f6 : $b7, $80
-
-br_06_84f8:
-	.db $00                                                  ; $84f8 : $00
-	.db $10, $68                                                  ; $84f9 : $10, $68
-
-br_06_84fb:
-	inx                                                  ; $84fb : $e8
-	bra br_06_84fe                                                  ; $84fc : $80, $00
-
-br_06_84fe:
-	bpl br_06_8488                                                  ; $84fe : $10, $88
-
-	inx                                                  ; $8500 : $e8
-
-br_06_8501:
-	bra br_06_8503                                                  ; $8501 : $80, $00
-
-br_06_8503:
-	.db $10, $a8                                                  ; $8503 : $10, $a8
-
-	inx                                                  ; $8505 : $e8
-	bra br_06_8508                                                  ; $8506 : $80, $00
-
-br_06_8508:
-	rts                                                  ; $8508 : $60
-
-
-	rol $20bf.w, X                                                  ; $8509 : $3e, $bf, $20
-	.db $00                                                  ; $850c : $00
-	bpl br_06_850f                                                  ; $850d : $10, $00
-
-br_06_850f:
-	lda ($50), Y                                                  ; $850f : $b1, $50
-	.db $00                                                  ; $8511 : $00
-	.db $10, $c8                                                  ; $8512 : $10, $c8
-
-br_06_8514:
-	inx                                                  ; $8514 : $e8
-	bra br_06_8517                                                  ; $8515 : $80, $00
-
-br_06_8517:
-	bpl br_06_8501                                                  ; $8517 : $10, $e8
-
-	inx                                                  ; $8519 : $e8
-	bra br_06_851c                                                  ; $851a : $80, $00
-
-br_06_851c:
-	jsr $a780.w                                                  ; $851c : $20, $80, $a7
-	.db $00                                                  ; $851f : $00
-	.db $00                                                  ; $8520 : $00
-	bvs br_06_8543                                                  ; $8521 : $70, $20
-
-	lda $0000.w, Y                                                  ; $8523 : $b9, $00, $00
-	bpl br_06_8528                                                  ; $8526 : $10, $00
-
-br_06_8528:
-	tyx                                                  ; $8528 : $bb
-
-br_06_8529:
-	.db $00                                                  ; $8529 : $00
-	.db $00                                                  ; $852a : $00
-	.db $10, $80                                                  ; $852b : $10, $80
-
-	dec $00                                                  ; $852d : $c6, $00
-	.db $00                                                  ; $852f : $00
-	.db $00                                                  ; $8530 : $00
-	.db $00                                                  ; $8531 : $00
-	bpl br_06_853c                                                  ; $8532 : $10, $08
-
-br_06_8534:
-	sbc #$0080.w                                                  ; $8534 : $e9, $80, $00
-	.db $10, $28                                                  ; $8537 : $10, $28
-
-br_06_8539:
-	sbc #$0080.w                                                  ; $8539 : $e9, $80, $00
-
-br_06_853c:
-	bpl br_06_8586                                                  ; $853c : $10, $48
-
-	sbc #$0080.w                                                  ; $853e : $e9, $80, $00
-	bpl br_06_85a3                                                  ; $8541 : $10, $60
-
-br_06_8543:
-	lda [$a0], Y                                                  ; $8543 : $b7, $a0
-	.db $00                                                  ; $8545 : $00
-	.db $00                                                  ; $8546 : $00
-	bpl br_06_8529                                                  ; $8547 : $10, $e0
-
-	ldy $70, X                                                  ; $8549 : $b4, $70
-	.db $00                                                  ; $854b : $00
-	bra br_06_854e                                                  ; $854c : $80, $00
-
-br_06_854e:
-	ldx $0000.w                                                  ; $854e : $ae, $00, $00
-	bpl br_06_84d3                                                  ; $8551 : $10, $80
-
-br_06_8553:
-	lda $90, X                                                  ; $8553 : $b5, $90
-	.db $00                                                  ; $8555 : $00
-	bpl br_06_84f8                                                  ; $8556 : $10, $a0
-
-	lda $80, X                                                  ; $8558 : $b5, $80
-	.db $00                                                  ; $855a : $00
-
-br_06_855b:
-	.db $10, $20                                                  ; $855b : $10, $20
-
-	lda [$80], Y                                                  ; $855d : $b7, $80
-	.db $00                                                  ; $855f : $00
-	bpl br_06_85a2                                                  ; $8560 : $10, $40
-
-	lda [$80], Y                                                  ; $8562 : $b7, $80
-	.db $00                                                  ; $8564 : $00
-	bpl br_06_84e7                                                  ; $8565 : $10, $80
-
-	plb                                                  ; $8567 : $ab
-	bra br_06_856a                                                  ; $8568 : $80, $00
-
-br_06_856a:
-	.db $10, $c0                                                  ; $856a : $10, $c0
-
-	lda [$80], Y                                                  ; $856c : $b7, $80
-	.db $00                                                  ; $856e : $00
-	bpl br_06_85d9                                                  ; $856f : $10, $68
-
-	sbc #$0080.w                                                  ; $8571 : $e9, $80, $00
-	bpl br_06_84fe                                                  ; $8574 : $10, $88
-
-	sbc #$0080.w                                                  ; $8576 : $e9, $80, $00
-	jsr Call_06_e9a8.w                                                  ; $8579 : $20, $a8, $e9
-	bra br_06_857e                                                  ; $857c : $80, $00
-
-br_06_857e:
-	bpl br_06_8588                                                  ; $857e : $10, $08
-
-br_06_8580:
-	nop                                                  ; $8580 : $ea
-	bra br_06_8583                                                  ; $8581 : $80, $00
-
-br_06_8583:
-	bpl br_06_85ad                                                  ; $8583 : $10, $28
-
-	nop                                                  ; $8585 : $ea
-
-br_06_8586:
-	bra br_06_8588                                                  ; $8586 : $80, $00
-
-br_06_8588:
-	.db $10, $60                                                  ; $8588 : $10, $60
-
-	lda [$80]                                                  ; $858a : $a7, $80
-	.db $00                                                  ; $858c : $00
-
-
-Data_6_858d:
+	.dw PaletteSpec_00
+	.dw PaletteSpec_01
+	.dw PaletteSpec_02
+	.dw PaletteSpec_03
+	.dw PaletteSpec_04
+	.dw PaletteSpec_05
+	.dw PaletteSpec_06
+	.dw PaletteSpec_07
+	.dw PaletteSpec_08
+	.dw PaletteSpec_09
+	.dw PaletteSpec_0a
+	.dw PaletteSpec_0b
+	.dw PaletteSpec_0c
+	.dw PaletteSpec_0d
+	.dw PaletteSpec_0e
+	.dw PaletteSpec_0f
+	.dw PaletteSpec_10
+	.dw PaletteSpec_11
+	.dw PaletteSpec_12
+	.dw PaletteSpec_13
+	.dw PaletteSpec_14
+	.dw PaletteSpec_15
+	.dw PaletteSpec_16
+	.dw PaletteSpec_17
+	.dw PaletteSpec_18
+	.dw PaletteSpec_19
+	.dw PaletteSpec_1a
+	.dw PaletteSpec_1b
+	.dw PaletteSpec_1c
+	.dw PaletteSpec_1d
+	.dw PaletteSpec_1e
+	.dw PaletteSpec_1f
+	.dw PaletteSpec_20
+	.dw PaletteSpec_21
+	.dw PaletteSpec_22
+	.dw PaletteSpec_23
+	.dw PaletteSpec_24
+	.dw PaletteSpec_25
+	.dw PaletteSpec_26
+	.dw PaletteSpec_27
+	.dw PaletteSpec_28
+	.dw PaletteSpec_29
+	.dw PaletteSpec_2a
+	.dw PaletteSpec_2b
+	.dw PaletteSpec_2c
+	.dw PaletteSpec_2d
+	.dw PaletteSpec_2e
+	.dw PaletteSpec_2f
+	.dw PaletteSpec_30
+	.dw PaletteSpec_31
+	.dw PaletteSpec_32
+	.dw PaletteSpec_33
+	.dw PaletteSpec_34
+	.dw PaletteSpec_35
+	.dw PaletteSpec_36
+	.dw PaletteSpec_37
+	.dw PaletteSpec_38
+	.dw PaletteSpec_39
+	.dw PaletteSpec_3a
+	.dw PaletteSpec_3b
+	.dw PaletteSpec_3c
+	.dw PaletteSpec_3d
+	.dw PaletteSpec_3e
+	.dw PaletteSpec_3f
+	.dw PaletteSpec_40
+	.dw PaletteSpec_41
+	.dw PaletteSpec_42
+	.dw PaletteSpec_43
+	.dw PaletteSpec_44
+	.dw PaletteSpec_45
+	.dw PaletteSpec_46
+	.dw PaletteSpec_47
+	.dw PaletteSpec_48
+	.dw PaletteSpec_49
+	.dw PaletteSpec_4a
+	.dw PaletteSpec_4b
+	.dw PaletteSpec_4c
+	.dw PaletteSpec_4d
+	.dw PaletteSpec_4e
+	.dw PaletteSpec_4f
+	.dw PaletteSpec_50
+	.dw PaletteSpec_51
+	.dw PaletteSpec_52
+	.dw PaletteSpec_53
+	.dw PaletteSpec_54
+	.dw PaletteSpec_55
+	.dw PaletteSpec_56
+	.dw PaletteSpec_57
+	.dw PaletteSpec_58
+	.dw PaletteSpec_59
+	.dw PaletteSpec_5a
+	.dw PaletteSpec_5b
+	.dw PaletteSpec_5c
+	.dw PaletteSpec_5d
+	.dw PaletteSpec_5e
+	.dw PaletteSpec_5f
+	.dw PaletteSpec_60
+	.dw PaletteSpec_61
+	.dw PaletteSpec_62
+	.dw PaletteSpec_63
+	.dw PaletteSpec_64
+	.dw PaletteSpec_65
+	.dw PaletteSpec_66
+	.dw PaletteSpec_67
+	.dw PaletteSpec_68
+	.dw PaletteSpec_69
+	.dw PaletteSpec_6a
+	.dw PaletteSpec_6b
+	.dw PaletteSpec_6c
+	.dw PaletteSpec_6d
+	.dw PaletteSpec_6e
+	.dw PaletteSpec_6f
+	.dw PaletteSpec_70
+	.dw PaletteSpec_71
+	.dw PaletteSpec_72
+	.dw PaletteSpec_73
+	.dw PaletteSpec_74
+	.dw PaletteSpec_75
+	.dw PaletteSpec_76
+	.dw PaletteSpec_77
+	.dw PaletteSpec_78
+	.dw PaletteSpec_79
+	.dw PaletteSpec_7a
+	.dw PaletteSpec_7b
+	.dw PaletteSpec_7c
+	.dw PaletteSpec_7d
+	.dw PaletteSpec_7e
+	.dw PaletteSpec_7f
+	.dw PaletteSpec_80
+	.dw PaletteSpec_81
+	.dw PaletteSpec_82
+	.dw PaletteSpec_83
+	.dw PaletteSpec_84
+	.dw PaletteSpec_85
+	.dw PaletteSpec_86
+	.dw PaletteSpec_87
+	.dw PaletteSpec_88
+	.dw PaletteSpec_89
+	.dw PaletteSpec_8a
+	.dw PaletteSpec_8b
+	.dw PaletteSpec_8c
+	.dw PaletteSpec_8d
+	.dw PaletteSpec_8e
+	.dw PaletteSpec_8f
+	.dw PaletteSpec_90
+	.dw PaletteSpec_91
+	.dw PaletteSpec_92
+	.dw PaletteSpec_93
+	.dw PaletteSpec_94
+	.dw PaletteSpec_95
+	.dw PaletteSpec_96
+	.dw PaletteSpec_97
+	.dw PaletteSpec_98
+	.dw PaletteSpec_99
+	.dw PaletteSpec_9a
+	.dw PaletteSpec_9b
+	.dw PaletteSpec_9c
+	.dw PaletteSpec_9d
+	.dw PaletteSpec_9e
+	.dw PaletteSpec_9f
+	.dw PaletteSpec_a0
+	.dw PaletteSpec_a1
+	.dw PaletteSpec_a2
+	.dw PaletteSpec_a3
+	.dw PaletteSpec_a4
+	.dw PaletteSpec_a5
+	.dw PaletteSpec_a6
+	.dw PaletteSpec_a7
+	.dw PaletteSpec_a8
+	.dw PaletteSpec_a9
+	.dw PaletteSpec_aa
+	.dw PaletteSpec_ab
+	.dw PaletteSpec_ac
+	.dw PaletteSpec_ad
+	.dw PaletteSpec_ae
+	.dw PaletteSpec_af
+	.dw PaletteSpec_b0
+	.dw PaletteSpec_b1
+	.dw PaletteSpec_b2
+	.dw PaletteSpec_b3
+	.dw PaletteSpec_b4
+	.dw PaletteSpec_b5
+	.dw PaletteSpec_b6
+	.dw PaletteSpec_b7
+	.dw PaletteSpec_b8
+	.dw PaletteSpec_b9
+	.dw PaletteSpec_ba
+	.dw PaletteSpec_bb
+	.dw PaletteSpec_bc
+	.dw PaletteSpec_bd
+	.dw PaletteSpec_be
+	.dw PaletteSpec_bf
+	.dw PaletteSpec_c0
+	.dw PaletteSpec_c1
+	.dw PaletteSpec_c2
+	.dw PaletteSpec_c3
+	.dw PaletteSpec_c4
+	.dw PaletteSpec_c5
+	.dw PaletteSpec_c6
+	.dw PaletteSpec_c7
+	.dw PaletteSpec_c8
+	.dw PaletteSpec_c9
+	.dw PaletteSpec_ca
+	.dw PaletteSpec_cb
+	.dw PaletteSpec_cc
+	.dw PaletteSpec_cd
+	.dw PaletteSpec_ce
+	.dw PaletteSpec_cf
+	.dw PaletteSpec_d0
+	.dw PaletteSpec_d1
+	.dw PaletteSpec_d2
+	.dw PaletteSpec_d3
+	.dw PaletteSpec_d4
+	.dw PaletteSpec_d5
+	.dw PaletteSpec_d6
+	.dw PaletteSpec_d7
+	.dw PaletteSpec_d8
+	.dw PaletteSpec_d9
+	.dw PaletteSpec_da
+	.dw PaletteSpec_db
+	.dw PaletteSpec_dc
+	.dw PaletteSpec_dd
+	.dw PaletteSpec_de
+	.dw PaletteSpec_df
+	.dw PaletteSpec_e0
+	.dw PaletteSpec_e1
+	.dw PaletteSpec_e2
+	.dw PaletteSpec_e3
+	.dw PaletteSpec_e4
+	.dw PaletteSpec_e5
+	.dw PaletteSpec_e6
+	.dw PaletteSpec_e7
+	.dw PaletteSpec_e8
+	.dw PaletteSpec_e9
+	.dw PaletteSpec_ea
+	.dw PaletteSpec_eb
+	.dw PaletteSpec_ec
+	.dw PaletteSpec_ed
+	.dw PaletteSpec_ee
+	.dw PaletteSpec_ef
+	.dw PaletteSpec_f0
+	.dw PaletteSpec_f1
+	.dw PaletteSpec_f2
+	.dw PaletteSpec_f3
+	.dw PaletteSpec_f4
+	.dw PaletteSpec_f5
+	.dw PaletteSpec_f6
+	.dw PaletteSpec_f7
+	.dw PaletteSpec_f8
+	.dw PaletteSpec_f9
+	.dw PaletteSpec_fa
+	.dw PaletteSpec_fb
+	.dw PaletteSpec_fc
+	.dw PaletteSpec_fd
+	.dw PaletteSpec_fe
+	.dw PaletteSpec_ff
+
+PaletteSpec_00:
 	.db $10
-	.dw $ea48
+	.dw PaletteData_c_a400
+	.db $80
+
+	.db $00
+
+PaletteSpec_0e:
+	.db $10
+	.dw PaletteData_c_b0e0
+	.db $80
+
+	.db $00
+
+PaletteSpec_50:
+	.db $10
+	.dw PaletteData_c_b100
+	.db $80
+
+	.db $00
+
+PaletteSpec_01:
+	.db $10
+	.dw PaletteData_c_ba00
+	.db $80
+
+	.db $00
+
+PaletteSpec_02:
+	.db $10
+	.dw PaletteData_c_ba20
+	.db $80
+
+	.db $00
+
+PaletteSpec_03:
+	.db $10
+	.dw PaletteData_c_af20
+	.db $90
+
+	.db $00
+
+PaletteSpec_04:
+	.db $10
+	.dw PaletteData_c_ba80
+	.db $80
+
+	.db $00
+
+PaletteSpec_05:
+	.db $10
+	.dw PaletteData_c_e568
+	.db $80
+
+	.db $00
+
+PaletteSpec_06:
+	.db $00
+
+PaletteSpec_07:
+	.db $10
+	.dw PaletteData_c_aca0
+	.db $00
+
+	.db $00
+
+PaletteSpec_08:
+	.db $10
+	.dw PaletteData_c_b000
+	.db $80
+
+	.db $10
+	.dw PaletteData_c_b100
+	.db $30
+
+	.db $20
+	.dw PaletteData_c_b120
+	.db $10
+
+	.db $00
+
+PaletteSpec_09:
+	.db $20
+	.dw PaletteData_c_b2c0
+	.db $00
+
+	.db $00
+
+PaletteSpec_0a:
+	.db $10
+	.dw PaletteData_c_b100
+	.db $80
+
+	.db $00
+
+PaletteSpec_0b:
+	.db $00
+
+PaletteSpec_0c:
+	.db $80
+	.dw PaletteData_c_b3e0
+	.db $00
+
+	.db $00
+
+PaletteSpec_0d:
+	.db $00
+
+PaletteSpec_0f:
+	.db $10
+	.dw PaletteData_c_e508
+	.db $80
+
+	.db $00
+
+PaletteSpec_10:
+	.db $10
+	.dw PaletteData_c_baa0
+	.db $80
+
+	.db $00
+
+PaletteSpec_11:
+	.db $20
+	.dw PaletteData_c_e5c8
+	.db $80
+
+	.db $00
+
+PaletteSpec_12:
+	.db $00
+
+PaletteSpec_13:
+	.db $10
+	.dw PaletteData_c_e748
+	.db $80
+
+	.db $00
+
+PaletteSpec_14:
+	.db $10
+	.dw PaletteData_c_a420
+	.db $80
+
+	.db $00
+
+PaletteSpec_15:
+	.db $10
+	.dw PaletteData_c_a440
+	.db $80
+
+	.db $00
+
+PaletteSpec_16:
+	.db $10
+	.dw PaletteData_c_e768
+	.db $80
+
+	.db $00
+
+PaletteSpec_17:
+	.db $30
+	.dw PaletteData_c_b300
+	.db $10
+
+	.db $00
+
+PaletteSpec_62:
+	.db $10
+	.dw PaletteData_c_e528
+	.db $80
+
+	.db $00
+
+PaletteSpec_18:
+	.db $10
+	.dw PaletteData_c_e548
+	.db $80
+
+	.db $00
+
+PaletteSpec_19:
+	.db $10
+	.dw PaletteData_c_af00
+	.db $80
+
+	.db $00
+
+PaletteSpec_1a:
+	.db $10
+	.dw PaletteData_c_a740
+	.db $80
+
+	.db $00
+
+PaletteSpec_1b:
+	.db $10
+	.dw PaletteData_c_e788
+	.db $80
+
+	.db $00
+
+PaletteSpec_1c:
+	.db $00
+
+PaletteSpec_1d:
+	.db $10
+	.dw PaletteData_c_e5a8
+	.db $80
+
+	.db $00
+
+PaletteSpec_1e:
+	.db $10
+	.dw PaletteData_c_bac0
+	.db $80
+
+	.db $00
+
+PaletteSpec_1f:
+	.db $10
+	.dw PaletteData_c_e628
+	.db $80
+
+	.db $00
+
+PaletteSpec_20:
+PaletteSpec_29:
+	.db $10
+	.dw PaletteData_c_a460
+	.db $80
+
+	.db $00
+
+PaletteSpec_21:
+	.db $10
+	.dw PaletteData_c_afa0
+	.db $80
+
+	.db $00
+
+PaletteSpec_22:
+	.db $10
+	.dw PaletteData_c_afc0
+	.db $80
+
+	.db $00
+
+PaletteSpec_23:
+	.db $10
+	.dw PaletteData_c_afe0
+	.db $80
+
+	.db $00
+
+PaletteSpec_24:
+	.db $10
+	.dw PaletteData_c_b000
+	.db $80
+
+	.db $00
+
+PaletteSpec_25:
+	.db $10
+	.dw PaletteData_c_b020
+	.db $80
+
+	.db $00
+
+PaletteSpec_26:
+	.db $10
+	.dw PaletteData_c_b040
+	.db $80
+
+	.db $00
+
+PaletteSpec_27:
+	.db $10
+	.dw PaletteData_c_b060
+	.db $80
+
+	.db $00
+
+PaletteSpec_28:
+	.db $10
+	.dw PaletteData_c_b080
+	.db $80
+
+	.db $00
+
+PaletteSpec_2a:
+	.db $10
+	.dw PaletteData_c_dbba
+	.db $00
+
+	.db $00
+
+PaletteSpec_2b:
+	.db $10
+	.dw PaletteData_c_b040
+	.db $80
+
+	.db $00
+
+PaletteSpec_2c:
+	.db $10
+	.dw PaletteData_c_e588
+	.db $80
+
+	.db $00
+
+PaletteSpec_2d:
+	.db $10
+	.dw PaletteData_c_e648
+	.db $80
+
+	.db $00
+
+PaletteSpec_2e:
+	.db $10
+	.dw PaletteData_c_e668
+	.db $80
+
+	.db $00
+
+PaletteSpec_2f:
+	.db $10
+	.dw PaletteData_c_b360
+	.db $20
+
+	.db $40
+	.dw PaletteData_c_b360
+	.db $30
+
+	.db $00
+
+PaletteSpec_30:
+	.db $80
+	.dw PaletteData_c_bb00
+	.db $00
+
+	.db $00
+
+PaletteSpec_31:
+	.db $80
+	.dw PaletteData_c_bf3e
+	.db $00
+
+	.db $00
+
+PaletteSpec_32:
+	.db $80
+	.dw PaletteData_c_c4a6
+	.db $00
+
+	.db $00
+
+PaletteSpec_33:
+	.db $80
+	.dw PaletteData_c_c680
+	.db $00
+
+	.db $00
+
+PaletteSpec_34:
+	.db $80
+	.dw PaletteData_c_c96a
+	.db $00
+
+	.db $00
+
+PaletteSpec_35:
+	.db $80
+	.dw PaletteData_c_cf7c
+	.db $00
+
+	.db $00
+
+PaletteSpec_36:
+	.db $80
+	.dw PaletteData_c_d226
+	.db $00
+
+	.db $00
+
+PaletteSpec_37:
+	.db $80
+	.dw PaletteData_c_d566
+	.db $00
+
+	.db $00
+
+PaletteSpec_38:
+	.db $80
+	.dw PaletteData_c_d7d8
+	.db $00
+
+	.db $00
+
+PaletteSpec_39:
+	.db $80
+	.dw PaletteData_c_da82
+	.db $00
+
+	.db $00
+
+PaletteSpec_3a:
+	.db $80
+	.dw PaletteData_c_dbba
+	.db $00
+
+	.db $00
+
+PaletteSpec_3b:
+	.db $80
+	.dw PaletteData_c_dd92
+	.db $00
+
+	.db $00
+
+PaletteSpec_3c:
+	.db $80
+	.dw PaletteData_c_e0d6
+	.db $00
+
+	.db $00
+
+PaletteSpec_3d:
+	.db $80
+	.dw PaletteData_c_e36e
+	.db $00
+
+	.db $00
+
+PaletteSpec_3e:
+	.db $10
+	.dw PaletteData_c_af40
+	.db $b0
+
+	.db $00
+
+PaletteSpec_3f:
+	.db $50
+	.dw PaletteData_c_b120
+	.db $00
+
+	.db $00
+
+PaletteSpec_40:
+	.db $10
+	.dw PaletteData_c_e608
+	.db $80
+
+	.db $00
+
+PaletteSpec_41:
+	.db $10
+	.dw PaletteData_c_e688
+	.db $80
+
+	.db $00
+
+PaletteSpec_42:
+	.db $10
+	.dw PaletteData_c_e6c8
+	.db $80
+
+	.db $00
+
+PaletteSpec_43:
+	.db $10
+	.dw PaletteData_c_e6e8
+	.db $80
+
+	.db $00
+
+PaletteSpec_44:
+	.db $10
+	.dw PaletteData_c_e728
+	.db $80
+
+PaletteSpec_45:
+	.db $00
+
+PaletteSpec_46:
+	.db $10
+	.dw PaletteData_c_e7a8
+	.db $80
+
+	.db $00
+
+PaletteSpec_47:
+	.db $10
+	.dw PaletteData_c_e7c8
+	.db $80
+
+	.db $00
+
+PaletteSpec_48:
+	.db $10
+	.dw PaletteData_c_e7e8
+	.db $80
+
+	.db $00
+
+PaletteSpec_49:
+	.db $10
+	.dw PaletteData_c_e808
+	.db $80
+
+	.db $00
+
+PaletteSpec_4a:
+	.db $10
+	.dw PaletteData_c_e828
+	.db $80
+
+	.db $00
+
+PaletteSpec_4b:
+	.db $10
+	.dw PaletteData_c_e848
+	.db $80
+
+	.db $00
+
+PaletteSpec_4c:
+	.db $10
+	.dw PaletteData_c_b780
+	.db $80
+
+	.db $00
+
+PaletteSpec_4d:
+	.db $10
+	.dw PaletteData_c_e868
+	.db $80
+
+	.db $00
+
+PaletteSpec_4e:
+	.db $10
+	.dw PaletteData_c_e888
+	.db $80
+
+	.db $00
+
+PaletteSpec_4f:
+	.db $10
+	.dw PaletteData_c_e8a8
+	.db $80
+
+	.db $00
+
+PaletteSpec_51:
+	.db $60
+	.dw PaletteData_c_bf3e
+	.db $20
+
+	.db $00
+
+PaletteSpec_52:
+	.db $10
+	.dw PaletteData_c_b100
+	.db $50
+
+	.db $00
+
+PaletteSpec_53:
+	.db $10
+	.dw PaletteData_c_e8c8
+	.db $80
+
+	.db $00
+
+PaletteSpec_54:
+	.db $10
+	.dw PaletteData_c_e8e8
+	.db $80
+
+	.db $00
+
+PaletteSpec_55:
+	.db $20
+	.dw PaletteData_c_a780
+	.db $00
+
+	.db $00
+
+PaletteSpec_56:
+	.db $70
+	.dw PaletteData_c_b920
+	.db $00
+
+	.db $00
+
+PaletteSpec_57:
+	.db $10
+	.dw PaletteData_c_bb00
+	.db $00
+
+	.db $00
+
+PaletteSpec_58:
+	.db $10
+	.dw PaletteData_c_c680
+	.db $00
+
+	.db $00
+
+PaletteSpec_59:
+PaletteSpec_5a:
+PaletteSpec_5b:
+	.db $00
+
+PaletteSpec_5c:
+PaletteSpec_5d:
+PaletteSpec_5e:
+PaletteSpec_5f:
+	.db $00
+
+PaletteSpec_60:
+	.db $10
+	.dw PaletteData_c_e908
+	.db $80
+
+	.db $00
+
+PaletteSpec_61:
+	.db $10
+	.dw PaletteData_c_e928
+	.db $80
+
+	.db $00
+
+PaletteSpec_63:
+	.db $10
+	.dw PaletteData_c_e948
+	.db $80
+
+	.db $00
+
+PaletteSpec_64:
+	.db $10
+	.dw PaletteData_c_b760
+	.db $a0
+
+	.db $00
+
+PaletteSpec_65:
+	.db $00
+
+PaletteSpec_66:
+	.db $10
+	.dw PaletteData_c_b4e0
+	.db $70
+
+	.db $00
+
+PaletteSpec_67:
+	.db $80
+	.dw PaletteData_c_ae00
+	.db $00
+
+	.db $00
+
+PaletteSpec_68:
+	.db $10
+	.dw PaletteData_c_b580
+	.db $90
+
+	.db $00
+
+PaletteSpec_69:
+	.db $10
+	.dw PaletteData_c_b5a0
+	.db $80
+
+	.db $00
+
+PaletteSpec_6f:
+PaletteSpec_70:
+	.db $10
+	.dw PaletteData_c_b720
+	.db $80
+
+	.db $00
+
+PaletteSpec_71:
+	.db $10
+	.dw PaletteData_c_b740
+	.db $80
+
+	.db $00
+
+PaletteSpec_72:
+	.db $10
+	.dw PaletteData_c_ab80
+	.db $80
+
+	.db $00
+
+PaletteSpec_73:
+	.db $10
+	.dw PaletteData_c_b7c0
+	.db $80
+
+	.db $00
+
+PaletteSpec_74:
+	.db $10
+	.dw PaletteData_c_e968
+	.db $80
+
+	.db $00
+
+PaletteSpec_75:
+	.db $10
+	.dw PaletteData_c_e988
+	.db $80
+
+	.db $00
+
+PaletteSpec_76:
+	.db $20
+	.dw PaletteData_c_e9a8
+	.db $80
+
+	.db $00
+
+PaletteSpec_77:
+	.db $10
+	.dw PaletteData_c_ea08
+	.db $80
+
+	.db $00
+
+PaletteSpec_78:
+	.db $10
+	.dw PaletteData_c_ea28
+	.db $80
+
+	.db $00
+
+PaletteSpec_79:
+	.db $10
+	.dw PaletteData_c_a760
+	.db $80
+
+	.db $00
+
+PaletteSpec_7a:
+	.db $10
+	.dw PaletteData_c_ea48
+	.db $80
+
+	.db $00
+
+PaletteSpec_7b:
+	.db $10
+	.dw PaletteData_c_b7a0
+	.db $80
+
+	.db $00
+
+PaletteSpec_7c:
+	.db $80
+	.dw PaletteData_c_ad00
+	.db $00
+
+	.db $10
+	.dw PaletteData_c_b580
+	.db $a0
+
+	.db $00
+
+PaletteSpec_7d:
+	.db $20
+	.dw PaletteData_c_ea88
+	.db $80
+
+	.db $00
+
+PaletteSpec_7e:
+	.db $20
+	.dw PaletteData_c_eac8
+	.db $80
+
+	.db $00
+
+PaletteSpec_7f:
+	.db $20
+	.dw PaletteData_c_eb48
+	.db $80
+
+	.db $00
+
+PaletteSpec_80:
+	.db $10
+	.dw PaletteData_c_a400
+	.db $90
+
+	.db $00
+
+PaletteSpec_81:
+	.db $10
+	.dw PaletteData_c_a480
+	.db $90
+
+	.db $00
+
+PaletteSpec_82:
+	.db $10
+	.dw PaletteData_c_a4a0
+	.db $90
+
+	.db $00
+
+PaletteSpec_83:
+	.db $10
+	.dw PaletteData_c_a4c0
+	.db $90
+
+	.db $00
+
+PaletteSpec_84:
+	.db $10
+	.dw PaletteData_c_a4e0
+	.db $90
+
+	.db $00
+
+PaletteSpec_85:
+	.db $10
+	.dw PaletteData_c_a500
+	.db $90
+
+	.db $00
+
+PaletteSpec_86:
+	.db $10
+	.dw PaletteData_c_a520
+	.db $90
+
+	.db $00
+
+PaletteSpec_87:
+	.db $10
+	.dw PaletteData_c_a540
+	.db $90
+
+	.db $00
+
+PaletteSpec_88:
+	.db $10
+	.dw PaletteData_c_a560
+	.db $90
+
+	.db $00
+
+PaletteSpec_89:
+PaletteSpec_8a:
+	.db $10
+	.dw PaletteData_c_a400
+	.db $90
+
+	.db $00
+
+PaletteSpec_8b:
+	.db $10
+	.dw PaletteData_c_eb08
+	.db $80
+
+	.db $00
+
+PaletteSpec_8c:
+	.db $10
+	.dw PaletteData_c_eb28
+	.db $80
+
+	.db $00
+
+PaletteSpec_8d:
+	.db $10
+	.dw PaletteData_c_eb88
+	.db $80
+
+	.db $00
+
+PaletteSpec_8e:
+	.db $10
+	.dw PaletteData_c_a6a0
+	.db $00
+
+	.db $00
+
+PaletteSpec_8f:
+	.db $10
+	.dw PaletteData_c_eba8
+	.db $80
+
+	.db $00
+
+PaletteSpec_90:
+	.db $20
+	.dw PaletteData_c_ebc8
+	.db $80
+
+	.db $00
+
+PaletteSpec_91:
+	.db $20
+	.dw PaletteData_c_ec08
+	.db $80
+
+	.db $00
+
+PaletteSpec_92:
+	.db $10
+	.dw PaletteData_c_ec48
+	.db $80
+
+	.db $00
+
+PaletteSpec_93:
+	.db $10
+	.dw PaletteData_c_ec68
+	.db $80
+
+	.db $00
+
+PaletteSpec_94:
+	.db $10
+	.dw PaletteData_c_ec88
+	.db $80
+
+	.db $00
+
+PaletteSpec_95:
+	.db $10
+	.dw PaletteData_c_eca8
+	.db $80
+
+	.db $00
+
+PaletteSpec_96:
+	.db $10
+	.dw PaletteData_c_ecc8
+	.db $80
+
+	.db $00
+
+PaletteSpec_97:
+	.db $10
+	.dw PaletteData_c_ece8
+	.db $80
+
+	.db $00
+
+PaletteSpec_98:
+	.db $10
+	.dw PaletteData_c_ed08
+	.db $80
+
+	.db $00
+
+PaletteSpec_99:
+	.db $30
+	.dw PaletteData_c_ac40
+	.db $00
+
+	.db $00
+
+PaletteSpec_9a:
+	.db $10
+	.dw PaletteData_c_ed28
+	.db $80
+
+	.db $00
+
+PaletteSpec_9b:
+	.db $10
+	.dw PaletteData_c_af60
+	.db $80
+
+	.db $00
+
+PaletteSpec_9c:
+	.db $10
+	.dw PaletteData_c_af80
+	.db $80
+
+	.db $00
+
+PaletteSpec_9d:
+	.db $10
+	.dw PaletteData_c_a5e0
+	.db $80
+
+	.db $00
+
+PaletteSpec_9e:
+	.db $10
+	.dw PaletteData_c_b6e0
+	.db $80
+
+	.db $00
+
+PaletteSpec_9f:
+	.db $10
+	.dw PaletteData_c_ed48
+	.db $80
+
+	.db $00
+
+PaletteSpec_a0:
+	.db $30
+	.dw PaletteData_c_b680
+	.db $80
+
+	.db $00
+
+PaletteSpec_a1:
+	.db $40
+	.dw PaletteData_c_a6c0
+	.db $80
+
+	.db $00
+
+PaletteSpec_a2:
+	.db $10
+	.dw PaletteData_c_a5a0
+	.db $80
+
+	.db $00
+
+PaletteSpec_a3:
+	.db $00
+
+PaletteSpec_a4:
+	.db $10
+	.dw PaletteData_c_ed68
+	.db $80
+
+	.db $00
+
+PaletteSpec_a5:
+	.db $10
+	.dw PaletteData_c_ed88
+	.db $80
+
+	.db $00
+
+PaletteSpec_a6:
+	.db $10
+	.dw PaletteData_c_eda8
+	.db $80
+
+	.db $00
+
+PaletteSpec_a7:
+	.db $30
+	.dw PaletteData_c_b620
+	.db $80
+
+	.db $00
+
+PaletteSpec_a8:
+	.db $00
+
+PaletteSpec_a9:
+	.db $20
+	.dw PaletteData_c_edc8
+	.db $80
+
+	.db $00
+
+PaletteSpec_aa:
+	.db $20
+	.dw PaletteData_c_b5e0
+	.db $80
+
+	.db $00
+
+PaletteSpec_ab:
+	.db $10
+	.dw PaletteData_c_b860
+	.db $00
+
+	.db $00
+
+PaletteSpec_ac:
+	.db $20
+	.dw PaletteData_c_ee08
+	.db $80
+
+	.db $00
+
+PaletteSpec_ad:
+	.db $10
+	.dw PaletteData_c_ba60
+	.db $80
+
+	.db $00
+
+PaletteSpec_ae:
+	.db $30
+	.dw PaletteData_c_b580
+	.db $80
+
+	.db $00
+
+PaletteSpec_af:
+	.db $00
+
+PaletteSpec_b0:
+	.db $20
+	.dw PaletteData_c_ee48
+	.db $80
+
+	.db $00
+
+PaletteSpec_b1:
+	.db $10
+	.dw PaletteData_c_ab80
+	.db $f0
+
+	.db $10
+	.dw PaletteData_c_a400
+	.db $90
+
+	.db $00
+
+PaletteSpec_b2:
+PaletteSpec_b4:
+	.db $10
+	.dw PaletteData_c_aba0
+	.db $f0
+
+	.db $10
+	.dw PaletteData_c_ab60
+	.db $90
+
+	.db $00
+
+PaletteSpec_b3:
+	.db $10
+	.dw PaletteData_c_abc0
+	.db $f0
+
+	.db $10
+	.dw PaletteData_c_ab40
+	.db $90
+
+	.db $00
+
+PaletteSpec_6a:
+	.db $10
+	.dw PaletteData_c_abe0
+	.db $80
+
+	.db $00
+
+PaletteSpec_6b:
+	.db $10
+	.dw PaletteData_c_abe0
+	.db $f0
+
+	.db $10
+	.dw PaletteData_c_a400
+	.db $90
+
+	.db $00
+
+PaletteSpec_6c:
+PaletteSpec_6e:
+	.db $10
+	.dw PaletteData_c_ac00
+	.db $f0
+
+	.db $10
+	.dw PaletteData_c_ab60
+	.db $90
+
+	.db $00
+
+PaletteSpec_6d:
+	.db $10
+	.dw PaletteData_c_ac20
+	.db $f0
+
+	.db $10
+	.dw PaletteData_c_ab40
+	.db $90
+
+	.db $00
+
+PaletteSpec_b5:
+	.db $00
+
+PaletteSpec_b6:
+	.db $20
+	.dw PaletteData_c_ee88
+	.db $80
+
+	.db $00
+
+PaletteSpec_b7:
+	.db $10
+	.dw PaletteData_c_eee8
+	.db $80
+
+	.db $00
+
+PaletteSpec_b8:
+	.db $10
+	.dw PaletteData_c_bf3e
+	.db $00
+
+	.db $00
+
+PaletteSpec_b9:
+	.db $30
+	.dw PaletteData_c_b500
+	.db $00
+
+	.db $00
+
+PaletteSpec_ba:
+	.db $50
+	.dw PaletteData_c_b880
+	.db $00
+
+	.db $00
+
+PaletteSpec_bb:
+	.db $00
+
+PaletteSpec_bc:
+	.db $00
+
+PaletteSpec_bd:
+	.db $00
+
+PaletteSpec_be:
+	.db $00
+
+PaletteSpec_bf:
+	.db $30
+	.dw PaletteData_c_a7c0
+	.db $80
+
+	.db $00
+
+PaletteSpec_c0:
+	.db $10
+	.dw PaletteData_c_b560
+	.db $80
+
+	.db $00
+
+PaletteSpec_c1:
+	.db $20
+	.dw PaletteData_c_ef08
+	.db $80
+
+	.db $00
+
+PaletteSpec_c2:
+	.db $10
+	.dw PaletteData_c_b580
+	.db $80
+
+	.db $00
+
+PaletteSpec_c3:
+	.db $10
+	.dw PaletteData_c_b5e0
+	.db $80
+
+	.db $00
+
+PaletteSpec_c4:
+	.db $10
+	.dw PaletteData_c_b5a0
+	.db $80
+
+	.db $00
+
+PaletteSpec_c5:
+	.db $00
+
+PaletteSpec_c6:
+	.db $00
+
+PaletteSpec_c7:
+	.db $00
+
+PaletteSpec_c8:
+	.db $10
+	.dw PaletteData_c_b480
+	.db $50
+
+	.db $00
+
+PaletteSpec_c9:
+	.db $00
+
+PaletteSpec_ca:
+	.db $10
+	.dw PaletteData_c_b7e0
+	.db $80
+
+	.db $00
+
+PaletteSpec_cb:
+	.db $10
+	.dw PaletteData_c_b800
+	.db $80
+
+	.db $00
+
+PaletteSpec_cc:
+	.db $10
+	.dw PaletteData_c_b820
+	.db $80
+
+	.db $00
+
+PaletteSpec_cd:
+	.db $10
+	.dw PaletteData_c_b840
+	.db $80
+
+	.db $00
+
+PaletteSpec_ce:
+PaletteSpec_cf:
+	.db $00
+
+PaletteSpec_d0:
+	.db $10
+	.dw PaletteData_c_a5a0
+	.db $90
+
+	.db $00
+
+PaletteSpec_d1:
+	.db $10
+	.dw PaletteData_c_a5c0
+	.db $90
+
+	.db $00
+
+PaletteSpec_d2:
+	.db $10
+	.dw PaletteData_c_a5e0
+	.db $90
+
+	.db $00
+
+PaletteSpec_d3:
+	.db $10
+	.dw PaletteData_c_a600
+	.db $90
+
+	.db $00
+
+PaletteSpec_d4:
+	.db $10
+	.dw PaletteData_c_a620
+	.db $90
+
+	.db $00
+
+PaletteSpec_d5:
+	.db $10
+	.dw PaletteData_c_a640
+	.db $90
+
+	.db $00
+
+PaletteSpec_d6:
+	.db $10
+	.dw PaletteData_c_a660
+	.db $90
+
+	.db $00
+
+PaletteSpec_d7:
+	.db $10
+	.dw PaletteData_c_a680
+	.db $90
+
+	.db $00
+
+PaletteSpec_d8:
+PaletteSpec_d9:
+PaletteSpec_da:
+PaletteSpec_db:
+PaletteSpec_dc:
+	.db $10
+	.dw PaletteData_c_a580
+	.db $90
+
+	.db $00
+
+PaletteSpec_dd:
+PaletteSpec_de:
+PaletteSpec_df:
+	.db $00
+
+PaletteSpec_e0:
+PaletteSpec_e1:
+PaletteSpec_e2:
+	.db $10
+	.dw PaletteData_c_b160
+	.db $20
+
+	.db $10
+	.dw PaletteData_c_f3c8
+	.db $10
+
+	.db $10
+	.dw PaletteData_c_f3c8
+	.db $f0
+
+	.db $00
+
+PaletteSpec_e3:
+	.db $10
+	.dw PaletteData_c_ea68
+	.db $80
+
+	.db $00
+
+PaletteSpec_e4:
+	.db $10
+	.dw PaletteData_c_ba40
+	.db $80
+
+	.db $00
+
+PaletteSpec_e5:
+	.db $10
+	.dw PaletteData_c_f3a8
+	.db $80
+
+	.db $00
+
+PaletteSpec_e6:
+	.db $10
+	.dw PaletteData_c_f388
+	.db $80
+
+	.db $00
+
+PaletteSpec_e7:
+	.db $10
+	.dw PaletteData_c_f368
+	.db $80
+
+	.db $00
+
+PaletteSpec_e8:
+	.db $10
+	.dw PaletteData_c_e6a8
+	.db $80
+
+	.db $00
+
+PaletteSpec_e9:
+	.db $10
+	.dw PaletteData_c_e708
+	.db $80
+
+	.db $00
+
+PaletteSpec_ea:
+	.db $10
+	.dw PaletteData_c_f348
+	.db $80
+
+	.db $00
+
+PaletteSpec_eb:
+	.db $10
+	.dw PaletteData_c_f328
+	.db $80
+
+	.db $00
+
+PaletteSpec_ec:
+	.db $10
+	.dw PaletteData_c_f308
+	.db $80
+
+	.db $00
+
+PaletteSpec_ed:
+	.db $20
+	.dw PaletteData_c_f2c8
+	.db $80
+
+	.db $00
+
+PaletteSpec_ee:
+	.db $20
+	.dw PaletteData_c_f268
+	.db $80
+
+	.db $00
+
+PaletteSpec_ef:
+	.db $10
+	.dw PaletteData_c_f2a8
+	.db $80
+
+	.db $00
+
+PaletteSpec_f0:
+	.db $30
+	.dw PaletteData_c_ef48
+	.db $80
+
+	.db $00
+
+PaletteSpec_f1:
+	.db $10
+	.dw PaletteData_c_ef88
+	.db $80
+
+	.db $00
+
+PaletteSpec_f2:
+	.db $10
+	.dw PaletteData_c_efa8
+	.db $80
+
+	.db $00
+
+PaletteSpec_f3:
+	.db $10
+	.dw PaletteData_c_efc8
+	.db $80
+
+	.db $00
+
+PaletteSpec_f4:
+	.db $10
+	.dw PaletteData_c_efe8
+	.db $80
+
+	.db $00
+
+PaletteSpec_f5:
+	.db $10
+	.dw PaletteData_c_f008
+	.db $80
+
+	.db $00
+
+PaletteSpec_f6:
+	.db $10
+	.dw PaletteData_c_f028
+	.db $80
+
+	.db $00
+
+PaletteSpec_f7:
+	.db $10
+	.dw PaletteData_c_bae0
+	.db $80
+
+	.db $00
+
+PaletteSpec_f8:
+	.db $30
+	.dw PaletteData_c_f048
+	.db $80
+
+	.db $00
+
+PaletteSpec_f9:
+	.db $10
+	.dw PaletteData_c_f0a8
+	.db $80
+
+	.db $00
+
+PaletteSpec_fa:
+	.db $10
+	.dw PaletteData_c_f0c8
+	.db $80
+
+	.db $00
+
+PaletteSpec_fb:
+	.db $10
+	.dw PaletteData_c_f0e8
+	.db $80
+
+	.db $00
+
+PaletteSpec_fc:
+	.db $20
+	.dw PaletteData_c_f108
+	.db $80
+
+	.db $00
+
+PaletteSpec_fd:
+	.db $40
+	.dw PaletteData_c_f148
+	.db $80
+
+	.db $00
+
+PaletteSpec_fe:
+	.db $10
+	.dw PaletteData_c_f1c8
+	.db $80
+
+	.db $00
+
+PaletteSpec_ff:
+	.db $40
+	.dw PaletteData_c_f1e8
 	.db $80
 
 	.db $00
 
 
-Data_6_8592:
-	bpl br_06_8534                                                  ; $8592 : $10, $a0
 
-	lda [$80], Y                                                  ; $8594 : $b7, $80
-	.db $00                                                  ; $8596 : $00
-	bra br_06_8599                                                  ; $8597 : $80, $00
-
-br_06_8599:
-	lda $1000.w                                                  ; $8599 : $ad, $00, $10
-	bra br_06_8553                                                  ; $859c : $80, $b5
-
-	ldy #$2000.w                                                  ; $859e : $a0, $00, $20
-	dey                                                  ; $85a1 : $88
-
-br_06_85a2:
-	nop                                                  ; $85a2 : $ea
-
-br_06_85a3:
-	bra br_06_85a5                                                  ; $85a3 : $80, $00
-
-br_06_85a5:
-	jsr Call_06_eac8.w                                                  ; $85a5 : $20, $c8, $ea
-	bra br_06_85aa                                                  ; $85a8 : $80, $00
-
-br_06_85aa:
-	jsr $eb48.w                                                  ; $85aa : $20, $48, $eb
-
-br_06_85ad:
-	bra br_06_85af                                                  ; $85ad : $80, $00
-
-br_06_85af:
-	bpl br_06_85b1                                                  ; $85af : $10, $00
-
-br_06_85b1:
-	ldy $90                                                  ; $85b1 : $a4, $90
-	.db $00                                                  ; $85b3 : $00
-	.db $10, $80                                                  ; $85b4 : $10, $80
-
-	ldy $90                                                  ; $85b6 : $a4, $90
-	.db $00                                                  ; $85b8 : $00
-	bpl br_06_855b                                                  ; $85b9 : $10, $a0
-
-	ldy $90                                                  ; $85bb : $a4, $90
-
-br_06_85bd:
-	.db $00                                                  ; $85bd : $00
-	bpl br_06_8580                                                  ; $85be : $10, $c0
-
-	ldy $90                                                  ; $85c0 : $a4, $90
-	.db $00                                                  ; $85c2 : $00
-	bpl br_06_85a5                                                  ; $85c3 : $10, $e0
-
-	ldy $90                                                  ; $85c5 : $a4, $90
-	.db $00                                                  ; $85c7 : $00
-	bpl br_06_85ca                                                  ; $85c8 : $10, $00
-
-br_06_85ca:
-	lda $90                                                  ; $85ca : $a5, $90
-
-br_06_85cc:
-	.db $00                                                  ; $85cc : $00
-	.db $10, $20                                                  ; $85cd : $10, $20
-
-	lda $90                                                  ; $85cf : $a5, $90
-	.db $00                                                  ; $85d1 : $00
-	.db $10, $40                                                  ; $85d2 : $10, $40
-
-	lda $90                                                  ; $85d4 : $a5, $90
-	.db $00                                                  ; $85d6 : $00
-
-br_06_85d7:
-	bpl br_06_8639                                                  ; $85d7 : $10, $60
-
-br_06_85d9:
-	lda $90                                                  ; $85d9 : $a5, $90
-	.db $00                                                  ; $85db : $00
-	bpl br_06_85de                                                  ; $85dc : $10, $00
-
-br_06_85de:
-	ldy $90                                                  ; $85de : $a4, $90
-	.db $00                                                  ; $85e0 : $00
-	bpl br_06_85eb                                                  ; $85e1 : $10, $08
-
-	xba                                                  ; $85e3 : $eb
-	bra br_06_85e6                                                  ; $85e4 : $80, $00
-
-br_06_85e6:
-	bpl br_06_8610                                                  ; $85e6 : $10, $28
-
-br_06_85e8:
-	xba                                                  ; $85e8 : $eb
-
-br_06_85e9:
-	bra br_06_85eb                                                  ; $85e9 : $80, $00
-
-br_06_85eb:
-	.db $10, $88                                                  ; $85eb : $10, $88
-
-	xba                                                  ; $85ed : $eb
-	bra br_06_85f0                                                  ; $85ee : $80, $00
-
-br_06_85f0:
-	.db $10, $a0
-
-	ldx $00                                                  ; $85f2 : $a6, $00
-	.db $00                                                  ; $85f4 : $00
-	.db $10, $a8                                                  ; $85f5 : $10, $a8
-
-	xba                                                  ; $85f7 : $eb
-	bra br_06_85fa                                                  ; $85f8 : $80, $00
-
-br_06_85fa:
-	jsr $ebc8.w                                                  ; $85fa : $20, $c8, $eb
-	bra br_06_85ff                                                  ; $85fd : $80, $00
-
-br_06_85ff:
-	jsr $ec08.w                                                  ; $85ff : $20, $08, $ec
-	bra br_06_8604                                                  ; $8602 : $80, $00
-
-br_06_8604:
-	bpl br_06_864e                                                  ; $8604 : $10, $48
-
-	cpx $0080.w                                                  ; $8606 : $ec, $80, $00
-	.db $10, $68                                                  ; $8609 : $10, $68
-
-	cpx $0080.w                                                  ; $860b : $ec, $80, $00
-
-br_06_860e:
-	.db $10, $88                                                  ; $860e : $10, $88
-
-br_06_8610:
-	cpx $0080.w                                                  ; $8610 : $ec, $80, $00
-	bpl br_06_85bd                                                  ; $8613 : $10, $a8
-
-br_06_8615:
-	cpx $0080.w                                                  ; $8615 : $ec, $80, $00
-	.db $10, $c8                                                  ; $8618 : $10, $c8
-
-	cpx $0080.w                                                  ; $861a : $ec, $80, $00
-
-br_06_861d:
-	.db $10, $e8                                                  ; $861d : $10, $e8
-
-	cpx $0080.w                                                  ; $861f : $ec, $80, $00
-
-br_06_8622:
-	bpl br_06_862c                                                  ; $8622 : $10, $08
-
-	sbc $0080.w                                                  ; $8624 : $ed, $80, $00
-	bmi br_06_8669                                                  ; $8627 : $30, $40
-
-	ldy $0000.w                                                  ; $8629 : $ac, $00, $00
-
-br_06_862c:
-	bpl br_06_8656                                                  ; $862c : $10, $28
-
-	sbc $0080.w                                                  ; $862e : $ed, $80, $00
-	bpl br_06_8693                                                  ; $8631 : $10, $60
-
-	lda $100080.l                                                  ; $8633 : $af, $80, $00, $10
-	bra br_06_85e8                                                  ; $8637 : $80, $af
-
-br_06_8639:
-	bra br_06_863b                                                  ; $8639 : $80, $00
-
-br_06_863b:
-	bpl br_06_861d                                                  ; $863b : $10, $e0
-
-	lda $80                                                  ; $863d : $a5, $80
-	.db $00                                                  ; $863f : $00
-	bpl br_06_8622                                                  ; $8640 : $10, $e0
-
-	ldx $80, Y                                                  ; $8642 : $b6, $80
-	.db $00                                                  ; $8644 : $00
-	.db $10, $48                                                  ; $8645 : $10, $48
-
-	sbc $0080.w                                                  ; $8647 : $ed, $80, $00
-	bmi br_06_85cc                                                  ; $864a : $30, $80
-
-	ldx $80, Y                                                  ; $864c : $b6, $80
-
-br_06_864e:
-	.db $00                                                  ; $864e : $00
-	rti                                                  ; $864f : $40
-
-
-	cpy #$80a6.w                                                  ; $8650 : $c0, $a6, $80
-	.db $00                                                  ; $8653 : $00
-	.db $10, $a0                                                  ; $8654 : $10, $a0
-
-br_06_8656:
-	lda $80                                                  ; $8656 : $a5, $80
-	.db $00                                                  ; $8658 : $00
-	.db $00                                                  ; $8659 : $00
-	.db $10, $68                                                  ; $865a : $10, $68
-
-	sbc $0080.w                                                  ; $865c : $ed, $80, $00
-	bpl br_06_85e9                                                  ; $865f : $10, $88
-
-	sbc $0080.w                                                  ; $8661 : $ed, $80, $00
-	bpl br_06_860e                                                  ; $8664 : $10, $a8
-
-	sbc $0080.w                                                  ; $8666 : $ed, $80, $00
-
-br_06_8669:
-	.db $30, $20                                                  ; $8669 : $30, $20
-
-	ldx $80, Y                                                  ; $866b : $b6, $80
-	.db $00                                                  ; $866d : $00
-	.db $00                                                  ; $866e : $00
-	jsr Call_06_edc8.w                                                  ; $866f : $20, $c8, $ed
-	bra br_06_8674                                                  ; $8672 : $80, $00
-
-br_06_8674:
-	jsr $b5e0.w                                                  ; $8674 : $20, $e0, $b5
-	bra br_06_8679                                                  ; $8677 : $80, $00
-
-br_06_8679:
-	bpl br_06_86db                                                  ; $8679 : $10, $60
-
-	clv                                                  ; $867b : $b8
-	.db $00                                                  ; $867c : $00
-
-br_06_867d:
-	.db $00                                                  ; $867d : $00
-	jsr Call_06_ee08.w                                                  ; $867e : $20, $08, $ee
-	bra br_06_8683                                                  ; $8681 : $80, $00
-
-br_06_8683:
-	bpl br_06_86e5                                                  ; $8683 : $10, $60
-
-	tsx                                                  ; $8685 : $ba
-	bra br_06_8688                                                  ; $8686 : $80, $00
-
-br_06_8688:
-	.db $30, $80                                                  ; $8688 : $30, $80
-
-	lda $80, X                                                  ; $868a : $b5, $80
-	.db $00                                                  ; $868c : $00
-	.db $00                                                  ; $868d : $00
-	jsr Call_06_ee48.w                                                  ; $868e : $20, $48, $ee
-	bra br_06_8693                                                  ; $8691 : $80, $00
-
-br_06_8693:
-	bpl br_06_8615                                                  ; $8693 : $10, $80
-
-br_06_8695:
-	plb                                                  ; $8695 : $ab
-	beq br_06_86a8                                                  ; $8696 : $f0, $10
-
-	.db $00                                                  ; $8698 : $00
-	ldy $90                                                  ; $8699 : $a4, $90
-	.db $00                                                  ; $869b : $00
-	.db $10, $a0                                                  ; $869c : $10, $a0
-
-	plb                                                  ; $869e : $ab
-	beq br_06_86b1                                                  ; $869f : $f0, $10
-
-	rts                                                  ; $86a1 : $60
-
-
-	plb                                                  ; $86a2 : $ab
-	bcc br_06_86a5                                                  ; $86a3 : $90, $00
-
-br_06_86a5:
-	.db $10, $c0                                                  ; $86a5 : $10, $c0
-
-br_06_86a7:
-	plb                                                  ; $86a7 : $ab
-
-br_06_86a8:
-	.db $f0, $10                                                  ; $86a8 : $f0, $10
-
-	rti                                                  ; $86aa : $40
-
-
-	plb                                                  ; $86ab : $ab
-	bcc br_06_86ae                                                  ; $86ac : $90, $00
-
-br_06_86ae:
-	.db $10, $e0                                                  ; $86ae : $10, $e0
-
-	plb                                                  ; $86b0 : $ab
-
-br_06_86b1:
-	bra br_06_86b3                                                  ; $86b1 : $80, $00
-
-br_06_86b3:
-	bpl br_06_8695                                                  ; $86b3 : $10, $e0
-
-	plb                                                  ; $86b5 : $ab
-	.db $f0, $10                                                  ; $86b6 : $f0, $10
-
-	.db $00                                                  ; $86b8 : $00
-	ldy $90                                                  ; $86b9 : $a4, $90
-	.db $00                                                  ; $86bb : $00
-	bpl br_06_86be                                                  ; $86bc : $10, $00
-
-br_06_86be:
-	ldy $10f0.w                                                  ; $86be : $ac, $f0, $10
-	rts                                                  ; $86c1 : $60
-
-
-	plb                                                  ; $86c2 : $ab
-	bcc br_06_86c5                                                  ; $86c3 : $90, $00
-
-br_06_86c5:
-	bpl br_06_86e7                                                  ; $86c5 : $10, $20
-
-	ldy $10f0.w                                                  ; $86c7 : $ac, $f0, $10
-
-br_06_86ca:
-	rti                                                  ; $86ca : $40
-
-
-	plb                                                  ; $86cb : $ab
-	bcc br_06_86ce                                                  ; $86cc : $90, $00
-
-br_06_86ce:
-	.db $00                                                  ; $86ce : $00
-	jsr Call_06_ee88.w                                                  ; $86cf : $20, $88, $ee
-
-br_06_86d2:
-	bra br_06_86d4                                                  ; $86d2 : $80, $00
-
-br_06_86d4:
-	bpl br_06_86be                                                  ; $86d4 : $10, $e8
-
-	inc $0080.w                                                  ; $86d6 : $ee, $80, $00
-	.db $10, $3e                                                  ; $86d9 : $10, $3e
-
-br_06_86db:
-	lda $300000.l, X                                                  ; $86db : $bf, $00, $00, $30
-	.db $00                                                  ; $86df : $00
-	lda $00, X                                                  ; $86e0 : $b5, $00
-
-br_06_86e2:
-	.db $00                                                  ; $86e2 : $00
-	.db $50, $80                                                  ; $86e3 : $50, $80
-
-br_06_86e5:
-	clv                                                  ; $86e5 : $b8
-	.db $00                                                  ; $86e6 : $00
-
-br_06_86e7:
-	.db $00                                                  ; $86e7 : $00
-	.db $00                                                  ; $86e8 : $00
-	.db $00                                                  ; $86e9 : $00
-	.db $00                                                  ; $86ea : $00
-	.db $00                                                  ; $86eb : $00
-	bmi br_06_86ae                                                  ; $86ec : $30, $c0
-
-	lda [$80]                                                  ; $86ee : $a7, $80
-	.db $00                                                  ; $86f0 : $00
-	.db $10, $60                                                  ; $86f1 : $10, $60
-
-	lda $80, X                                                  ; $86f3 : $b5, $80
-
-br_06_86f5:
-	.db $00                                                  ; $86f5 : $00
-	jsr Call_06_ef08.w                                                  ; $86f6 : $20, $08, $ef
-	bra br_06_86fb                                                  ; $86f9 : $80, $00
-
-br_06_86fb:
-	bpl br_06_867d                                                  ; $86fb : $10, $80
-
-	lda $80, X                                                  ; $86fd : $b5, $80
-	.db $00                                                  ; $86ff : $00
-	bpl br_06_86e2                                                  ; $8700 : $10, $e0
-
-	lda $80, X                                                  ; $8702 : $b5, $80
-	.db $00                                                  ; $8704 : $00
-	bpl br_06_86a7                                                  ; $8705 : $10, $a0
-
-	lda $80, X                                                  ; $8707 : $b5, $80
-	.db $00                                                  ; $8709 : $00
-	.db $00                                                  ; $870a : $00
-	.db $00                                                  ; $870b : $00
-	.db $00                                                  ; $870c : $00
-	.db $10, $80                                                  ; $870d : $10, $80
-
-	ldy $50, X                                                  ; $870f : $b4, $50
-	.db $00                                                  ; $8711 : $00
-	.db $00                                                  ; $8712 : $00
-	bpl br_06_86f5                                                  ; $8713 : $10, $e0
-
-	lda [$80], Y                                                  ; $8715 : $b7, $80
-
-br_06_8717:
-	.db $00                                                  ; $8717 : $00
-	bpl br_06_871a                                                  ; $8718 : $10, $00
-
-br_06_871a:
-	clv                                                  ; $871a : $b8
-	bra br_06_871d                                                  ; $871b : $80, $00
-
-br_06_871d:
-	.db $10, $20                                                  ; $871d : $10, $20
-
-	clv                                                  ; $871f : $b8
-	bra br_06_8722                                                  ; $8720 : $80, $00
-
-br_06_8722:
-	.db $10, $40                                                  ; $8722 : $10, $40
-
-br_06_8724:
-	clv                                                  ; $8724 : $b8
-	bra br_06_8727                                                  ; $8725 : $80, $00
-
-br_06_8727:
-	.db $00                                                  ; $8727 : $00
-
-br_06_8728:
-	bpl br_06_86ca                                                  ; $8728 : $10, $a0
-
-	lda $90                                                  ; $872a : $a5, $90
-	.db $00                                                  ; $872c : $00
-	.db $10, $c0                                                  ; $872d : $10, $c0
-
-	lda $90                                                  ; $872f : $a5, $90
-	.db $00                                                  ; $8731 : $00
-	.db $10, $e0                                                  ; $8732 : $10, $e0
-
-	lda $90                                                  ; $8734 : $a5, $90
-	.db $00                                                  ; $8736 : $00
-	bpl br_06_8739                                                  ; $8737 : $10, $00
-
-br_06_8739:
-	ldx $90                                                  ; $8739 : $a6, $90
-	.db $00                                                  ; $873b : $00
-	bpl br_06_875e                                                  ; $873c : $10, $20
-
-	ldx $90                                                  ; $873e : $a6, $90
-	.db $00                                                  ; $8740 : $00
-
-br_06_8741:
-	bpl br_06_8783                                                  ; $8741 : $10, $40
-
-	ldx $90                                                  ; $8743 : $a6, $90
-	.db $00                                                  ; $8745 : $00
-
-br_06_8746:
-	.db $10, $60                                                  ; $8746 : $10, $60
-
-	ldx $90                                                  ; $8748 : $a6, $90
-	.db $00                                                  ; $874a : $00
-	.db $10, $80                                                  ; $874b : $10, $80
-
-	ldx $90                                                  ; $874d : $a6, $90
-	.db $00                                                  ; $874f : $00
-
-br_06_8750:
-	bpl br_06_86d2                                                  ; $8750 : $10, $80
-
-	lda $90                                                  ; $8752 : $a5, $90
-	.db $00                                                  ; $8754 : $00
-
-br_06_8755:
-	.db $00                                                  ; $8755 : $00
-	.db $10, $60                                                  ; $8756 : $10, $60
-
-	lda ($20), Y                                                  ; $8758 : $b1, $20
-
-br_06_875a:
-	bpl br_06_8724                                                  ; $875a : $10, $c8
-
-	sbc ($10, S), Y                                                  ; $875c : $f3, $10
-
-br_06_875e:
-	bpl br_06_8728                                                  ; $875e : $10, $c8
-
-	sbc ($f0, S), Y                                                  ; $8760 : $f3, $f0
-	.db $00                                                  ; $8762 : $00
-	.db $10, $68                                                  ; $8763 : $10, $68
-
-	nop                                                  ; $8765 : $ea
-	bra br_06_8768                                                  ; $8766 : $80, $00
-
-br_06_8768:
-	bpl br_06_87aa                                                  ; $8768 : $10, $40
-
-	tsx                                                  ; $876a : $ba
-	bra br_06_876d                                                  ; $876b : $80, $00
-
-br_06_876d:
-	bpl br_06_8717                                                  ; $876d : $10, $a8
-
-	sbc ($80, S), Y                                                  ; $876f : $f3, $80
-	.db $00                                                  ; $8771 : $00
-	.db $10, $88                                                  ; $8772 : $10, $88
-
-	sbc ($80, S), Y                                                  ; $8774 : $f3, $80
-	.db $00                                                  ; $8776 : $00
-	.db $10, $68                                                  ; $8777 : $10, $68
-
-	sbc ($80, S), Y                                                  ; $8779 : $f3, $80
-
-br_06_877b:
-	.db $00                                                  ; $877b : $00
-	.db $10, $a8                                                  ; $877c : $10, $a8
-
-	inc $80                                                  ; $877e : $e6, $80
-	.db $00                                                  ; $8780 : $00
-	bpl br_06_878b                                                  ; $8781 : $10, $08
-
-br_06_8783:
-	sbc [$80]                                                  ; $8783 : $e7, $80
-	.db $00                                                  ; $8785 : $00
-	bpl br_06_87d0                                                  ; $8786 : $10, $48
-
-	sbc ($80, S), Y                                                  ; $8788 : $f3, $80
-	.db $00                                                  ; $878a : $00
-
-br_06_878b:
-	bpl br_06_87b5                                                  ; $878b : $10, $28
-
-	sbc ($80, S), Y                                                  ; $878d : $f3, $80
-	.db $00                                                  ; $878f : $00
-	bpl br_06_879a                                                  ; $8790 : $10, $08
-
-	sbc ($80, S), Y                                                  ; $8792 : $f3, $80
-	.db $00                                                  ; $8794 : $00
-	jsr $f2c8.w                                                  ; $8795 : $20, $c8, $f2
-	bra br_06_879a                                                  ; $8798 : $80, $00
-
-br_06_879a:
-	jsr $f268.w                                                  ; $879a : $20, $68, $f2
-	bra br_06_879f                                                  ; $879d : $80, $00
-
-br_06_879f:
-	.db $10, $a8                                                  ; $879f : $10, $a8
-
-	sbc ($80)                                                  ; $87a1 : $f2, $80
-	.db $00                                                  ; $87a3 : $00
-	bmi br_06_87ee                                                  ; $87a4 : $30, $48
-
-	sbc $100080.l                                                  ; $87a6 : $ef, $80, $00, $10
-
-br_06_87aa:
-	dey                                                  ; $87aa : $88
-	sbc $100080.l                                                  ; $87ab : $ef, $80, $00, $10
-	tay                                                  ; $87af : $a8
-	sbc $100080.l                                                  ; $87b0 : $ef, $80, $00, $10
-
-br_06_87b4:
-	iny                                                  ; $87b4 : $c8
-
-br_06_87b5:
-	sbc $100080.l                                                  ; $87b5 : $ef, $80, $00, $10
-	inx                                                  ; $87b9 : $e8
-	sbc $100080.l                                                  ; $87ba : $ef, $80, $00, $10
-	php                                                  ; $87be : $08
-	beq br_06_8741                                                  ; $87bf : $f0, $80
-
-	.db $00                                                  ; $87c1 : $00
-	bpl br_06_87ec                                                  ; $87c2 : $10, $28
-
-	beq br_06_8746                                                  ; $87c4 : $f0, $80
-
-	.db $00                                                  ; $87c6 : $00
-	.db $10, $e0                                                  ; $87c7 : $10, $e0
-
-	tsx                                                  ; $87c9 : $ba
-	bra br_06_87cc                                                  ; $87ca : $80, $00
-
-br_06_87cc:
-	.db $30, $48                                                  ; $87cc : $30, $48
-
-	beq br_06_8750                                                  ; $87ce : $f0, $80
-
-br_06_87d0:
-	.db $00                                                  ; $87d0 : $00
-	bpl br_06_877b                                                  ; $87d1 : $10, $a8
-
-	beq br_06_8755                                                  ; $87d3 : $f0, $80
-
-	.db $00                                                  ; $87d5 : $00
-	.db $10, $c8                                                  ; $87d6 : $10, $c8
-
-	beq br_06_875a                                                  ; $87d8 : $f0, $80
-
-	.db $00                                                  ; $87da : $00
-	.db $10, $e8                                                  ; $87db : $10, $e8
-
-	.db $f0, $80                                                  ; $87dd : $f0, $80
-
-	.db $00                                                  ; $87df : $00
-	jsr Call_06_f108.w                                                  ; $87e0 : $20, $08, $f1
-	bra br_06_87e5                                                  ; $87e3 : $80, $00
-
-br_06_87e5:
-	rti                                                  ; $87e5 : $40
-
-
-	pha                                                  ; $87e6 : $48
-	sbc ($80), Y                                                  ; $87e7 : $f1, $80
-	.db $00                                                  ; $87e9 : $00
-	bpl br_06_87b4                                                  ; $87ea : $10, $c8
-
-br_06_87ec:
-	sbc ($80), Y                                                  ; $87ec : $f1, $80
-
-br_06_87ee:
-	.db $00                                                  ; $87ee : $00
-	rti                                                  ; $87ef : $40
-
-
-	inx                                                  ; $87f0 : $e8
-	sbc ($80), Y                                                  ; $87f1 : $f1, $80
-	.db $00                                                  ; $87f3 : $00
+;
 	.db $10, $18                                                  ; $87f4 : $10, $18
 
 	rti                                                  ; $87f6 : $40
@@ -4594,10 +5080,11 @@ StageSelectItemTextIdxes:
 	.db $24, $55, $67
 
 
-;
-	.db $00                                                  ; $9c96 : $00
-	.db $10, $20                                                  ; $9c97 : $10, $20
+Data_6_9c96:
+	.db $00, $10, $20
 
+
+;
 	ldx $b4, Y                                                  ; $9c99 : $b6, $b4
 	ora ($00, X)                                                  ; $9c9b : $01, $00
 	rol $02                                                  ; $9c9d : $26, $02
@@ -8190,32 +8677,20 @@ br_06_b44d:
 	and ($00, X)                                                  ; $b4c6 : $21, $00
 	.db $00                                                  ; $b4c8 : $00
 	.db $00                                                  ; $b4c9 : $00
-	sbc $c04006.l, X                                                  ; $b4ca : $ff, $06, $40, $c0
-	adc $000100.l, X                                                  ; $b4ce : $7f, $00, $01, $00
-	ora ($00, X)                                                  ; $b4d2 : $01, $00
-	rts                                                  ; $b4d4 : $60
+	.db $ff
 
 
-	rti                                                  ; $b4d5 : $40
+Data_6_b4cb:
+	.db $06, $40, $c0, $7f, $00, $01, $00, $01
 
 
-	cpy #$ff.b                                                  ; $b4d6 : $c0, $ff
-	ora ($00, X)                                                  ; $b4d8 : $01, $00
-	.db $00                                                  ; $b4da : $00
-	.db $00                                                  ; $b4db : $00
-	.db $62                                                  ; $b4dc : $62
-
-	rti                                                  ; $b4dd : $40
+StageSelectPreviewCopyBlocks:
+	.db $00, $60, $40, $c0, $ff, $01, $00, $00
+	.db $00, $62, $40, $c2, $ff, $01, $00, $00
+	.db $00, $64, $40, $c4, $ff, $01, $00, $00
 
 
-	rep #$ff.b                                                  ; $b4de : $c2, $ff
-	ora ($00, X)                                                  ; $b4e0 : $01, $00
-	.db $00                                                  ; $b4e2 : $00
-	.db $00                                                  ; $b4e3 : $00
-	stz $40                                                  ; $b4e4 : $64, $40
-	cpy $ff                                                  ; $b4e6 : $c4, $ff
-	ora ($00, X)                                                  ; $b4e8 : $01, $00
-	.db $00                                                  ; $b4ea : $00
+;
 	clc                                                  ; $b4eb : $18
 	.db $00                                                  ; $b4ec : $00
 
