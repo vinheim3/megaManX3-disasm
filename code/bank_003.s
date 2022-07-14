@@ -63,18 +63,19 @@ Func_3_8000:
 	bit #$01.b                                                  ; $8042 : $89, $01
 	beq @notRight                                                  ; $8044 : $f0, $1a
 
+; Right pressed
 	lda $29                                                  ; $8046 : $a5, $29
 	cmp #$24.b                                                  ; $8048 : $c9, $24
-	beq @br_8055                                                  ; $804a : $f0, $09
+	beq @loopRight                                                  ; $804a : $f0, $09
 
 	cmp #$51.b                                                  ; $804c : $c9, $51
-	beq @br_8055                                                  ; $804e : $f0, $05
+	beq @loopRight                                                  ; $804e : $f0, $05
 
 	clc                                                  ; $8050 : $18
 	adc #$09.b                                                  ; $8051 : $69, $09
 	bra @common_8058                                                  ; $8053 : $80, $03
 
-@br_8055:
+@loopRight:
 	sec                                                  ; $8055 : $38
 	sbc #$24.b                                                  ; $8056 : $e9, $24
 
@@ -88,21 +89,18 @@ Func_3_8000:
 	rtl                                                  ; $8062 : $6b
 
 
-;
+SetNumSubweaponsGotten:
 	sep #ACCU_8|IDX_8                                                  ; $8063 : $e2, $30
 	lda #$00.b                                                  ; $8065 : $a9, $00
 	ldx #$0e.b                                                  ; $8067 : $a2, $0e
 
-br_03_8069:
+@nextWeapon:
 	bit wtodo_SubweaponsStatus.w, X                                                  ; $8069 : $3c, $bc, $1f
-	bvc br_03_806f                                                  ; $806c : $50, $01
-
+	bvc +                                                  ; $806c : $50, $01
 	ina                                                  ; $806e : $1a
-
-br_03_806f:
-	dex                                                  ; $806f : $ca
++	dex                                                  ; $806f : $ca
 	dex                                                  ; $8070 : $ca
-	bpl br_03_8069                                                  ; $8071 : $10, $f6
+	bpl @nextWeapon                                                  ; $8071 : $10, $f6
 
 	sta $2c                                                  ; $8073 : $85, $2c
 	cmp #$08.b                                                  ; $8075 : $c9, $08

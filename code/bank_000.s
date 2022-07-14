@@ -4223,7 +4223,7 @@ Func_0_9a4b:
 	lda $891d.w, X                                                  ; $9a5d : $bd, $1d, $89
 	beq @toNextState                                                  ; $9a60 : $f0, $f1
 
-	jsr Call_00_a49d.w                                                  ; $9a62 : $20, $9d, $a4
+	jsr AequBitfieldOfSubweaponsGot.w                                                  ; $9a62 : $20, $9d, $a4
 	ldx wStageIdx.w                                                  ; $9a65 : $ae, $ae, $1f
 	and $892c.w, X                                                  ; $9a68 : $3d, $2c, $89
 	bne @toNextState                                                  ; $9a6b : $d0, $e6
@@ -4722,7 +4722,7 @@ br_00_9dd5:
 
 
 br_00_9de2:
-	jsr Call_00_a49d.w                                                  ; $9de2 : $20, $9d, $a4
+	jsr AequBitfieldOfSubweaponsGot.w                                                  ; $9de2 : $20, $9d, $a4
 	tay                                                  ; $9de5 : $a8
 	lda $01                                                  ; $9de6 : $a5, $01
 	cmp #$02.b                                                  ; $9de8 : $c9, $02
@@ -4739,7 +4739,7 @@ br_00_9de2:
 	bra @br_9e0a                                                  ; $9df1 : $80, $17
 
 @br_9df3:
-	jsr Call_00_a49d.w                                                  ; $9df3 : $20, $9d, $a4
+	jsr AequBitfieldOfSubweaponsGot.w                                                  ; $9df3 : $20, $9d, $a4
 	bne @br_9e02                                                  ; $9df6 : $d0, $0a
 
 	lda $1faf.w                                                  ; $9df8 : $ad, $af, $1f
@@ -5670,16 +5670,16 @@ br_00_a48c:
 	rts                                                  ; $a492 : $60
 
 
-Func_0_a493:
+FarAequBitfieldOfSubweaponsGot:
 	phd                                                  ; $a493 : $0b
 	pea $0000.w                                                  ; $a494 : $f4, $00, $00
 	pld                                                  ; $a497 : $2b
-	jsr Call_00_a49d.w                                                  ; $a498 : $20, $9d, $a4
+	jsr AequBitfieldOfSubweaponsGot.w                                                  ; $a498 : $20, $9d, $a4
 	pld                                                  ; $a49b : $2b
 	rtl                                                  ; $a49c : $6b
 
 
-Call_00_a49d:
+AequBitfieldOfSubweaponsGot:
 	stz $00                                                  ; $a49d : $64, $00
 	stz $01                                                  ; $a49f : $64, $01
 	ldx #$0e.b                                                  ; $a4a1 : $a2, $0e
@@ -10460,7 +10460,7 @@ Jump_00_c203:
 	phd                                                  ; $c239 : $0b
 	pea $0000.w                                                  ; $c23a : $f4, $00, $00
 	pld                                                  ; $c23d : $2b
-	jsr $038063.l                                                  ; $c23e : $22, $63, $80, $03
+	jsr SetNumSubweaponsGotten.l                                                  ; $c23e : $22, $63, $80, $03
 	ldy #$2e.b                                                  ; $c242 : $a0, $2e
 	jsr todo_DecompressAndDmaData.w                                                  ; $c244 : $20, $7a, $b4
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $c247 : $20, $62, $81
@@ -10518,7 +10518,7 @@ br_00_c268:
 	sta wBGMode.w                                                  ; $c2c4 : $8d, $cf, $00
 	lda wStageTimes9.w                                                  ; $c2c7 : $ad, $d6, $1f
 	sta $29                                                  ; $c2ca : $85, $29
-	jsr $038063.l                                                  ; $c2cc : $22, $63, $80, $03
+	jsr SetNumSubweaponsGotten.l                                                  ; $c2cc : $22, $63, $80, $03
 	beq br_00_c2da                                                  ; $c2d0 : $f0, $08
 
 	lda #$1d.b                                                  ; $c2d2 : $a9, $1d
@@ -10575,10 +10575,10 @@ Func_0_c304:
 Func_0_c31a:
 ; gets subweapons gotten (1fbc order), with later weapon having highest bit in $00
 ; gets num subweapons gotten in $01
-	jsr Func_0_a493.l                                                  ; $c31a : $22, $93, $a4, $00
+	jsr FarAequBitfieldOfSubweaponsGot.l                                                  ; $c31a : $22, $93, $a4, $00
 	ldx #$00.b                                                  ; $c31e : $a2, $00
 
-@loop_c320:
+@nextStage:
 	bit SubweaponsStatusBitfield.w, X                                                  ; $c320 : $3c, $76, $9c
 	beq @cont_c333                                                  ; $c323 : $f0, $0e
 
@@ -10595,7 +10595,7 @@ Func_0_c31a:
 	beq @nextState                                                  ; $c335 : $f0, $03
 
 	inx                                                  ; $c337 : $e8
-	bra @loop_c320                                                  ; $c338 : $80, $e6
+	bra @nextStage                                                  ; $c338 : $80, $e6
 
 @nextState:
 	lda #$04.b                                                  ; $c33a : $a9, $04
@@ -10819,17 +10819,17 @@ Func_0_c434:
 	bne @contLoop_c481                                                  ; $c460 : $d0, $1f
 
 	cmp $2a                                                  ; $c462 : $c5, $2a
-	bcs @br_c46b                                                  ; $c464 : $b0, $05
+	bcs @skipDoppler                                                  ; $c464 : $b0, $05
 
 	sec                                                  ; $c466 : $38
 	sbc #$09.b                                                  ; $c467 : $e9, $09
-	bra @cont_c46e                                                  ; $c469 : $80, $03
+	bra @setStageSelected                                                  ; $c469 : $80, $03
 
-@br_c46b:
+@skipDoppler:
 	clc                                                  ; $c46b : $18
 	adc #$09.b                                                  ; $c46c : $69, $09
 
-@cont_c46e:
+@setStageSelected:
 	sta $29                                                  ; $c46e : $85, $29
 	bra @contLoop_c481                                                  ; $c470 : $80, $0f
 
@@ -18364,7 +18364,7 @@ br_00_f225:
 	dex                                                  ; $f22f : $ca
 	bpl br_00_f225                                                  ; $f230 : $10, $f3
 
-	jsr Func_0_a493.l                                                  ; $f232 : $22, $93, $a4, $00
+	jsr FarAequBitfieldOfSubweaponsGot.l                                                  ; $f232 : $22, $93, $a4, $00
 	cmp #$ff.b                                                  ; $f236 : $c9, $ff
 	beq br_00_f248                                                  ; $f238 : $f0, $0e
 

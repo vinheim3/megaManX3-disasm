@@ -16800,7 +16800,7 @@ br_01_edb2:
 	bra br_01_edf8                                                  ; $edde : $80, $18
 
 br_01_ede0:
-	jsr Func_0_a493.l                                                  ; $ede0 : $22, $93, $a4, $00
+	jsr FarAequBitfieldOfSubweaponsGot.l                                                  ; $ede0 : $22, $93, $a4, $00
 	lda $0000.w                                                  ; $ede4 : $ad, $00, $00
 	cmp #$ff.b                                                  ; $ede7 : $c9, $ff
 	bne br_01_edf6                                                  ; $ede9 : $d0, $0b

@@ -196,6 +196,10 @@ Player teleing out
 ------------------
 0:81e1, when 9d8+27 != 0, we go to player state 1a
 
+Doppler stage detection
+-----------------------
+requires 1e84==8 when on stage select (0:c456 check)
+
 
 TODO: ride armour health
 TODO: somewhere, earth spikes deal damage
