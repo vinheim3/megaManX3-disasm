@@ -4017,7 +4017,7 @@ br_0d_a516:
 	dec $7710.w                                                  ; $a53c : $ce, $10, $77
 	dec $ac10.w                                                  ; $a53f : $ce, $10, $ac
 	dec $d910.w                                                  ; $a542 : $ce, $10, $d9
-	dec wDashAndSelPrevBtnsHeld.w                                                  ; $a545 : $ce, $10, $0a
+	dec wPlayerEntity.dashAndSelPrevBtnsHeld.w                                                  ; $a545 : $ce, $10, $0a
 	cmp $cf3b10.l                                                  ; $a548 : $cf, $10, $3b, $cf
 	bpl br_0d_a58e                                                  ; $a54c : $10, $40
 

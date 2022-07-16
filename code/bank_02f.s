@@ -566,7 +566,7 @@ br_2f_8458:
 	php                                                  ; $845a : $08
 	php                                                  ; $845b : $08
 	ora $00000f.l                                                  ; $845c : $0f, $0f, $00, $00
-	sbc wCurrHealth.w, X                                                  ; $8460 : $fd, $ff, $09
+	sbc wPlayerEntity.health.w, X                                                  ; $8460 : $fd, $ff, $09
 	ora [$e1]                                                  ; $8463 : $07, $e1
 	ora $8fff03.l, X                                                  ; $8465 : $1f, $03, $ff, $8f
 	sbc $ffffff.l, X                                                  ; $8469 : $ff, $ff, $ff, $ff
@@ -5246,7 +5246,7 @@ br_2f_a58c:
 	ina                                                  ; $a5a2 : $1a
 	asl $17, X                                                  ; $a5a3 : $16, $17
 	tcs                                                  ; $a5a5 : $1b
-	ora wSelectedSubweapon.w                                                  ; $a5a6 : $0d, $0b, $0a
+	ora wPlayerEntity.selectedSubweapon.w                                                  ; $a5a6 : $0d, $0b, $0a
 	ora $030706.l                                                  ; $a5a9 : $0f, $06, $07, $03
 	cop $03.b                                                  ; $a5ad : $02, $03
 	cop $1c.b                                                  ; $a5af : $02, $1c

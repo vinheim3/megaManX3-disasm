@@ -5362,7 +5362,7 @@ br_39_b215:
 
 
 br_39_b227:
-	lda wCurrHealth.w                                                  ; $b227 : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $b227 : $ad, $ff, $09
 	beq br_39_b259                                                  ; $b22a : $f0, $2d
 
 	bmi br_39_b259                                                  ; $b22c : $30, $2b
@@ -5395,7 +5395,7 @@ br_39_b259:
 	cmp #$04.b                                                  ; $b25d : $c9, $04
 	beq br_39_b284                                                  ; $b25f : $f0, $23
 
-	lda wCurrHealth.w                                                  ; $b261 : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $b261 : $ad, $ff, $09
 	beq br_39_b288                                                  ; $b264 : $f0, $22
 
 	bmi br_39_b288                                                  ; $b266 : $30, $20

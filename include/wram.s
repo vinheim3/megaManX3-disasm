@@ -234,45 +234,10 @@ w09cf:
 
 ; todo: unknown size (speculation)
 wPlayerEntity: ; $09d8
-    instanceof GenericEntity
+    instanceof PlayerEntity
 
-w09f8:
-    ds $ff-$f8
-
-wCurrHealth: ; $09ff
-    db
-
-w0a00:
-    ds $b-0
-
-wSelectedSubweapon: ; $0a0b
-    db
-
-w0a0c:
-    ds $e-$c
-
-; Bit 7 to 0: dash-0-selL-selR-0-0-0-0
-wDashAndSelCurrBtnsHeld: ; $0a0e
-    db
-
-; Bit 7 to 0: jump-shot-0-menu-U-D-L-R
-wJumpShotMenuDirCurrBtnsHeld: ; $0a0f
-    db
-
-wDashAndSelPrevBtnsHeld: ; $0a10
-    db
-
-wJumpShotMenuDirPrevBtnsHeld: ; $0a11
-    db
-
-wDashAndSelCurrBtnsPressed: ; $0a12
-    db
-
-wJumpShotMenuDirCurrBtnsPressed: ; $0a13
-    db
-
-w0a14:
-    ds $cc8-$a14
+w0a88:
+    ds $cc8-$a88
 
 ; todo: unknown size (speculation)
 wRiderArmourEntity: ; $0cc8

@@ -13543,7 +13543,7 @@ Func_2_ddfe:
 
 br_02_de04:
 	jsr Call_02_dea7.w                                                  ; $de04 : $20, $a7, $de
-	lda wSelectedSubweapon.w                                                  ; $de07 : $ad, $0b, $0a
+	lda wPlayerEntity.selectedSubweapon.w                                                  ; $de07 : $ad, $0b, $0a
 	cmp #$10.b                                                  ; $de0a : $c9, $10
 	beq br_02_de3b                                                  ; $de0c : $f0, $2d
 
@@ -18856,7 +18856,7 @@ _1818_Entity33h_State2:
 
 Call_02_feef:
 	sep #ACCU_8                                                  ; $feef : $e2, $20
-	lda wCurrHealth.w                                                  ; $fef1 : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $fef1 : $ad, $ff, $09
 	and #$7f.b                                                  ; $fef4 : $29, $7f
 	beq @end                                                  ; $fef6 : $f0, $2d
 

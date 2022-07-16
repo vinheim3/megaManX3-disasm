@@ -1677,7 +1677,7 @@ br_0e_8bfa:
 	sbc $000105.l                                                  ; $8bfb : $ef, $05, $01, $00
 	cpx $08fd.w                                                  ; $8bff : $ec, $fd, $08
 	ora ($00, X)                                                  ; $8c02 : $01, $00
-	cpx wCurrHealth.w                                                  ; $8c04 : $ec, $ff, $09
+	cpx wPlayerEntity.health.w                                                  ; $8c04 : $ec, $ff, $09
 
 br_0e_8c07:
 	ora $00, S                                                  ; $8c07 : $03, $00

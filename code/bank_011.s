@@ -6183,7 +6183,7 @@ br_11_a15e:
 	cmp $022006.l, X                                                  ; $a1cb : $df, $06, $20, $02
 	cmp $e70004.l                                                  ; $a1cf : $cf, $04, $00, $e7
 	ora ($80), Y                                                  ; $a1d3 : $11, $80
-	jsr wCurrHealth.w                                                  ; $a1d5 : $20, $ff, $09
+	jsr wPlayerEntity.health.w                                                  ; $a1d5 : $20, $ff, $09
 
 br_11_a1d8:
 	cop $20.b                                                  ; $a1d8 : $02, $20
@@ -13959,7 +13959,7 @@ br_11_d702:
 	xba                                                  ; $d706 : $eb
 	.db $10, $e8                                                  ; $d707 : $10, $e8
 
-	jsr wSelectedSubweapon.w                                                  ; $d709 : $20, $0b, $0a
+	jsr wPlayerEntity.selectedSubweapon.w                                                  ; $d709 : $20, $0b, $0a
 	lda ($00)                                                  ; $d70c : $b2, $00
 	ora $de10.w, Y                                                  ; $d70e : $19, $10, $de
 	.db $00                                                  ; $d711 : $00

@@ -14095,7 +14095,7 @@ br_14_ce7c:
 	.db $00                                                  ; $d585 : $00
 	tsc                                                  ; $d586 : $3b
 	tsc                                                  ; $d587 : $3b
-	tsb wSelectedSubweapon.w                                                  ; $d588 : $0c, $0b, $0a
+	tsb wPlayerEntity.selectedSubweapon.w                                                  ; $d588 : $0c, $0b, $0a
 	ora #$0605.w                                                  ; $d58b : $09, $05, $06
 	ora [$08]                                                  ; $d58e : $07, $08
 	.db $00                                                  ; $d590 : $00
@@ -18932,7 +18932,7 @@ br_14_e6c7:
 	tsc                                                  ; $e93e : $3b
 	.db $00                                                  ; $e93f : $00
 	tsc                                                  ; $e940 : $3b
-	tsb wSelectedSubweapon.w                                                  ; $e941 : $0c, $0b, $0a
+	tsb wPlayerEntity.selectedSubweapon.w                                                  ; $e941 : $0c, $0b, $0a
 	ora #$3a3a.w                                                  ; $e944 : $09, $3a, $3a
 	dea                                                  ; $e947 : $3a
 	dea                                                  ; $e948 : $3a
@@ -21128,7 +21128,7 @@ br_14_ec51:
 	.db $00                                                  ; $f212 : $00
 	ora $06                                                  ; $f213 : $05, $06
 	ora [$08]                                                  ; $f215 : $07, $08
-	tsb wSelectedSubweapon.w                                                  ; $f217 : $0c, $0b, $0a
+	tsb wPlayerEntity.selectedSubweapon.w                                                  ; $f217 : $0c, $0b, $0a
 	ora #$3b3b.w                                                  ; $f21a : $09, $3b, $3b
 	tsc                                                  ; $f21d : $3b
 	tsc                                                  ; $f21e : $3b

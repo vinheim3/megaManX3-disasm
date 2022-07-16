@@ -1862,7 +1862,7 @@ br_3b_8cdc:
 	.db $00                                                  ; $8cdf : $00
 	tsb $07                                                  ; $8ce0 : $04, $07
 	tsb $0e0f.w                                                  ; $8ce2 : $0c, $0f, $0e
-	ora wJumpShotMenuDirCurrBtnsHeld.w                                                  ; $8ce5 : $0d, $0f, $0a
+	ora wPlayerEntity.jumpShotMenuDirCurrBtnsHeld.w                                                  ; $8ce5 : $0d, $0f, $0a
 	tcs                                                  ; $8ce8 : $1b
 	ora ($11), Y                                                  ; $8ce9 : $11, $11
 	.db $10, $10                                                  ; $8ceb : $10, $10
@@ -16030,7 +16030,7 @@ br_3b_e374:
 
 
 	adc ($7f, S), Y                                                  ; $e3bf : $73, $7f
-	bit wCurrHealth.w, X                                                  ; $e3c1 : $3c, $ff, $09
+	bit wPlayerEntity.health.w, X                                                  ; $e3c1 : $3c, $ff, $09
 	sbc $d63f20.l, X                                                  ; $e3c4 : $ff, $20, $3f, $d6
 	and $08ffcb.l, X                                                  ; $e3c8 : $3f, $cb, $ff, $08
 	jsr ($fe23.w, X)                                                  ; $e3cc : $fc, $23, $fe
@@ -17037,7 +17037,7 @@ br_3b_e9b8:
 	rol $273b.w, X                                                  ; $ea07 : $3e, $3b, $27
 	and $153b.w                                                  ; $ea0a : $2d, $3b, $15
 	tcs                                                  ; $ea0d : $1b
-	asl wDashAndSelCurrBtnsHeld.w                                                  ; $ea0e : $0e, $0e, $0a
+	asl wPlayerEntity.dashAndSelCurrBtnsHeld.w                                                  ; $ea0e : $0e, $0e, $0a
 	php                                                  ; $ea11 : $08
 	tsb $1408.w                                                  ; $ea12 : $0c, $08, $14
 	.db $10, $3c                                                  ; $ea15 : $10, $3c

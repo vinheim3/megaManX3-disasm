@@ -4332,7 +4332,7 @@ br_08_9432:
 
 	jsr $04d034.l                                                  ; $943e : $22, $34, $d0, $04
 	jsr $04cd6a.l                                                  ; $9442 : $22, $6a, $cd, $04
-	lda wCurrHealth.w                                                  ; $9446 : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $9446 : $ad, $ff, $09
 	and #$7f.b                                                  ; $9449 : $29, $7f
 	beq br_08_9452                                                  ; $944b : $f0, $05
 
@@ -4779,7 +4779,7 @@ br_08_96ef:
 	beq br_08_9703                                                  ; $96f3 : $f0, $0e
 
 	lda #$01.b                                                  ; $96f5 : $a9, $01
-	sta wCurrHealth.w                                                  ; $96f7 : $8d, $ff, $09
+	sta wPlayerEntity.health.w                                                  ; $96f7 : $8d, $ff, $09
 	lda #$0e.b                                                  ; $96fa : $a9, $0e
 	jsr $04dc97.l                                                  ; $96fc : $22, $97, $dc, $04
 	jmp Jump_08_9608.w                                                  ; $9700 : $4c, $08, $96
@@ -10831,7 +10831,7 @@ br_08_bd32:
 	lda $003b.w, X                                                  ; $bd3e : $bd, $3b, $00
 	sta $3b                                                  ; $bd41 : $85, $3b
 	sep #IDX_8                                                  ; $bd43 : $e2, $10
-	lda wCurrHealth.w                                                  ; $bd45 : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $bd45 : $ad, $ff, $09
 	beq br_08_bd74                                                  ; $bd48 : $f0, $2a
 
 	bmi br_08_bd74                                                  ; $bd4a : $30, $28

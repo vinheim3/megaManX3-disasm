@@ -3255,7 +3255,7 @@ br_30_937a:
 	ora [$07]                                                  ; $9440 : $07, $07
 	ora $080b0b.l                                                  ; $9442 : $0f, $0b, $0b, $08
 	tsb $090a.w                                                  ; $9446 : $0c, $0a, $09
-	ora wSelectedSubweapon.w                                                  ; $9449 : $0d, $0b, $0a
+	ora wPlayerEntity.selectedSubweapon.w                                                  ; $9449 : $0d, $0b, $0a
 	phd                                                  ; $944c : $0b
 	ora $0e0e.w                                                  ; $944d : $0d, $0e, $0e
 	ora [$07]                                                  ; $9450 : $07, $07
@@ -17192,7 +17192,7 @@ br_30_e9da:
 	ora $02, S                                                  ; $e9e2 : $03, $02
 	asl $04                                                  ; $e9e4 : $06, $04
 	ora [$04]                                                  ; $e9e6 : $07, $04
-	ora wJumpShotMenuDirCurrBtnsHeld.w                                                  ; $e9e8 : $0d, $0f, $0a
+	ora wPlayerEntity.jumpShotMenuDirCurrBtnsHeld.w                                                  ; $e9e8 : $0d, $0f, $0a
 	ora $18111f.l                                                  ; $e9eb : $0f, $1f, $11, $18
 	.db $10, $01                                                  ; $e9ef : $10, $01
 
@@ -17200,7 +17200,7 @@ br_30_e9da:
 	cop $07.b                                                  ; $e9f3 : $02, $07
 	tsb $07                                                  ; $e9f5 : $04, $07
 	tsb $0f                                                  ; $e9f7 : $04, $0f
-	ora wJumpShotMenuDirCurrBtnsHeld.w                                                  ; $e9f9 : $0d, $0f, $0a
+	ora wPlayerEntity.jumpShotMenuDirCurrBtnsHeld.w                                                  ; $e9f9 : $0d, $0f, $0a
 	ora ($1d, S), Y                                                  ; $e9fc : $13, $1d
 	ora ($1e), Y                                                  ; $e9fe : $11, $1e
 	cop $02.b                                                  ; $ea00 : $02, $02

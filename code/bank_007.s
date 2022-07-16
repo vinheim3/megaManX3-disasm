@@ -9914,7 +9914,7 @@ br_07_be01:
 	ldx $02                                                  ; $be0a : $a6, $02
 	jsr ($be5e.w, X)                                                  ; $be0c : $fc, $5e, $be
 	jsr Func_4_cb31.l                                                  ; $be0f : $22, $31, $cb, $04
-	lda wCurrHealth.w                                                  ; $be13 : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $be13 : $ad, $ff, $09
 	.db $d0, $04                                                  ; $be16 : $d0, $04
 
 	lda #$8501.w                                                  ; $be18 : $a9, $01, $85

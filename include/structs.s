@@ -79,7 +79,18 @@ THREAD_STARTED = 3
     b1e ds $27-$1e
     health db ; $27
     weaknessesIdx db ; $28
-    b29 ds $40-$29
+    b29 ds $33-$29
+    selectedSubweapon db ; $33
+    b34 ds 6-4
+; Bit 7 to 0: dash-0-selL-selR-0-0-0-0
+    dashAndSelCurrBtnsHeld db ; $36
+; Bit 7 to 0: jump-shot-0-menu-U-D-L-R
+    jumpShotMenuDirCurrBtnsHeld db ; $37
+    dashAndSelPrevBtnsHeld db ; $38
+    jumpShotMenuDirPrevBtnsHeld db ; $39
+    dashAndSelCurrBtnsPressed db ; $3a
+    jumpShotMenuDirCurrBtnsPressed db ; $3b
+    b3c ds $b0-$3c
     sizeof .db
 .endst
 

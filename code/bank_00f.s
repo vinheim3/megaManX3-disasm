@@ -8316,7 +8316,7 @@ br_0f_b680:
 	rti                                                  ; $b6cb : $40
 
 
-	asl wDashAndSelPrevBtnsHeld.w                                                  ; $b6cc : $0e, $10, $0a
+	asl wPlayerEntity.dashAndSelPrevBtnsHeld.w                                                  ; $b6cc : $0e, $10, $0a
 	cpy #$e012.w                                                  ; $b6cf : $c0, $12, $e0
 	ora $fc40.w                                                  ; $b6d2 : $0d, $40, $fc
 	ora $10000b.l                                                  ; $b6d5 : $0f, $0b, $00, $10

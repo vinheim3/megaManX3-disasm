@@ -5126,7 +5126,7 @@ Data_6_9cb2:
 	asl $0ee9.w                                                  ; $9cd5 : $0e, $e9, $0e
 	nop                                                  ; $9cd8 : $ea
 	asl $0eeb.w                                                  ; $9cd9 : $0e, $eb, $0e
-	cpx wDashAndSelCurrBtnsHeld.w                                                  ; $9cdc : $ec, $0e, $0a
+	cpx wPlayerEntity.dashAndSelCurrBtnsHeld.w                                                  ; $9cdc : $ec, $0e, $0a
 	cmp $ed59.w                                                  ; $9cdf : $cd, $59, $ed
 	asl $0eee.w                                                  ; $9ce2 : $0e, $ee, $0e
 	sbc $0ef00e.l                                                  ; $9ce5 : $ef, $0e, $f0, $0e
@@ -11846,7 +11846,7 @@ br_06_c7ae:
 	sta $3931.w, X                                                  ; $c7c2 : $9d, $31, $39
 	and #$f5.b                                                  ; $c7c5 : $29, $f5
 	jsr $1891.w                                                  ; $c7c7 : $20, $91, $18
-	eor wDashAndSelPrevBtnsHeld.w                                                  ; $c7ca : $4d, $10, $0a
+	eor wPlayerEntity.dashAndSelPrevBtnsHeld.w                                                  ; $c7ca : $4d, $10, $0a
 	php                                                  ; $c7cd : $08
 	.db $00                                                  ; $c7ce : $00
 	.db $00                                                  ; $c7cf : $00
@@ -11868,7 +11868,7 @@ br_06_c7ae:
 	ora $04, S                                                  ; $c7ec : $03, $04
 	.db $00                                                  ; $c7ee : $00
 	.db $00                                                  ; $c7ef : $00
-	ora wDashAndSelPrevBtnsHeld.w                                                  ; $c7f0 : $0d, $10, $0a
+	ora wPlayerEntity.dashAndSelPrevBtnsHeld.w                                                  ; $c7f0 : $0d, $10, $0a
 	tsb $0c08.w                                                  ; $c7f3 : $0c, $08, $0c
 	asl $08                                                  ; $c7f6 : $06, $08
 	tsb $08                                                  ; $c7f8 : $04, $08

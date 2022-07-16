@@ -203,8 +203,9 @@ requires 1e84==8 when on stage select (0:c456 check)
 Timer for leg upgrade
 ---------------------
 dependent on anim frames
-animSpecIdx=33 points to Data_3f_d09e
+animSpecIdx(16)=33 points to Data_3f_d09e
 initial anim idx = 20 points to Data_3f_d248
+which is animSpecAddr(14)
 
 
 TODO: ride armour health

@@ -22659,7 +22659,7 @@ br_2c_f8b4:
 	jsr ($0000.w, X)                                                  ; $f8bd : $fc, $00, $00
 	tsb $07                                                  ; $f8c0 : $04, $07
 	ora $06                                                  ; $f8c2 : $05, $06
-	ora wDashAndSelCurrBtnsHeld.w                                                  ; $f8c4 : $0d, $0e, $0a
+	ora wPlayerEntity.dashAndSelCurrBtnsHeld.w                                                  ; $f8c4 : $0d, $0e, $0a
 	ora $130d0a.l                                                  ; $f8c7 : $0f, $0a, $0d, $13
 	trb $1c1b.w                                                  ; $f8cb : $1c, $1b, $1c
 	trb $1f                                                  ; $f8ce : $14, $1f

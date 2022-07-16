@@ -4,7 +4,7 @@
 .org $0
 
 Data_3f_8000:
-	.db $64, $cb, $3f
+	.dl Data_3f_cb64
 	.db $88, $a5, $3f
 	.db $d2, $9a, $3f
 	.db $85, $82, $3f
@@ -28,7 +28,7 @@ Data_3f_8000:
 	.db $92, $8e, $3f
 	.db $2f, $8f, $3f
 	.db $7e, $a9, $3f
-	.db $64, $cb, $3f
+	.dl Data_3f_cb64
 	.db $c2, $aa, $3f
 	.db $14, $ab, $3f
 	.db $6a, $ab, $3f
@@ -11715,6 +11715,9 @@ br_3f_cb1e:
 	ina                                                  ; $cb5e : $1a
 	asl $80                                                  ; $cb5f : $06, $80
 	trb $fffa.w                                                  ; $cb61 : $1c, $fa, $ff
+
+
+Data_3f_cb64:
 	sbc [$03]                                                  ; $cb64 : $e7, $03
 	adc $047204.l                                                  ; $cb66 : $6f, $04, $72, $04
 	adc $04, X                                                  ; $cb6a : $75, $04
@@ -15219,7 +15222,7 @@ br_3f_e267:
 	dec $35                                                  ; $e268 : $c6, $35
 	bne br_3f_e28d                                                  ; $e26a : $d0, $21
 
-	lda wCurrHealth.w                                                  ; $e26c : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $e26c : $ad, $ff, $09
 	and #$7f.b                                                  ; $e26f : $29, $7f
 	beq br_3f_e289                                                  ; $e271 : $f0, $16
 
@@ -15257,7 +15260,7 @@ br_3f_e28d:
 	sta $1f45.w                                                  ; $e2a8 : $8d, $45, $1f
 	lda #$80.b                                                  ; $e2ab : $a9, $80
 	sta $00                                                  ; $e2ad : $85, $00
-	lda wCurrHealth.w                                                  ; $e2af : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $e2af : $ad, $ff, $09
 	and #$7f.b                                                  ; $e2b2 : $29, $7f
 	beq br_3f_e28d                                                  ; $e2b4 : $f0, $d7
 
@@ -15275,7 +15278,7 @@ br_3f_e28d:
 	sta $00                                                  ; $e2d1 : $85, $00
 	ldy #$c8.b                                                  ; $e2d3 : $a0, $c8
 	jsr LoadPalettesFromGivenSpecToColour0.l                                                  ; $e2d5 : $22, $5b, $80, $01
-	lda wCurrHealth.w                                                  ; $e2d9 : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $e2d9 : $ad, $ff, $09
 	and #$7f.b                                                  ; $e2dc : $29, $7f
 	beq br_3f_e28d                                                  ; $e2de : $f0, $ad
 

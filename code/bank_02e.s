@@ -630,7 +630,7 @@ br_2e_8406:
 	jsr ($fcfc.w, X)                                                  ; $8418 : $fc, $fc, $fc
 	jsr ($fcfc.w, X)                                                  ; $841b : $fc, $fc, $fc
 	plx                                                  ; $841e : $fa
-	inc wJumpShotMenuDirCurrBtnsHeld.w, X                                                  ; $841f : $fe, $0f, $0a
+	inc wPlayerEntity.jumpShotMenuDirCurrBtnsHeld.w, X                                                  ; $841f : $fe, $0f, $0a
 	ora $0d0c0d.l                                                  ; $8422 : $0f, $0d, $0c, $0d
 	tsb $07                                                  ; $8426 : $04, $07
 	asl $07                                                  ; $8428 : $06, $07
@@ -2993,14 +2993,14 @@ br_2e_9396:
 	asl $0b                                                  ; $93a3 : $06, $0b
 	ora $0c0b.w                                                  ; $93a5 : $0d, $0b, $0c
 	phd                                                  ; $93a8 : $0b
-	tsb wSelectedSubweapon.w                                                  ; $93a9 : $0c, $0b, $0a
+	tsb wPlayerEntity.selectedSubweapon.w                                                  ; $93a9 : $0c, $0b, $0a
 	ora $1d, X                                                  ; $93ac : $15, $1d
 	xce                                                  ; $93ae : $fb
 	xba                                                  ; $93af : $eb
 	ora $03, S                                                  ; $93b0 : $03, $03
 	ora [$07]                                                  ; $93b2 : $07, $07
 	ora $0f0e0e.l                                                  ; $93b4 : $0f, $0e, $0e, $0f
-	asl wJumpShotMenuDirCurrBtnsHeld.w                                                  ; $93b8 : $0e, $0f, $0a
+	asl wPlayerEntity.jumpShotMenuDirCurrBtnsHeld.w                                                  ; $93b8 : $0e, $0f, $0a
 	ora $1f1d.w                                                  ; $93bb : $0d, $1d, $1f
 	sbc [$f7], Y                                                  ; $93be : $f7, $f7
 	cpy #$c0.b                                                  ; $93c0 : $c0, $c0
@@ -15483,7 +15483,7 @@ br_2e_de80:
 	cop $06.b                                                  ; $df21 : $02, $06
 	tsb $00                                                  ; $df23 : $04, $00
 	ora [$0e]                                                  ; $df25 : $07, $0e
-	asl wDashAndSelCurrBtnsHeld.w                                                  ; $df27 : $0e, $0e, $0a
+	asl wPlayerEntity.dashAndSelCurrBtnsHeld.w                                                  ; $df27 : $0e, $0e, $0a
 	ora $0b0d.w                                                  ; $df2a : $0d, $0d, $0b
 	asl                                                  ; $df2d : $0a
 	ora $07                                                  ; $df2e : $05, $07
@@ -16444,7 +16444,7 @@ br_2e_e4a3:
 
 	cpy #$1f.b                                                  ; $e4bf : $c0, $1f
 	asl $1616.w, X                                                  ; $e4c1 : $1e, $16, $16
-	asl wDashAndSelCurrBtnsHeld.w                                                  ; $e4c4 : $0e, $0e, $0a
+	asl wPlayerEntity.dashAndSelCurrBtnsHeld.w                                                  ; $e4c4 : $0e, $0e, $0a
 	asl                                                  ; $e4c7 : $0a
 	ora [$05]                                                  ; $e4c8 : $07, $05
 	asl $06                                                  ; $e4ca : $06, $06
@@ -17050,7 +17050,7 @@ br_2e_e832:
 
 	cpy #$1f.b                                                  ; $e87f : $c0, $1f
 	asl $1616.w, X                                                  ; $e881 : $1e, $16, $16
-	asl wDashAndSelCurrBtnsHeld.w                                                  ; $e884 : $0e, $0e, $0a
+	asl wPlayerEntity.dashAndSelCurrBtnsHeld.w                                                  ; $e884 : $0e, $0e, $0a
 	asl                                                  ; $e887 : $0a
 	ora [$05]                                                  ; $e888 : $07, $05
 

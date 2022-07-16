@@ -9630,7 +9630,7 @@ br_3a_b7c1:
 	asl $04                                                  ; $b804 : $06, $04
 	.db $00                                                  ; $b806 : $00
 	ora [$0e]                                                  ; $b807 : $07, $0e
-	asl wDashAndSelCurrBtnsHeld.w                                                  ; $b809 : $0e, $0e, $0a
+	asl wPlayerEntity.dashAndSelCurrBtnsHeld.w                                                  ; $b809 : $0e, $0e, $0a
 	ora $0b0d.w                                                  ; $b80c : $0d, $0d, $0b
 	asl                                                  ; $b80f : $0a
 	ora ($01, X)                                                  ; $b810 : $01, $01
@@ -14313,7 +14313,7 @@ br_3a_d56e:
 	asl $04                                                  ; $d5e4 : $06, $04
 	.db $00                                                  ; $d5e6 : $00
 	ora [$0e]                                                  ; $d5e7 : $07, $0e
-	asl wDashAndSelCurrBtnsHeld.w                                                  ; $d5e9 : $0e, $0e, $0a
+	asl wPlayerEntity.dashAndSelCurrBtnsHeld.w                                                  ; $d5e9 : $0e, $0e, $0a
 	ora $0b0d.w                                                  ; $d5ec : $0d, $0d, $0b
 	asl                                                  ; $d5ef : $0a
 	ora ($01, X)                                                  ; $d5f0 : $01, $01

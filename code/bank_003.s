@@ -2629,7 +2629,7 @@ Func_3_9005:
 	lda #$04.b                                                  ; $900b : $a9, $04
 	sta $e6                                                  ; $900d : $85, $e6
 	lda #$80.b                                                  ; $900f : $a9, $80
-	tsb wCurrHealth.w                                                  ; $9011 : $0c, $ff, $09
+	tsb wPlayerEntity.health.w                                                  ; $9011 : $0c, $ff, $09
 	lda #$aa.b                                                  ; $9014 : $a9, $aa
 	sta $6200.w                                                  ; $9016 : $8d, $00, $62
 	sta $6201.w                                                  ; $9019 : $8d, $01, $62
@@ -2674,7 +2674,7 @@ Func_3_904e:
 	sta $10                                                  ; $905f : $85, $10
 	lda #$09.b                                                  ; $9061 : $a9, $09
 	sta $11                                                  ; $9063 : $85, $11
-	lda wCurrHealth.w                                                  ; $9065 : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $9065 : $ad, $ff, $09
 	bmi @br_906d                                                  ; $9068 : $30, $03
 
 	jmp Jump_03_9194.w                                                  ; $906a : $4c, $94, $91
@@ -2686,7 +2686,7 @@ Func_3_904e:
 	bcc Jump_03_907a                                                  ; $9072 : $90, $06
 
 	lda wMaxHealth.w                                                  ; $9074 : $ad, $d2, $1f
-	sta wCurrHealth.w                                                  ; $9077 : $8d, $ff, $09
+	sta wPlayerEntity.health.w                                                  ; $9077 : $8d, $ff, $09
 
 Jump_03_907a:
 	sta $00                                                  ; $907a : $85, $00
@@ -2791,7 +2791,7 @@ Func_3_9109:
 	sta $e6                                                  ; $9111 : $85, $e6
 	lda #$80.b                                                  ; $9113 : $a9, $80
 	tsb $0cef.w                                                  ; $9115 : $0c, $ef, $0c
-	trb wCurrHealth.w                                                  ; $9118 : $1c, $ff, $09
+	trb wPlayerEntity.health.w                                                  ; $9118 : $1c, $ff, $09
 	lda #$aa.b                                                  ; $911b : $a9, $aa
 	sta $6200.w                                                  ; $911d : $8d, $00, $62
 	sta $6201.w                                                  ; $9120 : $8d, $01, $62
@@ -2892,7 +2892,7 @@ Call_03_919f:
 	.dw Func_3_92ab
 	.dw Jump_03_92aa
 
-	lda wSelectedSubweapon.w                                                  ; $91b1 : $ad, $0b, $0a
+	lda wPlayerEntity.selectedSubweapon.w                                                  ; $91b1 : $ad, $0b, $0a
 	tay                                                  ; $91b4 : $a8
 	bne br_03_91bd                                                  ; $91b5 : $d0, $06
 
@@ -2939,7 +2939,7 @@ br_03_91d4:
 	sta $601d.w                                                  ; $91f3 : $8d, $1d, $60
 	lda #$ac.b                                                  ; $91f6 : $a9, $ac
 	sta $601e.w                                                  ; $91f8 : $8d, $1e, $60
-	lda wSelectedSubweapon.w                                                  ; $91fb : $ad, $0b, $0a
+	lda wPlayerEntity.selectedSubweapon.w                                                  ; $91fb : $ad, $0b, $0a
 	tay                                                  ; $91fe : $a8
 	lda $1fba.w, Y                                                  ; $91ff : $b9, $ba, $1f
 	bmi br_03_9207                                                  ; $9202 : $30, $03
@@ -3275,9 +3275,9 @@ Func_3_93d9:
 
 UpdateRiderArmourType0:
 	rep #ACCU_8                                                  ; $93ed : $c2, $20
-	lda wDashAndSelCurrBtnsHeld.w                                                  ; $93ef : $ad, $0e, $0a
+	lda wPlayerEntity.dashAndSelCurrBtnsHeld.w                                                  ; $93ef : $ad, $0e, $0a
 	sta $36                                                  ; $93f2 : $85, $36
-	lda wDashAndSelCurrBtnsPressed.w                                                  ; $93f4 : $ad, $12, $0a
+	lda wPlayerEntity.dashAndSelCurrBtnsPressed.w                                                  ; $93f4 : $ad, $12, $0a
 	sta $3a                                                  ; $93f7 : $85, $3a
 	lda GenericEntity.x                                                  ; $93f9 : $a5, $05
 	sta $22                                                  ; $93fb : $85, $22
@@ -3672,7 +3672,7 @@ br_03_9631:
 	lda wStartTeleingPlayerOutOfStage.w                                                  ; $9657 : $ad, $36, $1f
 	bne br_03_9682                                                  ; $965a : $d0, $26
 
-	lda wCurrHealth.w                                                  ; $965c : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $965c : $ad, $ff, $09
 	and #$7f.b                                                  ; $965f : $29, $7f
 	beq br_03_9682                                                  ; $9661 : $f0, $1f
 
@@ -7403,7 +7403,7 @@ br_03_ac2c:
 	stz $09db.w                                                  ; $ac81 : $9c, $db, $09
 	lda #$8d1c.w                                                  ; $ac84 : $a9, $1c, $8d
 	cmp ($1f)                                                  ; $ac87 : $d2, $1f
-	sta wCurrHealth.w                                                  ; $ac89 : $8d, $ff, $09
+	sta wPlayerEntity.health.w                                                  ; $ac89 : $8d, $ff, $09
 	stz $1f22.w                                                  ; $ac8c : $9c, $22, $1f
 	rep #ACCU_8                                                  ; $ac8f : $c2, $20
 	lda #$1170.w                                                  ; $ac91 : $a9, $70, $11
@@ -7694,7 +7694,7 @@ br_03_ae95:
 br_03_aec2:
 	jsr SetMaxHealthBasedOnHealthTanks.l                                                  ; $aec2 : $22, $a6, $db, $04
 	lda wMaxHealth.w                                                  ; $aec6 : $ad, $d2, $1f
-	sta wCurrHealth.w                                                  ; $aec9 : $8d, $ff, $09
+	sta wPlayerEntity.health.w                                                  ; $aec9 : $8d, $ff, $09
 	ldy #$5a.b                                                  ; $aecc : $a0, $5a
 	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $aece : $22, $2f, $87, $00
 	dec $0a54.w                                                  ; $aed2 : $ce, $54, $0a
@@ -8351,7 +8351,7 @@ br_03_b339:
 
 	jsr SetMaxHealthBasedOnHealthTanks.l                                                  ; $b33d : $22, $a6, $db, $04
 	lda $0a95.w                                                  ; $b341 : $ad, $95, $0a
-	sta wCurrHealth.w                                                  ; $b344 : $8d, $ff, $09
+	sta wPlayerEntity.health.w                                                  ; $b344 : $8d, $ff, $09
 	ldy #$5a.b                                                  ; $b347 : $a0, $5a
 	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $b349 : $22, $2f, $87, $00
 	lda #$c0.b                                                  ; $b34d : $a9, $c0
@@ -9588,7 +9588,7 @@ Call_03_bb75:
 
 Call_03_bb88:
 	sep #ACCU_8|IDX_8                                                  ; $bb88 : $e2, $30
-	lda wSelectedSubweapon.w                                                  ; $bb8a : $ad, $0b, $0a
+	lda wPlayerEntity.selectedSubweapon.w                                                  ; $bb8a : $ad, $0b, $0a
 	beq br_03_bb97                                                  ; $bb8d : $f0, $08
 
 	clc                                                  ; $bb8f : $18
@@ -12148,7 +12148,7 @@ br_03_cc41:
 
 	jsr $02d78e.l                                                  ; $cc42 : $22, $8e, $d7, $02
 	jsr Call_03_cde0.w                                                  ; $cc46 : $20, $e0, $cd
-	lda wCurrHealth.w                                                  ; $cc49 : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $cc49 : $ad, $ff, $09
 	beq br_03_cc67                                                  ; $cc4c : $f0, $19
 
 	rep #IDX_8                                                  ; $cc4e : $c2, $10
@@ -12687,7 +12687,7 @@ br_03_cf9e:
 
 
 Call_03_cfb4:
-	lda wJumpShotMenuDirCurrBtnsPressed.w                                                  ; $cfb4 : $ad, $13, $0a
+	lda wPlayerEntity.jumpShotMenuDirCurrBtnsPressed.w                                                  ; $cfb4 : $ad, $13, $0a
 	bit #$80.b                                                  ; $cfb7 : $89, $80
 	beq br_03_cfbd                                                  ; $cfb9 : $f0, $02
 
@@ -13223,7 +13223,7 @@ br_03_d2f8:
 	sep #IDX_8                                                  ; $d311 : $e2, $10
 	bcc br_03_d337                                                  ; $d313 : $90, $22
 
-	lda wCurrHealth.w                                                  ; $d315 : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $d315 : $ad, $ff, $09
 	beq br_03_d337                                                  ; $d318 : $f0, $1d
 
 	jsr $04d034.l                                                  ; $d31a : $22, $34, $d0, $04
@@ -13972,7 +13972,7 @@ br_03_d78a:
 	jsr $04d24b.l                                                  ; $d79d : $22, $4b, $d2, $04
 	jsr $04d4c9.l                                                  ; $d7a1 : $22, $c9, $d4, $04
 	sep #ACCU_8                                                  ; $d7a5 : $e2, $20
-	lda wSelectedSubweapon.w                                                  ; $d7a7 : $ad, $0b, $0a
+	lda wPlayerEntity.selectedSubweapon.w                                                  ; $d7a7 : $ad, $0b, $0a
 	cmp #$12.b                                                  ; $d7aa : $c9, $12
 	beq br_03_d7b9                                                  ; $d7ac : $f0, $0b
 
@@ -14129,7 +14129,7 @@ br_03_d890:
 
 ; substate 4
 Func_3_d8b1:
-	lda wJumpShotMenuDirCurrBtnsPressed.w                                                  ; $d8b1 : $ad, $13, $0a
+	lda wPlayerEntity.jumpShotMenuDirCurrBtnsPressed.w                                                  ; $d8b1 : $ad, $13, $0a
 	bit #$40.b                                                  ; $d8b4 : $89, $40
 	bne br_03_d8f6                                                  ; $d8b6 : $d0, $3e
 

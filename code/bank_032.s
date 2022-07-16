@@ -3420,7 +3420,7 @@ br_32_94a1:
 	.db $00                                                  ; $94e1 : $00
 	ora [$07]                                                  ; $94e2 : $07, $07
 	phd                                                  ; $94e4 : $0b
-	asl wJumpShotMenuDirCurrBtnsHeld.w                                                  ; $94e5 : $0e, $0f, $0a
+	asl wPlayerEntity.jumpShotMenuDirCurrBtnsHeld.w                                                  ; $94e5 : $0e, $0f, $0a
 	ora $0f0a0a.l                                                  ; $94e8 : $0f, $0a, $0a, $0f
 	adc [$77]                                                  ; $94ec : $67, $77
 	stp                                                  ; $94ee : $db
@@ -18366,7 +18366,7 @@ br_32_f486:
 	bra br_32_f4b7                                                  ; $f491 : $80, $24
 
 br_32_f493:
-	lda wCurrHealth.w                                                  ; $f493 : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $f493 : $ad, $ff, $09
 	and #$7f.b                                                  ; $f496 : $29, $7f
 	beq br_32_f4b7                                                  ; $f498 : $f0, $1d
 
@@ -18559,7 +18559,7 @@ br_32_f5e3:
 	beq br_32_f60b                                                  ; $f5e7 : $f0, $22
 
 	jsr $04cd6a.l                                                  ; $f5e9 : $22, $6a, $cd, $04
-	lda wCurrHealth.w                                                  ; $f5ed : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $f5ed : $ad, $ff, $09
 	and #$7f.b                                                  ; $f5f0 : $29, $7f
 	beq br_32_f635                                                  ; $f5f2 : $f0, $41
 

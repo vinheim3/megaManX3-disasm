@@ -43,7 +43,7 @@ CapsuleState0_Init:
 	bne @deleteSelf                                                           ; $c027 : $d0, $44
 
 ; Player must have max health
-	lda wCurrHealth.w                                                         ; $c029 : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                         ; $c029 : $ad, $ff, $09
 	cmp wMaxHealth.w                                                          ; $c02c : $cd, $d2, $1f
 	bne @deleteSelf                                                           ; $c02f : $d0, $3c
 
@@ -472,14 +472,14 @@ Func_13_c278:
 	stz wJoy1CurrButtonsHeld.w                                                  ; $c283 : $9c, $a8, $00
 	stz wJoy1PrevBtnsHeld.w                                                  ; $c286 : $9c, $aa, $00
 	stz wJoy1CurrBtnsPressed.w                                                  ; $c289 : $9c, $ac, $00
-	stz wDashAndSelCurrBtnsHeld.w                                                  ; $c28c : $9c, $0e, $0a
-	stz wDashAndSelPrevBtnsHeld.w                                                  ; $c28f : $9c, $10, $0a
+	stz wPlayerEntity.dashAndSelCurrBtnsHeld.w                                                  ; $c28c : $9c, $0e, $0a
+	stz wPlayerEntity.dashAndSelPrevBtnsHeld.w                                                  ; $c28f : $9c, $10, $0a
 	sep #ACCU_8                                                  ; $c292 : $e2, $20
 	lda #$14.b                                                  ; $c294 : $a9, $14
 	sta $34                                                  ; $c296 : $85, $34
 	inc $1f63.w                                                  ; $c298 : $ee, $63, $1f
 	inc $1f45.w                                                  ; $c29b : $ee, $45, $1f
-	stz wSelectedSubweapon.w                                                  ; $c29e : $9c, $0b, $0a
+	stz wPlayerEntity.selectedSubweapon.w                                                  ; $c29e : $9c, $0b, $0a
 	stz $0a30.w                                                  ; $c2a1 : $9c, $30, $0a
 	stz $0a31.w                                                  ; $c2a4 : $9c, $31, $0a
 	stz $0a32.w                                                  ; $c2a7 : $9c, $32, $0a
@@ -4964,7 +4964,7 @@ br_13_dea5:
 	dec $39                                                  ; $deee : $c6, $39
 	beq br_13_df12                                                  ; $def0 : $f0, $20
 
-	lda wSelectedSubweapon.w                                                  ; $def2 : $ad, $0b, $0a
+	lda wPlayerEntity.selectedSubweapon.w                                                  ; $def2 : $ad, $0b, $0a
 	bne br_13_df11                                                  ; $def5 : $d0, $1a
 
 	lda $0a55.w                                                  ; $def7 : $ad, $55, $0a

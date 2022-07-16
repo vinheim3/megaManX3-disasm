@@ -444,8 +444,8 @@ Func_4_82f8:
 	lda $59                                                  ; $8301 : $a5, $59
 	bne @br_830b                                                  ; $8303 : $d0, $06
 
-	lda $3b                                                  ; $8305 : $a5, $3b
-	bit #$40.b                                                  ; $8307 : $89, $40
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $8305 : $a5, $3b
+	bit #MAPPED_BTN_SHOT.b                                                  ; $8307 : $89, $40
 	beq @cont_8313                                                  ; $8309 : $f0, $08
 
 @br_830b:
@@ -455,8 +455,8 @@ Func_4_82f8:
 	jsr Call_04_a407.w                                                  ; $8310 : $20, $07, $a4
 
 @cont_8313:
-	lda $3b                                                  ; $8313 : $a5, $3b
-	bit #$80.b                                                  ; $8315 : $89, $80
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $8313 : $a5, $3b
+	bit #MAPPED_BTN_JUMP.b                                                  ; $8315 : $89, $80
 	beq @br_8322                                                  ; $8317 : $f0, $09
 
 	jsr $04c988.l                                                  ; $8319 : $22, $88, $c9, $04
@@ -552,7 +552,7 @@ Func_4_8398:
 	lda $59                                                  ; $8398 : $a5, $59
 	bne @br_83a2                                                  ; $839a : $d0, $06
 
-	lda $3b                                                  ; $839c : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $839c : $a5, $3b
 	bit #$40.b                                                  ; $839e : $89, $40
 	beq @cont_83a7                                                  ; $83a0 : $f0, $05
 
@@ -561,7 +561,7 @@ Func_4_8398:
 	jsr Call_04_a407.w                                                  ; $83a4 : $20, $07, $a4
 
 @cont_83a7:
-	lda $3b                                                  ; $83a7 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $83a7 : $a5, $3b
 	bit #$80.b                                                  ; $83a9 : $89, $80
 	beq @br_83b6                                                  ; $83ab : $f0, $09
 
@@ -623,7 +623,7 @@ Jump_04_83e3:
 	lda $59                                                  ; $8401 : $a5, $59
 	bne br_04_840b                                                  ; $8403 : $d0, $06
 
-	lda $3b                                                  ; $8405 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $8405 : $a5, $3b
 	bit #$40.b                                                  ; $8407 : $89, $40
 	beq br_04_8410                                                  ; $8409 : $f0, $05
 
@@ -632,7 +632,7 @@ br_04_840b:
 	jsr Call_04_a32f.w                                                  ; $840d : $20, $2f, $a3
 
 br_04_8410:
-	lda $3b                                                  ; $8410 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $8410 : $a5, $3b
 	bit #$80.b                                                  ; $8412 : $89, $80
 	beq br_04_8422                                                  ; $8414 : $f0, $0c
 
@@ -710,7 +710,7 @@ Jump_04_845c:
 	lda $59                                                  ; $847f : $a5, $59
 	bne br_04_8489                                                  ; $8481 : $d0, $06
 
-	lda $3b                                                  ; $8483 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $8483 : $a5, $3b
 	bit #$40.b                                                  ; $8485 : $89, $40
 	beq br_04_848e                                                  ; $8487 : $f0, $05
 
@@ -809,7 +809,7 @@ br_04_8508:
 	lda $59                                                  ; $8508 : $a5, $59
 	bne br_04_8512                                                  ; $850a : $d0, $06
 
-	lda $3b                                                  ; $850c : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $850c : $a5, $3b
 	bit #$40.b                                                  ; $850e : $89, $40
 	beq br_04_8517                                                  ; $8510 : $f0, $05
 
@@ -827,7 +827,7 @@ br_04_8517:
 
 
 br_04_8523:
-	lda $3b                                                  ; $8523 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $8523 : $a5, $3b
 	bit #$80.b                                                  ; $8525 : $89, $80
 	beq br_04_8573                                                  ; $8527 : $f0, $4a
 
@@ -962,7 +962,7 @@ Jump_04_85b8:
 	lda $59                                                  ; $85e1 : $a5, $59
 	bne br_04_85eb                                                  ; $85e3 : $d0, $06
 
-	lda $3b                                                  ; $85e5 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $85e5 : $a5, $3b
 	bit #$40.b                                                  ; $85e7 : $89, $40
 	beq br_04_85f0                                                  ; $85e9 : $f0, $05
 
@@ -979,7 +979,7 @@ br_04_85f0:
 
 
 br_04_85f9:
-	lda $3b                                                  ; $85f9 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $85f9 : $a5, $3b
 	bit #$80.b                                                  ; $85fb : $89, $80
 	beq br_04_8602                                                  ; $85fd : $f0, $03
 
@@ -1300,11 +1300,11 @@ br_04_87cd:
 	lda wBG2HorizScroll+1                                                  ; $87cd : $a5, $ba
 	bne br_04_87e4                                                  ; $87cf : $d0, $13
 
-	lda $3b                                                  ; $87d1 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $87d1 : $a5, $3b
 	bit #$03.b                                                  ; $87d3 : $89, $03
 	beq br_04_87f2                                                  ; $87d5 : $f0, $1b
 
-	lda $3b                                                  ; $87d7 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $87d7 : $a5, $3b
 	and #$03.b                                                  ; $87d9 : $29, $03
 	dea                                                  ; $87db : $3a
 	bne br_04_87e0                                                  ; $87dc : $d0, $02
@@ -1418,7 +1418,7 @@ br_04_8834:
 	lda $59                                                  ; $8882 : $a5, $59
 	.db $d0, $06                                                  ; $8884 : $d0, $06
 
-	lda $3b                                                  ; $8886 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $8886 : $a5, $3b
 	bit #$f040.w                                                  ; $8888 : $89, $40, $f0
 	ora $a9                                                  ; $888b : $05, $a9
 	jsr $a40720.l                                                  ; $888d : $22, $20, $07, $a4
@@ -1461,7 +1461,7 @@ br_04_88c2:
 	lda $59                                                  ; $88c9 : $a5, $59
 	bne br_04_88d3                                                  ; $88cb : $d0, $06
 
-	lda $3b                                                  ; $88cd : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $88cd : $a5, $3b
 	bit #$40.b                                                  ; $88cf : $89, $40
 	beq br_04_88d8                                                  ; $88d1 : $f0, $05
 
@@ -1478,7 +1478,7 @@ br_04_88d8:
 
 
 br_04_88e1:
-	lda $3b                                                  ; $88e1 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $88e1 : $a5, $3b
 	bit #$80.b                                                  ; $88e3 : $89, $80
 	beq br_04_8922                                                  ; $88e5 : $f0, $3b
 
@@ -1606,7 +1606,7 @@ Jump_04_8951:
 	lda $59                                                  ; $8992 : $a5, $59
 	bne br_04_899c                                                  ; $8994 : $d0, $06
 
-	lda $3b                                                  ; $8996 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $8996 : $a5, $3b
 	bit #$40.b                                                  ; $8998 : $89, $40
 	beq br_04_89a1                                                  ; $899a : $f0, $05
 
@@ -1627,7 +1627,7 @@ br_04_89a1:
 	and #$3f.b                                                  ; $89b6 : $29, $3f
 	ora $69                                                  ; $89b8 : $05, $69
 	sta $11                                                  ; $89ba : $85, $11
-	lda $3b                                                  ; $89bc : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $89bc : $a5, $3b
 	bit #$80.b                                                  ; $89be : $89, $80
 	beq br_04_89dc                                                  ; $89c0 : $f0, $1a
 
@@ -1738,7 +1738,7 @@ br_04_8a5d:
 	lda $59                                                  ; $8a60 : $a5, $59
 	bne br_04_8a6a                                                  ; $8a62 : $d0, $06
 
-	lda $3b                                                  ; $8a64 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $8a64 : $a5, $3b
 	bit #$40.b                                                  ; $8a66 : $89, $40
 	beq br_04_8a6f                                                  ; $8a68 : $f0, $05
 
@@ -1747,7 +1747,7 @@ br_04_8a6a:
 	jsr Call_04_a32f.w                                                  ; $8a6c : $20, $2f, $a3
 
 br_04_8a6f:
-	lda $3b                                                  ; $8a6f : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $8a6f : $a5, $3b
 	bit #$80.b                                                  ; $8a71 : $89, $80
 	beq br_04_8a81                                                  ; $8a73 : $f0, $0c
 
@@ -1843,7 +1843,7 @@ br_04_8af8:
 	lda $59                                                  ; $8af8 : $a5, $59
 	bne br_04_8b02                                                  ; $8afa : $d0, $06
 
-	lda $3b                                                  ; $8afc : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $8afc : $a5, $3b
 	bit #$40.b                                                  ; $8afe : $89, $40
 	beq br_04_8b07                                                  ; $8b00 : $f0, $05
 
@@ -1903,7 +1903,7 @@ br_04_8b4b:
 	lda $59                                                  ; $8b4b : $a5, $59
 	bne br_04_8b55                                                  ; $8b4d : $d0, $06
 
-	lda $3b                                                  ; $8b4f : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $8b4f : $a5, $3b
 	bit #$40.b                                                  ; $8b51 : $89, $40
 	beq br_04_8b5a                                                  ; $8b53 : $f0, $05
 
@@ -1920,7 +1920,7 @@ br_04_8b5a:
 
 
 br_04_8b63:
-	lda $3b                                                  ; $8b63 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $8b63 : $a5, $3b
 	bit #$80.b                                                  ; $8b65 : $89, $80
 	beq br_04_8b6c                                                  ; $8b67 : $f0, $03
 
@@ -1964,7 +1964,7 @@ br_04_8ba0:
 	lda $59                                                  ; $8ba0 : $a5, $59
 	bne br_04_8baa                                                  ; $8ba2 : $d0, $06
 
-	lda $3b                                                  ; $8ba4 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $8ba4 : $a5, $3b
 	bit #$40.b                                                  ; $8ba6 : $89, $40
 	beq br_04_8baf                                                  ; $8ba8 : $f0, $05
 
@@ -2575,7 +2575,7 @@ br_04_8faf:
 	rts                                                  ; $8faf : $60
 
 
-	lda $3b                                                  ; $8fb0 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $8fb0 : $a5, $3b
 	bit #$40.b                                                  ; $8fb2 : $89, $40
 	beq br_04_8fba                                                  ; $8fb4 : $f0, $04
 
@@ -3274,7 +3274,7 @@ br_04_93fb:
 	bit #$01.b                                                  ; $93fe : $89, $01
 	bne br_04_940c                                                  ; $9400 : $d0, $0a
 
-	lda $3b                                                  ; $9402 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $9402 : $a5, $3b
 	bit #$40.b                                                  ; $9404 : $89, $40
 	beq br_04_940c                                                  ; $9406 : $f0, $04
 
@@ -3299,7 +3299,7 @@ br_04_940c:
 	adc $90                                                  ; $9425 : $65, $90
 	jsr todo_SetupPlayersAnimation.w                                                  ; $9427 : $20, $f4, $b8
 	stz $90                                                  ; $942a : $64, $90
-	lda $3b                                                  ; $942c : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $942c : $a5, $3b
 	bit #$80.b                                                  ; $942e : $89, $80
 	beq br_04_9438                                                  ; $9430 : $f0, $06
 
@@ -3384,7 +3384,7 @@ br_04_94a0:
 	adc $90                                                  ; $94a2 : $65, $90
 	jsr todo_SetupPlayersAnimation.w                                                  ; $94a4 : $20, $f4, $b8
 	stz $90                                                  ; $94a7 : $64, $90
-	lda $3b                                                  ; $94a9 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $94a9 : $a5, $3b
 	bit #$80.b                                                  ; $94ab : $89, $80
 	beq br_04_94b5                                                  ; $94ad : $f0, $06
 
@@ -3456,7 +3456,7 @@ br_04_94e6:
 
 
 br_04_9513:
-	lda $3b                                                  ; $9513 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $9513 : $a5, $3b
 	bit #$80.b                                                  ; $9515 : $89, $80
 	bne br_04_952e                                                  ; $9517 : $d0, $15
 
@@ -4017,7 +4017,7 @@ br_04_9893:
 	bit #$01.b                                                  ; $989d : $89, $01
 	bne br_04_98ab                                                  ; $989f : $d0, $0a
 
-	lda $3b                                                  ; $98a1 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $98a1 : $a5, $3b
 	bit #$40.b                                                  ; $98a3 : $89, $40
 	beq br_04_98ab                                                  ; $98a5 : $f0, $04
 
@@ -4096,7 +4096,7 @@ br_04_9905:
 
 
 br_04_991d:
-	lda $3b                                                  ; $991d : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $991d : $a5, $3b
 	bit #$80.b                                                  ; $991f : $89, $80
 	beq br_04_9984                                                  ; $9921 : $f0, $61
 
@@ -4329,7 +4329,7 @@ br_04_9a5a:
 
 
 br_04_9a72:
-	lda $3b                                                  ; $9a72 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $9a72 : $a5, $3b
 	bit #$80.b                                                  ; $9a74 : $89, $80
 	beq br_04_9ad9                                                  ; $9a76 : $f0, $61
 
@@ -5195,7 +5195,7 @@ br_04_9f6d:
 	lda $59                                                  ; $9f6d : $a5, $59
 	bne br_04_9f77                                                  ; $9f6f : $d0, $06
 
-	lda $3b                                                  ; $9f71 : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $9f71 : $a5, $3b
 	bit #$40.b                                                  ; $9f73 : $89, $40
 	beq br_04_9f7f                                                  ; $9f75 : $f0, $08
 
@@ -5273,7 +5273,7 @@ br_04_9fc9:
 
 
 br_04_9fdd:
-	lda $3b                                                  ; $9fdd : $a5, $3b
+	lda PlayerEntity.jumpShotMenuDirCurrBtnsPressed                                                  ; $9fdd : $a5, $3b
 	bit #$80.b                                                  ; $9fdf : $89, $80
 	beq br_04_9fe8                                                  ; $9fe1 : $f0, $05
 
@@ -5946,7 +5946,7 @@ br_04_a382:
 
 br_04_a397:
 	lda $3d                                                  ; $a397 : $a5, $3d
-	bne br_04_a402                                                  ; $a399 : $d0, $67
+	bne Jump_04_a402                                                  ; $a399 : $d0, $67
 
 	inc $35                                                  ; $a39b : $e6, $35
 	inc $0000.w, X                                                  ; $a39d : $fe, $00, $00
@@ -5972,13 +5972,13 @@ br_04_a3b5:
 	and #$ff.b                                                  ; $a3bc : $29, $ff
 	tay                                                  ; $a3be : $a8
 	lda $b3db.w, Y                                                  ; $a3bf : $b9, $db, $b3
-	beq br_04_a402                                                  ; $a3c2 : $f0, $3e
+	beq Jump_04_a402                                                  ; $a3c2 : $f0, $3e
 
 	cmp #$02.b                                                  ; $a3c4 : $c9, $02
 	bcc br_04_a3cc                                                  ; $a3c6 : $90, $04
 
 	sta wBG1VertScroll+1                                                  ; $a3c8 : $85, $b8
-	bra br_04_a402                                                  ; $a3ca : $80, $36
+	bra Jump_04_a402                                                  ; $a3ca : $80, $36
 
 br_04_a3cc:
 	lda $33                                                  ; $a3cc : $a5, $33
@@ -6014,7 +6014,6 @@ br_04_a3d8:
 	sta $13                                                  ; $a400 : $85, $13
 
 Jump_04_a402:
-br_04_a402:
 	sep #IDX_8                                                  ; $a402 : $e2, $10
 	stz $59                                                  ; $a404 : $64, $59
 	rts                                                  ; $a406 : $60
@@ -6024,14 +6023,14 @@ Call_04_a407:
 	sta $0000.w                                                  ; $a407 : $8d, $00, $00
 	lda #$20.b                                                  ; $a40a : $a9, $20
 	bit $ac                                                  ; $a40c : $24, $ac
-	beq br_04_a412                                                  ; $a40e : $f0, $02
+	beq @br_a412                                                  ; $a40e : $f0, $02
 
-	bra br_04_a402                                                  ; $a410 : $80, $f0
+	bra Jump_04_a402                                                  ; $a410 : $80, $f0
 
-br_04_a412:
+@br_a412:
 	lda $35                                                  ; $a412 : $a5, $35
 	cmp $67                                                  ; $a414 : $c5, $67
-	bcs br_04_a402                                                  ; $a416 : $b0, $ea
+	bcs Jump_04_a402                                                  ; $a416 : $b0, $ea
 
 	lda $33                                                  ; $a418 : $a5, $33
 	lsr                                                  ; $a41a : $4a
@@ -6039,106 +6038,98 @@ br_04_a412:
 	lda $b380.w, X                                                  ; $a41c : $bd, $80, $b3
 	sta $67                                                  ; $a41f : $85, $67
 	lda $1f1e.w                                                  ; $a421 : $ad, $1e, $1f
-	bne br_04_a402                                                  ; $a424 : $d0, $dc
+	bne Jump_04_a402                                                  ; $a424 : $d0, $dc
 
 	lda $33                                                  ; $a426 : $a5, $33
-	beq br_04_a43b                                                  ; $a428 : $f0, $11
+	beq @br_a43b                                                  ; $a428 : $f0, $11
 
 	cmp #$12.b                                                  ; $a42a : $c9, $12
-	beq br_04_a43b                                                  ; $a42c : $f0, $0d
+	beq @br_a43b                                                  ; $a42c : $f0, $0d
 
 	lda $a5                                                  ; $a42e : $a5, $a5
 	bit #$04.b                                                  ; $a430 : $89, $04
-	bne br_04_a402                                                  ; $a432 : $d0, $ce
+	bne Jump_04_a402                                                  ; $a432 : $d0, $ce
 
 	lda $7d                                                  ; $a434 : $a5, $7d
-	beq br_04_a43b                                                  ; $a436 : $f0, $03
+	beq @br_a43b                                                  ; $a436 : $f0, $03
 
-	jmp Jump_04_a4c5.w                                                  ; $a438 : $4c, $c5, $a4
+	jmp @end.w                                                  ; $a438 : $4c, $c5, $a4
 
-
-br_04_a43b:
+@br_a43b:
 	lda $59                                                  ; $a43b : $a5, $59
 	cmp #$20.b                                                  ; $a43d : $c9, $20
-	bne br_04_a44a                                                  ; $a43f : $d0, $09
+	bne @br_a44a                                                  ; $a43f : $d0, $09
 
 	stz $59                                                  ; $a441 : $64, $59
 	lda #$08.b                                                  ; $a443 : $a9, $08
 	sta wBG1VertScroll+1                                                  ; $a445 : $85, $b8
-	jmp Jump_04_a4c5.w                                                  ; $a447 : $4c, $c5, $a4
+	jmp @end.w                                                  ; $a447 : $4c, $c5, $a4
 
-
-br_04_a44a:
+@br_a44a:
 	jsr $02d8c4.l                                                  ; $a44a : $22, $c4, $d8, $02
-	bne br_04_a4c5                                                  ; $a44e : $d0, $75
+	bne @end                                                  ; $a44e : $d0, $75
 
 	jsr Call_04_a4ca.w                                                  ; $a450 : $20, $ca, $a4
-	beq br_04_a4c5                                                  ; $a453 : $f0, $70
+	beq @end                                                  ; $a453 : $f0, $70
 
 	ina                                                  ; $a455 : $1a
 	sta $1f1e.w                                                  ; $a456 : $8d, $1e, $1f
 	jsr Call_04_b829.w                                                  ; $a459 : $20, $29, $b8
 	bit $87                                                  ; $a45c : $24, $87
-	bvc br_04_a470                                                  ; $a45e : $50, $10
+	bvc @cont_a470                                                  ; $a45e : $50, $10
 
 	lda #$40.b                                                  ; $a460 : $a9, $40
 	trb $87                                                  ; $a462 : $14, $87
 	lda $33                                                  ; $a464 : $a5, $33
 	cmp #$12.b                                                  ; $a466 : $c9, $12
-	beq br_04_a470                                                  ; $a468 : $f0, $06
+	beq @cont_a470                                                  ; $a468 : $f0, $06
 
 	lda #$03.b                                                  ; $a46a : $a9, $03
 	jsr Func_1_802b.l                                                  ; $a46c : $22, $2b, $80, $01
 
-br_04_a470:
+@cont_a470:
 	lda $3d                                                  ; $a470 : $a5, $3d
-	bne br_04_a4c5                                                  ; $a472 : $d0, $51
+	bne @end                                                  ; $a472 : $d0, $51
 
 	inc $35                                                  ; $a474 : $e6, $35
 	inc $0000.w, X                                                  ; $a476 : $fe, $00, $00
 	stz $0018.w, X                                                  ; $a479 : $9e, $18, $00
 	lda $59                                                  ; $a47c : $a5, $59
-	beq br_04_a485                                                  ; $a47e : $f0, $05
+	beq +                                                  ; $a47e : $f0, $05
 
 	lda $a9                                                  ; $a480 : $a5, $a9
 	sta $0018.w, X                                                  ; $a482 : $9d, $18, $00
 
-br_04_a485:
-	ldy #$00.b                                                  ; $a485 : $a0, $00
-	.db $00                                                  ; $a487 : $00
++	ldy #$0000.w                                                  ; $a485 : $a0, $00, $00
 	lda $33                                                  ; $a488 : $a5, $33
-	bne br_04_a48e                                                  ; $a48a : $d0, $02
-
+	bne +                                                  ; $a48a : $d0, $02
 	ldy wBG1HorizScroll+1                                                  ; $a48c : $a4, $b6
-
-br_04_a48e:
-	tya                                                  ; $a48e : $98
++	tya                                                  ; $a48e : $98
 	sta $000b.w, X                                                  ; $a48f : $9d, $0b, $00
 	lda $1f1e.w                                                  ; $a492 : $ad, $1e, $1f
 	and #$ff.b                                                  ; $a495 : $29, $ff
 	tay                                                  ; $a497 : $a8
 	lda $b3db.w, Y                                                  ; $a498 : $b9, $db, $b3
-	beq br_04_a4c5                                                  ; $a49b : $f0, $28
+	beq @end                                                  ; $a49b : $f0, $28
 
 	cmp #$02.b                                                  ; $a49d : $c9, $02
-	bcc br_04_a4a5                                                  ; $a49f : $90, $04
+	bcc @br_a4a5                                                  ; $a49f : $90, $04
 
 	sta wBG1VertScroll+1                                                  ; $a4a1 : $85, $b8
-	bra br_04_a4c5                                                  ; $a4a3 : $80, $20
+	bra @end                                                  ; $a4a3 : $80, $20
 
-br_04_a4a5:
+@br_a4a5:
 	lda $33                                                  ; $a4a5 : $a5, $33
 	cmp #$0a.b                                                  ; $a4a7 : $c9, $0a
-	bne br_04_a4af                                                  ; $a4a9 : $d0, $04
+	bne @br_a4af                                                  ; $a4a9 : $d0, $04
 
 	lda #$3c.b                                                  ; $a4ab : $a9, $3c
-	bra br_04_a4b1                                                  ; $a4ad : $80, $02
+	bra +                                                  ; $a4ad : $80, $02
 
-br_04_a4af:
+@br_a4af:
 	lda #$10.b                                                  ; $a4af : $a9, $10
 
-br_04_a4b1:
-	sta $50                                                  ; $a4b1 : $85, $50
++	sta $50                                                  ; $a4b1 : $85, $50
 	stz $6f                                                  ; $a4b3 : $64, $6f
 	lda $0000.w                                                  ; $a4b5 : $ad, $00, $00
 	asl                                                  ; $a4b8 : $0a
@@ -6147,8 +6138,7 @@ br_04_a4b1:
 	lda $0000.w                                                  ; $a4bf : $ad, $00, $00
 	jsr todo_SetupPlayersAnimation.w                                                  ; $a4c2 : $20, $f4, $b8
 
-Jump_04_a4c5:
-br_04_a4c5:
+@end:
 	sep #IDX_8                                                  ; $a4c5 : $e2, $10
 	stz $59                                                  ; $a4c7 : $64, $59
 	rts                                                  ; $a4c9 : $60
@@ -6161,7 +6151,7 @@ Call_04_a4ca:
 	cmp #$01.b                                                  ; $a4ce : $c9, $01
 	beq br_04_a4f7                                                  ; $a4d0 : $f0, $25
 
-	lda $33                                                  ; $a4d2 : $a5, $33
+	lda PlayerEntity.selectedSubweapon                                                  ; $a4d2 : $a5, $33
 	beq br_04_a4f7                                                  ; $a4d4 : $f0, $21
 
 	cmp #$04.b                                                  ; $a4d6 : $c9, $04
@@ -6268,7 +6258,7 @@ Call_04_a55a:
 	sep #IDX_8                                                  ; $a55e : $e2, $10
 	and #$00ff.w                                                  ; $a560 : $29, $ff, $00
 	sta $0006.w                                                  ; $a563 : $8d, $06, $00
-	ldx wSelectedSubweapon.w                                                  ; $a566 : $ae, $0b, $0a
+	ldx wPlayerEntity.selectedSubweapon.w                                                  ; $a566 : $ae, $0b, $0a
 	beq br_04_a5d0                                                  ; $a569 : $f0, $65
 
 	lda $b352.w, X                                                  ; $a56b : $bd, $52, $b3
@@ -8158,7 +8148,7 @@ br_04_af42:
 	ora wBG1VertScroll                                                  ; $af4e : $05, $b7
 	beq br_04_af66                                                  ; $af50 : $f0, $14
 
-	lda wCurrHealth.w                                                  ; $af52 : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $af52 : $ad, $ff, $09
 	and #$7f.b                                                  ; $af55 : $29, $7f
 	beq br_04_af66                                                  ; $af57 : $f0, $0d
 
@@ -9455,7 +9445,7 @@ Call_04_b6d6:
 Jump_04_b6d6:
 	sep #ACCU_8                                                  ; $b6d6 : $e2, $20
 	rep #IDX_8                                                  ; $b6d8 : $c2, $10
-	lda wSelectedSubweapon.w                                                  ; $b6da : $ad, $0b, $0a
+	lda wPlayerEntity.selectedSubweapon.w                                                  ; $b6da : $ad, $0b, $0a
 	sta $0004.w                                                  ; $b6dd : $8d, $04, $00
 
 Call_04_b6e0:
@@ -10940,7 +10930,7 @@ Func_4_bfae:
 	lda $0a3c.w                                                  ; $bfb8 : $ad, $3c, $0a
 	bne br_04_bfcd                                                  ; $bfbb : $d0, $10
 
-	lda wCurrHealth.w                                                  ; $bfbd : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $bfbd : $ad, $ff, $09
 	and #$7f.b                                                  ; $bfc0 : $29, $7f
 	beq br_04_bfcd                                                  ; $bfc2 : $f0, $09
 
@@ -13323,7 +13313,7 @@ Jump_04_cd6a:
 	jsr Func_1_802b.l                                                  ; $cdf7 : $22, $2b, $80, $01
 
 @cont_cdfb:
-	lda wCurrHealth.w                                                  ; $cdfb : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $cdfb : $ad, $ff, $09
 	and #$7f.b                                                  ; $cdfe : $29, $7f
 	sec                                                  ; $ce00 : $38
 .ifdef HACK
@@ -13334,7 +13324,7 @@ Jump_04_cd6a:
 .else
 	sbc DAMAGE_TAKEN.w                                                  ; $ce01 : $ed, $00, $00
 .endif
-	sta wCurrHealth.w                                                  ; $ce04 : $8d, $ff, $09
+	sta wPlayerEntity.health.w                                                  ; $ce04 : $8d, $ff, $09
 	beq @br_ce17                                                  ; $ce07 : $f0, $0e
 
 	bmi @br_ce17                                                  ; $ce09 : $30, $0c
@@ -13346,7 +13336,7 @@ Jump_04_cd6a:
 	bra @cont_ce24                                                  ; $ce15 : $80, $0d
 
 @br_ce17:
-	stz wCurrHealth.w                                                  ; $ce17 : $9c, $ff, $09
+	stz wPlayerEntity.health.w                                                  ; $ce17 : $9c, $ff, $09
 	lda #$8c.b                                                  ; $ce1a : $a9, $8c
 	sta $0a7b.w                                                  ; $ce1c : $8d, $7b, $0a
 	lda #$80.b                                                  ; $ce1f : $a9, $80
@@ -13354,7 +13344,7 @@ Jump_04_cd6a:
 
 @cont_ce24:
 	lda #$80.b                                                  ; $ce24 : $a9, $80
-	tsb wCurrHealth.w                                                  ; $ce26 : $0c, $ff, $09
+	tsb wPlayerEntity.health.w                                                  ; $ce26 : $0c, $ff, $09
 	lda #$00.b                                                  ; $ce29 : $a9, $00
 	ldy $05                                                  ; $ce2b : $a4, $05
 	cpy wPlayerEntity.x.w                                                  ; $ce2d : $cc, $dd, $09
@@ -13747,7 +13737,7 @@ br_04_d084:
 
 	sta $0000.w                                                  ; $d089 : $8d, $00, $00
 	jsr Call_04_ce3c.w                                                  ; $d08c : $20, $3c, $ce
-	lda wCurrHealth.w                                                  ; $d08f : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $d08f : $ad, $ff, $09
 	and #$7f.b                                                  ; $d092 : $29, $7f
 	sec                                                  ; $d094 : $38
 .ifdef HACK
@@ -13757,25 +13747,25 @@ br_04_d084:
 .else
 	sbc $0000.w                                                  ; $d095 : $ed, $00, $00
 .endif
-	sta wCurrHealth.w                                                  ; $d098 : $8d, $ff, $09
+	sta wPlayerEntity.health.w                                                  ; $d098 : $8d, $ff, $09
 	beq @br_d09f                                                  ; $d09b : $f0, $02
 
 	bpl @br_d0b3                                                  ; $d09d : $10, $14
 
 @br_d09f:
-	stz wCurrHealth.w                                                  ; $d09f : $9c, $ff, $09
+	stz wPlayerEntity.health.w                                                  ; $d09f : $9c, $ff, $09
 	lda #$8c.b                                                  ; $d0a2 : $a9, $8c
 	sta $0a7b.w                                                  ; $d0a4 : $8d, $7b, $0a
 	lda #$80.b                                                  ; $d0a7 : $a9, $80
 	trb $0a7d.w                                                  ; $d0a9 : $1c, $7d, $0a
 	lda #$80.b                                                  ; $d0ac : $a9, $80
-	tsb wCurrHealth.w                                                  ; $d0ae : $0c, $ff, $09
+	tsb wPlayerEntity.health.w                                                  ; $d0ae : $0c, $ff, $09
 	plp                                                  ; $d0b1 : $28
 	rtl                                                  ; $d0b2 : $6b
 
 @br_d0b3:
 	lda #$80.b                                                  ; $d0b3 : $a9, $80
-	tsb wCurrHealth.w                                                  ; $d0b5 : $0c, $ff, $09
+	tsb wPlayerEntity.health.w                                                  ; $d0b5 : $0c, $ff, $09
 	lda #$0d.b                                                  ; $d0b8 : $a9, $0d
 	jsr Func_1_802b.l                                                  ; $d0ba : $22, $2b, $80, $01
 	plp                                                  ; $d0be : $28
@@ -13952,7 +13942,7 @@ br_04_d1b8:
 
 
 todo_CausePlayerToFreeze:
-	lda wCurrHealth.w                                                  ; $d1ca : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $d1ca : $ad, $ff, $09
 	and #$7f.b                                                  ; $d1cd : $29, $7f
 	beq @done                                                  ; $d1cf : $f0, $1d
 
@@ -15069,7 +15059,7 @@ br_04_d8b8:
 	rtl                                                  ; $d8d4 : $6b
 
 
-	lda wCurrHealth.w                                                  ; $d8d5 : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $d8d5 : $ad, $ff, $09
 	and #$7f.b                                                  ; $d8d8 : $29, $7f
 	bne br_04_d8e0                                                  ; $d8da : $d0, $04
 
@@ -15621,7 +15611,7 @@ br_04_dc20:
 
 
 Call_04_dc23:
-	lda wCurrHealth.w                                                  ; $dc23 : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $dc23 : $ad, $ff, $09
 	and #$7f.b                                                  ; $dc26 : $29, $7f
 	beq @done                                                  ; $dc28 : $f0, $15
 
@@ -15728,7 +15718,7 @@ br_04_dcc3:
 	rtl                                                  ; $dcc4 : $6b
 
 
-	lda wSelectedSubweapon.w                                                  ; $dcc5 : $ad, $0b, $0a
+	lda wPlayerEntity.selectedSubweapon.w                                                  ; $dcc5 : $ad, $0b, $0a
 	beq br_04_dce1                                                  ; $dcc8 : $f0, $17
 
 	clc                                                  ; $dcca : $18
@@ -15737,7 +15727,7 @@ br_04_dcc3:
 	jsr FarSafeLoadFromBulkDMASet.l                                                  ; $dcce : $22, $2f, $87, $00
 	bra br_04_dce1                                                  ; $dcd2 : $80, $0d
 
-	lda wSelectedSubweapon.w                                                  ; $dcd4 : $ad, $0b, $0a
+	lda wPlayerEntity.selectedSubweapon.w                                                  ; $dcd4 : $ad, $0b, $0a
 	beq br_04_dce1                                                  ; $dcd7 : $f0, $08
 
 	clc                                                  ; $dcd9 : $18
@@ -15834,7 +15824,7 @@ br_04_dd31:
 	php                                                  ; $dd5a : $08
 	sep #ACCU_8                                                  ; $dd5b : $e2, $20
 	rep #IDX_8                                                  ; $dd5d : $c2, $10
-	lda wCurrHealth.w                                                  ; $dd5f : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $dd5f : $ad, $ff, $09
 	and #$7f.b                                                  ; $dd62 : $29, $7f
 	beq br_04_dd6f                                                  ; $dd64 : $f0, $09
 

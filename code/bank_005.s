@@ -1215,10 +1215,10 @@ br_05_87dc:
 	rol $b6a0.w, X                                                  ; $88af : $3e, $a0, $b6
 
 br_05_88b2:
-	lda wDashAndSelCurrBtnsHeld.w                                                  ; $88b2 : $ad, $0e, $0a
-	sta wDashAndSelPrevBtnsHeld.w                                                  ; $88b5 : $8d, $10, $0a
-	lda wJumpShotMenuDirCurrBtnsHeld.w                                                  ; $88b8 : $ad, $0f, $0a
-	sta wJumpShotMenuDirPrevBtnsHeld.w                                                  ; $88bb : $8d, $11, $0a
+	lda wPlayerEntity.dashAndSelCurrBtnsHeld.w                                                  ; $88b2 : $ad, $0e, $0a
+	sta wPlayerEntity.dashAndSelPrevBtnsHeld.w                                                  ; $88b5 : $8d, $10, $0a
+	lda wPlayerEntity.jumpShotMenuDirCurrBtnsHeld.w                                                  ; $88b8 : $ad, $0f, $0a
+	sta wPlayerEntity.jumpShotMenuDirPrevBtnsHeld.w                                                  ; $88bb : $8d, $11, $0a
 	jmp Jump_05_8997.w                                                  ; $88be : $4c, $97, $89
 
 
@@ -1848,14 +1848,14 @@ br_05_8d85:
 	cmp wPlayerEntity.x.w                                                  ; $8d95 : $cd, $dd, $09
 	bcc br_05_8db2                                                  ; $8d98 : $90, $18
 
-	lda wCurrHealth.w                                                  ; $8d9a : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $8d9a : $ad, $ff, $09
 	and #$3f.b                                                  ; $8d9d : $29, $3f
 	beq br_05_8db2                                                  ; $8d9f : $f0, $11
 
 	dea                                                  ; $8da1 : $3a
 	beq br_05_8dae                                                  ; $8da2 : $f0, $0a
 
-	sta wCurrHealth.w                                                  ; $8da4 : $8d, $ff, $09
+	sta wPlayerEntity.health.w                                                  ; $8da4 : $8d, $ff, $09
 	lda #$0d.b                                                  ; $8da7 : $a9, $0d
 	jsr Func_1_802b.l                                                  ; $8da9 : $22, $2b, $80, $01
 	rts                                                  ; $8dad : $60
@@ -7791,7 +7791,7 @@ br_05_b378:
 	jmp SetupEntitysAnimation.l                                                  ; $b386 : $5c, $67, $b9, $04
 
 
-	lda wCurrHealth.w                                                  ; $b38a : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $b38a : $ad, $ff, $09
 	bne br_05_b394                                                  ; $b38d : $d0, $05
 
 	lda #$04.b                                                  ; $b38f : $a9, $04
@@ -7823,7 +7823,7 @@ br_05_b394:
 	rtl                                                  ; $b3c0 : $6b
 
 
-	lda wCurrHealth.w                                                  ; $b3c1 : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                  ; $b3c1 : $ad, $ff, $09
 	bne br_05_b3cb                                                  ; $b3c4 : $d0, $05
 
 	lda #$04.b                                                  ; $b3c6 : $a9, $04
