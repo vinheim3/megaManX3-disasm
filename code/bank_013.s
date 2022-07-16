@@ -243,7 +243,7 @@ CapsuleMainSubstate0:
 	stz StageEnemyEntity.subsubstate                                                  ; $c13a : $64, $03
 
 @cont_c13c:
-	jsr Func_2_d812.l                                                  ; $c13c : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $c13c : $22, $12, $d8, $02
 	jsr AnimateEntity.l                                                  ; $c140 : $22, $4a, $b9, $04
 	rts                                                  ; $c144 : $60
 
@@ -4102,7 +4102,7 @@ br_13_d93f:
 	rts                                                  ; $d93f : $60
 
 
-	jsr Func_2_d812.l                                                  ; $d940 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $d940 : $22, $12, $d8, $02
 	jsr $04c0f7.l                                                  ; $d944 : $22, $f7, $c0, $04
 	lda $2b                                                  ; $d948 : $a5, $2b
 	bit #$08.b                                                  ; $d94a : $89, $08

@@ -8916,7 +8916,7 @@ br_05_ba3a:
 	rts                                                  ; $ba3a : $60
 
 
-	jsr Func_2_d812.l                                                  ; $ba3b : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $ba3b : $22, $12, $d8, $02
 	rep #ACCU_8|F_CARRY                                                  ; $ba3f : $c2, $21
 	lda #$006c.w                                                  ; $ba41 : $a9, $6c, $00
 	adc wNewStageScrollY.w                                                  ; $ba44 : $6d, $60, $1e
@@ -8933,7 +8933,7 @@ br_05_ba57:
 	rts                                                  ; $ba57 : $60
 
 
-	jsr Func_2_d812.l                                                  ; $ba58 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $ba58 : $22, $12, $d8, $02
 	rep #ACCU_8                                                  ; $ba5c : $c2, $20
 	lda #$0020.w                                                  ; $ba5e : $a9, $20, $00
 	clc                                                  ; $ba61 : $18
@@ -8998,7 +8998,7 @@ br_05_bab3:
 	rts                                                  ; $bab3 : $60
 
 
-	jsr Func_2_d812.l                                                  ; $bab4 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $bab4 : $22, $12, $d8, $02
 	rep #ACCU_8                                                  ; $bab8 : $c2, $20
 	lda #$0020.w                                                  ; $baba : $a9, $20, $00
 	clc                                                  ; $babd : $18
@@ -9017,7 +9017,7 @@ br_05_bad3:
 	rts                                                  ; $bad3 : $60
 
 
-	jsr Func_2_d812.l                                                  ; $bad4 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $bad4 : $22, $12, $d8, $02
 	lda $0e                                                  ; $bad8 : $a5, $0e
 	bne br_05_bae0                                                  ; $bada : $d0, $04
 
@@ -9151,7 +9151,7 @@ br_05_bb9e:
 	sep #ACCU_8                                                  ; $bba8 : $e2, $20
 
 br_05_bbaa:
-	jsr Func_2_d812.l                                                  ; $bbaa : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $bbaa : $22, $12, $d8, $02
 	rts                                                  ; $bbae : $60
 
 

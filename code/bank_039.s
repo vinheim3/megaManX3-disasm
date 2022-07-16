@@ -1862,7 +1862,7 @@ br_39_9c1c:
 	stz $1c                                                  ; $9c1c : $64, $1c
 
 br_39_9c1e:
-	jsr Func_2_d812.l                                                  ; $9c1e : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $9c1e : $22, $12, $d8, $02
 	jsr $04c0f7.l                                                  ; $9c22 : $22, $f7, $c0, $04
 	lda $2b                                                  ; $9c26 : $a5, $2b
 	bit #$04.b                                                  ; $9c28 : $89, $04
@@ -4301,7 +4301,7 @@ br_39_ab57:
 
 
 br_39_ab77:
-	jsr Func_2_d812.l                                                  ; $ab77 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $ab77 : $22, $12, $d8, $02
 	rts                                                  ; $ab7b : $60
 
 
@@ -4930,7 +4930,7 @@ br_39_af66:
 
 	adc $afa9af.l, X                                                  ; $af77 : $7f, $af, $a9, $af
 	sbc $b07baf.l                                                  ; $af7b : $ef, $af, $7b, $b0
-	jsr Func_2_d812.l                                                  ; $af7f : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $af7f : $22, $12, $d8, $02
 	jsr $04c0f7.l                                                  ; $af83 : $22, $f7, $c0, $04
 	lda $2b                                                  ; $af87 : $a5, $2b
 	bit #$04.b                                                  ; $af89 : $89, $04
@@ -5082,7 +5082,7 @@ br_39_b079:
 	rts                                                  ; $b07a : $60
 
 
-	jsr Func_2_d812.l                                                  ; $b07b : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $b07b : $22, $12, $d8, $02
 	jsr $04c0f7.l                                                  ; $b07f : $22, $f7, $c0, $04
 	lda $2b                                                  ; $b083 : $a5, $2b
 	bit #$08.b                                                  ; $b085 : $89, $08
@@ -5859,7 +5859,7 @@ br_39_b53e:
 	rts                                                  ; $b53e : $60
 
 
-	jsr Func_2_d812.l                                                  ; $b53f : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $b53f : $22, $12, $d8, $02
 	rep #ACCU_8                                                  ; $b543 : $c2, $20
 	lda $08                                                  ; $b545 : $a5, $08
 	cmp $34                                                  ; $b547 : $c5, $34

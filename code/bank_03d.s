@@ -19124,7 +19124,7 @@ br_3d_f925:
 
 
 	jsr Func_2_d636.l                                                  ; $f926 : $22, $36, $d6, $02
-	jsr Func_2_d812.l                                                  ; $f92a : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $f92a : $22, $12, $d8, $02
 	rep #ACCU_8                                                  ; $f92e : $c2, $20
 	lda $08                                                  ; $f930 : $a5, $08
 	cmp #$0570.w                                                  ; $f932 : $c9, $70, $05

@@ -146,7 +146,7 @@ Func_0_80c3:
 	sta $02                                                  ; $8101 : $85, $02
 	jsr Call_04_a63c.w                                                  ; $8103 : $20, $3c, $a6
 	lda #$7d.b                                                  ; $8106 : $a9, $7d
-	jsr Call_04_b8f4.w                                                  ; $8108 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $8108 : $20, $f4, $b8
 	inc $0e                                                  ; $810b : $e6, $0e
 	inc $1f45.w                                                  ; $810d : $ee, $45, $1f
 	inc $1f4f.w                                                  ; $8110 : $ee, $4f, $1f
@@ -338,8 +338,8 @@ Func_0_81d0:
 	jmp Jump_04_a600.w                                                  ; $8248 : $4c, $00, $a6
 
 @funcs:
-	.dw PlayerMainSubstate0_Idle
-	.dw PlayerMainSubstate1
+	.dw PlayerMainSubstate00_Idle
+	.dw PlayerMainSubstate01
 	.dw $83e3
 	.dw $845c
 	.dw $84da
@@ -390,8 +390,8 @@ Func_0_81d0:
 	.dw $9868
 	.dw $9827
 	.dw $a1ba
-	.dw $8c05
-	.dw $8bca
+	.dw PlayerMainSubstate34_LegUpgradeCharging
+	.dw PlayerMainSubstate35_LegUpgradePreFalling
 	.dw $a7d0
 	.dw $a255
 	.dw $a246
@@ -402,7 +402,7 @@ Func_0_81d0:
 	.dw $9859
 
 
-PlayerMainSubstate0_Idle:
+PlayerMainSubstate00_Idle:
 	ldx $03                                                  ; $82c7 : $a6, $03
 	jmp (@funcs.w, X)                                                  ; $82c9 : $7c, $cc, $82
 
@@ -429,7 +429,7 @@ Func_4_82d0:
 	adc $6f                                                  ; $82ef : $65, $6f
 	clc                                                  ; $82f1 : $18
 	adc $73                                                  ; $82f2 : $65, $73
-	jsr Call_04_b8f4.w                                                  ; $82f4 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $82f4 : $20, $f4, $b8
 	rts                                                  ; $82f7 : $60
 
 
@@ -527,7 +527,7 @@ br_04_8371:
 	jmp Jump_04_a617.w                                                  ; $8376 : $4c, $17, $a6
 
 
-PlayerMainSubstate1:
+PlayerMainSubstate01:
 	ldx $03                                                  ; $8379 : $a6, $03
 	jmp (@subsubstates.w, X)                                                  ; $837b : $7c, $7e, $83
 
@@ -546,7 +546,7 @@ Func_4_8382:
 	lda #$24.b                                                  ; $8390 : $a9, $24
 	clc                                                  ; $8392 : $18
 	adc $6f                                                  ; $8393 : $65, $6f
-	jsr Call_04_b8f4.w                                                  ; $8395 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $8395 : $20, $f4, $b8
 
 Func_4_8398:
 	lda $59                                                  ; $8398 : $a5, $59
@@ -619,7 +619,7 @@ Jump_04_83e3:
 	lda #$0c.b                                                  ; $83f9 : $a9, $0c
 	clc                                                  ; $83fb : $18
 	adc $6f                                                  ; $83fc : $65, $6f
-	jsr Call_04_b8f4.w                                                  ; $83fe : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $83fe : $20, $f4, $b8
 	lda $59                                                  ; $8401 : $a5, $59
 	bne br_04_840b                                                  ; $8403 : $d0, $06
 
@@ -706,7 +706,7 @@ Jump_04_845c:
 	lda #$01.b                                                  ; $8477 : $a9, $01
 	clc                                                  ; $8479 : $18
 	adc $6f                                                  ; $847a : $65, $6f
-	jsr Call_04_b8f4.w                                                  ; $847c : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $847c : $20, $f4, $b8
 	lda $59                                                  ; $847f : $a5, $59
 	bne br_04_8489                                                  ; $8481 : $d0, $06
 
@@ -796,14 +796,14 @@ Jump_04_84da:
 	lda #$04.b                                                  ; $84f5 : $a9, $04
 	trb $87                                                  ; $84f7 : $14, $87
 	lda #$57.b                                                  ; $84f9 : $a9, $57
-	jsr Call_04_b8f4.w                                                  ; $84fb : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $84fb : $20, $f4, $b8
 	bra br_04_8508                                                  ; $84fe : $80, $08
 
 br_04_8500:
 	lda #$05.b                                                  ; $8500 : $a9, $05
 	clc                                                  ; $8502 : $18
 	adc $6f                                                  ; $8503 : $65, $6f
-	jsr Call_04_b8f4.w                                                  ; $8505 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $8505 : $20, $f4, $b8
 
 br_04_8508:
 	lda $59                                                  ; $8508 : $a5, $59
@@ -958,7 +958,7 @@ Jump_04_85b8:
 	lda #$0a.b                                                  ; $85d9 : $a9, $0a
 	clc                                                  ; $85db : $18
 	adc $6f                                                  ; $85dc : $65, $6f
-	jsr Call_04_b8f4.w                                                  ; $85de : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $85de : $20, $f4, $b8
 	lda $59                                                  ; $85e1 : $a5, $59
 	bne br_04_85eb                                                  ; $85e3 : $d0, $06
 
@@ -1061,7 +1061,7 @@ br_04_8675:
 	stx $ad                                                  ; $8675 : $86, $ad
 	jsr Call_04_a63c.w                                                  ; $8677 : $20, $3c, $a6
 	lda $ad                                                  ; $867a : $a5, $ad
-	jsr Call_04_b8f4.w                                                  ; $867c : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $867c : $20, $f4, $b8
 	rts                                                  ; $867f : $60
 
 
@@ -1094,7 +1094,7 @@ br_04_86a7:
 	lda #$02.b                                                  ; $86aa : $a9, $02
 	sta $03                                                  ; $86ac : $85, $03
 	lda #$55.b                                                  ; $86ae : $a9, $55
-	jmp Jump_04_b8f4.w                                                  ; $86b0 : $4c, $f4, $b8
+	jmp todo_SetupPlayersAnimation.w                                                  ; $86b0 : $4c, $f4, $b8
 
 
 br_04_86b3:
@@ -1183,7 +1183,7 @@ br_04_86f7:
 	sep #ACCU_8                                                  ; $8741 : $e2, $20
 	jsr Call_04_a68a.w                                                  ; $8743 : $20, $8a, $a6
 	lda #$1d.b                                                  ; $8746 : $a9, $1d
-	jsr Call_04_b8f4.w                                                  ; $8748 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $8748 : $20, $f4, $b8
 	stz wBG2HorizScroll                                                  ; $874b : $64, $b9
 	rts                                                  ; $874d : $60
 
@@ -1224,7 +1224,7 @@ br_04_876d:
 	lda #$04.b                                                  ; $877a : $a9, $04
 	sta $03                                                  ; $877c : $85, $03
 	lda #$1c.b                                                  ; $877e : $a9, $1c
-	jmp Jump_04_b8f4.w                                                  ; $8780 : $4c, $f4, $b8
+	jmp todo_SetupPlayersAnimation.w                                                  ; $8780 : $4c, $f4, $b8
 
 
 br_04_8783:
@@ -1411,7 +1411,7 @@ br_04_8834:
 	jsr Call_04_b5fb.w                                                  ; $8873 : $20, $fb, $b5
 	lda #$1822.w                                                  ; $8876 : $a9, $22, $18
 	adc $6f                                                  ; $8879 : $65, $6f
-	jsr Call_04_b8f4.w                                                  ; $887b : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $887b : $20, $f4, $b8
 	dec $4e                                                  ; $887e : $c6, $4e
 	bmi br_04_8896                                                  ; $8880 : $30, $14
 
@@ -1543,7 +1543,7 @@ br_04_8922:
 	lda #$03.b                                                  ; $8934 : $a9, $03
 	clc                                                  ; $8936 : $18
 	adc $6f                                                  ; $8937 : $65, $6f
-	jsr Call_04_b8f4.w                                                  ; $8939 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $8939 : $20, $f4, $b8
 	rts                                                  ; $893c : $60
 
 
@@ -1602,7 +1602,7 @@ Jump_04_8951:
 	lda #$1f.b                                                  ; $898a : $a9, $1f
 	clc                                                  ; $898c : $18
 	adc $6f                                                  ; $898d : $65, $6f
-	jsr Call_04_b8f4.w                                                  ; $898f : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $898f : $20, $f4, $b8
 	lda $59                                                  ; $8992 : $a5, $59
 	bne br_04_899c                                                  ; $8994 : $d0, $06
 
@@ -1722,7 +1722,7 @@ br_04_8a23:
 	lda #$16.b                                                  ; $8a41 : $a9, $16
 	clc                                                  ; $8a43 : $18
 	adc $6f                                                  ; $8a44 : $65, $6f
-	jsr Call_04_b8f4.w                                                  ; $8a46 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $8a46 : $20, $f4, $b8
 	lda #$10.b                                                  ; $8a49 : $a9, $10
 	sta $55                                                  ; $8a4b : $85, $55
 	rep #ACCU_8                                                  ; $8a4d : $c2, $20
@@ -1782,7 +1782,7 @@ br_04_8a95:
 	bne br_04_8aa1                                                  ; $8a9c : $d0, $03
 
 br_04_8a9e:
-	jmp Jump_04_a7a8.w                                                  ; $8a9e : $4c, $a8, $a7
+	jmp SetNewPlayerSubstateTo10h.w                                                  ; $8a9e : $4c, $a8, $a7
 
 
 br_04_8aa1:
@@ -1814,7 +1814,7 @@ br_04_8ab1:
 	lda #$16.b                                                  ; $8acb : $a9, $16
 	clc                                                  ; $8acd : $18
 	adc $6f                                                  ; $8ace : $65, $6f
-	jsr Call_04_b8f4.w                                                  ; $8ad0 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $8ad0 : $20, $f4, $b8
 	lda #$40.b                                                  ; $8ad3 : $a9, $40
 	sta $55                                                  ; $8ad5 : $85, $55
 	lda #$10.b                                                  ; $8ad7 : $a9, $10
@@ -1897,7 +1897,7 @@ br_04_8b2b:
 	lda #$1e.b                                                  ; $8b43 : $a9, $1e
 	clc                                                  ; $8b45 : $18
 	adc $6f                                                  ; $8b46 : $65, $6f
-	jsr Call_04_b8f4.w                                                  ; $8b48 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $8b48 : $20, $f4, $b8
 
 br_04_8b4b:
 	lda $59                                                  ; $8b4b : $a5, $59
@@ -1958,7 +1958,7 @@ br_04_8b75:
 	lda #$1e.b                                                  ; $8b98 : $a9, $1e
 	clc                                                  ; $8b9a : $18
 	adc $6f                                                  ; $8b9b : $65, $6f
-	jsr Call_04_b8f4.w                                                  ; $8b9d : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $8b9d : $20, $f4, $b8
 
 br_04_8ba0:
 	lda $59                                                  ; $8ba0 : $a5, $59
@@ -1993,8 +1993,9 @@ br_04_8bbc:
 	jmp Jump_04_a617.w                                                  ; $8bc7 : $4c, $17, $a6
 
 
+PlayerMainSubstate35_LegUpgradePreFalling:
 	ldx $03                                                  ; $8bca : $a6, $03
-	bne br_04_8bec                                                  ; $8bcc : $d0, $1e
+	bne @afterSubstateInit                                                  ; $8bcc : $d0, $1e
 
 	inc $03                                                  ; $8bce : $e6, $03
 	rep #ACCU_8                                                  ; $8bd0 : $c2, $20
@@ -2009,30 +2010,30 @@ br_04_8bbc:
 	lda #$21.b                                                  ; $8be4 : $a9, $21
 	clc                                                  ; $8be6 : $18
 	adc $b2                                                  ; $8be7 : $65, $b2
-	jsr Call_04_b8f4.w                                                  ; $8be9 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $8be9 : $20, $f4, $b8
 
-br_04_8bec:
+@afterSubstateInit:
 	dec $4e                                                  ; $8bec : $c6, $4e
-	bne br_04_8bf9                                                  ; $8bee : $d0, $09
+	bne @br_8bf9                                                  ; $8bee : $d0, $09
 
-br_04_8bf0:
+@loop_8bf0:
 	stz $4f                                                  ; $8bf0 : $64, $4f
 	lda #$04.b                                                  ; $8bf2 : $a9, $04
 	tsb $87                                                  ; $8bf4 : $04, $87
 	jmp Jump_04_a75b.w                                                  ; $8bf6 : $4c, $5b, $a7
 
-
-br_04_8bf9:
+@br_8bf9:
 	lda $37                                                  ; $8bf9 : $a5, $37
 	bit #$03.b                                                  ; $8bfb : $89, $03
-	bne br_04_8bf0                                                  ; $8bfd : $d0, $f1
+	bne @loop_8bf0                                                  ; $8bfd : $d0, $f1
 
 	jsr Call_04_b86c.w                                                  ; $8bff : $20, $6c, $b8
 	jmp FarAnimateEntity.w                                                  ; $8c02 : $4c, $fb, $b8
 
 
+PlayerMainSubstate34_LegUpgradeCharging:
 	ldx $03                                                  ; $8c05 : $a6, $03
-	bne br_04_8c35                                                  ; $8c07 : $d0, $2c
+	bne @afterSubstateInit                                                  ; $8c07 : $d0, $2c
 
 	inc $03                                                  ; $8c09 : $e6, $03
 	lda #$ff.b                                                  ; $8c0b : $a9, $ff
@@ -2042,11 +2043,15 @@ br_04_8bf9:
 	lda #$20.b                                                  ; $8c14 : $a9, $20
 	clc                                                  ; $8c16 : $18
 	adc $b2                                                  ; $8c17 : $65, $b2
-	jsr Call_04_b8f4.w                                                  ; $8c19 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $8c19 : $20, $f4, $b8
 	lda #$40.b                                                  ; $8c1c : $a9, $40
 	sta $55                                                  ; $8c1e : $85, $55
+
+; timer until pre-falling substate
 	lda #$20.b                                                  ; $8c20 : $a9, $20
 	sta $52                                                  ; $8c22 : $85, $52
+
+;
 	rep #ACCU_8                                                  ; $8c24 : $c2, $20
 	lda #$0375.w                                                  ; $8c26 : $a9, $75, $03
 	sta $5c                                                  ; $8c29 : $85, $5c
@@ -2055,50 +2060,53 @@ br_04_8bf9:
 	jsr Call_04_b658.w                                                  ; $8c30 : $20, $58, $b6
 	sep #ACCU_8                                                  ; $8c33 : $e2, $20
 
-br_04_8c35:
+@afterSubstateInit:
 	lda $5e                                                  ; $8c35 : $a5, $5e
 	bit $04                                                  ; $8c37 : $24, $04
-	beq br_04_8c3d                                                  ; $8c39 : $f0, $02
-
+	beq +                                                  ; $8c39 : $f0, $02
 	stz $2f                                                  ; $8c3b : $64, $2f
-
-br_04_8c3d:
-	lda #$08.b                                                  ; $8c3d : $a9, $08
++	lda #$08.b                                                  ; $8c3d : $a9, $08
 	bit $5e                                                  ; $8c3f : $24, $5e
-	bne br_04_8c48                                                  ; $8c41 : $d0, $05
+	bne @brLoop_8c48                                                  ; $8c41 : $d0, $05
 
 	jsr Call_04_b55a.w                                                  ; $8c43 : $20, $5a, $b5
-	bne br_04_8c4b                                                  ; $8c46 : $d0, $03
+	bne @br_8c4b                                                  ; $8c46 : $d0, $03
 
-br_04_8c48:
+@brLoop_8c48:
 	jmp Jump_04_a7c3.w                                                  ; $8c48 : $4c, $c3, $a7
 
-
-br_04_8c4b:
+@br_8c4b:
+; apply player fall value
 	lda $0f                                                  ; $8c4b : $a5, $0f
 	and #$0f.b                                                  ; $8c4d : $29, $0f
 	asl                                                  ; $8c4f : $0a
 	tax                                                  ; $8c50 : $aa
 	rep #ACCU_8                                                  ; $8c51 : $c2, $20
-	lda $b346.w, X                                                  ; $8c53 : $bd, $46, $b3
-	sta $1c                                                  ; $8c56 : $85, $1c
-	jsr Call_04_b867.w                                                  ; $8c58 : $20, $67, $b8
+	lda Data_6_b346.w, X                                                  ; $8c53 : $bd, $46, $b3
+	sta PlayerEntity.fallVal                                                  ; $8c56 : $85, $1c
+	jsr FarApplyEntityFallVal.w                                                  ; $8c58 : $20, $67, $b8
 	sep #ACCU_8                                                  ; $8c5b : $e2, $20
-	dec $52                                                  ; $8c5d : $c6, $52
-	bmi br_04_8c48                                                  ; $8c5f : $30, $e7
 
+; once timer is over we start falling
+	dec $52                                                  ; $8c5d : $c6, $52
+	bmi @brLoop_8c48                                                  ; $8c5f : $30, $e7
+
+;
 	bit $0f                                                  ; $8c61 : $24, $0f
-	bvc br_04_8c70                                                  ; $8c63 : $50, $0b
+	bvc @animateEntity                                                  ; $8c63 : $50, $0b
 
 	lda #$0a.b                                                  ; $8c65 : $a9, $0a
 	jsr Func_1_802b.l                                                  ; $8c67 : $22, $2b, $80, $01
+
+; creates sparks below player
 	lda #$03.b                                                  ; $8c6b : $a9, $03
 	jsr Call_04_b497.w                                                  ; $8c6d : $20, $97, $b4
 
-br_04_8c70:
+@animateEntity:
 	jmp FarAnimateEntity.w                                                  ; $8c70 : $4c, $fb, $b8
 
 
+;
 	rts                                                  ; $8c73 : $60
 
 
@@ -2265,7 +2273,7 @@ br_04_8d65:
 	inc $1f2b.w                                                  ; $8da7 : $ee, $2b, $1f
 	jsr Call_04_a63c.w                                                  ; $8daa : $20, $3c, $a6
 	lda #$7f.b                                                  ; $8dad : $a9, $7f
-	jmp Jump_04_b8f4.w                                                  ; $8daf : $4c, $f4, $b8
+	jmp todo_SetupPlayersAnimation.w                                                  ; $8daf : $4c, $f4, $b8
 
 
 	jsr FarAnimateEntity.w                                                  ; $8db2 : $20, $fb, $b8
@@ -2324,7 +2332,7 @@ br_04_8dfe:
 	jsr Call_04_b6d6.w                                                  ; $8e09 : $20, $d6, $b6
 	jsr Call_04_b645.w                                                  ; $8e0c : $20, $45, $b6
 	lda #$7e.b                                                  ; $8e0f : $a9, $7e
-	jsr Call_04_b8f4.w                                                  ; $8e11 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $8e11 : $20, $f4, $b8
 	rep #ACCU_8                                                  ; $8e14 : $c2, $20
 	lda wBG1HorizScroll+1                                                  ; $8e16 : $a5, $b6
 	and #$0002.w                                                  ; $8e18 : $29, $02, $00
@@ -2437,7 +2445,7 @@ PlayerMainSubstate3c_HelmetUpgradeShowcase:
 	lda #$40.b                                                  ; $8eca : $a9, $40
 	tsb $69                                                  ; $8ecc : $04, $69
 	lda #$50.b                                                  ; $8ece : $a9, $50
-	jsr Call_04_b8f4.w                                                  ; $8ed0 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $8ed0 : $20, $f4, $b8
 	lda #$93.b                                                  ; $8ed3 : $a9, $93
 	sta wColourMathDesignation.w                                                  ; $8ed5 : $8d, $ca, $00
 	stz $00cb.w                                                  ; $8ed8 : $9c, $cb, $00
@@ -2938,7 +2946,7 @@ br_04_91d0:
 
 br_04_9211:
 	lda #$7d.b                                                  ; $9211 : $a9, $7d
-	jmp Jump_04_b8f4.w                                                  ; $9213 : $4c, $f4, $b8
+	jmp todo_SetupPlayersAnimation.w                                                  ; $9213 : $4c, $f4, $b8
 
 
 	lda $64                                                  ; $9216 : $a5, $64
@@ -2955,7 +2963,7 @@ br_04_921c:
 	sta $03                                                  ; $9224 : $85, $03
 	stz $64                                                  ; $9226 : $64, $64
 	lda #$7e.b                                                  ; $9228 : $a9, $7e
-	jmp Jump_04_b8f4.w                                                  ; $922a : $4c, $f4, $b8
+	jmp todo_SetupPlayersAnimation.w                                                  ; $922a : $4c, $f4, $b8
 
 
 br_04_922d:
@@ -2970,7 +2978,7 @@ br_04_922d:
 	beq br_04_9241                                                  ; $9238 : $f0, $07
 
 	lda #$50.b                                                  ; $923a : $a9, $50
-	jsr Call_04_b8f4.w                                                  ; $923c : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $923c : $20, $f4, $b8
 	bra br_04_9245                                                  ; $923f : $80, $04
 
 br_04_9241:
@@ -3015,13 +3023,13 @@ br_04_9248:
 
 	jsr Call_04_a63c.w                                                  ; $9286 : $20, $3c, $a6
 	lda #$7a.b                                                  ; $9289 : $a9, $7a
-	jsr Call_04_b8f4.w                                                  ; $928b : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $928b : $20, $f4, $b8
 	bra br_04_9298                                                  ; $928e : $80, $08
 
 br_04_9290:
 	jsr Call_04_a68a.w                                                  ; $9290 : $20, $8a, $a6
 	lda #$1d.b                                                  ; $9293 : $a9, $1d
-	jsr Call_04_b8f4.w                                                  ; $9295 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $9295 : $20, $f4, $b8
 
 br_04_9298:
 	rts                                                  ; $9298 : $60
@@ -3145,7 +3153,7 @@ br_04_9352:
 	inc $03                                                  ; $9357 : $e6, $03
 	jsr Call_04_a63c.w                                                  ; $9359 : $20, $3c, $a6
 	lda #$7b.b                                                  ; $935c : $a9, $7b
-	jmp Jump_04_b8f4.w                                                  ; $935e : $4c, $f4, $b8
+	jmp todo_SetupPlayersAnimation.w                                                  ; $935e : $4c, $f4, $b8
 
 
 br_04_9361:
@@ -3186,7 +3194,7 @@ Func_4_9379:
 	lda #$02.b                                                  ; $938b : $a9, $02
 	sta $03                                                  ; $938d : $85, $03
 	lda #$57.b                                                  ; $938f : $a9, $57
-	jsr Call_04_b8f4.w                                                  ; $9391 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $9391 : $20, $f4, $b8
 	jmp todo_SetPlayersXSpeed_and2otherThings.w                                                  ; $9394 : $4c, $67, $af
 
 @br_9397:
@@ -3195,7 +3203,7 @@ Func_4_9379:
 	stz $2f                                                  ; $939b : $64, $2f
 	stz $55                                                  ; $939d : $64, $55
 	lda #$50.b                                                  ; $939f : $a9, $50
-	jmp Jump_04_b8f4.w                                                  ; $93a1 : $4c, $f4, $b8
+	jmp todo_SetupPlayersAnimation.w                                                  ; $93a1 : $4c, $f4, $b8
 
 
 Func_4_93a4:
@@ -3208,7 +3216,7 @@ Func_4_93a4:
 	sta $03                                                  ; $93af : $85, $03
 	stz $2f                                                  ; $93b1 : $64, $2f
 	lda #$50.b                                                  ; $93b3 : $a9, $50
-	jmp Jump_04_b8f4.w                                                  ; $93b5 : $4c, $f4, $b8
+	jmp todo_SetupPlayersAnimation.w                                                  ; $93b5 : $4c, $f4, $b8
 
 @br_93b8:
 	jsr Call_04_b86c.w                                                  ; $93b8 : $20, $6c, $b8
@@ -3248,7 +3256,7 @@ Func_4_93c8:
 	lda #$0a.b                                                  ; $93ea : $a9, $0a
 	clc                                                  ; $93ec : $18
 	adc $6f                                                  ; $93ed : $65, $6f
-	jsr Call_04_b8f4.w                                                  ; $93ef : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $93ef : $20, $f4, $b8
 
 br_04_93f2:
 	dec $4e                                                  ; $93f2 : $c6, $4e
@@ -3289,7 +3297,7 @@ br_04_940c:
 	.db $30, $18                                                  ; $9423 : $30, $18
 
 	adc $90                                                  ; $9425 : $65, $90
-	jsr Call_04_b8f4.w                                                  ; $9427 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $9427 : $20, $f4, $b8
 	stz $90                                                  ; $942a : $64, $90
 	lda $3b                                                  ; $942c : $a5, $3b
 	bit #$80.b                                                  ; $942e : $89, $80
@@ -3374,7 +3382,7 @@ br_04_94a0:
 	txa                                                  ; $94a0 : $8a
 	clc                                                  ; $94a1 : $18
 	adc $90                                                  ; $94a2 : $65, $90
-	jsr Call_04_b8f4.w                                                  ; $94a4 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $94a4 : $20, $f4, $b8
 	stz $90                                                  ; $94a7 : $64, $90
 	lda $3b                                                  ; $94a9 : $a5, $3b
 	bit #$80.b                                                  ; $94ab : $89, $80
@@ -3438,7 +3446,7 @@ br_04_94e6:
 	lda #$00.b                                                  ; $94ff : $a9, $00
 	clc                                                  ; $9501 : $18
 	adc $90                                                  ; $9502 : $65, $90
-	jsr Call_04_b8f4.w                                                  ; $9504 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $9504 : $20, $f4, $b8
 	stz $90                                                  ; $9507 : $64, $90
 	stz $1f44.w                                                  ; $9509 : $9c, $44, $1f
 	lda $0f                                                  ; $950c : $a5, $0f
@@ -3571,7 +3579,7 @@ br_04_9567:
 	lda #$03.b                                                  ; $95e0 : $a9, $03
 	clc                                                  ; $95e2 : $18
 	adc $6f                                                  ; $95e3 : $65, $6f
-	jsr Call_04_b8f4.w                                                  ; $95e5 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $95e5 : $20, $f4, $b8
 	jsr Call_04_97c6.w                                                  ; $95e8 : $20, $c6, $97
 	rts                                                  ; $95eb : $60
 
@@ -3671,7 +3679,7 @@ br_04_966c:
 	lda #$1f.b                                                  ; $9689 : $a9, $1f
 	clc                                                  ; $968b : $18
 	adc $6f                                                  ; $968c : $65, $6f
-	jsr Call_04_b8f4.w                                                  ; $968e : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $968e : $20, $f4, $b8
 	inc $03                                                  ; $9691 : $e6, $03
 	inc $03                                                  ; $9693 : $e6, $03
 
@@ -3752,7 +3760,7 @@ br_04_9702:
 	stz $64                                                  ; $9710 : $64, $64
 	lda #$1805.w                                                  ; $9712 : $a9, $05, $18
 	adc $6f                                                  ; $9715 : $65, $6f
-	jsr Call_04_b8f4.w                                                  ; $9717 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $9717 : $20, $f4, $b8
 
 br_04_971a:
 	bra br_04_96af                                                  ; $971a : $80, $93
@@ -3779,7 +3787,7 @@ br_04_9730:
 	lda #$00.b                                                  ; $973c : $a9, $00
 	clc                                                  ; $973e : $18
 	adc $6f                                                  ; $973f : $65, $6f
-	jsr Call_04_b8f4.w                                                  ; $9741 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $9741 : $20, $f4, $b8
 	lda #$3c.b                                                  ; $9744 : $a9, $3c
 	sta $4e                                                  ; $9746 : $85, $4e
 
@@ -3935,7 +3943,7 @@ br_04_9801:
 	sta $64                                                  ; $9840 : $85, $64
 	sta $7d                                                  ; $9842 : $85, $7d
 	lda #$5c.b                                                  ; $9844 : $a9, $5c
-	jmp Jump_04_b8f4.w                                                  ; $9846 : $4c, $f4, $b8
+	jmp todo_SetupPlayersAnimation.w                                                  ; $9846 : $4c, $f4, $b8
 
 
 	jmp FarAnimateEntity.w                                                  ; $9849 : $4c, $fb, $b8
@@ -3959,7 +3967,7 @@ br_04_9801:
 	jsr Call_04_a63c.w                                                  ; $9859 : $20, $3c, $a6
 	stz $2f                                                  ; $985c : $64, $2f
 	lda #$50.b                                                  ; $985e : $a9, $50
-	jsr Call_04_b8f4.w                                                  ; $9860 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $9860 : $20, $f4, $b8
 	lda #$1c.b                                                  ; $9863 : $a9, $1c
 	jmp SetNewPlayerSubstateToA.w                                                  ; $9865 : $4c, $00, $b9
 
@@ -4035,7 +4043,7 @@ br_04_98ab:
 	lda #$43.b                                                  ; $98c7 : $a9, $43
 	clc                                                  ; $98c9 : $18
 	adc $90                                                  ; $98ca : $65, $90
-	jsr Call_04_b8f4.w                                                  ; $98cc : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $98cc : $20, $f4, $b8
 	lda #$02.b                                                  ; $98cf : $a9, $02
 	trb $a5                                                  ; $98d1 : $14, $a5
 	stz $90                                                  ; $98d3 : $64, $90
@@ -4265,7 +4273,7 @@ br_04_9a1c:
 	txa                                                  ; $9a1c : $8a
 	clc                                                  ; $9a1d : $18
 	adc $90                                                  ; $9a1e : $65, $90
-	jsr Call_04_b8f4.w                                                  ; $9a20 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $9a20 : $20, $f4, $b8
 	lda #$08.b                                                  ; $9a23 : $a9, $08
 	trb $a5                                                  ; $9a25 : $14, $a5
 	stz $90                                                  ; $9a27 : $64, $90
@@ -4489,7 +4497,7 @@ br_04_9b60:
 	lda #$0e.b                                                  ; $9b60 : $a9, $0e
 	clc                                                  ; $9b62 : $18
 	adc $90                                                  ; $9b63 : $65, $90
-	jsr Call_04_b8f4.w                                                  ; $9b65 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $9b65 : $20, $f4, $b8
 	stz $90                                                  ; $9b68 : $64, $90
 	lda #$07.b                                                  ; $9b6a : $a9, $07
 	sta $1f44.w                                                  ; $9b6c : $8d, $44, $1f
@@ -4826,7 +4834,7 @@ Jump_04_9cf7:
 	jsr todo_SetPlayersXSpeed_and2otherThings.w                                                  ; $9d4a : $20, $67, $af
 	sep #ACCU_8                                                  ; $9d4d : $e2, $20
 	lda #$57.b                                                  ; $9d4f : $a9, $57
-	jmp Jump_04_b8f4.w                                                  ; $9d51 : $4c, $f4, $b8
+	jmp todo_SetupPlayersAnimation.w                                                  ; $9d51 : $4c, $f4, $b8
 
 
 br_04_9d54:
@@ -4930,7 +4938,7 @@ br_04_9ddc:
 
 br_04_9de4:
 	lda #$50.b                                                  ; $9de4 : $a9, $50
-	jsr Call_04_b8f4.w                                                  ; $9de6 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $9de6 : $20, $f4, $b8
 	rts                                                  ; $9de9 : $60
 
 
@@ -4993,7 +5001,7 @@ br_04_9e40:
 	lda #$0a.b                                                  ; $9e40 : $a9, $0a
 	sta $03                                                  ; $9e42 : $85, $03
 	lda #$84.b                                                  ; $9e44 : $a9, $84
-	jsr Call_04_b8f4.w                                                  ; $9e46 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $9e46 : $20, $f4, $b8
 
 br_04_9e49:
 	rts                                                  ; $9e49 : $60
@@ -5007,7 +5015,7 @@ br_04_9e4e:
 	sta $03                                                  ; $9e50 : $85, $03
 	sta $64                                                  ; $9e52 : $85, $64
 	lda #$7f.b                                                  ; $9e54 : $a9, $7f
-	jmp Jump_04_b8f4.w                                                  ; $9e56 : $4c, $f4, $b8
+	jmp todo_SetupPlayersAnimation.w                                                  ; $9e56 : $4c, $f4, $b8
 
 
 br_04_9e59:
@@ -5036,7 +5044,7 @@ br_04_9e65:
 	sta $1c                                                  ; $9e7f : $85, $1c
 	sep #ACCU_8                                                  ; $9e81 : $e2, $20
 	lda #$7d.b                                                  ; $9e83 : $a9, $7d
-	jsr Call_04_b8f4.w                                                  ; $9e85 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $9e85 : $20, $f4, $b8
 
 br_04_9e88:
 	jsr FarAnimateEntity.w                                                  ; $9e88 : $20, $fb, $b8
@@ -5079,7 +5087,7 @@ br_04_9eb5:
 	sep #ACCU_8                                                  ; $9ec6 : $e2, $20
 	stz $50                                                  ; $9ec8 : $64, $50
 	lda #$76.b                                                  ; $9eca : $a9, $76
-	jsr Call_04_b8f4.w                                                  ; $9ecc : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $9ecc : $20, $f4, $b8
 
 br_04_9ecf:
 	lda $0f                                                  ; $9ecf : $a5, $0f
@@ -5110,7 +5118,7 @@ br_04_9ed8:
 	lda #$04.b                                                  ; $9ef8 : $a9, $04
 	sta $4e                                                  ; $9efa : $85, $4e
 	lda #$77.b                                                  ; $9efc : $a9, $77
-	jsr Call_04_b8f4.w                                                  ; $9efe : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $9efe : $20, $f4, $b8
 
 br_04_9f01:
 	lda $4e                                                  ; $9f01 : $a5, $4e
@@ -5132,7 +5140,7 @@ br_04_9f12:
 
 br_04_9f17:
 	dec $4e                                                  ; $9f17 : $c6, $4e
-	jmp Jump_04_b867.w                                                  ; $9f19 : $4c, $67, $b8
+	jmp FarApplyEntityFallVal.w                                                  ; $9f19 : $4c, $67, $b8
 
 
 	ldx $03                                                  ; $9f1c : $a6, $03
@@ -5147,7 +5155,7 @@ br_04_9f17:
 	sep #ACCU_8                                                  ; $9f2e : $e2, $20
 	stz $50                                                  ; $9f30 : $64, $50
 	lda #$78.b                                                  ; $9f32 : $a9, $78
-	jsr Call_04_b8f4.w                                                  ; $9f34 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $9f34 : $20, $f4, $b8
 
 br_04_9f37:
 	lda $0f                                                  ; $9f37 : $a5, $0f
@@ -5181,7 +5189,7 @@ Jump_04_9f51:
 	lda #$29.b                                                  ; $9f65 : $a9, $29
 	clc                                                  ; $9f67 : $18
 	adc $6f                                                  ; $9f68 : $65, $6f
-	jsr Call_04_b8f4.w                                                  ; $9f6a : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $9f6a : $20, $f4, $b8
 
 br_04_9f6d:
 	lda $59                                                  ; $9f6d : $a5, $59
@@ -5292,7 +5300,7 @@ br_04_9ff8:
 	lda $1d                                                  ; $9ffc : $a5, $1d
 	beq br_04_a008                                                  ; $9ffe : $f0, $08
 
-	jsr Call_04_b867.w                                                  ; $a000 : $20, $67, $b8
+	jsr FarApplyEntityFallVal.w                                                  ; $a000 : $20, $67, $b8
 
 br_04_a003:
 	lda #$79.b                                                  ; $a003 : $a9, $79
@@ -5311,7 +5319,7 @@ br_04_a008:
 	trb $ac                                                  ; $a011 : $14, $ac
 	stz wBG3HorizScroll+1                                                  ; $a013 : $64, $be
 	lda $7b                                                  ; $a015 : $a5, $7b
-	jsr Call_04_b8f4.w                                                  ; $a017 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $a017 : $20, $f4, $b8
 
 br_04_a01a:
 	jmp FarAnimateEntity.w                                                  ; $a01a : $4c, $fb, $b8
@@ -5365,7 +5373,7 @@ br_04_a01a:
 	sta $1f4f.w                                                  ; $a069 : $8d, $4f, $1f
 	jsr Call_04_a63c.w                                                  ; $a06c : $20, $3c, $a6
 	lda #$50.b                                                  ; $a06f : $a9, $50
-	jmp Jump_04_b8f4.w                                                  ; $a071 : $4c, $f4, $b8
+	jmp todo_SetupPlayersAnimation.w                                                  ; $a071 : $4c, $f4, $b8
 
 
 	dec $8b                                                  ; $a074 : $c6, $8b
@@ -5440,7 +5448,7 @@ br_04_a090:
 	sta $1e7e.w                                                  ; $a0df : $8d, $7e, $1e
 	sep #ACCU_8                                                  ; $a0e2 : $e2, $20
 	lda #$7d.b                                                  ; $a0e4 : $a9, $7d
-	jsr Call_04_b8f4.w                                                  ; $a0e6 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $a0e6 : $20, $f4, $b8
 
 br_04_a0e9:
 	jsr FarAnimateEntity.w                                                  ; $a0e9 : $20, $fb, $b8
@@ -5449,7 +5457,7 @@ br_04_a0ec:
 	rts                                                  ; $a0ec : $60
 
 
-	jsr Call_04_b867.w                                                  ; $a0ed : $20, $67, $b8
+	jsr FarApplyEntityFallVal.w                                                  ; $a0ed : $20, $67, $b8
 	jsr SetCarryIfEntityWayOutOfView.l                                                  ; $a0f0 : $22, $8a, $d5, $02
 	bcc br_04_a0ec                                                  ; $a0f4 : $90, $f6
 
@@ -5472,7 +5480,7 @@ br_04_a102:
 
 	inc $03                                                  ; $a10a : $e6, $03
 	lda #$84.b                                                  ; $a10c : $a9, $84
-	jmp Jump_04_b8f4.w                                                  ; $a10e : $4c, $f4, $b8
+	jmp todo_SetupPlayersAnimation.w                                                  ; $a10e : $4c, $f4, $b8
 
 
 br_04_a111:
@@ -5509,7 +5517,7 @@ br_04_a124:
 	tsb $02a9.w                                                  ; $a13f : $0c, $a9, $02
 	sta $03                                                  ; $a142 : $85, $03
 	lda #$57.b                                                  ; $a144 : $a9, $57
-	jsr Call_04_b8f4.w                                                  ; $a146 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $a146 : $20, $f4, $b8
 	jmp todo_SetPlayersXSpeed_and2otherThings.w                                                  ; $a149 : $4c, $67, $af
 
 
@@ -5535,7 +5543,7 @@ br_04_a15c:
 	sta $03                                                  ; $a161 : $85, $03
 	stz $2f                                                  ; $a163 : $64, $2f
 	lda #$5c.b                                                  ; $a165 : $a9, $5c
-	jsr Call_04_b8f4.w                                                  ; $a167 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $a167 : $20, $f4, $b8
 	rep #ACCU_8|IDX_8                                                  ; $a16a : $c2, $30
 	ldx #$0178.w                                                  ; $a16c : $a2, $78, $01
 	lda $05                                                  ; $a16f : $a5, $05
@@ -5579,7 +5587,7 @@ br_04_a19e:
 	lda #$08.b                                                  ; $a1a5 : $a9, $08
 	sta $03                                                  ; $a1a7 : $85, $03
 	lda #$50.b                                                  ; $a1a9 : $a9, $50
-	jsr Call_04_b8f4.w                                                  ; $a1ab : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $a1ab : $20, $f4, $b8
 	lda #$40.b                                                  ; $a1ae : $a9, $40
 	sta $69                                                  ; $a1b0 : $85, $69
 	rts                                                  ; $a1b2 : $60
@@ -5610,7 +5618,7 @@ br_04_a1b3:
 	lda #$02.b                                                  ; $a1d6 : $a9, $02
 	sta $03                                                  ; $a1d8 : $85, $03
 	lda #$57.b                                                  ; $a1da : $a9, $57
-	jsr Call_04_b8f4.w                                                  ; $a1dc : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $a1dc : $20, $f4, $b8
 	ldx #$ae.b                                                  ; $a1df : $a2, $ae
 	jmp Call_04_af72.w                                                  ; $a1e1 : $4c, $72, $af
 
@@ -5625,7 +5633,7 @@ br_04_a1e4:
 	sta $03                                                  ; $a1eb : $85, $03
 	stz $2f                                                  ; $a1ed : $64, $2f
 	lda #$5c.b                                                  ; $a1ef : $a9, $5c
-	jsr Call_04_b8f4.w                                                  ; $a1f1 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $a1f1 : $20, $f4, $b8
 	rep #ACCU_8|IDX_8                                                  ; $a1f4 : $c2, $30
 	ldx #$0178.w                                                  ; $a1f6 : $a2, $78, $01
 	lda $05                                                  ; $a1f9 : $a5, $05
@@ -5665,7 +5673,7 @@ br_04_a21e:
 	lda #$08.b                                                  ; $a225 : $a9, $08
 	sta $03                                                  ; $a227 : $85, $03
 	lda #$50.b                                                  ; $a229 : $a9, $50
-	jsr Call_04_b8f4.w                                                  ; $a22b : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $a22b : $20, $f4, $b8
 	lda #$40.b                                                  ; $a22e : $a9, $40
 	sta $69                                                  ; $a230 : $85, $69
 	rts                                                  ; $a232 : $60
@@ -5728,7 +5736,7 @@ br_04_a27e:
 	lda #$23.b                                                  ; $a27e : $a9, $23
 
 br_04_a280:
-	jsr Call_04_b8f4.w                                                  ; $a280 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $a280 : $20, $f4, $b8
 	lda $0f                                                  ; $a283 : $a5, $0f
 	bit #$20.b                                                  ; $a285 : $89, $20
 	beq br_04_a28e                                                  ; $a287 : $f0, $05
@@ -5784,7 +5792,7 @@ br_04_a2b2:
 	lda #$02.b                                                  ; $a2c6 : $a9, $02
 	sta $03                                                  ; $a2c8 : $85, $03
 	lda #$57.b                                                  ; $a2ca : $a9, $57
-	jsr Call_04_b8f4.w                                                  ; $a2cc : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $a2cc : $20, $f4, $b8
 	ldx #$ae.b                                                  ; $a2cf : $a2, $ae
 	jmp Call_04_af72.w                                                  ; $a2d1 : $4c, $72, $af
 
@@ -5825,7 +5833,7 @@ br_04_a2f8:
 br_04_a2fd:
 	jsr Call_04_a68a.w                                                  ; $a2fd : $20, $8a, $a6
 	lda #$22.b                                                  ; $a300 : $a9, $22
-	jsr Call_04_b8f4.w                                                  ; $a302 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $a302 : $20, $f4, $b8
 	lda $0f                                                  ; $a305 : $a5, $0f
 	bpl br_04_a30c                                                  ; $a307 : $10, $03
 
@@ -5993,7 +6001,7 @@ br_04_a3d8:
 	and #$0f.b                                                  ; $a3e4 : $29, $0f
 	clc                                                  ; $a3e6 : $18
 	adc $0000.w                                                  ; $a3e7 : $6d, $00, $00
-	jsr Call_04_b8f4.w                                                  ; $a3ea : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $a3ea : $20, $f4, $b8
 	plx                                                  ; $a3ed : $fa
 	lda $0f                                                  ; $a3ee : $a5, $0f
 	and #$0f.b                                                  ; $a3f0 : $29, $0f
@@ -6137,7 +6145,7 @@ br_04_a4b1:
 	sta $003c.w, X                                                  ; $a4b9 : $9d, $3c, $00
 	sta $1f44.w                                                  ; $a4bc : $8d, $44, $1f
 	lda $0000.w                                                  ; $a4bf : $ad, $00, $00
-	jsr Call_04_b8f4.w                                                  ; $a4c2 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $a4c2 : $20, $f4, $b8
 
 Jump_04_a4c5:
 br_04_a4c5:
@@ -6344,7 +6352,7 @@ Jump_04_a5d9:
 	lda $0f                                                  ; $a5ed : $a5, $0f
 	and #$180f.w                                                  ; $a5ef : $29, $0f, $18
 	adc $0000.w                                                  ; $a5f2 : $6d, $00, $00
-	jsr Call_04_b8f4.w                                                  ; $a5f5 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $a5f5 : $20, $f4, $b8
 	lda $0001.w                                                  ; $a5f8 : $ad, $01, $00
 	sta $13                                                  ; $a5fb : $85, $13
 
@@ -6380,7 +6388,7 @@ Jump_04_a617:
 	dec $50                                                  ; $a61b : $c6, $50
 	.db $10, $08                                                  ; $a61d : $10, $08
 
-	jsr Call_04_b8f4.w                                                  ; $a61f : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $a61f : $20, $f4, $b8
 	lda #$8550.w                                                  ; $a622 : $a9, $50, $85
 	adc $fb4c60.l                                                  ; $a625 : $6f, $60, $4c, $fb
 	clv                                                  ; $a629 : $b8
@@ -6444,7 +6452,7 @@ br_04_a673:
 
 Call_04_a68a:
 	lda wBG1HorizScroll+1                                                  ; $a68a : $a5, $b6
-	beq br_04_a6a8                                                  ; $a68c : $f0, $1a
+	beq @br_a6a8                                                  ; $a68c : $f0, $1a
 
 	lda $b26e.w                                                  ; $a68e : $ad, $6e, $b2
 	sta $31                                                  ; $a691 : $85, $31
@@ -6458,8 +6466,7 @@ Call_04_a68a:
 	sta $0b29.w                                                  ; $a6a4 : $8d, $29, $0b
 	rts                                                  ; $a6a7 : $60
 
-
-br_04_a6a8:
+@br_a6a8:
 	lda $b26c.w                                                  ; $a6a8 : $ad, $6c, $b2
 	sta $31                                                  ; $a6ab : $85, $31
 	lda $b26d.w                                                  ; $a6ad : $ad, $6d, $b2
@@ -6467,12 +6474,9 @@ br_04_a6a8:
 	ldx #$33.b                                                  ; $a6b2 : $a2, $33
 	lda wSubTanksAndUpgradesGottenBitfield.w                                                  ; $a6b4 : $ad, $d1, $1f
 	bit #$01.b                                                  ; $a6b7 : $89, $01
-	beq br_04_a6bd                                                  ; $a6b9 : $f0, $02
-
+	beq +                                                  ; $a6b9 : $f0, $02
 	ldx #$34.b                                                  ; $a6bb : $a2, $34
-
-br_04_a6bd:
-	stx $16                                                  ; $a6bd : $86, $16
++	stx $16                                                  ; $a6bd : $86, $16
 	lda #$35.b                                                  ; $a6bf : $a9, $35
 	sta $0af8.w                                                  ; $a6c1 : $8d, $f8, $0a
 	sta $0b18.w                                                  ; $a6c4 : $8d, $18, $0b
@@ -6632,20 +6636,19 @@ Jump_04_a78d:
 	jmp SetNewPlayerSubstateToA.w                                                  ; $a797 : $4c, $00, $b9
 
 
-Jump_04_a79a:
+SetNewPlayerSubstateTo0ah:
 	sep #ACCU_8|IDX_8                                                  ; $a79a : $e2, $30
 	lda #$14.b                                                  ; $a79c : $a9, $14
 	jmp SetNewPlayerSubstateToA.w                                                  ; $a79e : $4c, $00, $b9
 
 
-Jump_04_a7a1:
+SetNewPlayerSubstateTo2ah:
 	sep #ACCU_8|IDX_8                                                  ; $a7a1 : $e2, $30
 	lda #$54.b                                                  ; $a7a3 : $a9, $54
 	jmp SetNewPlayerSubstateToA.w                                                  ; $a7a5 : $4c, $00, $b9
 
 
-Jump_04_a7a8:
-br_04_a7a8:
+SetNewPlayerSubstateTo10h:
 	sep #ACCU_8|IDX_8                                                  ; $a7a8 : $e2, $30
 	lda #$20.b                                                  ; $a7aa : $a9, $20
 	jmp SetNewPlayerSubstateToA.w                                                  ; $a7ac : $4c, $00, $b9
@@ -6655,13 +6658,13 @@ Jump_04_a7af:
 	sep #ACCU_8|IDX_8                                                  ; $a7af : $e2, $30
 	lda $5e                                                  ; $a7b1 : $a5, $5e
 	bit #$04.b                                                  ; $a7b3 : $89, $04
-	bne br_04_a7a8                                                  ; $a7b5 : $d0, $f1
+	bne SetNewPlayerSubstateTo10h                                                  ; $a7b5 : $d0, $f1
 
 	lda #$56.b                                                  ; $a7b7 : $a9, $56
 	jmp SetNewPlayerSubstateToA.w                                                  ; $a7b9 : $4c, $00, $b9
 
 
-Jump_04_a7bc:
+SetNewPlayerSubstateTo68h:
 	sep #ACCU_8|IDX_8                                                  ; $a7bc : $e2, $30
 	lda #$68.b                                                  ; $a7be : $a9, $68
 	jmp SetNewPlayerSubstateToA.w                                                  ; $a7c0 : $4c, $00, $b9
@@ -6671,7 +6674,7 @@ Jump_04_a7c3:
 	sep #ACCU_8|IDX_8                                                  ; $a7c3 : $e2, $30
 	lda $5e                                                  ; $a7c5 : $a5, $5e
 	bit #$04.b                                                  ; $a7c7 : $89, $04
-	bne br_04_a7a8                                                  ; $a7c9 : $d0, $dd
+	bne SetNewPlayerSubstateTo10h                                                  ; $a7c9 : $d0, $dd
 
 	lda #$6a.b                                                  ; $a7cb : $a9, $6a
 	jmp SetNewPlayerSubstateToA.w                                                  ; $a7cd : $4c, $00, $b9
@@ -6693,7 +6696,7 @@ br_04_a7db:
 	lda $ad                                                  ; $a7e2 : $a5, $ad
 	sec                                                  ; $a7e4 : $38
 	sbc $6f                                                  ; $a7e5 : $e5, $6f
-	jsr Call_04_b8f4.w                                                  ; $a7e7 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $a7e7 : $20, $f4, $b8
 	stz $6f                                                  ; $a7ea : $64, $6f
 	rts                                                  ; $a7ec : $60
 
@@ -6925,7 +6928,7 @@ br_04_a90b:
 	jsr Call_04_a62a.w                                                  ; $a916 : $20, $2a, $a6
 	lda #$40.b                                                  ; $a919 : $a9, $40
 	trb $7e                                                  ; $a91b : $14, $7e
-	jmp Jump_04_a79a.w                                                  ; $a91d : $4c, $9a, $a7
+	jmp SetNewPlayerSubstateTo0ah.w                                                  ; $a91d : $4c, $9a, $a7
 
 
 br_04_a920:
@@ -6939,11 +6942,11 @@ br_04_a920:
 	bit #$08.b                                                  ; $a92e : $89, $08
 	bne br_04_a935                                                  ; $a930 : $d0, $03
 
-	jmp Jump_04_a7a1.w                                                  ; $a932 : $4c, $a1, $a7
+	jmp SetNewPlayerSubstateTo2ah.w                                                  ; $a932 : $4c, $a1, $a7
 
 
 br_04_a935:
-	jmp Jump_04_a7bc.w                                                  ; $a935 : $4c, $bc, $a7
+	jmp SetNewPlayerSubstateTo68h.w                                                  ; $a935 : $4c, $bc, $a7
 
 
 br_04_a938:
@@ -7065,7 +7068,7 @@ br_04_a9bf:
 
 	lda #$40.b                                                  ; $a9c4 : $a9, $40
 	tsb $7e                                                  ; $a9c6 : $04, $7e
-	jmp Jump_04_a79a.w                                                  ; $a9c8 : $4c, $9a, $a7
+	jmp SetNewPlayerSubstateTo0ah.w                                                  ; $a9c8 : $4c, $9a, $a7
 
 
 br_04_a9cb:
@@ -7078,11 +7081,11 @@ br_04_a9cb:
 	bit #$08.b                                                  ; $a9d6 : $89, $08
 	bne br_04_a9dd                                                  ; $a9d8 : $d0, $03
 
-	jmp Jump_04_a7a1.w                                                  ; $a9da : $4c, $a1, $a7
+	jmp SetNewPlayerSubstateTo2ah.w                                                  ; $a9da : $4c, $a1, $a7
 
 
 br_04_a9dd:
-	jmp Jump_04_a7bc.w                                                  ; $a9dd : $4c, $bc, $a7
+	jmp SetNewPlayerSubstateTo68h.w                                                  ; $a9dd : $4c, $bc, $a7
 
 
 Call_04_a9e0:
@@ -9736,9 +9739,8 @@ FarAddEntityXSpeedOntoSubX:
 	rts                                                  ; $b866 : $60
 
 
-Call_04_b867:
-Jump_04_b867:
-	jsr Func_2_d812.l                                                  ; $b867 : $22, $12, $d8, $02
+FarApplyEntityFallVal:
+	jsr ApplyEntityFallVal.l                                                  ; $b867 : $22, $12, $d8, $02
 	rts                                                  ; $b86b : $60
 
 
@@ -9858,8 +9860,7 @@ br_04_b8ef:
 	rts                                                  ; $b8f3 : $60
 
 
-Call_04_b8f4:
-Jump_04_b8f4:
+todo_SetupPlayersAnimation:
 	sta $ad                                                  ; $b8f4 : $85, $ad
 	jsr SetupEntitysAnimation.l                                                  ; $b8f6 : $22, $67, $b9, $04
 	rts                                                  ; $b8fa : $60
@@ -9905,7 +9906,7 @@ Jump_04_b90f:
 	cmp $ad                                                  ; $b92b : $c5, $ad
 	beq @cont_b946                                                  ; $b92d : $f0, $17
 
-	jsr Call_04_b8f4.w                                                  ; $b92f : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $b92f : $20, $f4, $b8
 	bra @cont_b946                                                  ; $b932 : $80, $12
 
 @br_b934:
@@ -9917,7 +9918,7 @@ Jump_04_b90f:
 	cmp $ad                                                  ; $b93f : $c5, $ad
 	beq @cont_b946                                                  ; $b941 : $f0, $03
 
-	jsr Call_04_b8f4.w                                                  ; $b943 : $20, $f4, $b8
+	jsr todo_SetupPlayersAnimation.w                                                  ; $b943 : $20, $f4, $b8
 
 @cont_b946:
 	jsr FarAnimateEntity.w                                                  ; $b946 : $20, $fb, $b8
@@ -17415,7 +17416,7 @@ br_04_e774:
 	rts                                                  ; $e774 : $60
 
 
-	jsr Func_2_d812.l                                                  ; $e775 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $e775 : $22, $12, $d8, $02
 	lda $0e                                                  ; $e779 : $a5, $0e
 	bne br_04_e781                                                  ; $e77b : $d0, $04
 
@@ -17627,7 +17628,7 @@ br_04_e89b:
 
 
 	sep #ACCU_8                                                  ; $e8b7 : $e2, $20
-	jsr Func_2_d812.l                                                  ; $e8b9 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $e8b9 : $22, $12, $d8, $02
 	lda $0e                                                  ; $e8bd : $a5, $0e
 	bne br_04_e8c5                                                  ; $e8bf : $d0, $04
 
@@ -19471,7 +19472,7 @@ br_04_f37d:
 
 
 br_04_f393:
-	jsr Func_2_d812.l                                                  ; $f393 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $f393 : $22, $12, $d8, $02
 	jsr $04c0f7.l                                                  ; $f397 : $22, $f7, $c0, $04
 	lda $2b                                                  ; $f39b : $a5, $2b
 	bit #$0c.b                                                  ; $f39d : $89, $0c

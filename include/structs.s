@@ -54,7 +54,8 @@ THREAD_STARTED = 3
     celIdx db ; $17 - for lookup in bank $0d ($0e is lookup in bank $3f)
     b18 ds $a-8
     xSpeed dw ; $1a
-    b1c ds $20-$1c
+    fallVal dw ; $1c/$1d
+    b1e ds $20-$1e
     sizeof .db
 .endst
 
@@ -73,7 +74,9 @@ THREAD_STARTED = 3
     colours8idx db ; $11
     b12 ds 8-2
     baseTileIdx db ; $18
-    b19 ds $27-$19
+    b19 ds $c-9
+    fallVal dw ; $1c/$1d
+    b1e ds $27-$1e
     health db ; $27
     weaknessesIdx db ; $28
     b29 ds $40-$29

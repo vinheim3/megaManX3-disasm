@@ -6084,7 +6084,7 @@ br_3c_a327:
 	rts                                                  ; $a327 : $60
 
 
-	jsr Func_2_d812.l                                                  ; $a328 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $a328 : $22, $12, $d8, $02
 	rep #ACCU_8                                                  ; $a32c : $c2, $20
 	lda $08                                                  ; $a32e : $a5, $08
 	sec                                                  ; $a330 : $38
@@ -6127,7 +6127,7 @@ br_3c_a36d:
 	rts                                                  ; $a36d : $60
 
 
-	jsr Func_2_d812.l                                                  ; $a36e : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $a36e : $22, $12, $d8, $02
 	rep #ACCU_8                                                  ; $a372 : $c2, $20
 	lda $08                                                  ; $a374 : $a5, $08
 	sec                                                  ; $a376 : $38
@@ -11465,7 +11465,7 @@ br_3c_c515:
 	rts                                                  ; $c581 : $60
 
 
-	jsr Func_2_d812.l                                                  ; $c582 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $c582 : $22, $12, $d8, $02
 	rep #ACCU_8|F_CARRY                                                  ; $c586 : $c2, $21
 	lda wNewStageScrollY.w                                                  ; $c588 : $ad, $60, $1e
 	adc #$0078.w                                                  ; $c58b : $69, $78, $00

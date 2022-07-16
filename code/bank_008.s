@@ -4359,7 +4359,7 @@ br_08_9460:
 	jmp Jump_08_9930.w                                                  ; $946b : $4c, $30, $99
 
 
-	jsr Func_2_d812.l                                                  ; $946e : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $946e : $22, $12, $d8, $02
 	rep #ACCU_8                                                  ; $9472 : $c2, $20
 	lda $08                                                  ; $9474 : $a5, $08
 	cmp #$0740.w                                                  ; $9476 : $c9, $40, $07
@@ -5531,7 +5531,7 @@ br_08_9b78:
 	rts                                                  ; $9b93 : $60
 
 
-	jsr Func_2_d812.l                                                  ; $9b94 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $9b94 : $22, $12, $d8, $02
 	jsr $04c0f7.l                                                  ; $9b98 : $22, $f7, $c0, $04
 	lda $2b                                                  ; $9b9c : $a5, $2b
 	bit #$0c.b                                                  ; $9b9e : $89, $0c
@@ -8811,7 +8811,7 @@ br_08_afe2:
 	bra br_08_b02f                                                  ; $b01b : $80, $12
 
 br_08_b01d:
-	jsr Func_2_d812.l                                                  ; $b01d : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $b01d : $22, $12, $d8, $02
 	jsr $04c0f7.l                                                  ; $b021 : $22, $f7, $c0, $04
 	lda $2b                                                  ; $b025 : $a5, $2b
 	bit #$08.b                                                  ; $b027 : $89, $08
@@ -8971,7 +8971,7 @@ br_08_b0f6:
 	rts                                                  ; $b0f6 : $60
 
 
-	jsr Func_2_d812.l                                                  ; $b0f7 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $b0f7 : $22, $12, $d8, $02
 	lda $0e                                                  ; $b0fb : $a5, $0e
 	bne br_08_b103                                                  ; $b0fd : $d0, $04
 

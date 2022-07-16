@@ -2576,7 +2576,7 @@ br_07_9016:
 	tsb $22                                                  ; $9071 : $04, $22
 	adc [$b9]                                                  ; $9073 : $67, $b9
 	tsb $60                                                  ; $9075 : $04, $60
-	jsr Func_2_d812.l                                                  ; $9077 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $9077 : $22, $12, $d8, $02
 	rep #ACCU_8|F_CARRY                                                  ; $907b : $c2, $21
 	lda wNewStageScrollY.w                                                  ; $907d : $ad, $60, $1e
 	adc #$0098.w                                                  ; $9080 : $69, $98, $00
@@ -3838,7 +3838,7 @@ br_07_9850:
 	sep #ACCU_8                                                  ; $9865 : $e2, $20
 	bmi br_07_986f                                                  ; $9867 : $30, $06
 
-	jsr Func_2_d812.l                                                  ; $9869 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $9869 : $22, $12, $d8, $02
 	bra br_07_9889                                                  ; $986d : $80, $1a
 
 br_07_986f:
@@ -3973,7 +3973,7 @@ br_07_990d:
 	sep #ACCU_8                                                  ; $9914 : $e2, $20
 	beq br_07_991e                                                  ; $9916 : $f0, $06
 
-	jsr Func_2_d812.l                                                  ; $9918 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $9918 : $22, $12, $d8, $02
 	bra br_07_9928                                                  ; $991c : $80, $0a
 
 br_07_991e:
@@ -7885,9 +7885,9 @@ br_07_b14e:
 	phd                                                  ; $b160 : $0b
 	lda $3a                                                  ; $b161 : $a5, $3a
 	tcd                                                  ; $b163 : $5b
-	jsr Func_2_d812.l                                                  ; $b164 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $b164 : $22, $12, $d8, $02
 	pld                                                  ; $b168 : $2b
-	jsr Func_2_d812.l                                                  ; $b169 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $b169 : $22, $12, $d8, $02
 	jmp Jump_07_b14e.w                                                  ; $b16d : $4c, $4e, $b1
 
 
@@ -8026,9 +8026,9 @@ br_07_b22a:
 	phd                                                  ; $b238 : $0b
 	lda $3a                                                  ; $b239 : $a5, $3a
 	tcd                                                  ; $b23b : $5b
-	jsr Func_2_d812.l                                                  ; $b23c : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $b23c : $22, $12, $d8, $02
 	pld                                                  ; $b240 : $2b
-	jsr Func_2_d812.l                                                  ; $b241 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $b241 : $22, $12, $d8, $02
 	jmp Jump_07_b14e.w                                                  ; $b245 : $4c, $4e, $b1
 
 
@@ -12467,7 +12467,7 @@ br_07_cde8:
 	tax                                                  ; $cdfe : $aa
 	lda $c0ed.w, X                                                  ; $cdff : $bd, $ed, $c0
 	sta $1c                                                  ; $ce02 : $85, $1c
-	jsr Func_2_d812.l                                                  ; $ce04 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $ce04 : $22, $12, $d8, $02
 	jsr AnimateEntity.l                                                  ; $ce08 : $22, $4a, $b9, $04
 
 br_07_ce0c:
@@ -13031,7 +13031,7 @@ br_07_d163:
 	rts                                                  ; $d163 : $60
 
 
-	jsr Func_2_d812.l                                                  ; $d164 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $d164 : $22, $12, $d8, $02
 	jsr Call_07_d3e8.w                                                  ; $d168 : $20, $e8, $d3
 	dec $34                                                  ; $d16b : $c6, $34
 	bne br_07_d19a                                                  ; $d16d : $d0, $2b
@@ -19696,7 +19696,7 @@ br_07_fa49:
 	adc [$b9]                                                  ; $fa5d : $67, $b9
 	tsb $60                                                  ; $fa5f : $04, $60
 	jsr AnimateEntity.l                                                  ; $fa61 : $22, $4a, $b9, $04
-	jsr Func_2_d812.l                                                  ; $fa65 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $fa65 : $22, $12, $d8, $02
 	jsr $04c0f7.l                                                  ; $fa69 : $22, $f7, $c0, $04
 	lda $2b                                                  ; $fa6d : $a5, $2b
 	bit #$f004.w                                                  ; $fa6f : $89, $04, $f0

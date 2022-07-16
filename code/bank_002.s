@@ -12526,30 +12526,33 @@ AddEntityXSpeedOntoSubX:
 	rtl                                                                       ; $d811 : $6b
 
 
-Func_2_d812:
-	php                                                  ; $d812 : $08
-	rep #ACCU_8                                                  ; $d813 : $c2, $20
-	lda $07                                                  ; $d815 : $a5, $07
-	sec                                                  ; $d817 : $38
-	sbc $1c                                                  ; $d818 : $e5, $1c
-	sta $07                                                  ; $d81a : $85, $07
-	sep #ACCU_8                                                  ; $d81c : $e2, $20
-	bit $1d                                                  ; $d81e : $24, $1d
-	bmi br_02_d82a                                                  ; $d820 : $30, $08
+ApplyEntityFallVal:
+	php                                                                       ; $d812 : $08
 
-	lda $09                                                  ; $d822 : $a5, $09
-	sbc #$00.b                                                  ; $d824 : $e9, $00
-	sta $09                                                  ; $d826 : $85, $09
-	plp                                                  ; $d828 : $28
-	rtl                                                  ; $d829 : $6b
+; Subtract input word from sub Y
+	rep #ACCU_8                                                               ; $d813 : $c2, $20
+	lda GenericEntity.subY                                                    ; $d815 : $a5, $07
+	sec                                                                       ; $d817 : $38
+	sbc GenericEntity.fallVal                                                 ; $d818 : $e5, $1c
+	sta GenericEntity.subY                                                    ; $d81a : $85, $07
+	sep #ACCU_8                                                               ; $d81c : $e2, $20
 
+; Sign-extend onto highest Y byte
+	bit GenericEntity.fallVal+1                                               ; $d81e : $24, $1d
+	bmi @negativeSub                                                          ; $d820 : $30, $08
 
-br_02_d82a:
-	lda $09                                                  ; $d82a : $a5, $09
-	sbc #$ff.b                                                  ; $d82c : $e9, $ff
-	sta $09                                                  ; $d82e : $85, $09
-	plp                                                  ; $d830 : $28
-	rtl                                                  ; $d831 : $6b
+	lda GenericEntity.y+1                                                     ; $d822 : $a5, $09
+	sbc #$00.b                                                                ; $d824 : $e9, $00
+	sta GenericEntity.y+1                                                     ; $d826 : $85, $09
+	plp                                                                       ; $d828 : $28
+	rtl                                                                       ; $d829 : $6b
+
+@negativeSub:
+	lda GenericEntity.y+1                                                     ; $d82a : $a5, $09
+	sbc #$ff.b                                                                ; $d82c : $e9, $ff
+	sta GenericEntity.y+1                                                     ; $d82e : $85, $09
+	plp                                                                       ; $d830 : $28
+	rtl                                                                       ; $d831 : $6b
 
 
 ; Returns with A=1 if failed
@@ -15600,7 +15603,7 @@ br_02_ea94:
 	adc $1c                                                  ; $ea95 : $65, $1c
 	sta $1c                                                  ; $ea97 : $85, $1c
 	sep #ACCU_8                                                  ; $ea99 : $e2, $20
-	jsr Func_2_d812.l                                                  ; $ea9b : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $ea9b : $22, $12, $d8, $02
 	lda $24                                                  ; $ea9f : $a5, $24
 	sec                                                  ; $eaa1 : $38
 	sbc $08                                                  ; $eaa2 : $e5, $08
@@ -17413,7 +17416,7 @@ br_02_f634:
 	ldx $0c                                                  ; $f636 : $a6, $0c
 	lda $0011.w, X                                                  ; $f638 : $bd, $11, $00
 	sta $11                                                  ; $f63b : $85, $11
-	jsr Func_2_d812.l                                                  ; $f63d : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $f63d : $22, $12, $d8, $02
 	jsr AnimateEntity.l                                                  ; $f641 : $22, $4a, $b9, $04
 	lda $0e                                                  ; $f645 : $a5, $0e
 	beq br_02_f64d                                                  ; $f647 : $f0, $04

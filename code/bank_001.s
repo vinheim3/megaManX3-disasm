@@ -7935,7 +7935,7 @@ br_01_b36c:
 
 
 br_01_b381:
-	jsr Func_2_d812.l                                                  ; $b381 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $b381 : $22, $12, $d8, $02
 	jsr $04c0f7.l                                                  ; $b385 : $22, $f7, $c0, $04
 	lda $2b                                                  ; $b389 : $a5, $2b
 	bit #$08.b                                                  ; $b38b : $89, $08
@@ -9278,7 +9278,7 @@ br_01_bc6d:
 	tax                                                  ; $bc7f : $aa
 	lda $bae6.w, X                                                  ; $bc80 : $bd, $e6, $ba
 	sta $1c                                                  ; $bc83 : $85, $1c
-	jsr Func_2_d812.l                                                  ; $bc85 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $bc85 : $22, $12, $d8, $02
 	lda $1c                                                  ; $bc89 : $a5, $1c
 	bpl br_01_bc91                                                  ; $bc8b : $10, $04
 
@@ -14530,7 +14530,7 @@ br_01_ddce:
 	phd                                                  ; $ddcf : $0b
 	pea wPlayerEntity.w                                                  ; $ddd0 : $f4, $d8, $09
 	pld                                                  ; $ddd3 : $2b
-	jsr Func_2_d812.l                                                  ; $ddd4 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $ddd4 : $22, $12, $d8, $02
 	pld                                                  ; $ddd8 : $2b
 	rep #ACCU_8                                                  ; $ddd9 : $c2, $20
 	lda wNewStageScrollY.w                                                  ; $dddb : $ad, $60, $1e
@@ -16925,7 +16925,7 @@ br_01_ee8b:
 	adc [$ef]                                                  ; $ee92 : $67, $ef
 	ldx $02                                                  ; $ee94 : $a6, $02
 	jsr ($ee9e.w, X)                                                  ; $ee96 : $fc, $9e, $ee
-	jsr Func_2_d812.l                                                  ; $ee99 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $ee99 : $22, $12, $d8, $02
 	rts                                                  ; $ee9d : $60
 
 
@@ -17097,7 +17097,7 @@ br_01_efa1:
 	sta $01                                                  ; $efa1 : $85, $01
 
 br_01_efa3:
-	jsr Func_2_d812.l                                                  ; $efa3 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $efa3 : $22, $12, $d8, $02
 	rts                                                  ; $efa7 : $60
 
 
@@ -18538,7 +18538,7 @@ br_01_f859:
 	jmp Func_2_d636.l                                                  ; $f85d : $5c, $36, $d6, $02
 
 
-	jsr Func_2_d812.l                                                  ; $f861 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $f861 : $22, $12, $d8, $02
 	jsr Call_01_f881.w                                                  ; $f865 : $20, $81, $f8
 	cmp #$0e.b                                                  ; $f868 : $c9, $0e
 	beq br_01_f870                                                  ; $f86a : $f0, $04

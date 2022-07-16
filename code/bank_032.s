@@ -18389,7 +18389,7 @@ br_32_f4b7:
 
 
 	jsr Call_32_f6e9.w                                                  ; $f4bc : $20, $e9, $f6
-	jsr Func_2_d812.l                                                  ; $f4bf : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $f4bf : $22, $12, $d8, $02
 	jsr $04c0f7.l                                                  ; $f4c3 : $22, $f7, $c0, $04
 	lda $2b                                                  ; $f4c7 : $a5, $2b
 	bit #$04.b                                                  ; $f4c9 : $89, $04
@@ -18416,7 +18416,7 @@ br_32_f4e4:
 	lda $39                                                  ; $f4e8 : $a5, $39
 	bne br_32_f50c                                                  ; $f4ea : $d0, $20
 
-	jsr Func_2_d812.l                                                  ; $f4ec : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $f4ec : $22, $12, $d8, $02
 	jsr $04c0f7.l                                                  ; $f4f0 : $22, $f7, $c0, $04
 	lda $2b                                                  ; $f4f4 : $a5, $2b
 	bit #$08.b                                                  ; $f4f6 : $89, $08
@@ -18450,7 +18450,7 @@ br_32_f527:
 
 
 	jsr Call_32_f6e9.w                                                  ; $f528 : $20, $e9, $f6
-	jsr Func_2_d812.l                                                  ; $f52b : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $f52b : $22, $12, $d8, $02
 	dec $38                                                  ; $f52f : $c6, $38
 	bne br_32_f546                                                  ; $f531 : $d0, $13
 
@@ -18468,7 +18468,7 @@ br_32_f546:
 
 
 	jsr Call_32_f6e9.w                                                  ; $f547 : $20, $e9, $f6
-	jsr Func_2_d812.l                                                  ; $f54a : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $f54a : $22, $12, $d8, $02
 	jsr Call_32_f6db.w                                                  ; $f54e : $20, $db, $f6
 	bne br_32_f56d                                                  ; $f551 : $d0, $1a
 

@@ -7054,7 +7054,7 @@ br_03_a9d6:
 
 
 Jump_03_a9ee:
-	jsr Func_2_d812.l                                                  ; $a9ee : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $a9ee : $22, $12, $d8, $02
 	lda $0e                                                  ; $a9f2 : $a5, $0e
 	beq br_03_a9fa                                                  ; $a9f4 : $f0, $04
 
@@ -7327,7 +7327,7 @@ br_03_abd9:
 	inc $02                                                  ; $abea : $e6, $02
 
 br_03_abec:
-	jsr Func_2_d812.l                                                  ; $abec : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $abec : $22, $12, $d8, $02
 	bra br_03_abf6                                                  ; $abf0 : $80, $04
 
 	jsr AddEntityXSpeedOntoSubX.l                                                  ; $abf2 : $22, $f3, $d7, $02
@@ -7684,7 +7684,7 @@ br_03_ae95:
 	jmp Func_2_d636.l                                                  ; $aeb2 : $5c, $36, $d6, $02
 
 
-	jsr Func_2_d812.l                                                  ; $aeb6 : $22, $12, $d8, $02
+	jsr ApplyEntityFallVal.l                                                  ; $aeb6 : $22, $12, $d8, $02
 	lda $0e                                                  ; $aeba : $a5, $0e
 	beq br_03_aec2                                                  ; $aebc : $f0, $04
 
