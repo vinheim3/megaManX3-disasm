@@ -13,11 +13,11 @@ NmiVector:
 	lda #$0000.w                                                  ; $8007 : $a9, $00, $00
 	tcd                                                  ; $800a : $5b
 	sep #ACCU_8|IDX_8                                                  ; $800b : $e2, $30
-	lda #$06.b                                                  ; $800d : $a9, $06
+	lda #DATA_BANK_NORMAL.b                                                  ; $800d : $a9, $06
 	pha                                                  ; $800f : $48
 	plb                                                  ; $8010 : $ab
 	stz $1e18.w                                                  ; $8011 : $9c, $18, $1e
-	inc $09cf.w                                                  ; $8014 : $ee, $cf, $09
+	inc wFrameCounter.w                                                  ; $8014 : $ee, $cf, $09
 	lda RDNMI.w                                                  ; $8017 : $ad, $10, $42
 	lda #$01.b                                                  ; $801a : $a9, $01
 	sta NMITIMEN.w                                                  ; $801c : $8d, $00, $42
@@ -27,7 +27,7 @@ NmiVector:
 	lda wNmiVectorHandled.w                                                  ; $8027 : $ad, $ce, $09
 	ora $09d0.w                                                  ; $802a : $0d, $d0, $09
 	bne +                                                  ; $802d : $d0, $03
-	jsr Func_8_8409.w-$6000                                                  ; $802f : $20, $09, $24
+	jsr todo_SoundFunc_8409.w-$6000                                                  ; $802f : $20, $09, $24
 +	lda #$ff.b                                                  ; $8032 : $a9, $ff
 	sta wNmiVectorHandled.w                                                  ; $8034 : $8d, $ce, $09
 	stz $09d0.w                                                  ; $8037 : $9c, $d0, $09
@@ -230,7 +230,7 @@ Func_8_819d:
 	lda $a3                                                  ; $819d : $a5, $a3
 	bne br_08_81a4                                                  ; $819f : $d0, $03
 
-	jmp $2236.w                                                  ; $81a1 : $4c, $36, $22
+	jmp Func_8_8236.w-$6000                                                  ; $81a1 : $4c, $36, $22
 
 
 br_08_81a4:
@@ -308,6 +308,8 @@ br_08_821f:
 
 br_08_8234:
 	sep #ACCU_8|IDX_8                                                  ; $8234 : $e2, $30
+
+Func_8_8236:
 	jsr Func_8_85d6.w-$6000                                                  ; $8236 : $20, $d6, $25
 	lda $a4                                                  ; $8239 : $a5, $a4
 	beq br_08_827f                                                  ; $823b : $f0, $42
@@ -407,13 +409,13 @@ br_08_82cc:
 Func_8_82e0:
 	ldx #$04.b                                                  ; $82e0 : $a2, $04
 	lda $09d5.w                                                  ; $82e2 : $ad, $d5, $09
-	bne br_08_82ef                                                  ; $82e5 : $d0, $08
+	bne @cont_82ef                                                  ; $82e5 : $d0, $08
 
-	lda $c3                                                  ; $82e7 : $a5, $c3
+	lda wIntsEnabled                                                  ; $82e7 : $a5, $c3
 	sta NMITIMEN.w                                                  ; $82e9 : $8d, $00, $42
 	ldx $09d1.w                                                  ; $82ec : $ae, $d1, $09
 
-br_08_82ef:
+@cont_82ef:
 	jmp (@funcs.w-$6000, X)                                                  ; $82ef : $7c, $f2, $22
 
 @funcs:
@@ -431,14 +433,14 @@ Func_8_82f8:
 br_08_8303:
 	lda wNmiVectorHandled.w                                                  ; $8303 : $ad, $ce, $09
 	ora $09d0.w                                                  ; $8306 : $0d, $d0, $09
-	bne br_08_832b                                                  ; $8309 : $d0, $20
+	bne @cont_832b                                                  ; $8309 : $d0, $20
 
 	jsr Func_8_8043.w-$6000                                                  ; $830b : $20, $43, $20
 	jsr Func_8_819d.w-$6000                                                  ; $830e : $20, $9d, $21
 	jsr Func_8_8388.w-$6000                                                  ; $8311 : $20, $88, $23
 	lda $c4                                                  ; $8314 : $a5, $c4
 	sta HDMAEN.w                                                  ; $8316 : $8d, $0c, $42
-	beq br_08_832b                                                  ; $8319 : $f0, $10
+	beq @cont_832b                                                  ; $8319 : $f0, $10
 
 	rep #ACCU_8|IDX_8                                                  ; $831b : $c2, $30
 	ldx #$0952.w                                                  ; $831d : $a2, $52, $09
@@ -447,16 +449,17 @@ br_08_8303:
 	mvn $00, $00                                                  ; $8326 : $54, $00, $00
 	sep #ACCU_8|IDX_8                                                  ; $8329 : $e2, $30
 
-br_08_832b:
+@cont_832b:
 	lda wScreenDisplay                                                 ; $832b : $a5, $b4
 	sta INIDISP.w                                                  ; $832d : $8d, $00, $21
-	bra br_08_8334                                                  ; $8330 : $80, $02
+	bra UpdateScreenDesignations                                                  ; $8330 : $80, $02
 
 
 Func_8_8332:
 	bra br_08_8303                                                  ; $8332 : $80, $cf
 
-br_08_8334:
+
+UpdateScreenDesignations:
 	lda wMainScreenDesignation                                                 ; $8334 : $a5, $c1
 	sta TM.w                                                  ; $8336 : $8d, $2c, $21
 	lda wSubScreenDesignation                                                  ; $8339 : $a5, $c2
@@ -496,7 +499,7 @@ Func_8_833f:
 
 Func_8_8388:
 	lda $1f67.w                                                  ; $8388 : $ad, $67, $1f
-	beq br_08_83bf                                                  ; $838b : $f0, $32
+	beq @done                                                  ; $838b : $f0, $32
 
 	stz $1f67.w                                                  ; $838d : $9c, $67, $1f
 	lda #$80.b                                                  ; $8390 : $a9, $80
@@ -518,7 +521,7 @@ Func_8_8388:
 	sta MDMAEN.w                                                  ; $83ba : $8d, $0b, $42
 	sep #IDX_8                                                  ; $83bd : $e2, $10
 
-br_08_83bf:
+@done:
 	rts                                                  ; $83bf : $60
 
 
@@ -575,7 +578,7 @@ IrqVector:
 	rti                                                  ; $8408 : $40
 
 
-Func_8_8409:
+todo_SoundFunc_8409:
 	sep #ACCU_8|IDX_8                                                  ; $8409 : $e2, $30
 	ldx $09d4.w                                                  ; $840b : $ae, $d4, $09
 	cpx $09d3.w                                                  ; $840e : $ec, $d3, $09
@@ -1599,7 +1602,7 @@ DynamicSpritesStage01Idx05:
 	.dw $0008
 	.db $50
 
-	.db $04
+	.db DECOMP_IDX_OAM_TILEDATA_HELIT
 	.dw $1c00
 	.dw $00c4
 	.db $60
@@ -1647,7 +1650,7 @@ DynamicSpritesStage01Idx07:
 	.dw $0030
 	.db $50
 
-	.db $29
+	.db DECOMP_IDX_OAM_TILEDATA_META_CAPSULE
 	.dw $1800
 	.dw $0088
 	.db $70
@@ -1736,7 +1739,7 @@ DynamicSpritesStage02Idx00:
 	.dw $001c
 	.db $20
 
-	.db $04
+	.db DECOMP_IDX_OAM_TILEDATA_HELIT
 	.dw $1c00
 	.dw $00c4
 	.db $60
@@ -1777,7 +1780,7 @@ DynamicSpritesStage02Idx04:
 	.dw $01d4
 	.db $40
 
-	.db $57
+	.db DECOMP_IDX_OAM_TILEDATA_BALL_DE_VOUX
 	.dw $1200
 	.dw $01c6
 	.db $50
@@ -1791,12 +1794,12 @@ DynamicSpritesStage02Idx04:
 
 
 DynamicSpritesStage02Idx05:
-	.db $12
+	.db DECOMP_IDX_OAM_TILEDATA_SNOW_RIDER
 	.dw $1000
 	.dw $003a
 	.db $40
 
-	.db $04
+	.db DECOMP_IDX_OAM_TILEDATA_HELIT
 	.dw $1400
 	.dw $00c4
 	.db $50
@@ -1871,7 +1874,7 @@ DynamicSpritesStage03Idx00:
 	.dw $0008
 	.db $50
 
-	.db $16
+	.db DECOMP_IDX_OAM_TILEDATA_WALL_CANCER
 	.dw $1a00
 	.dw $0080
 	.db $60
@@ -1921,7 +1924,7 @@ DynamicSpritesStage03Idx05:
 	.dw $0020
 	.db $50
 
-	.db $1a
+	.db DECOMP_IDX_OAM_TILEDATA_BLADY
 	.dw $1900
 	.dw $003c
 	.db $60
@@ -2025,7 +2028,7 @@ DynamicSpritesStage03Idx0b:
 	.dw $0008
 	.db $50
 
-	.db $16
+	.db DECOMP_IDX_OAM_TILEDATA_WALL_CANCER
 	.dw $1c00
 	.dw $0080
 	.db $60
@@ -2053,7 +2056,7 @@ DynamicSpritesStage03Idx0c:
 
 
 DynamicSpritesStage04Idx00:
-	.db $20
+	.db DECOMP_IDX_OAM_TILEDATA_VICTOROID
 	.dw $1000
 	.dw $0082
 	.db $40
@@ -2207,7 +2210,7 @@ DynamicSpritesStage04Idx0a:
 
 
 DynamicSpritesStage04Idx0c:
-	.db $15
+	.db DECOMP_IDX_OAM_TILEDATA_MINE_TORTOISE
 	.dw $1000
 	.dw $0022
 	.db $40
@@ -2240,12 +2243,12 @@ DynamicSpritesStage05Idx00:
 	.dw $0086
 	.db $50
 
-	.db $11
+	.db DECOMP_IDX_OAM_TILEDATA_CRABLASTER
 	.dw $1800
 	.dw $0058
 	.db $60
 
-	.db $c6
+	.db DECOMP_IDX_OAM_TILEDATA_TRAPPER
 	.dw $1d00
 	.dw $01ec
 	.db $70
@@ -2268,7 +2271,7 @@ DynamicSpritesStage05Idx02:
 	.dw $0086
 	.db $50
 
-	.db $29
+	.db DECOMP_IDX_OAM_TILEDATA_META_CAPSULE
 	.dw $1900
 	.dw $0088
 	.db $60
@@ -2315,7 +2318,7 @@ DynamicSpritesStage05Idx05:
 	.dw $0020
 	.db $50
 
-	.db $11
+	.db DECOMP_IDX_OAM_TILEDATA_CRABLASTER
 	.dw $1800
 	.dw $0058
 	.db $60
@@ -2334,7 +2337,7 @@ DynamicSpritesStage05Idx06:
 	.dw $001c
 	.db $20
 
-	.db $11
+	.db DECOMP_IDX_OAM_TILEDATA_CRABLASTER
 	.dw $1800
 	.dw $0058
 	.db $50
@@ -2376,12 +2379,12 @@ DynamicSpritesStage05Idx08:
 
 
 DynamicSpritesStage05Idx09:
-	.db $c6
+	.db DECOMP_IDX_OAM_TILEDATA_TRAPPER
 	.dw $1000
 	.dw $01ec
 	.db $70
 
-	.db $11
+	.db DECOMP_IDX_OAM_TILEDATA_CRABLASTER
 	.dw $1800
 	.dw $0058
 	.db $50
@@ -2444,7 +2447,7 @@ DynamicSpritesStage06Idx01:
 	.dw $001c
 	.db $20
 
-	.db $04
+	.db DECOMP_IDX_OAM_TILEDATA_HELIT
 	.dw $1c00
 	.dw $00c4
 	.db $60
@@ -2499,12 +2502,12 @@ DynamicSpritesStage06Idx05:
 
 
 DynamicSpritesStage06Idx06:
-	.db $50
+	.db DECOMP_IDX_OAM_TILEDATA_WALK_BLASTER
 	.dw $1000
 	.dw $00f0
 	.db $40
 
-	.db $16
+	.db DECOMP_IDX_OAM_TILEDATA_WALL_CANCER
 	.dw $1300
 	.dw $0080
 	.db $50
@@ -2523,7 +2526,7 @@ DynamicSpritesStage06Idx07:
 	.dw $0116
 	.db $40
 
-	.db $04
+	.db DECOMP_IDX_OAM_TILEDATA_HELIT
 	.dw $1500
 	.dw $00c4
 	.db $50
@@ -2546,12 +2549,12 @@ DynamicSpritesStage06Idx08:
 
 
 DynamicSpritesStage06Idx09:
-	.db $16
+	.db DECOMP_IDX_OAM_TILEDATA_WALL_CANCER
 	.dw $1000
 	.dw $0080
 	.db $40
 
-	.db $50
+	.db DECOMP_IDX_OAM_TILEDATA_WALK_BLASTER
 	.dw $1300
 	.dw $00f0
 	.db $50
@@ -2593,17 +2596,17 @@ DynamicSpritesStage07Idx00:
 
 
 DynamicSpritesStage07Idx01:
-	.db $57
+	.db DECOMP_IDX_OAM_TILEDATA_BALL_DE_VOUX
 	.dw $1000
 	.dw $00f4
 	.db $40
 
-	.db $4f
+	.db DECOMP_IDX_OAM_TILEDATA_DRILL_WAYING
 	.dw $1400
 	.dw $00ee
 	.db $50
 
-	.db $03
+	.db DECOMP_IDX_OAM_TILEDATA_DRIMOLE_W
 	.dw $1700
 	.dw $001e
 	.db $60
@@ -2632,12 +2635,12 @@ DynamicSpritesStage07Idx02:
 
 
 DynamicSpritesStage07Idx03:
-	.db $57
+	.db DECOMP_IDX_OAM_TILEDATA_BALL_DE_VOUX
 	.dw $1000
 	.dw $00f4
 	.db $40
 
-	.db $4f
+	.db DECOMP_IDX_OAM_TILEDATA_DRILL_WAYING
 	.dw $1400
 	.dw $00ee
 	.db $50
@@ -2656,7 +2659,7 @@ DynamicSpritesStage07Idx04:
 	.dw $0118
 	.db $40
 
-	.db $16
+	.db DECOMP_IDX_OAM_TILEDATA_WALL_CANCER
 	.dw $1200
 	.dw $0080
 	.db $50
@@ -2679,12 +2682,12 @@ DynamicSpritesStage07Idx06:
 	.dw $014c
 	.db $40
 
-	.db $03
+	.db DECOMP_IDX_OAM_TILEDATA_DRIMOLE_W
 	.dw $1800
 	.dw $001e
 	.db $50
 
-	.db $4f
+	.db DECOMP_IDX_OAM_TILEDATA_DRILL_WAYING
 	.dw $1c00
 	.dw $00ee
 	.db $60
@@ -2735,17 +2738,17 @@ DynamicSpritesStage07Idx09:
 
 
 DynamicSpritesStage07Idx0a:
-	.db $57
+	.db DECOMP_IDX_OAM_TILEDATA_BALL_DE_VOUX
 	.dw $1000
 	.dw $00f4
 	.db $40
 
-	.db $16
+	.db DECOMP_IDX_OAM_TILEDATA_WALL_CANCER
 	.dw $1400
 	.dw $0080
 	.db $50
 
-	.db $03
+	.db DECOMP_IDX_OAM_TILEDATA_DRIMOLE_W
 	.dw $1700
 	.dw $001e
 	.db $60
@@ -2778,12 +2781,12 @@ DynamicSpritesStage08Idx00:
 	.dw $0116
 	.db $40
 
-	.db $4a
+	.db DECOMP_IDX_OAM_TILEDATA_TOMBORT
 	.dw $1700
 	.dw $00c6
 	.db $50
 
-	.db $21
+	.db DECOMP_IDX_OAM_TILEDATA_WILD_TANK
 	.dw $1a00
 	.dw $0084
 	.db $60
@@ -2797,7 +2800,7 @@ DynamicSpritesStage08Idx00:
 
 
 DynamicSpritesStage08Idx01:
-	.db $4f
+	.db DECOMP_IDX_OAM_TILEDATA_DRILL_WAYING
 	.dw $1000
 	.dw $00ee
 	.db $40
@@ -2859,7 +2862,7 @@ DynamicSpritesStage08Idx04:
 	.dw $001c
 	.db $20
 
-	.db $29
+	.db DECOMP_IDX_OAM_TILEDATA_META_CAPSULE
 	.dw $1d00
 	.dw $0088
 	.db $60
@@ -2886,17 +2889,17 @@ DynamicSpritesStage08Idx06:
 
 
 DynamicSpritesStage08Idx07:
-	.db $29
+	.db DECOMP_IDX_OAM_TILEDATA_META_CAPSULE
 	.dw $1000
 	.dw $0088
 	.db $40
 
-	.db $4b
+	.db DECOMP_IDX_OAM_TILEDATA_ATAREETER
 	.dw $1200
 	.dw $00e8
 	.db $50
 
-	.db $4a
+	.db DECOMP_IDX_OAM_TILEDATA_TOMBORT
 	.dw $1600
 	.dw $00c6
 	.db $60
@@ -2943,7 +2946,7 @@ DynamicSpritesStage09Idx00:
 	.dw $011a
 	.db $50
 
-	.db $16
+	.db DECOMP_IDX_OAM_TILEDATA_WALL_CANCER
 	.dw $1600
 	.dw $0080
 	.db $60
@@ -2995,7 +2998,7 @@ DynamicSpritesStage09Idx02:
 
 
 DynamicSpritesStage09Idx03:
-	.db $4f
+	.db DECOMP_IDX_OAM_TILEDATA_DRILL_WAYING
 	.dw $1400
 	.dw $00ee
 	.db $60
@@ -3005,7 +3008,7 @@ DynamicSpritesStage09Idx03:
 	.dw $0116
 	.db $40
 
-	.db $16
+	.db DECOMP_IDX_OAM_TILEDATA_WALL_CANCER
 	.dw $1c00
 	.dw $0080
 	.db $70
@@ -3014,7 +3017,7 @@ DynamicSpritesStage09Idx03:
 
 
 DynamicSpritesStage09Idx04:
-	.db $4f
+	.db DECOMP_IDX_OAM_TILEDATA_DRILL_WAYING
 	.dw $1400
 	.dw $00ee
 	.db $60
@@ -3061,7 +3064,7 @@ DynamicSpritesStage0aIdx00:
 	.dw $01d2
 	.db $40
 
-	.db $29
+	.db DECOMP_IDX_OAM_TILEDATA_META_CAPSULE
 	.dw $1600
 	.dw $0088
 	.db $50
@@ -3165,7 +3168,7 @@ DynamicSpritesStage0aIdx05:
 
 
 DynamicSpritesStage0aIdx06:
-	.db $50
+	.db DECOMP_IDX_OAM_TILEDATA_WALK_BLASTER
 	.dw $1800
 	.dw $00f0
 	.db $50
@@ -3184,7 +3187,7 @@ DynamicSpritesStage0aIdx07:
 	.dw $0092
 	.db $50
 
-	.db $4f
+	.db DECOMP_IDX_OAM_TILEDATA_DRILL_WAYING
 	.dw $1b00
 	.dw $00ee
 	.db $60
@@ -3265,12 +3268,12 @@ DynamicSpritesStage0aIdx0d:
 
 
 DynamicSpritesStage0bIdx00:
-	.db $20
+	.db DECOMP_IDX_OAM_TILEDATA_VICTOROID
 	.dw $1000
 	.dw $01d0
 	.db $40
 
-	.db $29
+	.db DECOMP_IDX_OAM_TILEDATA_META_CAPSULE
 	.dw $1c00
 	.dw $0088
 	.db $60
@@ -3341,17 +3344,17 @@ DynamicSpritesStage0bIdx03:
 
 
 DynamicSpritesStage0bIdx04:
-	.db $20
+	.db DECOMP_IDX_OAM_TILEDATA_VICTOROID
 	.dw $1000
 	.dw $01d0
 	.db $40
 
-	.db $04
+	.db DECOMP_IDX_OAM_TILEDATA_HELIT
 	.dw $1800
 	.dw $00c4
 	.db $50
 
-	.db $50
+	.db DECOMP_IDX_OAM_TILEDATA_WALK_BLASTER
 	.dw $1a00
 	.dw $00f0
 	.db $60
@@ -3402,7 +3405,7 @@ DynamicSpritesStage0cIdx00:
 	.dw $000a
 	.db $40
 
-	.db $16
+	.db DECOMP_IDX_OAM_TILEDATA_WALL_CANCER
 	.dw $1200
 	.dw $0080
 	.db $50
@@ -3430,12 +3433,12 @@ DynamicSpritesStage0cIdx01:
 
 
 DynamicSpritesStage0cIdx02:
-	.db $c6
+	.db DECOMP_IDX_OAM_TILEDATA_TRAPPER
 	.dw $1800
 	.dw $01ec
 	.db $50
 
-	.db $50
+	.db DECOMP_IDX_OAM_TILEDATA_WALK_BLASTER
 	.dw $1b00
 	.dw $00f0
 	.db $60
@@ -3582,7 +3585,7 @@ DynamicSpritesStage0dIdx00:
 	.dw $016e
 	.db $40
 
-	.db $50
+	.db DECOMP_IDX_OAM_TILEDATA_WALK_BLASTER
 	.dw $1500
 	.dw $00f0
 	.db $50
@@ -3653,7 +3656,7 @@ DynamicSpritesStage0eIdx00:
 	.dw $0008
 	.db $60
 
-	.db $16
+	.db DECOMP_IDX_OAM_TILEDATA_WALL_CANCER
 	.dw $1c00
 	.dw $0080
 	.db $70
@@ -3704,12 +3707,12 @@ DynamicSpritesStage0eIdx04:
 	.dw $0116
 	.db $40
 
-	.db $16
+	.db DECOMP_IDX_OAM_TILEDATA_WALL_CANCER
 	.dw $1500
 	.dw $0080
 	.db $50
 
-	.db $04
+	.db DECOMP_IDX_OAM_TILEDATA_HELIT
 	.dw $1800
 	.dw $00c4
 	.db $60
@@ -19600,9 +19603,9 @@ br_08_fb3f:
 
 Cx4SquareTestData:
 	.db $00, $00, $00, $00, $00, $00
-	.db $21, $43, $65, $45, $23, $01
+	.db DECOMP_IDX_OAM_TILEDATA_WILD_TANK, $43, $65, $45, $23, $01
 	.db $84, $0c, $95, $15, $8d, $04
-	.db $29, $5c, $8f, $70, $3d, $0a
+	.db DECOMP_IDX_OAM_TILEDATA_META_CAPSULE, $5c, $8f, $70, $3d, $0a
 	.db $10, $32, $54, $56, $34, $12
 	.db $39, $8e, $e3, $c6, $71, $1c
 	.db $a4, $70, $3d, $c2, $f5, $28

@@ -9796,16 +9796,11 @@ br_06_bbeb:
 	.db $10, $20                                                  ; $bbfb : $10, $20
 
 
-BitTable:
-	ora ($02, X)                                                  ; $bbfd : $01, $02
-	tsb $08                                                  ; $bbff : $04, $08
-	bpl br_06_bc23                                                  ; $bc01 : $10, $20
-
-	rti                                                  ; $bc03 : $40
+ChipBitTable:
+	.db $01, $02, $04, $08, $10, $20, $40, $80, $f0
 
 
-	.db $80, $f0                                                  ; $bc04 : $80, $f0
-
+;
 	ora ($00, X)                                                  ; $bc06 : $01, $00
 	sbc $ffffff.l, X                                                  ; $bc08 : $ff, $ff, $ff, $ff
 	ora ($00, X)                                                  ; $bc0c : $01, $00

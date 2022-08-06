@@ -2573,8 +2573,12 @@ br_00_8e86:
 	stz $00e6.w                                                  ; $8ef0 : $9c, $e6, $00
 	lda #$08.b                                                  ; $8ef3 : $a9, $08
 	sta $1f22.w                                                  ; $8ef5 : $8d, $22, $1f
+
+; displays TM on title screen
 	lda #$04.b                                                  ; $8ef8 : $a9, $04
 	jsr CopySimpleSetsOfTiles.w                                                  ; $8efa : $20, $91, $86
+
+;
 	lda #$10.b                                                  ; $8efd : $a9, $10
 	jsr CopySimpleSetsOfTiles.w                                                  ; $8eff : $20, $91, $86
 	jsr todo_ForceBlankOn.l                                                  ; $8f02 : $22, $51, $da, $04
@@ -2828,11 +2832,10 @@ Call_00_9070:
 	sta VMADDH.w                                                  ; $909c : $8d, $17, $21
 	lda #$20.b                                                  ; $909f : $a9, $20
 
-br_00_90a1:
-	sta VMDATAL.w                                                  ; $90a1 : $8d, $18, $21
+-	sta VMDATAL.w                                                  ; $90a1 : $8d, $18, $21
 	stz VMDATAH.w                                                  ; $90a4 : $9c, $19, $21
 	dex                                                  ; $90a7 : $ca
-	bne br_00_90a1                                                  ; $90a8 : $d0, $f7
+	bne -                                                  ; $90a8 : $d0, $f7
 
 	sep #IDX_8                                                  ; $90aa : $e2, $10
 	jsr UpdateIntsEnabledWithVBlank.l                                                  ; $90ac : $22, $6b, $da, $04
@@ -2846,12 +2849,10 @@ Call_00_90b6:
 	lda #$80.b                                                  ; $90b8 : $a9, $80
 	sta VMAIN.w                                                  ; $90ba : $8d, $15, $21
 	sty VMADDL.w                                                  ; $90bd : $8c, $16, $21
-	ldy #$00.b                                                  ; $90c0 : $a0, $00
-	tsb $a2                                                  ; $90c2 : $04, $a2
-	.db $00                                                  ; $90c4 : $00
-	.db $00                                                  ; $90c5 : $00
+	ldy #$0400.w                                                  ; $90c0 : $a0, $00, $04
+	ldx #$0000.w                                                  ; $90c3 : $a2, $00, $00
 
-br_00_90c6:
+@nextByte:
 	lda $7f0000.l, X                                                  ; $90c6 : $bf, $00, $00, $7f
 	sta VMDATAL.w                                                  ; $90ca : $8d, $18, $21
 	lda $7f0001.l, X                                                  ; $90cd : $bf, $01, $00, $7f
@@ -2861,7 +2862,7 @@ br_00_90c6:
 	inx                                                  ; $90d8 : $e8
 	inx                                                  ; $90d9 : $e8
 	dey                                                  ; $90da : $88
-	bne br_00_90c6                                                  ; $90db : $d0, $e9
+	bne @nextByte                                                  ; $90db : $d0, $e9
 
 	rts                                                  ; $90dd : $60
 

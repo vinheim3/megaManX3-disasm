@@ -229,8 +229,11 @@ w09cc:
 wNmiVectorHandled: ; $09ce
     db
 
-w09cf:
-    ds $d8-$cf
+wFrameCounter: ; $09cf
+    db
+
+w09d0:
+    ds $d8-$d0
 
 ; todo: unknown size (speculation)
 wPlayerEntity: ; $09d8
@@ -525,6 +528,12 @@ wMapFromDecompDataIdxToBaseTileIdx: ; $8200
 ; todo: unknown size
 wMapFromDecompDataIdxTo8plusColours: ; $8300
     ds $100
+
+w7f8400:
+    ds $cfff-$8400
+
+wChipCapsuleUnavailReason: ; $cfff
+    db
 
 .ends
 

@@ -11197,7 +11197,7 @@ Func_5_c808:
 
 _SetSubTankOrUpgradeGotten:
 	ldx $0b                                                  ; $c81b : $a6, $0b
-	lda BitTable.w, X                                                  ; $c81d : $bd, $fd, $bb
+	lda ChipBitTable.w, X                                                  ; $c81d : $bd, $fd, $bb
 	tsb wSubTanksAndUpgradesGottenBitfield.w                                                  ; $c820 : $0c, $d1, $1f
 	rts                                                  ; $c823 : $60
 
@@ -11210,7 +11210,7 @@ Func_5_c824:
 
 Func_5_c82e:
 	ldx $0b                                                  ; $c82e : $a6, $0b
-	lda BitTable.w, X                                                  ; $c830 : $bd, $fd, $bb
+	lda ChipBitTable.w, X                                                  ; $c830 : $bd, $fd, $bb
 	tsb wChipsAndRideArmoursGottenBitfield.w                                                  ; $c833 : $0c, $d7, $1f
 	rts                                                  ; $c836 : $60
 

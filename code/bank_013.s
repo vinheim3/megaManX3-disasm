@@ -6,8 +6,8 @@
 .org $4000
 
 UpdateEnemyCapsule:
-	ldx StageEnemyEntity.state                                                 ; $c000 : $a6, $01
-	jmp (@states.w, X)                                                  ; $c002 : $7c, $05, $c0
+	ldx StageEnemyEntity.state                                                ; $c000 : $a6, $01
+	jmp (@states.w, X)                                                        ; $c002 : $7c, $05, $c0
 
 @states:
 	.dw CapsuleState0_Init
@@ -16,9 +16,9 @@ UpdateEnemyCapsule:
 
 
 CapsuleState0_Init:
-;
-	lda #$00.b                                                  ; $c00b : $a9, $00
-	sta $7fcfff.l                                                  ; $c00d : $8f, $ff, $cf, $7f
+; Clear that a capsule can't be used for a chip/hyper armour
+	lda #$00.b                                                                ; $c00b : $a9, $00
+	sta wChipCapsuleUnavailReason.l                                           ; $c00d : $8f, $ff, $cf, $7f
 
 ; Jump if not the stage with the gold armour
 .ifdef SWAP_CAPSULE
@@ -33,7 +33,7 @@ CapsuleState0_Init:
 
 ; All sub tanks and upgrades must be gotten
 	lda wSubTanksAndUpgradesGottenBitfield.w                                  ; $c018 : $ad, $d1, $1f
-	and $1fd4.w                                                               ; $c01b : $2d, $d4, $1f
+	and wHealthTanksGottenBitfield.w                                                               ; $c01b : $2d, $d4, $1f
 	cmp #$ff.b                                                                ; $c01e : $c9, $ff
 	bne @deleteSelf                                                           ; $c020 : $d0, $4b
 
@@ -43,7 +43,7 @@ CapsuleState0_Init:
 	bne @deleteSelf                                                           ; $c027 : $d0, $44
 
 ; Player must have max health
-	lda wPlayerEntity.health.w                                                         ; $c029 : $ad, $ff, $09
+	lda wPlayerEntity.health.w                                                ; $c029 : $ad, $ff, $09
 	cmp wMaxHealth.w                                                          ; $c02c : $cd, $d2, $1f
 	bne @deleteSelf                                                           ; $c02f : $d0, $3c
 
@@ -60,7 +60,7 @@ CapsuleState0_Init:
 .endif
 
 ; jump if the highest bits (chips), as upgrades are in a byte's low bits
-	lda BitTable.w, Y                                                  ; $c037 : $b9, $fd, $bb
+	lda ChipBitTable.w, Y                                                  ; $c037 : $b9, $fd, $bb
 	bit #$f0.b                                                  ; $c03a : $89, $f0
 	bne @checkChips                                                  ; $c03c : $d0, $07
 
@@ -76,7 +76,7 @@ CapsuleState0_Init:
 	bne @deleteSelf                                                  ; $c048 : $d0, $23
 
 ; move chips to the low nybble
-	lda BitTable.w, Y                                                  ; $c04a : $b9, $fd, $bb
+	lda ChipBitTable.w, Y                                                  ; $c04a : $b9, $fd, $bb
 	lsr                                                  ; $c04d : $4a
 	lsr                                                  ; $c04e : $4a
 	lsr                                                  ; $c04f : $4a
@@ -93,12 +93,12 @@ CapsuleState0_Init:
 
 ; chips already gotten
 	lda #$02.b                                                  ; $c05d : $a9, $02
-	sta $7fcfff.l                                                  ; $c05f : $8f, $ff, $cf, $7f
+	sta wChipCapsuleUnavailReason.l                                                  ; $c05f : $8f, $ff, $cf, $7f
 	bra @br_c071                                                  ; $c063 : $80, $0c
 
 @associatedUpgradeNotGotten:
 	lda #$01.b                                                  ; $c065 : $a9, $01
-	sta $7fcfff.l                                                  ; $c067 : $8f, $ff, $cf, $7f
+	sta wChipCapsuleUnavailReason.l                                                  ; $c067 : $8f, $ff, $cf, $7f
 	bra @br_c071                                                  ; $c06b : $80, $04
 
 @deleteSelf:
@@ -402,7 +402,7 @@ CapsuleMainSubstate3:
 	ldx StageEnemyEntity.subsubstate                                                  ; $c214 : $a6, $03
 	bne @br_c237                                                  ; $c216 : $d0, $1f
 
-	lda $7fcfff.l                                                  ; $c218 : $af, $ff, $cf, $7f
+	lda wChipCapsuleUnavailReason.l                                                  ; $c218 : $af, $ff, $cf, $7f
 	beq @br_c22f                                                  ; $c21c : $f0, $11
 
 ; substate 4, subsubstate 5
@@ -422,7 +422,7 @@ CapsuleMainSubstate3:
 	jsr SetupEntitysAnimation.l                                                  ; $c233 : $22, $67, $b9, $04
 
 @br_c237:
-	lda $7fcfff.l                                                  ; $c237 : $af, $ff, $cf, $7f
+	lda wChipCapsuleUnavailReason.l                                                  ; $c237 : $af, $ff, $cf, $7f
 	bne @cont_c25c                                                  ; $c23b : $d0, $1f
 
 	lda $0a8e.w                                                  ; $c23d : $ad, $8e, $0a
@@ -976,7 +976,7 @@ Jump_13_c591:
 	sta StageEnemyEntity.type.w, X                                                  ; $c59c : $9d, $0a, $00
 	lda $11                                                  ; $c59f : $a5, $11
 	sta $0011.w, X                                                  ; $c5a1 : $9d, $11, $00
-	lda $7fcfff.l                                                  ; $c5a4 : $af, $ff, $cf, $7f
+	lda wChipCapsuleUnavailReason.l                                                  ; $c5a4 : $af, $ff, $cf, $7f
 	sta $000b.w, X                                                  ; $c5a8 : $9d, $0b, $00
 	rep #ACCU_8|F_CARRY                                                  ; $c5ab : $c2, $21
 	lda $08                                                  ; $c5ad : $a5, $08

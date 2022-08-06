@@ -183,7 +183,7 @@ THREAD_STARTED = 3
     stageScrollY dw ; $3/$4
     b5 ds 7-5
     oamOffsetToFill dw ; $7/$8
-    b9 db
+    b9 ds $10-9
 .endst
 
 .struct SpriteToBuild
