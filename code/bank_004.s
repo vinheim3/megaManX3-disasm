@@ -10397,7 +10397,7 @@ _Func_4_bc58:
 	pea $0000.w                                                  ; $bc7a : $f4, $00, $00
 	pld                                                  ; $bc7d : $2b
 
-br_04_bc7e:
+@nextColour:
 	lda [$10], Y                                                  ; $bc7e : $b7, $10
 	sta wColourRam.w, X                                                  ; $bc80 : $9d, $00, $03
 	inx                                                  ; $bc83 : $e8
@@ -10405,7 +10405,7 @@ br_04_bc7e:
 	iny                                                  ; $bc85 : $c8
 	iny                                                  ; $bc86 : $c8
 	dec $0002.w                                                  ; $bc87 : $ce, $02, $00
-	bne br_04_bc7e                                                  ; $bc8a : $d0, $f2
+	bne @nextColour                                                  ; $bc8a : $d0, $f2
 
 	pld                                                  ; $bc8c : $2b
 	sep #ACCU_8                                                  ; $bc8d : $e2, $20
@@ -12850,51 +12850,48 @@ br_04_cb30:
 Func_4_cb31:
 	rep #IDX_8                                                  ; $cb31 : $c2, $10
 	lda $27                                                  ; $cb33 : $a5, $27
-	bne br_04_cb3a                                                  ; $cb35 : $d0, $03
+	bne @br_cb3a                                                  ; $cb35 : $d0, $03
 
-	jmp Jump_04_cbbf.w                                                  ; $cb37 : $4c, $bf, $cb
+	jmp Func_4_cb74@return0.w                                                  ; $cb37 : $4c, $bf, $cb
 
-
-br_04_cb3a:
+@br_cb3a:
 	lda $0e                                                  ; $cb3a : $a5, $0e
-	beq br_04_cb6f                                                  ; $cb3c : $f0, $31
+	beq @return0                                                  ; $cb3c : $f0, $31
 
 	lda $1f1d.w                                                  ; $cb3e : $ad, $1d, $1f
-	bne br_04_cb6f                                                  ; $cb41 : $d0, $2c
+	bne @return0                                                  ; $cb41 : $d0, $2c
 
 	lda $0a62.w                                                  ; $cb43 : $ad, $62, $0a
-	bne br_04_cb59                                                  ; $cb46 : $d0, $11
+	bne @br_cb59                                                  ; $cb46 : $d0, $11
 
 	lda $0a60.w                                                  ; $cb48 : $ad, $60, $0a
-	bne br_04_cb59                                                  ; $cb4b : $d0, $0c
+	bne @br_cb59                                                  ; $cb4b : $d0, $0c
 
 	ldx #$09d8.w                                                  ; $cb4d : $a2, $d8, $09
 	jsr Func_4_cc5c.l                                                  ; $cb50 : $22, $5c, $cc, $04
-	bcc br_04_cb6f                                                  ; $cb54 : $90, $19
+	bcc @return0                                                  ; $cb54 : $90, $19
 
 .ifdef HACK
 ; dont process being hit
-	jmp br_04_cb6f
+	jmp @return0
 .else
 	jmp Jump_04_cd6a.w                                                  ; $cb56 : $4c, $6a, $cd
 .endif
 
-
-br_04_cb59:
+@br_cb59:
 	lda $0cc8.w                                                  ; $cb59 : $ad, $c8, $0c
-	beq br_04_cb6f                                                  ; $cb5c : $f0, $11
+	beq @return0                                                  ; $cb5c : $f0, $11
 
 	lda $0cf8.w                                                  ; $cb5e : $ad, $f8, $0c
-	bne br_04_cb6f                                                  ; $cb61 : $d0, $0c
+	bne @return0                                                  ; $cb61 : $d0, $0c
 
 	ldx #$0cc8.w                                                  ; $cb63 : $a2, $c8, $0c
 	jsr Func_4_cc5c.l                                                  ; $cb66 : $22, $5c, $cc, $04
-	bcc br_04_cb6f                                                  ; $cb6a : $90, $03
+	bcc @return0                                                  ; $cb6a : $90, $03
 
 	jmp Jump_04_ce8f.w                                                  ; $cb6c : $4c, $8f, $ce
 
-
-br_04_cb6f:
+@return0:
 	sep #IDX_8                                                  ; $cb6f : $e2, $10
 	lda #$00.b                                                  ; $cb71 : $a9, $00
 	rtl                                                  ; $cb73 : $6b
@@ -12906,55 +12903,60 @@ Func_4_cb74:
 	lda StageEnemyEntity.health                                                  ; $cb76 : $a5, $27
 	and #$7f.b                                                  ; $cb78 : $29, $7f
 	sta StageEnemyEntity.health                                                  ; $cb7a : $85, $27
-	beq Jump_04_cbbf                                                  ; $cb7c : $f0, $41
+	beq @return0                                                  ; $cb7c : $f0, $41
 
 	lda $30                                                  ; $cb7e : $a5, $30
-	bne Jump_04_cbbf                                                  ; $cb80 : $d0, $3d
+	bne @return0                                                  ; $cb80 : $d0, $3d
 
 	lda $0e                                                  ; $cb82 : $a5, $0e
-	beq Jump_04_cbbf                                                  ; $cb84 : $f0, $39
+	beq @return0                                                  ; $cb84 : $f0, $39
 
-	ldx #$10d8.w                                                  ; $cb86 : $a2, $d8, $10
+; loop through things to collide with
+	ldx #w10d8_Entities.w                                                  ; $cb86 : $a2, $d8, $10
 
-@loop_cb89:
+@nextEntity:
+; skip entity if disabled
 	sep #ACCU_8                                                  ; $cb89 : $e2, $20
-	lda $0000.w, X                                                  ; $cb8b : $bd, $00, $00
-	beq @br_cbb3                                                  ; $cb8e : $f0, $23
+	lda _10d8_Entity.enabled.w, X                                                  ; $cb8b : $bd, $00, $00
+	beq @toNextEntity                                                  ; $cb8e : $f0, $23
 
 	lda $0030.w, X                                                  ; $cb90 : $bd, $30, $00
-	bne @br_cbb3                                                  ; $cb93 : $d0, $1e
+	bne @toNextEntity                                                  ; $cb93 : $d0, $1e
 
-	lda $000a.w, X                                                  ; $cb95 : $bd, $0a, $00
+; jump if not 10d8 entity 12
+	lda _10d8_Entity.type.w, X                                                  ; $cb95 : $bd, $0a, $00
 	cmp #$12.b                                                  ; $cb98 : $c9, $12
 	bne @br_cba2                                                  ; $cb9a : $d0, $06
 
 	lda $2f                                                  ; $cb9c : $a5, $2f
-	bne @br_cbb3                                                  ; $cb9e : $d0, $13
+	bne @toNextEntity                                                  ; $cb9e : $d0, $13
 
 	bra @br_cbaa                                                  ; $cba0 : $80, $08
 
 @br_cba2:
+; clear if 10d8 entity c or 15
 	cmp #$0c.b                                                  ; $cba2 : $c9, $0c
-	beq Jump_04_cbbf                                                  ; $cba4 : $f0, $19
+	beq @return0                                                  ; $cba4 : $f0, $19
 
 	cmp #$15.b                                                  ; $cba6 : $c9, $15
-	beq Jump_04_cbbf                                                  ; $cba8 : $f0, $15
+	beq @return0                                                  ; $cba8 : $f0, $15
 
 @br_cbaa:
+; carry must be set to jump
 	jsr Func_4_cc5c.l                                                  ; $cbaa : $22, $5c, $cc, $04
-	bcc @br_cbb3                                                  ; $cbae : $90, $03
+	bcc @toNextEntity                                                  ; $cbae : $90, $03
 
 	jmp Jump_04_cedc.w                                                  ; $cbb0 : $4c, $dc, $ce
 
-@br_cbb3:
+@toNextEntity:
 	rep #ACCU_8|F_CARRY                                                  ; $cbb3 : $c2, $21
 	txa                                                  ; $cbb5 : $8a
-	adc #$0040.w                                                  ; $cbb6 : $69, $40, $00
+	adc #_10d8_Entity.sizeof.w                                                  ; $cbb6 : $69, $40, $00
 	tax                                                  ; $cbb9 : $aa
 	cmp #$1318.w                                                  ; $cbba : $c9, $18, $13
-	bcc @loop_cb89                                                  ; $cbbd : $90, $ca
+	bcc @nextEntity                                                  ; $cbbd : $90, $ca
 
-Jump_04_cbbf:
+@return0:
 	sep #ACCU_8|IDX_8                                                  ; $cbbf : $e2, $30
 	lda #$00.b                                                  ; $cbc1 : $a9, $00
 	rtl                                                  ; $cbc3 : $6b
@@ -16294,7 +16296,7 @@ Call_04_e034:
 	and #$00ff.w                                                  ; $e048 : $29, $ff, $00
 	sep #ACCU_8                                                  ; $e04b : $e2, $20
 	lda #$02.b                                                  ; $e04d : $a9, $02
-	jsr $02c411.l                                                  ; $e04f : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $e04f : $22, $11, $c4, $02
 	rts                                                  ; $e053 : $60
 
 
@@ -21480,6 +21482,6 @@ Call_04_ff75:
 	sep #ACCU_8                                                  ; $ff93 : $e2, $20
 	plx                                                  ; $ff95 : $fa
 	lda $e0b0.w, X                                                  ; $ff96 : $bd, $b0, $e0
-	jsr $02c411.l                                                  ; $ff99 : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $ff99 : $22, $11, $c4, $02
 	plp                                                  ; $ff9d : $28
 	rts                                                  ; $ff9e : $60

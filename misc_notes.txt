@@ -207,6 +207,23 @@ animSpecIdx(16)=33 points to Data_3f_d09e
 initial anim idx = 20 points to Data_3f_d248
 which is animSpecAddr(14)
 
+Wall breaking from tornado fang
+-------------------------------
+tile change at 8:849a
+eg from 7e:f038
+vmain = 81 (copy down)
+dest = 555a (aab4)
+18 = num bytes (c tiles down, 3 across)
+
+2:c6fa
+copy eg 354e (tile+attr) from 18:b778 to 7e:f038
+copy eg 354f (tile+attr) from 18:b77a to 7e:f054 (top-right)
+
+(Update enemy13h) 7:ba73->7:baf0->2:c411->2:c55a (performs tile updates)
+code above is triggered when enemy 13's state goes from 2->4 at 7:ba4b
+which happens through enemy/projectile code Func_4_cb74
+which looks at WeaponEnemyCollisionTables (collision table 0e)
+
 
 TODO: ride armour health
 TODO: somewhere, earth spikes deal damage

@@ -626,7 +626,7 @@ Func_8_844e:
 	rep #IDX_8                                                  ; $8451 : $c2, $10
 
 ; eg 80
-	ldx $a6                                                  ; $8453 : $a6, $a6
+	ldx wTilemapDmaStructAddrAfterEnd                                                 ; $8453 : $a6, $a6
 	beq @done                                                  ; $8455 : $f0, $55
 
 ; 2 regs write once
@@ -687,10 +687,10 @@ Func_8_844e:
 -	bcs -                                                  ; $84a3 : $b0, $fe
 
 	tax                                                  ; $84a5 : $aa
-	cpx $a6                                                  ; $84a6 : $e4, $a6
+	cpx wTilemapDmaStructAddrAfterEnd                                                 ; $84a6 : $e4, $a6
 	bne @loop_8465                                                  ; $84a8 : $d0, $bb
 
-	stz $a6                                                  ; $84aa : $64, $a6
+	stz wTilemapDmaStructAddrAfterEnd                                                 ; $84aa : $64, $a6
 
 @done:
 	plp                                                  ; $84ac : $28

@@ -6434,7 +6434,7 @@ UpdateTornadoFang:
 	jmp (@states.w, X)                                                  ; $a9f8 : $7c, $fb, $a9
 
 @states:
-	.dw $aa07
+	.dw TornadoFang0State0_Init
 	.dw Jump_01_aab6
 	.dw TornadoFangState2_Broke
 	.dw Func_1_ac1d
@@ -6442,6 +6442,7 @@ UpdateTornadoFang:
 	.dw $ac79
 
 
+TornadoFang0State0_Init:
 	lda #$02.b                                                  ; $aa07 : $a9, $02
 	sta $01                                                  ; $aa09 : $85, $01
 	stz $03                                                  ; $aa0b : $64, $03
@@ -11886,7 +11887,7 @@ Call_01_cd5c:
 	and #$00ff.w                                                  ; $cd77 : $29, $ff, $00
 	sep #ACCU_8                                                  ; $cd7a : $e2, $20
 	lda #$00.b                                                  ; $cd7c : $a9, $00
-	jsr $02c411.l                                                  ; $cd7e : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $cd7e : $22, $11, $c4, $02
 	rts                                                  ; $cd82 : $60
 
 
@@ -11958,7 +11959,7 @@ Call_01_cddb:
 	and #$00ff.w                                                  ; $cde9 : $29, $ff, $00
 	sep #ACCU_8                                                  ; $cdec : $e2, $20
 	lda #$07.b                                                  ; $cdee : $a9, $07
-	jsr $02c411.l                                                  ; $cdf0 : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $cdf0 : $22, $11, $c4, $02
 	rts                                                  ; $cdf4 : $60
 
 
@@ -12068,7 +12069,7 @@ Call_01_ce7d:
 	and #$00ff.w                                                  ; $ce91 : $29, $ff, $00
 	sep #ACCU_8                                                  ; $ce94 : $e2, $20
 	lda #$05.b                                                  ; $ce96 : $a9, $05
-	jsr $02c411.l                                                  ; $ce98 : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $ce98 : $22, $11, $c4, $02
 	rts                                                  ; $ce9c : $60
 
 
@@ -16339,7 +16340,7 @@ br_01_ead6:
 	adc $08                                                  ; $ead7 : $65, $08
 	sta $002e.w                                                  ; $ead9 : $8d, $2e, $00
 	lda #$0009.w                                                  ; $eadc : $a9, $09, $00
-	jsr $02c411.l                                                  ; $eadf : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $eadf : $22, $11, $c4, $02
 	sep #ACCU_8                                                  ; $eae3 : $e2, $20
 
 br_01_eae5:
@@ -16403,7 +16404,7 @@ br_01_eb38:
 	adc $08                                                  ; $eb39 : $65, $08
 	sta $002e.w                                                  ; $eb3b : $8d, $2e, $00
 	lda #$000a.w                                                  ; $eb3e : $a9, $0a, $00
-	jsr $02c411.l                                                  ; $eb41 : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $eb41 : $22, $11, $c4, $02
 	sep #ACCU_8                                                  ; $eb45 : $e2, $20
 
 br_01_eb47:
@@ -16738,7 +16739,7 @@ br_01_ed52:
 	sta $002e.w                                                  ; $ed6a : $8d, $2e, $00
 	sep #ACCU_8                                                  ; $ed6d : $e2, $20
 	lda #$00.b                                                  ; $ed6f : $a9, $00
-	jsr $02c411.l                                                  ; $ed71 : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $ed71 : $22, $11, $c4, $02
 	plx                                                  ; $ed75 : $fa
 
 br_01_ed76:

@@ -12561,7 +12561,7 @@ br_0b_e0f9:
 Call_0b_e0fe:
 	asl $00ef.w, X                                                  ; $e0fe : $1e, $ef, $00
 	ora ($24), Y                                                  ; $e101 : $11, $24
-	bit $00a6.w                                                  ; $e103 : $2c, $a6, $00
+	bit wTilemapDmaStructAddrAfterEnd.w                                                  ; $e103 : $2c, $a6, $00
 	trb $3e                                                  ; $e106 : $14, $3e
 	dec $11ff.w                                                  ; $e108 : $ce, $ff, $11
 	inc $9aee.w, X                                                  ; $e10b : $fe, $ee, $9a

@@ -9251,17 +9251,24 @@ br_07_b9c2:
 	rts                                                  ; $b9c4 : $60
 
 
+UpdateEnemy12h:
+UpdateEnemy13h:
+UpdateEnemy1ah:
 	sep #ACCU_8|IDX_8                                                  ; $b9c5 : $e2, $30
 	ldx $01                                                  ; $b9c7 : $a6, $01
-	jmp ($b9cc.w, X)                                                  ; $b9c9 : $7c, $cc, $b9
+	jmp (@states.w, X)                                                  ; $b9c9 : $7c, $cc, $b9
+
+@states:
+	.dw Func_7_b9d8
+	.dw Func_7_ba27
+	.dw Func_7_ba73
+	.dw Func_7_ba23
+	.dw Func_7_ba23
+	.dw Func_7_ba1f
 
 
-	cld                                                  ; $b9cc : $d8
-	lda $ba27.w, Y                                                  ; $b9cd : $b9, $27, $ba
-	adc ($ba, S), Y                                                  ; $b9d0 : $73, $ba
-	and $ba, S                                                  ; $b9d2 : $23, $ba
-	and $ba, S                                                  ; $b9d4 : $23, $ba
-	ora $30e2ba.l, X                                                  ; $b9d6 : $1f, $ba, $e2, $30
+Func_7_b9d8:
+	sep #ACCU_8|IDX_8                                                  ; $b9d8 : $e2, $30
 	jsr LoadCurrEnemyBaseData.l                                                  ; $b9da : $22, $5c, $e1, $02
 	lda #$0c.b                                                  ; $b9de : $a9, $0c
 	sta $12                                                  ; $b9e0 : $85, $12
@@ -9297,16 +9304,20 @@ br_07_b9c2:
 	rtl                                                  ; $ba1e : $6b
 
 
+Func_7_ba1f:
 	jmp Func_2_ddf6.l                                                  ; $ba1f : $5c, $f6, $dd, $02
 
 
+Func_7_ba23:
 	lda #$02.b                                                  ; $ba23 : $a9, $02
 	sta $01                                                  ; $ba25 : $85, $01
+
+Func_7_ba27:
 	jsr Func_2_d636.l                                                  ; $ba27 : $22, $36, $d6, $02
 	sep #ACCU_8                                                  ; $ba2b : $e2, $20
 	lda $3a                                                  ; $ba2d : $a5, $3a
 	ora $3b                                                  ; $ba2f : $05, $3b
-	beq br_07_ba56                                                  ; $ba31 : $f0, $23
+	beq @br_ba56                                                  ; $ba31 : $f0, $23
 
 	lda $37                                                  ; $ba33 : $a5, $37
 	sta $28                                                  ; $ba35 : $85, $28
@@ -9315,25 +9326,24 @@ br_07_b9c2:
 	sta $20                                                  ; $ba3b : $85, $20
 	sep #ACCU_8                                                  ; $ba3d : $e2, $20
 	jsr Func_4_cb74.l                                                  ; $ba3f : $22, $74, $cb, $04
-	beq br_07_ba50                                                  ; $ba43 : $f0, $0b
+	beq @br_ba50                                                  ; $ba43 : $f0, $0b
 
-	bvs br_07_ba6e                                                  ; $ba45 : $70, $27
+	bvs @clear_0eh                                                  ; $ba45 : $70, $27
 
-	bpl br_07_ba6e                                                  ; $ba47 : $10, $25
+	bpl @clear_0eh                                                  ; $ba47 : $10, $25
 
-br_07_ba49:
+@toState2:
 	lda #$04.b                                                  ; $ba49 : $a9, $04
 	sta $01                                                  ; $ba4b : $85, $01
 	stz $02                                                  ; $ba4d : $64, $02
 	rtl                                                  ; $ba4f : $6b
 
-
-br_07_ba50:
+@br_ba50:
 	lda $3c                                                  ; $ba50 : $a5, $3c
 	ora $3d                                                  ; $ba52 : $05, $3d
-	beq br_07_ba6e                                                  ; $ba54 : $f0, $18
+	beq @clear_0eh                                                  ; $ba54 : $f0, $18
 
-br_07_ba56:
+@br_ba56:
 	lda #$0f.b                                                  ; $ba56 : $a9, $0f
 	sta $28                                                  ; $ba58 : $85, $28
 	rep #ACCU_8                                                  ; $ba5a : $c2, $20
@@ -9341,23 +9351,24 @@ br_07_ba56:
 	sta $20                                                  ; $ba5e : $85, $20
 	sep #ACCU_8                                                  ; $ba60 : $e2, $20
 	jsr Func_4_cb74.l                                                  ; $ba62 : $22, $74, $cb, $04
-	beq br_07_ba6e                                                  ; $ba66 : $f0, $06
+	beq @clear_0eh                                                  ; $ba66 : $f0, $06
 
-	bvs br_07_ba6e                                                  ; $ba68 : $70, $04
+	bvs @clear_0eh                                                  ; $ba68 : $70, $04
 
-	bpl br_07_ba6e                                                  ; $ba6a : $10, $02
+	bpl @clear_0eh                                                  ; $ba6a : $10, $02
 
-	bra br_07_ba49                                                  ; $ba6c : $80, $db
+	bra @toState2                                                  ; $ba6c : $80, $db
 
-br_07_ba6e:
+@clear_0eh:
 	sep #ACCU_8                                                  ; $ba6e : $e2, $20
 	stz $0e                                                  ; $ba70 : $64, $0e
 	rtl                                                  ; $ba72 : $6b
 
 
+Func_7_ba73:
 	sep #ACCU_8                                                  ; $ba73 : $e2, $20
 	lda $02                                                  ; $ba75 : $a5, $02
-	bne br_07_ba99                                                  ; $ba77 : $d0, $20
+	bne @br_ba99                                                  ; $ba77 : $d0, $20
 
 	rep #ACCU_8|IDX_8                                                  ; $ba79 : $c2, $30
 	ldx $34                                                  ; $ba7b : $a6, $34
@@ -9374,18 +9385,16 @@ br_07_ba6e:
 	jsr Call_07_baaa.w                                                  ; $ba95 : $20, $aa, $ba
 	rtl                                                  ; $ba98 : $6b
 
-
-br_07_ba99:
+@br_ba99:
 	sep #ACCU_8                                                  ; $ba99 : $e2, $20
 	dec $36                                                  ; $ba9b : $c6, $36
-	bne br_07_baa9                                                  ; $ba9d : $d0, $0a
+	bne @done                                                  ; $ba9d : $d0, $0a
 
 	jsr Call_07_bac5.w                                                  ; $ba9f : $20, $c5, $ba
 	jsr Call_07_baf7.w                                                  ; $baa2 : $20, $f7, $ba
 	jmp todo_DisablesEntity_d928.l                                                  ; $baa5 : $5c, $28, $d9, $02
 
-
-br_07_baa9:
+@done:
 	rtl                                                  ; $baa9 : $6b
 
 
@@ -9418,7 +9427,7 @@ Call_07_bac5:
 	ldx $34                                                  ; $bac7 : $a6, $34
 	lda $1fe0.w                                                  ; $bac9 : $ad, $e0, $1f
 	and $000c.w, X                                                  ; $bacc : $3d, $0c, $00
-	beq br_07_baf4                                                  ; $bacf : $f0, $23
+	beq @done                                                  ; $bacf : $f0, $23
 
 	lda $05                                                  ; $bad1 : $a5, $05
 	clc                                                  ; $bad3 : $18
@@ -9434,9 +9443,9 @@ Call_07_bac5:
 	lda #$01.b                                                  ; $bae9 : $a9, $01
 	sta $02                                                  ; $baeb : $85, $02
 	lda $000a.w, X                                                  ; $baed : $bd, $0a, $00
-	jsr $02c411.l                                                  ; $baf0 : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $baf0 : $22, $11, $c4, $02
 
-br_07_baf4:
+@done:
 	sep #ACCU_8                                                  ; $baf4 : $e2, $20
 	rts                                                  ; $baf6 : $60
 
@@ -15063,7 +15072,7 @@ br_07_ddb4:
 	lda #$0000.w                                                  ; $ddc2 : $a9, $00, $00
 	sep #ACCU_8                                                  ; $ddc5 : $e2, $20
 	lda #$01.b                                                  ; $ddc7 : $a9, $01
-	jsr $02c411.l                                                  ; $ddc9 : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $ddc9 : $22, $11, $c4, $02
 	lda #$02.b                                                  ; $ddcd : $a9, $02
 	sta $0000.w                                                  ; $ddcf : $8d, $00, $00
 	lda #$2b.b                                                  ; $ddd2 : $a9, $2b
@@ -15843,7 +15852,7 @@ Call_07_e2b4:
 	and #$00ff.w                                                  ; $e2c8 : $29, $ff, $00
 	sep #ACCU_8                                                  ; $e2cb : $e2, $20
 	lda #$08.b                                                  ; $e2cd : $a9, $08
-	jsr $02c411.l                                                  ; $e2cf : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $e2cf : $22, $11, $c4, $02
 	rts                                                  ; $e2d3 : $60
 
 
@@ -19021,7 +19030,7 @@ Call_07_f5f1:
 	sta $002e.w                                                  ; $f602 : $8d, $2e, $00
 	lda #$0000.w                                                  ; $f605 : $a9, $00, $00
 	sep #ACCU_8                                                  ; $f608 : $e2, $20
-	jsr $02c411.l                                                  ; $f60a : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $f60a : $22, $11, $c4, $02
 	rts                                                  ; $f60e : $60
 
 
@@ -19037,7 +19046,7 @@ Call_07_f60f:
 	sta $002e.w                                                  ; $f620 : $8d, $2e, $00
 	lda #$0006.w                                                  ; $f623 : $a9, $06, $00
 	sep #ACCU_8                                                  ; $f626 : $e2, $20
-	jsr $02c411.l                                                  ; $f628 : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $f628 : $22, $11, $c4, $02
 	rts                                                  ; $f62c : $60
 
 
@@ -19556,7 +19565,7 @@ br_07_f964:
 	and #$00ff.w                                                  ; $f97d : $29, $ff, $00
 	sep #ACCU_8                                                  ; $f980 : $e2, $20
 	lda $3d                                                  ; $f982 : $a5, $3d
-	jsr $02c411.l                                                  ; $f984 : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $f984 : $22, $11, $c4, $02
 	rts                                                  ; $f988 : $60
 
 

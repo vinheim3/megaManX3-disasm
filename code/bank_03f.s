@@ -15738,7 +15738,7 @@ Call_3f_e5c8:
 	and #$00ff.w                                                  ; $e5d8 : $29, $ff, $00
 	sep #ACCU_8                                                  ; $e5db : $e2, $20
 	lda #$00.b                                                  ; $e5dd : $a9, $00
-	jsr $02c411.l                                                  ; $e5df : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $e5df : $22, $11, $c4, $02
 	rts                                                  ; $e5e3 : $60
 
 

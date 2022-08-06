@@ -21136,6 +21136,6 @@ Call_3a_fa94:
 	sep #ACCU_8                                                  ; $fab2 : $e2, $20
 	plx                                                  ; $fab4 : $fa
 	lda $e0a1.w, X                                                  ; $fab5 : $bd, $a1, $e0
-	jsr $02c411.l                                                  ; $fab8 : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $fab8 : $22, $11, $c4, $02
 	plp                                                  ; $fabc : $28
 	rts                                                  ; $fabd : $60

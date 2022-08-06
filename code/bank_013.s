@@ -2479,7 +2479,7 @@ Call_13_cf6b:
 	and #$00ff.w                                                  ; $cf81 : $29, $ff, $00
 	sep #ACCU_8                                                  ; $cf84 : $e2, $20
 	tya                                                  ; $cf86 : $98
-	jsr $02c411.l                                                  ; $cf87 : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $cf87 : $22, $11, $c4, $02
 	rts                                                  ; $cf8b : $60
 
 
@@ -2558,7 +2558,7 @@ Call_13_cfe6:
 	tya                                                  ; $cff9 : $98
 	clc                                                  ; $cffa : $18
 	adc #$0f.b                                                  ; $cffb : $69, $0f
-	jsr $02c411.l                                                  ; $cffd : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $cffd : $22, $11, $c4, $02
 	rts                                                  ; $d001 : $60
 
 
@@ -2571,7 +2571,7 @@ Call_13_d002:
 	and #$00ff.w                                                  ; $d010 : $29, $ff, $00
 	sep #ACCU_8                                                  ; $d013 : $e2, $20
 	tya                                                  ; $d015 : $98
-	jsr $02c411.l                                                  ; $d016 : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $d016 : $22, $11, $c4, $02
 	rts                                                  ; $d01a : $60
 
 

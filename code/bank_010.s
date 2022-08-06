@@ -1058,7 +1058,7 @@ br_10_8634:
 	sbc $a7                                                  ; $8646 : $e5, $a7
 	.db $00                                                  ; $8648 : $00
 	.db $00                                                  ; $8649 : $00
-	cmp $00a6.w, X                                                  ; $864a : $dd, $a6, $00
+	cmp wTilemapDmaStructAddrAfterEnd.w, X                                                  ; $864a : $dd, $a6, $00
 	sed                                                  ; $864d : $f8
 	cmp $20a5.w, X                                                  ; $864e : $dd, $a5, $20
 	php                                                  ; $8651 : $08
@@ -1132,7 +1132,7 @@ br_10_86a5:
 	sbc $a7                                                  ; $86b7 : $e5, $a7
 	.db $00                                                  ; $86b9 : $00
 	.db $00                                                  ; $86ba : $00
-	cmp $00a6.w, X                                                  ; $86bb : $dd, $a6, $00
+	cmp wTilemapDmaStructAddrAfterEnd.w, X                                                  ; $86bb : $dd, $a6, $00
 	sed                                                  ; $86be : $f8
 	cmp $20a5.w, X                                                  ; $86bf : $dd, $a5, $20
 	php                                                  ; $86c2 : $08

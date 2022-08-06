@@ -9476,7 +9476,7 @@ br_16_b8aa:
 
 br_16_bdd2:
 	ora $00a000.l                                                  ; $bdd2 : $0f, $00, $a0, $00
-	ora $02c400.l, X                                                  ; $bdd6 : $1f, $00, $c4, $02
+	ora Func_2_c400.l, X                                                  ; $bdd6 : $1f, $00, $c4, $02
 	cpy $02                                                  ; $bdda : $c4, $02
 	eor $02                                                  ; $bddc : $45, $02
 	sta ($00), Y                                                  ; $bdde : $91, $00

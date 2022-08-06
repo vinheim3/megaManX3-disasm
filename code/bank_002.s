@@ -9114,26 +9114,23 @@ Jump_02_aacc:
 	jmp $f89666.l                                                  ; $c3dc : $5c, $66, $96, $f8
 
 
-	sbc $ffffff.l, X                                                  ; $c3e0 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $c3e4 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $c3e8 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $c3ec : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $c3f0 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $c3f4 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $c3f8 : $ff, $ff, $ff, $ff
-	sbc $ffffff.l, X                                                  ; $c3fc : $ff, $ff, $ff, $ff
+.org $4400
+
+Func_2_c400:
 	php                                                  ; $c400 : $08
 	sep #ACCU_8|IDX_8                                                  ; $c401 : $e2, $30
 	stz $002c.w                                                  ; $c403 : $9c, $2c, $00
 	stz $002d.w                                                  ; $c406 : $9c, $2d, $00
 	stz $002e.w                                                  ; $c409 : $9c, $2e, $00
 	stz $002f.w                                                  ; $c40c : $9c, $2f, $00
-	bra br_02_c414                                                  ; $c40f : $80, $03
+	bra _Func_2_c414                                                  ; $c40f : $80, $03
 
+
+Func_2_c411:
 	php                                                  ; $c411 : $08
 	sep #ACCU_8|IDX_8                                                  ; $c412 : $e2, $30
 
-br_02_c414:
+_Func_2_c414:
 	xba                                                  ; $c414 : $eb
 	lda #$00.b                                                  ; $c415 : $a9, $00
 	xba                                                  ; $c417 : $eb
@@ -9162,14 +9159,13 @@ br_02_c414:
 	stx wCurrMetatileTilesTableSrc.w                                                  ; $c441 : $8e, $ee, $1f
 	ldx #$0000.w                                                  ; $c444 : $a2, $00, $00
 	lda ($20)                                                  ; $c447 : $b2, $20
-	bne br_02_c44e                                                  ; $c449 : $d0, $03
+	bne @br_c44e                                                  ; $c449 : $d0, $03
 
-	jmp Jump_02_c4eb.w                                                  ; $c44b : $4c, $eb, $c4
+	jmp @done.w                                                  ; $c44b : $4c, $eb, $c4
 
-
-br_02_c44e:
+@br_c44e:
 	lsr                                                  ; $c44e : $4a
-	bcs br_02_c460                                                  ; $c44f : $b0, $0f
+	bcs @cont_c460                                                  ; $c44f : $b0, $0f
 
 	ldx #$5800.w                                                  ; $c451 : $a2, $00, $58
 	stx $1fe2.w                                                  ; $c454 : $8e, $e2, $1f
@@ -9177,28 +9173,28 @@ br_02_c44e:
 	stx wCurrMetatileTilesTableSrc.w                                                  ; $c45a : $8e, $ee, $1f
 	ldx #$7e00.w                                                  ; $c45d : $a2, $00, $7e
 
-br_02_c460:
+@cont_c460:
 	stx $28                                                  ; $c460 : $86, $28
 	ldy #$0001.w                                                  ; $c462 : $a0, $01, $00
 	rep #ACCU_8                                                  ; $c465 : $c2, $20
 
-Jump_02_c467:
+@bigLoop_c467:
 	stz $1fe6.w                                                  ; $c467 : $9c, $e6, $1f
 	stz $1fe4.w                                                  ; $c46a : $9c, $e4, $1f
 	ldx #$0020.w                                                  ; $c46d : $a2, $20, $00
 	stz $1fea.w                                                  ; $c470 : $9c, $ea, $1f
 	lda ($20), Y                                                  ; $c473 : $b1, $20
 	and #$007f.w                                                  ; $c475 : $29, $7f, $00
-	beq br_02_c4eb                                                  ; $c478 : $f0, $71
+	beq @done                                                  ; $c478 : $f0, $71
 
 	lsr                                                  ; $c47a : $4a
-	bcc br_02_c486                                                  ; $c47b : $90, $09
+	bcc @cont_c486                                                  ; $c47b : $90, $09
 
 	ldx #$0001.w                                                  ; $c47d : $a2, $01, $00
 	inc $1fea.w                                                  ; $c480 : $ee, $ea, $1f
 	inc $1fea.w                                                  ; $c483 : $ee, $ea, $1f
 
-br_02_c486:
+@cont_c486:
 	stx $08                                                  ; $c486 : $86, $08
 	sta $0a                                                  ; $c488 : $85, $0a
 	lda ($20), Y                                                  ; $c48a : $b1, $20
@@ -9224,19 +9220,18 @@ br_02_c486:
 	iny                                                  ; $c4ac : $c8
 	iny                                                  ; $c4ad : $c8
 
-br_02_c4ae:
+@loop_c4ae:
 	phy                                                  ; $c4ae : $5a
 	lda $28                                                  ; $c4af : $a5, $28
-	bne br_02_c4b9                                                  ; $c4b1 : $d0, $06
+	bne @br_c4b9                                                  ; $c4b1 : $d0, $06
 
 	jsr $04bf1b.l                                                  ; $c4b3 : $22, $1b, $bf, $04
-	bra br_02_c4bd                                                  ; $c4b7 : $80, $04
+	bra +                                                  ; $c4b7 : $80, $04
 
-br_02_c4b9:
+@br_c4b9:
 	jsr $04bf1f.l                                                  ; $c4b9 : $22, $1f, $bf, $04
 
-br_02_c4bd:
-	ply                                                  ; $c4bd : $7a
++	ply                                                  ; $c4bd : $7a
 	clc                                                  ; $c4be : $18
 	adc $28                                                  ; $c4bf : $65, $28
 	tax                                                  ; $c4c1 : $aa
@@ -9253,19 +9248,14 @@ br_02_c4bd:
 	sta $00, X                                                  ; $c4d9 : $95, $00
 	plx                                                  ; $c4db : $fa
 	dec $0a                                                  ; $c4dc : $c6, $0a
-	bne br_02_c4ae                                                  ; $c4de : $d0, $ce
+	bne @loop_c4ae                                                  ; $c4de : $d0, $ce
 
 	lda $1fe4.w                                                  ; $c4e0 : $ad, $e4, $1f
-	beq br_02_c4e8                                                  ; $c4e3 : $f0, $03
-
+	beq +                                                  ; $c4e3 : $f0, $03
 	jsr Call_02_c55a.w                                                  ; $c4e5 : $20, $5a, $c5
++	jmp @bigLoop_c467.w                                                  ; $c4e8 : $4c, $67, $c4
 
-br_02_c4e8:
-	jmp Jump_02_c467.w                                                  ; $c4e8 : $4c, $67, $c4
-
-
-Jump_02_c4eb:
-br_02_c4eb:
+@done:
 	plb                                                  ; $c4eb : $ab
 	pld                                                  ; $c4ec : $2b
 	plp                                                  ; $c4ed : $28
@@ -9343,18 +9333,18 @@ Call_02_c55a:
 	phy                                                  ; $c55a : $5a
 	lda $08                                                  ; $c55b : $a5, $08
 	lsr                                                  ; $c55d : $4a
-	bcs br_02_c567                                                  ; $c55e : $b0, $07
+	bcs @br_c567                                                  ; $c55e : $b0, $07
 
 	jsr Call_02_c584.w                                                  ; $c560 : $20, $84, $c5
-	bcs br_02_c57f                                                  ; $c563 : $b0, $1a
+	bcs @end_c57f                                                  ; $c563 : $b0, $1a
 
-	bra br_02_c56c                                                  ; $c565 : $80, $05
+	bra @br_c56c                                                  ; $c565 : $80, $05
 
-br_02_c567:
+@br_c567:
 	jsr Call_02_c5e9.w                                                  ; $c567 : $20, $e9, $c5
-	bcs br_02_c57f                                                  ; $c56a : $b0, $13
+	bcs @end_c57f                                                  ; $c56a : $b0, $13
 
-br_02_c56c:
+@br_c56c:
 	jsr Call_02_c643.w                                                  ; $c56c : $20, $43, $c6
 	lda $0012.w                                                  ; $c56f : $ad, $12, $00
 	sta $0c                                                  ; $c572 : $85, $0c
@@ -9363,7 +9353,7 @@ br_02_c56c:
 	lda $0026.w                                                  ; $c579 : $ad, $26, $00
 	sta $1fe4.w                                                  ; $c57c : $8d, $e4, $1f
 
-br_02_c57f:
+@end_c57f:
 	jsr Call_02_c643.w                                                  ; $c57f : $20, $43, $c6
 	ply                                                  ; $c582 : $7a
 	rts                                                  ; $c583 : $60
@@ -9486,26 +9476,35 @@ br_02_c642:
 
 
 Call_02_c643:
-	lda $00a6.w                                                  ; $c643 : $ad, $a6, $00
+; 14.l contains dest addr
+	lda wTilemapDmaStructAddrAfterEnd.w                                                  ; $c643 : $ad, $a6, $00
 	and #$07ff.w                                                  ; $c646 : $29, $ff, $07
 	clc                                                  ; $c649 : $18
 	adc #$f000.w                                                  ; $c64a : $69, $00, $f0
 	sta $14                                                  ; $c64d : $85, $14
+
+;
 	lda $1fe4.w                                                  ; $c64f : $ad, $e4, $1f
 	asl                                                  ; $c652 : $0a
 	asl                                                  ; $c653 : $0a
 	adc #$0004.w                                                  ; $c654 : $69, $04, $00
 	adc $14                                                  ; $c657 : $65, $14
 	sta $18                                                  ; $c659 : $85, $18
+
+;
 	lda #$007e.w                                                  ; $c65b : $a9, $7e, $00
 	sta $16                                                  ; $c65e : $85, $16
 	sta $1a                                                  ; $c660 : $85, $1a
+
+; store vmain
 	sep #ACCU_8                                                  ; $c662 : $e2, $20
 	ldy #$0000.w                                                  ; $c664 : $a0, $00, $00
 	lda $1fe8.w                                                  ; $c667 : $ad, $e8, $1f
 	sta [$14], Y                                                  ; $c66a : $97, $14
 	sta [$18], Y                                                  ; $c66c : $97, $18
 	iny                                                  ; $c66e : $c8
+
+; store dest addresses
 	rep #ACCU_8                                                  ; $c66f : $c2, $20
 	lda $0c                                                  ; $c671 : $a5, $0c
 	sta [$14], Y                                                  ; $c673 : $97, $14
@@ -9515,6 +9514,8 @@ Call_02_c643:
 	iny                                                  ; $c67a : $c8
 	iny                                                  ; $c67b : $c8
 	sep #ACCU_8                                                  ; $c67c : $e2, $20
+
+; store num bytes
 	lda $1fe4.w                                                  ; $c67e : $ad, $e4, $1f
 	asl                                                  ; $c681 : $0a
 	asl                                                  ; $c682 : $0a
@@ -9523,7 +9524,8 @@ Call_02_c643:
 	iny                                                  ; $c687 : $c8
 	rep #ACCU_8                                                  ; $c688 : $c2, $20
 
-br_02_c68a:
+@loop_c68a:
+; get src address of metatile (*8 as 4 words per metatile)
 	lda ($1c)                                                  ; $c68a : $b2, $1c
 	asl                                                  ; $c68c : $0a
 	asl                                                  ; $c68d : $0a
@@ -9531,46 +9533,48 @@ br_02_c68a:
 	clc                                                  ; $c68f : $18
 	adc wCurrMetatileTilesTableSrc.w                                                  ; $c690 : $6d, $ee, $1f
 	sta $24                                                  ; $c693 : $85, $24
+
+; set data bank to src of metatile eg 18
 	phb                                                  ; $c695 : $8b
 	sep #ACCU_8                                                  ; $c696 : $e2, $20
 	lda $09c7.w                                                  ; $c698 : $ad, $c7, $09
 	phx                                                  ; $c69b : $da
 	ldx $28                                                  ; $c69c : $a6, $28
-	beq br_02_c6a3                                                  ; $c69e : $f0, $03
-
+	beq +                                                  ; $c69e : $f0, $03
 	lda $09ca.w                                                  ; $c6a0 : $ad, $ca, $09
-
-br_02_c6a3:
-	plx                                                  ; $c6a3 : $fa
++	plx                                                  ; $c6a3 : $fa
 	pha                                                  ; $c6a4 : $48
 	plb                                                  ; $c6a5 : $ab
+
+; decide how to copy the metatile
 	rep #ACCU_8                                                  ; $c6a6 : $c2, $20
 	lda $1fea.w                                                  ; $c6a8 : $ad, $ea, $1f
-	beq br_02_c6b2                                                  ; $c6ab : $f0, $05
+	beq @br_c6b2                                                  ; $c6ab : $f0, $05
 
-	jsr Call_02_c6f4.w                                                  ; $c6ad : $20, $f4, $c6
-	bra br_02_c6b5                                                  ; $c6b0 : $80, $03
+	jsr todo_DmaBufferStageModdedMetatileHorizThenVert.w                                                  ; $c6ad : $20, $f4, $c6
+	bra +                                                  ; $c6b0 : $80, $03
 
-br_02_c6b2:
-	jsr Call_02_c6cb.w                                                  ; $c6b2 : $20, $cb, $c6
+@br_c6b2:
+	jsr todo_DmaBufferStageModdedMetatileVertThenHoriz.w                                                  ; $c6b2 : $20, $cb, $c6
 
-br_02_c6b5:
-	plb                                                  ; $c6b5 : $ab
+; restore data bank, then point to next metatile
++	plb                                                  ; $c6b5 : $ab
 	inc $1c                                                  ; $c6b6 : $e6, $1c
 	inc $1c                                                  ; $c6b8 : $e6, $1c
 	dec $1fe4.w                                                  ; $c6ba : $ce, $e4, $1f
-	bne br_02_c68a                                                  ; $c6bd : $d0, $cb
+	bne @loop_c68a                                                  ; $c6bd : $d0, $cb
 
+;
 	tya                                                  ; $c6bf : $98
 	clc                                                  ; $c6c0 : $18
 	adc $18                                                  ; $c6c1 : $65, $18
 	sec                                                  ; $c6c3 : $38
 	sbc #$f000.w                                                  ; $c6c4 : $e9, $00, $f0
-	sta $00a6.w                                                  ; $c6c7 : $8d, $a6, $00
+	sta wTilemapDmaStructAddrAfterEnd.w                                                  ; $c6c7 : $8d, $a6, $00
 	rts                                                  ; $c6ca : $60
 
 
-Call_02_c6cb:
+todo_DmaBufferStageModdedMetatileVertThenHoriz:
 	lda ($24)                                                  ; $c6cb : $b2, $24
 	inc $24                                                  ; $c6cd : $e6, $24
 	inc $24                                                  ; $c6cf : $e6, $24
@@ -9598,21 +9602,28 @@ Call_02_c6cb:
 	rts                                                  ; $c6f3 : $60
 
 
-Call_02_c6f4:
+todo_DmaBufferStageModdedMetatileHorizThenVert:
+; Copy tile+attr to top-left
 	lda ($24)                                                  ; $c6f4 : $b2, $24
 	inc $24                                                  ; $c6f6 : $e6, $24
 	inc $24                                                  ; $c6f8 : $e6, $24
 	sta [$14], Y                                                  ; $c6fa : $97, $14
+
+; Copy tile+attr to top-right
 	lda ($24)                                                  ; $c6fc : $b2, $24
 	inc $24                                                  ; $c6fe : $e6, $24
 	inc $24                                                  ; $c700 : $e6, $24
 	sta [$18], Y                                                  ; $c702 : $97, $18
 	iny                                                  ; $c704 : $c8
 	iny                                                  ; $c705 : $c8
+
+; Copy tile+attr to bottom-left
 	lda ($24)                                                  ; $c706 : $b2, $24
 	inc $24                                                  ; $c708 : $e6, $24
 	inc $24                                                  ; $c70a : $e6, $24
 	sta [$14], Y                                                  ; $c70c : $97, $14
+
+; Copy tile+attr to bottom-right
 	lda ($24)                                                  ; $c70e : $b2, $24
 	inc $24                                                  ; $c710 : $e6, $24
 	inc $24                                                  ; $c712 : $e6, $24
@@ -14931,7 +14942,7 @@ Call_02_e63a:
 	and #$00ff.w                                                  ; $e64e : $29, $ff, $00
 	sep #ACCU_8                                                  ; $e651 : $e2, $20
 	lda #$00.b                                                  ; $e653 : $a9, $00
-	jsr $02c411.l                                                  ; $e655 : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $e655 : $22, $11, $c4, $02
 	lda #$06.b                                                  ; $e659 : $a9, $06
 	sta $12                                                  ; $e65b : $85, $12
 	rts                                                  ; $e65d : $60

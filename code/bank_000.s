@@ -601,9 +601,9 @@ Func_0_81da:
 
 	tya                                                  ; $8339 : $98
 	ora #$e0.b                                                  ; $833a : $09, $e0
-	sta $cb                                                  ; $833c : $85, $cb
-	sta $cc                                                  ; $833e : $85, $cc
-	sta $cd                                                  ; $8340 : $85, $cd
+	sta wRedColourIntensity                                                  ; $833c : $85, $cb
+	sta wGreenColourIntensity                                                   ; $833e : $85, $cc
+	sta wBlueColourIntensity                                                  ; $8340 : $85, $cd
 	lda #$02.b                                                  ; $8342 : $a9, $02
 	jsr $816e.w                                                  ; $8344 : $20, $6e, $81
 	jsr Func_0_83bd.w                                                  ; $8347 : $20, $bd, $83
@@ -650,7 +650,7 @@ Func_0_81da:
 @cont_8385:
 	lda #$bf.b                                                  ; $8385 : $a9, $bf
 	sta $ca                                                  ; $8387 : $85, $ca
-	lda $cb                                                  ; $8389 : $a5, $cb
+	lda wRedColourIntensity                                                  ; $8389 : $a5, $cb
 	and #$1f.b                                                  ; $838b : $29, $1f
 	dea                                                  ; $838d : $3a
 	tay                                                  ; $838e : $a8
@@ -662,9 +662,9 @@ Func_0_81da:
 
 	tya                                                  ; $8394 : $98
 	ora #$e0.b                                                  ; $8395 : $09, $e0
-	sta $cb                                                  ; $8397 : $85, $cb
-	sta $cc                                                  ; $8399 : $85, $cc
-	sta $cd                                                  ; $839b : $85, $cd
+	sta wRedColourIntensity                                                  ; $8397 : $85, $cb
+	sta wGreenColourIntensity                                                   ; $8399 : $85, $cc
+	sta wBlueColourIntensity                                                  ; $839b : $85, $cd
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $839d : $20, $62, $81
 	bra @loop_838f                                                  ; $83a0 : $80, $ed
 
@@ -674,9 +674,9 @@ Func_0_81da:
 	jsr PauseCurrThreadWithADelayCounterOf1.w                                                  ; $83a6 : $20, $62, $81
 	stz $ca                                                  ; $83a9 : $64, $ca
 	lda #$e0.b                                                  ; $83ab : $a9, $e0
-	sta $cb                                                  ; $83ad : $85, $cb
-	sta $cc                                                  ; $83af : $85, $cc
-	sta $cd                                                  ; $83b1 : $85, $cd
+	sta wRedColourIntensity                                                  ; $83ad : $85, $cb
+	sta wGreenColourIntensity                                                   ; $83af : $85, $cc
+	sta wBlueColourIntensity                                                  ; $83b1 : $85, $cd
 	stz wStageIdx.w                                                  ; $83b3 : $9c, $ae, $1f
 	jmp Jump_00_885c.w                                                  ; $83b6 : $4c, $5c, $88
 
@@ -884,7 +884,7 @@ todo_InterfaceWithSPC:
 	pla                                                  ; $84a8 : $68
 	sta APUIO0.w                                                  ; $84a9 : $8d, $40, $21
 
-; Wait until SPC sends $cc back
+; Wait until SPC sends wGreenColourIntensity  back
 -	cmp APUIO0.w                                                  ; $84ac : $cd, $40, $21
 	bne -                                                  ; $84af : $d0, $fb
 
@@ -3106,9 +3106,9 @@ br_00_91da:
 	lda #$92.b                                                  ; $925c : $a9, $92
 	sta $ca                                                  ; $925e : $85, $ca
 	lda #$1f.b                                                  ; $9260 : $a9, $1f
-	sta $cb                                                  ; $9262 : $85, $cb
-	sta $cc                                                  ; $9264 : $85, $cc
-	sta $cd                                                  ; $9266 : $85, $cd
+	sta wRedColourIntensity                                                  ; $9262 : $85, $cb
+	sta wGreenColourIntensity                                                   ; $9264 : $85, $cc
+	sta wBlueColourIntensity                                                  ; $9266 : $85, $cd
 	jmp Jump_00_8669.w                                                  ; $9268 : $4c, $69, $86
 
 
@@ -3135,12 +3135,12 @@ br_00_928b:
 	and #$07.b                                                  ; $928f : $29, $07
 	bne br_00_92a4                                                  ; $9291 : $d0, $11
 
-	lda $cb                                                  ; $9293 : $a5, $cb
+	lda wRedColourIntensity                                                  ; $9293 : $a5, $cb
 	beq br_00_92a4                                                  ; $9295 : $f0, $0d
 
-	dec $cb                                                  ; $9297 : $c6, $cb
-	dec $cc                                                  ; $9299 : $c6, $cc
-	dec $cd                                                  ; $929b : $c6, $cd
+	dec wRedColourIntensity                                                  ; $9297 : $c6, $cb
+	dec wGreenColourIntensity                                                   ; $9299 : $c6, $cc
+	dec wBlueColourIntensity                                                  ; $929b : $c6, $cd
 	rep #ACCU_8                                                  ; $929d : $c2, $20
 	inc wBG2VertScroll                                                  ; $929f : $e6, $bb
 	inc wNewStageScrollY.w                                                  ; $92a1 : $ee, $60, $1e
@@ -3153,9 +3153,9 @@ br_00_92a4:
 	lda #$01.b                                                  ; $92ab : $a9, $01
 	sta $ca                                                  ; $92ad : $85, $ca
 	lda #$1f.b                                                  ; $92af : $a9, $1f
-	sta $cb                                                  ; $92b1 : $85, $cb
-	sta $cc                                                  ; $92b3 : $85, $cc
-	sta $cd                                                  ; $92b5 : $85, $cd
+	sta wRedColourIntensity                                                  ; $92b1 : $85, $cb
+	sta wGreenColourIntensity                                                   ; $92b3 : $85, $cc
+	sta wBlueColourIntensity                                                  ; $92b5 : $85, $cd
 	inc $3b                                                  ; $92b7 : $e6, $3b
 	inc $3b                                                  ; $92b9 : $e6, $3b
 
@@ -3172,9 +3172,9 @@ br_00_92bb:
 	and #$01.b                                                  ; $92cb : $29, $01
 	bne br_00_92db                                                  ; $92cd : $d0, $0c
 
-	dec $cb                                                  ; $92cf : $c6, $cb
-	dec $cc                                                  ; $92d1 : $c6, $cc
-	dec $cd                                                  ; $92d3 : $c6, $cd
+	dec wRedColourIntensity                                                  ; $92cf : $c6, $cb
+	dec wGreenColourIntensity                                                   ; $92d1 : $c6, $cc
+	dec wBlueColourIntensity                                                  ; $92d3 : $c6, $cd
 	bne br_00_92db                                                  ; $92d5 : $d0, $04
 
 	inc $3b                                                  ; $92d7 : $e6, $3b
@@ -3605,37 +3605,40 @@ Call_00_95dc:
 
 
 Call_00_95ed:
-	lda $cb                                                  ; $95ed : $a5, $cb
-	beq br_00_95fc                                                  ; $95ef : $f0, $0b
+;
+	lda wRedColourIntensity                                                  ; $95ed : $a5, $cb
+	beq @br_95fc                                                  ; $95ef : $f0, $0b
 
-	dec $cb                                                  ; $95f1 : $c6, $cb
-	lda $cc                                                  ; $95f3 : $a5, $cc
-	beq br_00_95fb                                                  ; $95f5 : $f0, $04
+	dec wRedColourIntensity                                                  ; $95f1 : $c6, $cb
 
-	dec $cc                                                  ; $95f7 : $c6, $cc
-	dec $cd                                                  ; $95f9 : $c6, $cd
+;
+	lda wGreenColourIntensity                                                   ; $95f3 : $a5, $cc
+	beq @done                                                  ; $95f5 : $f0, $04
 
-br_00_95fb:
+	dec wGreenColourIntensity                                                   ; $95f7 : $c6, $cc
+	dec wBlueColourIntensity                                                  ; $95f9 : $c6, $cd
+
+@done:
 	rts                                                  ; $95fb : $60
 
-
-br_00_95fc:
+@br_95fc:
 	lda $d8                                                  ; $95fc : $a5, $d8
-	bne br_00_960a                                                  ; $95fe : $d0, $0a
+	bne @br_960a                                                  ; $95fe : $d0, $0a
 
 	jsr Func_4_be35.l                                                  ; $9600 : $22, $35, $be, $04
-	and #$851f.w                                                  ; $9604 : $29, $1f, $85
-	cld                                                  ; $9607 : $d8
-	bra br_00_95fb                                                  ; $9608 : $80, $f1
+	and #$1f.b                                                  ; $9604 : $29, $1f
+	sta $d8                                                  ; $9606 : $85, $d8
+	bra @done                                                  ; $9608 : $80, $f1
 
-br_00_960a:
+@br_960a:
 	dec $d8                                                  ; $960a : $c6, $d8
-	bne br_00_95fb                                                  ; $960c : $d0, $ed
+	bne @done                                                  ; $960c : $d0, $ed
 
-	lda #$850a.w                                                  ; $960e : $a9, $0a, $85
-	wai                                                  ; $9611 : $cb
-	lda #$8502.w                                                  ; $9612 : $a9, $02, $85
-	cpy $cd85.w                                                  ; $9615 : $cc, $85, $cd
+	lda #$0a.b                                                  ; $960e : $a9, $0a
+	sta wRedColourIntensity                                                  ; $9610 : $85, $cb
+	lda #$02.b                                                  ; $9612 : $a9, $02
+	sta wGreenColourIntensity                                                   ; $9614 : $85, $cc
+	sta wBlueColourIntensity                                                  ; $9616 : $85, $cd
 	rts                                                  ; $9618 : $60
 
 
@@ -8990,7 +8993,7 @@ Call_00_b91b:
 	and #$fc1f.w                                                  ; $b920 : $29, $1f, $fc
 	sep #ACCU_8                                                  ; $b923 : $e2, $20
 	rep #IDX_8                                                  ; $b925 : $c2, $10
-	ldx $00a6.w                                                  ; $b927 : $ae, $a6, $00
+	ldx wTilemapDmaStructAddrAfterEnd.w                                                  ; $b927 : $ae, $a6, $00
 	sta $7ef001.l, X                                                  ; $b92a : $9f, $01, $f0, $7e
 	ina                                                  ; $b92e : $1a
 	sta $7ef045.l, X                                                  ; $b92f : $9f, $45, $f0, $7e
@@ -9127,10 +9130,10 @@ br_00_b9a2:
 
 br_00_ba23:
 	rep #ACCU_8                                                  ; $ba23 : $c2, $20
-	lda $00a6.w                                                  ; $ba25 : $ad, $a6, $00
+	lda wTilemapDmaStructAddrAfterEnd.w                                                  ; $ba25 : $ad, $a6, $00
 	clc                                                  ; $ba28 : $18
 	adc #$0088.w                                                  ; $ba29 : $69, $88, $00
-	sta $00a6.w                                                  ; $ba2c : $8d, $a6, $00
+	sta wTilemapDmaStructAddrAfterEnd.w                                                  ; $ba2c : $8d, $a6, $00
 	rep #ACCU_8                                                  ; $ba2f : $c2, $20
 	rts                                                  ; $ba31 : $60
 
@@ -9456,7 +9459,7 @@ br_00_bbaa:
 	jsr Call_00_bc60.w                                                  ; $bbaa : $20, $60, $bc
 	sep #ACCU_8                                                  ; $bbad : $e2, $20
 	rep #IDX_8                                                  ; $bbaf : $c2, $10
-	ldx $00a6.w                                                  ; $bbb1 : $ae, $a6, $00
+	ldx wTilemapDmaStructAddrAfterEnd.w                                                  ; $bbb1 : $ae, $a6, $00
 	lda #$80.b                                                  ; $bbb4 : $a9, $80
 	sta $7ef000.l, X                                                  ; $bbb6 : $9f, $00, $f0, $7e
 	sta $7ef008.l, X                                                  ; $bbba : $9f, $08, $f0, $7e
@@ -9533,10 +9536,10 @@ br_00_bbaa:
 	inc $1c                                                  ; $bc4a : $e6, $1c
 	inc $1c                                                  ; $bc4c : $e6, $1c
 	sta $7ef00a.l, X                                                  ; $bc4e : $9f, $0a, $f0, $7e
-	lda $00a6.w                                                  ; $bc52 : $ad, $a6, $00
+	lda wTilemapDmaStructAddrAfterEnd.w                                                  ; $bc52 : $ad, $a6, $00
 	clc                                                  ; $bc55 : $18
 	adc #$0010.w                                                  ; $bc56 : $69, $10, $00
-	sta $00a6.w                                                  ; $bc59 : $8d, $a6, $00
+	sta wTilemapDmaStructAddrAfterEnd.w                                                  ; $bc59 : $8d, $a6, $00
 
 Jump_00_bc5c:
 	plp                                                  ; $bc5c : $28
@@ -19869,15 +19872,15 @@ EnemyUpdateFuncs:
 	.dw $fb52
 	.dw $fb57
 	.dw $fb5c
-	.dw $fb61
-	.dw $fb66
+	.dw FarUpdateEnemy12h
+	.dw FarUpdateEnemy13h
 	.dw $fb6b
 	.dw $fb70
 	.dw $fb75
 	.dw $fb7a
 	.dw $fb7f
 	.dw $fb84
-	.dw $fb89
+	.dw FarUpdateEnemy1ah
 	.dw $fb8e
 	.dw $fb93
 	.dw $fb98
@@ -20034,11 +20037,13 @@ EnemyUpdateFuncs:
 	rts                                                  ; $fb60 : $60
 
 
-	jsr $07b9c5.l                                                  ; $fb61 : $22, $c5, $b9, $07
+FarUpdateEnemy12h:
+	jsr UpdateEnemy12h.l                                                  ; $fb61 : $22, $c5, $b9, $07
 	rts                                                  ; $fb65 : $60
 
 
-	jsr $07b9c5.l                                                  ; $fb66 : $22, $c5, $b9, $07
+FarUpdateEnemy13h:
+	jsr UpdateEnemy13h.l                                                  ; $fb66 : $22, $c5, $b9, $07
 	rts                                                  ; $fb6a : $60
 
 
@@ -20066,7 +20071,8 @@ EnemyUpdateFuncs:
 	rts                                                  ; $fb88 : $60
 
 
-	jsr $07b9c5.l                                                  ; $fb89 : $22, $c5, $b9, $07
+FarUpdateEnemy1ah:
+	jsr UpdateEnemy1ah.l                                                  ; $fb89 : $22, $c5, $b9, $07
 	rts                                                  ; $fb8d : $60
 
 

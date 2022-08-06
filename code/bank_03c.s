@@ -6730,7 +6730,7 @@ Call_3c_a73b:
 	pla                                                  ; $a759 : $68
 	tay                                                  ; $a75a : $a8
 	lda $c4b6.w, Y                                                  ; $a75b : $b9, $b6, $c4
-	jsr $02c411.l                                                  ; $a75e : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $a75e : $22, $11, $c4, $02
 	rts                                                  ; $a762 : $60
 
 
@@ -6744,7 +6744,7 @@ Call_3c_a763:
 	sep #ACCU_8                                                  ; $a774 : $e2, $20
 	ldy $36                                                  ; $a776 : $a4, $36
 	lda $c4cc.w, Y                                                  ; $a778 : $b9, $cc, $c4
-	jsr $02c411.l                                                  ; $a77b : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $a77b : $22, $11, $c4, $02
 	rts                                                  ; $a77f : $60
 
 
@@ -7338,7 +7338,7 @@ br_3c_aaf9:
 	tay                                                  ; $ab15 : $a8
 	lda $c5ac.w, Y                                                  ; $ab16 : $b9, $ac, $c5
 	ina                                                  ; $ab19 : $1a
-	jsr $02c411.l                                                  ; $ab1a : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $ab1a : $22, $11, $c4, $02
 	inc $35                                                  ; $ab1e : $e6, $35
 	rts                                                  ; $ab20 : $60
 
@@ -8655,7 +8655,7 @@ br_3c_b31d:
 	lda $0000.w, X                                                  ; $b31d : $bd, $00, $00
 	and #$00ff.w                                                  ; $b320 : $29, $ff, $00
 	sep #ACCU_8|IDX_8                                                  ; $b323 : $e2, $30
-	jsr $02c411.l                                                  ; $b325 : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $b325 : $22, $11, $c4, $02
 	rts                                                  ; $b329 : $60
 
 
@@ -8945,7 +8945,7 @@ Call_3c_b4f1:
 	and #$00ff.w                                                  ; $b505 : $29, $ff, $00
 	sep #ACCU_8                                                  ; $b508 : $e2, $20
 	lda #$09.b                                                  ; $b50a : $a9, $09
-	jsr $02c411.l                                                  ; $b50c : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $b50c : $22, $11, $c4, $02
 	rts                                                  ; $b510 : $60
 
 
@@ -9107,7 +9107,7 @@ Call_3c_b5e1:
 	and #$00ff.w                                                  ; $b5f1 : $29, $ff, $00
 	sep #ACCU_8                                                  ; $b5f4 : $e2, $20
 	lda $3d                                                  ; $b5f6 : $a5, $3d
-	jsr $02c411.l                                                  ; $b5f8 : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $b5f8 : $22, $11, $c4, $02
 	rts                                                  ; $b5fc : $60
 
 

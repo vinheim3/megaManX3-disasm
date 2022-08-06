@@ -14,3 +14,9 @@ TODO: skip cutscenes (convos with bit/byte)
 zero mod texts at c0:8000, c2:8000, c4:8000, c6:8000
 4a:aabf is an example of populating old ram vars (1fd1, etc) for minimap markers
   then restoring them
+
+
+color rando
+* when flashing happens in intro cutscene
+modifies wRed/Green/BlueColourIntensity eg in 0:95ed
+* routines around _Func_4_bc58

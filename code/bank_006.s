@@ -16097,7 +16097,7 @@ WeaponEnemyCollisionTables:
 	.dw $0506
 	.dw $052c
 	.dw $01c2
-	.dw $0046
+	.dw WeaponEnemyCollision0eh-WeaponEnemyCollisionTables
 	.dw $006c
 	.dw $0176
 	.dw $020e
@@ -16120,44 +16120,15 @@ WeaponEnemyCollisionTables:
 	.dw $0552
 
 
+WeaponEnemyCollision0eh:
+	.db $80, $80, $80, $80, $80, $80, $80, $00
+	.db $00, $80, $80, $80, $00, $00, $02, $80
+	.db $80, $80, $80, $80, $80, $00, $80, $04
+	.db $80, $10, $20, $80, $80, $80, $80, $80
+	.db $80, $80, $30, $80, $80, $80
 
-	.db $80                                                  ; $e4eb : $80
-	bra br_06_e46e                                                  ; $e4ec : $80, $80
 
-	bra br_06_e470                                                  ; $e4ee : $80, $80
-
-	bra br_06_e472                                                  ; $e4f0 : $80, $80
-
-	.db $00                                                  ; $e4f2 : $00
-	.db $00                                                  ; $e4f3 : $00
-	.db $80, $80                                                  ; $e4f4 : $80, $80
-
-	bra br_06_e4f8                                                  ; $e4f6 : $80, $00
-
-br_06_e4f8:
-	.db $00                                                  ; $e4f8 : $00
-	cop $80.b                                                  ; $e4f9 : $02, $80
-	.db $80, $80                                                  ; $e4fb : $80, $80
-
-	.db $80, $80                                                  ; $e4fd : $80, $80
-
-	bra br_06_e501                                                  ; $e4ff : $80, $00
-
-br_06_e501:
-	.db $80, $04                                                  ; $e501 : $80, $04
-
-	bra br_06_e515                                                  ; $e503 : $80, $10
-
-	jsr $8080.w                                                  ; $e505 : $20, $80, $80
-	bra br_06_e48a                                                  ; $e508 : $80, $80
-
-	bra br_06_e48c                                                  ; $e50a : $80, $80
-
-	.db $80, $30                                                  ; $e50c : $80, $30
-
-	bra br_06_e490                                                  ; $e50e : $80, $80
-
-	bra br_06_e515                                                  ; $e510 : $80, $03
+	.db $03                                                  ; $e511 : $03
 
 	ora $0a                                                  ; $e512 : $05, $0a
 	php                                                  ; $e514 : $08
@@ -16503,7 +16474,7 @@ br_06_e715:
 	.db $7f
 
 
-; eg weapon 0 (acid burst) is the 7th byte
+; eg weapon 0 (acid burst) is the byte 07 (last of 1st row)
 ; charge subweapons = +9 from normal
 
 ; blast hornet - gravity well > spinning blade

@@ -3377,7 +3377,7 @@ br_39_a541:
 	and #$00ff.w                                                  ; $a54d : $29, $ff, $00
 	sep #ACCU_8                                                  ; $a550 : $e2, $20
 	lda #$01.b                                                  ; $a552 : $a9, $01
-	jsr $02c411.l                                                  ; $a554 : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $a554 : $22, $11, $c4, $02
 	rts                                                  ; $a558 : $60
 
 
@@ -7645,14 +7645,14 @@ br_39_c06f:
 	sta $002e.w                                                  ; $c080 : $8d, $2e, $00
 	sep #ACCU_8                                                  ; $c083 : $e2, $20
 	lda $0c                                                  ; $c085 : $a5, $0c
-	jsr $02c411.l                                                  ; $c087 : $22, $11, $c4, $02
+	jsr Func_2_c411.l                                                  ; $c087 : $22, $11, $c4, $02
 	lda $01                                                  ; $c08b : $a5, $01
 	jmp todo_DisablesEntity_d928.l                                                  ; $c08d : $5c, $28, $d9, $02
 
 
 br_39_c091:
 	lda $0c                                                  ; $c091 : $a5, $0c
-	jsr $02c400.l                                                  ; $c093 : $22, $00, $c4, $02
+	jsr Func_2_c400.l                                                  ; $c093 : $22, $00, $c4, $02
 	lda $01                                                  ; $c097 : $a5, $01
 	jmp todo_DisablesEntity_d928.l                                                  ; $c099 : $5c, $28, $d9, $02
 
