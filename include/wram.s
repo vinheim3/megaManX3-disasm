@@ -269,6 +269,7 @@ w0ce8:
 w10d8_Entities: ; $10d8
     ds _10d8_Entity.sizeof * NUM_10D8_ENTITIES
 
+; todo: enemy projectiles??
 w1318:
     ds $518-$318
 

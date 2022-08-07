@@ -20,3 +20,111 @@ color rando
 * when flashing happens in intro cutscene
 modifies wRed/Green/BlueColourIntensity eg in 0:95ed
 * routines around _Func_4_bc58
+* todo: shurikein, subwep wireframes
+* todo: textbox super black background
+* todo: gravity beetle clouds
+
+
+enemy misc damage
+3:cb21 ; blizzard buffalo contact
+3:cb47 ; blizzard buffalo contact
+3:cbb0 ; blizzard buffalo grab?
+3:cc9f ; blizzard buffalo slam
+3:d0f5 ; crush crawfish contact
+3:d31e ; crush crawfish scissors
+3:d39d ; crush crawfish contact after scissors
+4:c8dd ; misc 2 damage (eg atareeter spikes)
+4:e407 ; sigma contact
+4:e441 ; sigma ground shots
+4:e48e ; sigma air shots
+4:e501 ; kaiser sigma mines
+4:e553 ; kaiser sigma missiles
+4:e578 ; sigma contact
+4:eabd ; notor banger projectile
+4:ec22 ; earth commander roller (health nearby)
+4:eda3 ; caterkiller energy balls (health nearby)
+4:ef17 ; helit projectile
+4:f058 ; crablaster projectile
+4:f26a ; meta capsule spark
+4:f643 ; head gunner projectile
+4:f911 ; wild tank drills
+4:fb81 ; victoroid laser
+5:8ba4 ; kaiser sigma contact
+5:8e9c ; godkarmachine contact
+5:99c6 ; kaiser sigma contact
+5:b230 ; doppler energy bombs
+5:b267 ; doppler barrier contact
+5:b39c ; byte 2 dmg
+5:b3d3 ; byte 2 dmg
+5:b561 ; ride armour goliath poles
+5:b5a5 ; ride armour goliath dash punch
+5:ca3b ; tombort projectile
+6:f353 ; ride armour goliath damage table cross-charge (4 values?)
+7:859e ; blady contact
+7:8e78 ; kaiser sigma contact
+7:c48a ; mass gunner improved (health nearby)
+7:f73d ; lava at the end
+7:fe75 ; worm seeker spiked mines
+8:9a50 ; godkarmachine sword beams
+8:9a90 ; godkarmachine orbs
+8:9b83 ; godkarmachine ?? after sword beams
+8:9d32 ; blizzard buffalo projectile (health nearby)
+8:9d67 ; blizzard buffalo ??? (health nearby)
+8:a16f ; blast hornet parasitic bees (health nearby)
+8:a1c8 ; blast hornet bees (health nearby)
+8:a61b ; gravity beetle deadlift
+8:a635 ; gravity beetle energy ball 2
+8:a657 ; gravity beetle gravity well
+8:aa07 ; crush crawfish slam
+8:aad9 ; neon tiger ray splasher
+8:ab0f ; neon tiger lunge
+8:af04 ; volt catfish projectile
+8:af3a ; volt catfish dash w/o barrier
+8:af7d ; volt catfish charge contact?
+8:af91 ; volt catfish dash w/ barrier
+8:b62f ; rex pellets
+8:b6e5 ; rex missiles
+8:bcdc ; snow rider projectile
+8:be9b ; drimole w drills
+8:bed3 ; drimole w grenades
+8:c098 ; ice de voux rock contact (health nearby)
+8:c0c0 ; ice de voux inner contact? (health same)
+8:c775 ; hamma hamma mace (health same)
+8:ca03 ; ganseki carrier missile
+13:d2e5 ; wall cancer energy ball
+13:d2f6 ; wall cancer energy ball
+13:d30d ; wall cancer energy ball
+13:d44b ; wall cancer charged ball
+13:dd4e ; neon tiger contact
+13:e53f ; toxic seahorse contact
+13:e7bc ; toxic seahorse bubbles
+13:e898 ; toxic seahorse bubble droplets
+13:eaff ; volt catfish contact
+13:f01c ; volt catfish charged contact
+13:f040 ; volt catfish back to regular contact
+13:f2f2 ; gravity beetle contact
+13:f5e3 ; gravity beetle deadlift
+32:f313 ; godkarmachine contact
+32:f331 ; godkarmachine hand
+32:f371 ; godkarmachine hand
+39:9cd5 ; blast hornet contact dmg
+39:9ef6 ; blast hornet stinger
+39:9f0f ; blast hornet contact dmg
+39:a590 ; toxic seahorse bubbles
+39:a5bf ; toxic seahorse bubble droplets
+39:a5f0 ; toxic seahorse twin bubbles
+39:ac93 ; bit ring thing
+39:acf9 ; bit fireballs
+39:ae86 ; ride armour dra-00 punch
+39:af4a ; vile fire tower
+39:b0d5 ; vile scatter shot
+39:b394 ; hell crusher claw
+3a:f998 ; walk blaster laser
+3c:bf59 ; shurikein (health nearby)
+3d:fd60 ; hotareeca mines (abs) (health nearby)
+3d:fda9 ; hotareeca missiles (health nearby)
+3f:e6a7 ; tunnel rhino contact
+3f:e957 ; tunnel rhino invincible dash
+3f:e9e6 ; tunnel rhino contact after invincible dash
+3f:eadd ; tunnel rhino contact after dash
+3f:eff6 ; debris falling in vile stage (health nearby)
